@@ -20,7 +20,7 @@ function initSupabase() {
 
 function getSupabase() {
   if (!supabase) {
-    getSupabase();
+    initSupabase();
   }
   return supabase;
 }
