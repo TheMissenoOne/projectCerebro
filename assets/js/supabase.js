@@ -6,21 +6,40 @@ var supabase = null;
 function initSupabase() {
   if (supabase) return supabase;
   
-  if (typeof window === 'undefined' || typeof window.supabase === 'undefined') {
-    console.warn('Supabase SDK não carregado');
+  if (typeof window === 'undefined') return null;
+  
+  var sdk = window.supabase;
+  if (!sdk) {
+    console.warn('Aguardando Supabase SDK...');
     return null;
   }
   
-  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  return supabase;
+}
+
+function getSupabase() {
+  if (!supabase) {
+    getSupabase();
+  }
   return supabase;
 }
 
 if (typeof window !== 'undefined') {
   window.initSupabase = initSupabase;
+  window.getSupabase = getSupabase;
+  
+  if (window.supabase) {
+    getSupabase();
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(getSupabase, 100);
+    });
+  }
 }
 
 async function getSession() {
-  initSupabase();
+  getSupabase();
   if (!supabase) return null;
   try {
     var result = await supabase.auth.getSession();
@@ -32,7 +51,7 @@ async function getSession() {
 }
 
 async function getProfile(userId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('profiles').select('*').eq('id', userId).single();
   return result.data;
 }
@@ -44,7 +63,7 @@ async function getProfileBySession() {
 }
 
 async function saveCharacter(charId, data) {
-  initSupabase();
+  getSupabase();
   return supabase.from('characters').upsert({
     id: charId,
     data: data,
@@ -53,13 +72,13 @@ async function saveCharacter(charId, data) {
 }
 
 async function loadCharacter(charId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('characters').select('*').eq('id', charId).single();
   return result.data;
 }
 
 async function createCharacter(playerId, partyId) {
-  initSupabase();
+  getSupabase();
   var id = crypto.randomUUID();
   var result = await supabase.from('characters').insert({
     id: id,
@@ -80,35 +99,35 @@ async function createCharacter(playerId, partyId) {
 }
 
 async function listCharacters(playerId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('characters').select('*').eq('player_id', playerId).order('created_at', { ascending: false });
   return result.data || [];
 }
 
 async function listPartyCharacters(partyId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('characters').select('*').eq('party_id', partyId).order('name');
   return result.data || [];
 }
 
 async function deleteCharacter(charId) {
-  initSupabase();
+  getSupabase();
   return supabase.from('characters').delete().eq('id', charId);
 }
 
 async function saveNPC(npcId, data) {
-  initSupabase();
+  getSupabase();
   return supabase.from('npcs').upsert({ id: npcId, data: data, updated_at: new Date().toISOString() });
 }
 
 async function loadNPC(npcId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('npcs').select('*').eq('id', npcId).single();
   return result.data;
 }
 
 async function listNPCs(partyId, includeGlobal) {
-  initSupabase();
+  getSupabase();
   var query = supabase.from('npcs').select('*');
   if (partyId && includeGlobal) {
     query = query.or('party_id.eq.' + partyId + ',is_global.eq.true');
@@ -122,7 +141,7 @@ async function listNPCs(partyId, includeGlobal) {
 }
 
 async function createNPC(partyId, createdBy, npcData) {
-  initSupabase();
+  getSupabase();
   var id = crypto.randomUUID();
   var result = await supabase.from('npcs').insert({
     id: id,
@@ -139,59 +158,59 @@ async function createNPC(partyId, createdBy, npcData) {
 }
 
 async function deleteNPC(npcId) {
-  initSupabase();
+  getSupabase();
   return supabase.from('npcs').delete().eq('id', npcId);
 }
 
 async function getParty(partyId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('parties').select('*, party_members(*, profiles(*))').eq('id', partyId).single();
   return result.data;
 }
 
 async function getPartyByCode(code) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('parties').select('*').eq('code', code.toUpperCase()).single();
   return result.data;
 }
 
 async function getPartyMembers(partyId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('party_members').select('*, profiles(*)').eq('party_id', partyId);
   return result.data || [];
 }
 
 async function createParty(name, gmId) {
-  initSupabase();
+  getSupabase();
   var code = Math.random().toString(36).substring(2, 8).toUpperCase();
   var result = await supabase.from('parties').insert({ name: name, gm_id: gmId, code: code }).select().single();
   return result.data;
 }
 
 async function joinParty(partyId, playerId) {
-  initSupabase();
+  getSupabase();
   return supabase.from('party_members').insert({ party_id: partyId, player_id: playerId });
 }
 
 async function leaveParty(partyId, playerId) {
-  initSupabase();
+  getSupabase();
   return supabase.from('party_members').delete().eq('party_id', partyId).eq('player_id', playerId);
 }
 
 async function getGMParty(gmId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('parties').select('*').eq('gm_id', gmId).single();
   return result.data;
 }
 
 async function getPlayerParty(playerId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('party_members').select('party_id, parties(*)').eq('player_id', playerId).single();
   return result.data ? result.data.parties : null;
 }
 
 async function updateSession(partyId, sessionData) {
-  initSupabase();
+  getSupabase();
   return supabase.from('sessions').upsert({
     party_id: partyId,
     title: sessionData.title,
@@ -203,13 +222,13 @@ async function updateSession(partyId, sessionData) {
 }
 
 async function getSessionByParty(partyId) {
-  initSupabase();
+  getSupabase();
   var result = await supabase.from('sessions').select('*').eq('party_id', partyId).order('created_at', { ascending: false }).limit(1).single();
   return result.data;
 }
 
 async function uploadPortrait(file, playerId, charId) {
-  initSupabase();
+  getSupabase();
   var path = playerId + '/' + charId + '.jpg';
   var uploadResult = await supabase.storage.from('portraits').upload(path, file, { upsert: true, contentType: file.type });
   if (uploadResult.error) throw uploadResult.error;
@@ -219,7 +238,7 @@ async function uploadPortrait(file, playerId, charId) {
 }
 
 function subscribeToPartyCharacters(partyId, callback) {
-  initSupabase();
+  getSupabase();
   return supabase.channel('party-characters').on('postgres_changes', {
     event: '*',
     schema: 'public',
@@ -229,7 +248,7 @@ function subscribeToPartyCharacters(partyId, callback) {
 }
 
 function subscribeToSession(partyId, callback) {
-  initSupabase();
+  getSupabase();
   return supabase.channel('session-updates').on('postgres_changes', {
     event: '*',
     schema: 'public',

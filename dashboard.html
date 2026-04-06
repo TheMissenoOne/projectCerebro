@@ -434,12 +434,9 @@
   <script src="assets/js/supabase.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { initSupabase, getProfile, getSession, listCharacters, createCharacter, getPlayerParty, getParty, createParty, joinParty, getGMParty, getPartyMembers } = window;
-    initSupabase();
-
-    let currentUser = null;
-    let currentProfile = null;
-    let currentParty = null;
+    getSupabase();
+    
+    const { getSupabase, getProfile, getSession, listCharacters, createCharacter, getPlayerParty, getParty, createParty, joinParty, getGMParty, getPartyMembers } = window;
 
     async function init() {
       const auth = await requireAuth();

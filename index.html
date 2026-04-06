@@ -248,7 +248,10 @@
   <script src="assets/js/supabase.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    initSupabase();
+    setTimeout(function() {
+      initSupabase();
+      checkAuth();
+    }, 500);
 
     const tabs = document.querySelectorAll('.auth-tab');
     const forms = document.querySelectorAll('.auth-form');

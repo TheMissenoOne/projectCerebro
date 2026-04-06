@@ -209,8 +209,9 @@
   <script src="assets/js/supabase.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { initSupabase, getSession, getProfile, getGMParty, listNPCs, loadNPC, createNPC, deleteNPC, getSession: getSessionData, updateSession } = window;
-    initSupabase();
+    const { getSupabase, getSession, getProfile, getGMParty, listNPCs, loadNPC, createNPC, deleteNPC, getSession: getSessionData, updateSession } = window;
+
+    getSupabase();
 
     let currentParty = null;
     let allNPCs = [];

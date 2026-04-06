@@ -481,8 +481,9 @@
   <script src="assets/js/supabase.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { initSupabase, getSession, getProfile, loadCharacter, saveCharacter, createCharacter, deleteCharacter, uploadPortrait } = window;
-    initSupabase();
+    const { getSupabase, getSession, getProfile, loadCharacter, saveCharacter, createCharacter, deleteCharacter, uploadPortrait } = window;
+
+    getSupabase();
 
     let charId = null;
     let charData = {};
