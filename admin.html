@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN TTRPG // PAINEL DO GM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    .admin-layout {
+      display: flex;
+      min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
+    }
+
+    .admin-sidebar {
+      width: 200px;
+      background: var(--dark);
+      border-right: 1px solid var(--b1);
+      flex-shrink: 0;
+      padding: 12px 0;
+    }
+
+    .admin-nav-link {
+      display: block;
+      padding: 10px 16px;
+      font-family: var(--mono);
+      font-size: .52rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: all .12s;
+      border-left: 2px solid transparent;
+    }
+    .admin-nav-link:hover {
+      background: rgba(255,255,255,.03);
+      color: var(--white);
+    }
+    .admin-nav-link.active {
+      background: rgba(232,0,28,.1);
+      color: var(--red);
+      border-left-color: var(--red);
+    }
+
+    .admin-content {
+      flex: 1;
+      padding: clamp(16px, 3vw, 24px);
+      overflow-y: auto;
+    }
+
+    .admin-section {
+      margin-bottom: 24px;
+    }
+
+    .admin-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .admin-section-title {
+      font-family: var(--cond);
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .party-chars-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .party-chars-table th,
+    .party-chars-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--b1);
+      text-align: left;
+    }
+
+    .party-chars-table th {
+      background: var(--p2);
+      font-family: var(--mono);
+      font-size: .44rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .party-chars-table td {
+      font-family: var(--body);
+      font-size: .72rem;
+      color: var(--text);
+    }
+
+    .party-chars-table tr:hover td {
+      background: rgba(255,255,255,.02);
+    }
+
+    .party-chars-table .char-link {
+      color: var(--white);
+      text-decoration: none;
+    }
+    .party-chars-table .char-link:hover {
+      color: var(--red);
+    }
+
+    .members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .member-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--p1);
+      border: 1px solid var(--b1);
+    }
+
+    .member-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--p2);
+      border: 1px solid var(--b2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--muted);
+    }
+
+    .member-info {
+      flex: 1;
+    }
+
+    .member-name {
+      font-family: var(--body);
+      font-size: .78rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .member-username {
+      font-family: var(--mono);
+      font-size: .44rem;
+      color: var(--muted);
+    }
+
+    .member-role {
+      font-family: var(--mono);
+      font-size: .42rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 3px 6px;
+      background: rgba(255,214,0,.1);
+      border: 1px solid var(--accent);
+    }
+
+    .session-notes {
+      width: 100%;
+      min-height: 200px;
+      background: var(--p2);
+      border: 1px solid var(--b2);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: .6rem;
+      padding: 12px;
+      resize: vertical;
+      outline: none;
+    }
+    .session-notes:focus {
+      border-color: var(--red);
+    }
+
+    .encounter-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--p1);
+      border: 1px solid var(--b1);
+      margin-bottom: 16px;
+    }
+
+    .encounter-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .enc-counter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 12px;
+      border-left: 1px solid var(--b1);
+    }
+
+    .enc-counter-label {
+      font-family: var(--mono);
+      font-size: .48rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .enc-counter-value {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      color: var(--red);
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .enc-counter-btn {
+      width: 24px;
+      height: 24px;
+      background: none;
+      border: 1px solid var(--b2);
+      color: var(--text);
+      font-family: var(--mono);
+      cursor: pointer;
+      transition: all .12s;
+    }
+    .enc-counter-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .no-party {
+      text-align: center;
+      padding: 40px;
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--muted);
+    }
+
+    @media(max-width: 768px) {
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-logo">
+      <a href="dashboard.html" class="x-logo">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 10 L90 90 H60 L50 65 L40 90 H10 Z" fill="#E8001C"/>
+          <path d="M50 10 L60 35 L50 50 L40 35 Z" fill="#fff"/>
+        </svg>
+      </a>
+      <div class="hdr-title">
+        <h1>X-MEN</h1>
+        <span class="hdr-sub">PAINEL DO GM</span>
+      </div>
+    </div>
+    <div class="hdr-spacer"></div>
+    <a href="cerebro.html" class="tbtn tbtn-red">Cérebro</a>
+  </header>
+
+  <div class="toolbar">
+    <a href="dashboard.html" class="tbtn">Dashboard</a>
+  </div>
+
+  <div class="admin-layout">
+    <nav class="admin-sidebar">
+      <a href="admin.html" class="admin-nav-link active">Party</a>
+      <a href="admin.html?tab=notes" class="admin-nav-link">Notas de Sessão</a>
+      <a href="admin.html?tab=encounter" class="admin-nav-link">Encontro</a>
+      <a href="admin.html?tab=members" class="admin-nav-link">Membros</a>
+    </nav>
+
+    <main class="admin-content">
+      <div id="no-party-msg" class="no-party" style="display: none;">
+        Você não é GM de nenhuma party. Crie ou entre em uma party para acessar o painel.
+      </div>
+
+      <div id="party-admin-content">
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <span class="admin-section-title">Personagens da Party</span>
+          </div>
+          <table class="party-chars-table">
+            <thead>
+              <tr>
+                <th>Personagem</th>
+                <th>Jogador</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="party-chars-body">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <span class="admin-section-title">Controle de Encontro</span>
+          </div>
+          <div class="encounter-controls">
+            <div class="encounter-toggle">
+              <button class="btn" id="toggle-encounter-btn">Iniciar Encontro</button>
+            </div>
+            <div class="enc-counter">
+              <span class="enc-counter-label">Rodada</span>
+              <button class="enc-counter-btn" id="round-dec">-</button>
+              <span class="enc-counter-value" id="round-value">0</span>
+              <button class="enc-counter-btn" id="round-inc">+</button>
+            </div>
+          </div>
+          <div class="quick-actions">
+            <a href="cerebro.html" class="btn">Selecionar NPCs</a>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header">
+            <span class="admin-section-title">Notas de Sessão</span>
+          </div>
+          <textarea class="session-notes" id="session-notes" placeholder="Anote aqui os eventos da sessão..."></textarea>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const { initSupabase, getSession, getProfile, getGMParty, getPartyMembers, listPartyCharacters, getSession: getSessionData, updateSession } = window;
+    initSupabase();
+
+    let currentParty = null;
+    let currentRound = 0;
+    let encounterActive = false;
+
+    async function init() {
+      const auth = await requireAuth('gm');
+      if (!auth) return;
+
+      currentParty = await getGMParty(auth.session.user.id);
+      
+      if (!currentParty) {
+        document.getElementById('no-party-msg').style.display = 'block';
+        document.getElementById('party-admin-content').style.display = 'none';
+        return;
+      }
+
+      await loadPartyCharacters();
+      await loadSessionNotes();
+      await loadEncounterState();
+    }
+
+    async function loadPartyCharacters() {
+      const chars = await listPartyCharacters(currentParty.id);
+      const tbody = document.getElementById('party-chars-body');
+      
+      chars.forEach(char => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
+          <td>${char.player_id}</td>
+          <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    async function loadSessionNotes() {
+      const session = await getSessionData(currentParty.id);
+      if (session) {
+        document.getElementById('session-notes').value = session.notes || '';
+        currentRound = session.round || 0;
+        encounterActive = session.encounter && session.encounter.length > 0;
+        updateEncounterUI();
+      }
+    }
+
+    async function loadEncounterState() {
+      document.getElementById('round-value').textContent = currentRound;
+    }
+
+    function updateEncounterUI() {
+      const btn = document.getElementById('toggle-encounter-btn');
+      if (encounterActive) {
+        btn.textContent = 'Encerrar Encontro';
+        btn.classList.add('btn-primary');
+      } else {
+        btn.textContent = 'Iniciar Encontro';
+        btn.classList.remove('btn-primary');
+      }
+      document.getElementById('round-value').textContent = currentRound;
+    }
+
+    document.getElementById('toggle-encounter-btn').addEventListener('click', async () => {
+      encounterActive = !encounterActive;
+      if (!encounterActive) currentRound = 0;
+      updateEncounterUI();
+      await saveSessionState();
+    });
+
+    document.getElementById('round-inc').addEventListener('click', async () => {
+      currentRound++;
+      document.getElementById('round-value').textContent = currentRound;
+      await saveSessionState();
+    });
+
+    document.getElementById('round-dec').addEventListener('click', async () => {
+      if (currentRound > 0) {
+        currentRound--;
+        document.getElementById('round-value').textContent = currentRound;
+        await saveSessionState();
+      }
+    });
+
+    let notesTimeout;
+    document.getElementById('session-notes').addEventListener('input', async (e) => {
+      clearTimeout(notesTimeout);
+      notesTimeout = setTimeout(async () => {
+        await saveSessionState();
+      }, 1000);
+    });
+
+    async function saveSessionState() {
+      const notes = document.getElementById('session-notes').value;
+      await updateSession(currentParty.id, {
+        title: `Sessão - ${new Date().toLocaleDateString()}`,
+        notes,
+        round: currentRound,
+        encounter: encounterActive ? ['active'] : []
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

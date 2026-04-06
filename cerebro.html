@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CÉREBRO DATABASE // X-MEN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    :root {
+      --fc-xmen: #FFD600;
+      --fc-novatos: #66aaff;
+      --fc-geracaox: #88cc99;
+      --fc-morlock: #4a8a6a;
+      --fc-irmandade: #E8001C;
+      --fc-vilao: #ff5500;
+      --fc-criminoso: #dd8833;
+      --fc-neutro: #888;
+      --fc-humano: #3a8fc0;
+    }
+
+    body { --accent: #FFD600; --accent2: #c4a800; --accent3: #5a4a00; --accentRGB: 255, 214, 0; }
+
+    .app-layout { display: flex; height: calc(100vh - var(--hdr-h) - var(--bar-h)); overflow: hidden; }
+    .left-panel { width: var(--panel-w); flex-shrink: 0; background: var(--dark); border-right: 1px solid var(--b1); display: flex; flex-direction: column; overflow: hidden; }
+    .right-content { flex: 1; min-width: 0; overflow-y: auto; padding: clamp(12px, 2.5vw, 24px); }
+
+    .enc-section { flex-shrink: 0; border-bottom: 1px solid var(--b1); }
+    .enc-header { display: flex; align-items: center; gap: 0; padding: 0; cursor: pointer; background: var(--p1); border-bottom: 1px solid transparent; transition: background .15s; }
+    .enc-header.has-enc { border-bottom-color: rgba(192,112,64,.4); }
+    .enc-title-btn { flex: 1; display: flex; align-items: center; gap: 7px; padding: 8px 12px; background: none; border: none; cursor: pointer; }
+    .enc-sword { font-size: .75rem; line-height: 1; }
+    .enc-lbl { font-family: var(--mono); font-size: .48rem; color: #c07040; letter-spacing: .14em; text-transform: uppercase; }
+    .enc-count-badge { background: rgba(192,112,64,.2); border: 1px solid rgba(192,112,64,.4); color: #c07040; font-family: var(--mono); font-size: .4rem; padding: 1px 5px; letter-spacing: .04em; }
+    .enc-toggle-ico { width: 10px; height: 10px; stroke: var(--muted); fill: none; stroke-width: 2.5; transition: transform .25s; margin-right: 8px; flex-shrink: 0; }
+    .enc-header.open .enc-toggle-ico { transform: rotate(180deg); }
+    .enc-round-ctrl { display: flex; align-items: center; gap: 4px; padding: 0 10px; border-left: 1px solid var(--b1); }
+    .enc-round-lbl { font-family: var(--mono); font-size: .4rem; color: var(--muted2); letter-spacing: .06em; }
+    .enc-round-val { font-family: var(--mono); font-size: .7rem; color: #c07040; min-width: 16px; text-align: center; }
+    .enc-round-btn { background: none; border: 1px solid var(--b2); color: var(--muted); font-family: var(--mono); font-size: .55rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .12s; }
+    .enc-round-btn:hover { border-color: #c07040; color: #c07040; }
+
+    .enc-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .enc-body.open { max-height: 320px; }
+    .enc-npc-list { overflow-y: auto; max-height: 280px; padding: 4px 0; }
+    .enc-npc-item { display: flex; align-items: center; gap: 6px; padding: 6px 10px 6px 12px; cursor: pointer; border-left: 2px solid transparent; transition: all .1s; }
+    .enc-npc-item:hover { background: rgba(192,112,64,.06); border-left-color: #c07040; }
+    .enc-npc-item.active { background: rgba(192,112,64,.1); border-left-color: #c07040; }
+    .enc-npc-name { font-family: var(--body); font-weight: 700; font-size: .8rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .enc-npc-rem { background: none; border: none; color: var(--b3); cursor: pointer; font-family: var(--mono); font-size: .65rem; padding: 2px 4px; transition: color .1s; }
+    .enc-npc-rem:hover { color: #E8001C; }
+    .enc-empty-msg { font-family: var(--mono); font-size: .46rem; color: var(--muted2); text-align: center; padding: 12px 14px; letter-spacing: .08em; }
+    .enc-add-bar { padding: 6px 10px; border-top: 1px solid var(--b1); }
+    .enc-add-bar .tbtn { width: 100%; justify-content: center; font-size: .46rem; }
+
+    .panel-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--b1); flex-shrink: 0; }
+    .panel-head-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+    .panel-title { font-family: var(--mono); font-size: .48rem; color: var(--accent2); letter-spacing: .16em; text-transform: uppercase; }
+    .npc-count { font-family: var(--mono); font-size: .42rem; color: var(--muted2); }
+
+    .search-box { width: 100%; background: var(--p2); border: 1px solid var(--b2); padding: 6px 9px; color: var(--white); font-family: var(--mono); font-size: .6rem; outline: none; transition: border-color .15s; }
+    .search-box:focus { border-color: var(--accent); }
+
+    .cat-pills { display: flex; flex-wrap: wrap; gap: 3px; padding: 7px 12px; border-bottom: 1px solid var(--b1); flex-shrink: 0; }
+    .cat-pill { font-family: var(--mono); font-size: .4rem; letter-spacing: .05em; padding: 3px 6px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all .12s; }
+    .cat-pill.active { background: rgba(var(--accentRGB),.15); border-color: var(--accent2); color: var(--accent); }
+    .cat-pill:hover:not(.active) { border-color: var(--b3); color: var(--text); }
+
+    .npc-list-wrap { flex: 1; overflow-y: auto; padding: 4px 0; }
+    .npc-item { display: flex; align-items: center; gap: 7px; padding: 7px 12px; cursor: pointer; border-left: 2px solid transparent; transition: background .1s, border-left-color .1s; }
+    .npc-item:hover { background: rgba(255,255,255,.03); border-left-color: var(--b3); }
+    .npc-item.active { background: rgba(var(--accentRGB),.07); border-left-color: var(--accent); }
+    .npc-item-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .npc-item-info { flex: 1; min-width: 0; }
+    .npc-item-name { font-family: var(--body); font-weight: 700; font-size: .83rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+    .npc-item.active .npc-item-name, .npc-item:hover .npc-item-name { color: var(--accent); }
+    .npc-item-sub { font-family: var(--mono); font-size: .4rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .npc-item-pr { font-family: var(--mono); font-size: .37rem; letter-spacing: .04em; padding: 2px 4px; flex-shrink: 0; border: 1px solid; }
+    .npc-empty { padding: 22px 14px; font-family: var(--mono); font-size: .52rem; color: var(--muted2); text-align: center; letter-spacing: .08em; }
+
+    .npc-header { margin-bottom: 18px; }
+    .npc-header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+    .npc-name { font-family: var(--disp); font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--white); letter-spacing: .06em; border-left: 4px solid var(--accent); padding-left: 12px; line-height: 1.1; }
+    .npc-codename { font-family: var(--mono); font-size: .56rem; color: var(--muted); letter-spacing: .1em; padding-left: 16px; margin-top: 3px; }
+    .npc-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .npc-initiative { font-family: var(--mono); background: var(--p1); border: 1px solid var(--b2); padding: 4px 11px; font-size: .88rem; color: var(--accent); letter-spacing: .08em; }
+    .npc-frac-badge { font-family: var(--mono); font-size: .46rem; letter-spacing: .08em; padding: 3px 9px; border: 1px solid; text-transform: uppercase; }
+    .npc-pr-badge { font-family: var(--mono); font-size: .44rem; letter-spacing: .08em; padding: 3px 7px; border: 1px solid; }
+
+    .attr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .attr-group { background: var(--p1); border: 1px solid var(--b1); overflow: hidden; }
+    .attr-group-hdr { background: var(--p2); padding: 5px 10px; border-bottom: 1px solid var(--b1); font-family: var(--body); font-weight: 700; font-size: .62rem; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; }
+    .attr-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--b1); font-family: var(--mono); font-size: .58rem; }
+    .attr-row:last-child { border-bottom: none; }
+
+    .npc-desc { font-family: var(--body); font-size: .72rem; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
+    .npc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+    .npc-tag { font-family: var(--mono); font-size: .48rem; letter-spacing: .04em; padding: 3px 7px; border: 1px solid; border-radius: 2px; }
+
+    .theme-btns { display: flex; flex-wrap: wrap; gap: 4px; }
+    .th-btn { font-family: var(--mono); font-size: .42rem; letter-spacing: .05em; padding: 4px 7px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all .12s; }
+    .th-btn:hover { border-color: var(--b3); color: var(--text); }
+    .th-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+    .data-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--b1); font-family: var(--mono); font-size: .44rem; color: var(--muted2); letter-spacing: .1em; }
+    .data-header .ac { color: var(--accent2); }
+
+    .no-access { text-align: center; padding: 40px; font-family: var(--mono); font-size: .6rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-logo">
+      <a href="dashboard.html" class="x-logo">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 10 L90 90 H60 L50 65 L40 90 H10 Z" fill="#E8001C"/>
+          <path d="M50 10 L60 35 L50 50 L40 35 Z" fill="#fff"/>
+        </svg>
+      </a>
+      <div class="hdr-title">
+        <h1>CÉREBRO</h1>
+        <span class="hdr-sub">DATABASE</span>
+      </div>
+    </div>
+    <div class="hdr-spacer"></div>
+  </header>
+
+  <div class="toolbar">
+    <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="admin.html" class="tbtn">Admin</a>
+  </div>
+
+  <div id="no-access" class="no-access" style="display: none;">
+    Acesso restrito. Apenas GMs podem acessar o Cérebro.
+  </div>
+
+  <div class="app-layout" id="app-layout" style="display: none;">
+    <aside class="left-panel">
+      <div class="enc-section">
+        <div class="enc-header" id="enc-header">
+          <button class="enc-title-btn" id="enc-title-btn">
+            <svg class="enc-toggle-ico" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span class="enc-lbl">Encontro</span>
+            <span class="enc-count-badge" id="enc-count">0</span>
+          </button>
+          <div class="enc-round-ctrl">
+            <span class="enc-round-lbl">Rd</span>
+            <button class="enc-round-btn" id="round-dec">-</button>
+            <span class="enc-round-val" id="round-val">0</span>
+            <button class="enc-round-btn" id="round-inc">+</button>
+          </div>
+        </div>
+        <div class="enc-body" id="enc-body">
+          <div class="enc-npc-list" id="enc-npc-list">
+            <div class="enc-empty-msg">Nenhum NPC no encontro</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-head">
+        <div class="panel-head-top">
+          <span class="panel-title">NPCs</span>
+          <span class="npc-count" id="npc-count">0</span>
+        </div>
+        <input type="text" class="search-box" id="search-box" placeholder="Buscar...">
+      </div>
+
+      <div class="cat-pills" id="cat-pills">
+        <button class="cat-pill active" data-cat="all">Todos</button>
+        <button class="cat-pill" data-cat="x-men">X-Men</button>
+        <button class="cat-pill" data-cat="irmaosh">Irmandade</button>
+        <button class="cat-pill" data-cat="vilao">Vilões</button>
+        <button class="cat-pill" data-cat="morlock">Morlocks</button>
+      </div>
+
+      <div class="npc-list-wrap" id="npc-list"></div>
+
+      <div class="panel-footer">
+        <button class="pf-toggle" id="pf-toggle">
+          Temas
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="pf-settings" id="pf-settings">
+          <div class="pf-inner">
+            <div class="theme-btns">
+              <button class="th-btn" data-theme="yellow"><span class="th-dot" style="background:#FFD600"></span>Amarelo</button>
+              <button class="th-btn" data-theme="red"><span class="th-dot" style="background:#E8001C"></span>Vermelho</button>
+              <button class="th-btn" data-theme="green"><span class="th-dot" style="background:#00C853"></span>Verde</button>
+              <button class="th-btn" data-theme="blue"><span class="th-dot" style="background:#3a8fc0"></span>Azul</button>
+              <button class="th-btn" data-theme="purple"><span class="th-dot" style="background:#b040ff"></span>Roxo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="right-content" id="right-content">
+      <div class="data-header">
+        <span>CÉREBRO DATABASE</span>
+        <span class="ac">ACESSO GM</span>
+      </div>
+      <div id="npc-detail"></div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const { initSupabase, getSession, getProfile, getGMParty, listNPCs, loadNPC, createNPC, deleteNPC, getSession: getSessionData, updateSession } = window;
+    initSupabase();
+
+    let currentParty = null;
+    let allNPCs = [];
+    let activeNPCs = [];
+    let currentRound = 0;
+    let currentCat = 'all';
+    let searchTerm = '';
+    let selectedNpcId = null;
+
+    const factionColors = {
+      'x-men': '#FFD600',
+      'novatos': '#66aaff',
+      'geracao_x': '#88cc99',
+      'morlock': '#4a8a6a',
+      'irmandade': '#E8001C',
+      'irmaosh': '#E8001C',
+      'vilao': '#ff5500',
+      'viloes': '#ff5500',
+      'criminoso': '#dd8833',
+      'criminosos': '#dd8833',
+      'neutro': '#888',
+      'humano': '#3a8fc0'
+    };
+
+    const dangerColors = {
+      'baixo': '#555',
+      'medio': '#c07040',
+      'alto': '#E8001C',
+      'extremo': '#b040ff'
+    };
+
+    async function init() {
+      const auth = await requireAuth('gm');
+      if (!auth) {
+        document.getElementById('no-access').style.display = 'block';
+        return;
+      }
+
+      currentParty = await getGMParty(auth.session.user.id);
+      document.getElementById('app-layout').style.display = 'flex';
+
+      await loadNPCs();
+      await loadEncounter();
+    }
+
+    async function loadNPCs() {
+      allNPCs = await listNPCs(currentParty?.id, true);
+      renderNPCList();
+    }
+
+    function renderNPCList() {
+      const list = document.getElementById('npc-list');
+      list.innerHTML = '';
+
+      let filtered = allNPCs;
+      if (currentCat !== 'all') {
+        filtered = filtered.filter(npc => {
+          const faction = (npc.faction || '').toLowerCase().replace(' ', '_');
+          return faction.includes(currentCat);
+        });
+      }
+      if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        filtered = filtered.filter(npc =>
+          npc.name.toLowerCase().includes(term) ||
+          (npc.codename || '').toLowerCase().includes(term)
+        );
+      }
+
+      document.getElementById('npc-count').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="npc-empty">Nenhum NPC encontrado</div>';
+        return;
+      }
+
+      filtered.forEach(npc => {
+        const faction = (npc.faction || 'neutro').toLowerCase();
+        const factionColor = factionColors[faction] || '#888';
+        const prColor = dangerColors[npc.danger] || '#555';
+        const inEnc = activeNPCs.some(a => a.id === npc.id);
+
+        const item = document.createElement('div');
+        item.className = 'npc-item' + (selectedNpcId === npc.id ? ' active' : '') + (inEnc ? ' in-enc' : '');
+        item.innerHTML = `
+          <span class="npc-item-dot" style="background:${factionColor}"></span>
+          <div class="npc-item-info">
+            <div class="npc-item-name">${npc.name}</div>
+            <div class="npc-item-sub">${npc.codename || ''}</div>
+          </div>
+          <span class="npc-item-pr" style="border-color:${prColor};color:${prColor}">${npc.danger}</span>
+          ${inEnc ? '<span class="npc-item-enc">⚔</span>' : ''}
+        `;
+        item.addEventListener('click', () => selectNPC(npc));
+        list.appendChild(item);
+      });
+    }
+
+    function selectNPC(npc) {
+      selectedNpcId = npc.id;
+      renderNPCList();
+      renderNPCDetail(npc);
+    }
+
+    function renderNPCDetail(npc) {
+      const detail = document.getElementById('npc-detail');
+      const faction = (npc.faction || 'neutro').toLowerCase();
+      const factionColor = factionColors[faction] || '#888';
+      const prColor = dangerColors[npc.danger] || '#555';
+      const data = npc.data || {};
+
+      detail.innerHTML = `
+        <div class="npc-header">
+          <div class="npc-header-top">
+            <div>
+              <div class="npc-name">${npc.name}</div>
+              ${npc.codename ? `<div class="npc-codename">${npc.codename}</div>` : ''}
+            </div>
+            <div class="npc-actions">
+              <button class="tbtn tbtn-red" onclick="addToEncounter('${npc.id}')">+ Encontro</button>
+            </div>
+          </div>
+          <div class="npc-meta">
+            <span class="npc-initiative">INI ${data.iniciativa || 0}</span>
+            <span class="npc-frac-badge" style="border-color:${factionColor};color:${factionColor}">${npc.faction}</span>
+            <span class="npc-pr-badge" style="border-color:${prColor};color:${prColor}">${npc.danger}</span>
+          </div>
+        </div>
+
+        <div class="attr-grid">
+          <div class="attr-group">
+            <div class="attr-group-hdr">Atributos Físicos</div>
+            ${renderStats(data.stats, ['destreza', 'forca', 'corpo'])}
+          </div>
+          <div class="attr-group">
+            <div class="attr-group-hdr">Atributos Mentais</div>
+            ${renderStats(data.stats, ['inteligencia', 'vontade', 'mente'])}
+          </div>
+          <div class="attr-group">
+            <div class="attr-group-hdr">Atributos Sociais</div>
+            ${renderStats(data.stats, ['influencia', 'aura', 'espirito'])}
+          </div>
+        </div>
+
+        <div class="sec">
+          <span class="sec-bar"></span>
+          <span class="sec-label">Tags</span>
+        </div>
+        <div class="npc-tags">
+          ${(data.tags || []).map(tag => `
+            <span class="npc-tag" style="border-color:var(--accent);color:var(--accent)">${tag.texto} ${tag.grau > 0 ? tag.grau : ''}</span>
+          `).join('')}
+        </div>
+
+        <div class="sec">
+          <span class="sec-bar"></span>
+          <span class="sec-label">Descrição</span>
+        </div>
+        <div class="npc-desc">${data.descricao || 'Sem descrição.'}</div>
+      `;
+    }
+
+    function renderStats(stats, names) {
+      if (!stats) return names.map(() => '<div class="attr-row"><span>-</span><span>0</span></div>').join('');
+      return names.map(name => `
+        <div class="attr-row">
+          <span>${name}</span>
+          <span>${stats[name] || 0}</span>
+        </div>
+      `).join('');
+    }
+
+    async function addToEncounter(npcId) {
+      const npc = allNPCs.find(n => n.id === npcId);
+      if (!npc) return;
+      
+      if (!activeNPCs.some(a => a.id === npcId)) {
+        activeNPCs.push(npc);
+        renderEncounterList();
+      }
+    }
+
+    function renderEncounterList() {
+      const list = document.getElementById('enc-npc-list');
+      document.getElementById('enc-count').textContent = activeNPCs.length;
+
+      if (activeNPCs.length === 0) {
+        list.innerHTML = '<div class="enc-empty-msg">Nenhum NPC no encontro</div>';
+        return;
+      }
+
+      list.innerHTML = activeNPCs.map(npc => `
+        <div class="enc-npc-item">
+          <span class="enc-npc-name">${npc.name}</span>
+          <button class="enc-npc-rem" onclick="removeFromEncounter('${npc.id}')">×</button>
+        </div>
+      `).join('');
+    }
+
+    async function removeFromEncounter(npcId) {
+      activeNPCs = activeNPCs.filter(n => n.id !== npcId);
+      renderEncounterList();
+      renderNPCList();
+    }
+
+    async function loadEncounter() {
+      if (!currentParty) return;
+      const session = await getSessionData(currentParty.id);
+      if (session) {
+        currentRound = session.round || 0;
+        document.getElementById('round-val').textContent = currentRound;
+      }
+    }
+
+    async function saveEncounter() {
+      if (!currentParty) return;
+      await updateSession(currentParty.id, {
+        round: currentRound,
+        encounter: activeNPCs.map(n => ({ id: n.id, name: n.name }))
+      });
+    }
+
+    document.getElementById('search-box').addEventListener('input', (e) => {
+      searchTerm = e.target.value;
+      renderNPCList();
+    });
+
+    document.getElementById('cat-pills').addEventListener('click', (e) => {
+      const pill = e.target.closest('.cat-pill');
+      if (!pill) return;
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCat = pill.dataset.cat;
+      renderNPCList();
+    });
+
+    document.getElementById('enc-title-btn').addEventListener('click', () => {
+      document.getElementById('enc-header').classList.toggle('open');
+      document.getElementById('enc-body').classList.toggle('open');
+    });
+
+    document.getElementById('round-inc').addEventListener('click', () => {
+      currentRound++;
+      document.getElementById('round-val').textContent = currentRound;
+      saveEncounter();
+    });
+
+    document.getElementById('round-dec').addEventListener('click', () => {
+      if (currentRound > 0) {
+        currentRound--;
+        document.getElementById('round-val').textContent = currentRound;
+        saveEncounter();
+      }
+    });
+
+    document.getElementById('pf-toggle').addEventListener('click', () => {
+      document.getElementById('pf-toggle').classList.toggle('open');
+      document.getElementById('pf-settings').classList.toggle('open');
+    });
+
+    document.querySelectorAll('.th-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.dataset.theme;
+        document.body.className = '';
+        if (theme !== 'yellow') {
+          document.body.classList.add('theme-' + theme);
+        }
+      });
+    });
+
+    init();
+  </script>
+</body>
+</html>

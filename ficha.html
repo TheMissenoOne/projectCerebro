@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN // FICHA DE PERSONAGEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    .ficha-container { max-width: 1160px; margin: 0 auto; padding-bottom: 40px; }
+    
+    .ficha-top {
+      display: grid;
+      grid-template-columns: 110px 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .portrait-zone {
+      width: 110px;
+      height: 140px;
+      background: var(--p1);
+      border: 1px solid var(--b2);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: border-color .2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    }
+    .portrait-zone:hover { border-color: var(--red); }
+    .portrait-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .portrait-img.show { display: block; }
+    .portrait-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+    }
+    .portrait-placeholder svg { width: 24px; height: 24px; stroke: var(--b3); fill: none; stroke-width: 1.5; }
+    .portrait-placeholder span {
+      font-family: var(--mono);
+      font-size: .42rem;
+      color: var(--muted2);
+      letter-spacing: .1em;
+      text-align: center;
+      line-height: 1.5;
+    }
+    #foto-input { display: none; }
+
+    .attr-group { margin-bottom: 2px; border: 1px solid var(--b1); overflow: hidden; }
+    .attr-group-header {
+      background: var(--p2);
+      padding: 4px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--b1);
+    }
+    .attr-group-name {
+      font-family: var(--cond);
+      font-size: .65rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .attr-group-line { flex: 1; height: 1px; background: var(--b1); }
+
+    .attr-row {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      border-bottom: 1px solid var(--b1);
+    }
+    .attr-row:last-child { border-bottom: none; }
+    .attr-num { font-family: var(--mono); font-size: .42rem; color: var(--b3); width: 18px; flex-shrink: 0; }
+    .attr-name { font-family: var(--mono); font-size: .62rem; color: var(--text); letter-spacing: .1em; text-transform: uppercase; flex: 1; padding: 9px 0; }
+    .attr-dots { flex: 1; height: 1px; background: repeating-linear-gradient(90deg, var(--b1) 0, var(--b1) 4px, transparent 4px, transparent 8px); margin: 0 10px; }
+    .attr-val {
+      background: var(--black);
+      border: 1px solid var(--b2);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: .72rem;
+      width: 28px;
+      height: 24px;
+      text-align: center;
+      outline: none;
+    }
+    .attr-val:focus { border-color: var(--red); }
+    .attr-plus {
+      width: 20px;
+      height: 20px;
+      background: none;
+      border: 1px solid var(--b2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: .8rem;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+    .attr-plus:hover { border-color: var(--red); color: var(--red); }
+
+    .tag-box { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tag-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--p1);
+      border: 1px solid var(--b2);
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: .52rem;
+    }
+    .tag-chip .tag-del {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .7rem;
+    }
+    .tag-add {
+      background: transparent;
+      border: 1px dashed var(--b2);
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: .52rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .theme-card { background: var(--p1); border: 1px solid var(--b1); margin-bottom: 8px; }
+    .theme-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--p2);
+      border-bottom: 1px solid var(--b1);
+    }
+    .theme-card-name { font-family: var(--cond); font-size: .72rem; font-weight: 700; color: var(--white); letter-spacing: .1em; text-transform: uppercase; }
+    .theme-card-type { font-family: var(--mono); font-size: .42rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+    .theme-card-body { padding: 10px 12px; }
+    .theme-card-flavor { font-family: var(--body); font-size: .72rem; color: var(--muted); margin-bottom: 8px; }
+    .theme-card-status { display: flex; justify-content: flex-end; padding: 6px 12px; border-top: 1px solid var(--b1); gap: 8px; }
+    .theme-status-row { display: flex; align-items: center; gap: 4px; }
+    .theme-status-label { font-family: var(--mono); font-size: .4rem; color: var(--muted); letter-spacing .08em; text-transform: uppercase; }
+    .theme-status-val { font-family: var(--mono); font-size: .56rem; color: var(--white); }
+    .theme-status-row.atention .theme-status-val { color: var(--red); }
+
+    .squad-card { background: var(--p1); border: 1px solid var(--b1); margin-bottom: 8px; }
+    .squad-card-header { padding: 8px 12px; background: var(--p2); border-bottom: 1px solid var(--b1); }
+    .squad-card-name { font-family: var(--cond); font-size: .72rem; font-weight: 700; color: var(--white); letter-spacing: .1em; text-transform: uppercase; }
+    .squad-card-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .squad-member { display: flex; align-items: center; gap: 8px; }
+    .squad-member-name { font-family: var(--body); font-size: .68rem; color: var(--text); }
+
+    .notas-area {
+      width: 100%;
+      min-height: 150px;
+      background: var(--p2);
+      border: 1px solid var(--b2);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: .72rem;
+      padding: 12px;
+      resize: vertical;
+      outline: none;
+    }
+    .notas-area:focus { border-color: var(--red); }
+
+    .actions-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .saving-indicator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--p1);
+      border: 1px solid var(--b2);
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: .48rem;
+      color: var(--muted);
+      z-index: 100;
+      display: none;
+    }
+    .saving-indicator.show { display: block; }
+    .saving-indicator.salvo { color: #44bb44; border-color: #44bb44; }
+    .saving-indicator.salvando { color: var(--red); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.8);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal.open { display: flex; }
+    .modal-card {
+      background: var(--p1);
+      border: 1px solid var(--b1);
+      padding: 24px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .modal-title {
+      font-family: var(--disp);
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: .1em;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-logo">
+      <a href="dashboard.html" class="x-logo">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 10 L90 90 H60 L50 65 L40 90 H10 Z" fill="#E8001C"/>
+          <path d="M50 10 L60 35 L50 50 L40 35 Z" fill="#fff"/>
+        </svg>
+      </a>
+      <div class="hdr-title">
+        <h1>X-MEN</h1>
+        <span class="hdr-sub">FICHA</span>
+      </div>
+    </div>
+    <div class="hdr-spacer"></div>
+    <div class="hdr-codes">
+      <span class="save-ind" id="save-ind">● SALVO</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <div class="toolbar-divider"></div>
+    <button class="tbtn" id="export-btn">Exportar</button>
+    <button class="tbtn" id="import-btn">Importar</button>
+    <div class="toolbar-divider"></div>
+    <button class="tbtn tbtn-red" id="delete-btn">Excluir</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="identidade">Identidade</button>
+    <button class="tab" data-tab="atributos">Atributos</button>
+    <button class="tab" data-tab="temas">Temas</button>
+  </div>
+
+  <div class="content ficha-container">
+    <div class="page active" id="page-identidade">
+      <div class="ficha-top">
+        <div class="portrait-zone" id="portrait-zone">
+          <img class="portrait-img" id="portrait-img">
+          <div class="portrait-placeholder" id="portrait-placeholder">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            <span>CLIQUE PARA<br>FOTO</span>
+          </div>
+          <input type="file" id="foto-input" accept="image/*">
+        </div>
+        <div class="id-fields">
+          <div class="id-row">
+            <span class="id-label">Nome</span>
+            <input type="text" class="id-input" id="nome" placeholder="Nome real">
+          </div>
+          <div class="id-row">
+            <span class="id-label">Codinome</span>
+            <input type="text" class="id-input" id="codinome" placeholder="Nome de código">
+          </div>
+          <div class="id-row">
+            <span class="id-label">Origem</span>
+            <input type="text" class="id-input" id="origem" placeholder="Como descobriu seu poder">
+          </div>
+          <div class="id-row">
+            <span class="id-label">Idade</span>
+            <input type="text" class="id-input" id="idade" placeholder="Anos">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="page-atributos">
+      <div class="attr-section">
+        <div class="attr-group">
+          <div class="attr-group-header">
+            <span class="attr-group-name">Físicos</span>
+            <span class="attr-group-line"></span>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">1</span>
+            <span class="attr-name">Destreza</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-destreza" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('destreza',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">2</span>
+            <span class="attr-name">Força</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-forca" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('forca',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">3</span>
+            <span class="attr-name">Resistência</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-resistencia" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('resistencia',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-section">
+        <div class="attr-group">
+          <div class="attr-group-header">
+            <span class="attr-group-name">Mentais</span>
+            <span class="attr-group-line"></span>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">4</span>
+            <span class="attr-name">Inteligência</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-inteligencia" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('inteligencia',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">5</span>
+            <span class="attr-name">Vontade</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-vontade" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('vontade',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">6</span>
+            <span class="attr-name">Mente</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-mente" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('mente',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-section">
+        <div class="attr-group">
+          <div class="attr-group-header">
+            <span class="attr-group-name">Sociais</span>
+            <span class="attr-group-line"></span>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">7</span>
+            <span class="attr-name">Influência</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-influencia" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('influencia',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">8</span>
+            <span class="attr-name">Aura</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-aura" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('aura',1)">+</button>
+          </div>
+          <div class="attr-row">
+            <span class="attr-num">9</span>
+            <span class="attr-name">Espírito</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="atributo-espirito" value="1" min="0" max="12">
+            <button class="attr-plus" onclick="modAttr('espirito',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-section">
+        <div class="sec">
+          <span class="sec-bar"></span>
+          <span class="sec-label">Movimentos</span>
+        </div>
+        <div class="attr-group">
+          <div class="attr-row">
+            <span class="attr-name">Virar o Jogo</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="movimento-virarajogo" value="0" min="0" max="6">
+          </div>
+          <div class="attr-row">
+            <span class="attr-name">Convencer</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="movimento-convencer" value="0" min="0" max="6">
+          </div>
+          <div class="attr-row">
+            <span class="attr-name">Rir na Cara do Perigo</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="movimento-rirperigo" value="0" min="0" max="6">
+          </div>
+          <div class="attr-row">
+            <span class="attr-name">Partir pro Abraço</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="movimento-partirabraro" value="0" min="0" max="6">
+          </div>
+          <div class="attr-row">
+            <span class="attr-name">Investigar</span>
+            <span class="attr-dots"></span>
+            <input type="number" class="attr-val" id="movimento-investigar" value="0" min="0" max="6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="page-temas">
+      <div class="actions-bar">
+        <button class="tbtn tbtn-red" id="add-theme-btn">+ Adicionar Tema</button>
+      </div>
+      <div id="temas-list"></div>
+
+      <div class="sec">
+        <span class="sec-bar"></span>
+        <span class="sec-label">Esquadrão</span>
+      </div>
+      <div id="squad-list">
+        <button class="tbtn" id="add-squad-btn">+ Adicionar Membro</button>
+      </div>
+
+      <div class="sec">
+        <span class="sec-bar"></span>
+        <span class="sec-label">Notas</span>
+      </div>
+      <textarea class="notas-area" id="notas" placeholder="Anotações do personagem..."></textarea>
+    </div>
+  </div>
+
+  <div class="saving-indicator" id="saving-indicator">Salvando...</div>
+
+  <div class="modal" id="theme-modal">
+    <div class="modal-card">
+      <h3 class="modal-title">Adicionar Tema</h3>
+      <div class="form-group">
+        <label class="form-label">Nome do Tema</label>
+        <input type="text" class="form-input" id="theme-name" placeholder="Nome">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo</label>
+        <select class="form-input" id="theme-type">
+          <option value="mist">Mist (Poder)</option>
+          <option value="historia">História (Humanidade)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Flavor</label>
+        <textarea class="form-input" id="theme-flavor" rows="3" placeholder="Descrição narrativa"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" id="cancel-theme">Cancelar</button>
+        <button class="btn btn-primary" id="save-theme">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const { initSupabase, getSession, getProfile, loadCharacter, saveCharacter, createCharacter, deleteCharacter, uploadPortrait } = window;
+    initSupabase();
+
+    let charId = null;
+    let charData = {};
+    let saveTimeout = null;
+
+    const params = new URLSearchParams(window.location.search);
+    
+    async function init() {
+      const auth = await requireAuth();
+      if (!auth) return;
+
+      if (params.get('new') === 'true') {
+        const newChar = await createCharacter(auth.session.user.id);
+        charId = newChar.id;
+        window.history.replaceState({}, '', `ficha.html?id=${charId}`);
+      } else {
+        charId = params.get('id');
+      }
+
+      if (charId) {
+        await loadChar();
+      }
+    }
+
+    async function loadChar() {
+      const char = await loadCharacter(charId);
+      if (!char) {
+        alert('Personagem não encontrado!');
+        window.location.href = 'dashboard.html';
+        return;
+      }
+
+      charData = char.data || {};
+      
+      document.getElementById('nome').value = charData.identidade?.nome || '';
+      document.getElementById('codinome').value = charData.identidade?.codinome || '';
+      document.getElementById('origem').value = charData.identidade?.origem || '';
+      document.getElementById('idade').value = charData.identidade?.idade || '';
+
+      loadAtributos();
+      loadTemas();
+      loadNotas();
+      
+      if (char.foto_url) {
+        const img = document.getElementById('portrait-img');
+        img.src = char.foto_url;
+        img.classList.add('show');
+        document.getElementById('portrait-placeholder').style.display = 'none';
+      }
+    }
+
+    function loadAtributos() {
+      const attrs = charData.atributos || {};
+      const attrsMap = ['destreza', 'forca', 'resistencia', 'inteligencia', 'vontade', 'mente', 'influencia', 'aura', 'espirito'];
+      attrsMap.forEach(attr => {
+        const el = document.getElementById(`atributo-${attr}`);
+        if (el) el.value = attrs[attr] || 1;
+      });
+
+      const movs = charData.movimentos || {};
+      const movsMap = { virarajogo: 'virar o jogo', convincer: 'convencer', rirperigo: 'rir na cara do perigo', partirabraro: 'partir pro abraço', investigar: 'investigar' };
+      Object.keys(movsMap).forEach(mov => {
+        const el = document.getElementById(`movimento-${mov}`);
+        if (el) el.value = movs[mov] || 0;
+      });
+    }
+
+    function loadTemas() {
+      const temas = charData.temas || [];
+      const list = document.getElementById('temas-list');
+      list.innerHTML = '';
+      
+      temas.forEach((tema, idx) => {
+        const card = document.createElement('div');
+        card.className = 'theme-card';
+        card.innerHTML = `
+          <div class="theme-card-header">
+            <span class="theme-card-name">${tema.nome}</span>
+            <span class="theme-card-type">${tema.tipo === 'mist' ? 'MIST' : 'HISTÓRIA'}</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-flavor">${tema.flavor || ''}</div>
+            <div class="tag-box">
+              ${(tema.tags || []).map(tag => `
+                <span class="tag-chip">${tag.texto} <span class="tag-grau">${tag.grau > 0 ? tag.grau : ''}</span></span>
+              `).join('')}
+              <button class="tag-add" onclick="addTag(${idx})">+ Tag</button>
+            </div>
+          </div>
+          <div class="theme-card-status">
+            <div class="theme-status-row">
+              <span class="theme-status-label">Atenção</span>
+              <span class="theme-status-val">0</span>
+            </div>
+            <div class="theme-status-row">
+              <span class="theme-status-label">Dissipação</span>
+              <span class="theme-status-val">0</span>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+      const addBtn = document.getElementById('add-theme-btn');
+      addBtn.onclick = () => document.getElementById('theme-modal').classList.add('open');
+    }
+
+    function loadNotas() {
+      document.getElementById('notas').value = charData.notas || '';
+    }
+
+    function gatherData() {
+      return {
+        identidade: {
+          nome: document.getElementById('nome').value,
+          codinome: document.getElementById('codinome').value,
+          origem: document.getElementById('origem').value,
+          idade: document.getElementById('idade').value
+        },
+        atributos: {
+          destreza: parseInt(document.getElementById('atributo-destreza').value) || 1,
+          forca: parseInt(document.getElementById('atributo-forca').value) || 1,
+          resistencia: parseInt(document.getElementById('atributo-resistencia').value) || 1,
+          inteligencia: parseInt(document.getElementById('atributo-inteligencia').value) || 1,
+          vontade: parseInt(document.getElementById('atributo-vontade').value) || 1,
+          mente: parseInt(document.getElementById('atributo-mente').value) || 1,
+          influencia: parseInt(document.getElementById('atributo-influencia').value) || 1,
+          aura: parseInt(document.getElementById('atributo-aura').value) || 1,
+          espirito: parseInt(document.getElementById('atributo-espirito').value) || 1
+        },
+        movimentos: {
+          viraraJogo: parseInt(document.getElementById('movimento-virarajogo').value) || 0,
+          convencer: parseInt(document.getElementById('movimento-convencer').value) || 0,
+          rirPerigo: parseInt(document.getElementById('movimento-rirperigo').value) || 0,
+          partirabraço: parseInt(document.getElementById('movimento-partirabraro').value) || 0,
+          investigacao: parseInt(document.getElementById('movimento-investigar').value) || 0
+        },
+        temas: charData.temas || [],
+        esquadrao: charData.esquadrao || [],
+        notas: document.getElementById('notas').value
+      };
+    }
+
+    async function autoSave() {
+      const indicator = document.getElementById('saving-indicator');
+      indicator.textContent = 'Salvando...';
+      indicator.className = 'saving-indicator show salvando';
+      
+      charData = gatherData();
+      
+      localStorage.setItem(`char_${charId}`, JSON.stringify(charData));
+      
+      try {
+        await saveCharacter(charId, charData);
+        indicator.textContent = '● SALVO';
+        indicator.className = 'saving-indicator show salvo';
+      } catch (e) {
+        console.error('Erro ao salvar:', e);
+        indicator.textContent = 'Erro ao salvar';
+        indicator.className = 'saving-indicator show';
+      }
+      
+      setTimeout(() => {
+        indicator.classList.remove('show');
+      }, 2000);
+    }
+
+    function scheduleSave() {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(autoSave, 600);
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('page-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.id-input, .attr-val, .notas-area').forEach(input => {
+      input.addEventListener('input', scheduleSave);
+    });
+
+    document.getElementById('portrait-zone').addEventListener('click', () => {
+      document.getElementById('foto-input').click();
+    });
+
+    document.getElementById('foto-input').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const auth = await getSession();
+      if (!auth) return;
+      
+      const url = await uploadPortrait(file, auth.user.id, charId);
+      const img = document.getElementById('portrait-img');
+      img.src = url;
+      img.classList.add('show');
+      document.getElementById('portrait-placeholder').style.display = 'none';
+    });
+
+    document.getElementById('cancel-theme').addEventListener('click', () => {
+      document.getElementById('theme-modal').classList.remove('open');
+    });
+
+    document.getElementById('save-theme').addEventListener('click', () => {
+      const nome = document.getElementById('theme-name').value;
+      const tipo = document.getElementById('theme-type').value;
+      const flavor = document.getElementById('theme-flavor').value;
+      
+      if (!nome) return;
+      
+      charData.temas = charData.temas || [];
+      charData.temas.push({ nome, tipo, flavor, tags: [], atention: 0, dissipacao: 0 });
+      
+      document.getElementById('theme-modal').classList.remove('open');
+      document.getElementById('theme-name').value = '';
+      document.getElementById('theme-flavor').value = '';
+      
+      loadTemas();
+      scheduleSave();
+    });
+
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const data = gatherData();
+      const md = `# ${data.identidade.nome || 'Personagem'}
+
+## Identidade
+- Nome: ${data.identidade.nome}
+- Codinome: ${data.identidade.codinome}
+- Origem: ${data.identidade.origem}
+- Idade: ${data.identidade.idade}
+
+## Atributos
+${Object.entries(data.atributos).map(([k, v]) => `- ${k}: ${v}`).join('\n')}
+
+## Movimentos
+${Object.entries(data.movimentos).map(([k, v]) => `- ${k}: ${v}`).join('\n')}
+
+## Notas
+${data.notas}
+`;
+      const blob = new Blob([md], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${data.identidade.nome || 'personagem'}.md`;
+      a.click();
+    });
+
+    document.getElementById('delete-btn').addEventListener('click', async () => {
+      if (confirm('Tem certeza que deseja excluir esta ficha?')) {
+        await deleteCharacter(charId);
+        window.location.href = 'dashboard.html';
+      }
+    });
+
+    function modAttr(name, delta) {
+      const el = document.getElementById(`atributo-${name}`);
+      const val = parseInt(el.value) + delta;
+      el.value = Math.max(0, Math.min(12, val));
+      scheduleSave();
+    }
+
+    init();
+  </script>
+</body>
+</html>
