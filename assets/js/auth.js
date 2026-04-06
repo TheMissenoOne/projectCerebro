@@ -6,7 +6,12 @@ async function requireAuth(requiredRole = null) {
   }
   
   const profile = await getProfile(session.user.id);
-  if (requiredRole && profile && profile.role !== requiredRole) {
+  if (!profile) {
+    window.location.href = 'index.html';
+    return null;
+  }
+  
+  if (requiredRole && profile.role !== requiredRole) {
     window.location.href = 'dashboard.html';
     return null;
   }
@@ -24,7 +29,8 @@ async function checkAuth() {
 }
 
 async function login(email, password) {
-  if (!supabase) initSupabase();
+  initSupabase();
+  if (!supabase) throw new Error('Supabase não inicializado');
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password
@@ -36,7 +42,8 @@ async function login(email, password) {
 }
 
 async function register(email, password, username, displayName, role) {
-  if (!supabase) initSupabase();
+  initSupabase();
+  if (!supabase) throw new Error('Supabase não inicializado');
   
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -53,7 +60,7 @@ async function register(email, password, username, displayName, role) {
   if (error) throw error;
   
   if (data.user) {
-    await supabase
+    const { error: profileError } = await supabase
       .from('profiles')
       .insert({
         id: data.user.id,
@@ -61,27 +68,40 @@ async function register(email, password, username, displayName, role) {
         display_name: displayName,
         role
       });
+    
+    if (profileError) {
+      console.error('Erro ao criar perfil:', profileError);
+    }
   }
   
   return data;
 }
 
 async function logout() {
-  if (!supabase) initSupabase();
+  initSupabase();
+  if (!supabase) {
+    window.location.href = 'index.html';
+    return;
+  }
   const { error } = await supabase.auth.signOut();
-  if (error) throw error;
-  window.location.href = 'index.html';
+  if (!error) {
+    window.location.href = 'index.html';
+  }
 }
 
 async function getCurrentUser() {
   const session = await getSession();
   if (!session) return null;
   
+  initSupabase();
+  if (!supabase) return null;
+  
   const { data: { user } } = await supabase.auth.getUser();
   return user;
 }
 
 function onAuthStateChange(callback) {
-  if (!supabase) initSupabase();
+  initSupabase();
+  if (!supabase) return null;
   return supabase.auth.onAuthStateChange(callback);
 }
