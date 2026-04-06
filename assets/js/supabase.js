@@ -4,9 +4,35 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 var supabase = null;
 
 function initSupabase() {
-  if (typeof window !== 'undefined' && window.supabase && !supabase) {
+  if (!supabase && typeof window !== 'undefined' && window.supabase) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
+  return supabase;
+}
+
+function ensureSupabase() {
+  if (!supabase) {
+    initSupabase();
+  }
+  return supabase;
+}
+
+if (typeof window !== 'undefined') {
+  window.initSupabase = initSupabase;
+  window.ensureSupabase = ensureSupabase;
+}
+
+async function getSession() {
+  ensureSupabase();
+  if (!supabase) return null;
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session;
+  } catch (e) {
+    console.error('getSession error:', e);
+    return null;
+  }
+}
   return supabase;
 }
 
@@ -15,7 +41,7 @@ if (typeof window !== 'undefined') {
 }
 
 async function getSession() {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   try {
     const { data: { session } } = await supabase.auth.getSession();
     return session;
@@ -26,7 +52,7 @@ async function getSession() {
 }
 
 async function getProfile(userId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('profiles')
     .select('*')
@@ -42,14 +68,14 @@ async function getProfileBySession() {
 }
 
 async function saveCharacter(charId, data) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('characters')
     .upsert({ id: charId, data, updated_at: new Date().toISOString() });
 }
 
 async function loadCharacter(charId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('characters')
     .select('*')
@@ -59,7 +85,7 @@ async function loadCharacter(charId) {
 }
 
 async function createCharacter(playerId, partyId = null) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const id = crypto.randomUUID();
   const { data } = await supabase
     .from('characters')
@@ -84,7 +110,7 @@ async function createCharacter(playerId, partyId = null) {
 }
 
 async function listCharacters(playerId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('characters')
     .select('*')
@@ -94,7 +120,7 @@ async function listCharacters(playerId) {
 }
 
 async function listPartyCharacters(partyId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('characters')
     .select('*')
@@ -104,7 +130,7 @@ async function listPartyCharacters(partyId) {
 }
 
 async function deleteCharacter(charId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('characters')
     .delete()
@@ -112,14 +138,14 @@ async function deleteCharacter(charId) {
 }
 
 async function saveNPC(npcId, data) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('npcs')
     .upsert({ id: npcId, data, updated_at: new Date().toISOString() });
 }
 
 async function loadNPC(npcId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('npcs')
     .select('*')
@@ -129,7 +155,7 @@ async function loadNPC(npcId) {
 }
 
 async function listNPCs(partyId = null, includeGlobal = true) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   let query = supabase.from('npcs').select('*');
   
   if (partyId && includeGlobal) {
@@ -145,7 +171,7 @@ async function listNPCs(partyId = null, includeGlobal = true) {
 }
 
 async function createNPC(partyId, createdBy, npcData) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const id = crypto.randomUUID();
   const { data } = await supabase
     .from('npcs')
@@ -166,7 +192,7 @@ async function createNPC(partyId, createdBy, npcData) {
 }
 
 async function deleteNPC(npcId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('npcs')
     .delete()
@@ -174,7 +200,7 @@ async function deleteNPC(npcId) {
 }
 
 async function getParty(partyId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('parties')
     .select('*, party_members(*, profiles(*))')
@@ -184,7 +210,7 @@ async function getParty(partyId) {
 }
 
 async function getPartyByCode(code) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('parties')
     .select('*')
@@ -194,7 +220,7 @@ async function getPartyByCode(code) {
 }
 
 async function getPartyMembers(partyId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('party_members')
     .select('*, profiles(*)')
@@ -203,7 +229,7 @@ async function getPartyMembers(partyId) {
 }
 
 async function createParty(name, gmId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const code = Math.random().toString(36).substring(2, 8).toUpperCase();
   const { data } = await supabase
     .from('parties')
@@ -214,14 +240,14 @@ async function createParty(name, gmId) {
 }
 
 async function joinParty(partyId, playerId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('party_members')
     .insert({ party_id: partyId, player_id: playerId });
 }
 
 async function leaveParty(partyId, playerId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('party_members')
     .delete()
@@ -230,7 +256,7 @@ async function leaveParty(partyId, playerId) {
 }
 
 async function getGMParty(gmId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('parties')
     .select('*')
@@ -240,7 +266,7 @@ async function getGMParty(gmId) {
 }
 
 async function getPlayerParty(playerId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('party_members')
     .select('party_id, parties(*)')
@@ -250,7 +276,7 @@ async function getPlayerParty(playerId) {
 }
 
 async function updateSession(partyId, sessionData) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .from('sessions')
     .upsert({
@@ -261,7 +287,7 @@ async function updateSession(partyId, sessionData) {
 }
 
 async function getSessionByParty(partyId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const { data } = await supabase
     .from('sessions')
     .select('*')
@@ -273,7 +299,7 @@ async function getSessionByParty(partyId) {
 }
 
 async function uploadPortrait(file, playerId, charId) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   const path = `${playerId}/${charId}.jpg`;
   const { error } = await supabase.storage
     .from('portraits')
@@ -294,7 +320,7 @@ async function uploadPortrait(file, playerId, charId) {
 }
 
 function subscribeToPartyCharacters(partyId, callback) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .channel('party-characters')
     .on('postgres_changes', {
@@ -307,7 +333,7 @@ function subscribeToPartyCharacters(partyId, callback) {
 }
 
 function subscribeToSession(partyId, callback) {
-  if (!supabase) initSupabase();
+  ensureSupabase();
   return supabase
     .channel('session-updates')
     .on('postgres_changes', {
