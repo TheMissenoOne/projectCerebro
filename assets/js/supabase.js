@@ -6,12 +6,14 @@ var supabase = null;
 function initSupabase() {
   if (supabase) return supabase;
   
-  var sdk = window.supabase;
-  console.log('SDK type:', typeof sdk, 'createClient:', typeof sdk?.createClient);
+  var createClient = window.supabase?.createClient || window.supabase?.default?.createClient;
+  console.log('Looking for createClient:', typeof createClient);
   
-  if (sdk && typeof sdk.createClient === 'function') {
-    supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  if (typeof createClient === 'function') {
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     console.log('Client created:', !!supabase);
+  } else {
+    console.log('Available supabase keys:', Object.keys(window.supabase || {}));
   }
   return supabase;
 }
