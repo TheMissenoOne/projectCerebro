@@ -7,8 +7,11 @@ function initSupabase() {
   if (supabase) return supabase;
   
   var sdk = window.supabase;
-  if (sdk && sdk.createClient) {
+  console.log('SDK type:', typeof sdk, 'createClient:', typeof sdk?.createClient);
+  
+  if (sdk && typeof sdk.createClient === 'function') {
     supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('Client created:', !!supabase);
   }
   return supabase;
 }
