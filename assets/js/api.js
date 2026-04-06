@@ -1,4 +1,4 @@
-const API_URL = 'https://xmen-ttrpg-server.onrender.com' || 'http://localhost:3000';
+const API_URL = 'https://projectcerebro.onrender.com';
 
 const api = {
   async request(endpoint, options = {}) {
