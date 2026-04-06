@@ -1,12 +1,13 @@
 async function requireAuth(requiredRole = null) {
-  const session = await getSession();
+  const session = JSON.parse(localStorage.getItem('session'));
   if (!session) {
     window.location.href = 'index.html';
     return null;
   }
   
-  const profile = await getProfile(session.user.id);
+  const profile = await api.getProfile(session.user.id);
   if (!profile) {
+    localStorage.removeItem('session');
     window.location.href = 'index.html';
     return null;
   }
@@ -20,7 +21,7 @@ async function requireAuth(requiredRole = null) {
 }
 
 async function checkAuth() {
-  const session = await getSession();
+  const session = JSON.parse(localStorage.getItem('session'));
   if (session) {
     window.location.href = 'dashboard.html';
     return true;
@@ -29,79 +30,23 @@ async function checkAuth() {
 }
 
 async function login(email, password) {
-  initSupabase();
-  if (!supabase) throw new Error('Supabase não inicializado');
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
-  
-  if (error) throw error;
-  
+  const data = await api.login(email, password);
+  localStorage.setItem('session', JSON.stringify(data.session));
   return data;
 }
 
 async function register(email, password, username, displayName, role) {
-  initSupabase();
-  if (!supabase) throw new Error('Supabase não inicializado');
-  
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        username,
-        display_name: displayName,
-        role
-      }
-    }
-  });
-  
-  if (error) throw error;
-  
-  if (data.user) {
-    const { error: profileError } = await supabase
-      .from('profiles')
-      .insert({
-        id: data.user.id,
-        username,
-        display_name: displayName,
-        role
-      });
-    
-    if (profileError) {
-      console.error('Erro ao criar perfil:', profileError);
-    }
-  }
-  
+  const data = await api.register(email, password, username, displayName, role);
+  localStorage.setItem('session', JSON.stringify(data.session));
   return data;
 }
 
 async function logout() {
-  initSupabase();
-  if (!supabase) {
-    window.location.href = 'index.html';
-    return;
-  }
-  const { error } = await supabase.auth.signOut();
-  if (!error) {
-    window.location.href = 'index.html';
-  }
+  localStorage.removeItem('session');
+  window.location.href = 'index.html';
 }
 
-async function getCurrentUser() {
-  const session = await getSession();
-  if (!session) return null;
-  
-  initSupabase();
-  if (!supabase) return null;
-  
-  const { data: { user } } = await supabase.auth.getUser();
-  return user;
-}
-
-function onAuthStateChange(callback) {
-  initSupabase();
-  if (!supabase) return null;
-  return supabase.auth.onAuthStateChange(callback);
+function getCurrentUser() {
+  const session = JSON.parse(localStorage.getItem('session'));
+  return session?.user || null;
 }

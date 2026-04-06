@@ -205,14 +205,10 @@
     </main>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/compat.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { getSupabase, getSession, getProfile, getGMParty, listNPCs, loadNPC, createNPC, deleteNPC, getSession: getSessionData, updateSession } = window;
-
-    getSupabase();
-
     let currentParty = null;
     let allNPCs = [];
     let activeNPCs = [];
@@ -250,7 +246,7 @@
         return;
       }
 
-      currentParty = await getGMParty(auth.session.user.id);
+      currentParty = await api.getGMParty(auth.session.user.id);
       document.getElementById('app-layout').style.display = 'flex';
 
       await loadNPCs();
@@ -258,7 +254,7 @@
     }
 
     async function loadNPCs() {
-      allNPCs = await listNPCs(currentParty?.id, true);
+      allNPCs = await api.listNPCs(currentParty?.id, true);
       renderNPCList();
     }
 
@@ -419,7 +415,7 @@
 
     async function loadEncounter() {
       if (!currentParty) return;
-      const session = await getSessionData(currentParty.id);
+      const session = await api.getSession(currentParty.id);
       if (session) {
         currentRound = session.round || 0;
         document.getElementById('round-val').textContent = currentRound;
@@ -428,7 +424,7 @@
 
     async function saveEncounter() {
       if (!currentParty) return;
-      await updateSession(currentParty.id, {
+      await api.updateSession(currentParty.id, {
         round: currentRound,
         encounter: activeNPCs.map(n => ({ id: n.id, name: n.name }))
       });

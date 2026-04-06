@@ -477,14 +477,10 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/compat.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { getSupabase, getSession, getProfile, loadCharacter, saveCharacter, createCharacter, deleteCharacter, uploadPortrait } = window;
-
-    getSupabase();
-
     let charId = null;
     let charData = {};
     let saveTimeout = null;
@@ -496,7 +492,7 @@
       if (!auth) return;
 
       if (params.get('new') === 'true') {
-        const newChar = await createCharacter(auth.session.user.id);
+        const newChar = await api.createCharacter(auth.session.user.id);
         charId = newChar.id;
         window.history.replaceState({}, '', `ficha.html?id=${charId}`);
       } else {
@@ -509,7 +505,7 @@
     }
 
     async function loadChar() {
-      const char = await loadCharacter(charId);
+      const char = await api.loadCharacter(charId);
       if (!char) {
         alert('Personagem não encontrado!');
         window.location.href = 'dashboard.html';
@@ -637,7 +633,7 @@
       localStorage.setItem(`char_${charId}`, JSON.stringify(charData));
       
       try {
-        await saveCharacter(charId, charData);
+        await api.saveCharacter(charId, charData);
         indicator.textContent = '● SALVO';
         indicator.className = 'saving-indicator show salvo';
       } catch (e) {
@@ -738,7 +734,7 @@ ${data.notas}
 
     document.getElementById('delete-btn').addEventListener('click', async () => {
       if (confirm('Tem certeza que deseja excluir esta ficha?')) {
-        await deleteCharacter(charId);
+        await api.deleteCharacter(charId);
         window.location.href = 'dashboard.html';
       }
     });

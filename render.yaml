@@ -1,10 +1,17 @@
 services:
+  - type: web
+    name: xmen-ttrpg-server
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
   - type: static
-    name: xmen-ttrpg
+    name: xmen-ttrpg-frontend
     buildCommand: ""
     publishDir: "."
     envVars:
-      - key: SUPABASE_URL
-        value: https://wlpdfrqzbpwuxyqeayjt.supabase.co
-      - key: SUPABASE_ANON_KEY
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndscGRmcnF6YnB3dXh5cWVheWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MDQwODYsImV4cCI6MjA5MTA4MDA4Nn0.RkLXucAPwp0Edba7nG8pZOXrsOzjjrEbOIFwg-uyRLM
+      - key: API_URL
+        value: https://xmen-ttrpg-server.onrender.com

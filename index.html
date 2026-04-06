@@ -244,18 +244,10 @@
     <p class="auth-footer">X-MEN // CITY OF MIST</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    console.log('Supabase SDK loaded:', typeof window.supabase);
-  </script>
-  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/api.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    setTimeout(function() {
-      console.log('After timeout, supabase:', typeof window.supabase, 'client:', !!window.initSupabase);
-      initSupabase();
-      checkAuth();
-    }, 1000);
+    checkAuth();
 
     const tabs = document.querySelectorAll('.auth-tab');
     const forms = document.querySelectorAll('.auth-form');

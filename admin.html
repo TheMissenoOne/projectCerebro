@@ -341,14 +341,10 @@
     </main>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/compat.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    const { getSupabase, getSession, getProfile, getGMParty, getPartyMembers, listPartyCharacters, getSession: getSessionData, updateSession } = window;
-
-    getSupabase();
-
     let currentParty = null;
     let currentRound = 0;
     let encounterActive = false;
@@ -357,7 +353,7 @@
       const auth = await requireAuth('gm');
       if (!auth) return;
 
-      currentParty = await getGMParty(auth.session.user.id);
+      currentParty = await api.getGMParty(auth.session.user.id);
       
       if (!currentParty) {
         document.getElementById('no-party-msg').style.display = 'block';
@@ -371,7 +367,7 @@
     }
 
     async function loadPartyCharacters() {
-      const chars = await listPartyCharacters(currentParty.id);
+      const chars = await api.listPartyCharacters(currentParty.id);
       const tbody = document.getElementById('party-chars-body');
       
       chars.forEach(char => {
@@ -386,7 +382,7 @@
     }
 
     async function loadSessionNotes() {
-      const session = await getSessionData(currentParty.id);
+      const session = await api.getSession(currentParty.id);
       if (session) {
         document.getElementById('session-notes').value = session.notes || '';
         currentRound = session.round || 0;
@@ -442,7 +438,7 @@
 
     async function saveSessionState() {
       const notes = document.getElementById('session-notes').value;
-      await updateSession(currentParty.id, {
+      await api.updateSession(currentParty.id, {
         title: `Sessão - ${new Date().toLocaleDateString()}`,
         notes,
         round: currentRound,
