@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
   <style>
     .auth-container {
       min-height: 100vh;
@@ -108,31 +109,51 @@
     }
 
     .auth-form .form-group {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .auth-form .form-label {
-      font-size: .48rem;
+      font-family: var(--mono);
+      font-size: .5rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
     }
 
     .auth-form .form-input {
-      padding: 8px 10px;
-      font-size: .85rem;
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--p2);
+      border: 1px solid var(--b2);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-form .form-input:focus {
+      border-color: var(--red);
+    }
+    .auth-form .form-input::placeholder {
+      color: var(--b3);
     }
 
     .auth-form .role-select {
       display: flex;
       gap: 8px;
+      margin-top: 6px;
     }
 
     .auth-form .role-btn {
       flex: 1;
-      padding: 8px;
+      padding: 10px 12px;
       background: var(--p2);
       border: 1px solid var(--b2);
       color: var(--muted);
-      font-family: var(--mono);
-      font-size: .48rem;
+      font-family: var(--body);
+      font-size: .6rem;
       letter-spacing: .08em;
       text-transform: uppercase;
       cursor: pointer;
@@ -140,18 +161,17 @@
     }
     .auth-form .role-btn:hover {
       border-color: var(--b3);
+      color: var(--text);
     }
     .auth-form .role-btn.selected {
       border-color: var(--red);
-      color: var(--red);
-      background: rgba(232,0,28,.08);
+      background: var(--red);
+      color: var(--white);
     }
 
     .auth-form .btn {
       width: 100%;
       margin-top: 10px;
-      padding: 12px;
-      font-size: .58rem;
     }
 
     .auth-error {
@@ -159,7 +179,7 @@
       border: 1px solid var(--red);
       color: var(--red);
       padding: 10px 12px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       font-family: var(--mono);
       font-size: .5rem;
       letter-spacing: .05em;
