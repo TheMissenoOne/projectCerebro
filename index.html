@@ -300,10 +300,12 @@
       
       try {
         errorEl.classList.remove('show');
+        console.log('Registrando:', { email, username, displayName, role });
         await register(email, password, username, displayName, role);
         window.location.href = 'dashboard.html';
       } catch (err) {
-        errorEl.textContent = err.message;
+        console.error('Erro:', err);
+        errorEl.textContent = err.message || 'Erro ao criar conta';
         errorEl.classList.add('show');
       }
     });
