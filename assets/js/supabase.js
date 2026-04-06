@@ -4,7 +4,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 var supabase = null;
 
 function initSupabase() {
-  if (typeof window !== 'undefined' && typeof window.supabase !== 'undefined' && !supabase) {
+  if (typeof window !== 'undefined' && window.supabase && !supabase) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
   return supabase;
@@ -16,7 +16,14 @@ if (typeof window !== 'undefined') {
 
 async function getSession() {
   if (!supabase) initSupabase();
-  const { data: { session } } = await supabase.auth.getSession();
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session;
+  } catch (e) {
+    console.error('getSession error:', e);
+    return null;
+  }
+}
   return session;
 }
 
