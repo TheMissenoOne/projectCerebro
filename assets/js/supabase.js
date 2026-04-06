@@ -7,22 +7,25 @@ function initSupabase() {
   if (supabase) return supabase;
   
   var sdk = window.supabase;
-  if (sdk) {
+  if (sdk && sdk.createClient) {
     supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    console.log('Supabase initialized');
   }
   return supabase;
 }
 
 if (typeof window !== 'undefined') {
   window.initSupabase = initSupabase;
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initSupabase, 100);
-  });
-  
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initSupabase, 100);
+}
+
+async function getSession() {
+  initSupabase();
+  if (!supabase) return null;
+  try {
+    var result = await supabase.auth.getSession();
+    return result.data.session;
+  } catch (e) {
+    console.error('getSession error:', e);
+    return null;
   }
 }
 
