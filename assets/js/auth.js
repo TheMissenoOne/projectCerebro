@@ -29,7 +29,7 @@ async function checkAuth() {
 }
 
 async function login(email, password) {
-  getSupabase();
+  initSupabase();
   if (!supabase) throw new Error('Supabase não inicializado');
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -42,7 +42,7 @@ async function login(email, password) {
 }
 
 async function register(email, password, username, displayName, role) {
-  getSupabase();
+  initSupabase();
   if (!supabase) throw new Error('Supabase não inicializado');
   
   const { data, error } = await supabase.auth.signUp({
@@ -78,7 +78,7 @@ async function register(email, password, username, displayName, role) {
 }
 
 async function logout() {
-  getSupabase();
+  initSupabase();
   if (!supabase) {
     window.location.href = 'index.html';
     return;
@@ -93,7 +93,7 @@ async function getCurrentUser() {
   const session = await getSession();
   if (!session) return null;
   
-  getSupabase();
+  initSupabase();
   if (!supabase) return null;
   
   const { data: { user } } = await supabase.auth.getUser();
@@ -101,7 +101,7 @@ async function getCurrentUser() {
 }
 
 function onAuthStateChange(callback) {
-  getSupabase();
+  initSupabase();
   if (!supabase) return null;
   return supabase.auth.onAuthStateChange(callback);
 }
