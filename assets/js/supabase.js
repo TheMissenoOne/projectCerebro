@@ -2,33 +2,28 @@ const SUPABASE_URL = 'https://wlpdfrqzbpwuxyqeayjt.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndscGRmcnF6YnB3dXh5cWVheWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MDQwODYsImV4cCI6MjA5MTA4MDA4Nn0.RkLXucAPwp0Edba7nG8pZOXrsOzjjrEbOIFwg-uyRLM';
 
 var supabase = null;
-var supabaseInitAttempts = 0;
 
 function initSupabase() {
   if (supabase) return supabase;
-  if (supabaseInitAttempts > 10) {
-    console.error('Max init attempts reached');
-    return null;
+  
+  var sdk = window.supabase;
+  if (sdk) {
+    supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('Supabase initialized');
   }
-  
-  if (typeof window === 'undefined') return null;
-  
-  var sdk = window.supabase || window.supabase2;
-  if (!sdk) {
-    supabaseInitAttempts++;
-    console.log('Aguardando Supabase SDK... tentativa ' + supabaseInitAttempts);
-    setTimeout(initSupabase, 200);
-    return null;
-  }
-  
-  supabase = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  console.log('Supabase inicializado!');
   return supabase;
 }
 
 if (typeof window !== 'undefined') {
   window.initSupabase = initSupabase;
-  initSupabase();
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initSupabase, 100);
+  });
+  
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initSupabase, 100);
+  }
 }
 
 async function getSession() {
