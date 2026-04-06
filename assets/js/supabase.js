@@ -186,7 +186,7 @@ async function getGMParty(gmId) {
 
 async function getPlayerParty(playerId) {
   initSupabase();
-  var result = await supabase.from('party_members').select('party_id, parties(*))).eq('player_id', playerId).single();
+  var result = await supabase.from('party_members').select('party_id, parties(*)').eq('player_id', playerId).single();
   return result.data ? result.data.parties : null;
 }
 
