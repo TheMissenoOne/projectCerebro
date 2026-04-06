@@ -24,8 +24,6 @@ async function getSession() {
     return null;
   }
 }
-  return session;
-}
 
 async function getProfile(userId) {
   if (!supabase) initSupabase();
@@ -262,7 +260,7 @@ async function updateSession(partyId, sessionData) {
     });
 }
 
-async function getSession(partyId) {
+async function getSessionByParty(partyId) {
   if (!supabase) initSupabase();
   const { data } = await supabase
     .from('sessions')
@@ -322,5 +320,6 @@ function subscribeToSession(partyId, callback) {
 }
 
 if (typeof window !== 'undefined') {
+  window.initSupabase = initSupabase;
   initSupabase();
 }
