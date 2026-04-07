@@ -3,6 +3,8 @@ const path = require('path');
 
 const MARKDOWN_FILE = path.join(__dirname, '..', 'cerebro_rebalanceado.md');
 const OUTPUT_FILE = path.join(__dirname, '..', 'supabase', 'seed.sql');
+const DB_URL = process.env.DATABASE_URL || '';
+const DB_TOKEN = process.env.SUPABASE_SERVICE_KEY || '';
 
 function parseNPCs(markdown) {
   const blocks = markdown.split(/^# NPC: /m).slice(1);
