@@ -41,8 +41,15 @@ const api = {
     });
     const authData = await authResponse.json();
     
+    console.log('Register response:', authData);
+    
     if (!authResponse.ok) {
-      throw new Error(authData.msg || 'Registration failed');
+      throw new Error(authData.msg || authData.message || 'Registration failed');
+    }
+    
+    const userId = authData.user?.id || authData.id;
+    if (!userId) {
+      throw new Error('User ID not returned from auth');
     }
     
     // Then create profile
@@ -50,7 +57,7 @@ const api = {
       method: 'POST',
       headers: { 'Prefer': 'return=minimal' },
       body: { 
-        id: authData.user.id, 
+        id: userId, 
         email,
         username, 
         display_name: displayName, 
@@ -58,15 +65,15 @@ const api = {
       }
     });
     
-    // Create session manually (Supabase returns access_token)
+    // Create session manually
     const session = {
-      user: { id: authData.user.id, email },
-      access_token: authData.session?.access_token,
-      refresh_token: authData.session?.refresh_token
+      user: { id: userId, email },
+      access_token: authData.session?.access_token || authData.access_token,
+      refresh_token: authData.session?.refresh_token || authData.refresh_token
     };
     localStorage.setItem('session', JSON.stringify(session));
     
-    return { session, user: authData.user };
+    return { session, user: { id: userId, email } };
   },
   
   async login(email, password) {
@@ -82,17 +89,18 @@ const api = {
     const authData = await authResponse.json();
     
     if (!authResponse.ok) {
-      throw new Error(authData.msg || 'Login failed');
+      throw new Error(authData.msg || authData.error_description || 'Login failed');
     }
     
+    const userId = authData.user?.id || authData.id;
     const session = {
-      user: { id: authData.user.id, email },
+      user: { id: userId, email },
       access_token: authData.access_token,
       refresh_token: authData.refresh_token
     };
     localStorage.setItem('session', JSON.stringify(session));
     
-    return { session, user: authData.user };
+    return { session, user: { id: userId, email } };
   },
 
   // Profiles
