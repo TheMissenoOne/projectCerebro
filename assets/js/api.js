@@ -1,11 +1,45 @@
 const api = {
-  async request(endpoint, options = {}) {
+  getOrigin() {
+    return window.location.origin;
+  },
+  
+  async request(url, options = {}) {
     const session = JSON.parse(localStorage.getItem('session') || '{}');
+    console.log('Request:', options.method || 'GET', url);
+    console.log('Session:', session);
+    
     const config = {
       headers: {
         'Content-Type': 'application/json',
         ...(session?.access_token ? { 'Authorization': `Bearer ${session.access_token}` } : {})
       },
+      ...options
+    };
+    
+    if (options.body && typeof options.body === 'object') {
+      config.body = JSON.stringify(options.body);
+      console.log('Body:', config.body);
+    }
+    
+    const response = await fetch(url, config);
+    console.log('Response status:', response.status);
+    
+    let data;
+    const text = await response.text();
+    console.log('Response text:', text.substring(0, 500));
+    
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch (e) {
+      data = { error: text || 'Invalid response' };
+    }
+    
+    if (!response.ok) {
+      throw new Error(data.error || `Request failed: ${response.status}`);
+    }
+    
+    return data;
+  },
       ...options
     };
     
@@ -35,25 +69,45 @@ const api = {
   },
 
   async register(email, password, username, displayName, role) {
-    const data = await this.request(this.getOrigin() + '/auth/register', {
-      method: 'POST',
-      body: { email, password, username, displayName, role }
-    });
-    if (data.session) {
-      localStorage.setItem('session', JSON.stringify(data.session));
+    console.log('API: calling register...');
+    try {
+      const data = await this.request(this.getOrigin() + '/auth/register', {
+        method: 'POST',
+        body: { email, password, username, displayName, role }
+      });
+      console.log('API: register response:', data);
+      if (data.session) {
+        localStorage.setItem('session', JSON.stringify(data.session));
+        console.log('API: session saved');
+      } else {
+        console.log('API: no session in response, data:', data);
+      }
+      return data;
+    } catch (e) {
+      console.error('API: register error:', e);
+      throw e;
     }
-    return data;
   },
 
   async login(email, password) {
-    const data = await this.request(this.getOrigin() + '/auth/login', {
-      method: 'POST',
-      body: { email, password }
-    });
-    if (data.session) {
-      localStorage.setItem('session', JSON.stringify(data.session));
+    console.log('API: calling login...');
+    try {
+      const data = await this.request(this.getOrigin() + '/auth/login', {
+        method: 'POST',
+        body: { email, password }
+      });
+      console.log('API: login response:', data);
+      if (data.session) {
+        localStorage.setItem('session', JSON.stringify(data.session));
+        console.log('API: session saved');
+      } else {
+        console.log('API: no session in response, data:', data);
+      }
+      return data;
+    } catch (e) {
+      console.error('API: login error:', e);
+      throw e;
     }
-    return data;
   },
 
   async getProfile(userId) {

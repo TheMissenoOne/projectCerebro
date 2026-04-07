@@ -344,8 +344,17 @@ app.post('/parties/:partyId/session', async (req, res) => {
   }
 });
 
-// Serve static frontend
-app.use(express.static('public'));
+// Serve static frontend from root directory
+app.use(express.static(__dirname + '/..'));
+
+// SPA fallback - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/auth') && !req.path.startsWith('/profiles') && 
+      !req.path.startsWith('/parties') && !req.path.startsWith('/characters') &&
+      !req.path.startsWith('/npcs') && !req.path.startsWith('/players')) {
+    res.sendFile(__dirname + '/../index.html');
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
