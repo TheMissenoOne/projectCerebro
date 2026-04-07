@@ -1,47 +1,37 @@
-async function requireAuth(requiredRole) {
+// X-MEN TTRPG Auth
+// Simplified: reads profile from session.user (returned by backend on login/register)
+// No extra GET /profiles/:id round-trip needed
+
+function requireAuth(requiredRole) {
   var session;
   try {
-    session = localStorage.getItem('session');
-    session = session ? JSON.parse(session) : null;
+    var s = localStorage.getItem('session');
+    session = s ? JSON.parse(s) : null;
   } catch(e) {
     session = null;
   }
   
-  if (!session) {
+  if (!session || !session.user) {
     window.location.href = 'index.html';
-    return null;
+    return Promise.resolve(null);
   }
   
-  try {
-    var profile = await window.api.getProfile(session.user.id);
-    
-    if (!profile) {
-      var tempProfile = {
-        id: session.user.id,
-        email: session.user.email,
-        username: session.user.email.split('@')[0],
-        display_name: session.user.email.split('@')[0],
-        role: 'player'
-      };
-      return { session: session, profile: tempProfile };
-    }
-    
-    if (requiredRole && profile.role !== requiredRole) {
-      window.location.href = 'dashboard.html';
-      return null;
-    }
-    
-    return { session: session, profile: profile };
-  } catch (e) {
-    var tempProfile = {
-      id: session.user.id,
-      email: session.user.email,
-      username: session.user.email.split('@')[0],
-      display_name: session.user.email.split('@')[0],
-      role: 'player'
-    };
-    return { session: session, profile: tempProfile };
+  // Profile is included in session.user by the backend
+  var user = session.user;
+  var profile = user.profile || {
+    id: user.id,
+    email: user.email,
+    username: user.username || user.email.split('@')[0],
+    display_name: user.display_name || user.username || 'User',
+    role: user.role || 'player'
+  };
+  
+  if (requiredRole && profile.role !== requiredRole) {
+    window.location.href = 'dashboard.html';
+    return Promise.resolve(null);
   }
+  
+  return Promise.resolve({ session: session, profile: profile });
 }
 
 function login(email, password) {

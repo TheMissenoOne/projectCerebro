@@ -433,124 +433,145 @@
   <script src="assets/js/api.js"></script>
   <script src="assets/js/auth.js"></script>
   <script>
-    async function init() {
-      const auth = await requireAuth();
-      if (!auth) return;
-      
-      currentUser = auth.session.user;
-      currentProfile = auth.profile;
-      
-      document.getElementById('user-name').textContent = currentProfile.username;
-      document.getElementById('user-display').textContent = currentProfile.display_name;
-      document.getElementById('user-avatar').textContent = currentProfile.username.charAt(0).toUpperCase();
-      
-      const roleLabel = currentProfile.role === 'gm' ? 'MESTRE' : 'JOGADOR';
-      document.getElementById('user-role').textContent = roleLabel;
-      document.getElementById('user-role-display').textContent = roleLabel;
-      
-      await loadCharacters();
-      await loadParty();
-    }
+    var currentUser = null;
+    var currentProfile = null;
+    var currentParty = null;
 
-    async function loadCharacters() {
-      const chars = await api.listCharacters(currentUser.id);
-      const grid = document.getElementById('chars-grid');
-      const newBtn = document.getElementById('new-char-btn');
-      
-      chars.forEach(char => {
-        const card = document.createElement('div');
-        card.className = 'char-card';
-        card.innerHTML = `
-          <div class="char-card-name">${char.name || 'Sem Nome'}</div>
-          <div class="char-card-codename">${char.codename || ''}</div>
-        `;
-        card.addEventListener('click', () => {
-          window.location.href = `ficha.html?id=${char.id}`;
-        });
-        grid.insertBefore(card, newBtn);
+    function init() {
+      requireAuth().then(function(auth) {
+        if (!auth) return;
+        
+        currentUser = auth.session.user;
+        currentProfile = auth.profile;
+        
+        document.getElementById('user-name').textContent = currentProfile.username;
+        document.getElementById('user-display').textContent = currentProfile.display_name;
+        document.getElementById('user-avatar').textContent = currentProfile.username.charAt(0).toUpperCase();
+        
+        var roleLabel = currentProfile.role === 'gm' ? 'MESTRE' : 'JOGADOR';
+        document.getElementById('user-role').textContent = roleLabel;
+        document.getElementById('user-role-display').textContent = roleLabel;
+        
+        loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
+        loadParty().catch(function(e) { console.error('loadParty:', e); });
+      }).catch(function(e) {
+        console.error('init error:', e);
       });
     }
 
-    async function loadParty() {
-      let party = await getPlayerParty(currentUser.id);
-      
-      if (!party && currentProfile.role === 'gm') {
-        party = await getGMParty(currentUser.id);
-      }
-      
-      if (party) {
-        currentParty = party;
-        document.getElementById('party-empty').style.display = 'none';
-        document.getElementById('party-info').style.display = 'flex';
-        document.getElementById('party-name').textContent = party.name;
-        document.getElementById('party-code').textContent = party.code;
+    function loadCharacters() {
+      return api.listCharacters(currentUser.id).then(function(chars) {
+        var grid = document.getElementById('chars-grid');
+        var newBtn = document.getElementById('new-char-btn');
         
-        if (currentProfile.role === 'gm') {
-          document.getElementById('admin-link').style.display = 'inline-flex';
-        }
-        
-        const members = await getPartyMembers(party.id);
-        const membersEl = document.getElementById('party-members');
-        members.forEach(m => {
-          const memberEl = document.createElement('div');
-          memberEl.className = 'party-member' + (m.profiles.id === party.gm_id ? ' is-gm' : '');
-          memberEl.innerHTML = `
-            ${m.profiles.display_name}
-            ${m.profiles.id === party.gm_id ? '<span class="party-gm-badge">(GM)</span>' : ''}
-          `;
-          membersEl.appendChild(memberEl);
+        chars.forEach(function(char) {
+          var card = document.createElement('div');
+          card.className = 'char-card';
+          card.innerHTML = '<div class="char-card-name">' + (char.name || 'Sem Nome') + '</div>' +
+            '<div class="char-card-codename">' + (char.codename || '') + '</div>';
+          card.addEventListener('click', function() {
+            window.location.href = 'ficha.html?id=' + char.id;
+          });
+          grid.insertBefore(card, newBtn);
         });
-      }
+      });
     }
 
-    document.getElementById('new-char-btn').addEventListener('click', async () => {
-      const char = await createCharacter(currentUser.id, currentParty?.id || null);
-      window.location.href = `ficha.html?id=${char.id}`;
+    function loadParty() {
+      return api.getPlayerParty(currentUser.id).then(function(party) {
+        if (!party && currentProfile.role === 'gm') {
+          return api.getGMParty(currentUser.id).then(function(p) {
+            return showParty(p);
+          });
+        }
+        return showParty(party);
+      });
+    }
+
+    function showParty(party) {
+      if (!party) return;
+      currentParty = party;
+      document.getElementById('party-empty').style.display = 'none';
+      document.getElementById('party-info').style.display = 'flex';
+      document.getElementById('party-name').textContent = party.name;
+      document.getElementById('party-code').textContent = party.code;
+      
+      if (currentProfile.role === 'gm') {
+        document.getElementById('admin-link').style.display = 'inline-flex';
+      }
+      
+      return api.getPartyMembers(party.id).then(function(members) {
+        var membersEl = document.getElementById('party-members');
+        membersEl.innerHTML = '';
+        members.forEach(function(m) {
+          var p = m.profiles || {};
+          var memberEl = document.createElement('div');
+          memberEl.className = 'party-member' + (p.id === party.gm_id ? ' is-gm' : '');
+          memberEl.innerHTML = (p.display_name || 'Unknown') +
+            (p.id === party.gm_id ? ' <span class="party-gm-badge">(GM)</span>' : '');
+          membersEl.appendChild(memberEl);
+        });
+      });
+    }
+
+    document.getElementById('new-char-btn').addEventListener('click', function() {
+      api.createCharacter(currentUser.id, currentParty ? currentParty.id : null).then(function(char) {
+        window.location.href = 'ficha.html?id=' + char.id;
+      }).catch(function(e) {
+        alert('Erro ao criar personagem: ' + e.message);
+      });
     });
 
-    document.getElementById('logout-btn').addEventListener('click', async () => {
-      await logout();
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      logout();
     });
 
-    document.getElementById('create-party-btn').addEventListener('click', () => {
+    document.getElementById('create-party-btn').addEventListener('click', function() {
       document.getElementById('create-party-modal').classList.add('open');
     });
 
-    document.getElementById('join-party-btn').addEventListener('click', () => {
+    document.getElementById('join-party-btn').addEventListener('click', function() {
       document.getElementById('join-party-modal').classList.add('open');
     });
 
-    document.getElementById('cancel-create-party').addEventListener('click', () => {
+    document.getElementById('cancel-create-party').addEventListener('click', function() {
       document.getElementById('create-party-modal').classList.remove('open');
     });
 
-    document.getElementById('cancel-join-party').addEventListener('click', () => {
+    document.getElementById('cancel-join-party').addEventListener('click', function() {
       document.getElementById('join-party-modal').classList.remove('open');
     });
 
-    document.getElementById('confirm-create-party').addEventListener('click', async () => {
-      const name = document.getElementById('party-name-input').value;
+    document.getElementById('confirm-create-party').addEventListener('click', function() {
+      var name = document.getElementById('party-name-input').value;
       if (!name) return;
       
-      const party = await createParty(name, currentUser.id);
-      await joinParty(party.id, currentUser.id);
-      document.getElementById('create-party-modal').classList.remove('open');
-      await loadParty();
+      api.createParty(name, currentUser.id).then(function(party) {
+        return api.joinParty(party.id, currentUser.id).then(function() {
+          document.getElementById('create-party-modal').classList.remove('open');
+          return loadParty();
+        });
+      }).catch(function(e) {
+        alert('Erro ao criar party: ' + e.message);
+      });
     });
 
-    document.getElementById('confirm-join-party').addEventListener('click', async () => {
-      const code = document.getElementById('party-code-input').value;
+    document.getElementById('confirm-join-party').addEventListener('click', function() {
+      var code = document.getElementById('party-code-input').value;
       if (!code) return;
       
-      const party = await getPartyByCode(code);
-      if (!party) {
-        alert('Código inválido!');
-        return;
-      }
-      
-      await joinParty(party.id, currentUser.id);
-      document.getElementById('join-party-modal').classList.remove('open');
-      await loadParty();
+      api.getPartyByCode(code).then(function(party) {
+        if (!party) {
+          alert('Código inválido!');
+          return;
+        }
+        return api.joinParty(party.id, currentUser.id).then(function() {
+          document.getElementById('join-party-modal').classList.remove('open');
+          return loadParty();
+        });
+      }).catch(function(e) {
+        alert('Erro ao entrar na party: ' + e.message);
+      });
     });
 
     init();

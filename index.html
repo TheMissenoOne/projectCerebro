@@ -269,66 +269,71 @@
   <script>
     checkAuth();
 
-    const tabs = document.querySelectorAll('.auth-tab');
-    const forms = document.querySelectorAll('.auth-form');
-    const errorEl = document.getElementById('error');
+    var tabs = document.querySelectorAll('.auth-tab');
+    var forms = document.querySelectorAll('.auth-form');
+    var errorEl = document.getElementById('error');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
         tab.classList.add('active');
-        forms.forEach(f => f.classList.remove('active'));
+        forms.forEach(function(f) { f.classList.remove('active'); });
         document.getElementById(tab.dataset.tab + '-form').classList.add('active');
         errorEl.classList.remove('show');
       });
     });
 
-    const roleBtns = document.querySelectorAll('.role-btn');
-    const roleInput = document.querySelector('input[name="role"]');
-    roleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        roleBtns.forEach(b => b.classList.remove('selected'));
+    var roleBtns = document.querySelectorAll('.role-btn');
+    var roleInput = document.querySelector('input[name="role"]');
+    roleBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        roleBtns.forEach(function(b) { b.classList.remove('selected'); });
         btn.classList.add('selected');
         roleInput.value = btn.dataset.role;
       });
     });
 
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = e.target.email.value;
-      const password = e.target.password.value;
+      var email = e.target.email.value;
+      var password = e.target.password.value;
+      var btn = e.target.querySelector('button[type="submit"]');
+      var origText = btn.textContent;
+      btn.textContent = 'Entrando...';
+      btn.disabled = true;
       
-      try {
-        errorEl.classList.remove('show');
-        await login(email, password);
+      login(email, password).then(function() {
         window.location.href = 'dashboard.html';
-      } catch (err) {
+      }).catch(function(err) {
         errorEl.textContent = err.message;
         errorEl.classList.add('show');
-      }
+        btn.textContent = origText;
+        btn.disabled = false;
+      });
     });
 
-    document.getElementById('register-form').addEventListener('submit', async (e) => {
+    document.getElementById('register-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      const username = e.target.username.value;
-      const displayName = e.target.displayName.value;
-      const role = e.target.role.value;
+      var email = e.target.email.value;
+      var password = e.target.password.value;
+      var username = e.target.username.value;
+      var displayName = e.target.displayName.value;
+      var role = e.target.role.value;
+      var btn = e.target.querySelector('button[type="submit"]');
+      var origText = btn.textContent;
+      btn.textContent = 'Criando...';
+      btn.disabled = true;
       
-      try {
-        errorEl.classList.remove('show');
-        console.log('Registrando:', { email, username, displayName, role });
-        await register(email, password, username, displayName, role);
+      register(email, password, username, displayName, role).then(function() {
         window.location.href = 'dashboard.html';
-      } catch (err) {
+      }).catch(function(err) {
         console.error('Erro:', err);
         errorEl.textContent = err.message || 'Erro ao criar conta';
         errorEl.classList.add('show');
-      }
+        btn.textContent = origText;
+        btn.disabled = false;
+      });
     });
-
-    checkAuth();
   </script>
 </body>
 </html>

@@ -8,8 +8,8 @@
   
   function getSession() {
     try {
-      var session = localStorage.getItem('session');
-      return session ? JSON.parse(session) : null;
+      var s = localStorage.getItem('session');
+      return s ? JSON.parse(s) : null;
     } catch(e) {
       return null;
     }
@@ -32,8 +32,9 @@
         'Content-Type': 'application/json'
       };
       
-      if (session && session.access_token) {
-        headers['Authorization'] = 'Bearer ' + session.access_token;
+      // Fix: use session.token (not access_token) per IMPLEMENTACAO.md spec
+      if (session && session.token) {
+        headers['Authorization'] = 'Bearer ' + session.token;
       }
       
       var config = {
@@ -51,11 +52,13 @@
           try {
             data = text ? JSON.parse(text) : {};
           } catch(e) {
-            data = { error: text };
+            // Clear error when server returns non-JSON (HTML error pages)
+            var msg = text.substring(0, 200);
+            throw new Error('Server returned non-JSON response (' + response.status + '): ' + msg);
           }
           
           if (!response.ok) {
-            throw new Error(data.error || 'Request failed');
+            throw new Error(data.error || 'Request failed (' + response.status + ')');
           }
           
           return data;
@@ -198,13 +201,28 @@
       });
     }
   };
+  
+  // Global aliases so dashboard.html can call bare function names
+  window.createParty = window.api.createParty;
+  window.getGMParty = window.api.getGMParty;
+  window.getPartyByCode = window.api.getPartyByCode;
+  window.joinParty = window.api.joinParty;
+  window.getPartyMembers = window.api.getPartyMembers;
+  window.getPlayerParty = window.api.getPlayerParty;
+  window.createCharacter = window.api.createCharacter;
+  window.listCharacters = window.api.listCharacters;
+  window.listPartyCharacters = window.api.listPartyCharacters;
+  window.getProfile = window.api.getProfile;
+  window.listNPCs = window.api.listNPCs;
+  window.createNPC = window.api.createNPC;
+  window.updateSession = window.api.updateSession;
 })();
 
 function checkAuth() {
   var session;
   try {
-    session = localStorage.getItem('session');
-    session = session ? JSON.parse(session) : null;
+    var s = localStorage.getItem('session');
+    session = s ? JSON.parse(s) : null;
   } catch(e) {
     session = null;
   }
@@ -215,8 +233,8 @@ function checkAuth() {
 
 function getCurrentUser() {
   try {
-    var session = localStorage.getItem('session');
-    session = session ? JSON.parse(session) : null;
+    var s = localStorage.getItem('session');
+    var session = s ? JSON.parse(s) : null;
     return session ? session.user : null;
   } catch(e) {
     return null;
