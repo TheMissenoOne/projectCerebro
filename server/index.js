@@ -9,13 +9,23 @@ app.use(express.json({ limit: '10mb' }));
 
 const PORT = process.env.PORT || 3000;
 
+console.log('Starting server...');
+
 // Supabase connection
 const supabaseUrl = 'https://wlpdfrqzbpwuxyqeayjt.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndscGRmcnF6YnB3dXh5cWVheWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MDQwODYsImV4cCI6MjA5MTA4MDA4Nn0.RkLXucAPwp0Edba7nG8pZOXrsOzjjrEbOIFwg-uyRLM';
-const supabase = createClient(supabaseUrl, supabaseKey);
+
+let supabase;
+try {
+  supabase = createClient(supabaseUrl, supabaseKey);
+  console.log('Supabase client created');
+} catch (e) {
+  console.error('Failed to create Supabase client:', e);
+}
 
 // Auth routes
 app.post('/auth/register', async (req, res) => {
+  console.log('Register:', req.body);
   try {
     const { email, password, username, displayName, role } = req.body;
     
@@ -27,25 +37,32 @@ app.post('/auth/register', async (req, res) => {
       }
     });
     
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error('Register error:', error);
+      throw new Error(error.message);
+    }
     
     if (data.user) {
-      await supabase.from('profiles').upsert({
+      const { error: profileError } = await supabase.from('profiles').upsert({
         id: data.user.id,
         email,
         username,
         display_name: displayName,
         role: role || 'player'
       });
+      if (profileError) console.error('Profile upsert error:', profileError);
     }
     
+    console.log('Register success:', data);
     res.json({ user: data.user, session: data.session });
   } catch (e) {
+    console.error('Register exception:', e);
     res.status(400).json({ error: e.message });
   }
 });
 
 app.post('/auth/login', async (req, res) => {
+  console.log('Login:', req.body.email);
   try {
     const { email, password } = req.body;
     
@@ -54,10 +71,15 @@ app.post('/auth/login', async (req, res) => {
       password
     });
     
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error('Login error:', error);
+      throw new Error(error.message);
+    }
     
+    console.log('Login success:', data.user?.email);
     res.json({ user: data.user, session: data.session });
   } catch (e) {
+    console.error('Login exception:', e);
     res.status(401).json({ error: e.message });
   }
 });
