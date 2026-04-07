@@ -175,12 +175,11 @@
       return this.request(url);
     },
     
-    createNPC: function(partyId, createdBy, npcData) {
+    createNPC: function(partyId, npcData) {
       return this.request(getOrigin() + '/npcs', {
         method: 'POST',
         body: {
           party_id: partyId,
-          created_by: createdBy,
           name: npcData.name,
           codename: npcData.codename || '',
           faction: npcData.faction || 'neutro',
@@ -199,6 +198,23 @@
         method: 'POST',
         body: sessionData
       });
+    },
+    
+    updateNPC: function(npcId, npcData) {
+      return this.request(getOrigin() + '/npcs/' + npcId, {
+        method: 'PUT',
+        body: {
+          name: npcData.name,
+          codename: npcData.codename || '',
+          faction: npcData.faction || 'neutro',
+          danger: npcData.danger || 'medio',
+          data: npcData.data || {}
+        }
+      });
+    },
+    
+    deleteNPC: function(npcId) {
+      return this.request(getOrigin() + '/npcs/' + npcId, { method: 'DELETE' });
     }
   };
   
@@ -215,6 +231,8 @@
   window.getProfile = window.api.getProfile;
   window.listNPCs = window.api.listNPCs;
   window.createNPC = window.api.createNPC;
+  window.updateNPC = window.api.updateNPC;
+  window.deleteNPC = window.api.deleteNPC;
   window.updateSession = window.api.updateSession;
 })();
 

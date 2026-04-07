@@ -2,482 +2,1075 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CÉREBRO DATABASE // X-MEN</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CÉREBRO DATABASE // NPCs X-MEN</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <style>
-    :root {
-      --fc-xmen: #FFD600;
-      --fc-novatos: #66aaff;
-      --fc-geracaox: #88cc99;
-      --fc-morlock: #4a8a6a;
-      --fc-irmandade: #E8001C;
-      --fc-vilao: #ff5500;
-      --fc-criminoso: #dd8833;
-      --fc-neutro: #888;
-      --fc-humano: #3a8fc0;
-    }
+:root {
+  --fc-xmen:#FFD600;--fc-novatos:#66aaff;--fc-geracaox:#88cc99;
+  --fc-morlock:#4a8a6a;--fc-irmandade:#E8001C;--fc-vilao:#ff5500;
+  --fc-criminoso:#dd8833;--fc-neutro:#888;--fc-humano:#3a8fc0;
+  --pr-baixo:#555;--pr-medio:#c07040;--pr-alto:#E8001C;--pr-extremo:#b040ff;
+}
+body.theme-red{--accent:#E8001C;--accent2:#a8000f;--accent3:#5a0008;--accentRGB:232,0,28;}
+body.theme-green{--accent:#00C853;--accent2:#009c40;--accent3:#004a1f;--accentRGB:0,200,83;}
+body.theme-purple{--accent:#b040ff;--accent2:#7c1db5;--accent3:#3a0060;--accentRGB:176,64,255;}
+body.theme-blue{--accent:#3a8fc0;--accent2:#226090;--accent3:#0a2a40;--accentRGB:58,143,192;}
 
-    body { --accent: #FFD600; --accent2: #c4a800; --accent3: #5a4a00; --accentRGB: 255, 214, 0; }
+.no-access{text-align:center;padding:40px;font-family:var(--mono);font-size:.6rem;color:var(--muted);}
 
-    .app-layout { display: flex; height: calc(100vh - var(--hdr-h) - var(--bar-h)); overflow: hidden; }
-    .left-panel { width: var(--panel-w); flex-shrink: 0; background: var(--dark); border-right: 1px solid var(--b1); display: flex; flex-direction: column; overflow: hidden; }
-    .right-content { flex: 1; min-width: 0; overflow-y: auto; padding: clamp(12px, 2.5vw, 24px); }
+.tags-wrap{background:var(--p1);border:1px solid var(--b1);padding:10px 12px;margin-bottom:14px;}
+.tags-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.tag-item{display:flex;align-items:center;gap:5px;background:rgba(var(--accentRGB),.08);border-left:2px solid var(--accent);padding:4px 8px;font-family:var(--mono);font-size:.6rem;}
+.tag-item.neg{border-left-color:#aa3333;background:rgba(255,50,50,.06);}
+.tag-txt{color:var(--text);}
+.tag-grau{font-family:var(--mono);font-size:.5rem;font-weight:bold;padding:1px 5px;border-radius:2px;min-width:18px;text-align:center;flex-shrink:0;}
+.grau-0{display:none;}
+.grau-1{background:rgba(80,80,80,.4);color:var(--muted);border:1px solid var(--b3);}
+.grau-2{background:rgba(80,80,80,.3);color:#888;border:1px solid var(--b3);}
+.grau-3{background:rgba(var(--accentRGB),.15);color:var(--accent2);border:1px solid rgba(var(--accentRGB),.4);}
+.grau-4{background:rgba(255,120,0,.15);color:#ff9900;border:1px solid rgba(255,120,0,.4);}
+.grau-5{background:rgba(232,0,28,.15);color:#ff4444;border:1px solid rgba(232,0,28,.4);}
+.grau-6{background:rgba(176,64,255,.2);color:#c080ff;border:1px solid rgba(176,64,255,.4);}
+.grau-neg{background:rgba(180,30,30,.2);color:#dd5555;border:1px solid rgba(180,30,30,.4);}
+.no-tags{color:var(--muted);font-family:var(--mono);font-size:.52rem;}
 
-    .enc-section { flex-shrink: 0; border-bottom: 1px solid var(--b1); }
-    .enc-header { display: flex; align-items: center; gap: 0; padding: 0; cursor: pointer; background: var(--p1); border-bottom: 1px solid transparent; transition: background .15s; }
-    .enc-header.has-enc { border-bottom-color: rgba(192,112,64,.4); }
-    .enc-title-btn { flex: 1; display: flex; align-items: center; gap: 7px; padding: 8px 12px; background: none; border: none; cursor: pointer; }
-    .enc-sword { font-size: .75rem; line-height: 1; }
-    .enc-lbl { font-family: var(--mono); font-size: .48rem; color: #c07040; letter-spacing: .14em; text-transform: uppercase; }
-    .enc-count-badge { background: rgba(192,112,64,.2); border: 1px solid rgba(192,112,64,.4); color: #c07040; font-family: var(--mono); font-size: .4rem; padding: 1px 5px; letter-spacing: .04em; }
-    .enc-toggle-ico { width: 10px; height: 10px; stroke: var(--muted); fill: none; stroke-width: 2.5; transition: transform .25s; margin-right: 8px; flex-shrink: 0; }
-    .enc-header.open .enc-toggle-ico { transform: rotate(180deg); }
-    .enc-round-ctrl { display: flex; align-items: center; gap: 4px; padding: 0 10px; border-left: 1px solid var(--b1); }
-    .enc-round-lbl { font-family: var(--mono); font-size: .4rem; color: var(--muted2); letter-spacing: .06em; }
-    .enc-round-val { font-family: var(--mono); font-size: .7rem; color: #c07040; min-width: 16px; text-align: center; }
-    .enc-round-btn { background: none; border: 1px solid var(--b2); color: var(--muted); font-family: var(--mono); font-size: .55rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .12s; }
-    .enc-round-btn:hover { border-color: #c07040; color: #c07040; }
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:80px 20px;text-align:center;}
+.empty-ico svg{width:56px;height:56px;stroke:var(--b3);fill:none;stroke-width:1;}
+.empty-title{font-family:var(--disp);font-size:1.8rem;color:var(--b3);letter-spacing:.2em;}
+.empty-sub{font-family:var(--mono);font-size:.52rem;color:var(--muted2);letter-spacing:.1em;line-height:2;}
 
-    .enc-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-    .enc-body.open { max-height: 320px; }
-    .enc-npc-list { overflow-y: auto; max-height: 280px; padding: 4px 0; }
-    .enc-npc-item { display: flex; align-items: center; gap: 6px; padding: 6px 10px 6px 12px; cursor: pointer; border-left: 2px solid transparent; transition: all .1s; }
-    .enc-npc-item:hover { background: rgba(192,112,64,.06); border-left-color: #c07040; }
-    .enc-npc-item.active { background: rgba(192,112,64,.1); border-left-color: #c07040; }
-    .enc-npc-name { font-family: var(--body); font-weight: 700; font-size: .8rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .enc-npc-rem { background: none; border: none; color: var(--b3); cursor: pointer; font-family: var(--mono); font-size: .65rem; padding: 2px 4px; transition: color .1s; }
-    .enc-npc-rem:hover { color: #E8001C; }
-    .enc-empty-msg { font-family: var(--mono); font-size: .46rem; color: var(--muted2); text-align: center; padding: 12px 14px; letter-spacing: .08em; }
-    .enc-add-bar { padding: 6px 10px; border-top: 1px solid var(--b1); }
-    .enc-add-bar .tbtn { width: 100%; justify-content: center; font-size: .46rem; }
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:600;align-items:center;justify-content:center;padding:14px;}
+.modal-bg.open{display:flex;animation:fadeUp .2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.modal{background:var(--dark);border:1px solid var(--b2);border-top:3px solid var(--accent);padding:18px;max-width:660px;width:100%;max-height:90vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px;}
+.modal::-webkit-scrollbar{width:3px;}
+.modal::-webkit-scrollbar-thumb{background:var(--b2);}
+.modal-title{font-family:var(--disp);font-size:1.4rem;color:var(--white);letter-spacing:.2em;}
+.modal-sub{font-family:var(--mono);font-size:.54rem;color:var(--muted);letter-spacing:.08em;border-left:2px solid var(--accent2);padding-left:8px;line-height:1.8;}
+.modal-ta{width:100%;height:220px;background:var(--p2);border:1px solid var(--b2);color:var(--text);font-family:var(--mono);font-size:.58rem;padding:10px;resize:vertical;outline:none;transition:border-color .15s;}
+.modal-ta:focus{border-color:var(--accent);}
+.modal-acts{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px;}
 
-    .panel-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--b1); flex-shrink: 0; }
-    .panel-head-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
-    .panel-title { font-family: var(--mono); font-size: .48rem; color: var(--accent2); letter-spacing: .16em; text-transform: uppercase; }
-    .npc-count { font-family: var(--mono); font-size: .42rem; color: var(--muted2); }
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.form-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.form-grp{display:flex;flex-direction:column;gap:3px;}
+.form-lbl{font-family:var(--mono);font-size:.44rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.f-inp{background:var(--p2);border:1px solid var(--b2);color:var(--white);font-family:var(--mono);font-size:.66rem;padding:5px 8px;outline:none;transition:border-color .15s;width:100%;-webkit-appearance:none;-moz-appearance:textfield;}
+.f-inp::-webkit-inner-spin-button,.f-inp::-webkit-outer-spin-button{-webkit-appearance:none;}
+.f-inp:focus{border-color:var(--accent);}
+.f-inp::placeholder{color:var(--b3);}
+select.f-inp{cursor:pointer;}
+select.f-inp option{background:var(--dark);color:var(--white);}
+.stat-grp-box{background:var(--p1);border:1px solid var(--b1);padding:8px 9px 10px;margin-bottom:4px;}
+.stat-grp-title{font-family:var(--mono);font-size:.44rem;color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid var(--b1);}
+.stat-inp-w{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.stat-lbl-sm{font-family:var(--mono);font-size:.4rem;color:var(--muted2);letter-spacing:.05em;text-transform:uppercase;text-align:center;}
+.stat-num{width:100%;text-align:center;background:var(--black);border:1px solid var(--b2);color:var(--accent);font-family:var(--mono);font-size:.82rem;padding:5px;outline:none;-webkit-appearance:none;-moz-appearance:textfield;transition:border-color .15s;}
+.stat-num::-webkit-inner-spin-button,.stat-num::-webkit-outer-spin-button{-webkit-appearance:none;}
+.stat-num:focus{border-color:var(--accent);}
 
-    .search-box { width: 100%; background: var(--p2); border: 1px solid var(--b2); padding: 6px 9px; color: var(--white); font-family: var(--mono); font-size: .6rem; outline: none; transition: border-color .15s; }
-    .search-box:focus { border-color: var(--accent); }
+.tags-edit-wrap{background:var(--p1);border:1px solid var(--b1);padding:9px 11px;}
+.tags-edit-list{display:flex;flex-wrap:wrap;gap:5px;min-height:24px;margin-bottom:7px;}
+.tag-chip{display:flex;align-items:center;gap:4px;border-left:2px solid var(--accent);padding:3px 7px;font-family:var(--mono);font-size:.58rem;background:rgba(var(--accentRGB),.08);}
+.tag-chip.neg{border-left-color:#aa3333;background:rgba(180,30,30,.1);}
+.tag-chip-grau{font-family:var(--mono);font-size:.46rem;font-weight:bold;padding:0 4px;border-radius:2px;min-width:16px;text-align:center;}
+.tag-chip-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;line-height:1;transition:color .1s;}
+.tag-chip-del:hover{color:#E8001C;}
+.tag-add-row{display:flex;gap:5px;align-items:center;}
+.tag-grau-sel{width:42px;background:var(--black);border:1px solid var(--b2);color:var(--accent);font-family:var(--mono);font-size:.6rem;padding:4px;text-align:center;outline:none;-webkit-appearance:none;-moz-appearance:textfield;flex-shrink:0;}
+.tag-grau-sel:focus{border-color:var(--accent);}
 
-    .cat-pills { display: flex; flex-wrap: wrap; gap: 3px; padding: 7px 12px; border-bottom: 1px solid var(--b1); flex-shrink: 0; }
-    .cat-pill { font-family: var(--mono); font-size: .4rem; letter-spacing: .05em; padding: 3px 6px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all .12s; }
-    .cat-pill.active { background: rgba(var(--accentRGB),.15); border-color: var(--accent2); color: var(--accent); }
-    .cat-pill:hover:not(.active) { border-color: var(--b3); color: var(--text); }
+.cond-presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.cond-preset-btn{font-family:var(--mono);font-size:.5rem;padding:4px 9px;border:1px solid var(--b2);background:transparent;color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:.06em;transition:all .12s;}
+.cond-preset-btn:hover{border-color:#c07040;color:#c07040;background:rgba(192,112,64,.08);}
 
-    .npc-list-wrap { flex: 1; overflow-y: auto; padding: 4px 0; }
-    .npc-item { display: flex; align-items: center; gap: 7px; padding: 7px 12px; cursor: pointer; border-left: 2px solid transparent; transition: background .1s, border-left-color .1s; }
-    .npc-item:hover { background: rgba(255,255,255,.03); border-left-color: var(--b3); }
-    .npc-item.active { background: rgba(var(--accentRGB),.07); border-left-color: var(--accent); }
-    .npc-item-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .npc-item-info { flex: 1; min-width: 0; }
-    .npc-item-name { font-family: var(--body); font-weight: 700; font-size: .83rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
-    .npc-item.active .npc-item-name, .npc-item:hover .npc-item-name { color: var(--accent); }
-    .npc-item-sub { font-family: var(--mono); font-size: .4rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .npc-item-pr { font-family: var(--mono); font-size: .37rem; letter-spacing: .04em; padding: 2px 4px; flex-shrink: 0; border: 1px solid; }
-    .npc-empty { padding: 22px 14px; font-family: var(--mono); font-size: .52rem; color: var(--muted2); text-align: center; letter-spacing: .08em; }
+.panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;}
+.panel-overlay.open{display:block;}
 
-    .npc-header { margin-bottom: 18px; }
-    .npc-header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
-    .npc-name { font-family: var(--disp); font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--white); letter-spacing: .06em; border-left: 4px solid var(--accent); padding-left: 12px; line-height: 1.1; }
-    .npc-codename { font-family: var(--mono); font-size: .56rem; color: var(--muted); letter-spacing: .1em; padding-left: 16px; margin-top: 3px; }
-    .npc-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-    .npc-initiative { font-family: var(--mono); background: var(--p1); border: 1px solid var(--b2); padding: 4px 11px; font-size: .88rem; color: var(--accent); letter-spacing: .08em; }
-    .npc-frac-badge { font-family: var(--mono); font-size: .46rem; letter-spacing: .08em; padding: 3px 9px; border: 1px solid; text-transform: uppercase; }
-    .npc-pr-badge { font-family: var(--mono); font-size: .44rem; letter-spacing: .08em; padding: 3px 7px; border: 1px solid; }
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--accent);color:var(--black);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:8px 16px;z-index:1000;opacity:0;pointer-events:none;transition:all .2s;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-    .attr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
-    .attr-group { background: var(--p1); border: 1px solid var(--b1); overflow: hidden; }
-    .attr-group-hdr { background: var(--p2); padding: 5px 10px; border-bottom: 1px solid var(--b1); font-family: var(--body); font-weight: 700; font-size: .62rem; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; }
-    .attr-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-bottom: 1px solid var(--b1); font-family: var(--mono); font-size: .58rem; }
-    .attr-row:last-child { border-bottom: none; }
+@media(max-width:900px){.attr-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .hdr-codes{display:none;}
+  .hdr-ham{display:flex;}
+  .left-panel{position:fixed;top:0;left:0;bottom:0;z-index:600;transform:translateX(-100%);width:min(var(--panel-w),88vw);}
+  .left-panel.mobile-open{transform:translateX(0);}
+  .right-content{padding:12px 14px 100px;}
+  .npc-name{font-size:1.6rem;}
+  .npc-actions{width:100%;}
+  .form-grid-2{grid-template-columns:1fr;}
+  .attr-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .form-grid-3{grid-template-columns:1fr 1fr 1fr;}
+  .toolbar{padding:0 10px;gap:3px;}
+  .tbtn{padding:4px 7px;font-size:.5rem;}
+}
+.hdr-ham{display:none;align-items:center;justify-content:center;width:44px;background:none;border:none;border-left:1px solid var(--b1);color:var(--muted);cursor:pointer;transition:color .15s;}
+.hdr-ham:hover{color:var(--accent);}
+.hdr-ham svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;}
 
-    .npc-desc { font-family: var(--body); font-size: .72rem; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
-    .npc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
-    .npc-tag { font-family: var(--mono); font-size: .48rem; letter-spacing: .04em; padding: 3px 7px; border: 1px solid; border-radius: 2px; }
+.tbtn-acc{border-color:var(--accent2);color:var(--accent);}
+.tbtn-acc:hover{background:var(--accent);color:var(--black);border-color:var(--accent);}
 
-    .theme-btns { display: flex; flex-wrap: wrap; gap: 4px; }
-    .th-btn { font-family: var(--mono); font-size: .42rem; letter-spacing: .05em; padding: 4px 7px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all .12s; }
-    .th-btn:hover { border-color: var(--b3); color: var(--text); }
-    .th-dot { width: 7px; height: 7px; border-radius: 50%; }
+.enc-npc-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.enc-npc-conds{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px;}
+.enc-cond-chip{font-family:var(--mono);font-size:.36rem;letter-spacing:.04em;padding:1px 4px;border-radius:2px;border:1px solid;}
+.enc-npc-rem{background:none;border:none;color:var(--b3);cursor:pointer;font-family:var(--mono);font-size:.65rem;padding:2px 4px;transition:color .1s;}
+.enc-npc-rem:hover{color:#E8001C;}
 
-    .data-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--b1); font-family: var(--mono); font-size: .44rem; color: var(--muted2); letter-spacing: .1em; }
-    .data-header .ac { color: var(--accent2); }
+.desc-box{background:var(--p1);border:1px solid var(--b1);padding:14px 16px;margin-bottom:6px;}
+.desc-text{font-family:var(--body);font-size:.92rem;line-height:1.7;white-space:pre-wrap;color:var(--text);}
 
-    .no-access { text-align: center; padding: 40px; font-family: var(--mono); font-size: .6rem; color: var(--muted); }
+.attr-bar{flex:1;height:2px;background:var(--b1);margin:0 7px;overflow:hidden;}
+.attr-bar-fill{height:100%;background:var(--accent);opacity:.55;transition:width .4s ease;}
+.attr-val{color:var(--accent);font-size:.92rem;font-weight:bold;min-width:24px;text-align:right;}
   </style>
 </head>
-<body>
-  <header class="header">
-    <div class="header-logo">
-      <a href="dashboard.html" class="x-logo">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 10 L90 90 H60 L50 65 L40 90 H10 Z" fill="#E8001C"/>
-          <path d="M50 10 L60 35 L50 50 L40 35 Z" fill="#fff"/>
-        </svg>
-      </a>
-      <div class="hdr-title">
-        <h1>CÉREBRO</h1>
-        <span class="hdr-sub">DATABASE</span>
+<body class="theme-yellow">
+
+<div class="panel-overlay" id="panel-overlay" onclick="fecharPainel()"></div>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-logo">
+    <div class="x-logo">
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
+        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <rect x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+        <rect x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+      </svg>
+    </div>
+    <div class="hdr-title">
+      <h1>CÉREBRO DATABASE</h1>
+      <div class="hdr-sub">NPCs // XAVIER INSTITUTE // X-MEN TTRPG</div>
+    </div>
+  </div>
+  <div class="hdr-spacer"></div>
+  <div class="hdr-codes">
+    <span class="red-code">AG—17.19349.583</span>
+    <span>VERSÃO 5.0 // GM MODE</span>
+  </div>
+  <button class="hdr-ham" onclick="abrirPainel()">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</header>
+
+<!-- ══ TOOLBAR ══ -->
+<div class="toolbar">
+  <span class="save-ind" id="save-ind">// DB CARREGADO</span>
+  <div class="toolbar-divider"></div>
+  <a href="dashboard.html" class="tbtn">Dashboard</a>
+  <a href="admin.html" class="tbtn">Admin</a>
+  <div class="toolbar-divider"></div>
+  <button class="tbtn tbtn-acc" onclick="abrirAddModal()">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    NOVO NPC
+  </button>
+  <div class="toolbar-divider"></div>
+  <button class="tbtn" onclick="abrirImportModal()">
+    <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
+    IMPORTAR
+  </button>
+  <button class="tbtn" onclick="exportarTodos()">
+    <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+    EXPORTAR
+  </button>
+  <div class="toolbar-divider"></div>
+  <button class="tbtn tbtn-red" onclick="resetarDB()">
+    <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
+    RESETAR
+  </button>
+</div>
+
+<div id="no-access" class="no-access" style="display: none;">
+  Acesso restrito. Apenas GMs podem acessar o Cérebro.
+</div>
+
+<!-- ══ APP LAYOUT ══ -->
+<div class="app-layout" id="app-layout" style="display: none;">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel" id="left-panel">
+
+    <!-- ENCONTROS SECTION -->
+    <div class="enc-section" id="enc-section">
+      <div class="enc-header" id="enc-header" onclick="toggleEncSection()">
+        <button class="enc-title-btn">
+          <span class="enc-sword">⚔</span>
+          <span class="enc-lbl">ENCONTRO ATIVO</span>
+          <span class="enc-count-badge" id="enc-count-badge">0</span>
+        </button>
+        <div class="enc-round-ctrl" onclick="event.stopPropagation()">
+          <span class="enc-round-lbl">R</span>
+          <button class="enc-round-btn" onclick="mudaRodada(-1)">−</button>
+          <span class="enc-round-val" id="enc-rodada">1</span>
+          <button class="enc-round-btn" onclick="mudaRodada(1)">+</button>
+        </div>
+        <svg class="enc-toggle-ico" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="enc-body" id="enc-body">
+        <div class="enc-npc-list" id="enc-npc-list"></div>
+        <div class="enc-add-bar">
+          <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
+            + ADICIONAR NPC SELECIONADO
+          </button>
+        </div>
       </div>
     </div>
-    <div class="hdr-spacer"></div>
-  </header>
 
-  <div class="toolbar">
-    <a href="dashboard.html" class="tbtn">Dashboard</a>
-    <a href="admin.html" class="tbtn">Admin</a>
+    <!-- SEARCH -->
+    <div class="panel-head">
+      <div class="panel-head-top">
+        <span class="panel-title">// MUTANTES REGISTRADOS</span>
+        <span class="npc-count" id="npc-count">0</span>
+      </div>
+      <input type="search" class="search-box" id="search-inp" placeholder="FILTRAR..." oninput="filtrar()">
+    </div>
+
+    <!-- CATEGORY PILLS -->
+    <div class="cat-pills">
+      <button class="cat-pill active" data-cat="todos" onclick="setCat(this)">TODOS</button>
+      <button class="cat-pill" data-cat="x-men" onclick="setCat(this)">X-MEN</button>
+      <button class="cat-pill" data-cat="novatos" onclick="setCat(this)">NOVATOS</button>
+      <button class="cat-pill" data-cat="morlock" onclick="setCat(this)">MORLOCK</button>
+      <button class="cat-pill" data-cat="irmandade" onclick="setCat(this)">IRMANDADE</button>
+      <button class="cat-pill" data-cat="vilao" onclick="setCat(this)">VILÃO</button>
+      <button class="cat-pill" data-cat="criminoso" onclick="setCat(this)">CRIME</button>
+      <button class="cat-pill" data-cat="neutro" onclick="setCat(this)">NEUTRO</button>
+    </div>
+
+    <!-- NPC LIST -->
+    <div class="npc-list-wrap" id="npc-list"></div>
+
+    <!-- SETTINGS -->
+    <div class="panel-footer">
+      <button class="pf-toggle" id="pf-toggle" onclick="toggleSettings()">
+        // CONFIGURAÇÕES
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+      <div class="pf-settings" id="pf-settings">
+        <div class="pf-inner">
+          <div style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em">TEMA DE COR</div>
+          <div class="theme-btns">
+            <button class="th-btn" onclick="setTema('yellow')"><div class="th-dot" style="background:#FFD600"></div>AMARELO</button>
+            <button class="th-btn" onclick="setTema('red')"><div class="th-dot" style="background:#E8001C"></div>VERMELHO</button>
+            <button class="th-btn" onclick="setTema('green')"><div class="th-dot" style="background:#00C853"></div>VERDE</button>
+            <button class="th-btn" onclick="setTema('purple')"><div class="th-dot" style="background:#b040ff"></div>ROXO</button>
+            <button class="th-btn" onclick="setTema('blue')"><div class="th-dot" style="background:#3a8fc0"></div>AZUL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /left-panel -->
+
+  <!-- RIGHT CONTENT -->
+  <div class="right-content" id="right-content">
+    <div class="data-header">
+      <span>[LSSP-78445] [DB-NPC] [GM-v5]</span>
+      <span class="red-code">▌ BANCO DE DADOS CÉREBRO ▐</span>
+    </div>
+    <div id="npc-detail">
+      <div class="empty-state">
+        <div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="empty-title">NENHUM NPC</div>
+        <div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU IMPORTE UM ARQUIVO .MD</div>
+      </div>
+    </div>
   </div>
 
-  <div id="no-access" class="no-access" style="display: none;">
-    Acesso restrito. Apenas GMs podem acessar o Cérebro.
+</div><!-- /app-layout -->
+
+<!-- MODAL: IMPORTAR -->
+<div class="modal-bg" id="modal-import">
+  <div class="modal">
+    <div class="modal-title">IMPORTAR .MD</div>
+    <div class="modal-sub">Cole o Markdown com NPCs (formato "# NPC: Nome").<br>NPCs com mesmo nome serão atualizados automaticamente.</div>
+    <textarea class="modal-ta" id="import-text" placeholder="# NPC: Nome&#10;**Fração:** x-men&#10;..."></textarea>
+    <div class="modal-acts">
+      <button class="tbtn" onclick="fecharImportModal()">CANCELAR</button>
+      <button class="tbtn tbtn-acc" onclick="importarMarkdown()">CONFIRMAR</button>
+    </div>
   </div>
+</div>
 
-  <div class="app-layout" id="app-layout" style="display: none;">
-    <aside class="left-panel">
-      <div class="enc-section">
-        <div class="enc-header" id="enc-header">
-          <button class="enc-title-btn" id="enc-title-btn">
-            <svg class="enc-toggle-ico" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            <span class="enc-lbl">Encontro</span>
-            <span class="enc-count-badge" id="enc-count">0</span>
-          </button>
-          <div class="enc-round-ctrl">
-            <span class="enc-round-lbl">Rd</span>
-            <button class="enc-round-btn" id="round-dec">-</button>
-            <span class="enc-round-val" id="round-val">0</span>
-            <button class="enc-round-btn" id="round-inc">+</button>
-          </div>
+<!-- MODAL: NPC FORM -->
+<div class="modal-bg" id="modal-npc">
+  <div class="modal">
+    <div class="modal-title" id="modal-npc-title">NOVO NPC</div>
+    <div class="form-grid-2">
+      <div class="form-grp"><label class="form-lbl">NOME *</label><input type="text" class="f-inp" id="f-nome" placeholder="Nome"></div>
+      <div class="form-grp"><label class="form-lbl">CODINOME</label><input type="text" class="f-inp" id="f-codinome" placeholder="Identidade / codinome"></div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-grp">
+        <label class="form-lbl">FRAÇÃO</label>
+        <select class="f-inp" id="f-fracao">
+          <option value="x-men">X-Men</option>
+          <option value="novatos">Novos Mutantes / Gen.X</option>
+          <option value="geracaox">X-Factor / X-Force</option>
+          <option value="morlock">Morlocks</option>
+          <option value="irmandade">Irmandade</option>
+          <option value="vilao">Vilão</option>
+          <option value="criminoso">Criminoso</option>
+          <option value="neutro">Neutro / Ambíguo</option>
+          <option value="humano">Humano / Aliado</option>
+        </select>
+      </div>
+      <div class="form-grid-2" style="gap:6px">
+        <div class="form-grp">
+          <label class="form-lbl">PERIGO</label>
+          <select class="f-inp" id="f-perigo">
+            <option value="baixo">Baixo</option>
+            <option value="medio" selected>Médio</option>
+            <option value="alto">Alto</option>
+            <option value="extremo">Extremo</option>
+          </select>
         </div>
-        <div class="enc-body" id="enc-body">
-          <div class="enc-npc-list" id="enc-npc-list">
-            <div class="enc-empty-msg">Nenhum NPC no encontro</div>
-          </div>
+        <div class="form-grp"><label class="form-lbl">INICIATIVA</label><input type="number" class="f-inp" id="f-iniciativa" placeholder="0" min="0" max="20"></div>
+      </div>
+    </div>
+    <div class="stat-grp-box">
+      <div class="stat-grp-title">FÍSICO</div>
+      <div class="form-grid-3">
+        <div class="stat-inp-w"><div class="stat-lbl-sm">DESTREZA</div><input type="number" class="stat-num" id="f-destreza" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">FORÇA</div><input type="number" class="stat-num" id="f-forca" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">CORPO</div><input type="number" class="stat-num" id="f-corpo" placeholder="0" min="0" max="25"></div>
+      </div>
+    </div>
+    <div class="stat-grp-box">
+      <div class="stat-grp-title">MENTAL</div>
+      <div class="form-grid-3">
+        <div class="stat-inp-w"><div class="stat-lbl-sm">INTELIGÊNCIA</div><input type="number" class="stat-num" id="f-inteligencia" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">VONTADE</div><input type="number" class="stat-num" id="f-vontade" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">MENTE</div><input type="number" class="stat-num" id="f-mente" placeholder="0" min="0" max="25"></div>
+      </div>
+    </div>
+    <div class="stat-grp-box">
+      <div class="stat-grp-title">SOCIAL / MÍSTICO</div>
+      <div class="form-grid-3">
+        <div class="stat-inp-w"><div class="stat-lbl-sm">INFLUÊNCIA</div><input type="number" class="stat-num" id="f-influencia" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">AURA</div><input type="number" class="stat-num" id="f-aura" placeholder="0" min="0" max="25"></div>
+        <div class="stat-inp-w"><div class="stat-lbl-sm">ESPÍRITO</div><input type="number" class="stat-num" id="f-espirito" placeholder="0" min="0" max="25"></div>
+      </div>
+    </div>
+    <div>
+      <div class="form-lbl" style="margin-bottom:6px">TAGS // CITY OF MIST (grau 1-6, negativo = fraqueza)</div>
+      <div class="tags-edit-wrap">
+        <div class="tags-edit-list" id="tags-edit-list"></div>
+        <div class="tag-add-row">
+          <input type="text" class="f-inp" id="tag-new-inp" placeholder="Nome da tag..." style="flex:1" onkeydown="if(event.key==='Enter'){adicionarTag();event.preventDefault();}">
+          <input type="number" class="tag-grau-sel" id="tag-new-grau" value="3" min="-3" max="6" title="Grau (-=fraqueza)">
+          <button class="tbtn tbtn-acc" onclick="adicionarTag()" style="padding:4px 8px">+TAG</button>
         </div>
       </div>
-
-      <div class="panel-head">
-        <div class="panel-head-top">
-          <span class="panel-title">NPCs</span>
-          <span class="npc-count" id="npc-count">0</span>
-        </div>
-        <input type="text" class="search-box" id="search-box" placeholder="Buscar...">
-      </div>
-
-      <div class="cat-pills" id="cat-pills">
-        <button class="cat-pill active" data-cat="all">Todos</button>
-        <button class="cat-pill" data-cat="x-men">X-Men</button>
-        <button class="cat-pill" data-cat="irmaosh">Irmandade</button>
-        <button class="cat-pill" data-cat="vilao">Vilões</button>
-        <button class="cat-pill" data-cat="morlock">Morlocks</button>
-      </div>
-
-      <div class="npc-list-wrap" id="npc-list"></div>
-
-      <div class="panel-footer">
-        <button class="pf-toggle" id="pf-toggle">
-          Temas
-          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="pf-settings" id="pf-settings">
-          <div class="pf-inner">
-            <div class="theme-btns">
-              <button class="th-btn" data-theme="yellow"><span class="th-dot" style="background:#FFD600"></span>Amarelo</button>
-              <button class="th-btn" data-theme="red"><span class="th-dot" style="background:#E8001C"></span>Vermelho</button>
-              <button class="th-btn" data-theme="green"><span class="th-dot" style="background:#00C853"></span>Verde</button>
-              <button class="th-btn" data-theme="blue"><span class="th-dot" style="background:#3a8fc0"></span>Azul</button>
-              <button class="th-btn" data-theme="purple"><span class="th-dot" style="background:#b040ff"></span>Roxo</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <main class="right-content" id="right-content">
-      <div class="data-header">
-        <span>CÉREBRO DATABASE</span>
-        <span class="ac">ACESSO GM</span>
-      </div>
-      <div id="npc-detail"></div>
-    </main>
+    </div>
+    <div class="form-grp">
+      <label class="form-lbl">DESCRIÇÃO</label>
+      <textarea class="modal-ta" id="f-descricao" placeholder="Histórico, notas, personalidade..." style="height:90px"></textarea>
+    </div>
+    <div class="modal-acts">
+      <button class="tbtn" onclick="fecharNPCModal()">CANCELAR</button>
+      <button class="tbtn tbtn-acc" id="btn-salvar-npc" onclick="salvarNPC()">SALVAR NPC</button>
+    </div>
   </div>
+</div>
 
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script>
-    let currentParty = null;
-    let allNPCs = [];
-    let activeNPCs = [];
-    let currentRound = 0;
-    let currentCat = 'all';
-    let searchTerm = '';
-    let selectedNpcId = null;
+<!-- MODAL: CONDIÇÃO -->
+<div class="modal-bg" id="modal-cond">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-title">CONDIÇÃO</div>
+    <div class="modal-sub">Selecione uma condição predefinida ou escreva uma customizada para <strong id="cond-npc-alvo"></strong>.</div>
+    <div class="cond-presets">
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Ferido Leve')">Ferido Leve</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Ferido Grave')">Ferido Grave</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Atordoado')">Atordoado</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Incapacitado')">Incapacitado</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Sangrando')">Sangrando</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Envenenado')">Envenenado</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Em Chamas')">Em Chamas</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Paralisado')">Paralisado</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Medo')">Medo</button>
+      <button class="cond-preset-btn" onclick="aplicarCondPreset('Inconsciente')">Inconsciente</button>
+    </div>
+    <div class="form-grp">
+      <label class="form-lbl">CONDIÇÃO CUSTOMIZADA</label>
+      <div style="display:flex;gap:6px">
+        <input type="text" class="f-inp" id="cond-custom-inp" placeholder="Descreva a condição..." style="flex:1" onkeydown="if(event.key==='Enter'){aplicarCondCustom();event.preventDefault();}">
+        <button class="tbtn tbtn-acc" onclick="aplicarCondCustom()">+</button>
+      </div>
+    </div>
+    <div class="modal-acts">
+      <button class="tbtn" onclick="fecharCondModal()">FECHAR</button>
+    </div>
+  </div>
+</div>
 
-    const factionColors = {
-      'x-men': '#FFD600',
-      'novatos': '#66aaff',
-      'geracao_x': '#88cc99',
-      'morlock': '#4a8a6a',
-      'irmandade': '#E8001C',
-      'irmaosh': '#E8001C',
-      'vilao': '#ff5500',
-      'viloes': '#ff5500',
-      'criminoso': '#dd8833',
-      'criminosos': '#dd8833',
-      'neutro': '#888',
-      'humano': '#3a8fc0'
-    };
+<div class="toast" id="toast"></div>
 
-    const dangerColors = {
-      'baixo': '#555',
-      'medio': '#c07040',
-      'alto': '#E8001C',
-      'extremo': '#b040ff'
-    };
+<script src="assets/js/api.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+const SK=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
+const SK_SHORT=["destreza","forca","corpo","inteligencia","vontade","mente","influencia","aura","espirito"];
+const CHAVE="cerebro_v5";
+const CHAVE_ENC="cerebro_enc_v5";
+const CHAVE_TEMA="cerebro_tema";
 
-    async function init() {
-      const auth = await requireAuth('gm');
-      if (!auth) {
-        document.getElementById('no-access').style.display = 'block';
-        return;
-      }
+const FRACOES={
+  'x-men':{l:'X-Men',cor:'var(--fc-xmen)'},
+  'novatos':{l:'Nov. Mutantes/Gen.X',cor:'var(--fc-novatos)'},
+  'geracaox':{l:'X-Factor/X-Force',cor:'var(--fc-geracaox)'},
+  'morlock':{l:'Morlocks',cor:'var(--fc-morlock)'},
+  'irmandade':{l:'Irmandade',cor:'var(--fc-irmandade)'},
+  'vilao':{l:'Vilão',cor:'var(--fc-vilao)'},
+  'criminoso':{l:'Criminoso',cor:'var(--fc-criminoso)'},
+  'neutro':{l:'Neutro/Ambíguo',cor:'var(--fc-neutro)'},
+  'humano':{l:'Humano/Aliado',cor:'var(--fc-humano)'},
+};
+const PERIGOS={
+  'baixo':{l:'BAIXO',cor:'var(--pr-baixo)'},
+  'medio':{l:'MÉDIO',cor:'var(--pr-medio)'},
+  'alto':{l:'ALTO',cor:'var(--pr-alto)'},
+  'extremo':{l:'EXTREMO',cor:'var(--pr-extremo)'},
+};
+const COND_CORES={
+  'Ferido Leve':{c:'#c07040',b:'rgba(192,112,64,.15)'},
+  'Ferido Grave':{c:'#E8001C',b:'rgba(232,0,28,.15)'},
+  'Atordoado':{c:'#ffdd00',b:'rgba(255,220,0,.12)'},
+  'Incapacitado':{c:'#b040ff',b:'rgba(176,64,255,.15)'},
+  'Sangrando':{c:'#cc2222',b:'rgba(200,30,30,.15)'},
+  'Envenenado':{c:'#44aa44',b:'rgba(50,170,50,.12)'},
+  'Em Chamas':{c:'#ff6600',b:'rgba(255,100,0,.15)'},
+  'Paralisado':{c:'#4488cc',b:'rgba(50,120,200,.12)'},
+  'Medo':{c:'#9966cc',b:'rgba(150,100,200,.12)'},
+  'Inconsciente':{c:'#666',b:'rgba(100,100,100,.2)'},
+};
+function condCor(nome){return COND_CORES[nome]||{c:'#888',b:'rgba(136,136,136,.15)'};}
 
-      currentParty = await api.getGMParty(auth.session.user.id);
-      document.getElementById('app-layout').style.display = 'flex';
+let currentParty=null;
+let allNPCs=[];
+let encounterNPCs=[];
+let currentRound=1;
+let currentCat='todos';
+let searchTerm='';
+let selectedNpc=null;
+let editMode=false;
+let editId=null;
+let editTags=[];
 
-      await loadNPCs();
-      await loadEncounter();
-    }
+async function init(){
+  const auth=await requireAuth('gm');
+  if(!auth){
+    document.getElementById('no-access').style.display='block';
+    return;
+  }
+  currentParty=await api.getGMParty(auth.session.user.id);
+  document.getElementById('app-layout').style.display='flex';
+  const savedTema=localStorage.getItem(CHAVE_TEMA);
+  if(savedTema)setTema(savedTema);
+  await loadNPCs();
+  await loadEncounter();
+  setStatus('// DB CARREGADO');
+}
 
-    async function loadNPCs() {
-      allNPCs = await api.listNPCs(currentParty?.id, true);
-      renderNPCList();
-    }
+function setStatus(txt,type=''){
+  const el=document.getElementById('save-ind');
+  el.textContent=txt;
+  el.className='save-ind'+type?' '+type:'';
+}
 
-    function renderNPCList() {
-      const list = document.getElementById('npc-list');
-      list.innerHTML = '';
+async function loadNPCs(){
+  allNPCs=await api.listNPCs(currentParty?.id,true);
+  renderNPCList();
+}
 
-      let filtered = allNPCs;
-      if (currentCat !== 'all') {
-        filtered = filtered.filter(npc => {
-          const faction = (npc.faction || '').toLowerCase().replace(' ', '_');
-          return faction.includes(currentCat);
-        });
-      }
-      if (searchTerm) {
-        const term = searchTerm.toLowerCase();
-        filtered = filtered.filter(npc =>
-          npc.name.toLowerCase().includes(term) ||
-          (npc.codename || '').toLowerCase().includes(term)
-        );
-      }
+async function loadEncounter(){
+  if(!currentParty)return;
+  const data=localStorage.getItem(CHAVE_ENC);
+  if(data){
+    const enc=JSON.parse(data);
+    currentRound=enc.round||1;
+    encounterNPCs=enc.npcs||[];
+  }
+  document.getElementById('enc-rodada').textContent=currentRound;
+  renderEncounterList();
+}
 
-      document.getElementById('npc-count').textContent = filtered.length;
+async function saveEncounter(){
+  const data={round:currentRound,npcs:encounterNPCs};
+  localStorage.setItem(CHAVE_ENC,JSON.stringify(data));
+}
 
-      if (filtered.length === 0) {
-        list.innerHTML = '<div class="npc-empty">Nenhum NPC encontrado</div>';
-        return;
-      }
+function renderNPCList(){
+  const list=document.getElementById('npc-list');
+  list.innerHTML='';
+  let filtered=allNPCs;
+  if(currentCat!=='todos'){
+    filtered=filtered.filter(n=>n.faction===currentCat);
+  }
+  if(searchTerm){
+    const t=searchTerm.toLowerCase();
+    filtered=filtered.filter(n=>(n.name||'').toLowerCase().includes(t)||(n.codename||'').toLowerCase().includes(t));
+  }
+  document.getElementById('npc-count').textContent=filtered.length;
+  if(filtered.length===0){
+    list.innerHTML='<div class="npc-empty">NENHUM NPC ENCONTRADO</div>';
+    return;
+  }
+  filtered.forEach(npc=>{
+    const fr=(FRACOES[npc.faction]||FRACOES['neutro']);
+    const pr=(PERIGOS[npc.danger]||PERIGOS['medio']);
+    const inEnc=encounterNPCs.some(e=>e.id===npc.id);
+    const isSelected=selectedNpc&&selectedNpc.id===npc.id;
+    const item=document.createElement('div');
+    item.className='npc-item'+(isSelected?' active':'')+(inEnc?' in-enc':'');
+    item.innerHTML=`<span class="npc-item-dot" style="background:${fr.cor}"></span>
+      <div class="npc-item-info">
+        <div class="npc-item-name">${npc.name}</div>
+        <div class="npc-item-sub">${npc.codename||''}</div>
+      </div>
+      <span class="npc-item-pr" style="border-color:${pr.cor};color:${pr.cor}">${PERIGOS[npc.danger]?.l||'MÉDIO'}</span>
+      ${inEnc?'<span class="npc-item-enc">⚔</span>':''}`;
+    item.addEventListener('click',()=>selectNPC(npc));
+    list.appendChild(item);
+  });
+}
 
-      filtered.forEach(npc => {
-        const faction = (npc.faction || 'neutro').toLowerCase();
-        const factionColor = factionColors[faction] || '#888';
-        const prColor = dangerColors[npc.danger] || '#555';
-        const inEnc = activeNPCs.some(a => a.id === npc.id);
+function selectNPC(npc){
+  selectedNpc=npc;
+  renderNPCList();
+  renderNPCDetail();
+}
 
-        const item = document.createElement('div');
-        item.className = 'npc-item' + (selectedNpcId === npc.id ? ' active' : '') + (inEnc ? ' in-enc' : '');
-        item.innerHTML = `
-          <span class="npc-item-dot" style="background:${factionColor}"></span>
-          <div class="npc-item-info">
-            <div class="npc-item-name">${npc.name}</div>
-            <div class="npc-item-sub">${npc.codename || ''}</div>
-          </div>
-          <span class="npc-item-pr" style="border-color:${prColor};color:${prColor}">${npc.danger}</span>
-          ${inEnc ? '<span class="npc-item-enc">⚔</span>' : ''}
-        `;
-        item.addEventListener('click', () => selectNPC(npc));
-        list.appendChild(item);
-      });
-    }
+function renderNPCDetail(){
+  const detail=document.getElementById('npc-detail');
+  if(!selectedNpc){
+    detail.innerHTML=`<div class="empty-state">
+      <div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="empty-title">NENHUM NPC</div>
+      <div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU IMPORTE UM ARQUIVO .MD</div>
+    </div>`;
+    return;
+  }
+  const fr=(FRACOES[selectedNpc.faction]||FRACOES['neutro']);
+  const pr=(PERIGOS[selectedNpc.danger]||PERIGOS['medio']);
+  const data=selectedNpc.data||{};
+  const stats=data.stats||{};
+  const tags=data.tags||[];
+  const encNpc=encounterNPCs.find(e=>e.id===selectedNpc.id);
+  const conds=encNpc?.conditions||[];
 
-    function selectNPC(npc) {
-      selectedNpcId = npc.id;
-      renderNPCList();
-      renderNPCDetail(npc);
-    }
-
-    function renderNPCDetail(npc) {
-      const detail = document.getElementById('npc-detail');
-      const faction = (npc.faction || 'neutro').toLowerCase();
-      const factionColor = factionColors[faction] || '#888';
-      const prColor = dangerColors[npc.danger] || '#555';
-      const data = npc.data || {};
-
-      detail.innerHTML = `
-        <div class="npc-header">
-          <div class="npc-header-top">
-            <div>
-              <div class="npc-name">${npc.name}</div>
-              ${npc.codename ? `<div class="npc-codename">${npc.codename}</div>` : ''}
-            </div>
-            <div class="npc-actions">
-              <button class="tbtn tbtn-red" onclick="addToEncounter('${npc.id}')">+ Encontro</button>
-            </div>
-          </div>
-          <div class="npc-meta">
-            <span class="npc-initiative">INI ${data.iniciativa || 0}</span>
-            <span class="npc-frac-badge" style="border-color:${factionColor};color:${factionColor}">${npc.faction}</span>
-            <span class="npc-pr-badge" style="border-color:${prColor};color:${prColor}">${npc.danger}</span>
-          </div>
+  detail.innerHTML=`
+    <div class="npc-header">
+      <div class="npc-header-top">
+        <div>
+          <div class="npc-name">${selectedNpc.name}</div>
+          ${selectedNpc.codename?`<div class="npc-codename">${selectedNpc.codename}</div>`:''}
         </div>
-
-        <div class="attr-grid">
-          <div class="attr-group">
-            <div class="attr-group-hdr">Atributos Físicos</div>
-            ${renderStats(data.stats, ['destreza', 'forca', 'corpo'])}
-          </div>
-          <div class="attr-group">
-            <div class="attr-group-hdr">Atributos Mentais</div>
-            ${renderStats(data.stats, ['inteligencia', 'vontade', 'mente'])}
-          </div>
-          <div class="attr-group">
-            <div class="attr-group-hdr">Atributos Sociais</div>
-            ${renderStats(data.stats, ['influencia', 'aura', 'espirito'])}
-          </div>
+        <div class="npc-actions">
+          ${!encNpc?`<button class="tbtn tbtn-enc" onclick="adicionarAoEncontro()">+ ENCONTRO</button>`:''}
+          <button class="tbtn tbtn-red" onclick="editarNPC()">EDITAR</button>
+          <button class="tbtn" onclick="removerNPC()">EXCLUIR</button>
         </div>
+      </div>
+      <div class="npc-meta">
+        <span class="npc-initiative">INI ${data.iniciativa||0}</span>
+        <span class="npc-frac-badge" style="border-color:${fr.cor};color:${fr.cor}">${fr.l}</span>
+        <span class="npc-pr-badge" style="border-color:${pr.cor};color:${pr.cor}">${pr.l}</span>
+      </div>
+    </div>
 
-        <div class="sec">
-          <span class="sec-bar"></span>
-          <span class="sec-label">Tags</span>
-        </div>
-        <div class="npc-tags">
-          ${(data.tags || []).map(tag => `
-            <span class="npc-tag" style="border-color:var(--accent);color:var(--accent)">${tag.texto} ${tag.grau > 0 ? tag.grau : ''}</span>
-          `).join('')}
-        </div>
+    ${conds.length>0?`
+    <div class="enc-status-banner" style="margin-top:12px">
+      <div class="enc-banner-top">
+        <span class="enc-banner-title">CONDIÇÕES ATIVAS</span>
+      </div>
+      <div class="enc-banner-conds">
+        ${conds.map(c=>`<span class="enc-cond-tag" style="border-color:${condCor(c).c};color:${condCor(c).c};background:${condCor(c).b}">${c}</span>`).join('')}
+        <button class="enc-add-cond" onclick="abrirCondModal()">+ CONDIÇÃO</button>
+      </div>
+    </div>`:''}
 
-        <div class="sec">
-          <span class="sec-bar"></span>
-          <span class="sec-label">Descrição</span>
-        </div>
-        <div class="npc-desc">${data.descricao || 'Sem descrição.'}</div>
-      `;
+    <div class="sec"><span class="sec-bar"></span><span class="sec-label">ATRIBUTOS</span><span class="sec-line"></span></div>
+    <div class="attr-grid">
+      <div class="attr-group">
+        <div class="attr-group-hdr">FÍSICO</div>
+        ${renderAttrRows(stats,['destreza','forca','corpo'])}
+      </div>
+      <div class="attr-group">
+        <div class="attr-group-hdr">MENTAL</div>
+        ${renderAttrRows(stats,['inteligencia','vontade','mente'])}
+      </div>
+      <div class="attr-group">
+        <div class="attr-group-hdr">SOCIAL/MÍSTICO</div>
+        ${renderAttrRows(stats,['influencia','aura','espirito'])}
+      </div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span><span class="sec-label">TAGS</span><span class="sec-line"></span></div>
+    <div class="tags-wrap">
+      <div class="tags-list">
+        ${tags.length>0?tags.map(t=>renderTagItem(t)).join(''):'<span class="no-tags">SEM TAGS DEFINIDAS</span>'}
+      </div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span><span class="sec-label">DESCRIÇÃO</span><span class="sec-line"></span></div>
+    <div class="desc-box"><div class="desc-text">${data.descricao||'SEM DESCRIÇÃO.'}</div></div>
+  `;
+}
+
+function renderAttrRows(stats,names){
+  return names.map(n=>{
+    const val=stats[n]||0;
+    const label=n.charAt(0).toUpperCase()+n.slice(1);
+    const pct=Math.min(val/15*100,100);
+    return `<div class="attr-row">
+      <span class="attr-name">${label}</span>
+      <div class="attr-bar"><div class="attr-bar-fill" style="width:${pct}%"></div></div>
+      <span class="attr-val">${val}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderTagItem(tag){
+  const g=tag.grau||0;
+  const isNeg=g<0;
+  const cls=isNeg?'tag-item neg':'tag-item';
+  const gcls=isNeg?'grau-neg':g>0?'grau-'+g:'grau-0';
+  return `<span class="${cls}"><span class="tag-txt">${tag.texto||tag}</span><span class="tag-grau ${gcls}">${g>0?'+':''}${g}</span></span>`;
+}
+
+function filtrar(){
+  searchTerm=document.getElementById('search-inp').value;
+  renderNPCList();
+}
+
+function setCat(btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat=btn.dataset.cat;
+  renderNPCList();
+}
+
+function toggleSettings(){
+  document.getElementById('pf-toggle').classList.toggle('open');
+  document.getElementById('pf-settings').classList.toggle('open');
+}
+
+function toggleEncSection(){
+  document.getElementById('enc-header').classList.toggle('open');
+  document.getElementById('enc-body').classList.toggle('open');
+}
+
+function setTema(tema){
+  document.body.className='theme-'+tema;
+  localStorage.setItem(CHAVE_TEMA,tema);
+}
+
+function abrirPainel(){
+  document.getElementById('left-panel').classList.add('mobile-open');
+  document.getElementById('panel-overlay').classList.add('open');
+}
+function fecharPainel(){
+  document.getElementById('left-panel').classList.remove('mobile-open');
+  document.getElementById('panel-overlay').classList.remove('open');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function renderEncounterList(){
+  const list=document.getElementById('enc-npc-list');
+  document.getElementById('enc-count-badge').textContent=encounterNPCs.length;
+  if(encounterNPCs.length===0){
+    list.innerHTML='<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO</div>';
+    return;
+  }
+  list.innerHTML=encounterNPCs.map(npc=>{
+    const fr=(FRACOES[npc.faction]||FRACOES['neutro']);
+    const conds=npc.conditions||[];
+    return `<div class="enc-npc-item">
+      <span class="enc-npc-dot" style="background:${fr.cor}"></span>
+      <div class="enc-npc-info">
+        <span class="enc-npc-name">${npc.name}</span>
+        ${conds.length>0?`<div class="enc-npc-conds">${conds.map(c=>`<span class="enc-cond-chip" style="border-color:${condCor(c).c};color:${condCor(c).c}">${c}</span>`).join('')}</div>`:''}
+      </div>
+      <button class="enc-npc-rem" onclick="removerDoEncontro('${npc.id}')">×</button>
+    </div>`;
+  }).join('');
+}
+
+async function adicionarAoEncontro(){
+  if(!selectedNpc)return;
+  if(encounterNPCs.some(e=>e.id===selectedNpc.id))return;
+  const npcData={...selectedNpc,conditions:[]};
+  encounterNPCs.push(npcData);
+  await saveEncounter();
+  renderEncounterList();
+  renderNPCList();
+  renderNPCDetail();
+  showToast('NPC ADICIONADO AO ENCONTRO');
+}
+
+async function adicionarNPCAtualAoEncontro(){
+  if(!selectedNpc)return;
+  await adicionarAoEncontro();
+}
+
+async function removerDoEncontro(id){
+  encounterNPCs=encounterNPCs.filter(n=>n.id!==id);
+  await saveEncounter();
+  renderEncounterList();
+  renderNPCList();
+  if(selectedNpc?.id===id){
+    renderNPCDetail();
+  }
+  showToast('NPC REMOVIDO DO ENCONTRO');
+}
+
+function mudaRodada(delta){
+  currentRound=Math.max(1,currentRound+delta);
+  document.getElementById('enc-rodada').textContent=currentRound;
+  saveEncounter();
+}
+
+function abrirAddModal(){
+  editMode=false;
+  editId=null;
+  editTags=[];
+  document.getElementById('modal-npc-title').textContent='NOVO NPC';
+  document.getElementById('f-nome').value='';
+  document.getElementById('f-codinome').value='';
+  document.getElementById('f-fracao').value='x-men';
+  document.getElementById('f-perigo').value='medio';
+  document.getElementById('f-iniciativa').value='';
+  SK_SHORT.forEach(s=>document.getElementById('f-'+s).value='');
+  document.getElementById('f-descricao').value='';
+  renderTagsEdit();
+  document.getElementById('modal-npc').classList.add('open');
+}
+
+function editarNPC(){
+  if(!selectedNpc)return;
+  editMode=true;
+  editId=selectedNpc.id;
+  const data=selectedNpc.data||{};
+  document.getElementById('modal-npc-title').textContent='EDITAR NPC';
+  document.getElementById('f-nome').value=selectedNpc.name||'';
+  document.getElementById('f-codinome').value=selectedNpc.codename||'';
+  document.getElementById('f-fracao').value=selectedNpc.faction||'x-men';
+  document.getElementById('f-perigo').value=selectedNpc.danger||'medio';
+  document.getElementById('f-iniciativa').value=data.iniciativa||'';
+  const stats=data.stats||{};
+  SK_SHORT.forEach(s=>document.getElementById('f-'+s).value=stats[s]||'');
+  document.getElementById('f-descricao').value=data.descricao||'';
+  editTags=(data.tags||[]).map(t=>typeof t==='string'?{texto:t,grau:0}:t);
+  renderTagsEdit();
+  document.getElementById('modal-npc').classList.add('open');
+}
+
+function fecharNPCModal(){
+  document.getElementById('modal-npc').classList.remove('open');
+}
+
+function renderTagsEdit(){
+  const list=document.getElementById('tags-edit-list');
+  if(editTags.length===0){
+    list.innerHTML='';
+    return;
+  }
+  list.innerHTML=editTags.map((t,i)=>{
+    const isNeg=t.grau<0;
+    return `<span class="tag-chip ${isNeg?'neg':''}">
+      ${t.texto} <span class="tag-chip-grau">${t.grau>0?'+':''}${t.grau}</span>
+      <button class="tag-chip-del" onclick="removerTag(${i})">×</button>
+    </span>`;
+  }).join('');
+}
+
+function adicionarTag(){
+  const inp=document.getElementById('tag-new-inp');
+  const grauInput=document.getElementById('tag-new-grau');
+  const texto=inp.value.trim();
+  if(!texto)return;
+  const grau=parseInt(grauInput.value)||0;
+  editTags.push({texto,grau});
+  inp.value='';
+  grauInput.value='3';
+  renderTagsEdit();
+}
+
+function removerTag(idx){
+  editTags.splice(idx,1);
+  renderTagsEdit();
+}
+
+async function salvarNPC(){
+  const nome=document.getElementById('f-nome').value.trim();
+  if(!nome){showToast('NOME É OBRIGATÓRIO');return;}
+  const stats={};
+  SK_SHORT.forEach(s=>{const v=parseInt(document.getElementById('f-'+s).value)||0;if(v)stats[s]=v;});
+  const npcData={
+    name:nome,
+    codename:document.getElementById('f-codinome').value.trim(),
+    faction:document.getElementById('f-fracao').value,
+    danger:document.getElementById('f-perigo').value,
+    data:{
+      iniciativa:parseInt(document.getElementById('f-iniciativa').value)||0,
+      stats,
+      tags:editTags,
+      descricao:document.getElementById('f-descricao').value.trim()
     }
+  };
+  setStatus('// SALVANDO...','salvando');
+  if(editMode&&editId){
+    await api.updateNPC(editId,npcData);
+    showToast('NPC ATUALIZADO');
+  }else{
+    await api.createNPC(currentParty?.id,npcData);
+    showToast('NPC CRIADO');
+  }
+  await loadNPCs();
+  fecharNPCModal();
+  setStatus('// DB CARREGADO','salvo');
+}
 
-    function renderStats(stats, names) {
-      if (!stats) return names.map(() => '<div class="attr-row"><span>-</span><span>0</span></div>').join('');
-      return names.map(name => `
-        <div class="attr-row">
-          <span>${name}</span>
-          <span>${stats[name] || 0}</span>
-        </div>
-      `).join('');
+async function removerNPC(){
+  if(!selectedNpc||!confirm('Excluir '+selectedNpc.name+'?'))return;
+  await api.deleteNPC(selectedNpc.id);
+  showToast('NPC EXCLUÍDO');
+  selectedNpc=null;
+  await loadNPCs();
+  renderNPCDetail();
+}
+
+function abrirImportModal(){
+  document.getElementById('import-text').value='';
+  document.getElementById('modal-import').classList.add('open');
+}
+
+function fecharImportModal(){
+  document.getElementById('modal-import').classList.remove('open');
+}
+
+async function importarMarkdown(){
+  const text=document.getElementById('import-text').value;
+  if(!text.trim()){showToast('COLE O MARKDown');return;}
+  setStatus('// IMPORTANDO...','salvando');
+  const npcs=parseMarkdown(text);
+  let count=0;
+  for(const npc of npcs){
+    const existing=allNPCs.find(n=>n.name===npc.name);
+    if(existing){
+      await api.updateNPC(existing.id,npc);
+    }else{
+      await api.createNPC(currentParty?.id,npc);
     }
+    count++;
+  }
+  await loadNPCs();
+  fecharImportModal();
+  showToast(count+' NPCs IMPORTADOS');
+  setStatus('// DB CARREGADO','salvo');
+}
 
-    async function addToEncounter(npcId) {
-      const npc = allNPCs.find(n => n.id === npcId);
-      if (!npc) return;
-      
-      if (!activeNPCs.some(a => a.id === npcId)) {
-        activeNPCs.push(npc);
-        renderEncounterList();
-      }
-    }
-
-    function renderEncounterList() {
-      const list = document.getElementById('enc-npc-list');
-      document.getElementById('enc-count').textContent = activeNPCs.length;
-
-      if (activeNPCs.length === 0) {
-        list.innerHTML = '<div class="enc-empty-msg">Nenhum NPC no encontro</div>';
-        return;
-      }
-
-      list.innerHTML = activeNPCs.map(npc => `
-        <div class="enc-npc-item">
-          <span class="enc-npc-name">${npc.name}</span>
-          <button class="enc-npc-rem" onclick="removeFromEncounter('${npc.id}')">×</button>
-        </div>
-      `).join('');
-    }
-
-    async function removeFromEncounter(npcId) {
-      activeNPCs = activeNPCs.filter(n => n.id !== npcId);
-      renderEncounterList();
-      renderNPCList();
-    }
-
-    async function loadEncounter() {
-      if (!currentParty) return;
-      const session = await api.getSession(currentParty.id);
-      if (session) {
-        currentRound = session.round || 0;
-        document.getElementById('round-val').textContent = currentRound;
-      }
-    }
-
-    async function saveEncounter() {
-      if (!currentParty) return;
-      await api.updateSession(currentParty.id, {
-        round: currentRound,
-        encounter: activeNPCs.map(n => ({ id: n.id, name: n.name }))
-      });
-    }
-
-    document.getElementById('search-box').addEventListener('input', (e) => {
-      searchTerm = e.target.value;
-      renderNPCList();
-    });
-
-    document.getElementById('cat-pills').addEventListener('click', (e) => {
-      const pill = e.target.closest('.cat-pill');
-      if (!pill) return;
-      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      currentCat = pill.dataset.cat;
-      renderNPCList();
-    });
-
-    document.getElementById('enc-title-btn').addEventListener('click', () => {
-      document.getElementById('enc-header').classList.toggle('open');
-      document.getElementById('enc-body').classList.toggle('open');
-    });
-
-    document.getElementById('round-inc').addEventListener('click', () => {
-      currentRound++;
-      document.getElementById('round-val').textContent = currentRound;
-      saveEncounter();
-    });
-
-    document.getElementById('round-dec').addEventListener('click', () => {
-      if (currentRound > 0) {
-        currentRound--;
-        document.getElementById('round-val').textContent = currentRound;
-        saveEncounter();
-      }
-    });
-
-    document.getElementById('pf-toggle').addEventListener('click', () => {
-      document.getElementById('pf-toggle').classList.toggle('open');
-      document.getElementById('pf-settings').classList.toggle('open');
-    });
-
-    document.querySelectorAll('.th-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const theme = btn.dataset.theme;
-        document.body.className = '';
-        if (theme !== 'yellow') {
-          document.body.classList.add('theme-' + theme);
+function parseMarkdown(text){
+  const npcs=[];
+  const blocks=text.split(/^#\s*NPC:\s*/im).filter(Boolean);
+  for(const block of blocks){
+    const lines=block.trim().split('\n');
+    const nome=lines[0].trim();
+    if(!nome)continue;
+    const npc={name:nome,codename:'',faction:'neutro',danger:'medio',data:{iniciativa:0,stats:{},tags:[],descricao:''}};
+    let currentSection='';
+    for(let i=1;i<lines.length;i++){
+      const line=lines[i].trim();
+      if(line.startsWith('**')&&line.endsWith('**')){
+        const key=line.replace(/\*\*/g,'').toLowerCase();
+        if(key.includes('codinome')||key.includes('codename')||key.includes('identidade')){
+          npc.codename=line.match(/\*\*[^*]+\*\*/)?.[0].replace(/\*\*/g,'')||'';
+        }else if(key.includes('fra')||key.includes('faction')){
+          const val=line.toLowerCase();
+          if(val.includes('x-men'))npc.faction='x-men';
+          else if(val.includes('novat'))npc.faction='novatos';
+          else if(val.includes('morlock'))npc.faction='morlock';
+          else if(val.includes('irmandade'))npc.faction='irmandade';
+          else if(val.includes('vilao')||val.includes('vilão'))npc.faction='vilao';
+          else if(val.includes('crime')||val.includes('criminoso'))npc.faction='criminoso';
+          else if(val.includes('humano')||val.includes('aliado'))npc.faction='humano';
+        }else if(key.includes('perigo')||key.includes('danger')||key.includes('ameaça')){
+          const val=line.toLowerCase();
+          if(val.includes('extremo'))npc.danger='extremo';
+          else if(val.includes('alto'))npc.danger='alto';
+          else if(val.includes('baixo'))npc.danger='baixo';
+          else npc.danger='medio';
+        }else if(key.includes('iniciativa')||key.includes('ini')){
+          npc.data.iniciativa=parseInt(line.match(/\d+/)?.[0])||0;
         }
-      });
-    });
+      }else if(line.startsWith('Destreza')||line.startsWith('Destr')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.destreza=parseInt(match[1]);
+      }else if(line.startsWith('Força')||line.startsWith('Forc')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.forca=parseInt(match[1]);
+      }else if(line.startsWith('Corpo')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.corpo=parseInt(match[1]);
+      }else if(line.startsWith('Inteligência')||line.startsWith('Intelig')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.inteligencia=parseInt(match[1]);
+      }else if(line.startsWith('Vontade')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.vontade=parseInt(match[1]);
+      }else if(line.startsWith('Mente')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.mente=parseInt(match[1]);
+      }else if(line.startsWith('Influência')||line.startsWith('Influen')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.influencia=parseInt(match[1]);
+      }else if(line.startsWith('Aura')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.aura=parseInt(match[1]);
+      }else if(line.startsWith('Espírito')||line.startsWith('Espirito')){
+        const match=line.match(/(\d+)/);
+        if(match)npc.data.stats.espirito=parseInt(match[1]);
+      }else if(line.startsWith('-')||line.startsWith('*')){
+        const tagLine=line.replace(/^[-*]\s*/,'').trim();
+        const tagMatch=tagLine.match(/^(.+?)\s+(\d+)$/);
+        if(tagMatch){
+          npc.data.tags.push({texto:tagMatch[1],grau:parseInt(tagMatch[2])});
+        }else{
+          npc.data.tags.push({texto:tagLine,grau:0});
+        }
+      }else if(line.length>10&&!currentSection){
+        npc.data.descricao+=line+' ';
+      }
+    }
+    npc.data.descricao=npc.data.descricao.trim();
+    npcs.push(npc);
+  }
+  return npcs;
+}
 
-    init();
-  </script>
+function exportarTodos(){
+  if(allNPCs.length===0){showToast('NENHUM NPC PARA EXPORTAR');return;}
+  let md='# CÉREBRO DATABASE EXPORT\n\n';
+  allNPCs.forEach(npc=>{
+    md+=`# NPC: ${npc.name}\n`;
+    if(npc.codename)md+=`**Codinome:** ${npc.codename}\n`;
+    const fr=(FRACOES[npc.faction]||FRACOES['neutro']);
+    md+=`**Fração:** ${fr.l}\n`;
+    md+=`**Perigo:** ${(PERIGOS[npc.danger]||PERIGOS['medio']).l}\n`;
+    const data=npc.data||{};
+    if(data.iniciativa)md+=`**Iniciativa:** ${data.iniciativa}\n`;
+    const stats=data.stats||{};
+    if(Object.keys(stats).length>0){
+      md+='\n**Atributos:**\n';
+      md+=`Destreza: ${stats.destreza||0}\n`;
+      md+=`Força: ${stats.forca||0}\n`;
+      md+=`Corpo: ${stats.corpo||0}\n`;
+      md+=`Inteligência: ${stats.inteligencia||0}\n`;
+      md+=`Vontade: ${stats.vontade||0}\n`;
+      md+=`Mente: ${stats.mente||0}\n`;
+      md+=`Influência: ${stats.influencia||0}\n`;
+      md+=`Aura: ${stats.aura||0}\n`;
+      md+=`Espírito: ${stats.espirito||0}\n`;
+    }
+    const tags=data.tags||[];
+    if(tags.length>0){
+      md+='\n**Tags:**\n';
+      tags.forEach(t=>md+=`- ${t.texto||t} ${t.grau||0}\n`);
+    }
+    if(data.descricao)md+=`\n${data.descricao}\n`;
+    md+='\n---\n\n';
+  });
+  downloadFile(md,'cerebro-export.md','text/markdown');
+  showToast(allNPCs.length+' NPCs EXPORTADOS');
+}
+
+function downloadFile(content,filename,type){
+  const blob=new Blob([content],{type});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function resetarDB(){
+  if(!confirm('REDEFINIR BANCO DE DADOS?\nTODOS OS NPCs SERÃO REMOVIDOS.'))return;
+  setStatus('// RESETANDO...','salvando');
+  for(const npc of allNPCs){
+    await api.deleteNPC(npc.id);
+  }
+  allNPCs=[];
+  encounterNPCs=[];
+  currentRound=1;
+  selectedNpc=null;
+  await saveEncounter();
+  renderNPCList();
+  renderNPCDetail();
+  renderEncounterList();
+  showToast('BANCO RESETADO');
+  setStatus('// DB CARREGADO','salvo');
+}
+
+let condTargetId=null;
+function abrirCondModal(){
+  if(!selectedNpc)return;
+  condTargetId=selectedNpc.id;
+  document.getElementById('cond-npc-alvo').textContent=selectedNpc.name;
+  document.getElementById('cond-custom-inp').value='';
+  document.getElementById('modal-cond').classList.add('open');
+}
+function fecharCondModal(){
+  document.getElementById('modal-cond').classList.remove('open');
+}
+
+async function aplicarCondPreset(nome){
+  if(!condTargetId)return;
+  const enc=encounterNPCs.find(e=>e.id===condTargetId);
+  if(!enc)return;
+  if(!enc.conditions)enc.conditions=[];
+  if(!enc.conditions.includes(nome))enc.conditions.push(nome);
+  await saveEncounter();
+  renderEncounterList();
+  if(selectedNpc?.id===condTargetId)renderNPCDetail();
+  showToast('+ '+nome);
+  fecharCondModal();
+}
+
+async function aplicarCondCustom(){
+  const nome=document.getElementById('cond-custom-inp').value.trim();
+  if(!nome||!condTargetId)return;
+  const enc=encounterNPCs.find(e=>e.id===condTargetId);
+  if(!enc)return;
+  if(!enc.conditions)enc.conditions=[];
+  if(!enc.conditions.includes(nome))enc.conditions.push(nome);
+  await saveEncounter();
+  renderEncounterList();
+  if(selectedNpc?.id===condTargetId)renderNPCDetail();
+  showToast('+ '+nome);
+  fecharCondModal();
+}
+
+init();
+</script>
 </body>
 </html>
