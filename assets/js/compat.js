@@ -26,7 +26,11 @@ async function loadCharacter(charId) {
 
 async function loadPublicCharacter(charId) {
   try {
-    return await api.loadPublicCharacter(charId);
+    const char = await api.loadCharacter(charId);
+    if (char) {
+      return { id: char.id, name: char.name, codename: char.codename, data: char.data };
+    }
+    throw new Error('Not found');
   } catch (e) {
     const localData = localStorage.getItem(`char_${charId}`);
     if (localData) {
