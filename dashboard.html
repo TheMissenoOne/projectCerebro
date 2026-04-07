@@ -503,18 +503,30 @@
     }
 
     function loadParty() {
-      return api.getPlayerParty(currentUser.id).then(function(party) {
-        if (!party && currentProfile.role === 'gm') {
-          return api.getGMParty(currentUser.id).then(function(p) {
-            return showParty(p);
-          });
-        }
-        return showParty(party);
-      });
+      console.log('[DEBUG] loadParty called, userId:', currentUser.id);
+      return api.getPlayerParty(currentUser.id)
+        .then(function(party) {
+          console.log('[DEBUG] getPlayerParty result:', party);
+          if (!party && currentProfile.role === 'gm') {
+            console.log('[DEBUG] No party found, trying getGMParty');
+            return api.getGMParty(currentUser.id).then(function(p) {
+              console.log('[DEBUG] getGMParty result:', p);
+              return showParty(p);
+            });
+          }
+          return showParty(party);
+        })
+        .catch(function(err) {
+          console.error('[DEBUG] loadParty error:', err);
+        });
     }
 
     function showParty(party) {
-      if (!party) return;
+      console.log('[DEBUG] showParty called with:', party);
+      if (!party) {
+        console.log('[DEBUG] No party, keeping empty state');
+        return;
+      }
       currentParty = party;
       document.getElementById('party-empty').style.display = 'none';
       document.getElementById('party-info').style.display = 'flex';
@@ -572,12 +584,16 @@
       var name = document.getElementById('party-name-input').value;
       if (!name) return;
       
+      console.log('[DEBUG] Creating party:', name);
       api.createParty(name, currentUser.id).then(function(party) {
+        console.log('[DEBUG] Party created:', party);
         return api.joinParty(party.id, currentUser.id).then(function() {
+          console.log('[DEBUG] Joined party');
           document.getElementById('create-party-modal').classList.remove('open');
           return loadParty();
         });
       }).catch(function(e) {
+        console.error('[DEBUG] Error creating party:', e);
         alert('Erro ao criar party: ' + e.message);
       });
     });

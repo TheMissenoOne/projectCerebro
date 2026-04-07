@@ -27,6 +27,7 @@
     getOrigin: getOrigin,
     
     request: function(url, options) {
+      console.log('[API] ' + (options?.method || 'GET') + ' ' + url);
       var session = getSession();
       var headers = {
         'Content-Type': 'application/json'
@@ -43,11 +44,13 @@
       };
       
       if (options && options.body) {
+        console.log('[API] Body:', options.body);
         config.body = JSON.stringify(options.body);
       }
       
       return fetch(url, config).then(function(response) {
         return response.text().then(function(text) {
+          console.log('[API] Response ' + response.status + ':', text.substring(0, 500));
           var data;
           try {
             data = text ? JSON.parse(text) : {};
