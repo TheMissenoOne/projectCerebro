@@ -2,16 +2,12 @@
 
 ## Colunas
 
-### 📋 To Do
-- [Fase C: Funcionalidades completas no dashboard](to-do/fase-c-dashboard.md)
-- [Fase D: Criar combate.html](to-do/fase-d-combate.md)
-- [Fase E: Seed dos 134 NPCs](to-do/fase-e-seed-npcs.md)
-
-### 🔄 Doing
-- [Fase B: API + Supabase no Backend](doing/fase-b-supabase-backend.md)
-
 ### ✅ Done
 - [Fase A: Backend Node.js + Express](done/fase-a-postgresql.md)
+- [Fase B: API + Supabase Backend](done/fase-b-supabase-backend.md)
+- [Fase C: Dashboard](done/fase-c-dashboard.md)
+- [Fase D: combate.html](done/fase-d-combate.md)
+- [Fase E: Seed NPCs](done/fase-e-seed-npcs.md)
 
 ---
 
@@ -20,17 +16,26 @@
 | Fase | Status |
 |------|--------|
 | A - Backend Node.js | ✅ Done |
-| B - API + Supabase Backend | 🔄 Doing |
-| C - Dashboard | ⏳ To Do |
-| D - Calculadora AV/OV | ⏳ To Do |
-| E - Seed NPCs | ⏳ To Do |
+| B - API + Supabase Backend | ✅ Done |
+| C - Dashboard | ✅ Done |
+| D - Calculadora AV/OV | ✅ Done |
+| E - Seed NPCs | ✅ Done |
 
 ---
 
-## Atual
+## Todas as Fases Completas! 🎉
 
-**Fase B em andamento:** Supabase conectado ao backend Node.js. API cliente pointing para servidor local.
+### Funcionalidades Implementadas:
 
-## Próximo Passo
+1. **Backend Express.js** com PostgreSQL via Supabase
+2. **Autenticação JWT** com registro/login
+3. **Dashboard** completo com personagens e parties
+4. **Cérebro Database** para NPCs do GM
+5. **Calculadora de Combate** (AV/OV e EV/RV)
+6. **Seed de 133 NPCs** do X-MEN TTRPG
 
-Finalizar integração Supabase - testar registro/login e garantir que as tabelas existem no banco.
+### Próximos Passos (Opcionais):
+- Deploy para produção no Render
+- Adicionar mais páginas (wiki expandida)
+- Melhorar integração com personagens
+- Adicionar testes automatizados
