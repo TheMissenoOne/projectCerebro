@@ -1,19 +1,21 @@
 async function requireAuth(requiredRole) {
-  var session = JSON.parse(localStorage.getItem('session'));
-  console.log('requireAuth session:', session);
+  var session;
+  try {
+    session = localStorage.getItem('session');
+    session = session ? JSON.parse(session) : null;
+  } catch(e) {
+    session = null;
+  }
   
   if (!session) {
-    console.log('No session, redirecting to login');
     window.location.href = 'index.html';
     return null;
   }
   
   try {
-    var profile = await api.getProfile(session.user.id);
-    console.log('Profile:', profile);
+    var profile = await window.api.getProfile(session.user.id);
     
     if (!profile) {
-      console.log('No profile found, but session exists - creating default profile');
       var tempProfile = {
         id: session.user.id,
         email: session.user.email,
@@ -31,7 +33,6 @@ async function requireAuth(requiredRole) {
     
     return { session: session, profile: profile };
   } catch (e) {
-    console.error('Error in requireAuth:', e);
     var tempProfile = {
       id: session.user.id,
       email: session.user.email,
@@ -43,28 +44,14 @@ async function requireAuth(requiredRole) {
   }
 }
 
-async function checkAuth() {
-  var session = JSON.parse(localStorage.getItem('session'));
-  if (session) {
-    window.location.href = 'dashboard.html';
-  }
-}
-
 function login(email, password) {
-  return api.login(email, password);
+  return window.api.login(email, password);
 }
 
 function register(email, password, username, displayName, role) {
-  return api.register(email, password, username, displayName, role);
+  return window.api.register(email, password, username, displayName, role);
 }
 
-async function logout() {
-  localStorage.removeItem('session');
-  window.location.href = 'index.html';
-}
-
-function getCurrentUser() {
-  var session = JSON.parse(localStorage.getItem('session'));
-  return session ? session.user : null;
-}
-}
+window.requireAuth = requireAuth;
+window.login = login;
+window.register = register;

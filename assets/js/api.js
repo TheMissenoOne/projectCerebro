@@ -1,172 +1,198 @@
 // X-MEN TTRPG API Client
-var api = (function() {
+(function() {
+  var API_ORIGIN = window.location.origin;
+  
   function getOrigin() {
-    return window.location.origin;
+    return API_ORIGIN;
   }
   
-  async function request(url, options) {
-    var session = JSON.parse(localStorage.getItem('session') || '{}');
-    console.log('Request:', (options.method || 'GET'), url);
-    console.log('Session:', session);
-    
-    var config = {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      ...options
-    };
-    
-    if (session && session.access_token) {
-      config.headers['Authorization'] = 'Bearer ' + session.access_token;
-    }
-    
-    if (options.body && typeof options.body === 'object') {
-      config.body = JSON.stringify(options.body);
-      console.log('Body:', config.body);
-    }
-    
-    var response = await fetch(url, config);
-    console.log('Response status:', response.status);
-    
-    var data;
-    var text = await response.text();
-    console.log('Response text:', text.substring(0, 500));
-    
+  function getSession() {
     try {
-      data = text ? JSON.parse(text) : {};
-    } catch (e) {
-      data = { error: text || 'Invalid response' };
+      var session = localStorage.getItem('session');
+      return session ? JSON.parse(session) : null;
+    } catch(e) {
+      return null;
     }
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Request failed: ' + response.status);
-    }
-    
-    return data;
   }
-
-  return {
+  
+  function setSession(session) {
+    if (session) {
+      localStorage.setItem('session', JSON.stringify(session));
+    } else {
+      localStorage.removeItem('session');
+    }
+  }
+  
+  window.api = {
     getOrigin: getOrigin,
-    request: request,
+    
+    request: function(url, options) {
+      var session = getSession();
+      var headers = {
+        'Content-Type': 'application/json'
+      };
+      
+      if (session && session.access_token) {
+        headers['Authorization'] = 'Bearer ' + session.access_token;
+      }
+      
+      var config = {
+        method: options.method || 'GET',
+        headers: headers
+      };
+      
+      if (options.body) {
+        config.body = JSON.stringify(options.body);
+      }
+      
+      return fetch(url, config).then(function(response) {
+        return response.text().then(function(text) {
+          var data;
+          try {
+            data = text ? JSON.parse(text) : {};
+          } catch(e) {
+            data = { error: text };
+          }
+          
+          if (!response.ok) {
+            throw new Error(data.error || 'Request failed');
+          }
+          
+          return data;
+        });
+      });
+    },
     
     register: function(email, password, username, displayName, role) {
-      console.log('API: calling register...');
-      return request(getOrigin() + '/auth/register', {
+      var self = this;
+      return this.request(getOrigin() + '/auth/register', {
         method: 'POST',
-        body: { email: email, password: password, username: username, displayName: displayName, role: role }
+        body: {
+          email: email,
+          password: password,
+          username: username,
+          displayName: displayName,
+          role: role || 'player'
+        }
       }).then(function(data) {
-        console.log('API: register response:', data);
         if (data.session) {
-          localStorage.setItem('session', JSON.stringify(data.session));
-          console.log('API: session saved');
+          setSession(data.session);
         }
         return data;
       });
     },
-
+    
     login: function(email, password) {
-      console.log('API: calling login...');
-      return request(getOrigin() + '/auth/login', {
+      return this.request(getOrigin() + '/auth/login', {
         method: 'POST',
-        body: { email: email, password: password }
+        body: {
+          email: email,
+          password: password
+        }
       }).then(function(data) {
-        console.log('API: login response:', data);
         if (data.session) {
-          localStorage.setItem('session', JSON.stringify(data.session));
-          console.log('API: session saved');
+          setSession(data.session);
         }
         return data;
       });
     },
-
+    
     getProfile: function(userId) {
-      return request(getOrigin() + '/profiles/' + userId);
+      return this.request(getOrigin() + '/profiles/' + userId);
     },
-
+    
     createParty: function(name, gmId) {
-      return request(getOrigin() + '/parties', {
+      return this.request(getOrigin() + '/parties', {
         method: 'POST',
         body: { name: name, gm_id: gmId }
       });
     },
-
+    
     getGMParty: function(gmId) {
-      return request(getOrigin() + '/parties/gm/' + gmId);
+      return this.request(getOrigin() + '/parties/gm/' + gmId);
     },
-
+    
     getPartyByCode: function(code) {
-      return request(getOrigin() + '/parties/code/' + code);
+      return this.request(getOrigin() + '/parties/code/' + code);
     },
-
+    
     joinParty: function(partyId, playerId) {
-      return request(getOrigin() + '/parties/' + partyId + '/members', {
+      return this.request(getOrigin() + '/parties/' + partyId + '/members', {
         method: 'POST',
         body: { player_id: playerId }
       });
     },
-
+    
     getPartyMembers: function(partyId) {
-      return request(getOrigin() + '/parties/' + partyId + '/members');
+      return this.request(getOrigin() + '/parties/' + partyId + '/members');
     },
-
+    
     getPlayerParty: function(playerId) {
-      return request(getOrigin() + '/players/' + playerId + '/party');
+      return this.request(getOrigin() + '/players/' + playerId + '/party');
     },
-
+    
     createCharacter: function(playerId, partyId) {
-      return request(getOrigin() + '/characters', {
+      return this.request(getOrigin() + '/characters', {
         method: 'POST',
-        body: { player_id: playerId, party_id: partyId }
+        body: { player_id: playerId, party_id: partyId || null }
       });
     },
-
+    
     loadCharacter: function(charId) {
-      return request(getOrigin() + '/characters/' + charId);
+      return this.request(getOrigin() + '/characters/' + charId);
     },
-
+    
     loadPublicCharacter: function(charId) {
-      return request(getOrigin() + '/characters/' + charId + '/public');
+      return this.request(getOrigin() + '/characters/' + charId + '/public');
     },
-
+    
     saveCharacter: function(charId, data) {
-      return request(getOrigin() + '/characters/' + charId, {
+      return this.request(getOrigin() + '/characters/' + charId, {
         method: 'PUT',
         body: { data: data }
       });
     },
-
+    
     listCharacters: function(playerId) {
-      return request(getOrigin() + '/players/' + playerId + '/characters');
+      return this.request(getOrigin() + '/players/' + playerId + '/characters');
     },
-
+    
     listPartyCharacters: function(partyId) {
-      return request(getOrigin() + '/parties/' + partyId + '/characters');
+      return this.request(getOrigin() + '/parties/' + partyId + '/characters');
     },
-
+    
     deleteCharacter: function(charId) {
-      return request(getOrigin() + '/characters/' + charId, { method: 'DELETE' });
+      return this.request(getOrigin() + '/characters/' + charId, { method: 'DELETE' });
     },
-
+    
     listNPCs: function(partyId, includeGlobal) {
       var url = getOrigin() + '/npcs?';
       if (partyId) url += 'partyId=' + partyId + '&';
-      if (includeGlobal) url += 'includeGlobal=true';
-      return request(url);
+      if (includeGlobal !== false) url += 'includeGlobal=true';
+      return this.request(url);
     },
-
+    
     createNPC: function(partyId, createdBy, npcData) {
-      return request(getOrigin() + '/npcs', {
+      return this.request(getOrigin() + '/npcs', {
         method: 'POST',
-        body: { party_id: partyId, created_by: createdBy, ...npcData }
+        body: {
+          party_id: partyId,
+          created_by: createdBy,
+          name: npcData.name,
+          codename: npcData.codename || '',
+          faction: npcData.faction || 'neutro',
+          danger: npcData.danger || 'medio',
+          data: npcData.data || {}
+        }
       });
     },
-
+    
     getSession: function(partyId) {
-      return request(getOrigin() + '/parties/' + partyId + '/session');
+      return this.request(getOrigin() + '/parties/' + partyId + '/session');
     },
-
+    
     updateSession: function(partyId, sessionData) {
-      return request(getOrigin() + '/parties/' + partyId + '/session', {
+      return this.request(getOrigin() + '/parties/' + partyId + '/session', {
         method: 'POST',
         body: sessionData
       });
@@ -174,21 +200,34 @@ var api = (function() {
   };
 })();
 
-async function getSession() {
-  return JSON.parse(localStorage.getItem('session'));
+function checkAuth() {
+  var session;
+  try {
+    session = localStorage.getItem('session');
+    session = session ? JSON.parse(session) : null;
+  } catch(e) {
+    session = null;
+  }
+  if (session) {
+    window.location.href = 'dashboard.html';
+  }
 }
 
 function getCurrentUser() {
-  var session = JSON.parse(localStorage.getItem('session'));
-  return session ? session.user : null;
+  try {
+    var session = localStorage.getItem('session');
+    session = session ? JSON.parse(session) : null;
+    return session ? session.user : null;
+  } catch(e) {
+    return null;
+  }
 }
 
-async function logout() {
+function logout() {
   localStorage.removeItem('session');
   window.location.href = 'index.html';
 }
 
-window.api = api;
-window.getSession = getSession;
+window.checkAuth = checkAuth;
 window.getCurrentUser = getCurrentUser;
 window.logout = logout;
