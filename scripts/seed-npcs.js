@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const MARKDOWN_FILE = path.join(__dirname, '..', 'cerebro_rebalanceado.md');
 const OUTPUT_FILE = path.join(__dirname, '..', 'supabase', 'seed.sql');
-const DB_URL = process.env.DATABASE_URL || '';
+const DB_URL = process.env.SUPABASE_URL || '';
 const DB_TOKEN = process.env.SUPABASE_SERVICE_KEY || '';
 
 function parseNPCs(markdown) {
@@ -90,7 +91,7 @@ function parseNPCs(markdown) {
 }
 
 function generateSQL(npcs) {
-  let sql = '-- Seed dos 134 NPCs do Cérebro\n';
+  let sql = '-- Seed dos NPCs do Cérebro\n';
   sql += '-- Executar no SQL Editor do Supabase\n\n';
   
   npcs.forEach(npc => {
@@ -113,7 +114,55 @@ function generateSQL(npcs) {
   return sql;
 }
 
-function main() {
+async function insertNPC(npc) {
+  if (!DB_URL || !DB_TOKEN) {
+    console.log('No DB_URL/TOKEN configured, skipping insert');
+    return;
+  }
+  
+  const body = JSON.stringify({
+    name: npc.name,
+    codename: npc.codename || '',
+    faction: npc.faction || 'neutro',
+    danger: npc.danger || 'medio',
+    data: npc.data,
+    is_global: true
+  });
+  
+  return new Promise((resolve, reject) => {
+    const url = new URL(`${DB_URL}/rest/v1/npcs`);
+    const options = {
+      hostname: url.hostname,
+      port: 443,
+      path: url.pathname,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': DB_TOKEN,
+        'Authorization': `Bearer ${DB_TOKEN}`,
+        'Prefer': 'return=minimal'
+      }
+    };
+    
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve();
+        } else {
+          reject(new Error(`Insert failed: ${res.statusCode} ${data}`));
+        }
+      });
+    });
+    
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
+async function main() {
   console.log('Parsing NPCs from markdown...');
   
   const markdown = fs.readFileSync(MARKDOWN_FILE, 'utf-8');
@@ -121,10 +170,32 @@ function main() {
   
   console.log(`Found ${npcs.length} NPCs`);
   
-  const sql = generateSQL(npcs);
-  fs.writeFileSync(OUTPUT_FILE, sql, 'utf-8');
+  if (process.argv.includes('--sql-only')) {
+    const sql = generateSQL(npcs);
+    fs.writeFileSync(OUTPUT_FILE, sql, 'utf-8');
+    console.log(`Generated SQL saved to ${OUTPUT_FILE}`);
+    return;
+  }
   
-  console.log(`Generated SQL saved to ${OUTPUT_FILE}`);
+  if (DB_URL && DB_TOKEN) {
+    console.log('Inserting NPCs directly to database...');
+    let count = 0;
+    for (const npc of npcs) {
+      try {
+        await insertNPC(npc);
+        count++;
+        process.stdout.write(`\rInserted ${count}/${npcs.length} NPCs`);
+      } catch (e) {
+        console.error(`\nError inserting ${npc.name}: ${e.message}`);
+      }
+    }
+    console.log(`\nDone! ${count} NPCs inserted.`);
+  } else {
+    console.log('Set SUPABASE_URL and SUPABASE_SERVICE_KEY to insert directly.');
+    const sql = generateSQL(npcs);
+    fs.writeFileSync(OUTPUT_FILE, sql, 'utf-8');
+    console.log(`Generated SQL saved to ${OUTPUT_FILE}`);
+  }
 }
 
 main();
