@@ -439,7 +439,7 @@
 .enc-npc-conds { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px; }
 .enc-cond-chip { font-family: var(--mono); font-size: .36rem; letter-spacing: .04em; padding: 1px 4px; border-radius: 2px; border: 1px solid; }
 .enc-npc-rem { background: none; border: none; color: var(--b3); cursor: pointer; font-family: var(--mono); font-size: .65rem; padding: 2px 4px; transition: color .1s; -webkit-tap-highlight-color: transparent; }
-.enc-npc-rem:hover { color: #E8001C; }
+.enc-npc-rem:hover { color: var(--red); }
 .enc-empty-msg { font-family: var(--mono); font-size: .46rem; color: var(--muted2); text-align: center; padding: 12px 14px; letter-spacing: .08em; }
 .enc-add-bar { padding: 6px 10px; border-top: 1px solid var(--b1); }
 .enc-add-bar .tbtn { width: 100%; justify-content: center; font-size: .46rem; }
