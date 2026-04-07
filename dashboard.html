@@ -344,6 +344,8 @@
     <a href="wiki.html" class="tbtn">Wiki</a>
     <div class="toolbar-divider"></div>
     <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <div class="toolbar-divider"></div>
+    <a href="combate.html" class="tbtn" id="combate-link" style="display:none;">Combate</a>
   </div>
 
   <div class="content dashboard">
@@ -456,6 +458,12 @@
         
         loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
         loadParty().catch(function(e) { console.error('loadParty:', e); });
+        
+        // Polling: refresh data every 15 seconds
+        setInterval(function() {
+          loadCharacters().catch(function(e) { console.error('polling chars:', e); });
+          loadParty().catch(function(e) { console.error('polling party:', e); });
+        }, 15000);
       }).catch(function(e) {
         console.error('init error:', e);
       });
@@ -465,6 +473,10 @@
       return api.listCharacters(currentUser.id).then(function(chars) {
         var grid = document.getElementById('chars-grid');
         var newBtn = document.getElementById('new-char-btn');
+        
+        // Clear existing character cards (but keep new button)
+        var existingCards = grid.querySelectorAll('.char-card:not(.char-card-new)');
+        existingCards.forEach(function(card) { card.remove(); });
         
         chars.forEach(function(char) {
           var card = document.createElement('div');
@@ -497,6 +509,7 @@
       document.getElementById('party-info').style.display = 'flex';
       document.getElementById('party-name').textContent = party.name;
       document.getElementById('party-code').textContent = party.code;
+      document.getElementById('combate-link').style.display = 'flex';
       
       if (currentProfile.role === 'gm') {
         document.getElementById('admin-link').style.display = 'inline-flex';
