@@ -1,8 +1,11 @@
 -- XMEN TTRPG - Schema do Banco de Dados Supabase
+-- Auth: JWT + bcrypt (sem Supabase Auth)
 
 -- PERFIS DE USUÁRIO
 CREATE TABLE profiles (
-  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
   username TEXT UNIQUE NOT NULL,
   display_name TEXT,
   role TEXT DEFAULT 'player' CHECK (role IN ('player', 'gm')),
@@ -37,6 +40,7 @@ CREATE TABLE characters (
   codename TEXT,
   data JSONB NOT NULL DEFAULT '{}',
   foto_url TEXT,
+  foto_base64 TEXT,
   is_active BOOLEAN DEFAULT TRUE,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -60,12 +64,13 @@ CREATE TABLE npcs (
 -- SESSÕES (log de encontros)
 CREATE TABLE sessions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  party_id UUID NOT NULL REFERENCES parties(id) ON DELETE CASCADE,
+  party_id UUID NOT NULL REFERENCES parties(id) ON DELETE CASCADE UNIQUE,
   title TEXT,
   notes TEXT,
   round INT DEFAULT 0,
   encounter JSONB DEFAULT '[]',
-  created_at TIMESTAMPTZ DEFAULT NOW()
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- WIKI PAGES
