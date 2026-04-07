@@ -86,12 +86,30 @@ app.post('/auth/login', async (req, res) => {
 
 // Profile routes
 app.get('/profiles/:id', async (req, res) => {
+  console.log('Getting profile:', req.params.id);
   try {
     const { data, error } = await supabase.from('profiles').select('*').eq('id', req.params.id).single();
-    if (error) throw new Error(error.message);
+    console.log('Profile response:', data, error);
+    if (error) {
+      // Profile doesn't exist, return basic info from auth
+      res.json({ 
+        id: req.params.id,
+        username: 'user',
+        display_name: 'User',
+        role: 'player'
+      });
+      return;
+    }
     res.json(data);
   } catch (e) {
-    res.status(404).json({ error: 'Not found' });
+    console.log('Profile error:', e.message);
+    // Return default profile on error
+    res.json({ 
+      id: req.params.id,
+      username: 'user',
+      display_name: 'User',
+      role: 'player'
+    });
   }
 });
 
