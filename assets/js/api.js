@@ -40,33 +40,6 @@ const api = {
     
     return data;
   },
-      ...options
-    };
-    
-    if (options.body && typeof options.body === 'object') {
-      config.body = JSON.stringify(options.body);
-    }
-    
-    const response = await fetch(endpoint, config);
-    
-    let data;
-    const text = await response.text();
-    try {
-      data = text ? JSON.parse(text) : {};
-    } catch (e) {
-      data = { error: text || 'Invalid response' };
-    }
-    
-    if (!response.ok) {
-      throw new Error(data.error || `Request failed: ${response.status}`);
-    }
-    
-    return data;
-  },
-
-  getOrigin() {
-    return window.location.origin;
-  },
 
   async register(email, password, username, displayName, role) {
     console.log('API: calling register...');
