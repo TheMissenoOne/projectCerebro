@@ -1,6 +1,12 @@
+databases:
+  - name: xmen-db
+    plan: free
+    databaseName: xmen
+    user: xmen
+
 services:
   - type: web
-    name: xmen-ttrpg-server
+    name: xmen-ttrpg
     env: node
     rootDirectory: server
     buildCommand: npm install
@@ -8,11 +14,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-
-  - type: static
-    name: xmen-ttrpg-frontend
-    buildCommand: ""
-    publishDir: "."
-    envVars:
-      - key: API_URL
-        value: https://projectcerebro.onrender.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: xmen-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true

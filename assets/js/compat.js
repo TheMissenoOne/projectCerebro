@@ -24,6 +24,18 @@ async function loadCharacter(charId) {
   return api.loadCharacter(charId);
 }
 
+async function loadPublicCharacter(charId) {
+  try {
+    return await api.loadPublicCharacter(charId);
+  } catch (e) {
+    const localData = localStorage.getItem(`char_${charId}`);
+    if (localData) {
+      return JSON.parse(localData);
+    }
+    throw e;
+  }
+}
+
 async function createCharacter(playerId, partyId) {
   return api.createCharacter(playerId, partyId);
 }
@@ -99,6 +111,7 @@ if (typeof window !== 'undefined') {
   window.getProfileBySession = getProfileBySession;
   window.saveCharacter = saveCharacter;
   window.loadCharacter = loadCharacter;
+  window.loadPublicCharacter = loadPublicCharacter;
   window.createCharacter = createCharacter;
   window.listCharacters = listCharacters;
   window.listPartyCharacters = listPartyCharacters;

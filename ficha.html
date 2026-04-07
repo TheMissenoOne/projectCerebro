@@ -484,19 +484,36 @@
     let charId = null;
     let charData = {};
     let saveTimeout = null;
+    let isPublicView = false;
+    let isReadOnly = false;
 
     const params = new URLSearchParams(window.location.search);
+    const isShared = params.get('shared') === 'true';
     
     async function init() {
+      charId = params.get('id');
+      
+      if (!charId) {
+        document.getElementById('nome').placeholder = 'Personagem compartilhado';
+        return;
+      }
+
+      if (isShared) {
+        await loadPublicChar();
+        return;
+      }
+
       const auth = await requireAuth();
-      if (!auth) return;
+      if (!auth) {
+        isReadOnly = true;
+        document.getElementById('save-ind').textContent = '● SOMENTE LEITURA';
+        return;
+      }
 
       if (params.get('new') === 'true') {
         const newChar = await api.createCharacter(auth.session.user.id);
         charId = newChar.id;
         window.history.replaceState({}, '', `ficha.html?id=${charId}`);
-      } else {
-        charId = params.get('id');
       }
 
       if (charId) {
@@ -504,15 +521,77 @@
       }
     }
 
-    async function loadChar() {
-      const char = await api.loadCharacter(charId);
-      if (!char) {
-        alert('Personagem não encontrado!');
-        window.location.href = 'dashboard.html';
-        return;
-      }
+    async function loadPublicChar() {
+      try {
+        const char = await api.loadPublicCharacter(charId);
+        if (!char) {
+          document.getElementById('nome').placeholder = 'Personagem não encontrado';
+          return;
+        }
 
-      charData = char.data || {};
+        charData = char.data || {};
+        
+        document.getElementById('nome').value = charData.identidade?.nome || '';
+        document.getElementById('nome').disabled = true;
+        document.getElementById('codinome').value = charData.identidade?.codinome || '';
+        document.getElementById('codinome').disabled = true;
+        document.getElementById('origem').value = charData.identidade?.origem || '';
+        document.getElementById('origem').disabled = true;
+        document.getElementById('idade').value = charData.identidade?.idade || '';
+        document.getElementById('idade').disabled = true;
+
+        loadAtributos(true);
+        loadTemas(true);
+        loadNotas(true);
+        
+        document.getElementById('save-ind').textContent = '● COMPARTILHADO';
+        
+        document.querySelector('.toolbar').innerHTML = `
+          <a href="dashboard.html" class="tbtn">Dashboard</a>
+          <button class="tbtn" id="copy-link-btn">🔗 Copiar Link</button>
+        `;
+        
+        document.getElementById('copy-link-btn').addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href);
+          alert('Link copiado!');
+        });
+      } catch (e) {
+        const localData = localStorage.getItem(`char_${charId}`);
+        if (localData) {
+          charData = JSON.parse(localData);
+          document.getElementById('nome').value = charData.identidade?.nome || '';
+          document.getElementById('codinome').value = charData.identidade?.codinome || '';
+          loadAtributos(true);
+          loadTemas(true);
+          loadNotas(true);
+          document.getElementById('save-ind').textContent = '● MODO LOCAL';
+        }
+      }
+    }
+
+    async function loadChar() {
+      const localData = localStorage.getItem(`char_${charId}`);
+      
+      try {
+        const char = await api.loadCharacter(charId);
+        if (!char) {
+          if (localData) {
+            charData = JSON.parse(localData);
+          } else {
+            alert('Personagem não encontrado!');
+            window.location.href = 'dashboard.html';
+            return;
+          }
+        } else {
+          charData = char.data || {};
+          localStorage.setItem(`char_${charId}`, JSON.stringify(charData));
+        }
+      } catch (e) {
+        console.log('API indisponível, usando localStorage');
+        if (localData) {
+          charData = JSON.parse(localData);
+        }
+      }
       
       document.getElementById('nome').value = charData.identidade?.nome || '';
       document.getElementById('codinome').value = charData.identidade?.codinome || '';
@@ -523,7 +602,7 @@
       loadTemas();
       loadNotas();
       
-      if (char.foto_url) {
+      if (char?.foto_url) {
         const img = document.getElementById('portrait-img');
         img.src = char.foto_url;
         img.classList.add('show');
@@ -531,23 +610,29 @@
       }
     }
 
-    function loadAtributos() {
+    function loadAtributos(readonly = false) {
       const attrs = charData.atributos || {};
       const attrsMap = ['destreza', 'forca', 'resistencia', 'inteligencia', 'vontade', 'mente', 'influencia', 'aura', 'espirito'];
       attrsMap.forEach(attr => {
         const el = document.getElementById(`atributo-${attr}`);
-        if (el) el.value = attrs[attr] || 1;
+        if (el) {
+          el.value = attrs[attr] || 1;
+          if (readonly || isReadOnly) el.disabled = true;
+        }
       });
 
       const movs = charData.movimentos || {};
       const movsMap = { virarajogo: 'virar o jogo', convincer: 'convencer', rirperigo: 'rir na cara do perigo', partirabraro: 'partir pro abraço', investigar: 'investigar' };
       Object.keys(movsMap).forEach(mov => {
         const el = document.getElementById(`movimento-${mov}`);
-        if (el) el.value = movs[mov] || 0;
+        if (el) {
+          el.value = movs[mov] || 0;
+          if (readonly || isReadOnly) el.disabled = true;
+        }
       });
     }
 
-    function loadTemas() {
+    function loadTemas(readonly = false) {
       const temas = charData.temas || [];
       const list = document.getElementById('temas-list');
       list.innerHTML = '';
@@ -566,17 +651,17 @@
               ${(tema.tags || []).map(tag => `
                 <span class="tag-chip">${tag.texto} <span class="tag-grau">${tag.grau > 0 ? tag.grau : ''}</span></span>
               `).join('')}
-              <button class="tag-add" onclick="addTag(${idx})">+ Tag</button>
+              ${(!readonly && !isReadOnly) ? `<button class="tag-add" onclick="addTag(${idx})">+ Tag</button>` : ''}
             </div>
           </div>
           <div class="theme-card-status">
             <div class="theme-status-row">
               <span class="theme-status-label">Atenção</span>
-              <span class="theme-status-val">0</span>
+              <span class="theme-status-val">${tema.atention || 0}</span>
             </div>
             <div class="theme-status-row">
               <span class="theme-status-label">Dissipação</span>
-              <span class="theme-status-val">0</span>
+              <span class="theme-status-val">${tema.dissipacao || 0}</span>
             </div>
           </div>
         `;
@@ -584,11 +669,16 @@
       });
 
       const addBtn = document.getElementById('add-theme-btn');
-      addBtn.onclick = () => document.getElementById('theme-modal').classList.add('open');
+      if (addBtn) {
+        addBtn.style.display = (readonly || isReadOnly) ? 'none' : '';
+        addBtn.onclick = () => document.getElementById('theme-modal').classList.add('open');
+      }
     }
 
-    function loadNotas() {
-      document.getElementById('notas').value = charData.notas || '';
+    function loadNotas(readonly = false) {
+      const el = document.getElementById('notas');
+      el.value = charData.notas || '';
+      if (readonly || isReadOnly) el.disabled = true;
     }
 
     function gatherData() {
@@ -624,6 +714,8 @@
     }
 
     async function autoSave() {
+      if (isReadOnly || isPublicView) return;
+      
       const indicator = document.getElementById('saving-indicator');
       indicator.textContent = 'Salvando...';
       indicator.className = 'saving-indicator show salvando';
@@ -637,9 +729,9 @@
         indicator.textContent = '● SALVO';
         indicator.className = 'saving-indicator show salvo';
       } catch (e) {
-        console.error('Erro ao salvar:', e);
-        indicator.textContent = 'Erro ao salvar';
-        indicator.className = 'saving-indicator show';
+        console.log('API indisponível, salvo localmente');
+        indicator.textContent = '● SALVO LOCAL';
+        indicator.className = 'saving-indicator show salvo';
       }
       
       setTimeout(() => {

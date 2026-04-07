@@ -85,6 +85,10 @@ const api = {
     return this.request(`/characters/${charId}`);
   },
   
+  async loadPublicCharacter(charId) {
+    return this.request(`/characters/${charId}/public');
+  },
+  
   async saveCharacter(charId, data) {
     return this.request(`/characters/${charId}`, {
       method: 'PUT',
