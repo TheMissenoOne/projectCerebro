@@ -270,7 +270,20 @@ select.f-inp option{background:var(--dark);color:var(--white);}
     <span class="red-code">AG—17.19349.583</span>
     <span>VERSÃO 6.0 // GM MODE</span>
   </div>
-  <div id="theme-switcher"></div>
+  <div class="hdr-settings">
+    <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+    <div class="settings-dropdown" id="settings-dropdown">
+      <div class="settings-label">TEMA</div>
+      <div class="theme-dots-row" id="theme-dots-row"></div>
+      <div class="settings-dropdown-divider"></div>
+      <div class="settings-dropdown-item" onclick="logout()">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        SAIR
+      </div>
+    </div>
+  </div>
   <button class="hdr-ham" onclick="abrirPainel()">
     <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
@@ -358,24 +371,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 
     <div class="npc-list-wrap" id="npc-list"></div>
 
-    <div class="panel-footer">
-      <button class="pf-toggle" id="pf-toggle" onclick="toggleSettings()">
-        // CONFIGURAÇÕES
-        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-      </button>
-      <div class="pf-settings" id="pf-settings">
-        <div class="pf-inner">
-          <div style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em">TEMA DE COR</div>
-          <div class="theme-btns">
-            <button class="th-btn" onclick="setTema('yellow')"><div class="th-dot" style="background:#FFD600"></div>AMARELO</button>
-            <button class="th-btn" onclick="setTema('red')"><div class="th-dot" style="background:#E8001C"></div>VERMELHO</button>
-            <button class="th-btn" onclick="setTema('green')"><div class="th-dot" style="background:#00C853"></div>VERDE</button>
-            <button class="th-btn" onclick="setTema('purple')"><div class="th-dot" style="background:#b040ff"></div>ROXO</button>
-            <button class="th-btn" onclick="setTema('blue')"><div class="th-dot" style="background:#3a8fc0"></div>AZUL</button>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
   </div>
 
@@ -638,6 +634,8 @@ function escJs(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
 
 /* ═══ API CALLS ═══ */
 async function init(){
+  initTheme();
+  renderThemeDots();
   const auth=await requireAuth();
   if(!auth){document.getElementById('no-access').style.display='block';return;}
   const profile=auth.profile||{};
@@ -1081,8 +1079,19 @@ function baixar(conteudo,nome,tipo){
 }
 
 /* ═══ UI HELPERS ═══ */
-function setTema(t){document.body.className='theme-'+t;localStorage.setItem(CHAVE_TEMA,t);}
-function toggleSettings(){pfOpen=!pfOpen;document.getElementById('pf-settings').classList.toggle('open',pfOpen);document.getElementById('pf-toggle').classList.toggle('open',pfOpen);}
+function setTema(t){document.body.className='theme-'+t;localStorage.setItem(CHAVE_TEMA,t);renderThemeDots();}
+function toggleSettings(){document.getElementById('settings-dropdown').classList.toggle('open');}
+function renderThemeDots(){
+  var themes=[{id:'yellow',color:'#FFD600'},{id:'red',color:'#E8001C'},{id:'green',color:'#00C853'},{id:'purple',color:'#b040ff'},{id:'blue',color:'#3a8fc0'}];
+  var current=getCurrentTheme();
+  var container=document.getElementById('theme-dots-row');
+  container.innerHTML=themes.map(function(t){return'<div class="theme-dot-sm '+(t.id===current?'active':'')+'" style="background:'+t.color+'" onclick="setTheme(\''+t.id+'\');renderThemeDots();" title="'+t.name+'"></div>';}).join('');
+}
+document.addEventListener('click',function(e){
+  var dropdown=document.getElementById('settings-dropdown');
+  var btn=document.querySelector('.hdr-settings-btn');
+  if(!dropdown.contains(e.target)&&!btn.contains(e.target)){dropdown.classList.remove('open');}
+});
 function abrirPainel(){document.getElementById('left-panel').classList.add('mobile-open');document.getElementById('panel-overlay').classList.add('open');}
 function fecharPainel(){document.getElementById('left-panel').classList.remove('mobile-open');document.getElementById('panel-overlay').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent='// '+msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600);}
