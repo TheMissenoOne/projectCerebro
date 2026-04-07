@@ -18,6 +18,9 @@ router.post('/', requireAuth, async (req, res) => {
       .single();
     if (error) throw new Error(error.message);
     
+    // Add GM as member automatically
+    await supabase.from('party_members').insert({ party_id: data.id, player_id: gm_id });
+    
     // Create empty session
     await supabase.from('sessions').insert({ party_id: data.id }).select();
     res.json(data);
@@ -28,7 +31,9 @@ router.post('/', requireAuth, async (req, res) => {
 
 // GET /parties/gm/:gmId
 router.get('/gm/:gmId', requireAuth, async (req, res) => {
-  const { data } = await supabase.from('parties').select('*').eq('gm_id', req.params.gmId).single();
+  console.log('[GET /parties/gm/:gmId] gmId:', req.params.gmId);
+  const { data, error } = await supabase.from('parties').select('*').eq('gm_id', req.params.gmId).single();
+  console.log('[GET /parties/gm/:gmId] result:', data, error);
   res.json(data || null);
 });
 

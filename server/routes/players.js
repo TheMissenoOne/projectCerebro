@@ -15,6 +15,7 @@ router.get('/:id/characters', requireAuth, async (req, res) => {
 // GET /players/:id/party
 router.get('/:id/party', requireAuth, async (req, res) => {
   const playerId = req.params.id;
+  console.log('[GET /players/:id/party] playerId:', playerId);
   
   // First check if user is a member of any party
   const { data: member } = await supabase
@@ -23,12 +24,15 @@ router.get('/:id/party', requireAuth, async (req, res) => {
     .eq('player_id', playerId)
     .single();
   
+  console.log('[GET /players/:id/party] member check:', member);
+  
   if (member) {
     const { data: party } = await supabase
       .from('parties')
       .select('*')
       .eq('id', member.party_id)
       .single();
+    console.log('[GET /players/:id/party] party from member:', party);
     return res.json(party || null);
   }
   
@@ -39,6 +43,7 @@ router.get('/:id/party', requireAuth, async (req, res) => {
     .eq('gm_id', playerId)
     .single();
   
+  console.log('[GET /players/:id/party] gmParty check:', gmParty);
   res.json(gmParty || null);
 });
 
