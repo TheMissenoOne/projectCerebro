@@ -38,11 +38,11 @@
       }
       
       var config = {
-        method: options.method || 'GET',
+        method: (options && options.method) || 'GET',
         headers: headers
       };
       
-      if (options.body) {
+      if (options && options.body) {
         config.body = JSON.stringify(options.body);
       }
       
