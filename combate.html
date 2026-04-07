@@ -108,6 +108,7 @@
   <div class="hdr-codes">
     <span class="red-code">MEGS v1.0</span>
   </div>
+  <div id="theme-switcher"></div>
 </header>
 
 <div class="toolbar">
@@ -306,6 +307,7 @@
 
 <script src="assets/js/api.js"></script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/themes.js"></script>
 <script>
 // ═══════════════════════════════════════════
 // TABELAS MEGS (extraídas do sistema)
@@ -625,6 +627,9 @@ async function loadNPCs() {
 // ═══════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  
   renderTables();
   loadCharacters();
   loadNPCs();

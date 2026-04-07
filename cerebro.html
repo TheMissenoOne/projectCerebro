@@ -266,9 +266,10 @@ select.f-inp option{background:var(--dark);color:var(--white);}
   </div>
   <div class="hdr-spacer"></div>
   <div class="hdr-codes">
-    <span class="ac">AG—17.19349.583</span>
+    <span class="red-code">AG—17.19349.583</span>
     <span>VERSÃO 6.0 // GM MODE</span>
   </div>
+  <div id="theme-switcher"></div>
   <button class="hdr-ham" onclick="abrirPainel()">
     <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
@@ -522,6 +523,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 
 <script src="assets/js/api.js"></script>
 <script src="assets/js/auth.js"></script>
+<script src="assets/js/themes.js"></script>
 <script>
 /* ═══ CONSTANTS ═══ */
 const SK=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
@@ -565,7 +567,6 @@ let ENCONTRO={rodada:1,participantes:[]};
 /* ═══ DATA MODEL CONVERSION ═══ */
 function apiToInternal(npc){
   const d=npc.data||{};
-  // Handle both capitalized atributos (new) and lowercase stats (seeded)
   let atributos={};
   if(d.atributos&&typeof d.atributos==='object'){
     atributos=d.atributos;
@@ -573,7 +574,6 @@ function apiToInternal(npc){
     const LCmap={destreza:'Destreza',forca:'Força',corpo:'Corpo',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente',influencia:'Influência',aura:'Aura',espirito:'Espírito'};
     for(const k in d.stats){const cap=LCmap[k];if(cap)atributos[cap]=d.stats[k];}
   }
-  // Normalize tags: handle both string arrays and {texto,grau} object arrays
   const rawTags=d.tags||[];
   const tags=rawTags.map(t=>{
     if(typeof t==='string')return t;
@@ -594,6 +594,23 @@ function internalToApi(n){
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
     data:{iniciativa:n.iniciativa||0,atributos:n.atributos||{},tags:n.tags||[],descricao:n.descricao||''},
   };
+}
+
+async function init(){
+  initTheme();
+  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  
+  const auth=await requireAuth('gm');
+  if(!auth){
+    document.getElementById('no-access').style.display='block';
+    return;
+  }
+  const party=await api.getGMParty(auth.session.user.id);
+  if(!party){alert('GM sem party');return;}
+  currentPartyId=party.id;
+  document.getElementById('app-layout').style.display='flex';
+  await recarregarDB();
+  setStatus('// DB CARREGADO');
 }
 
 /* ═══ TAG PARSING ═══ */
@@ -623,15 +640,11 @@ async function init(){
   const auth=await requireAuth();
   if(!auth){document.getElementById('no-access').style.display='block';return;}
   const profile=auth.profile||{};
-  // Allow gm role; players can view (read-only mode could be added later)
   document.getElementById('app-layout').style.display='flex';
-  const savedTema=localStorage.getItem(CHAVE_TEMA);
-  if(savedTema)document.body.className='theme-'+savedTema;
-  // Get party ID for creating party-specific NPCs
   try{
     const party=await api.getGMParty(auth.session.user.id);
     if(party)currentPartyId=party.id;
-  }catch(e){/* not gm or no party - still allow viewing global npcs */}
+  }catch(e){}
   carregarEncontro();
   await recarregarDB();
 }
@@ -759,6 +772,103 @@ async function deletarNPC(id){
     if(currentId===id)currentId=null;
     await recarregarDB();toast(`"${npc.nome}" REMOVIDO`);
   }catch(e){toast('ERRO AO DELETAR');}
+}
+
+function renderTagItem(tag){
+  const g=tag.grau||0;
+  const isNeg=g<0;
+  const cls=isNeg?'tag-item neg':'tag-item';
+  const gcls=isNeg?'grau-neg':g>0?'grau-'+g:'grau-0';
+  return `<span class="${cls}"><span class="tag-txt">${tag.texto||tag}</span><span class="tag-grau ${gcls}">${g>0?'+':''}${g}</span></span>`;
+}
+
+function filtrar(){
+  searchTerm=document.getElementById('search-inp').value;
+  renderNPCList();
+}
+
+function setCat(btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat=btn.dataset.cat;
+  renderNPCList();
+}
+
+function toggleEncSection(){
+  document.getElementById('enc-header').classList.toggle('open');
+  document.getElementById('enc-body').classList.toggle('open');
+}
+
+function abrirPainel(){
+  document.getElementById('left-panel').classList.add('mobile-open');
+  document.getElementById('panel-overlay').classList.add('open');
+}
+function fecharPainel(){
+  document.getElementById('left-panel').classList.remove('mobile-open');
+  document.getElementById('panel-overlay').classList.remove('open');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function renderEncounterList(){
+  const list=document.getElementById('enc-npc-list');
+  document.getElementById('enc-count-badge').textContent=encounterNPCs.length;
+  if(encounterNPCs.length===0){
+    list.innerHTML='<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO</div>';
+    return;
+  }
+  list.innerHTML=encounterNPCs.map(npc=>{
+    const fr=(FRACOES[npc.faction]||FRACOES['neutro']);
+    const conds=npc.conditions||[];
+    return `<div class="enc-npc-item">
+      <span class="enc-npc-dot" style="background:${fr.cor}"></span>
+      <div class="enc-npc-info">
+        <span class="enc-npc-name">${npc.name}</span>
+        ${conds.length>0?`<div class="enc-npc-conds">${conds.map(c=>`<span class="enc-cond-chip" style="border-color:${condCor(c).c};color:${condCor(c).c}">${c}</span>`).join('')}</div>`:''}
+      </div>
+      <button class="enc-npc-rem" onclick="removerDoEncontro('${npc.id}')">×</button>
+    </div>`;
+  }).join('');
+}
+
+async function adicionarAoEncontro(){
+  if(!selectedNpc)return;
+  if(encounterNPCs.some(e=>e.id===selectedNpc.id))return;
+  const npcData={...selectedNpc,conditions:[]};
+  encounterNPCs.push(npcData);
+  await saveEncounter();
+  renderEncounterList();
+  renderNPCList();
+  renderNPCDetail();
+  showToast('NPC ADICIONADO AO ENCONTRO');
+}
+
+async function adicionarNPCAtualAoEncontro(){
+  if(!selectedNpc)return;
+  await adicionarAoEncontro();
+}
+
+async function removerDoEncontro(id){
+  encounterNPCs=encounterNPCs.filter(n=>n.id!==id);
+  await saveEncounter();
+  renderEncounterList();
+  renderNPCList();
+  if(selectedNpc?.id===id){
+    renderNPCDetail();
+  }
+  showToast('NPC REMOVIDO DO ENCONTRO');
+}
+
+function mudaRodada(delta){
+  currentRound=Math.max(1,currentRound+delta);
+  document.getElementById('enc-rodada').textContent=currentRound;
+  saveEncounter();
+>>>>>>> 4b35090 (feat: Global theme system and unified X logo)
 }
 
 function abrirAddModal(){

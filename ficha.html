@@ -216,24 +216,23 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </style>
 </head>
 <body>
-
 <header class="header">
   <div class="header-logo">
     <a href="dashboard.html" class="x-logo" title="Dashboard">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="60" height="60" rx="3" stroke="#E8001C" stroke-width="3"/>
-        <rect x="8" y="8" width="48" height="48" rx="1" stroke="#E8001C" stroke-width="1" opacity=".3"/>
-        <line x1="16" y1="16" x2="48" y2="48" stroke="#E8001C" stroke-width="4.5" stroke-linecap="square"/>
-        <line x1="48" y1="16" x2="16" y2="48" stroke="#E8001C" stroke-width="4.5" stroke-linecap="square"/>
-        <rect x="27" y="3" width="10" height="3.5" fill="#E8001C" opacity=".6"/>
-        <rect x="27" y="57.5" width="10" height="3.5" fill="#E8001C" opacity=".6"/>
-        <rect x="3" y="27" width="3.5" height="10" fill="#E8001C" opacity=".6"/>
-        <rect x="57.5" y="27" width="3.5" height="10" fill="#E8001C" opacity=".6"/>
+      <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
+        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
       </svg>
     </a>
     <div class="hdr-title">
       <h1>X-MEN</h1>
-      <div class="hdr-sub">FICHA DE PERSONAGEM // CITY OF MIST SYSTEM</div>
+      <div class="hdr-sub">FICHA DE PERSONAGEM</div>
     </div>
   </div>
   <div class="hdr-spacer"></div>
@@ -242,6 +241,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <span>LS—16.23435.161</span>
     <span>XAVIER INSTITUTE</span>
   </div>
+  <div id="theme-switcher"></div>
 </header>
 
 <div class="toolbar">
@@ -280,6 +280,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
       <span class="dh-left">[LSSP-78445] [SÉRIE 120-JL] [XSL-12.45] [NÍVEL SIGMA]</span>
       <span class="dh-right">▌ CLASSIFICADO — XAVIER INSTITUTE ▐</span>
     </div>
+<div id="theme-switcher"></div>
 
     <div class="ficha-top">
       <div>
@@ -447,17 +448,27 @@ let D=clone(PADRAO);
 let saveTimer=null;
 let charId=null;
 
+<script src="assets/js/api.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/themes.js"></script>
+<script>
+let D=clone(PADRAO);
+let saveTimer=null;
+let charId=null;
+
 function clone(o){return JSON.parse(JSON.stringify(o));}
 
 /* ── API ── */
 async function init(){
+  initTheme();
+  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  
   const auth=await requireAuth();
   if(!auth)return;
   const params=new URLSearchParams(location.search);
   charId=params.get('id');
   const isNew=params.get('new')==='true';
   if(isNew&&!charId){
-    // Create a new character and redirect to it
     setInd('salvando','// CRIANDO PERSONAGEM...');
     try{
       const userId=auth.session.user.id;
