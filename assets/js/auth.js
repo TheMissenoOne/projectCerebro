@@ -1,13 +1,12 @@
 async function requireAuth(requiredRole = null) {
-  const { data: { session } } = await supabase.auth.getSession();
+  const session = JSON.parse(localStorage.getItem('session'));
   if (!session) {
     window.location.href = 'index.html';
     return null;
   }
   
-  const { data: profile } = await supabase.from('profiles').select('*').eq('id', session.user.id).single();
+  const profile = await api.getProfile(session.user.id);
   if (!profile) {
-    await supabase.auth.signOut();
     localStorage.removeItem('session');
     window.location.href = 'index.html';
     return null;
@@ -22,46 +21,26 @@ async function requireAuth(requiredRole = null) {
 }
 
 async function checkAuth() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const session = JSON.parse(localStorage.getItem('session'));
   if (session) {
     window.location.href = 'dashboard.html';
   }
 }
 
 async function login(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) throw new Error(error.message);
-  return data;
+  return await api.login(email, password);
 }
 
 async function register(email, password, username, displayName, role) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: { username, display_name: displayName, role: role || 'player' }
-    }
-  });
-  if (error) throw new Error(error.message);
-  
-  if (data.user) {
-    await supabase.from('profiles').upsert({
-      id: data.user.id,
-      email,
-      username,
-      display_name: displayName,
-      role: role || 'player'
-    });
-  }
-  
-  return data;
+  return await api.register(email, password, username, displayName, role);
 }
 
 async function logout() {
-  await supabase.auth.signOut();
+  localStorage.removeItem('session');
   window.location.href = 'index.html';
 }
 
 function getCurrentUser() {
-  return supabase.auth.getUser();
+  const session = JSON.parse(localStorage.getItem('session'));
+  return session?.user || null;
 }
