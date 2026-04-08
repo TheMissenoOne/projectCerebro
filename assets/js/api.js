@@ -208,6 +208,7 @@ function getCurrentUser() {
 }
 
 window.requireAuth = requireAuth;
+window.requireGM = function() { return requireAuth('gm'); };
 window.login = login;
 window.register = register;
 window.logout = logout;
