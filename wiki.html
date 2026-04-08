@@ -528,7 +528,7 @@
         
         <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
       `,
-      acao_resultado: `
+      acao_resultado: \`
         <h1>Tabela de Ação e Resultado</h1>
         <p>A tabela de Ação e Resultado é usada para determinar o resultado de ações baseada no atributo do personagem (linhas) e no nível de dificuldade (colunas).</p>
         
@@ -563,26 +563,32 @@
         <div class="table-container">
         <table class="ar-table" id="evrv-table">
           <tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
-          <tr data-row="1"><th>1</th><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="2"><th>2</th><td>2</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="3"><th>3</th><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="4"><th>4</th><td>6</td><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="5"><th>5</th><td>8</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="6"><th>6</th><td>9</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="7"><th>7</th><td>11</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="8"><th>8</th><td>12</td><td>9</td><td>8</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="9"><th>9</th><td>14</td><td>11</td><td>9</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
-          <tr data-row="10"><th>10</th><td>16</td><td>12</td><td>10</td><td>9</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
         </table>
         </div>
         <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" significa que a ação falha automaticamente.</p>
         
         <script>
+        var evrvData = {
+          1: [1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          2: [2,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          3: [4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          4: [6,4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          5: [8,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          6: [9,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          7: [11,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N'],
+          8: [12,9,8,6,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N'],
+          9: [14,11,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N'],
+          10: [16,12,10,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N'],
+          11: [17,14,12,10,9,8,7,6,4,3,2,'N','N','N','N','N','N','N','N','N'],
+          12: [19,15,13,11,10,9,8,7,6,5,4,2,'N','N','N','N','N','N','N','N'],
+          13: [21,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N','N'],
+          14: [22,18,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N'],
+          15: [24,19,17,15,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N']
+        };
+        
         function showARMode(mode) {
-          var rows = document.querySelectorAll('#evrv-table tr[data-row]');
-          var desc = document.getElementById('ar-mode-desc');
           var offset = mode === 'persist' ? 2 : (mode === 'perm' ? 5 : 0);
-          var modeName = mode === 'temp' ? 'temporários' : (mode === 'persist' ? 'persistentes' : 'permanentes');
+          var desc = document.getElementById('ar-mode-desc');
           
           desc.innerHTML = mode === 'temp' 
             ? 'Para efeitos temporários que não persistem após a cena.' 
@@ -590,25 +596,27 @@
                 ? 'Para efeitos persistentes. <strong>Some +2 ao seu EV</strong> antes de consultar a tabela.' 
                 : 'Para efeitos permanentes e transformações. <strong>Some +5 ao seu EV</strong> antes de consultar a tabela.');
           
-          rows.forEach(function(row, idx) {
-            var originalRow = parseInt(row.getAttribute('data-row')) + offset;
-            var dataRow = document.querySelector('#evrv-table tr[data-row="' + originalRow + '"]');
-            if (dataRow) {
-              var cells = row.querySelectorAll('td');
-              var dataCells = dataRow.querySelectorAll('td');
-              cells.forEach(function(cell, i) {
-                cell.textContent = dataCells[i].textContent;
-              });
-            }
-          });
+          var table = document.getElementById('evrv-table');
+          table.innerHTML = '<tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>';
+          
+          for (var i = 1; i <= 15; i++) {
+            var ev = i + offset;
+            var row = evrvData[ev] || evrvData[15];
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<th>' + i + '</th>' + row.map(function(v) { return '<td>' + v + '</td>'; }).join('');
+            table.appendChild(tr);
+          }
           
           document.querySelectorAll('.ar-mode-btn').forEach(function(btn) {
             btn.classList.remove('active');
           });
           document.querySelector('.ar-mode-btn[data-mode="' + mode + '"]').classList.add('active');
         }
+        
+        // Initialize table on load
+        showARMode('temp');
         </script>
-      `
+      \`
     };
           <tr><th>3</th><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
           <tr><th>4</th><td>6</td><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
