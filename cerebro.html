@@ -607,17 +607,11 @@ async function init(){
   document.getElementById('app-layout').style.display='flex';
   
   if (isGM) {
-    // GM: load NPC database + party members
+    // GM: load ALL NPCs regardless of party
     const party = await api.getGMParty(auth.session.user.id);
-    if (!party) {
-      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>SEM PARTY</div><div style="margin-top:12px;color:var(--b3);">Crie uma party no dashboard para acessar o Cérebro.</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>';
-      document.getElementById('no-access').style.display='block';
-      document.getElementById('app-layout').style.display='none';
-      return;
-    }
-    currentPartyId = party.id;
+    if (party) currentPartyId = party.id;
     await recarregarNPCs();
-    await recarregarPartyMembers();
+    if (party) await recarregarPartyMembers();
     setStatus('// GM MODE - DB CARREGADO');
   } else {
     // Player: load only party members
