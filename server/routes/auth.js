@@ -3,8 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const supabase = require('../db');
-
-const JWT_SECRET = process.env.JWT_SECRET || 'xmen-dev-secret';
+const config = require('../config');
 
 // POST /auth/register
 router.post('/register', async (req, res) => {
@@ -35,7 +34,7 @@ router.post('/register', async (req, res) => {
     
     const token = jwt.sign(
       { userId: data.id, role: data.role },
-      JWT_SECRET,
+      config.jwtSecret,
       { expiresIn: '30d' }
     );
     
@@ -73,9 +72,9 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Email ou senha incorretos' });
     }
     
-    const token = jwt.sign(
+     const token = jwt.sign(
       { userId: profiles.id, role: profiles.role },
-      JWT_SECRET,
+      config.jwtSecret,
       { expiresIn: '30d' }
     );
     

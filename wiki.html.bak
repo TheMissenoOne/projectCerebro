@@ -236,6 +236,20 @@
       </div>
     </div>
     <div class="hdr-spacer"></div>
+    <div class="hdr-settings">
+      <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <div class="settings-dropdown" id="settings-dropdown">
+        <div class="settings-label">TEMA</div>
+        <div class="theme-dots-row" id="theme-dots-row"></div>
+        <div class="settings-dropdown-divider"></div>
+        <div class="settings-dropdown-item" onclick="logout()">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          SAIR
+        </div>
+      </div>
+    </div>
   </header>
 
   <div class="toolbar">
@@ -296,6 +310,7 @@
   </div>
 
   <script src="assets/js/themes.js"></script>
+  <script src="assets/js/music.js"></script>
   <script src="assets/js/wiki.js"></script>
   <script>
     const wikiContent = document.getElementById('wiki-content');
@@ -514,25 +529,46 @@
         
         <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
       `,
-      acao_resultado: `
+      acao_resultado: \`
         <h1>Tabela de Ação e Resultado</h1>
-        <p>Use esta tabela para determinar o resultado de ações. Selecione o modo para ajustar a dificuldade:</p>
+        <p>A tabela de Ação e Resultado é usada para determinar o resultado de ações baseada no atributo do personagem (linhas) e no nível de dificuldade (colunas).</p>
         
         <div class="ar-modes">
           <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">Temporário</button>
-          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Persistente (-2)</button>
-          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-5)</button>
+          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Persistente (+2)</button>
+          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (+5)</button>
         </div>
         
-        <p id="ar-mode-desc" style="font-size: 0.75rem; color: var(--accent); margin: 8px 0 16px 0;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
+        <h2>AV/OV - Ação vs Obstáculo</h2>
+        <p>Use esta tabela para ações normais onde o nível de dificuldade é o valor na coluna.</p>
         
         <div class="table-container">
-        <table class="ar-table" id="action-table">
+        <table class="ar-table">
+          <tr><th>AV/OV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th><th>46</th><th>47</th><th>48</th><th>49</th><th>50</th></tr>
+          <tr><th>1</th><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td><td>349</td><td>362</td></tr>
+          <tr><th>2</th><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td><td>349</td></tr>
+          <tr><th>3</th><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td></tr>
+          <tr><th>4</th><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td></tr>
+          <tr><th>5</th><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td></tr>
+          <tr><th>6</th><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td></tr>
+          <tr><th>7</th><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td></tr>
+          <tr><th>8</th><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td></tr>
+          <tr><th>9</th><td>N</td><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td></tr>
+          <tr><th>10</th><td>N</td><td>N</td><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td></tr>
         </table>
         </div>
         
-        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" = Falha automática. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade.</p>
-`
+        <h2>EV/RV - Efeito vs Resistência</h2>
+        <p id="ar-mode-desc">Para efeitos temporários que não persistem após a cena.</p>
+        
+        <div class="table-container">
+        <table class="ar-table" id="evrv-table">
+          <tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+        </table>
+        </div>
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" significa que a ação falha automaticamente.</p>
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 8px;"><em>Exemplo: Se seu EV é 3 e o efeito é persistente, some +2 ao EV (3+2=5) e use 5 na tabela.</em></p>
+      \`
     };
     
     var evrvData = {
@@ -553,99 +589,57 @@
       15: [24,19,17,15,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N']
     };
     
-    var avovData = {
-      1: [11,10,9,8,7,5,3,'N','N','N',10,8,6,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      2: [12,11,10,9,8,7,5,3,'N','N',11,9,7,5,3,3,'N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      3: [13,12,11,10,9,8,7,5,3,'N',12,10,8,6,4,3,'N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      4: [14,13,12,11,10,9,8,7,5,3,13,11,9,7,5,3,3,'N','N','N',3,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      5: [15,14,13,12,11,10,9,8,7,5,14,12,10,8,6,4,3,'N','N','N',4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      6: [17,15,14,13,12,11,10,9,8,7,16,13,11,9,7,5,3,3,'N','N',6,3,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      7: [19,17,15,14,13,12,11,10,9,8,18,15,12,10,8,6,4,3,'N','N',8,5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      8: [21,19,17,15,14,13,12,11,10,9,20,17,14,11,9,7,5,3,3,'N',10,7,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      9: [23,21,19,17,15,14,13,12,11,10,22,19,16,13,10,8,6,4,3,'N',12,9,6,3,'N','N','N','N','N','N','N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      10: [26,23,21,19,17,15,14,13,12,11,25,21,18,15,12,9,7,5,3,3,15,11,8,5,3,'N','N','N','N','N',5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N']
-    };
-    
-    var evrvData = {
-      1: [1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      2: [2,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      3: [4,3,1,'N','N','N','N','N','N','N',2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      4: [6,4,3,1,'N','N','N','N','N','N',4,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      5: [8,5,4,3,2,'N','N','N','N','N',6,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      6: [9,7,5,4,3,2,'N','N','N','N',7,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      7: [11,8,7,5,4,3,2,'N','N','N',9,4,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      8: [12,9,8,6,5,4,3,2,'N','N',10,5,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      9: [14,11,9,8,7,5,4,3,2,'N',12,7,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      10: [16,12,10,9,8,7,5,4,3,2,14,8,4,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      11: [17,14,12,10,9,8,7,6,4,3,15,10,6,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      12: [19,15,13,11,10,9,8,7,6,5,17,11,7,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      13: [21,16,14,13,11,10,9,8,7,6,19,12,8,5,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      14: [22,18,16,14,13,11,10,9,8,7,20,14,10,6,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      15: [24,19,17,15,14,13,11,10,9,8,22,15,11,7,4,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N']
-    };
-    
-    var combinedData = {
-      1: [11,10,9,8,7,5,3,'N','N','N',10,8,6,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      2: [12,11,10,9,8,7,5,3,'N','N',11,9,7,5,3,3,'N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      3: [13,12,11,10,9,8,7,5,3,'N',12,10,8,6,4,3,'N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      4: [14,13,12,11,10,9,8,7,5,3,13,11,9,7,5,3,3,'N','N','N',3,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      5: [15,14,13,12,11,10,9,8,7,5,14,12,10,8,6,4,3,'N','N','N',4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      6: [17,15,14,13,12,11,10,9,8,7,16,13,11,9,7,5,3,3,'N','N',6,3,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      7: [19,17,15,14,13,12,11,10,9,8,18,15,12,10,8,6,4,3,'N','N',8,5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      8: [21,19,17,15,14,13,12,11,10,9,20,17,14,11,9,7,5,3,3,'N',10,7,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      9: [23,21,19,17,15,14,13,12,11,10,22,19,16,13,10,8,6,4,3,'N',12,9,6,3,'N','N','N','N','N','N','N','N','N','N',3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      10: [26,23,21,19,17,15,14,13,12,11,25,21,18,15,12,9,7,5,3,3,15,11,8,5,3,'N','N','N','N','N',5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      11: [28,25,23,21,19,17,16,14,13,12,27,23,20,17,14,11,9,7,5,3,17,13,10,7,4,3,'N','N','N','N',7,5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      12: [30,27,25,23,21,19,17,15,14,13,29,25,22,19,16,13,10,8,6,4,19,15,11,8,5,3,'N','N','N',9,6,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      13: [32,29,27,25,23,21,19,17,15,14,31,27,24,21,18,15,12,9,7,5,21,17,13,9,6,4,3,'N','N',11,7,5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      14: [34,31,29,27,25,23,21,19,17,15,33,29,26,23,20,17,14,11,8,6,23,19,15,11,7,5,3,'N',13,9,6,4,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
-      15: [36,33,31,29,27,25,23,21,19,17,35,31,28,25,22,19,16,13,10,7,25,21,17,13,9,6,4,3,'N',15,11,8,5,3,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N']
-    };
-    
-    function renderActionTable(mode) {
-      var shift = mode === 'persist' ? -2 : (mode === 'perm' ? -5 : 0);
-      var table = document.getElementById('action-table');
-      if (!table) return;
-      
-      var cols = [];
-      for (var c = 1; c <= 50; c++) cols.push(c);
-      var headerRow = '<tr><th>Valor</th>' + cols.map(function(c) { return '<th>' + c + '</th>'; }).join('') + '</tr>';
-      var html = headerRow;
-      
-      for (var val = 1; val <= 15; val++) {
-        var baseRow = combinedData[val] || combinedData[15];
-        var shiftedRow = [];
-        for (var col = 1; col <= 50; col++) {
-          var idx = col - 1 + shift;
-          if (idx < 0 || idx >= baseRow.length) {
-            shiftedRow.push('N');
-          } else {
-            shiftedRow.push(baseRow[idx]);
-          }
-        }
-        html += '<tr><th>' + val + '</th>' + shiftedRow.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
-      }
-      
-      table.innerHTML = html;
-    }
-    
     window.showARMode = function(mode) {
+      var offset = mode === 'persist' ? 2 : (mode === 'perm' ? 5 : 0);
       var desc = document.getElementById('ar-mode-desc');
       if (!desc) return;
       
       desc.innerHTML = mode === 'temp' 
-        ? 'Modo Temporário: dificuldade normal (coluna = obstáculo)'
+        ? 'Para efeitos temporários que não persistem após a cena.' 
         : (mode === 'persist' 
-            ? 'Modo Persistente: <strong>desloca 2 colunas para a esquerda</strong> (mais difícil)'
-            : 'Modo Permanente: <strong>desloca 5 colunas para a esquerda</strong> (muito difícil)');
+            ? 'Para efeitos persistentes. <strong>Some +2 ao seu EV</strong> antes de consultar a tabela.' 
+            : 'Para efeitos permanentes e transformações. <strong>Some +5 ao seu EV</strong> antes de consultar a tabela.');
       
-      renderActionTable(mode);
+      var table = document.getElementById('evrv-table');
+      if (!table) return;
+      
+      table.innerHTML = '<tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>';
+      
+      for (var i = 1; i <= 15; i++) {
+        var ev = i + offset;
+        var row = evrvData[ev] || evrvData[15];
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<th>' + i + '</th>' + row.map(function(v) { return '<td>' + v + '</td>'; }).join('');
+        table.appendChild(tr);
+      }
       
       document.querySelectorAll('.ar-mode-btn').forEach(function(btn) {
         btn.classList.remove('active');
       });
       var activeBtn = document.querySelector('.ar-mode-btn[data-mode="' + mode + '"]');
       if (activeBtn) activeBtn.classList.add('active');
+    };
+    
+    window.initARTable = function() {
+      showARMode('temp');
+    };
+    
+    var evrvData = {
+      1: [1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      2: [2,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      3: [4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      4: [6,4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      5: [8,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      6: [9,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      7: [11,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      8: [12,9,8,6,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N'],
+      9: [14,11,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N'],
+      10: [16,12,10,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N'],
+      11: [17,14,12,10,9,8,7,6,4,3,2,'N','N','N','N','N','N','N','N','N'],
+      12: [19,15,13,11,10,9,8,7,6,5,4,2,'N','N','N','N','N','N','N','N'],
+      13: [21,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N','N'],
+      14: [22,18,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N'],
+      15: [24,19,17,15,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N']
     };
     
     function loadPage(page) {
@@ -664,35 +658,22 @@
     const initialPage = urlParams.get('p') || 'index';
     loadPage(initialPage);
     
-    if (initialPage === 'acao_resultado') {
-      renderActionTable('temp');
-    }
-    
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.dataset.page;
         window.history.pushState({}, '', `wiki.html?p=${page}`);
         loadPage(page);
-        
-        if (page === 'acao_resultado') {
-          setTimeout(function() {
-            renderActionTable('temp');
-          }, 50);
-        }
       });
     });
     
     initTheme();
     renderThemeDots();
     
-    document.addEventListener('click', function(e) {
-      var dropdown = document.getElementById('settings-dropdown');
-      var btn = document.querySelector('.hdr-settings-btn');
-      if (dropdown && btn && !dropdown.contains(e.target) && !btn.contains(e.target)) {
-        dropdown.classList.remove('open');
-      }
-    });
+    // Initialize music player on wiki load
+    if (window.initMusicPlayer) {
+      initMusicPlayer();
+    }
   </script>
 </body>
 </html>

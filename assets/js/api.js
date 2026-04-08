@@ -142,6 +142,10 @@
       else if (includeGlobal !== false) query = query.eq('is_global', true);
       return query.then(function(result) { if (result.error) throw result.error; return result.data; });
     },
+    listAllNPCs: function() {
+      return getSupabase().from('npcs').select('*')
+        .then(function(result) { if (result.error) throw result.error; return result.data; });
+    },
 
     createNPC: function(partyId, npcData) {
       return getSupabase().from('npcs').insert({ party_id: partyId, name: npcData.name, codename: npcData.codename || '', faction: npcData.faction || 'neutro', danger: npcData.danger || 'medio', data: npcData.data || {}, is_global: npcData.is_global || false }).select().single()
