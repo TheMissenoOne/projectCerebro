@@ -1,28 +1,5 @@
 {
-  "scrapedAt": "2026-04-08T17:01:19.844Z",
+  "scrapedAt": "2026-04-08T17:18:14.212Z",
   "totalJobsFound": 0,
-  "userProfile": {
-    "name": "Vítor Misseno Feliciano da Silva",
-    "title": "Software Developer",
-    "skills": [
-      "Java",
-      "React",
-      "Node.js",
-      "JavaScript",
-      "TypeScript",
-      "AWS",
-      "Docker",
-      "Kubernetes",
-      "Agile",
-      "Spring Boot",
-      "Next.js",
-      "Express",
-      "MongoDB",
-      "SQL",
-      "Full Stack"
-    ],
-    "experience": "5+ years",
-    "location": "São Paulo, SP"
-  },
   "jobs": []
 }
