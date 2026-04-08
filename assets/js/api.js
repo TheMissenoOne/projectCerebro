@@ -189,9 +189,18 @@ function requireAuth(requiredRole) {
     var session = result.data.session;
     if (!session) { window.location.href = 'index.html'; return null; }
     var user = session.user;
-    var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: user.user_metadata?.role || 'player' };
-    if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
-    return { session: session, profile: profile };
+    // Try to get role from profiles table first
+    return client.from('profiles').select('role').eq('id', user.id).single().then(function(profResult) {
+      var role = (profResult.data && profResult.data.role) || user.user_metadata?.role || 'player';
+      var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: role };
+      if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
+      return { session: session, profile: profile };
+    }).catch(function() {
+      // Fallback if profiles table doesn't exist
+      var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: user.user_metadata?.role || 'player' };
+      if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
+      return { session: session, profile: profile };
+    });
   });
 }
 
