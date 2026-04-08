@@ -551,6 +551,7 @@ function condCor(n){return COND_CORES[n]||{c:'#888',b:'rgba(136,136,136,.15)'};}
 /* ═══ STATE ═══ */
 let NPC_DB=[];
 let currentId=null;
+let isGM=false;
 let categoriaAtual='todos';
 let searchTerm='';
 let encSectionOpen=true;
@@ -593,23 +594,6 @@ function internalToApi(n){
   };
 }
 
-async function init(){
-  initTheme();
-  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
-  
-  const auth=await requireAuth('gm');
-  if(!auth){
-    document.getElementById('no-access').style.display='block';
-    return;
-  }
-  const party=await api.getGMParty(auth.session.user.id);
-  if(!party){alert('GM sem party');return;}
-  currentPartyId=party.id;
-  document.getElementById('app-layout').style.display='flex';
-  await recarregarDB();
-  setStatus('// DB CARREGADO');
-}
-
 /* ═══ TAG PARSING ═══ */
 function parseTag(t){
   if(typeof t==='object'&&t.texto)return{texto:t.texto,grau:t.grau||0};
@@ -639,11 +623,19 @@ async function init(){
   const auth=await requireAuth();
   if(!auth){document.getElementById('no-access').style.display='block';return;}
   const profile=auth.profile||{};
+  isGM=profile.role==='gm';
   document.getElementById('app-layout').style.display='flex';
-  try{
-    const party=await api.getGMParty(auth.session.user.id);
-    if(party)currentPartyId=party.id;
-  }catch(e){}
+  if(isGM){
+    try{
+      const party=await api.getGMParty(auth.session.user.id);
+      if(party)currentPartyId=party.id;
+    }catch(e){}
+  } else {
+    try{
+      const party=await api.getPlayerParty(auth.session.user.id);
+      if(party)currentPartyId=party.id;
+    }catch(e){}
+  }
   carregarEncontro();
   await recarregarDB();
 }
@@ -651,7 +643,7 @@ async function init(){
 async function recarregarDB(){
   setStatus('// CARREGANDO...');
   try{
-    const raw=await api.listNPCs(currentPartyId,true);
+    const raw=isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
     renderizarLista();
     renderizarEncontro();

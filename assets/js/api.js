@@ -178,6 +178,10 @@
       return this.request(url);
     },
     
+    listAllNPCs: function() {
+      return this.request(getOrigin() + '/npcs?all=true');
+    },
+    
     createNPC: function(partyId, npcData) {
       return this.request(getOrigin() + '/npcs', {
         method: 'POST',
@@ -233,6 +237,7 @@
   window.listPartyCharacters = window.api.listPartyCharacters;
   window.getProfile = window.api.getProfile;
   window.listNPCs = window.api.listNPCs;
+  window.listAllNPCs = window.api.listAllNPCs;
   window.createNPC = window.api.createNPC;
   window.updateNPC = window.api.updateNPC;
   window.deleteNPC = window.api.deleteNPC;

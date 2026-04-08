@@ -2,12 +2,14 @@ const router = require('express').Router();
 const supabase = require('../db');
 const requireAuth = require('../middleware/auth');
 
-// GET /npcs?partyId=xxx&includeGlobal=true
+// GET /npcs?partyId=xxx&includeGlobal=true&all=true
 router.get('/', async (req, res) => {
-  const { partyId, includeGlobal } = req.query;
+  const { partyId, includeGlobal, all } = req.query;
   let query = supabase.from('npcs').select('*').order('name');
   
-  if (partyId && includeGlobal === 'true') {
+  if (all === 'true') {
+    // No filter — return every NPC (GM mode)
+  } else if (partyId && includeGlobal === 'true') {
     query = query.or(`party_id.eq.${partyId},is_global.eq.true`);
   } else if (partyId) {
     query = query.eq('party_id', partyId);

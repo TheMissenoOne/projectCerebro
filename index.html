@@ -253,14 +253,7 @@
           <label class="form-label">Nome de Exibição</label>
           <input type="text" class="form-input" name="displayName" required placeholder="Seu Nome">
         </div>
-        <div class="form-group">
-          <label class="form-label">Perfil</label>
-          <div class="role-select">
-            <button type="button" class="role-btn selected" data-role="player">Jogador</button>
-            <button type="button" class="role-btn" data-role="gm">Mestre</button>
-          </div>
-          <input type="hidden" name="role" value="player">
-        </div>
+        <input type="hidden" name="role" value="player">
         <button type="submit" class="btn btn-primary">Criar Conta</button>
       </form>
     </div>
@@ -284,16 +277,6 @@
         forms.forEach(function(f) { f.classList.remove('active'); });
         document.getElementById(tab.dataset.tab + '-form').classList.add('active');
         errorEl.classList.remove('show');
-      });
-    });
-
-    var roleBtns = document.querySelectorAll('.role-btn');
-    var roleInput = document.querySelector('input[name="role"]');
-    roleBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        roleBtns.forEach(function(b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        roleInput.value = btn.dataset.role;
       });
     });
 
