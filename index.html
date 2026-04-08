@@ -281,10 +281,13 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/api.js"></script>
+  <script src="assets/js/api.js" onload="console.log('api.js loaded')" onerror="console.log('api.js ERROR:', event)"></script>
   <script src="assets/js/themes.js"></script>
   <script>
-    checkAuth();
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM ready, checking window.api:', typeof window.api);
+      checkAuth();
+    });
 
     var tabs = document.querySelectorAll('.auth-tab');
     var forms = document.querySelectorAll('.auth-form');
