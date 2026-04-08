@@ -17,7 +17,7 @@
       justify-content: center;
       padding: 20px;
       background: 
-        linear-gradient(180deg, rgba(232,0,28,0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(var(--accentRGB), 0.03) 0%, transparent 50%),
         var(--black);
     }
 
@@ -25,11 +25,11 @@
       width: 120px;
       height: 120px;
       margin-bottom: 30px;
-      background-image: url('../assets/img/x-logo.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
       animation: logoIn .6s ease both;
+    }
+    .auth-logo svg {
+      width: 100%;
+      height: 100%;
     }
     @keyframes logoIn {
       from { opacity: 0; transform: scale(0.9); }
@@ -202,14 +202,26 @@
       letter-spacing: .1em;
       animation: fadeUp .5s ease .5s both;
     }
-  </style>
+</style>
 </head>
 <body>
-  <div class="auth-container">
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<div class="auth-container">
     <div class="auth-logo">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 10 L90 90 H60 L50 65 L40 90 H10 Z" fill="#E8001C"/>
-        <path d="M50 10 L60 35 L50 50 L40 35 Z" fill="#fff"/>
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity="0.6"/>
+        <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity="0.6"/>
+        <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity="0.6"/>
+        <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity="0.6"/>
       </svg>
     </div>
     
@@ -268,8 +280,9 @@
     <p class="auth-footer">X-MEN // CITY OF MIST</p>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/api.js"></script>
-  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/themes.js"></script>
   <script>
     checkAuth();
 
@@ -338,6 +351,8 @@
         btn.disabled = false;
       });
     });
+    
+    initTheme();
   </script>
 </body>
 </html>

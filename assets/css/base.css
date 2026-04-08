@@ -89,7 +89,7 @@ body::after {
 
 .header {
   background: var(--black);
-  border-bottom: 3px solid var(--red);
+  border-bottom: 3px solid var(--accent);
   padding: 0 20px;
   display: flex;
   align-items: stretch;
@@ -156,6 +156,19 @@ body::after {
   gap: 6px;
   padding: 8px 12px;
   border-left: 1px solid var(--b1);
+}
+.toolbar-spacer {
+  flex: 1;
+}
+.th-btn {
+  min-width: 24px;
+  padding: 4px 6px !important;
+}
+.th-btn span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
 }
 .theme-dot {
   width: 10px;

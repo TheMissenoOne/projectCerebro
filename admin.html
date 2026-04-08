@@ -51,6 +51,9 @@
     }
 
     .admin-section {
+      display: none;
+    }
+    .admin-section {
       margin-bottom: 24px;
     }
 
@@ -256,10 +259,16 @@
       .admin-layout { flex-direction: column; }
       .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
     }
-  </style>
+</style>
 </head>
 <body>
-  <header class="header">
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
     <div class="header-logo">
       <a href="dashboard.html" class="x-logo">
         <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
@@ -298,14 +307,25 @@
 
   <div class="toolbar">
     <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="ficha.html" class="tbtn">Ficha</a>
+    <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <a href="wiki.html" class="tbtn">Wiki</a>
+    <div class="toolbar-spacer"></div>
+    <div class="theme-switcher" style="border-left:none;padding:0;">
+      <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo"><span style="background:#FFD600;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho"><span style="background:#E8001C;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('green')" title="Verde"><span style="background:#00C853;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo"><span style="background:#b040ff;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul"><span style="background:#3a8fc0;"></span></button>
+    </div>
   </div>
 
   <div class="admin-layout">
     <nav class="admin-sidebar">
-      <a href="admin.html" class="admin-nav-link active">Party</a>
-      <a href="admin.html?tab=notes" class="admin-nav-link">Notas de Sessão</a>
-      <a href="admin.html?tab=encounter" class="admin-nav-link">Encontro</a>
-      <a href="admin.html?tab=members" class="admin-nav-link">Membros</a>
+      <a href="admin.html?tab=party" class="admin-nav-link" data-tab="party">Party</a>
+      <a href="admin.html?tab=encounter" class="admin-nav-link" data-tab="encounter">Encontro</a>
+      <a href="admin.html?tab=notes" class="admin-nav-link" data-tab="notes">Notas de Sessão</a>
+      <a href="admin.html?tab=members" class="admin-nav-link" data-tab="members">Membros</a>
     </nav>
 
     <main class="admin-content">
@@ -314,7 +334,7 @@
       </div>
 
       <div id="party-admin-content">
-        <div class="admin-section">
+        <div id="tab-party" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Personagens da Party</span>
           </div>
@@ -331,7 +351,7 @@
           </table>
         </div>
 
-        <div class="admin-section">
+        <div id="tab-encounter" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Controle de Encontro</span>
           </div>
@@ -351,7 +371,7 @@
           </div>
         </div>
 
-        <div class="admin-section">
+        <div id="tab-notes" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Notas de Sessão</span>
           </div>
@@ -361,8 +381,8 @@
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/api.js"></script>
-  <script src="assets/js/auth.js"></script>
   <script src="assets/js/themes.js"></script>
   <script>
     let currentParty = null;
@@ -372,6 +392,10 @@
     async function init() {
       initTheme();
       renderThemeDots();
+      
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab') || 'party';
+      showTab(tab);
       
       const auth = await requireAuth('gm');
       if (!auth) return;
@@ -389,15 +413,27 @@
       await loadEncounterState();
     }
 
+    function showTab(tabId) {
+      document.querySelectorAll('.admin-nav-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.tab === tabId);
+      });
+      document.getElementById('tab-party').style.display = tabId === 'party' ? 'block' : 'none';
+      document.getElementById('tab-encounter').style.display = tabId === 'encounter' ? 'block' : 'none';
+      document.getElementById('tab-notes').style.display = tabId === 'notes' ? 'block' : 'none';
+    }
+
+    window.showTab = showTab;
+
     async function loadPartyCharacters() {
       const chars = await api.listPartyCharacters(currentParty.id);
       const tbody = document.getElementById('party-chars-body');
+      tbody.innerHTML = '';
       
       chars.forEach(char => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
-          <td>${char.player_id}</td>
+          <td>${char.player_name || char.player_id}</td>
           <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
         `;
         tbody.appendChild(row);

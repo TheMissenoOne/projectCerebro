@@ -159,10 +159,16 @@
       .wiki-layout { flex-direction: column; }
       .wiki-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
     }
-  </style>
+</style>
 </head>
 <body>
-  <header class="header">
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
     <div class="header-logo">
       <a href="dashboard.html" class="x-logo">
         <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
@@ -200,6 +206,16 @@
 
   <div class="toolbar">
     <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="ficha.html" class="tbtn">Ficha</a>
+    <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <div class="toolbar-spacer"></div>
+    <div class="theme-switcher" style="border-left:none;padding:0;">
+      <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo"><span style="background:#FFD600;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho"><span style="background:#E8001C;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('green')" title="Verde"><span style="background:#00C853;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo"><span style="background:#b040ff;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul"><span style="background:#3a8fc0;"></span></button>
+    </div>
   </div>
 
   <div class="wiki-layout">

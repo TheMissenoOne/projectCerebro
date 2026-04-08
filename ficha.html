@@ -8,13 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --red:#E8001C;--red2:#a8000f;--red3:#5a0008;
+  --accent:#FFD600;--accent2:#c4a800;--accent3:#5a4a00;
+  --red:var(--accent);--red2:var(--accent2);--red3:var(--accent3);
   --black:#080808;--dark:#101010;--p1:#161616;--p2:#1e1e1e;--p3:#242424;
   --b1:#282828;--b2:#3c3c3c;--b3:#505050;
   --white:#f0f0f0;--text:#c8c8c8;--muted:#888;--muted2:#555;--blue:#3a8fc0;
   --mono:'Share Tech Mono',monospace;--disp:'Bebas Neue',sans-serif;
   --cond:'Oswald',sans-serif;--body:'Barlow Condensed',sans-serif;
 }
+body.theme-red{--accent:#E8001C;--accent2:#a8000f;--accent3:#5a0008;--red:#E8001C;--red2:#a8000f;--red3:#5a0008;}
+body.theme-green{--accent:#00C853;--accent2:#009c40;--accent3:#004a1f;--red:#00C853;--red2:#009c40;--red3:#004a1f;}
+body.theme-purple{--accent:#b040ff;--accent2:#7c1db5;--accent3:#3a0060;--red:#b040ff;--red2:#7c1db5;--red3:#3a0060;}
+body.theme-blue{--accent:#3a8fc0;--accent2:#226090;--accent3:#0a2a40;--red:#3a8fc0;--red2:#226090;--red3:#0a2a40;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;min-height:100vh;overflow-x:hidden;animation:bodyIn .4s ease both;}
@@ -216,6 +221,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
 <header class="header">
   <div class="header-logo">
     <a href="dashboard.html" class="x-logo" title="Dashboard">
@@ -265,6 +276,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <span>DASHBOARD</span>
   </a>
   <div class="toolbar-divider"></div>
+  <a href="cerebro.html" class="tbtn">Cérebro</a>
+  <a href="wiki.html" class="tbtn">Wiki</a>
+  <div class="toolbar-divider"></div>
   <button class="tbtn" onclick="abrirImport()">
     <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
     <span>IMPORTAR .MD</span>
@@ -273,6 +287,14 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
     <span>EXPORTAR .MD</span>
   </button>
+  <div class="toolbar-spacer"></div>
+  <div class="theme-switcher" style="border-left:none;padding:0;">
+    <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo"><span style="background:#FFD600;"></span></button>
+    <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho"><span style="background:#E8001C;"></span></button>
+    <button class="tbtn th-btn" onclick="setTema('green')" title="Verde"><span style="background:#00C853;"></span></button>
+    <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo"><span style="background:#b040ff;"></span></button>
+    <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul"><span style="background:#3a8fc0;"></span></button>
+  </div>
   <div class="toolbar-divider"></div>
   <button class="tbtn" onclick="resetarFicha()">
     <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
@@ -428,9 +450,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/api.js"></script>
-<script src="assets/js/auth.js"></script>
+<script src="assets/js/themes.js"></script>
 <script>
+function clone(o){return JSON.parse(JSON.stringify(o));}
+
 const T_MUTACAO=[
   {v:'adaptacao',l:'Adaptação'},{v:'bastiao',l:'Bastião / Proteção'},{v:'conjuracao',l:'Conjuração'},
   {v:'destino',l:'Destino'},{v:'adivinhacao',l:'Adivinhação'},{v:'enclave',l:'Enclave'},
@@ -458,17 +483,7 @@ const PADRAO={
 };
 let D=clone(PADRAO);
 let saveTimer=null;
-let charId=null;
-
-<script src="assets/js/api.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/themes.js"></script>
-<script>
-let D=clone(PADRAO);
-let saveTimer=null;
-let charId=null;
-
-function clone(o){return JSON.parse(JSON.stringify(o));}
+let charId=null;}
 
 /* ── API ── */
 async function init(){
@@ -519,10 +534,7 @@ function salvarAuto(){
     try{
       const fotoB64=D.foto||null;
       const dataParaSalvar=Object.assign({},D,{foto:''});
-      await api.request(api.getOrigin()+'/characters/'+charId,{
-        method:'PUT',
-        body:{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null}
-      });
+      await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
       setInd('salvo','// SALVO ✓');
       setTimeout(()=>setInd('','// SALVO'),1800);
     }catch(e){
