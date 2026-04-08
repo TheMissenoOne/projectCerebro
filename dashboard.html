@@ -498,6 +498,8 @@
         document.getElementById('user-role').textContent = roleLabel;
         document.getElementById('user-role-display').textContent = roleLabel;
         
+        showGMControls();
+        
         loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
         loadParty().catch(function(e) { console.error('loadParty:', e); });
         
@@ -538,7 +540,7 @@
       return api.getPlayerParty(currentUser.id)
         .then(function(party) {
           console.log('[DEBUG] getPlayerParty result:', party);
-          if (!party && currentProfile.role === 'gm') {
+          if (!party && currentProfile && currentProfile.role === 'gm') {
             console.log('[DEBUG] No party found, trying getGMParty');
             return api.getGMParty(currentUser.id).then(function(p) {
               console.log('[DEBUG] getGMParty result:', p);
@@ -565,7 +567,7 @@
       document.getElementById('party-code').textContent = party.code;
       document.getElementById('combate-link').style.display = 'flex';
       
-      if (currentProfile.role === 'gm') {
+      if (currentProfile && currentProfile.role === 'gm') {
         document.getElementById('admin-link').style.display = 'inline-flex';
       }
       
@@ -595,11 +597,15 @@
       logout();
     });
 
-    // Show create party button only for GMs
-    if (currentProfile.role === 'gm') {
-      document.getElementById('create-party-btn').style.display = 'inline-block';
-    } else {
-      document.getElementById('create-party-btn').style.display = 'none';
+    // Show create party button only for GMs (inside callback)
+    function showGMControls() {
+      if (currentProfile && currentProfile.role === 'gm') {
+        var createBtn = document.getElementById('create-party-btn');
+        if (createBtn) createBtn.style.display = 'inline-block';
+      } else {
+        var createBtn = document.getElementById('create-party-btn');
+        if (createBtn) createBtn.style.display = 'none';
+      }
     }
 
     document.getElementById('create-party-btn').addEventListener('click', function() {
