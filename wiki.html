@@ -152,6 +152,25 @@
     }
 
     .wiki-content td {
+      text-align: center;
+    }
+
+    .wiki-content table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: .52rem;
+    }
+
+    .wiki-content table th, .wiki-content table td {
+      padding: 4px 6px;
+      min-width: 24px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
       color: var(--text);
     }
 
@@ -228,6 +247,7 @@
         <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
         <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
+        <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
       </div>
       <div class="wiki-nav-section">
         <div class="wiki-nav-title">Personagens</div>
@@ -478,6 +498,48 @@
         </ul>
         
         <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
+      `,
+      acao_resultado: `
+        <h1>Tabela de Ação e Resultado</h1>
+        <p>A tabela de Ação e Resultado é usada para determinar o resultado de ações baseada no atributo do personagem (linhas) e no nível de dificuldade (colunas).</p>
+        
+        <h2>Modos de Uso</h2>
+        <ul>
+          <li><strong>Efeitos Temporários:</strong> Use a tabela normal (EV/RV)</li>
+          <li><strong>Efeitos Persistentes:</strong> Desloque 2 linhas para baixo (some +2 ao EV)</li>
+          <li><strong>Efeitos Permanentes:</strong> Desloque 5 linhas para baixo (some +5 ao EV)</li>
+        </ul>
+        
+        <h2>AV/OV - Ação vs Obstáculo</h2>
+        <p>Use esta tabela para ações normais onde o nível de dificuldade é o valor na coluna.</p>
+        
+        <h2>EV/RV - Efeitos Temporários (Tabela Normal)</h2>
+        <p>Para efeitos que não persistem após a cena.</p>
+        
+        <h2>EV/RV - Efeitos Persistentes</h2>
+        <p>Para efeitos que persistem por mais tempo. <strong>Some +2 ao seu EV</strong> antes de consultar a tabela.</p>
+        
+        <h2>EV/RV - Efeitos Permanentes</h2>
+        <p>Para efeitos permanentes e transformações. <strong>Some +5 ao seu EV</strong> antes de consultar a tabela.</p>
+        
+        <div class="table-container">
+        <table class="ar-table">
+          <tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+          <tr><th>1</th><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>2</th><td>2</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>3</th><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>4</th><td>6</td><td>4</td><td>3</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>5</th><td>8</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>6</th><td>9</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>7</th><td>11</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>8</th><td>12</td><td>9</td><td>8</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>9</th><td>14</td><td>11</td><td>9</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+          <tr><th>10</th><td>16</td><td>12</td><td>10</td><td>9</td><td>8</td><td>7</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+        </table>
+        </div>
+        
+        <p><em>Exemplo: Se seu EV é 3 e o efeito é persistente, use EV 5 (3+2) na tabela.</em></p>
+        <p style="font-size: 0.7rem; color: var(--muted);">Nota: "N" significa que a ação falha automaticamente.</p>
       `
     };
     
