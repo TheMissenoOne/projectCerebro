@@ -50,7 +50,8 @@
     },
 
     createParty: function(name, gmId) {
-      return getSupabase().from('parties').insert({ name: name, gm_id: gmId }).select().single()
+      var code = Math.random().toString(36).substring(2, 8).toUpperCase();
+      return getSupabase().from('parties').insert({ name: name, gm_id: gmId, code: code }).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 
@@ -99,8 +100,23 @@
     },
 
     saveCharacter: function(charId, data) {
-      return getSupabase().from('characters').update({ data: data.data, foto_base64: data.foto_base64, name: data.name, codename: data.codename }).eq('id', charId).select().single()
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+      var updateData = { data: data.data };
+      if (data.name !== undefined) updateData.name = data.name;
+      if (data.codename !== undefined) updateData.codename = data.codename;
+      if (data.foto_base64 !== undefined && data.foto_base64 !== null) updateData.foto_base64 = data.foto_base64;
+      return fetch(SUPABASE_URL + '/rest/v1/characters?id=eq.' + charId, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(updateData)
+      }).then(function(res) {
+        if (!res.ok) return res.text().then(function(t) { throw new Error(t); });
+        return res.json();
+      });
     },
 
     listCharacters: function(playerId) {
