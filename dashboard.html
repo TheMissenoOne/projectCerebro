@@ -595,6 +595,13 @@
       logout();
     });
 
+    // Show create party button only for GMs
+    if (currentProfile.role === 'gm') {
+      document.getElementById('create-party-btn').style.display = 'inline-block';
+    } else {
+      document.getElementById('create-party-btn').style.display = 'none';
+    }
+
     document.getElementById('create-party-btn').addEventListener('click', function() {
       document.getElementById('create-party-modal').classList.add('open');
     });

@@ -601,51 +601,86 @@ async function init(){
   initTheme();
   document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
   
-  const auth=await requireAuth('gm');
-  if(!auth){
+  const auth = await requireAuth();
+  if (!auth) {
     document.getElementById('no-access').style.display='block';
     return;
   }
-  const party=await api.getGMParty(auth.session.user.id);
-  if(!party){alert('GM sem party');return;}
-  currentPartyId=party.id;
-  document.getElementById('app-layout').style.display='flex';
-  await recarregarDB();
-  setStatus('// DB CARREGADO');
-}
-
-/* ═══ TAG PARSING ═══ */
-function parseTag(t){
-  if(typeof t==='object'&&t.texto)return{texto:t.texto,grau:t.grau||0};
-  const s=String(t).trim();
-  const m=s.match(/^(.*?)\s+([-−]?\d+)$/) || s.match(/^(.*?)\s+(-\d+)$/);
-  if(m){const g=parseInt(m[2]);return{texto:m[1].trim(),grau:g};}
-  return{texto:s,grau:0};
-}
-function tagGrauClass(g){
-  if(g<0)return'grau-neg';if(g===0)return'grau-0';if(g<=2)return`grau-${g}`;if(g<=6)return`grau-${g}`;return'grau-6';
-}
-function renderTagsHTML(tags){
-  if(!tags||!tags.length)return'<span class="no-tags">Sem tags registradas</span>';
-  return tags.map(t=>{
-    const{texto,grau}=parseTag(t);const neg=grau<0;const cls=tagGrauClass(grau);
-    return`<span class="tag-item${neg?' neg':''}"><span class="tag-txt">${esc(texto)}</span><span class="tag-grau ${cls}">${grau!==0?grau:'?'}</span></span>`;
-  }).join('');
-}
-
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,"&#39;");}
-function escJs(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
-
-/* ═══ API CALLS ═══ */
-async function init(){
-  initTheme();
-  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
   
-  const auth=await requireAuth('gm');
-  if(!auth){
-    document.getElementById('no-access').style.display='block';
-    return;
+  const profile = auth.profile || {};
+  isGM = profile.role === 'gm';
+  
+  document.getElementById('app-layout').style.display='flex';
+  
+  if (isGM) {
+    // GM: load NPC database + party members
+    const party = await api.getGMParty(auth.session.user.id);
+    if (!party) {
+      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>SEM PARTY</div><div style="margin-top:12px;color:var(--b3);">Crie uma party no dashboard para acessar o Cérebro.</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>';
+      document.getElementById('no-access').style.display='block';
+      document.getElementById('app-layout').style.display='none';
+      return;
+    }
+    currentPartyId = party.id;
+    await recarregarNPCs();
+    await recarregarPartyMembers();
+    setStatus('// GM MODE - DB CARREGADO');
+  } else {
+    // Player: load only party members
+    const party = await api.getPlayerParty(auth.session.user.id);
+    if (!party) {
+      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>SEM PARTY</div><div style="margin-top:12px;color:var(--b3);">Você não faz parte de nenhuma party.</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>';
+      document.getElementById('no-access').style.display='block';
+      document.getElementById('app-layout').style.display='none';
+      return;
+    }
+    currentPartyId = party.id;
+    await recarregarPartyMembers();
+    setStatus('// SQUAD MODE - MEMBROS CARREGADOS');
   }
+  
+  document.getElementById('enc-header').classList.add('open');
+  document.getElementById('enc-body').classList.add('open');
+}
+
+async function recarregarNPCs() {
+  setStatus('// CARREGANDO NPCs...');
+  try {
+    const raw = await api.listNPCs(currentPartyId, true);
+    NPC_DB = raw.map(apiToInternal);
+    renderizarLista();
+    renderizarEncontro();
+    setStatus(`// DB: ${NPC_DB.length} NPCs`, 'saved');
+  } catch(e) { 
+    console.error(e); 
+    setStatus('// ERRO AO CARREGAR NPCs');
+  }
+}
+
+async function recarregarPartyMembers() {
+  try {
+    const chars = await api.listPartyCharacters(currentPartyId);
+    const members = chars.map(c => ({
+      id: c.id,
+      nome: c.name || 'Sem Nome',
+      codinome: c.codename || '',
+      faction: 'squad',
+      danger: 'baixo',
+      data: { 
+        tags: [],
+        descricao: 'Membro do esquadão',
+        stats: c.data?.stats || {}
+      },
+      isPlayer: true
+    }));
+    // Add members to NPC_DB
+    NPC_DB = [...members, ...NPC_DB];
+    renderizarLista();
+    setStatus(`// ${isGM ? 'SQUAD + NPCs' : 'SQUAD'}: ${NPC_DB.length}`, 'saved');
+  } catch(e) {
+    console.error('Erro ao carregar membros:', e);
+  }
+}
   
   const party=await api.getGMParty(auth.session.user.id);
   if(!party){
