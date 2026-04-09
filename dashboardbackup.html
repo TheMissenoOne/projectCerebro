@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN TTRPG // DASHBOARD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
+    <div class="header-logo">
+      <div class="x-logo">
+        <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
+          <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+          <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
+          <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+          <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+          <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="hdr-title">
+        <h1>X-MEN</h1>
+        <span class="hdr-sub">TTRPG</span>
+      </div>
+    </div>
+    <div class="hdr-spacer"></div>
+    <div class="hdr-codes">
+      <span>SESSION ACTIVE</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <span class="save-ind salvo">●</span>
+    <div class="toolbar-divider"></div>
+    <a href="ficha.html?new=true" class="tbtn">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nova Ficha
+    </a>
+    <div class="toolbar-divider"></div>
+    <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <a href="wiki.html" class="tbtn">Wiki</a>
+    <a href="combate.html" class="tbtn" id="combate-link" style="display:none;">Combate</a>
+    <a href="admin.html" class="tbtn" id="admin-link" style="display:none;">Admin</a>
+    <div class="toolbar-spacer"></div>
+<div class="theme-switcher" id="theme-switcher">
+  <div class="theme-dots-row" id="theme-dots-row"></div>
+  <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#FFD600;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#E8001C;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('green')" title="Verde" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#00C853;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#b040ff;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#3a8fc0;display:block;"></span></button>
+</div>
+    <div class="toolbar-divider"></div>
+    <button class="tbtn" onclick="logout()">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sair
+    </button>
+  </div>
+
+  <div class="content dashboard">
+    <div id="encounter-banner" class="encounter-banner">
+      <span class="enc-banner-title">️ Encontro Ativo!</span>
+    </div>
+
+    <div class="dash-header">
+      <div class="dash-welcome">
+        <h2>Bem-vindo, <span id="user-name">...</span></h2>
+        <p><span id="user-role">JOGADOR</span></p>
+      </div>
+      <div class="dash-user">
+        <div class="dash-user-avatar" id="user-avatar">?</div>
+        <div>
+          <div class="dash-user-name" id="user-display">...</div>
+          <div class="dash-user-role" id="user-role-display">JOGADOR</div>
+        </div>
+        <button class="dash-logout" id="logout-btn">Sair</button>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <span class="dash-section-title">Personagens</span>
+      </div>
+      <div class="chars-grid" id="chars-grid">
+        <div class="char-card char-card-new" id="new-char-btn">
+          <svg viewBox="0 0 24 24" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>NOVA FICHA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <span class="dash-section-title">Party</span>
+      </div>
+      <div class="party-section" id="party-section">
+        <div class="party-empty" id="party-empty">
+          <p>Você ainda não faz parte de uma party.</p>
+          <div class="party-actions">
+            <button class="btn" id="create-party-btn">Criar Party</button>
+            <button class="btn" id="join-party-btn">Entrar com Código</button>
+          </div>
+        </div>
+        <div class="party-info" id="party-info" style="display: none;">
+          <div class="party-header">
+            <span class="party-name" id="party-name">...</span>
+            <span class="party-code">Código: <span id="party-code">...</span></span>
+          </div>
+          <div class="party-members" id="party-members"></div>
+          <a href="admin.html" class="party-admin-link" id="admin-link" style="display: none;">
+            ️ Gerenciar Party
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="create-party-modal">
+    <div class="modal-card">
+      <h3 class="modal-title">Criar Party</h3>
+      <div class="form-group">
+        <label class="form-label">Nome da Party</label>
+        <input type="text" class="form-input" id="party-name-input" placeholder="X-Men Squad">
+      </div>
+      <div class="modal-actions">
+        <button class="btn" id="cancel-create-party">Cancelar</button>
+        <button class="btn btn-primary" id="confirm-create-party">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="join-party-modal">
+    <div class="modal-card">
+      <h3 class="modal-title">Entrar na Party</h3>
+      <div class="form-group">
+        <label class="form-label">Código de Acesso</label>
+        <input type="text" class="form-input" id="party-code-input" placeholder="ABC123" maxlength="6" style="text-transform: uppercase;">
+      </div>
+      <div class="modal-actions">
+        <button class="btn" id="cancel-join-party">Cancelar</button>
+        <button class="btn btn-primary" id="confirm-join-party">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/auth-module.js"></script>
+  <script src="assets/js/api-module.js"></script>
+  <script src="assets/js/globals.js"></script>
+  <script src="assets/js/themes.js"></script>
+  <script src="assets/js/music.js"></script>
+  <script>
+    var currentUser = null;
+    var currentProfile = null;
+    var currentParty = null;
+
+    function init() {
+      initTheme();
+      renderThemeDots();
+      
+      requireAuth().then(function(auth) {
+        if (!auth) return;
+        
+        currentUser = auth.session.user;
+        currentProfile = auth.profile;
+        
+        document.getElementById('user-name').textContent = currentProfile.username;
+        document.getElementById('user-display').textContent = currentProfile.display_name;
+        document.getElementById('user-avatar').textContent = currentProfile.username.charAt(0).toUpperCase();
+        
+        var roleLabel = currentProfile.role === 'gm' ? 'MESTRE' : 'JOGADOR';
+        document.getElementById('user-role').textContent = roleLabel;
+        document.getElementById('user-role-display').textContent = roleLabel;
+        
+        showGMControls();
+        initMusicPlayer();
+        
+        loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
+        loadParty().catch(function(e) { console.error('loadParty:', e); });
+        
+        // Polling removed - data loads on page load only
+        // setInterval(function() {
+        //   loadCharacters().catch(function(e) { console.error('polling chars:', e); });
+        //   loadParty().catch(function(e) { console.error('polling party:', e); });
+        // }, 15000);
+      }).catch(function(e) {
+        console.error('init error:', e);
+      });
+    }
+
+    function loadCharacters() {
+      return api.listCharacters(currentUser.id).then(function(chars) {
+        var grid = document.getElementById('chars-grid');
+        var newBtn = document.getElementById('new-char-btn');
+        
+        // Clear existing character cards (but keep new button)
+        var existingCards = grid.querySelectorAll('.char-card:not(.char-card-new)');
+        existingCards.forEach(function(card) { card.remove(); });
+        
+        chars.forEach(function(char) {
+          var card = document.createElement('div');
+          card.className = 'tbtn';
+          card.style.display = 'flex';
+          card.style.flexDirection = 'column';
+          card.style.alignItems = 'center';
+          card.style.gap = '4px';
+          card.style.padding = '12px';
+          card.innerHTML = '<div class="char-card-name">' + (char.name || 'Sem Nome') + '</div>' +
+            '<div class="char-card-codename">' + (char.codename || '') + '</div>';
+          card.addEventListener('click', function() {
+            window.location.href = 'ficha.html?id=' + char.id;
+          });
+          grid.insertBefore(card, newBtn);
+        });
+      });
+    }
+
+    function loadParty() {
+      console.log('[DEBUG] loadParty called, userId:', currentUser.id);
+      return api.getPlayerParty(currentUser.id)
+        .then(function(party) {
+          console.log('[DEBUG] getPlayerParty result:', party);
+          if (!party && currentProfile && currentProfile.role === 'gm') {
+            console.log('[DEBUG] No party found, trying getGMParty');
+            return api.getGMParty(currentUser.id).then(function(p) {
+              console.log('[DEBUG] getGMParty result:', p);
+              return showParty(p);
+            });
+          }
+          return showParty(party);
+        })
+        .catch(function(err) {
+          console.error('[DEBUG] loadParty error:', err);
+        });
+    }
+
+    function showParty(party) {
+      console.log('[DEBUG] showParty called with:', party);
+      if (!party) {
+        console.log('[DEBUG] No party, keeping empty state');
+        return;
+      }
+      currentParty = party;
+      document.getElementById('party-empty').style.display = 'none';
+      document.getElementById('party-info').style.display = 'flex';
+      document.getElementById('party-name').textContent = party.name;
+      document.getElementById('party-code').textContent = party.code;
+      document.getElementById('combate-link').style.display = 'flex';
+      
+      if (currentProfile && currentProfile.role === 'gm') {
+        document.getElementById('admin-link').style.display = 'inline-flex';
+      }
+      
+      return api.getPartyMembers(party.id).then(function(members) {
+        var membersEl = document.getElementById('party-members');
+        membersEl.innerHTML = '';
+        members.forEach(function(m) {
+          var isGm = m.player_id === party.gm_id;
+          var name = m.display_name || m.username || 'Unknown';
+          var memberEl = document.createElement('div');
+          memberEl.className = 'party-member' + (isGm ? ' is-gm' : '');
+          memberEl.innerHTML = name + (isGm ? ' <span class="party-gm-badge">(GM)</span>' : '');
+          membersEl.appendChild(memberEl);
+        });
+      });
+    }
+
+    document.getElementById('new-char-btn').addEventListener('click', function() {
+      api.createCharacter(currentUser.id, currentParty ? currentParty.id : null).then(function(char) {
+        window.location.href = 'ficha.html?id=' + char.id;
+      }).catch(function(e) {
+        alert('Erro ao criar personagem: ' + e.message);
+      });
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      logout();
+    });
+
+    // Show create party button only for GMs (inside callback)
+    function showGMControls() {
+      if (currentProfile && currentProfile.role === 'gm') {
+        var createBtn = document.getElementById('create-party-btn');
+        if (createBtn) createBtn.style.display = 'inline-block';
+      } else {
+        var createBtn = document.getElementById('create-party-btn');
+        if (createBtn) createBtn.style.display = 'none';
+      }
+    }
+
+    document.getElementById('create-party-btn').addEventListener('click', function() {
+      document.getElementById('create-party-modal').classList.add('open');
+    });
+
+    document.getElementById('join-party-btn').addEventListener('click', function() {
+      document.getElementById('join-party-modal').classList.add('open');
+    });
+
+    document.getElementById('cancel-create-party').addEventListener('click', function() {
+      document.getElementById('create-party-modal').classList.remove('open');
+    });
+
+    document.getElementById('cancel-join-party').addEventListener('click', function() {
+      document.getElementById('join-party-modal').classList.remove('open');
+    });
+
+    document.getElementById('confirm-create-party').addEventListener('click', function() {
+      var name = document.getElementById('party-name-input').value;
+      if (!name) return;
+      
+      console.log('[DEBUG] Creating party:', name);
+      api.createParty(name, currentUser.id).then(function(party) {
+        console.log('[DEBUG] Party created:', party);
+        return api.joinParty(party.id, currentUser.id).then(function() {
+          console.log('[DEBUG] Joined party');
+          document.getElementById('create-party-modal').classList.remove('open');
+          return loadParty();
+        });
+      }).catch(function(e) {
+        console.error('[DEBUG] Error creating party:', e);
+        alert('Erro ao criar party: ' + e.message);
+      });
+    });
+
+    document.getElementById('confirm-join-party').addEventListener('click', function() {
+      var code = document.getElementById('party-code-input').value;
+      if (!code) return;
+      
+      api.getPartyByCode(code).then(function(party) {
+        if (!party) {
+          alert('Código inválido!');
+          return;
+        }
+        return api.joinParty(party.id, currentUser.id).then(function() {
+          document.getElementById('join-party-modal').classList.remove('open');
+          return loadParty();
+        });
+      }).catch(function(e) {
+        alert('Erro ao entrar na party: ' + e.message);
+      });
+    });
+
+    function toggleSettings() {
+      document.getElementById('settings-dropdown').classList.toggle('open');
+    }
+    
+    function renderThemeDots() {
+      var themes = [
+        { id: 'yellow', color: '#FFD600' },
+        { id: 'red', color: '#E8001C' },
+        { id: 'green', color: '#00C853' },
+        { id: 'purple', color: '#b040ff' },
+        { id: 'blue', color: '#3a8fc0' }
+      ];
+      var current = getCurrentTheme();
+      var container = document.getElementById('theme-dots-row');
+      container.innerHTML = themes.map(function(t) {
+        return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') + '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id + '\');renderThemeDots();" title="' + t.name + '"></div>';
+      }).join('');
+    }
+    
+    init();
+  </script>
+</body>
+</html>
