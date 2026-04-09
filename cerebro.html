@@ -527,10 +527,8 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <script src="assets/js/header.js"></script>
 <script>
 /* ═══ UTILITIES ═══ */
-function esc(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
-function escJs(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
-window.esc = esc;
-window.escJs = escJs;
+window.esc = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';};
+window.escJs = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';};
 </script>
 <script>
 /* ═══ CONSTANTS ═══ */
@@ -558,8 +556,6 @@ const COND_CORES={
 };
 const CAPS={Destreza:10,Força:5,Corpo:6,Inteligência:12,Vontade:12,Mente:12,Influência:12,Aura:12,Espírito:12};
 function condCor(n){return COND_CORES[n]||{c:'#888',b:'rgba(136,136,136,.15)'};}
-function esc(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
-function escJs(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
 
 /* ═══ STATE ═══ */
 let NPC_DB=[];
