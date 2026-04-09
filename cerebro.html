@@ -305,6 +305,11 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       <div class="theme-dots-row" id="theme-dots-row"></div>
     </div>
     <div class="tb-div"></div>
+    <button class="tbtn" onclick="window.open('dashboard.html','_self')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      CONFIG
+    </button>
+    <div class="tb-div"></div>
     <button class="tbtn" onclick="logout()">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
       SAIR
@@ -516,9 +521,17 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/gm-config.js"></script>
 <script src="assets/js/api.js"></script>
 <script src="assets/js/themes.js"></script>
 <script src="assets/js/header.js"></script>
+<script>
+/* ═══ UTILITIES ═══ */
+function esc(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
+function escJs(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
+window.esc = esc;
+window.escJs = escJs;
+</script>
 <script>
 /* ═══ CONSTANTS ═══ */
 const SK=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
@@ -545,6 +558,8 @@ const COND_CORES={
 };
 const CAPS={Destreza:10,Força:5,Corpo:6,Inteligência:12,Vontade:12,Mente:12,Influência:12,Aura:12,Espírito:12};
 function condCor(n){return COND_CORES[n]||{c:'#888',b:'rgba(136,136,136,.15)'};}
+function esc(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
+function escJs(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';}
 
 /* ═══ STATE ═══ */
 let NPC_DB=[];
@@ -673,7 +688,7 @@ async function recarregarPartyMembers() {
 async function recarregarDB(){
   setStatus('// CARREGANDO...');
   try{
-    const raw=await api.listNPCs(currentPartyId,true);
+    const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
     renderizarLista();
     renderizarEncontro();

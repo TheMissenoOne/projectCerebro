@@ -2,6 +2,9 @@
 (function() {
   console.log('[api.js] Starting...');
   
+  // Load GM whitelist from global
+  var GM_WHITELIST = (typeof window.GM_WHITELIST !== 'undefined') ? window.GM_WHITELIST : [];
+  
   var SUPABASE_URL = 'https://wlpdfrqzbpwuxyqeayjt.supabase.co';
   var SUPABASE_ANON_KEY = 'sb_publishable_YqV49fEJhRWGUxBZ7hYfRw_Aghqpp4I';
 
@@ -36,7 +39,26 @@
         password: password
       }).then(function(result) {
         if (result.error) throw result.error;
-        return { user: result.data.user, session: result.data.session };
+        // Check if user is in GM whitelist
+        if (GM_WHITELIST.indexOf(email.toLowerCase()) !== -1) {
+          result.data.user.user_metadata = result.data.user.user_metadata || {};
+          result.data.user.user_metadata.role = 'gm';
+          result.data.user.user_metadata.username = 'GM';
+          result.data.user.user_metadata.display_name = 'GM';
+        }
+        // Fetch role from profiles table
+        return getSupabase().from('profiles').select('role,username,display_name').eq('id', result.data.user.id).single().then(function(profResult) {
+          var user = result.data.user;
+          if (profResult.data) {
+            user.user_metadata = user.user_metadata || {};
+            user.user_metadata.role = profResult.data.role || 'player';
+            user.user_metadata.username = profResult.data.username || user.user_metadata.username;
+            user.user_metadata.display_name = profResult.data.display_name || user.user_metadata.display_name;
+          }
+          return { user: user, session: result.data.session };
+        }).catch(function() {
+          return { user: result.data.user, session: result.data.session };
+        });
       });
     },
 
@@ -189,6 +211,11 @@ function requireAuth(requiredRole) {
     var session = result.data.session;
     if (!session) { window.location.href = 'index.html'; return null; }
     var user = session.user;
+    // Check if user is in GM whitelist
+    if (typeof GM_WHITELIST !== 'undefined' && GM_WHITELIST.indexOf(user.email.toLowerCase()) !== -1) {
+      var profile = { id: user.id, email: user.email, username: 'GM', display_name: 'GM', role: 'gm' };
+      return { session: session, profile: profile };
+    }
     // Try to get role from profiles table first
     return client.from('profiles').select('role').eq('id', user.id).single().then(function(profResult) {
       var role = (profResult.data && profResult.data.role) || user.user_metadata?.role || 'player';
