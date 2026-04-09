@@ -233,16 +233,19 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 @media(max-width:900px){.attr-grid{grid-template-columns:1fr;}}
 @media(max-width:768px){
-  .hdr-codes{display:none;}.hdr-ham{display:flex;}
-  .left-panel{position:fixed;top:0;left:0;bottom:0;z-index:600;transform:translateX(-100%);width:min(var(--panel-w),88vw);}
-  .left-panel.mobile-open{transform:translateX(0);}
-  .right-content{padding:12px 14px 100px;}.npc-name{font-size:1.6rem;}
+  .hdr-codes{display:none}.hdr-ham{display:flex}
+  .app-layout{position:relative}
+  .left-panel{position:fixed !important;top:56px !important;left:0 !important;bottom:0 !important;z-index:550 !important;transform:translateX(-100%);width:min(var(--panel-w),88vw) !important;display:flex !important;transition:transform .3s}
+  .left-panel.mobile-open,body.sidebar-open .left-panel{transform:translateX(0)}
+  .right-content{padding:12px 14px 100px;width:100% !important;}.npc-name{font-size:1.6rem;}
   .npc-actions{width:100%;}.form-grid-2{grid-template-columns:1fr;}.attr-grid{grid-template-columns:1fr;}
 }
 @media(max-width:480px){.form-grid-3{grid-template-columns:1fr 1fr 1fr;}.toolbar{padding:0 10px;gap:3px;}.tbtn{padding:4px 7px;font-size:.5rem;}}
 </style>
 </head>
 <body class="theme-yellow">
+
+<div class="toast" id="toast"></div>
 
 <div class="panel-overlay" id="panel-overlay" onclick="fecharPainel()"></div>
 
@@ -813,6 +816,28 @@ function renderTagItem(tag){
   const gcls=isNeg?'grau-neg':g>0?'grau-'+g:'grau-0';
   return `<span class="${cls}"><span class="tag-txt">${tag.texto||tag}</span><span class="tag-grau ${gcls}">${g>0?'+':''}${g}</span></span>`;
 }
+function parseTag(t){
+  if(typeof t!=='string')return{texto:String(t),grau:0};
+  const m=t.match(/^(.+?)\s+([-]?\d+)$/);
+  return m?{texto:m[1].trim(),grau:parseInt(m[2],10)}:{texto:t,grau:0};
+}
+function tagGrauClass(g){
+  if(g<0)return'grau-neg';
+  return'grau-'+Math.min(g,6);
+}
+function renderTagsHTML(tags){
+  if(!tags?.length)return'<span class="no-tags">— Nenhuma tag —</span>';
+  return tags.map(t=>{
+    const{texto,grau}=parseTag(t);
+    const neg=grau<0;
+    const cls=tagGrauClass(grau);
+    const badgeLabel=grau!==0?(grau>0?grau:grau):'';
+    return`<span class="tag-item${neg?' neg':''}">
+      <span class="tag-txt">${texto}</span>
+      <span class="tag-grau ${cls}">${badgeLabel}</span>
+    </span>`;
+  }).join('');
+}
 
 function filtrar(){
   searchTerm=document.getElementById('search-inp').value;
@@ -832,12 +857,17 @@ function toggleEncSection(){
 }
 
 function abrirPainel(){
-  document.getElementById('left-panel').classList.add('mobile-open');
-  document.getElementById('panel-overlay').classList.add('open');
+  const panel=document.getElementById('left-panel');
+  panel.classList.add('mobile-open');
+  panel.style.transform='translateX(0)';
+  panel.style.visibility='visible';
+  document.getElementById('panel-overlay').style.visibility='visible';
 }
 function fecharPainel(){
-  document.getElementById('left-panel').classList.remove('mobile-open');
-  document.getElementById('panel-overlay').classList.remove('open');
+  const panel=document.getElementById('left-panel');
+  panel.classList.remove('mobile-open');
+  panel.style.transform='translateX(-100%)';
+  document.getElementById('panel-overlay').style.visibility='hidden';
 }
 
 function showToast(msg){
@@ -1112,18 +1142,6 @@ function baixar(conteudo,nome,tipo){
 
 /* ═══ UI HELPERS ═══ */
 function setTema(t){document.body.className='theme-'+t;localStorage.setItem(CHAVE_TEMA,t);renderThemeDots();}
-function toggleSettings(){document.getElementById('settings-dropdown').classList.toggle('open');}
-function renderThemeDots(){
-  var themes=[{id:'yellow',color:'#FFD600'},{id:'red',color:'#E8001C'},{id:'green',color:'#00C853'},{id:'purple',color:'#b040ff'},{id:'blue',color:'#3a8fc0'}];
-  var current=getCurrentTheme();
-  var container=document.getElementById('theme-dots-row');
-  container.innerHTML=themes.map(function(t){return'<div class="theme-dot-sm '+(t.id===current?'active':'')+'" style="background:'+t.color+'" onclick="setTheme(\''+t.id+'\');renderThemeDots();" title="'+t.name+'"></div>';}).join('');
-}
-document.addEventListener('click',function(e){
-  var dropdown=document.getElementById('settings-dropdown');
-  var btn=document.querySelector('.hdr-settings-btn');
-  if(!dropdown.contains(e.target)&&!btn.contains(e.target)){dropdown.classList.remove('open');}
-});
 function abrirPainel(){document.getElementById('left-panel').classList.add('mobile-open');document.getElementById('panel-overlay').classList.add('open');}
 function fecharPainel(){document.getElementById('left-panel').classList.remove('mobile-open');document.getElementById('panel-overlay').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent='// '+msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600);}
