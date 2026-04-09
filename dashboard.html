@@ -55,13 +55,14 @@
     <a href="combate.html" class="tbtn" id="combate-link" style="display:none;">Combate</a>
     <a href="admin.html" class="tbtn" id="admin-link" style="display:none;">Admin</a>
     <div class="toolbar-spacer"></div>
-    <div class="theme-switcher">
-      <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#FFD600;display:block;"></span></button>
-      <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#E8001C;display:block;"></span></button>
-      <button class="tbtn th-btn" onclick="setTema('green')" title="Verde" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#00C853;display:block;"></span></button>
-      <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#b040ff;display:block;"></span></button>
-      <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#3a8fc0;display:block;"></span></button>
-    </div>
+<div class="theme-switcher" id="theme-switcher">
+  <div class="theme-dots-row" id="theme-dots-row"></div>
+  <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#FFD600;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#E8001C;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('green')" title="Verde" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#00C853;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#b040ff;display:block;"></span></button>
+  <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul" style="padding:4px 6px;min-width:24px;"><span style="width:8px;height:8px;border-radius:50%;background:#3a8fc0;display:block;"></span></button>
+</div>
     <div class="toolbar-divider"></div>
     <button class="tbtn" onclick="logout()">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
