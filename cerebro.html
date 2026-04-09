@@ -536,7 +536,7 @@ window.escJs = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):
 <script>
 /* ═══ CONSTANTS ═══ */
 const SK=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
-const SK_IDS=["Destreza","Forca","Corpo","Inteligencia","Vontade","Mente","Influencia","Aura","Espirito"];
+const SK_IDS=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
 const CHAVE_ENC="cerebro_enc_v6";
 const CHAVE_TEMA="cerebro_tema_v6";
 const FRACOES={
@@ -580,7 +580,13 @@ function apiToInternal(npc){
   if(d.atributos&&typeof d.atributos==='object'){
     atributos=d.atributos;
   } else if(d.stats&&typeof d.stats==='object'){
-    const LCmap={destreza:'Destreza',forca:'Força',corpo:'Corpo',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente',influencia:'Influência',aura:'Aura',espirito:'Espírito'};
+    const LCmap={
+      'destreza':'Destreza','força':'Força','forca':'Força',
+      'corpo':'Corpo','inteligência':'Inteligência','inteligencia':'Inteligência',
+      'vontade':'Vontade','mente':'Mente',
+      'influência':'Influência','influencia':'Influência',
+      'aura':'Aura','espírito':'Espírito','espirito':'Espírito'
+    };
     for(const k in d.stats){const cap=LCmap[k];if(cap)atributos[cap]=d.stats[k];}
   }
   const rawTags=d.tags||[];
@@ -598,10 +604,19 @@ function apiToInternal(npc){
 }
 
 function internalToApi(n){
+  const PT_TO_EN={
+    'Destreza':'destreza','Força':'força','Corpo':'corpo',
+    'Inteligência':'inteligência','Vontade':'vontade','Mente':'mente',
+    'Influência':'influência','Aura':'aura','Espírito':'espírito'
+  };
+  const attrs={};
+  if(n.atributos&&typeof n.atributos==='object'){
+    for(const k in n.atributos){const en=PT_TO_EN[k];if(en)attrs[en]=n.atributos[k];else attrs[k]=n.atributos[k];}
+  }
   return {
     name:n.nome,codename:n.codinome||'',
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
-    data:{iniciativa:n.iniciativa||0,atributos:n.atributos||{},tags:n.tags||[],descricao:n.descricao||''},
+    data:{iniciativa:n.iniciativa||0,stats:attrs,tags:n.tags||[],descricao:n.descricao||''},
   };
 }
 
