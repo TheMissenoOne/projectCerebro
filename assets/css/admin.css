@@ -1,0 +1,201 @@
+/**
+ * X-MEN TTRPG - Admin Panel Styles
+ * GM admin page specific styles
+ */
+
+.admin-layout {
+  display: flex;
+  min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
+}
+
+.admin-sidebar {
+  width: 200px;
+  background: var(--dark);
+  border-right: 1px solid var(--b1);
+  flex-shrink: 0;
+  padding: 12px 0;
+}
+
+.admin-nav-link {
+  display: block;
+  padding: 10px 16px;
+  font-family: var(--mono);
+  font-size: .52rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: all .12s;
+  border-left: 2px solid transparent;
+}
+.admin-nav-link:hover {
+  background: rgba(255,255,255,.03);
+  color: var(--white);
+}
+.admin-nav-link.active {
+  background: rgba(232,0,28,.1);
+  color: var(--red);
+  border-left-color: var(--red);
+}
+
+.admin-content {
+  flex: 1;
+  padding: clamp(16px, 3vw, 24px);
+  overflow-y: auto;
+}
+
+.admin-section {
+  margin-bottom: 24px;
+}
+
+.admin-section-title {
+  font-family: var(--cond);
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--b1);
+}
+
+.admin-card {
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.admin-card-title {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--white);
+  letter-spacing: .08em;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-input {
+  padding: 8px 12px;
+  background: var(--p2);
+  border: 1px solid var(--b2);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: .55rem;
+  outline: none;
+}
+.admin-input:focus {
+  border-color: var(--accent);
+}
+
+.admin-select {
+  padding: 8px 12px;
+  background: var(--p2);
+  border: 1px solid var(--b2);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: .55rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid var(--b2);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.admin-table th {
+  background: var(--p2);
+  font-family: var(--mono);
+  font-size: .48rem;
+  color: var(--accent);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.admin-table td {
+  font-family: var(--mono);
+  font-size: .5rem;
+  color: var(--text);
+}
+
+.admin-table tr:hover td {
+  background: var(--p2);
+}
+
+.admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-btn {
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: .46rem;
+  letter-spacing: .05em;
+  border: 1px solid var(--b2);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all .12s;
+}
+.admin-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.admin-btn-danger {
+  border-color: var(--red2);
+  color: var(--red);
+}
+.admin-btn-danger:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-stat {
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  padding: 16px;
+  text-align: center;
+}
+
+.admin-stat-value {
+  font-family: var(--disp);
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.admin-stat-label {
+  font-family: var(--mono);
+  font-size: .42rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}

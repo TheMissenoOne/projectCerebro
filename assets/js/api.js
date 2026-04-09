@@ -175,7 +175,16 @@
     },
 
     updateNPC: function(npcId, npcData) {
-      return getSupabase().from('npcs').update({ name: npcData.name, codename: npcData.codename || '', faction: npcData.faction || 'neutro', danger: npcData.danger || 'medio', data: npcData.data || {} }).eq('id', npcId).select().single()
+      return getSupabase().from('npcs').update({ 
+        name: npcData.name, 
+        codename: npcData.codename || '', 
+        faction: npcData.faction || 'neutro', 
+        danger: npcData.danger || 'medio', 
+        iniciativa: npcData.iniciativa || 0,
+        atributos: npcData.atributos || {},
+        tags: npcData.tags || [],
+        descricao: npcData.descricao || ''
+      }).eq('id', npcId).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 

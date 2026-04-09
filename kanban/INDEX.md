@@ -8,6 +8,7 @@
 - [Fase C: Dashboard](done/fase-c-dashboard.md)
 - [Fase D: combate.html](done/fase-d-combate.md)
 - [Fase E: Seed NPCs](done/fase-e-seed-npcs.md)
+- [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
 
 ---
 
@@ -20,6 +21,11 @@
 | C - Dashboard | ✅ Done |
 | D - Calculadora AV/OV | ✅ Done |
 | E - Seed NPCs | ✅ Done |
+| F - Modularização | ✅ Done |
+| - Config centralizada (server) | ✅ Done |
+| - JS modularizado (client) | ✅ Done |
+| - CSS extraído (auth, dashboard, combate, wiki, admin) | ✅ Done |
+| - Server config aplicado | ✅ Done |
 
 ---
 
@@ -39,3 +45,4 @@
 - Adicionar mais páginas (wiki expandida)
 - Melhorar integração com personagens
 - Adicionar testes automatizados
+- **Fase F em progresso**: JS modularizado + CSS extraído
