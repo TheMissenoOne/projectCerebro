@@ -685,14 +685,6 @@
     
     initTheme();
     renderThemeDots();
-    
-    document.addEventListener('click', function(e) {
-      var dropdown = document.getElementById('settings-dropdown');
-      var btn = document.querySelector('.hdr-settings-btn');
-      if (dropdown && btn && !dropdown.contains(e.target) && !btn.contains(e.target)) {
-        dropdown.classList.remove('open');
-      }
-    });
   </script>
 </body>
 </html>
