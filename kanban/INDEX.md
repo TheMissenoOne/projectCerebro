@@ -33,7 +33,7 @@
 
 ### Funcionalidades Implementadas:
 
-1. **Backend Express.js** com PostgreSQL via Supabase
+1. **Frontend-only** com Supabase client-side (sem backend)
 2. **Autenticação JWT** com registro/login
 3. **Dashboard** completo com personagens e parties
 4. **Cérebro Database** para NPCs do GM
