@@ -193,11 +193,11 @@
         loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
         loadParty().catch(function(e) { console.error('loadParty:', e); });
         
-        // Polling: refresh data every 15 seconds
-        setInterval(function() {
-          loadCharacters().catch(function(e) { console.error('polling chars:', e); });
-          loadParty().catch(function(e) { console.error('polling party:', e); });
-        }, 15000);
+        // Polling removed - data loads on page load only
+        // setInterval(function() {
+        //   loadCharacters().catch(function(e) { console.error('polling chars:', e); });
+        //   loadParty().catch(function(e) { console.error('polling party:', e); });
+        // }, 15000);
       }).catch(function(e) {
         console.error('init error:', e);
       });
