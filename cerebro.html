@@ -841,14 +841,14 @@ function renderTagsHTML(tags){
 
 function filtrar(){
   searchTerm=document.getElementById('search-inp').value;
-  renderNPCList();
+  renderizarLista();
 }
 
 function setCat(btn){
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
-  currentCat=btn.dataset.cat;
-  renderNPCList();
+  categoriaAtual=btn.dataset.cat;
+  renderizarLista();
 }
 
 function toggleEncSection(){
