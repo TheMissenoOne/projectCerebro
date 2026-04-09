@@ -10,7 +10,7 @@ function getHeaderHTML(opts) {
   const codes = opts.codes || '';
   const showCerebro = opts.showCerebro !== false;
   const showAdmin = opts.showAdmin || false;
-  const showCombate = opts.showCombate !== false;
+  const showCombate = false;
   
   return `
   <header class="header">
@@ -54,7 +54,7 @@ function getHeaderHTML(opts) {
 function getToolbarHTML(opts) {
   const showCerebro = opts.showCerebro !== false;
   const showAdmin = opts.showAdmin || false;
-  const showCombate = opts.showCombate !== false;
+  const showCombate = false;
   const showNew = opts.showNew !== false;
   
   let links = '';
