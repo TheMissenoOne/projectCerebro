@@ -59,17 +59,36 @@ const DashboardComponent = {
           </div>
         </div>
         
-        <div class="dash-nav">
+<div class="dash-nav">
           <a href="/wiki" class="tbtn" data-link>WIKI</a>
           <a href="/combate" class="tbtn" data-link>COMBATE</a>
           ${profile?.role === 'gm' ? '<a href="/admin" class="tbtn" data-link>ADMIN GM</a>' : ''}
           <a href="/cerebro" class="tbtn" data-link>CÉREBRO</a>
-          <button class="tbtn" onclick="AuthService.logout();Router.navigate(\'/login\')">SAIR</button>
+          <div class="toolbar-spacer"></div>
+          <div class="theme-switcher">
+            <div class="theme-dots-row" id="theme-dots-row"></div>
+          </div>
+          <button class="tbtn" onclick="AuthService.logout();Router.navigate('/login')">SAIR</button>
         </div>
       </div>
     `;
     
+    // Render theme dots
+    this._renderThemeDots();
     await this._loadData();
+  },
+  
+  _renderThemeDots() {
+    const container = document.getElementById('theme-dots-row');
+    if (!container) return;
+    
+    const current = AppState.get('theme') || 'yellow';
+    container.innerHTML = Object.entries(THEMES).map(([key, val]) => `
+      <div class="theme-dot-sm ${key === current ? 'active' : ''}" 
+           style="background:${val.color}"
+           onclick="AppState.setTheme('${key}')" 
+           title="${val.name}"></div>
+    `).join('');
   },
   
   async _loadData() {
