@@ -105,39 +105,26 @@
   };
 
   window.api.listAllGMCharacters = function(gmId) {
-    return client().from('parties').select('id')
+    return client().from('parties').select('id,name')
       .eq('gm_id', gmId)
       .then(function(result) { 
-        console.log('[listAllGMCharacters] parties query:', result);
         if (result.error) throw result.error; 
-        console.log('[listAllGMCharacters] parties data:', JSON.stringify(result.data));
         return result.data; 
       })
       .then(function(parties) {
-        if (!parties || parties.length === 0) {
-          console.log('[listAllGMCharacters] no parties, returning empty');
-          return [];
-        }
+        if (!parties || parties.length === 0) return [];
         var partyIds = parties.map(function(p) { return p.id; });
-        console.log('[listAllGMCharacters] partyIds:', JSON.stringify(partyIds));
         
-        if (partyIds.length === 0) return [];
-        
-        return client().from('characters').select('*, profiles(display_name, username), parties(name)')
+        return client().from('characters').select('id,player_id,party_id,name,is_active')
           .in('party_id', partyIds).order('name')
           .then(function(r) { 
-            console.log('[listAllGMCharacters] characters query status:', r.status, r.statusText);
-            console.log('[listAllGMCharacters] characters query data:', r.data);
-            console.log('[listAllGMCharacters] characters query error:', r.error ? r.error.message : 'none');
-            if (r.error) {
-              console.error('[listAllGMCharacters] characters error details:', JSON.stringify(r.error));
-              throw r.error;
-            }
+            if (r.error) throw r.error; 
             return r.data.map(function(c) {
-            c.player_name = c.profiles?.display_name || c.profiles?.username || c.player_id;
-            c.party_name = c.parties?.name || 'Sem Party';
-            return c;
-          });});
+              c.player_name = c.player_id ? 'Player ' + c.player_id.substring(0,8) : 'Unknown';
+              c.party_name = parties.find(function(p) { return p.id === c.party_id; })?.name || 'Unknown';
+              return c;
+            });
+          });
       });
   };
 

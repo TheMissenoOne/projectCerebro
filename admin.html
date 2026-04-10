@@ -415,19 +415,10 @@
     async function loadPartyCharacters() {
       try {
         const gmId = currentAuth.session.user.id;
-        console.log('[GM ID]', gmId);
-        
-        // First check parties
-        const parties = await window.getSupabaseClient().from('parties').select('id,name').eq('gm_id', gmId);
-        console.log('[Parties found]', parties.data, parties.error);
-        
-        if (parties.error) throw parties.error;
         
         const chars = await api.listAllGMCharacters(gmId);
         const tbody = document.getElementById('party-chars-body');
         tbody.innerHTML = '';
-        
-        console.log('[GM Characters] Found:', chars);
         
         if (!chars || chars.length === 0) {
           tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
