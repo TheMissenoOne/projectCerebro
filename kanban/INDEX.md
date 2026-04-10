@@ -11,9 +11,8 @@
 - [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
 - [Fase G: CodeRabbit Review - TESTS PASSED ✅](kanban/fase-g-coderabbit-review.md)
 
-### 📋 To Do
-- [Fase K: Admin Component](kanban/fase-k-admin.md)
-- [Fase L: Wiki + Cerebro + NPCs + Combate](kanban/fase-l-outros.md)
+### ✅ Done
+- [Fase L: Wiki + Cerebro + NPCs + Combate](done/fase-l-outros.md)
 
 ---
 
@@ -31,5 +30,5 @@
 | H - SPA Core | ✅ Done |
 | I - Dashboard Component | ✅ Done |
 | J - Ficha Component | ✅ Done |
-| K - Admin Component | 📋 To Do |
-| L - Outros Componentes | 📋 To Do |
+| K - Admin Component | ✅ Done |
+| L - Outros Componentes | ✅ Done |

@@ -39,7 +39,7 @@ const FichaComponent = {
       const party = await ApiService.getPlayerParty(user.id);
       
       this._character = await ApiService.createCharacter(user.id, party?.id || null);
-      Router.navigate('/ficha?id=' + this._character.id, true);
+      Router.navigate('/ficha/' + this._character.id, true);
     } catch (e) {
       console.error('[Ficha] Error creating character:', e);
       this._container.innerHTML = `

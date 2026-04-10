@@ -56,9 +56,20 @@ const Router = {
   },
   
   async _load(path) {
-    // Check for query params
+    // Check for query params and route params
     const [routePath, query] = path.split('?');
     const params = {};
+    
+    // Parse route params like /ficha/:id
+    const routeParts = routePath.split('/');
+    if (routeParts.length > 1) {
+      for (let i = 1; i < routeParts.length; i++) {
+        if (routeParts[i] && routeParts[i] !== '') {
+          params[i] = routeParts[i];
+        }
+      }
+    }
+    
     if (query) {
       query.split('&').forEach(param => {
         const [key, value] = param.split('=');
@@ -66,7 +77,25 @@ const Router = {
       });
     }
     
-    const route = this.routes[routePath];
+    // Find matching route (supports patterns like /ficha/:id)
+    let route = this.routes[routePath];
+    if (!route) {
+      const patternKeys = Object.keys(this.routes);
+      for (const pattern of patternKeys) {
+        if (pattern.includes(':')) {
+          const patternParts = pattern.split('/');
+          if (patternParts.length === routeParts.length) {
+            route = this.routes[pattern];
+            for (let i = 1; i < patternParts.length; i++) {
+              if (patternParts[i].startsWith(':')) {
+                params[patternParts[i].slice(1)] = routeParts[i];
+              }
+            }
+            break;
+          }
+        }
+      }
+    }
     
     if (!route) {
       const notFound = this.routes['/404'];

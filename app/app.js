@@ -64,8 +64,8 @@ const App = {
       await DashboardComponent.mount(container);
     });
     
-    // Ficha - lazy load
-    Router.add('/ficha', async (container, params) => {
+    // Ficha - with route param /ficha/:id or /ficha/new
+    Router.add('/ficha/:id', async (container, params) => {
       const { FichaComponent } = await import('./components/ficha.js');
       if (container._component && container._component.unmount) {
         container._component.unmount();

@@ -39,7 +39,7 @@ const DashboardComponent = {
         
         <div class="dash-section" id="characters-section">
           <h3 class="dash-section-title">PERSONAGENS</h3>
-          <button class="btn btn-primary btn-new" onclick="Router.navigate('/ficha?new=true')">NOVA FICHA</button>
+          <button class="btn btn-primary btn-new" onclick="Router.navigate('/ficha/new')">NOVA FICHA</button>
           <div class="chars-list" id="chars-list">
             <div class="char-empty">—</div>
           </div>
@@ -122,7 +122,7 @@ const DashboardComponent = {
     if (charsList) {
       if (this._characters.length > 0) {
         charsList.innerHTML = this._characters.map(c => `
-          <a href="/ficha?id=${c.id}" class="char-link" data-link>${c.name || 'Sem Nome'}</a>
+          <a href="/ficha/${c.id}" class="char-link" data-link>${c.name || 'Sem Nome'}</a>
         `).join('');
       } else {
         charsList.innerHTML = '<div class="char-empty">—</div>';

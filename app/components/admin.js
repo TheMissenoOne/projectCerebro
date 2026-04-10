@@ -129,7 +129,7 @@ const AdminComponent = {
   },
 
   _editCharacter(charId) {
-    Router.navigate('/ficha?id=' + charId);
+    Router.navigate('/ficha/' + charId);
   },
 
   _toggleEncounter() {
