@@ -490,14 +490,10 @@ let charId=null;
 
 /* ── API ── */
 async function init(){
-  alert('1. init started');
   initTheme();
-  alert('2. theme initialized');
   renderThemeDots();
-  alert('3. dots rendered');
   
   const auth = await window.requireAuth();
-  alert('4. auth result: ' + (auth ? 'ok' : 'null'));
   if(!auth) {
     window.location.href = 'index.html';
     return;
@@ -505,27 +501,20 @@ async function init(){
   
   const params = new URLSearchParams(location.search);
   charId = params.get('id');
-  alert('5. charId: ' + charId);
   const isNew = params.get('new') === 'true';
-  alert('6. isNew: ' + isNew);
   
   if (isNew && !charId) {
-    alert('7. creating new character');
     setInd('salvando','// CRIANDO PERSONAGEM...');
     try {
       const userId = auth.session.user.id;
-      alert('8. userId: ' + userId);
       let partyId = null;
       const p = await window.api.getPlayerParty(userId);
-      alert('9. party: ' + (p ? p.id : 'null'));
       if (p && p.id) partyId = p.id;
       
       const char = await window.api.createCharacter(userId, partyId);
-      alert('10. created: ' + char.id);
       window.location.replace('ficha.html?id=' + char.id);
       return;
     } catch(e) {
-      alert('error: ' + e.message);
       console.error(e);
       setInd('erro','// ERRO AO CRIAR');
       toast('ERRO AO CRIAR PERSONAGEM');
@@ -534,12 +523,10 @@ async function init(){
   }
   
   if (!charId) {
-    alert('11. no charId, going to dashboard');
     window.location.href = 'dashboard.html';
     return;
   }
   
-  alert('12. loading character: ' + charId);
   setInd('salvando','// CARREGANDO...');
   try {
     const char = await window.api.loadCharacter(charId);
@@ -558,7 +545,6 @@ async function init(){
   buildMembros();
   preencherCampos();
   if (D.foto) mostrarFoto(D.foto);
-  alert('13. done!');
 }
 
 function salvarAuto(){
