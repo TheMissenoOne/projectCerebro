@@ -106,14 +106,23 @@
 
   window.api.listAllGMCharacters = function(gmId) {
     return client().from('parties').select('id')
+      .eq('gm_id', gmId)
       .then(function(result) { 
         console.log('[listAllGMCharacters] parties query:', result);
         if (result.error) throw result.error; 
+        console.log('[listAllGMCharacters] parties data:', result.data);
         return result.data; 
       })
       .then(function(parties) {
-        if (!parties || parties.length === 0) return [];
+        if (!parties || parties.length === 0) {
+          console.log('[listAllGMCharacters] no parties, returning empty');
+          return [];
+        }
         var partyIds = parties.map(function(p) { return p.id; });
+        console.log('[listAllGMCharacters] partyIds:', partyIds);
+        
+        if (partyIds.length === 0) return [];
+        
         return client().from('characters').select('*, profiles(display_name, username), parties(name)')
           .in('party_id', partyIds).order('name')
           .then(function(r) { 
