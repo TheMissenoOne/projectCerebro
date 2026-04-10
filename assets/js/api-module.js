@@ -39,12 +39,22 @@
   };
 
   window.api.getPartyMembers = function(partyId) {
-    return client().from('party_members').select('*, profiles(id, username, display_name)').eq('party_id', partyId)
-      .then(function(result) { if (result.error) throw result.error; return result.data.map(function(m) {
-        m.username = m.profiles?.username || 'Unknown';
-        m.display_name = m.profiles?.display_name || m.username;
-        return m;
-      });});
+    return client().from('party_members').select('player_id').eq('party_id', partyId)
+      .then(function(result) { if (result.error) throw result.error; return result.data; })
+      .then(function(members) {
+        if (!members || members.length === 0) return [];
+        var playerIds = members.map(function(m) { return m.player_id; });
+        return client().from('profiles').select('id, username, display_name').in('id', playerIds)
+          .then(function(profiles) {
+            if (profiles.error) throw profiles.error;
+            return members.map(function(m) {
+              var profile = profiles.data.find(function(p) { return p.id === m.player_id; });
+              m.username = profile?.username || 'Unknown';
+              m.display_name = profile?.display_name || m.username;
+              return m;
+            });
+          });
+      });
   };
 
   window.api.getPlayerParty = function(playerId) {
