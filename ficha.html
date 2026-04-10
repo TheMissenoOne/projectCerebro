@@ -490,31 +490,47 @@ let charId=null;
 
 /* ── API ── */
 async function init(){
+  console.log('[ficha] init started');
   initTheme();
   renderThemeDots();
   
+  console.log('[ficha] before requireAuth');
   const auth=await requireAuth();
-  console.log('[ficha] auth:', auth);
-  if(!auth){console.log('[ficha] no auth, returning');return;}
+  console.log('[ficha] auth result:', auth);
+  if(!auth){
+    console.log('[ficha] no auth, returning');
+    return;
+  }
   const params=new URLSearchParams(location.search);
   charId=params.get('id');
   console.log('[ficha] charId:', charId);
   const isNew=params.get('new')==='true';
   console.log('[ficha] isNew:', isNew);
   if(isNew&&!charId){
+    console.log('[ficha] creating new character');
     setInd('salvando','// CRIANDO PERSONAGEM...');
     try{
       const userId=auth.session.user.id;
+      console.log('[ficha] userId:', userId);
       let partyId=null;
-      try{const p=await api.getPlayerParty(userId);if(p&&p.id)partyId=p.id;console.log('[ficha] party:', p);}catch(e){console.log('[ficha] party error:', e);}
-      console.log('[ficha] creating character with partyId:', partyId);
+      try{
+        const p=await api.getPlayerParty(userId);
+        console.log('[ficha] getPlayerParty result:', p);
+        if(p&&p.id)partyId=p.id;
+      }catch(e){console.log('[ficha] party error:', e);}
+      console.log('[ficha] partyId:', partyId);
       const char=await api.createCharacter(userId,partyId);
       console.log('[ficha] created character:', char);
       window.location.replace('ficha.html?id='+char.id);
     }catch(e){console.error('[ficha] create error:', e);setInd('erro','// ERRO AO CRIAR');toast('ERRO AO CRIAR PERSONAGEM');}
     return;
   }
-  if(!charId){console.log('[ficha] no charId, redirecting to dashboard');window.location.href='dashboard.html';return;}
+  if(!charId){
+    console.log('[ficha] no charId, redirecting to dashboard');
+    window.location.href='dashboard.html';
+    return;
+  }
+  console.log('[ficha] loading character:', charId);
   setInd('salvando','// CARREGANDO...');
   try{
     const char=await api.loadCharacter(charId);
