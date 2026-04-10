@@ -76,19 +76,26 @@
    */
    window.api.createCharacter = function(playerId, partyId) {
      console.log('[createCharacter] playerId:', playerId, 'partyId:', partyId);
-     return client().from('characters').insert({ player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true }).select().single()
+     var insertData = { player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true };
+     console.log('[createCharacter] inserting:', insertData);
+     
+     return client().from('characters').insert(insertData)
        .then(function(result) { 
-         console.log('[createCharacter] result:', result);
+         console.log('[createCharacter] insert result:', result);
          if (result.error) {
-           console.error('[createCharacter] error:', result.error);
+           console.error('[createCharacter] insert error:', result.error);
            throw result.error; 
          }
-         console.log('[createCharacter] data:', result.data);
-         if (!result.data || !result.data.id) {
-           console.error('[createCharacter] No character ID returned');
-           throw new Error('Character creation failed - no ID returned');
-         }
-         return result.data; 
+         
+         // Now get the character we just created
+         return client().from('characters').select('id').eq('player_id', playerId).order('created_at', { ascending: false }).limit(1).single()
+           .then(function(selectResult) {
+             console.log('[createCharacter] select result:', selectResult);
+             if (selectResult.error || !selectResult.data) {
+               throw selectResult.error || new Error('Could not find created character');
+             }
+             return selectResult.data;
+           });
        });
    };
 
