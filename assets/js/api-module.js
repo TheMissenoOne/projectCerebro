@@ -48,8 +48,12 @@
   };
 
   window.api.getPlayerParty = function(playerId) {
-    return client().from('party_members').select('party_id, parties(*)').eq('player_id', playerId).single()
-      .then(function(result) { if (result.error) return null; return result.data.parties; });
+    return client().from('party_members').select('party_id').eq('player_id', playerId).single()
+      .then(function(result) { 
+        if (result.error || !result.data) return null; 
+        return client().from('parties').select('*').eq('id', result.data.party_id).single()
+          .then(function(p) { return p.data || null; });
+      });
   };
 
   /**
