@@ -48,16 +48,17 @@
   };
 
   window.api.getPlayerParty = function(playerId) {
-    return client().from('party_members').select('party_id').eq('player_id', playerId).single()
+    return client().from('party_members').select('party_id').eq('player_id', playerId).limit(1)
       .then(function(result) { 
-        console.log('[getPlayerParty] result:', result);
-        if (result.error || !result.data) return null; 
-        return client().from('parties').select('*').eq('id', result.data.party_id).single()
-          .then(function(p) { 
-            console.log('[getPlayerParty] party:', p);
-            return p.data || null; 
-          });
+        if (result.error || !result.data || result.data.length === 0) return null; 
+        return client().from('parties').select('*').eq('id', result.data[0].party_id).single()
+          .then(function(p) { return p.data || null; });
       });
+  };
+
+  window.api.getGMParty = function(gmId) {
+    return client().from('parties').select('*').eq('gm_id', gmId).limit(1)
+      .then(function(result) { if (result.error || !result.data || result.data.length === 0) return null; return result.data[0]; });
   };
 
   /**
