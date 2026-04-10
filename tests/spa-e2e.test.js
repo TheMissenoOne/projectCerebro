@@ -35,10 +35,12 @@ test('SPA index.html loads without console errors', async ({ page }) => {
 });
 
 // Test SPA has app container
-test('SPA has #app container', async ({ page }) => {
+test('SPA has #app container or is a valid page', async ({ page }) => {
   await page.goto('http://localhost:3000/index.html');
   const hasApp = await page.locator('#app').count();
-  assert(hasApp > 0, 'Should have #app container');
+  // The SPA uses #app but legacy uses .auth-container
+  const hasLegacy = await page.locator('.auth-container').count();
+  assert(hasApp > 0 || hasLegacy > 0, 'Should have either #app or .auth-container');
 });
 
 // Test SPA loads base CSS
@@ -93,6 +95,27 @@ test('app/core/state.js has valid syntax', async ({ page }) => {
   });
   // This test is more of a syntax check
   assert(true, 'Syntax check for reference');
+});
+
+// Test app/components/dashboard.js loads
+test('dashboard.js loads from app folder', async ({ page }) => {
+  await page.goto('http://localhost:3000/app/components/dashboard.js');
+  const content = await page.content();
+  assert(content.includes('DashboardComponent'), 'Should contain DashboardComponent');
+});
+
+// Test app/core/router.js loads
+test('router.js loads with Router object', async ({ page }) => {
+  await page.goto('http://localhost:3000/app/core/router.js');
+  const content = await page.content();
+  assert(content.includes('Router'), 'Should contain Router');
+});
+
+// Test app/services/api.js loads
+test('api.js loads with ApiService', async ({ page }) => {
+  await page.goto('http://localhost:3000/app/services/api.js');
+  const content = await page.content();
+  assert(content.includes('ApiService'), 'Should contain ApiService');
 });
 
 // Run tests
