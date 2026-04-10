@@ -372,9 +372,10 @@
   <script src="assets/js/globals.js"></script>
   <script src="assets/js/themes.js"></script>
   <script>
-    let currentParty = null;
-    let currentRound = 0;
-    let encounterActive = false;
+  let currentParty = null;
+  let currentRound = 0;
+  let encounterActive = false;
+  let currentAuth = null;
 
     async function init() {
       initTheme();
@@ -384,10 +385,10 @@
       const tab = params.get('tab') || 'party';
       showTab(tab);
       
-      const auth = await requireAuth('gm');
-      if (!auth) return;
+      currentAuth = await requireAuth('gm');
+      if (!currentAuth) return;
 
-      currentParty = await api.getGMParty(auth.session.user.id);
+      currentParty = await api.getGMParty(currentAuth.session.user.id);
       
       if (!currentParty) {
         document.getElementById('no-party-msg').style.display = 'block';
@@ -413,7 +414,7 @@
 
     async function loadPartyCharacters() {
       try {
-        const gmId = auth.session.user.id;
+        const gmId = currentAuth.session.user.id;
         console.log('[GM ID]', gmId);
         
         // First check parties
