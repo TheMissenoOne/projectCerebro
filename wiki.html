@@ -740,7 +740,15 @@
       
       for (var rowIdx = 1; rowIdx <= maxRow; rowIdx++) {
         var rowData = dataTable[rowIdx] || dataTable[maxRow];
-        var shiftedRow = shift > 0 ? rowData.slice(shift) : rowData;
+        
+        var adjustedRow = rowData.map(function(v, i) {
+          var colNum = i + 1;
+          if (colNum < rowIdx) return 'N';
+          if (currentTableType === 'evrv' && colNum > 50 && rowIdx < 51) return 'N';
+          return v;
+        });
+        
+        var shiftedRow = shift > 0 ? adjustedRow.slice(shift) : adjustedRow;
         
         html += '<tr><th>' + rowIdx + '</th>' + shiftedRow.map(function(v) { 
           return '<td>' + v + '</td>'; 
