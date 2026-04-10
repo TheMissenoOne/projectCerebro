@@ -70,7 +70,7 @@ test('ficha.js - has save method', async ({ page }) => {
 });
 
 // Test ficha route registration
-test('app.js - registers /ficha route', async ({ page }) => {
+test('app.js - registers /ficha/new route', async ({ page }) => {
   await page.addScriptTag({ path: 'app/core/state.js' });
   await page.addScriptTag({ path: 'app/core/router.js' });
   await page.addScriptTag({ path: 'app/services/auth.js' });
@@ -78,9 +78,9 @@ test('app.js - registers /ficha route', async ({ page }) => {
   await page.addScriptTag({ path: 'app/components/ficha.js' });
   await page.addScriptTag({ path: 'app/app.js' });
   const hasRoute = await page.evaluate(() => {
-    return typeof Router.routes['/ficha'] === 'function';
+    return typeof Router.routes['/ficha/new'] === 'function';
   });
-  assert(hasRoute, 'Router should have /ficha route registered');
+  assert(hasRoute, 'Router should have /ficha/new route registered');
 });
 
 // Test ficha CSS

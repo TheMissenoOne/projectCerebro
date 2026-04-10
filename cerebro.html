@@ -746,7 +746,7 @@ function renderizarLista(){
   container.innerHTML=lista.map(n=>{
     const fc=FRACOES[n.fracao]||FRACOES['neutro'];const pr=PERIGOS[n.perigo]||PERIGOS['baixo'];
     const inEnc=encIds.includes(n.id);
-    return`<div class="npc-item${currentId===n.id?' active':''}${inEnc?' in-enc':''}" onclick="exibirNPC('${escJs(n.id)}');fecharPainel()" oncontextmenu="event.preventDefault();window.open('cerebro.html?id='+encodeURIComponent('${escJs(n.id)}'),'_blank')">
+    return`<div class="npc-item${currentId===n.id?' active':''}${inEnc?' in-enc':''}" onclick="exibirNPC('${escJs(n.id)}');fecharPainel()">
       <div class="npc-item-dot" style="background:${fc.cor}"></div>
       <div class="npc-item-info">
         <div class="npc-item-name">${esc(n.nome)}</div>

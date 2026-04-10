@@ -64,7 +64,17 @@ const App = {
       await DashboardComponent.mount(container);
     });
     
-    // Ficha - with route param /ficha/:id or /ficha/new
+    // Ficha - new character
+    Router.add('/ficha/new', async (container, params) => {
+      const { FichaComponent } = await import('./components/ficha.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = FichaComponent;
+      await FichaComponent.mount(container, { id: 'new' });
+    });
+    
+    // Ficha - with route param /ficha/:id
     Router.add('/ficha/:id', async (container, params) => {
       const { FichaComponent } = await import('./components/ficha.js');
       if (container._component && container._component.unmount) {

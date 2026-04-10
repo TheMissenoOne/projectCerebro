@@ -77,7 +77,7 @@ const Router = {
       });
     }
     
-    // Find matching route (supports patterns like /ficha/:id)
+    // Find matching route (exact match first, then patterns like /ficha/:id)
     let route = this.routes[routePath];
     if (!route) {
       const patternKeys = Object.keys(this.routes);
@@ -94,6 +94,14 @@ const Router = {
             break;
           }
         }
+      }
+    }
+    
+    // Also check exact match for registered routes (handles /ficha/new vs /ficha/:id)
+    if (!route && routePath !== '/' && routePath !== '') {
+      const exactMatch = this.routes[routePath];
+      if (exactMatch) {
+        route = exactMatch;
       }
     }
     
