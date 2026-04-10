@@ -126,9 +126,11 @@
         return client().from('characters').select('*, profiles(display_name, username), parties(name)')
           .in('party_id', partyIds).order('name')
           .then(function(r) { 
-            console.log('[listAllGMCharacters] characters query:', r);
+            console.log('[listAllGMCharacters] characters query status:', r.status, r.statusText);
+            console.log('[listAllGMCharacters] characters query data:', r.data);
+            console.log('[listAllGMCharacters] characters query error:', r.error ? r.error.message : 'none');
             if (r.error) {
-              console.error('[listAllGMCharacters] characters error:', r.error);
+              console.error('[listAllGMCharacters] characters error details:', JSON.stringify(r.error));
               throw r.error;
             }
             return r.data.map(function(c) {
