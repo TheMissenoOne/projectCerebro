@@ -9,6 +9,7 @@
 - [Fase D: combate.html](done/fase-d-combate.md)
 - [Fase E: Seed NPCs](done/fase-e-seed-npcs.md)
 - [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
+- [Fase G: CodeRabbit Review - TESTS PASSED ✅](kanban/fase-g-coderabbit-review.md)
 
 ---
 
@@ -22,18 +23,13 @@
 | D - Calculadora AV/OV | ✅ Done |
 | E - Seed NPCs | ✅ Done |
 | F - Modularização | ✅ Done |
-| - Config centralizada (server) | ✅ Done |
-| - JS modularizado (client) | ✅ Done |
-| - CSS extraído (auth, dashboard, combate, wiki, admin) | ✅ Done |
-| - Server config aplicado | ✅ Done |
+| G - CodeRabbit Review | ✅ Done |
 
----
-
-## Todas as Fases Completas! 🎉
-
+## Fases Concluídas
+ 
 ### Funcionalidades Implementadas:
 
-1. **Frontend-only** com Supabase client-side (sem backend)
+1. **Full-stack** com Node.js/Express backend + Supabase client-side
 2. **Autenticação JWT** com registro/login
 3. **Dashboard** completo com personagens e parties
 4. **Cérebro Database** para NPCs do GM
@@ -41,8 +37,5 @@
 6. **Seed de 133 NPCs** do X-MEN TTRPG
 
 ### Próximos Passos (Opcionais):
-- Deploy para produção no Render
-- Adicionar mais páginas (wiki expandida)
-- Melhorar integração com personagens
-- Adicionar testes automatizados
-- **Fase F em progresso**: JS modularizado + CSS extraído
+- Adicionar session-*.md ao .gitignore
+- Código limpo: todos os problemas do CodeRabbit resolvidos

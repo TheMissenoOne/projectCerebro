@@ -30,6 +30,7 @@ jobs:
       - name: Install and Build
         run: |
           npm install
+          # Static site - no build step needed, HTML files are served directly
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

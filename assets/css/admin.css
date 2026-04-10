@@ -110,6 +110,9 @@
   outline: none;
   cursor: pointer;
 }
+.admin-select:focus {
+  border-color: var(--accent);
+}
 
 .admin-table {
   width: 100%;
@@ -163,6 +166,11 @@
   border-color: var(--accent);
   color: var(--accent);
 }
+.admin-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
 .admin-btn-danger {
   border-color: var(--red2);
   color: var(--red);
@@ -170,6 +178,11 @@
 .admin-btn-danger:hover {
   background: var(--red);
   color: var(--white);
+}
+.admin-btn-danger:focus-visible {
+  background: var(--red);
+  color: var(--white);
+  outline: none;
 }
 
 .admin-stats {

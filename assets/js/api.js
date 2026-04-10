@@ -5,14 +5,11 @@
   // Load GM whitelist from global
   var GM_WHITELIST = (typeof window.GM_WHITELIST !== 'undefined') ? window.GM_WHITELIST : [];
   
-  var SUPABASE_URL = 'https://wlpdfrqzbpwuxyqeayjt.supabase.co';
-  var SUPABASE_ANON_KEY = 'sb_publishable_YqV49fEJhRWGUxBZ7hYfRw_Aghqpp4I';
-
   var supabaseClient = null;
 
   function getSupabase() {
-    if (!supabaseClient && window.supabase) {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    if (!supabaseClient && window.supabase && window.SUPABASE_CONFIG) {
+      supabaseClient = window.supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey);
     }
     return supabaseClient;
   }

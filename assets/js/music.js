@@ -6,10 +6,10 @@
 const MUSIC_KEY = 'xmen_music_played';
 const MUTE_KEY = 'xmen_music_muted';
 
-const XMEN97_THEME = 'https://docs.google.com/uc?export=download&id=1rZp6_1vL6iR8wK3zKj8N9hL4mX2cT6B8';
+const XMEN97_THEME = '/assets/audio/xmen97-theme.mp3'; // Host locally for reliability
 
-var musicPlayer = null;
-var musicMuted = false;
+let musicPlayer = null;
+let musicMuted = false;
 
 function initMusicPlayer() {
   if (!window.getCurrentUser) return;
@@ -18,22 +18,30 @@ function initMusicPlayer() {
   musicMuted = localStorage.getItem(MUTE_KEY) === 'true';
   
   if (!hasPlayed) {
-    playTheme();
-    localStorage.setItem(MUSIC_KEY, 'true');
+    playTheme().then(function(success) {
+      if (success) {
+        localStorage.setItem(MUSIC_KEY, 'true');
+      }
+    });
   }
   
   renderMusicButton();
 }
 
 function playTheme() {
-  if (musicMuted || musicPlayer) return;
+  if (musicMuted || musicPlayer) return Promise.resolve(false);
   
   musicPlayer = new Audio(XMEN97_THEME);
   musicPlayer.loop = true;
   musicPlayer.volume = 0.3;
-  musicPlayer.play().catch(function(e) {
-    console.log('Autoplay blocked, user must click to play');
-  });
+  return musicPlayer.play()
+    .then(function() {
+      return true;
+    })
+    .catch(function(e) {
+      console.log('Autoplay blocked, user must click to play');
+      return false;
+    });
 }
 
 function toggleMusic() {
@@ -46,9 +54,13 @@ function toggleMusic() {
     }
   } else {
     if (!musicPlayer) {
-      playTheme();
+      playTheme().catch(function(e) {
+        console.warn('Playback failed:', e.message);
+      });
     } else {
-      musicPlayer.play();
+      musicPlayer.play().catch(function(e) {
+        console.warn('Playback failed:', e.message);
+      });
     }
   }
   

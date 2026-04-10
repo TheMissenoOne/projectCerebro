@@ -90,6 +90,10 @@ function getToolbarHTML(opts) {
 function requireGM() {
   return window.requireAuth().then(function(auth) {
     if (!auth) return null;
+    if (!auth.profile) {
+      window.location.href = 'dashboard.html';
+      return null;
+    }
     if (auth.profile.role !== 'gm') {
       window.location.href = 'dashboard.html';
       return null;

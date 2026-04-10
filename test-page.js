@@ -37,6 +37,7 @@ const { chromium } = require('playwright');
   
   console.log('\n' + (errors.length === 0 ? '✅ All pages loaded without errors!' : '❌ Some errors found:'));
   errors.forEach(e => console.log('  -', e));
-  
+
   await browser.close();
+  process.exit(errors.length > 0 ? 1 : 0);
 })();

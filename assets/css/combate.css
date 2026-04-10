@@ -108,7 +108,7 @@
   line-height: 1;
 }
 .result-value.impossible { color: var(--red); }
-.result-value.success { color: #44bb44; }
+.result-value.success { color: var(--green); }
 .result-value.fail { color: var(--red); }
 
 .result-sub {
@@ -141,7 +141,7 @@
 }
 .mode-btn.active {
   border-color: var(--accent);
-  background: rgba(255,214,0,.1);
+  background: rgba(var(--accentRGB), 0.1);
   color: var(--accent);
 }
 .mode-btn:hover:not(.active) {
@@ -192,7 +192,7 @@
   text-align: center;
   margin: 12px 0;
 }
-.roll-result.success { color: #44bb44; }
+.roll-result.success { color: var(--green); }
 .roll-result.fail { color: var(--red); }
 
 .roll-dice {

@@ -589,6 +589,11 @@
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   transition: all .2s;
+  outline: none;
+}
+.music-toggle-btn:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
 }
 
 .music-toggle-btn svg {

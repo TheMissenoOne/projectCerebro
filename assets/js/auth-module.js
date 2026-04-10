@@ -35,7 +35,7 @@
       if (result.error) throw result.error;
       
       // After login, fetch the profile to get the correct role and update user metadata
-      return client().from('profiles').select('role').eq('email', email.toLowerCase()).single()
+      return client().from('profiles').select('role').eq('id', result.data.user.id).single()
         .then(function(profileResult) {
           if (profileResult.data) {
             // Update user metadata with correct role

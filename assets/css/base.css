@@ -15,11 +15,14 @@
   --muted:  #888;
   --muted2: #555;
   --blue:   #3a8fc0;
+  --green:  #44bb44;
+  --green2: #3a9638;
+  --green3: #1e4c1c;
   --mono:   'Share Tech Mono', monospace;
   --disp:   'Bebas Neue', sans-serif;
   --cond:   'Oswald', sans-serif;
   --body:   'Barlow Condensed', sans-serif;
-  
+   
   --accent: #FFD600;
   --accent2: #c4a800;
   --accent3: #5a4a00;
@@ -47,12 +50,12 @@
 }
 
 body.theme-red { --accent: #E8001C; --accent2: #a8000f; --accent3: #5a0008; --accentRGB: 232, 0, 28; }
-body.theme-green { --accent: #00C853; --accent2: #009c40; --accent3: #004a1f; --accentRGB: 0, 200, 83; }
-body.theme-purple { --accent: #b040ff; --accent2: #7c1db5; --accent3: #3a0060; --accentRGB: 176, 64, 255; }
-body.theme-blue { --accent: #3a8fc0; --accent2: #226090; --accent3: #0a2a40; --accentRGB: 58, 143, 192; }
+body.theme-green { --accent: #00C853; --accent2: #009c40; --accent3: #004a1f; --accentRGB: 0, 200, 83; --green: #00C853; --green2: #009c40; --green3: #004a1f; }
+body.theme-purple { --accent: #b040ff; --accent2: #7c1db5; --accent3: #3a0060; --accentRGB: 176, 64, 255; --green: #b040ff; --green2: #7c1db5; --green3: #3a0060; }
+body.theme-blue { --accent: #3a8fc0; --accent2: #226090; --accent3: #0a2a40; --accentRGB: 58, 143, 192; --green: #3a8fc0; --green2: #226090; --green3: #0a2a40; }
 
 /* Default yellow theme */
-body { --accent: #FFD600; --accent2: #c4a800; --accent3: #5a4a00; --accentRGB: 255, 214, 0; }
+body { --accent: #FFD600; --accent2: #c4a800; --accent3: #5a4a00; --accentRGB: 255, 214, 0; --green: #FFD600; --green2: #c4a800; --green3: #5a4a00; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }

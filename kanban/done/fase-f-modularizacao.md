@@ -47,14 +47,6 @@ Modularizar o repositório monolítico em estruturas limpas e separadas:
 - [ ] 4.4 - Criar `server/services/npcs.js`
 - [ ] 4.5 - Refatorar routes para usar services
 
-### Server Services Layer (Fase 4)
-
-- [ ] 4.1 - Criar `server/services/auth.js`
-- [ ] 4.2 - Criar `server/services/characters.js`
-- [ ] 4.3 - Criar `server/services/parties.js`
-- [ ] 4.4 - Criar `server/services/npcs.js`
-- [ ] 4.5 - Refatorar routes para usar services
-
 ### Limpeza e Decisões (Fase 5)
 
 - [ ] 5.1 - Decidir: `xmen-ficha.html` vs `ficha.html` (duplicatas)
