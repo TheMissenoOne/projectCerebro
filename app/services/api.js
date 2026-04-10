@@ -80,6 +80,17 @@ const ApiService = {
     return data;
   },
   
+  async updateParty(partyId, updates) {
+    const { data, error } = await this._client
+      .from('parties')
+      .update(updates)
+      .eq('id', partyId)
+      .select()
+      .single();
+    if (error) throw error;
+    return data;
+  },
+  
   async joinParty(partyId, playerId) {
     const { error } = await this._client
       .from('party_members')

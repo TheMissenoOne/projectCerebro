@@ -3,185 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>X-MEN TTRPG // ACESSO RESTRITO</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>X-MEN TTRPG</title>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/auth.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-<script>
-(function(){
-  var t = localStorage.getItem('cerebro_tema');
-  if (t) document.body.className = 'theme-' + t;
-})();
-</script>
-<div class="auth-container">
-    <div class="auth-logo">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
-        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity="0.6"/>
-        <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity="0.6"/>
-        <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity="0.6"/>
-        <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity="0.6"/>
-      </svg>
-    </div>
-    
-    <h1 class="auth-title">XAVIER INSTITUTE</h1>
-    <p class="auth-subtitle">Acesso Restrito</p>
-    
-    <div class="auth-card">
-      <div class="auth-tabs" id="auth-tabs">
-        <button class="auth-tab active" data-tab="login">Entrar</button>
-      </div>
-      
-      <div id="error" class="auth-error"></div>
-      
-      <form id="login-form" class="auth-form active">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" required placeholder="seu@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Senha</label>
-          <input type="password" class="form-input" name="password" required placeholder="••••••••">
-        </div>
-        <button type="submit" class="btn btn-primary">Acessar</button>
-      </form>
-      
-      <form id="register-form" class="auth-form">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" required placeholder="seu@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Senha</label>
-          <input type="password" class="form-input" name="password" required minlength="6" placeholder="Mín. 6 caracteres">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Nome de Usuário</label>
-          <input type="text" class="form-input" name="username" required placeholder="Usuario" pattern="[a-zA-Z0-9_]+">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Nome de Exibição</label>
-          <input type="text" class="form-input" name="displayName" required placeholder="Seu Nome">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tipo de Conta</label>
-          <div class="role-select">
-            <button type="button" class="role-btn selected" data-role="player">Jogador</button>
-          </div>
-        </div>
-        <input type="hidden" name="role" value="player">
-        <button type="submit" class="btn btn-primary">Criar Conta</button>
-      </form>
-    </div>
-    
-    <p class="auth-footer">X-MEN // CITY OF MIST</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <div id="app"></div>
+  
   <script src="assets/js/config.js"></script>
   <script src="assets/js/supabase-client.js"></script>
-  <script src="assets/js/auth-module.js"></script>
-  <script src="assets/js/api-module.js"></script>
-  <script src="assets/js/globals.js"></script>
-  <script src="assets/js/themes.js"></script>
+  <script src="app/core/state.js"></script>
+  <script src="app/core/router.js"></script>
+  <script src="app/services/auth.js"></script>
+  <script src="app/services/api.js"></script>
+  <script src="app/app.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM ready, checking window.api:', typeof window.api);
-      checkAuth();
+    document.addEventListener('DOMContentLoaded', () => {
+      window.App.init();
     });
-
-    var tabs = document.querySelectorAll('.auth-tab');
-    var forms = document.querySelectorAll('.auth-form');
-    var errorEl = document.getElementById('error');
-
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        tabs.forEach(function(t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-        forms.forEach(function(f) { f.classList.remove('active'); });
-        document.getElementById(tab.dataset.tab + '-form').classList.add('active');
-        errorEl.classList.remove('show');
-      });
-    });
-
-    var roleBtns = document.querySelectorAll('.role-btn');
-    var roleInput = document.querySelector('input[name="role"]');
-    roleBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        roleBtns.forEach(function(b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        roleInput.value = btn.dataset.role;
-      });
-    });
-
-    // Add register tab dynamically
-    (function() {
-      var tabsContainer = document.getElementById('auth-tabs');
-      if (!tabsContainer) return;
-      var registerBtn = document.createElement('button');
-      registerBtn.className = 'auth-tab';
-      registerBtn.dataset.tab = 'register';
-      registerBtn.textContent = 'Cadastrar';
-      tabsContainer.appendChild(registerBtn);
-      registerBtn.addEventListener('click', function() {
-        document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
-        document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
-        registerBtn.classList.add('active');
-        document.getElementById('register-form').classList.add('active');
-        document.getElementById('error').classList.remove('show');
-      });
-    })();
-
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = e.target.email.value;
-      var password = e.target.password.value;
-      var btn = e.target.querySelector('button[type="submit"]');
-      var origText = btn.textContent;
-      btn.textContent = 'Entrando...';
-      btn.disabled = true;
-      
-      login(email, password).then(function() {
-        window.location.href = 'dashboard.html';
-      }).catch(function(err) {
-        errorEl.textContent = err.message;
-        errorEl.classList.add('show');
-        btn.textContent = origText;
-        btn.disabled = false;
-      });
-    });
-
-    document.getElementById('register-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = e.target.email.value;
-      var password = e.target.password.value;
-      var username = e.target.username.value;
-      var displayName = e.target.displayName.value;
-      var role = e.target.role.value;
-      var btn = e.target.querySelector('button[type="submit"]');
-      var origText = btn.textContent;
-      btn.textContent = 'Criando...';
-      btn.disabled = true;
-      
-      register(email, password, username, displayName, role).then(function() {
-        window.location.href = 'dashboard.html';
-      }).catch(function(err) {
-        console.error('Erro:', err);
-        errorEl.textContent = err.message || 'Erro ao criar conta';
-        errorEl.classList.add('show');
-        btn.textContent = origText;
-        btn.disabled = false;
-      });
-    });
-    
-    initTheme();
   </script>
 </body>
 </html>

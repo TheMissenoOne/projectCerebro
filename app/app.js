@@ -45,15 +45,83 @@ const App = {
   
   _registerRoutes() {
     // Login route (always available)
-    Router.add('/login', async () => {
+    Router.add('/login', async (container) => {
       const { LoginComponent } = await import('./components/login.js');
-      LoginComponent.mount(document.getElementById('app'));
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = LoginComponent;
+      await LoginComponent.mount(container);
     });
     
     // Dashboard - lazy load
-    Router.add('/dashboard', async () => {
+    Router.add('/dashboard', async (container) => {
       const { DashboardComponent } = await import('./components/dashboard.js');
-      DashboardComponent.mount(document.getElementById('app'));
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = DashboardComponent;
+      await DashboardComponent.mount(container);
+    });
+    
+    // Ficha - lazy load
+    Router.add('/ficha', async (container, params) => {
+      const { FichaComponent } = await import('./components/ficha.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = FichaComponent;
+      await FichaComponent.mount(container, params);
+    });
+    
+    // Admin - lazy load
+    Router.add('/admin', async (container, params) => {
+      const { AdminComponent } = await import('./components/admin.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = AdminComponent;
+      await AdminComponent.mount(container, params);
+    });
+    
+    // Wiki - lazy load
+    Router.add('/wiki', async (container, params) => {
+      const { WikiComponent } = await import('./components/wiki.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = WikiComponent;
+      await WikiComponent.mount(container, params);
+    });
+    
+    // Cerebro - lazy load
+    Router.add('/cerebro', async (container, params) => {
+      const { CerebroComponent } = await import('./components/cerebro.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = CerebroComponent;
+      await CerebroComponent.mount(container, params);
+    });
+    
+    // NPCs - lazy load (uses cerebro)
+    Router.add('/npcs', async (container, params) => {
+      const { CerebroComponent } = await import('./components/cerebro.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = CerebroComponent;
+      await CerebroComponent.mount(container, params);
+    });
+    
+    // Combate - lazy load
+    Router.add('/combate', async (container, params) => {
+      const { CombateComponent } = await import('./components/combate.js');
+      if (container._component && container._component.unmount) {
+        container._component.unmount();
+      }
+      container._component = CombateComponent;
+      await CombateComponent.mount(container, params);
     });
     
     // 404 handler
