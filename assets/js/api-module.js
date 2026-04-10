@@ -25,7 +25,14 @@
 
   window.api.getGMParty = function(gmId) {
     return client().from('parties').select('*').eq('gm_id', gmId).single()
-      .then(function(result) { if (result.error) return null; return result.data; });
+      .then(function(result) { 
+        if (result.error) {
+          console.log('[getGMParty] error:', result.error);
+          return null; 
+        }
+        console.log('[getGMParty] party:', result.data);
+        return result.data; 
+      });
   };
 
   window.api.getPartyByCode = function(code) {
