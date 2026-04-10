@@ -418,8 +418,10 @@
         console.log('[GM ID]', gmId);
         
         // First check parties
-        const parties = await window.getSupabaseClient().from('parties').select('id, name').eq('gm_id', gmId);
-        console.log('[Parties found]', parties.data);
+        const parties = await window.getSupabaseClient().from('parties').select('id,name').eq('gm_id', gmId);
+        console.log('[Parties found]', parties.data, parties.error);
+        
+        if (parties.error) throw parties.error;
         
         const chars = await api.listAllGMCharacters(gmId);
         const tbody = document.getElementById('party-chars-body');
