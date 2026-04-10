@@ -110,7 +110,7 @@
       .then(function(result) { 
         console.log('[listAllGMCharacters] parties query:', result);
         if (result.error) throw result.error; 
-        console.log('[listAllGMCharacters] parties data:', result.data);
+        console.log('[listAllGMCharacters] parties data:', JSON.stringify(result.data));
         return result.data; 
       })
       .then(function(parties) {
@@ -119,7 +119,7 @@
           return [];
         }
         var partyIds = parties.map(function(p) { return p.id; });
-        console.log('[listAllGMCharacters] partyIds:', partyIds);
+        console.log('[listAllGMCharacters] partyIds:', JSON.stringify(partyIds));
         
         if (partyIds.length === 0) return [];
         
@@ -127,7 +127,11 @@
           .in('party_id', partyIds).order('name')
           .then(function(r) { 
             console.log('[listAllGMCharacters] characters query:', r);
-            if (r.error) throw r.error; return r.data.map(function(c) {
+            if (r.error) {
+              console.error('[listAllGMCharacters] characters error:', r.error);
+              throw r.error;
+            }
+            return r.data.map(function(c) {
             c.player_name = c.profiles?.display_name || c.profiles?.username || c.player_id;
             c.party_name = c.parties?.name || 'Sem Party';
             return c;
