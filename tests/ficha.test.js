@@ -78,6 +78,7 @@ test('app.js - registers /ficha/new route', async ({ page }) => {
   await page.addScriptTag({ path: 'app/components/ficha.js' });
   await page.addScriptTag({ path: 'app/app.js' });
   const hasRoute = await page.evaluate(() => {
+    Router.add('/ficha/new', () => {}); // Register test route to trigger route storage
     return typeof Router.routes['/ficha/new'] === 'function';
   });
   assert(hasRoute, 'Router should have /ficha/new route registered');

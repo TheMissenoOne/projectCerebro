@@ -97,7 +97,7 @@ const Router = {
       }
     }
     
-    // Also check exact match for registered routes (handles /ficha/new vs /ficha/:id)
+    // If still no route and it's not root, check for exact match
     if (!route && routePath !== '/' && routePath !== '') {
       const exactMatch = this.routes[routePath];
       if (exactMatch) {
