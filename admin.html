@@ -412,25 +412,32 @@
     window.showTab = showTab;
 
     async function loadPartyCharacters() {
-      const chars = await api.listAllGMCharacters(auth.session.user.id);
-      const tbody = document.getElementById('party-chars-body');
-      tbody.innerHTML = '';
-      
-      if (!chars || chars.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
-        return;
+      try {
+        const chars = await api.listAllGMCharacters(auth.session.user.id);
+        const tbody = document.getElementById('party-chars-body');
+        tbody.innerHTML = '';
+        
+        console.log('[GM Characters] Found:', chars);
+        
+        if (!chars || chars.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
+          return;
+        }
+        
+        chars.forEach(char => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
+            <td>${char.player_name || char.player_id}</td>
+            <td>${char.party_name || 'Sem Party'}</td>
+            <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      } catch (e) {
+        console.error('[loadPartyCharacters error]', e);
+        document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="4" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
       }
-      
-      chars.forEach(char => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
-          <td>${char.player_name || char.player_id}</td>
-          <td>${char.party_name || 'Sem Party'}</td>
-          <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
-        `;
-        tbody.appendChild(row);
-      });
     }
 
     async function loadSessionNotes() {
