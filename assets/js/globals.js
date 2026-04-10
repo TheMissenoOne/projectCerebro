@@ -51,6 +51,7 @@
       themes.forEach(function(t) { document.body.classList.remove('theme-' + t); });
       document.body.classList.add('theme-' + tema);
       localStorage.setItem('cerebro_tema', tema);
+      if (window.renderThemeDots) window.renderThemeDots();
     };
   }
 
