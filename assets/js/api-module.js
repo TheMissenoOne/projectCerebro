@@ -83,6 +83,11 @@
            console.error('[createCharacter] error:', result.error);
            throw result.error; 
          }
+         console.log('[createCharacter] data:', result.data);
+         if (!result.data || !result.data.id) {
+           console.error('[createCharacter] No character ID returned');
+           throw new Error('Character creation failed - no ID returned');
+         }
          return result.data; 
        });
    };

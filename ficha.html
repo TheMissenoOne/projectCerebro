@@ -516,12 +516,20 @@ async function init(){
       
       const char = await window.api.createCharacter(userId, partyId);
       console.log('[ficha] created char:', char);
-      window.location.replace('ficha.html?id=' + char.id);
+      console.log('[ficha] char.id:', char ? char.id : 'undefined');
+      
+      if (!char || !char.id) {
+        throw new Error('Character creation failed - no ID');
+      }
+      
+      const newUrl = 'ficha.html?id=' + char.id;
+      console.log('[ficha] redirecting to:', newUrl);
+      window.location.replace(newUrl);
       return;
     } catch(e) {
       console.error('[ficha] create error:', e);
       setInd('erro','// ERRO AO CRIAR');
-      toast('ERRO AO CRIAR PERSONAGEM');
+      toast('ERRO AO CRIAR PERSONAGEM: ' + e.message);
       return;
     }
   }
