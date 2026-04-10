@@ -74,10 +74,18 @@
   /**
    * Character operations
    */
-  window.api.createCharacter = function(playerId, partyId) {
-    return client().from('characters').insert({ player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true }).select().single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
-  };
+   window.api.createCharacter = function(playerId, partyId) {
+     console.log('[createCharacter] playerId:', playerId, 'partyId:', partyId);
+     return client().from('characters').insert({ player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true }).select().single()
+       .then(function(result) { 
+         console.log('[createCharacter] result:', result);
+         if (result.error) {
+           console.error('[createCharacter] error:', result.error);
+           throw result.error; 
+         }
+         return result.data; 
+       });
+   };
 
   window.api.loadCharacter = function(charId) {
     return client().from('characters').select('*').eq('id', charId).single()
