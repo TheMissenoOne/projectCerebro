@@ -418,7 +418,7 @@
         console.log('[GM ID]', gmId);
         
         // First check parties
-        const parties = await client().from('parties').select('id, name').eq('gm_id', gmId);
+        const parties = await window.getSupabaseClient().from('parties').select('id, name').eq('gm_id', gmId);
         console.log('[Parties found]', parties.data);
         
         const chars = await api.listAllGMCharacters(gmId);
