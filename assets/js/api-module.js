@@ -104,6 +104,22 @@
       });});
   };
 
+  window.api.listAllGMCharacters = function(gmId) {
+    return client().from('parties').select('id').eq('gm_id', gmId)
+      .then(function(result) { if (result.error) throw result.error; return result.data; })
+      .then(function(parties) {
+        if (!parties || parties.length === 0) return [];
+        var partyIds = parties.map(function(p) { return p.id; });
+        return client().from('characters').select('*, profiles(display_name, username), parties(name)')
+          .in('party_id', partyIds).order('name')
+          .then(function(r) { if (r.error) throw r.error; return r.data.map(function(c) {
+            c.player_name = c.profiles?.display_name || c.profiles?.username || c.player_id;
+            c.party_name = c.parties?.name || 'Sem Party';
+            return c;
+          });});
+      });
+  };
+
   window.api.deleteCharacter = function(charId) {
     return client().from('characters').delete().eq('id', charId)
       .then(function(result) { if (result.error) throw result.error; });

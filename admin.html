@@ -322,13 +322,14 @@
       <div id="party-admin-content">
         <div id="tab-party" class="admin-section">
           <div class="admin-section-header">
-            <span class="admin-section-title">Personagens da Party</span>
+            <span class="admin-section-title">Todos os Personagens</span>
           </div>
           <table class="party-chars-table">
             <thead>
               <tr>
                 <th>Personagem</th>
                 <th>Jogador</th>
+                <th>Party</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -415,15 +416,21 @@
     window.showTab = showTab;
 
     async function loadPartyCharacters() {
-      const chars = await api.listPartyCharacters(currentParty.id);
+      const chars = await api.listAllGMCharacters(auth.session.user.id);
       const tbody = document.getElementById('party-chars-body');
       tbody.innerHTML = '';
+      
+      if (!chars || chars.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
+        return;
+      }
       
       chars.forEach(char => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
           <td>${char.player_name || char.player_id}</td>
+          <td>${char.party_name || 'Sem Party'}</td>
           <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
         `;
         tbody.appendChild(row);
