@@ -11,6 +11,15 @@
 - [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
 - [Fase G: CodeRabbit Review - TESTS PASSED ✅](kanban/fase-g-coderabbit-review.md)
 
+### 🚧 In Progress
+- [Fase H: SPA Core Infrastructure](kanban/fase-h-spa-core.md)
+
+### 📋 To Do
+- [Fase I: Dashboard Component](kanban/fase-i-dashboard.md)
+- [Fase J: Ficha Component](kanban/fase-j-ficha.md)
+- [Fase K: Admin Component](kanban/fase-k-admin.md)
+- [Fase L: Wiki + Cerebro + NPCs + Combate](kanban/fase-l-outros.md)
+
 ---
 
 ## Progresso
@@ -24,18 +33,8 @@
 | E - Seed NPCs | ✅ Done |
 | F - Modularização | ✅ Done |
 | G - CodeRabbit Review | ✅ Done |
-
-## Fases Concluídas
- 
-### Funcionalidades Implementadas:
-
-1. **Full-stack** com Node.js/Express backend + Supabase client-side
-2. **Autenticação JWT** com registro/login
-3. **Dashboard** completo com personagens e parties
-4. **Cérebro Database** para NPCs do GM
-5. **Calculadora de Combate** (AV/OV e EV/RV)
-6. **Seed de 133 NPCs** do X-MEN TTRPG
-
-### Próximos Passos (Opcionais):
-- Adicionar session-*.md ao .gitignore
-- Código limpo: todos os problemas do CodeRabbit resolvidos
+| H - SPA Core | 🚧 In Progress |
+| I - Dashboard Component | 📋 To Do |
+| J - Ficha Component | 📋 To Do |
+| K - Admin Component | 📋 To Do |
+| L - Outros Componentes | 📋 To Do |
