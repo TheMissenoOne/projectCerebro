@@ -54,11 +54,10 @@
       border-left: 2px solid var(--red);
     }
 
-    .wiki-content {
-      flex: 1;
-      padding: clamp(16px, 3vw, 32px);
-      overflow-y: auto;
-    }
+.wiki-content {
+  flex: 1;
+  padding: clamp(16px, 3vw, 32px);
+}
 
     .wiki-content h1 {
       font-family: var(--disp);
@@ -131,11 +130,12 @@
       padding: 0;
     }
 
-    .wiki-content table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-    }
+.wiki-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: .52rem;
+}
 
     .wiki-content th, .wiki-content td {
       padding: 8px 10px;
@@ -155,14 +155,12 @@
       text-align: center;
     }
 
-    .wiki-content table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
-      font-size: .52rem;
-      max-height: 60vh;
-      position: relative;
-    }
+.wiki-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: .52rem;
+}
     
     .wiki-content table thead {
       position: sticky;
@@ -323,6 +321,8 @@
         <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
         <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
+        <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Tipos de Ação</a>
+        <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
         <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
       </div>
       <div class="wiki-nav-section">
@@ -365,11 +365,20 @@
     const pages = {
       index: `
         <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
-        <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado.</p>
+        <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado com mecânicas DC Heroes.</p>
         <h2>Sobre o Sistema</h2>
-        <p>X-Men TTRPG usa uma versão adaptada do sistema City of Mist para o universo X-Men.</p>
+        <p>X-Men TTRPG usa uma versão híbrida do sistema City of Mist + DC Heroes para o universo X-Men.</p>
         <h2>Navegação</h2>
-        <p>Use a barra lateral para navegar pelas diferentes seções do sistema.</p>
+        <ul>
+          <li><strong>Movimentos:</strong> As ações básicas que personagens podem tomar</li>
+          <li><strong>Temas:</strong> A estrutura de criação de personagens (Mutação vs Humanidade)</li>
+          <li><strong>Tags:</strong> O sistema de poderes e fraquezas</li>
+          <li><strong>Progressão:</strong> Como personagens evoluem ao longo da campanha</li>
+          <li><strong>Combate:</strong> Regras de combate, condições e recuperação</li>
+          <li><strong>Tipos de Ação:</strong> Os quatro tipos de ação do sistema híbrido e duração de condições</li>
+          <li><strong>Modificadores:</strong> Tabela completa de modificadores para ações de manifestação</li>
+          <li><strong>Ação e Resultado:</strong> Tabela interativa AV/OV e EV/RV</li>
+        </ul>
       `,
       movimentos: `
         <h1>Movimentos</h1>
@@ -487,10 +496,19 @@
       `,
       combate: `
         <h1>Combate</h1>
-        <p>O combate em X-Men TTRPG é fluido e narrativo, focado em cinema e drama.</p>
+        <p>O combate em X-Men TTRPG é fluido e narrativo, focado em cinema e drama. As ações em combate seguem o sistema híbrido DC Heroes + City of Mist — consulte a página <strong>Tipos de Ação</strong> para a estrutura completa.</p>
         
         <h2>Iniciativa</h2>
         <p>O GM determina a ordem de iniciativa baseado na situação narrativa. Personagens com alta velocidade ou habilidades de combate podem ter vantagem.</p>
+        
+        <h2>Ações no Turno</h2>
+        <p>Em cada turno, um personagem pode realizar ações de acordo com os quatro tipos do sistema:</p>
+        <ul>
+          <li><strong>Oposição:</strong> atacar, bloquear, empurrar — há resistência ativa</li>
+          <li><strong>Manifestação:</strong> criar efeitos de poder sem oposição direta</li>
+          <li><strong>Automática:</strong> usar tags para controle direto de condições</li>
+          <li><strong>Reação:</strong> responder fora do turno consumindo tags</li>
+        </ul>
         
         <h2>Condições em Combate</h2>
         <p>Durante o combate, personagens podem receber condições:</p>
@@ -499,14 +517,15 @@
           <li><strong>Exausto:</strong> Exaustão física</li>
           <li><strong>Assustado:</strong> Medo intenso</li>
           <li><strong>Confuso:</strong> Desorientação mental</li>
-          <li><strong>Enfangado:</strong> Preso ou imobilizado</li>
+          <li><strong>Enredado:</strong> Preso ou imobilizado</li>
         </ul>
+        <p>Toda condição tem um <strong>grau em APs</strong> e um <strong>tipo de duração</strong> (temporária, duradoura ou permanente). Veja a seção de duração na página <strong>Tipos de Ação</strong>.</p>
         
         <h2>Dano</h2>
-        <p>Dano é abstracto em City of Mist. Em vez de pontos de vida, usamos condições que representam o estado do personagem.</p>
+        <p>Dano é abstrato em City of Mist. Em vez de pontos de vida, usamos condições que representam o estado do personagem. O grau da condição é igual aos RAPs obtidos na ação que a gerou.</p>
         
         <h2>Recuperação</h2>
-        <p>Between scenes, personagens podem tentar recuperação através de descanso, медикаменты, ou outros meios narrativos.</p>
+        <p>Entre cenas, personagens podem tentar recuperação através de descanso, itens ou outros meios narrativos. Condições temporárias expiram sozinhas; condições duradouras exigem ação ativa para remoção.</p>
       `,
       galera: `
         <h1>Tema de Galera</h1>
@@ -574,6 +593,185 @@
         </ul>
         
         <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
+      `,
+      tipos_acao: `
+        <h1>Tipos de Ação</h1>
+        <p>O sistema híbrido DC Heroes + City of Mist define quatro categorias de ação. Cada categoria determina como AV/EV, OV/RV e RAPs funcionam — e como o resultado é convertido em condições ou efeitos.</p>
+
+        <h2>1. Ações de Oposição</h2>
+        <p>Usadas quando há resistência ativa de um alvo, personagem ou força consciente. É o tipo padrão de confronto direto.</p>
+        <ul>
+          <li><strong>AV/EV</strong> = atributos + tags + condições relevantes do atacante</li>
+          <li><strong>OV/RV</strong> = atributos/valores da oposição + circunstâncias + condições</li>
+          <li>O resultado gera <strong>RAPs</strong>, que determinam dano, criação de condições e intensidade do efeito</li>
+        </ul>
+
+        <h2>2. Ações de Manifestação</h2>
+        <p>Usadas quando não há resistência ativa — apenas dificuldade de execução. O obstáculo é o ambiente, a complexidade ou a natureza do efeito desejado.</p>
+        <h3>Regra base</h3>
+        <p><code>OV/RV = 1 + modificadores</code></p>
+        <p>O valor mínimo de 1 representa o limiar de existência de qualquer efeito. Uma falha indica que o efeito não se sustenta — "pisca" e some. Os modificadores são detalhados na página <strong>Modificadores</strong>.</p>
+        <h3>Resultado</h3>
+        <ul>
+          <li>RAPs viram uma <strong>condição/tag</strong></li>
+          <li>O valor em RAPs define o <strong>grau (APs)</strong> da condição</li>
+          <li>A duração é escolhida conforme a intenção narrativa (ver abaixo)</li>
+        </ul>
+
+        <h2>3. Ações Automáticas</h2>
+        <p>Ações sem rolagem. Representam o controle direto e deliberado do personagem sobre seus recursos narrativos.</p>
+        <ul>
+          <li>Cada tag só pode ser usada <strong>1 vez por turno</strong></li>
+          <li>Cada tag usada vale <strong>1 AP</strong></li>
+          <li><strong>AP do efeito = número de tags usadas</strong></li>
+        </ul>
+        <p>Ações automáticas podem: criar condições, remover condições, aumentar ou reduzir efeitos existentes, manter efeitos ativos.</p>
+        <p><strong>Limite:</strong> só podem afetar valores <em>iguais ou menores</em> que o número de tags usadas. Redução parcial é permitida.</p>
+
+        <h2>4. Ações Automáticas como Reação</h2>
+        <p>Versão das ações automáticas executada <em>fora do turno</em> do personagem — em resposta a algo que acontece.</p>
+        <ul>
+          <li>Consomem tags normalmente</li>
+          <li>Seguem as mesmas regras das ações automáticas</li>
+          <li>Podem ser usadas mesmo em ações com oposição em andamento</li>
+        </ul>
+
+        <h2>Duração de Tags e Condições</h2>
+        <p>Toda condição criada possui um <strong>grau em APs</strong>, definido pelos RAPs ou pelo uso de tags.</p>
+
+        <h3>Temporária (Turnos)</h3>
+        <p>Dura um número de <strong>turnos igual ao grau</strong>. Usada para efeitos rápidos e instáveis.</p>
+        <p>Ex: <code>Atordoado-3</code> → dura 3 turnos</p>
+
+        <h3>Duradoura (APs de tempo)</h3>
+        <p>Dura um número de <strong>APs de tempo igual ao grau</strong>. Usada para efeitos sustentados além do combate.</p>
+        <p>Ex: <code>Aura Protetora-5</code> → dura 5 APs de tempo</p>
+
+        <h3>Permanente</h3>
+        <p>Duração indefinida — só termina se algo intervir ativamente. Não deve ser criada por ação automática simples. Normalmente exige alta dificuldade, custo adicional ou justificativa narrativa forte.</p>
+
+        <h2>Conversão de Resultado em Condição</h2>
+        <p>RAPs gerados numa ação de manifestação ou oposição são convertidos em condições da seguinte forma:</p>
+        <ul>
+          <li><strong>RAPs = grau da condição</strong></li>
+          <li>A condição recebe nome ficcional, valor em APs e tipo de duração</li>
+        </ul>
+
+        <h2>Resumo Operacional</h2>
+        <table>
+          <thead><tr><th>Tipo</th><th>Quando usar</th><th>Mecânica</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Oposição</td><td>Resistência ativa</td><td>AV/EV vs OV/RV</td><td>RAPs → dano/condição</td></tr>
+            <tr><td>Manifestação</td><td>Sem oposição, com dificuldade</td><td>EV vs 1 + mods</td><td>RAPs → condição/tag</td></tr>
+            <tr><td>Automática</td><td>Controle direto via tags</td><td>Tags = APs</td><td>Efeito imediato</td></tr>
+            <tr><td>Reação</td><td>Automáticas fora do turno</td><td>Tags = APs</td><td>Efeito imediato</td></tr>
+          </tbody>
+        </table>
+      `,
+      modificadores: `
+        <h1>Tabela de Modificadores</h1>
+        <p>Modificadores são aplicados exclusivamente a <strong>Ações de Manifestação</strong>. Todos afetam <strong>OV e RV simultaneamente</strong>, tornando a ação mais ou menos difícil conforme a ambição do efeito.</p>
+        <p><strong>Fórmula:</strong> <code>OV/RV = 1 + modificadores de ação + posicionamento + circunstância</code></p>
+
+        <h2>1. Modificadores da Ação</h2>
+        <p>Refletem a natureza e ambição do efeito que o personagem tenta criar.</p>
+        <table>
+          <thead><tr><th>Categoria</th><th>Grau</th><th>Mod</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4">Especificidade</td><td>Muito específico</td><td>+0</td></tr>
+            <tr><td>Moderado</td><td>+1</td></tr>
+            <tr><td>Amplo</td><td>+2</td></tr>
+            <tr><td>Universal</td><td>+3</td></tr>
+            <tr><td rowspan="4">Amplitude</td><td>1 alvo</td><td>+0</td></tr>
+            <tr><td>2–3 alvos</td><td>+1</td></tr>
+            <tr><td>Área pequena</td><td>+2</td></tr>
+            <tr><td>Área ampla</td><td>+3</td></tr>
+            <tr><td rowspan="4">Alcance</td><td>Toque</td><td>+0</td></tr>
+            <tr><td>Curto</td><td>+1</td></tr>
+            <tr><td>Médio</td><td>+2</td></tr>
+            <tr><td>Longo</td><td>+3</td></tr>
+            <tr><td rowspan="4">Controle</td><td>Bruto</td><td>+0</td></tr>
+            <tr><td>Direcionado</td><td>+1</td></tr>
+            <tr><td>Preciso</td><td>+2</td></tr>
+            <tr><td>Total</td><td>+3</td></tr>
+            <tr><td rowspan="4">Complexidade</td><td>Simples</td><td>+0</td></tr>
+            <tr><td>Duplo</td><td>+1</td></tr>
+            <tr><td>Múltiplo</td><td>+2</td></tr>
+            <tr><td>Composto</td><td>+3</td></tr>
+            <tr><td rowspan="4">Ocultação</td><td>Visível</td><td>+0</td></tr>
+            <tr><td>Discreto</td><td>+1</td></tr>
+            <tr><td>Oculto</td><td>+2</td></tr>
+            <tr><td>Indetectável</td><td>+3</td></tr>
+            <tr><td rowspan="4">Condição</td><td>Simples</td><td>+0</td></tr>
+            <tr><td>Estruturada</td><td>+1</td></tr>
+            <tr><td>Complexa</td><td>+2</td></tr>
+            <tr><td>Multifacetada</td><td>+3</td></tr>
+            <tr><td rowspan="4">Duração</td><td>Instantâneo</td><td>+0</td></tr>
+            <tr><td>Curto</td><td>+1</td></tr>
+            <tr><td>Cena</td><td>+2</td></tr>
+            <tr><td>Persistente</td><td>+3</td></tr>
+            <tr><td rowspan="4">Chain Effect</td><td>Nenhum</td><td>+0</td></tr>
+            <tr><td>Limitado</td><td>+1</td></tr>
+            <tr><td>Encadeado</td><td>+2</td></tr>
+            <tr><td>Contínuo</td><td>+3</td></tr>
+            <tr><td rowspan="4">Usável em outros</td><td>Apenas si</td><td>+0</td></tr>
+            <tr><td>Pode afetar outro</td><td>+1</td></tr>
+            <tr><td>Transferível</td><td>+2</td></tr>
+            <tr><td>Livre</td><td>+3</td></tr>
+          </tbody>
+        </table>
+
+        <h2>2. Modificadores de Posicionamento</h2>
+        <p>Refletem vantagens e desvantagens táticas do terreno e posição relativa.</p>
+        <table>
+          <thead><tr><th>Condição</th><th>Mod</th></tr></thead>
+          <tbody>
+            <tr><td>Terreno alto a favor</td><td>-1</td></tr>
+            <tr><td>Terreno alto contra</td><td>+1</td></tr>
+            <tr><td>Linha de visão limpa</td><td>-1</td></tr>
+            <tr><td>Sem visão do alvo</td><td>+1</td></tr>
+            <tr><td>Fora de visão total</td><td>+2</td></tr>
+            <tr><td>Cobertura parcial</td><td>+1</td></tr>
+            <tr><td>Cobertura total</td><td>+2</td></tr>
+            <tr><td>Alvo exposto</td><td>-1</td></tr>
+            <tr><td>Alvo parcialmente oculto</td><td>+1</td></tr>
+            <tr><td>Alvo totalmente oculto</td><td>+2</td></tr>
+            <tr><td>Flanqueado</td><td>-1</td></tr>
+            <tr><td>Alvo de costas</td><td>-2</td></tr>
+            <tr><td>Área apertada</td><td>+1</td></tr>
+            <tr><td>Área aberta</td><td>-1</td></tr>
+            <tr><td>Contato direto</td><td>-1</td></tr>
+            <tr><td>Fora de alcance de toque</td><td>+1</td></tr>
+            <tr><td>Usuário instável</td><td>+1</td></tr>
+            <tr><td>Usuário estável</td><td>-1</td></tr>
+            <tr><td>Alvo caído (corpo a corpo)</td><td>-1</td></tr>
+          </tbody>
+        </table>
+
+        <h2>3. Modificadores Circunstanciais</h2>
+        <p>Refletem o contexto emocional, ambiental e de foco do momento.</p>
+        <table>
+          <thead><tr><th>Condição</th><th>Mod</th></tr></thead>
+          <tbody>
+            <tr><td>Pressão / caos</td><td>+1</td></tr>
+            <tr><td>Ambiente favorável</td><td>-1</td></tr>
+            <tr><td>Ambiente hostil</td><td>+1</td></tr>
+            <tr><td>Alvo cooperativo</td><td>-1</td></tr>
+            <tr><td>Alvo resistente passivo</td><td>+1</td></tr>
+            <tr><td>Foco total</td><td>-1</td></tr>
+            <tr><td>Distração</td><td>+1</td></tr>
+            <tr><td>Repetição da ação</td><td>+1</td></tr>
+            <tr><td>Familiaridade alta</td><td>-1</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Notas de Equilíbrio</h2>
+        <ul>
+          <li>Modificadores positivos aumentam OV/RV (mais difícil). Modificadores negativos reduzem (mais fácil).</li>
+          <li>O GM pode limitar categorias de ação combinadas para evitar stacking excessivo — recomendado cap de <strong>+8</strong> total em modificadores de ação por efeito.</li>
+          <li>Modificadores de posicionamento e circunstanciais não têm cap, mas são situacionais e não cumulativos entre si se representarem a mesma condição.</li>
+          <li>Ações automáticas <strong>não usam modificadores</strong> — seu limite é o número de tags investidas.</li>
+        </ul>
       `,
       acao_resultado: `
         <h1>Tabela de Ação e Resultado</h1>

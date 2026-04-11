@@ -3,7 +3,7 @@
  * Theme reference and game rules
  */
 
-const WikiComponent = {
+export const WikiComponent = {
   _container: null,
   _currentTheme: 'themes',
 

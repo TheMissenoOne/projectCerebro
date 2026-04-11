@@ -44,6 +44,11 @@ const App = {
   },
   
   _registerRoutes() {
+    // Root route - redirect to dashboard
+    Router.add('/', async (container) => {
+      Router.navigate('/dashboard', false);
+    });
+    
     // Login route (always available)
     Router.add('/login', async (container) => {
       const { LoginComponent } = await import('./components/login.js');
@@ -81,7 +86,9 @@ const App = {
         container._component.unmount();
       }
       container._component = FichaComponent;
-      await FichaComponent.mount(container, params);
+      // Fallback: extract ID directly from URL if router params are missing
+      const charId = params.id || location.pathname.split('/').pop();
+      await FichaComponent.mount(container, { ...params, id: charId });
     });
     
     // Admin - lazy load

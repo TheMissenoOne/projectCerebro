@@ -2,7 +2,7 @@
  * X-MEN TTRPG - Dashboard Component
  */
 
-const DashboardComponent = {
+export const DashboardComponent = {
   _container: null,
   _party: null,
   _characters: [],
@@ -39,9 +39,10 @@ const DashboardComponent = {
         
         <div class="dash-section" id="characters-section">
           <h3 class="dash-section-title">PERSONAGENS</h3>
-          <button class="btn btn-primary btn-new" onclick="Router.navigate('/ficha/new')">NOVA FICHA</button>
-          <div class="chars-list" id="chars-list">
-            <div class="char-empty">—</div>
+          <div class="chars-grid" id="chars-grid">
+            <a href="/ficha/new" class="char-card char-card-new" data-link>
+              <span>+ NOVA FICHA</span>
+            </a>
           </div>
         </div>
         
@@ -68,7 +69,7 @@ const DashboardComponent = {
           <div class="theme-switcher">
             <div class="theme-dots-row" id="theme-dots-row"></div>
           </div>
-          <button class="tbtn" onclick="AuthService.logout();Router.navigate('/login')">SAIR</button>
+          <button class="tbtn" onclick="AuthService.logout().then(() => Router.navigate('/login'))">SAIR</button>
         </div>
       </div>
     `;
@@ -118,15 +119,26 @@ const DashboardComponent = {
   
   _render() {
     // Render characters
-    const charsList = document.getElementById('chars-list');
-    if (charsList) {
-      if (this._characters.length > 0) {
-        charsList.innerHTML = this._characters.map(c => `
-          <a href="/ficha/${c.id}" class="char-link" data-link>${c.name || 'Sem Nome'}</a>
-        `).join('');
-      } else {
-        charsList.innerHTML = '<div class="char-empty">—</div>';
-      }
+    const charsGrid = document.getElementById('chars-grid');
+    if (charsGrid) {
+      const newCard = charsGrid.querySelector('.char-card-new');
+      const existing = charsGrid.querySelectorAll('.char-card:not(.char-card-new)');
+      existing.forEach(c => c.remove());
+
+      this._characters.forEach((c, i) => {
+        console.log("C",c)
+        const card = document.createElement('a');
+        card.href = `/ficha/${c.id}`;
+        card.className = 'char-card dash-animate';
+        card.setAttribute('data-link', '');
+        card.style.animationDelay = (0.06 * i) + 's';
+        card.innerHTML = `
+          <div class="char-card-name">${c.name || 'Sem Nome'}</div>
+          <div class="char-card-codename">${c.codename || '—'}</div>
+          <div class="char-card-accent-line"></div>
+        `;
+        charsGrid.insertBefore(card, newCard);
+      });
     }
     
     // Render party

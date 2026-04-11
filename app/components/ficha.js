@@ -2,7 +2,7 @@
  * X-MEN TTRPG - Ficha Component
  */
 
-const FichaComponent = {
+export const FichaComponent = {
   _container: null,
   _charId: null,
   _character: null,
@@ -11,7 +11,7 @@ const FichaComponent = {
   async mount(container, params) {
     this._container = container;
     this._charId = params.id || null;
-    
+
     if (!AuthService.isLoggedIn()) {
       Router.navigate('/login');
       return;

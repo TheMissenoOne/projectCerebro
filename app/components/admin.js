@@ -3,7 +3,7 @@
  * GM Panel for party and encounter management
  */
 
-const AdminComponent = {
+export const AdminComponent = {
   _container: null,
   _currentTab: 'party',
   _party: null,

@@ -110,7 +110,7 @@ const Router = {
       if (notFound) {
         await notFound(this.root, { path });
       } else {
-        this.root.innerHTML = '<h1>404 - Page Not Found</h1>';
+        this.root.innerHTML = '<h1>404 - Page Nottt Found</h1>';
       }
       return;
     }

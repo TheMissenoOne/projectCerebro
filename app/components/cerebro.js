@@ -3,7 +3,7 @@
  * NPC Database and search
  */
 
-const CerebroComponent = {
+export const CerebroComponent = {
   _container: null,
   _npcs: [],
   _selectedNpc: null,

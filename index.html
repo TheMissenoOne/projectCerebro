@@ -4,6 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X-MEN TTRPG</title>
+
+  <!--
+    GitHub Pages SPA: decode the path that 404.html encoded into the query string
+    and restore the real URL via history.replaceState BEFORE any script runs.
+
+    e.g.  /projectCerebro/?/dashboard  →  /projectCerebro/dashboard
+  -->
+  <script>
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&');
+        });
+        window.history.replaceState(
+          null, null,
+          l.pathname.slice(0, -1) + decoded[0] +
+          (decoded[1] ? '?' + decoded[1] : '') +
+          l.hash
+        );
+      }
+    }(window.location));
+  </script>
+
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/auth.css">
@@ -11,9 +34,11 @@
 </head>
 <body>
   <div id="app"></div>
-  
+
   <script src="assets/js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/themes.js"></script>
   <script src="app/core/state.js"></script>
   <script src="app/core/router.js"></script>
   <script src="app/services/auth.js"></script>

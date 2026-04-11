@@ -3,7 +3,7 @@
  * Combat calculator and encounter manager
  */
 
-const CombateComponent = {
+export const CombateComponent = {
   _container: null,
   _activeTab: 'calculator',
   _encounter: [],
