@@ -3,51 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>X-MEN TTRPG</title>
-  <link rel="icon" type="image/svg+xml" href="/assets/img/x-logo.svg">
-
-  <!--
-    GitHub Pages SPA: decode the path that 404.html encoded into the query string
-    and restore the real URL via history.replaceState BEFORE any script runs.
-
-    e.g.  /projectCerebro/?/dashboard  →  /projectCerebro/dashboard
-  -->
-  <script>
-    (function (l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function (s) {
-          return s.replace(/~and~/g, '&');
-        });
-        window.history.replaceState(
-          null, null,
-          l.pathname.slice(0, -1) + decoded[0] +
-          (decoded[1] ? '?' + decoded[1] : '') +
-          l.hash
-        );
-      }
-    }(window.location));
-  </script>
-
+  <title>X-MEN TTRPG // LOGIN</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/auth.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-  <div id="app"></div>
+
+  <div class="auth-container">
+    <div class="auth-logo">
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5"/>
+        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5"/>
+      </svg>
+    </div>
+
+    <h1 class="auth-title">XAVIER INSTITUTE</h1>
+    <p class="auth-subtitle">Acesso Restrito</p>
+
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Entrar</button>
+        <button class="auth-tab" data-tab="register">Cadastrar</button>
+      </div>
+
+      <div id="auth-error" class="auth-error"></div>
+
+      <form id="login-form" class="auth-form active">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" name="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Senha</label>
+          <input type="password" class="form-input" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Acessar</button>
+      </form>
+
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" name="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Senha</label>
+          <input type="password" class="form-input" name="password" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Usuário</label>
+          <input type="text" class="form-input" name="username" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nome de Exibição</label>
+          <input type="text" class="form-input" name="displayName" required>
+        </div>
+        <input type="hidden" name="role" value="player">
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+      </form>
+    </div>
+
+    <p class="auth-footer">X-MEN // CITY OF MIST</p>
+  </div>
 
   <script src="assets/js/config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/auth-module.js"></script>
   <script src="assets/js/themes.js"></script>
-  <script src="app/core/state.js"></script>
-  <script src="app/core/router.js"></script>
-  <script src="app/services/auth.js"></script>
-  <script src="app/services/api.js"></script>
-  <script src="app/app.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      window.App.init();
+    // Redirect if already logged in
+    window.checkAuth();
+
+    var errorEl = document.getElementById('auth-error');
+
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + '-form').classList.add('active');
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+      });
+    });
+
+    // Login form
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('button[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Entrando...';
+      btn.disabled = true;
+      window.api.login(e.target.email.value, e.target.password.value)
+        .then(function() {
+          window.location.href = 'dashboard.html';
+        })
+        .catch(function(err) {
+          errorEl.textContent = err.message;
+          errorEl.classList.add('show');
+          btn.textContent = orig;
+          btn.disabled = false;
+        });
+    });
+
+    // Register form
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('button[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Criando...';
+      btn.disabled = true;
+      window.api.register(
+        e.target.email.value,
+        e.target.password.value,
+        e.target.username.value,
+        e.target.displayName.value,
+        'player'
+      )
+        .then(function() {
+          window.location.href = 'dashboard.html';
+        })
+        .catch(function(err) {
+          errorEl.textContent = err.message;
+          errorEl.classList.add('show');
+          btn.textContent = orig;
+          btn.disabled = false;
+        });
     });
   </script>
 </body>
