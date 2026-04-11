@@ -74,9 +74,40 @@ export const DashboardComponent = {
       </div>
     `;
     
+    // Expose party handlers for inline onclick
+    window.showCreateParty = () => this._showCreateParty();
+    window.showJoinParty = () => this._showJoinParty();
+
     // Render theme dots
     this._renderThemeDots();
     await this._loadData();
+  },
+
+  async _showCreateParty() {
+    const name = prompt('Nome da party:');
+    if (!name) return;
+    try {
+      const user = AuthService.getUser();
+      this._party = await ApiService.createParty(name, user.id);
+      this._render();
+    } catch (e) {
+      alert('Erro ao criar party: ' + e.message);
+    }
+  },
+
+  async _showJoinParty() {
+    const code = prompt('Código da party:');
+    if (!code) return;
+    try {
+      const party = await ApiService.getPartyByCode(code);
+      if (!party) { alert('Party não encontrada.'); return; }
+      const user = AuthService.getUser();
+      await ApiService.joinParty(party.id, user.id);
+      this._party = party;
+      this._render();
+    } catch (e) {
+      alert('Erro ao entrar na party: ' + e.message);
+    }
   },
   
   _renderThemeDots() {
@@ -103,11 +134,10 @@ export const DashboardComponent = {
       console.error('[Dashboard] Error loading characters:', e);
     }
     
-    // Load party
+    // Load party — try GM first (profile role may be stale), then player
     try {
-      if (profile?.role === 'gm') {
-        this._party = await ApiService.getGMParty(user.id);
-      } else {
+      this._party = await ApiService.getGMParty(user.id);
+      if (!this._party) {
         this._party = await ApiService.getPlayerParty(user.id);
       }
     } catch (e) {
@@ -126,7 +156,6 @@ export const DashboardComponent = {
       existing.forEach(c => c.remove());
 
       this._characters.forEach((c, i) => {
-        console.log("C",c)
         const card = document.createElement('a');
         card.href = `/ficha/${c.id}`;
         card.className = 'char-card dash-animate';
@@ -164,6 +193,8 @@ export const DashboardComponent = {
     this._container = null;
     this._party = null;
     this._characters = [];
+    delete window.showCreateParty;
+    delete window.showJoinParty;
   }
 };
 

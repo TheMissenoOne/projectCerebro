@@ -15,7 +15,7 @@ const AuthService = {
     try {
       const { data: { session } } = await this._client.auth.getSession();
       if (session) {
-        const profile = await this._loadProfile(session.user.id);
+        const profile = await this._loadProfile(session.user);
         AppState.setAuth({
           session,
           user: session.user,
@@ -30,22 +30,27 @@ const AuthService = {
     return false;
   },
   
-  async _loadProfile(userId) {
+  async _loadProfile(user) {
+    const userId = user?.id || user;
     try {
       const { data } = await this._client
         .from('profiles')
         .select('id, email, username, display_name, role')
         .eq('id', userId)
         .single();
-      
+
       if (data) return data;
     } catch (e) {
       console.log('[Auth] Profile not found, using metadata');
     }
-    
+
+    const meta = user?.user_metadata || {};
     return {
       id: userId,
-      role: 'player'
+      email: user?.email || null,
+      username: meta.username || user?.email?.split('@')[0] || userId,
+      display_name: meta.display_name || meta.username || user?.email?.split('@')[0] || null,
+      role: meta.role || 'player'
     };
   },
   

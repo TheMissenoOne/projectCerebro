@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X-MEN TTRPG // DASHBOARD</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/img/x-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
@@ -671,7 +672,7 @@
 <script src="assets/js/api-module.js"></script>
 <script src="assets/js/globals.js"></script>
 <script src="assets/js/themes.js"></script>
-<script src="assets/js/music.js"></script>
+
 <script>
   var currentUser = null;
   var currentProfile = null;
@@ -699,7 +700,6 @@
       document.getElementById('user-role').textContent = roleLabel;
 
       showGMControls();
-      initMusicPlayer();
 
       loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
       loadParty().catch(function(e) { console.error('loadParty:', e); });
