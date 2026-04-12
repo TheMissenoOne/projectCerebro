@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "serve": "http-server -p 3000 -c-1",
     "test": "node tests/spa.test.js",
     "test:e2e": "node tests/spa-e2e.test.js",
     "test:unit": "node tests/unit.test.js",
@@ -7,6 +8,7 @@
     "test:admin": "node tests/admin.test.js"
   },
   "dependencies": {
+    "http-server": "^14.1.1",
     "playwright": "^1.59.1"
   }
 }
