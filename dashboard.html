@@ -683,14 +683,75 @@
   </div>
 </div>
 
+<!-- Toast notification -->
+<div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  max-width: 90%;
+  word-wrap: break-word;
+  text-align: center;
+">—</div>
+
 <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// Toast notification
+function toast(msg) {
+  var el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = '// ' + msg;
+  el.style.opacity = '1';
+  clearTimeout(el._timeout);
+  el._timeout = setTimeout(function() {
+    el.style.opacity = '0';
+  }, 2600);
+}
+
+// Populate user info in header
+function populateUserInfo(user, profile) {
+  var userNameEl = document.getElementById('user-name');
+  var userAvatarEl = document.getElementById('user-avatar');
+  var userRoleEl = document.getElementById('user-role');
+  var userDisplayEl = document.getElementById('user-display');
+  var userCodeEl = document.getElementById('hdr-user-code');
+  
+  var displayName = profile?.display_name || profile?.username || user?.email || 'Player';
+  var initial = displayName.charAt(0).toUpperCase();
+  var role = profile?.role === 'gm' ? 'MESTRE' : 'JOGADOR';
+  var username = profile?.username || user?.email?.split('@')[0] || 'user';
+  
+  if (userNameEl) userNameEl.textContent = displayName;
+  if (userAvatarEl) userAvatarEl.textContent = initial;
+  if (userRoleEl) userRoleEl.textContent = role;
+  if (userDisplayEl) userDisplayEl.textContent = username.toUpperCase();
+  if (userCodeEl) userCodeEl.textContent = username.toUpperCase();
+}
+
 // Dashboard initialization
 window.addEventListener('DOMContentLoaded', function() {
   requireAuth(function(currentUser) {
-    // Load and display characters
-    window.listCharacters(currentUser.id).then(function(chars) {
+    // Load profile and populate user info
+    window.getProfile(currentUser.id).then(function(profile) {
+      populateUserInfo(currentUser, profile);
+    }).catch(function(err) {
+      console.error('Error loading profile:', err);
+      populateUserInfo(currentUser, null);
+    });
+    
+    // Load and display characters (forceRefresh to get latest)
+    window.listCharacters(currentUser.id, true).then(function(chars) {
       populateCharacterGrid(chars);
     }).catch(function(err) {
       console.error('Error loading characters:', err);
@@ -705,10 +766,36 @@ window.addEventListener('DOMContentLoaded', function() {
       console.error('Error loading party:', err);
     });
 
-    // Bind event handlers
-    bindDashboardEvents();
+  // Render theme dots with icons
+  renderThemeDots();
+  
+  // Bind event handlers
+  bindDashboardEvents();
   });
 });
+
+// Render theme dots with icons instead of just colors
+function renderThemeDots() {
+  var container = document.getElementById('theme-dots-row');
+  if (!container || !window.THEMES) return;
+  
+  var current = localStorage.getItem('cerebro_tema') || 'yellow';
+  container.innerHTML = Object.entries(window.THEMES).map(function(entry) {
+    var key = entry[0];
+    var theme = entry[1];
+    return '<div class="theme-dot-sm ' + (key === current ? 'active' : '') + '" ' +
+           'style="background:' + theme.color + ';cursor:pointer;" ' +
+           'onclick="changeTheme(\'' + key + '\')" ' +
+           'title="' + theme.name + '"></div>';
+  }).join('');
+}
+
+function changeTheme(themeName) {
+  localStorage.setItem('cerebro_tema', themeName);
+  document.body.className = 'theme-' + themeName;
+  renderThemeDots();
+  toast('TEMA ALTERADO: ' + (window.THEMES[themeName]?.name || themeName));
+}
 
 function populateCharacterGrid(chars) {
   var grid = document.getElementById('chars-grid');
@@ -797,7 +884,7 @@ function bindDashboardEvents() {
     });
   }
 
-  // Confirm create party
+   // Confirm create party
   var confirmCreateParty = document.getElementById('confirm-create-party');
   if (confirmCreateParty) {
     confirmCreateParty.addEventListener('click', function() {
@@ -805,13 +892,28 @@ function bindDashboardEvents() {
       if (input && input.value.trim()) {
         requireAuth(function(user) {
           window.createParty(input.value.trim(), user.id).then(function() {
+            toast('PARTY CRIADA COM SUCESSO');
             var modal = document.getElementById('create-party-modal');
             if (modal) modal.style.display = 'none';
             input.value = '';
-            // Reload party info
+            // Clear cache and reload party info
+            if (window.cache) {
+              window.cache.invalidate('gm_party', user.id);
+              window.cache.invalidate('player_party', user.id);
+            }
             window.getPlayerParty(user.id).then(function(party) {
               if (party) populatePartyInfo(party, user.id);
+            }).catch(function(err) {
+              toast('ERRO AO CARREGAR PARTY');
+              console.error('Error loading party:', err);
             });
+          }).catch(function(err) {
+            toast('ERRO AO CRIAR PARTY');
+            console.error('Error creating party:', err);
+          });
+          }).catch(function(err) {
+            toast('ERRO AO CRIAR PARTY');
+            console.error('Error creating party:', err);
           });
         });
       }
@@ -846,14 +948,25 @@ function bindDashboardEvents() {
           window.getPartyByCode(input.value.trim()).then(function(party) {
             if (party) {
               return window.joinParty(party.id, user.id).then(function() {
+                toast('ENTROU NA PARTY: ' + party.name);
                 var modal = document.getElementById('join-party-modal');
                 if (modal) modal.style.display = 'none';
                 input.value = '';
+                // Clear cache before reloading
+                if (window.cache) {
+                  window.cache.invalidate('player_party', user.id);
+                }
                 populatePartyInfo(party, user.id);
+              }).catch(function(err) {
+                toast('ERRO AO ENTRAR NA PARTY');
+                console.error('Error joining party:', err);
               });
             } else {
-              alert('Party não encontrada');
+              toast('PARTY NÃO ENCONTRADA');
             }
+          }).catch(function(err) {
+            toast('ERRO AO BUSCAR PARTY');
+            console.error('Error finding party:', err);
           });
         });
       }
