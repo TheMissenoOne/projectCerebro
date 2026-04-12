@@ -119,6 +119,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .attr-val{background:var(--black);border:1px solid var(--b2);color:var(--red);font-family:var(--mono);font-size:.74rem;width:32px;height:26px;text-align:center;outline:none;transition:border-color .15s;-webkit-appearance:none;-moz-appearance:textfield;}
 .attr-val::-webkit-inner-spin-button,.attr-val::-webkit-outer-spin-button{-webkit-appearance:none;}
 .attr-val:focus{border-color:var(--red);}
+.attr-val:-moz-ui-invalid{box-shadow:none;}
 
 .ficha-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
 .panel{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
@@ -164,6 +165,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .collapse-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .collapse-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .2s;}
 .tcard.collapsed .collapse-btn svg{transform:rotate(180deg);}
+.del-card-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px;margin-left:4px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.del-card-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
+.del-card-btn:hover{color:var(--red);}
 .card-body{padding:10px;display:flex;flex-direction:column;gap:8px;}
 .tcard.collapsed .card-body{display:none;}
 
@@ -184,7 +188,11 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .c-label.fraq{color:#3a8fc0;}
 .card-inp{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--white);font-family:var(--body);font-size:.8rem;padding:5px 7px;outline:none;transition:border-color .15s;}
 .card-inp:focus{border-color:var(--red);}
+.card-inp.valid{border-color:var(--green);}
+.card-inp.invalid{border-color:var(--red);background:rgba(232,0,28,.1);}
 .card-inp::placeholder{color:var(--b3);}
+.attr-val.valid{border-color:var(--green);}
+.attr-val.invalid{border-color:var(--red);}
 .tags-list{display:flex;flex-direction:column;gap:3px;}
 .poder-tags .tag-inp{border-left:2px solid rgba(232,0,28,.4);}
 .fraq-tags .tag-inp{border-left:2px solid rgba(58,143,192,.4);}
@@ -253,13 +261,6 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},2500);
 }
-function initHelpButtons(){
-  document.querySelectorAll('.field-help').forEach(function(b){
-    var tip=b.querySelector('.tooltip');if(!tip)return;
-    b.addEventListener('click',function(e){e.stopPropagation();showToast(tip.textContent.trim());});
-  });
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initHelpButtons);else initHelpButtons();
 </script>
 <header class="header">
   <div class="header-logo">
@@ -587,11 +588,18 @@ const newUrl = 'ficha.html?id=' + char.id;
   if (D.foto) mostrarFoto(D.foto);
 }
 
+function validaCampo(el,v){
+  var v=parseInt(el.value),min=parseInt(el.min),max=parseInt(el.max);
+  el.classList.remove('valid','invalid');
+  if(!el.value)return;
+  if(!isNaN(v)&&v>=min&&v<=max)el.classList.add('valid');else el.classList.add('invalid');
+}
 function salvarAuto(){
   coletarCampos();
   clearTimeout(saveTimer);
   showSaveBar('saving', 'SALVANDO...');
   setInd('salvando','// SALVANDO...');
+  document.querySelectorAll('.attr-val').forEach(function(el){validaCampo(el);});
   saveTimer=setTimeout(async()=>{
     if(!charId)return;
     try{
@@ -702,6 +710,10 @@ function buildCard(card,lista,cid){
     badge.innerHTML=newIcon?'<span class="theme-icon">'+newIcon+'</span>'+newLabel:'TIPO';salvarAuto();
   });
   main.appendChild(sel);hdr.appendChild(main);
+  const delBtn=document.createElement('button');delBtn.className='del-card-btn';delBtn.title='Remover cartão';
+  delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
+  delBtn.addEventListener('click',()=>{if(confirm('Remover este cartão?')){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
+  hdr.appendChild(delBtn);
   const colBtn=document.createElement('button');colBtn.className='collapse-btn';
   colBtn.title=card.collapsed?'Expandir':'Minimizar';
   colBtn.innerHTML=`<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>`;
@@ -725,7 +737,7 @@ function buildCard(card,lista,cid){
   body.appendChild(trow);
   const ml=document.createElement('div');ml.className='c-label';ml.textContent='MISTÉRIO / IDENTIDADE';body.appendChild(ml);
   const mi=document.createElement('input');mi.type='text';mi.className='card-inp';mi.placeholder='...';mi.value=card.misterio||'';
-  mi.addEventListener('input',e=>{card.misterio=e.target.value;salvarAuto();});body.appendChild(mi);
+  mi.addEventListener('input',e=>{card.misterio=e.target.value;mi.classList.toggle('valid',!!e.target.value);salvarAuto();});body.appendChild(mi);
   const pl=document.createElement('div');pl.className='c-label poder';pl.innerHTML='▲ TAGS DE PODER';body.appendChild(pl);
   const plist=document.createElement('div');plist.className='tags-list poder-tags';
   for(let i=0;i<7;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=`poder ${i+1}`;inp.value=(card.poder&&card.poder[i])||'';inp.addEventListener('input',e=>{card.poder[i]=e.target.value;salvarAuto();});plist.appendChild(inp);}
@@ -773,7 +785,9 @@ function mesclar(base,src){
 }
 
 function resetarFicha(){
-  if(!confirm('Resetar toda a ficha? Esta ação não pode ser desfeita.'))return;
+  var nome=D.nome||'este personagem';
+  if(!confirm('Resetar '+nome+'? Esta ação não pode ser desfeita.'))return;
+  if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
   D=clone(PADRAO);
   preencherCampos();buildDots();buildEvo();
   buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);
