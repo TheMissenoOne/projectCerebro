@@ -685,5 +685,190 @@
 
 <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Dashboard initialization
+window.addEventListener('DOMContentLoaded', function() {
+  requireAuth(function(currentUser) {
+    // Load and display characters
+    window.listCharacters(currentUser.id).then(function(chars) {
+      populateCharacterGrid(chars);
+    }).catch(function(err) {
+      console.error('Error loading characters:', err);
+    });
+
+    // Load and display party
+    window.getPlayerParty(currentUser.id).then(function(party) {
+      if (party) {
+        populatePartyInfo(party, currentUser.id);
+      }
+    }).catch(function(err) {
+      console.error('Error loading party:', err);
+    });
+
+    // Bind event handlers
+    bindDashboardEvents();
+  });
+});
+
+function populateCharacterGrid(chars) {
+  var grid = document.getElementById('chars-grid');
+  if (!grid) return;
+
+  // Keep new char button
+  var newBtn = grid.querySelector('.char-card-new');
+  grid.innerHTML = '';
+  if (newBtn) grid.appendChild(newBtn);
+
+  // Add character cards
+  if (chars && chars.length > 0) {
+    chars.forEach(function(char) {
+      var card = document.createElement('a');
+      card.className = 'char-card';
+      card.href = 'ficha.html?id=' + char.id;
+      card.innerHTML = '<div class="char-avatar">' + (char.codinome ? char.codinome.charAt(0).toUpperCase() : '?') + '</div><div class="char-info"><div class="char-name">' + (char.nome || 'Sem nome') + '</div><div class="char-codename">' + (char.codinome || '—') + '</div></div>';
+      grid.appendChild(card);
+    });
+  }
+}
+
+function populatePartyInfo(party, playerId) {
+  var emptyState = document.getElementById('party-empty');
+  var infoState = document.getElementById('party-info');
+  if (!infoState || !emptyState) return;
+
+  // Show party info, hide empty
+  emptyState.style.display = 'none';
+  infoState.style.display = 'block';
+
+  // Set party name and code
+  var nameEl = document.getElementById('party-name');
+  var codeEl = document.getElementById('party-code');
+  if (nameEl) nameEl.textContent = party.name || 'Party';
+  if (codeEl) codeEl.textContent = party.code || '—';
+
+  // Show admin link if current user is GM
+  var adminLink = document.getElementById('admin-party-link');
+  if (adminLink && party.gm_id === playerId) {
+    adminLink.style.display = 'inline-flex';
+  }
+
+  // Load and display members
+  window.getPartyMembers(party.id).then(function(members) {
+    var membersContainer = document.getElementById('party-members');
+    if (membersContainer) {
+      membersContainer.innerHTML = '';
+      if (members && members.length > 0) {
+        members.forEach(function(member) {
+          var memberEl = document.createElement('div');
+          memberEl.className = 'party-member';
+          memberEl.textContent = member.name || 'Membro';
+          membersContainer.appendChild(memberEl);
+        });
+      }
+    }
+  });
+}
+
+function bindDashboardEvents() {
+  // New character button
+  var newBtn = document.getElementById('new-char-btn');
+  if (newBtn) {
+    newBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'ficha.html?new=true';
+    });
+  }
+
+  // Create party button
+  var createPartyBtn = document.getElementById('create-party-btn');
+  if (createPartyBtn) {
+    createPartyBtn.addEventListener('click', function() {
+      var modal = document.getElementById('create-party-modal');
+      if (modal) modal.style.display = 'flex';
+    });
+  }
+
+  // Cancel create party
+  var cancelCreateParty = document.getElementById('cancel-create-party');
+  if (cancelCreateParty) {
+    cancelCreateParty.addEventListener('click', function() {
+      var modal = document.getElementById('create-party-modal');
+      if (modal) modal.style.display = 'none';
+    });
+  }
+
+  // Confirm create party
+  var confirmCreateParty = document.getElementById('confirm-create-party');
+  if (confirmCreateParty) {
+    confirmCreateParty.addEventListener('click', function() {
+      var input = document.getElementById('party-name-input');
+      if (input && input.value.trim()) {
+        requireAuth(function(user) {
+          window.createParty(input.value.trim(), user.id).then(function() {
+            var modal = document.getElementById('create-party-modal');
+            if (modal) modal.style.display = 'none';
+            input.value = '';
+            // Reload party info
+            window.getPlayerParty(user.id).then(function(party) {
+              if (party) populatePartyInfo(party, user.id);
+            });
+          });
+        });
+      }
+    });
+  }
+
+  // Join party button
+  var joinPartyBtn = document.getElementById('join-party-btn');
+  if (joinPartyBtn) {
+    joinPartyBtn.addEventListener('click', function() {
+      var modal = document.getElementById('join-party-modal');
+      if (modal) modal.style.display = 'flex';
+    });
+  }
+
+  // Cancel join party
+  var cancelJoinParty = document.getElementById('cancel-join-party');
+  if (cancelJoinParty) {
+    cancelJoinParty.addEventListener('click', function() {
+      var modal = document.getElementById('join-party-modal');
+      if (modal) modal.style.display = 'none';
+    });
+  }
+
+  // Confirm join party
+  var confirmJoinParty = document.getElementById('confirm-join-party');
+  if (confirmJoinParty) {
+    confirmJoinParty.addEventListener('click', function() {
+      var input = document.getElementById('party-code-input');
+      if (input && input.value.trim()) {
+        requireAuth(function(user) {
+          window.getPartyByCode(input.value.trim()).then(function(party) {
+            if (party) {
+              return window.joinParty(party.id, user.id).then(function() {
+                var modal = document.getElementById('join-party-modal');
+                if (modal) modal.style.display = 'none';
+                input.value = '';
+                populatePartyInfo(party, user.id);
+              });
+            } else {
+              alert('Party não encontrada');
+            }
+          });
+        });
+      }
+    });
+  }
+
+  // Close modals on outside click
+  document.querySelectorAll('.modal').forEach(function(modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+}
+</script>
 </body>
 </html>
