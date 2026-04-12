@@ -6,10 +6,18 @@
   <title>X-MEN TTRPG // LOGIN</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/auth.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/auth-module.js" defer></script>
+  <script src="assets/js/themes.js" defer></script>
 </head>
 <body>
 
@@ -49,22 +57,27 @@
       <form id="register-form" class="auth-form">
         <div class="form-group">
           <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" required>
+          <input type="email" class="form-input" name="email" id="reg-email" required>
+          <div class="form-error" id="email-error"></div>
         </div>
         <div class="form-group">
           <label class="form-label">Senha</label>
-          <input type="password" class="form-input" name="password" required minlength="6">
+          <input type="password" class="form-input" name="password" id="reg-password" required minlength="6">
+          <div class="form-hint" id="password-hint">Mínimo 6 caracteres</div>
+          <div class="form-error" id="password-error"></div>
         </div>
         <div class="form-group">
           <label class="form-label">Usuário</label>
-          <input type="text" class="form-input" name="username" required>
+          <input type="text" class="form-input" name="username" id="reg-username" required>
+          <div class="form-error" id="username-error"></div>
         </div>
         <div class="form-group">
           <label class="form-label">Nome de Exibição</label>
-          <input type="text" class="form-input" name="displayName" required>
+          <input type="text" class="form-input" name="displayName" id="reg-displayName" required>
+          <div class="form-error" id="displayName-error"></div>
         </div>
         <input type="hidden" name="role" value="player">
-        <button type="submit" class="btn btn-primary">Criar Conta</button>
+        <button type="submit" class="btn btn-primary" id="reg-submit">Criar Conta</button>
       </form>
     </div>
 
@@ -116,6 +129,37 @@
     // Register form
     document.getElementById('register-form').addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      // Validate before submit
+      var isValid = true;
+      var password = document.getElementById('reg-password');
+      var email = document.getElementById('reg-email');
+      var username = document.getElementById('reg-username');
+      var displayName = document.getElementById('reg-displayName');
+      
+      if (password.value.length < 6) {
+        showFieldError('password', 'SENHA MUITO CURTA');
+        password.classList.add('validate-error');
+        isValid = false;
+      }
+      if (!email.value || !email.validity.valid) {
+        showFieldError('email', 'EMAIL INVÁLIDO');
+        email.classList.add('validate-error');
+        isValid = false;
+      }
+      if (!username.value.trim()) {
+        showFieldError('username', 'USUÁRIO OBRIGATÓRIO');
+        username.classList.add('validate-error');
+        isValid = false;
+      }
+      if (!displayName.value.trim()) {
+        showFieldError('displayName', 'NOME OBRIGATÓRIO');
+        displayName.classList.add('validate-error');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
       var btn = e.target.querySelector('button[type="submit"]');
       var orig = btn.textContent;
       btn.textContent = 'Criando...';
@@ -131,11 +175,53 @@
           window.location.href = 'dashboard.html';
         })
         .catch(function(err) {
-          errorEl.textContent = err.message;
-          errorEl.classList.add('show');
+          var msg = err.message || 'Erro ao criar conta';
+          if (msg.toLowerCase().includes('email') || msg.toLowerCase().includes('already')) {
+            showFieldError('email', 'EMAIL JÁ CADASTRADO');
+            document.getElementById('reg-email').classList.add('validate-error');
+          } else {
+            errorEl.textContent = msg;
+            errorEl.classList.add('show');
+          }
           btn.textContent = orig;
           btn.disabled = false;
         });
+    });
+    
+    // Show error below specific field
+    function showFieldError(field, msg) {
+      var errEl = document.getElementById(field + '-error');
+      if (errEl) {
+        errEl.textContent = msg;
+        errEl.classList.add('show');
+      }
+    }
+    
+    // Clear error on input
+    ['reg-email', 'reg-password', 'reg-username', 'reg-displayName'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', function() {
+          this.classList.remove('validate-error');
+          var errEl = document.getElementById(id.replace('reg-', '') + '-error');
+          if (errEl) errEl.classList.remove('show');
+        });
+      }
+    });
+    
+    // Password strength indicator
+    document.getElementById('reg-password').addEventListener('input', function() {
+      var hint = document.getElementById('password-hint');
+      if (this.value.length >= 6) {
+        hint.textContent = '✓ SENHA VÁLIDA';
+        hint.classList.add('error');
+        this.classList.remove('validate-error');
+        this.classList.add('validate-valid');
+      } else {
+        hint.textContent = 'Mínimo 6 caracteres';
+        hint.classList.remove('error');
+        this.classList.remove('validate-valid');
+      }
     });
   </script>
 </body>

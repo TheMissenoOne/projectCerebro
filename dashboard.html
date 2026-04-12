@@ -6,10 +6,20 @@
   <title>X-MEN TTRPG // DASHBOARD</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/api-module.js" defer></script>
+  <script src="assets/js/auth-module.js" defer></script>
+  <script src="assets/js/themes.js" defer></script>
+  <script src="assets/js/header.js" defer></script>
   <style>
 /* ── DASHBOARD PAGE-LOCAL OVERRIDES ─────────────────────────────── */
 
@@ -523,7 +533,14 @@
 </header>
 
 <div class="toolbar">
-  <span class="save-ind salvo" id="status-dot">●</span>
+  <span class="save-ind salvo" id="status-dot" style="display:none;">●</span>
+  <div class="save-bar" id="save-bar">
+    <div class="save-status">
+      <span class="save-dot"></span>
+      <span class="save-text">AGUARDANDO</span>
+    </div>
+    <span class="save-timestamp"></span>
+  </div>
   <div class="toolbar-divider"></div>
   <a href="ficha.html?new=true" class="tbtn">
     <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -671,10 +688,9 @@
   <script src="assets/js/cache-module.js"></script>
   <script src="assets/js/auth-module.js"></script>
   <script src="assets/js/api-module.js"></script>
-<script src="assets/js/globals.js"></script>
-<script src="assets/js/themes.js"></script>
-
-<script>
+  <script src="assets/js/globals.js"></script>
+  <script src="assets/js/themes.js"></script>
+  <script>
   var currentUser = null;
   var currentProfile = null;
   var currentParty = null;
@@ -866,6 +882,26 @@
         '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id +
         '\');renderThemeDots();" title="' + t.id + '"></div>';
     }).join('');
+  }
+
+  // Save bar status functions
+  function showSaveBar(status, msg) {
+    var bar = document.getElementById('save-bar');
+    if (!bar) return;
+    var dot = bar.querySelector('.save-dot');
+    var text = bar.querySelector('.save-text');
+    var ts = bar.querySelector('.save-timestamp');
+    
+    bar.classList.add('active');
+    dot.className = 'save-dot ' + (status || '');
+    text.textContent = msg || '';
+    
+    if (status === 'saved') {
+      ts.textContent = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+      setTimeout(function() { bar.classList.remove('active'); }, 3000);
+    } else if (status === 'error') {
+      ts.textContent = 'ERRO';
+    }
   }
 
   init();

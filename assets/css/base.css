@@ -196,9 +196,9 @@ body::after {
 .pf-toggle:hover { color: var(--accent); }
 .pf-toggle svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform .25s; }
 .pf-toggle.open svg { transform: rotate(180deg); }
-.pf-settings { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-.pf-settings.open { max-height: 200px; }
-.pf-inner { padding: 8px 12px; display: flex; flex-direction: column; gap: 7px; }
+.pf-settings { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows 0.3s ease; }
+.pf-settings.open { grid-template-rows: 1fr; }
+.pf-inner { padding: 8px 12px; display: flex; flex-direction: column; gap: 7px; min-height: 0; }
 .theme-btns { display: flex; flex-wrap: wrap; gap: 4px; }
 .th-btn { font-family: var(--mono); font-size: .42rem; letter-spacing: .05em; padding: 4px 7px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all .12s; -webkit-tap-highlight-color: transparent; }
 .th-btn:hover { border-color: var(--b3); color: var(--text); }

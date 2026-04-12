@@ -6,9 +6,18 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <title>X-MEN TTRPG // PAINEL DO GM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/auth-module.js" defer></script>
+  <script src="assets/js/api-module.js" defer></script>
+  <script src="assets/js/themes.js" defer></script>
   <style>
     .admin-layout {
       display: flex;
@@ -528,6 +537,13 @@
     }
 
     init();
+    
+    // Save bar
+    var saveBar = document.createElement('div');
+    saveBar.id = 'save-bar';
+    saveBar.className = 'save-bar';
+    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
+    document.body.appendChild(saveBar);
   </script>
 </body>
 </html>

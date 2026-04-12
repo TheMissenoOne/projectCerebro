@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>CÉREBRO DATABASE // NPCs X-MEN</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
 <style>
 :root {
   --accent:#FFD600;--accent2:#c4a800;--accent3:#5a4a00;--accentRGB:255,214,0;
@@ -70,8 +74,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .enc-round-val{font-family:var(--mono);font-size:.7rem;color:#c07040;min-width:16px;text-align:center;}
 .enc-round-btn{background:none;border:1px solid var(--b2);color:var(--muted);font-family:var(--mono);font-size:.55rem;width:16px;height:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .12s;-webkit-tap-highlight-color:transparent;}
 .enc-round-btn:hover{border-color:#c07040;color:#c07040;}
-.enc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.enc-body.open{max-height:320px;}
+.enc-body{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .3s ease;}
+.enc-body.open{grid-template-rows:1fr;}
 .enc-npc-list{overflow-y:auto;max-height:280px;padding:4px 0;}
 .enc-npc-list::-webkit-scrollbar{width:3px;}
 .enc-npc-list::-webkit-scrollbar-thumb{background:var(--b2);}
@@ -120,9 +124,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .pf-toggle:hover{color:var(--accent);}
 .pf-toggle svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .25s;}
 .pf-toggle.open svg{transform:rotate(180deg);}
-.pf-settings{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.pf-settings.open{max-height:200px;}
-.pf-inner{padding:8px 12px;display:flex;flex-direction:column;gap:7px;}
+.pf-settings{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .3s ease;}
+.pf-settings.open{grid-template-rows:1fr;}
+.pf-inner{padding:8px 12px;display:flex;flex-direction:column;gap:7px;min-height:0;}
 .theme-btns{display:flex;flex-wrap:wrap;gap:4px;}
 .th-btn{font-family:var(--mono);font-size:.42rem;letter-spacing:.05em;padding:4px 7px;border:1px solid var(--b2);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .12s;-webkit-tap-highlight-color:transparent;}
 .th-btn:hover{border-color:var(--b3);color:var(--text);}
@@ -335,7 +339,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
         <button class="enc-title-btn">
           <span class="enc-sword"></span>
           <span class="enc-lbl">ENCONTRO ATIVO</span>
-          <span class="enc-count-badge" id="enc-count-badge">0</span>
+          <span class="panel-badge" id="enc-count-badge">0</span>
         </button>
         <div class="enc-round-ctrl" onclick="event.stopPropagation()">
           <span class="enc-round-lbl">R</span>
@@ -346,11 +350,13 @@ select.f-inp option{background:var(--dark);color:var(--white);}
         <svg class="enc-toggle-ico" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
       </div>
       <div class="enc-body" id="enc-body">
-        <div class="enc-npc-list" id="enc-npc-list"></div>
-        <div class="enc-add-bar">
-          <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
-            + ADICIONAR NPC SELECIONADO
-          </button>
+        <div class="enc-inner">
+          <div class="enc-npc-list" id="enc-npc-list"></div>
+          <div class="enc-add-bar">
+            <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
+              + ADICIONAR NPC SELECIONADO
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -521,15 +527,15 @@ select.f-inp option{background:var(--dark);color:var(--white);}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/js/config.js"></script>
-  <script src="assets/js/supabase-client.js"></script>
-  <script src="assets/js/cache-module.js"></script>
-  <script src="assets/js/auth-module.js"></script>
-  <script src="assets/js/api-module.js"></script>
-<script src="assets/js/globals.js"></script>
-<script src="assets/js/themes.js"></script>
-<script src="assets/js/header.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/supabase-client.js" defer></script>
+<script src="assets/js/cache-module.js" defer></script>
+<script src="assets/js/auth-module.js" defer></script>
+<script src="assets/js/api-module.js" defer></script>
+<script src="assets/js/globals.js" defer></script>
+<script src="assets/js/themes.js" defer></script>
+<script src="assets/js/header.js" defer></script>
 <script>
 /* ═══ UTILITIES ═══ */
 window.esc = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';};
@@ -727,7 +733,10 @@ function carregarEncontro(){
   document.getElementById('enc-rodada').textContent=ENCONTRO.rodada||1;
   renderizarEncontro();
 }
-function salvarEncontro(){localStorage.setItem(CHAVE_ENC,JSON.stringify(ENCONTRO));}
+function salvarEncontro(){
+  localStorage.setItem(CHAVE_ENC,JSON.stringify(ENCONTRO));
+  showSaveBar('saved', 'SALVO ✓');
+}
 
 /* ═══ RENDER LIST ═══ */
 function filtrar(){searchTerm=document.getElementById('search-inp').value;renderizarLista();}
@@ -1053,20 +1062,35 @@ function toggleEncSection(){
   document.getElementById('enc-body').classList.toggle('open',encSectionOpen);
 }
 function renderizarEncontro(){
-  document.getElementById('enc-count-badge').textContent=ENCONTRO.participantes.length;
-  document.getElementById('enc-rodada').textContent=ENCONTRO.rodada||1;
-  document.getElementById('enc-header').classList.toggle('has-enc',ENCONTRO.participantes.length>0);
-  const list=document.getElementById('enc-npc-list');
-  if(!ENCONTRO.participantes.length){list.innerHTML='<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO<br>SELECIONE E CLIQUE "+ ADICIONAR"</div>';return;}
-  list.innerHTML=ENCONTRO.participantes.map(p=>{
-    const npc=NPC_DB.find(n=>n.id===p.id);
-    const fc=npc?(FRACOES[npc.fracao]||FRACOES.neutro):FRACOES.neutro;
-    const condHtml=p.condicoes?.length?p.condicoes.map(c=>{const{c:cor}=condCor(c);return`<span class="enc-cond-chip" style="color:${cor};border-color:${cor};background:${cor}18">${esc(c)}</span>`;}).join(''):'';
-    return`<div class="enc-npc-item${currentId===p.id?' active':''}" onclick="exibirNPC('${escJs(p.id)}');fecharPainel()">
+  var badge = document.getElementById('enc-count-badge');
+  var count = ENCONTRO.participantes.length;
+  badge.textContent = count;
+  
+  // Show badge when there are participants
+  if (count > 0) {
+    badge.classList.add('show');
+    // Auto-expand if collapsed
+    if (!document.getElementById('enc-body').classList.contains('open')) {
+      document.getElementById('enc-header').classList.add('open');
+      document.getElementById('enc-body').classList.add('open');
+    }
+  } else {
+    badge.classList.remove('show');
+  }
+  
+  document.getElementById('enc-rodada').textContent = ENCONTRO.rodada || 1;
+  document.getElementById('enc-header').classList.toggle('has-enc', count > 0);
+  const list = document.getElementById('enc-npc-list');
+  if (!ENCONTRO.participantes.length) { list.innerHTML = '<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO<br>SELECIONE E CLIQUE "+ ADICIONAR"</div>'; return; }
+  list.innerHTML = ENCONTRO.participantes.map(p => {
+    const npc = NPC_DB.find(n => n.id === p.id);
+    const fc = npc ? (FRACOES[npc.fracao] || FRACOES.neutro) : FRACOES.neutro;
+    const condHtml = p.condicoes?.length ? p.condicoes.map(c => { const { c: cor } = condCor(c); return `<span class="enc-cond-chip" style="color:${cor};border-color:${cor};background:${cor}18">${esc(c)}</span>`; }).join('') : '';
+    return `<div class="enc-npc-item${currentId === p.id ? ' active' : ''}" onclick="exibirNPC('${escJs(p.id)}');fecharPainel()">
       <div class="enc-npc-dot" style="background:${fc.cor}"></div>
       <div class="enc-npc-info">
         <div class="enc-npc-name">${esc(p.nome)}</div>
-        ${condHtml?`<div class="enc-npc-conds">${condHtml}</div>`:''}
+        ${condHtml ? `<div class="enc-npc-conds">${condHtml}</div>` : ''}
       </div>
       <button class="enc-npc-rem" onclick="event.stopPropagation();abrirCondModal('${escJs(p.id)}')" title="Condições">⊕</button>
       <button class="enc-npc-rem" onclick="event.stopPropagation();removerDoEncontro('${escJs(p.id)}')" title="Remover">×</button>
@@ -1174,6 +1198,32 @@ window.addEventListener('load',()=>{
     document.getElementById('enc-body').classList.add('open');
   });
 });
+
+// Save bar status functions
+function showSaveBar(status, msg) {
+  var bar = document.getElementById('save-bar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'save-bar';
+    bar.className = 'save-bar';
+    bar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text"></span></div><span class="save-timestamp"></span>';
+    document.body.appendChild(bar);
+  }
+  var dot = bar.querySelector('.save-dot');
+  var text = bar.querySelector('.save-text');
+  var ts = bar.querySelector('.save-timestamp');
+  
+  bar.classList.add('active');
+  dot.className = 'save-dot ' + (status || '');
+  text.textContent = msg || '';
+  
+  if (status === 'saved') {
+    ts.textContent = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+    setTimeout(function() { bar.classList.remove('active'); }, 3000);
+  } else if (status === 'error') {
+    ts.textContent = 'ERRO';
+  }
+}
 </script>
 </body>
 </html>

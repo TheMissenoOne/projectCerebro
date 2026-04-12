@@ -5,9 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>COMBATE // X-MEN TTRPG</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/themes.js" defer></script>
   <style>
     :root {
       --fc-xmen:#FFD600;--fc-novatos:#66aaff;--fc-geracaox:#88cc99;
@@ -181,11 +189,11 @@
           </div>
           
           <div class="calc-row">
-            <span class="calc-label">AV</span>
+            <span class="calc-label">AV<span class="field-help">?<span class="tooltip">Action Value - atributo/equivalente do atacante</span></span></span>
             <input type="number" class="calc-input" id="av-input" min="1" max="52" placeholder="1-52">
           </div>
           <div class="calc-row">
-            <span class="calc-label">OV</span>
+            <span class="calc-label">OV<span class="field-help">?<span class="tooltip">Opposing Value - valor de oposição/defesa do alvo</span></span></span>
             <input type="number" class="calc-input" id="ov-input" min="1" max="52" placeholder="1-52">
           </div>
           
@@ -217,11 +225,11 @@
           </div>
           
           <div class="calc-row" style="margin-top:12px">
-            <span class="calc-label">EV</span>
+            <span class="calc-label">EV<span class="field-help">?<span class="tooltip">Effect Value - poder do efeito/ataque</span></span></span>
             <input type="number" class="calc-input" id="ev-input" min="1" max="52" placeholder="1-52">
           </div>
           <div class="calc-row">
-            <span class="calc-label">RV</span>
+            <span class="calc-label">RV<span class="field-help">?<span class="tooltip">Resistance Value - resistência do alvo ao efeito</span></span></span>
             <input type="number" class="calc-input" id="rv-input" min="1" max="52" placeholder="1-52">
           </div>
           

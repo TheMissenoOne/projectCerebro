@@ -424,8 +424,9 @@
 .enc-round-btn { background: none; border: 1px solid var(--b2); color: var(--muted); font-family: var(--mono); font-size: .55rem; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .12s; -webkit-tap-highlight-color: transparent; }
 .enc-round-btn:hover { border-color: #c07040; color: #c07040; }
 
-.enc-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-.enc-body.open { max-height: 320px; }
+.enc-body { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows .3s ease; }
+.enc-body.open { grid-template-rows: 1fr; }
+.enc-body > * { min-height: 0; }
 .enc-npc-list { overflow-y: auto; max-height: 280px; padding: 4px 0; }
 .enc-npc-list::-webkit-scrollbar { width: 3px; }
 .enc-npc-list::-webkit-scrollbar-thumb { background: var(--b2); }
@@ -462,9 +463,10 @@
 .pf-toggle:hover { color: var(--accent); }
 .pf-toggle svg { width: 9px; height: 9px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform .25s; }
 .pf-toggle.open svg { transform: rotate(180deg); }
-.pf-settings { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-.pf-settings.open { max-height: 200px; }
-.pf-inner { padding: 8px 12px; display: flex; flex-direction: column; gap: 7px; }
+.pf-settings { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows .3s ease; }
+.pf-settings.open { grid-template-rows: 1fr; }
+.pf-settings > * { min-height: 0; }
+.pf-inner { padding: 8px 12px; display: flex; flex-direction: column; gap: 7px; min-height: 0; }
 .theme-btns { display: flex; flex-wrap: wrap; gap: 4px; }
 .th-btn { font-family: var(--mono); font-size: .42rem; letter-spacing: .05em; padding: 4px 7px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all .12s; -webkit-tap-highlight-color: transparent; }
 .th-btn:hover { border-color: var(--b3); color: var(--text); }
@@ -819,4 +821,310 @@
 .error-container p {
   color: var(--muted);
   margin-bottom: 20px;
+}
+
+/* ════════════════════════════════════════════════════════════════════ */
+/* FORM VALIDATION SYSTEM (P1)                                          */
+/* ════════════════════════════════════════════════════════════════════ */
+
+.form-group { position: relative; }
+
+.form-input:invalid:not(:placeholder-shown) {
+  border-color: var(--red) !important;
+}
+
+.form-input:valid:not(:placeholder-shown) {
+  border-color: #44bb44 !important;
+}
+
+.form-input.validate-error {
+  border-color: var(--red) !important;
+}
+
+.form-input.validate-valid {
+  border-color: #44bb44 !important;
+}
+
+.form-error {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--red);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  display: none;
+  text-transform: uppercase;
+}
+
+.form-error.show {
+  display: block;
+  animation: fadeUp 0.2s ease both;
+}
+
+.form-hint {
+  font-family: var(--mono);
+  font-size: 0.38rem;
+  color: var(--muted2);
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+.form-hint.error {
+  color: var(--red);
+}
+
+.form-label-with-help {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Field help tooltip */
+.field-help {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--muted2);
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: var(--muted2);
+  cursor: help;
+  margin-left: 4px;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.field-help:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.field-help .tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--p1);
+  border: 1px solid var(--b2);
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+  min-width: 160px;
+  max-width: 240px;
+  white-space: normal;
+}
+
+.field-help:hover .tooltip {
+  opacity: 1;
+}
+
+/* ════════════════════════════════════════════════════════════════════ */
+/* SAVE BAR COMPONENT (P2)                                               */
+/* ════════════════════════════════════════════════════════════════════ */
+
+.save-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: var(--p1);
+  border-top: 1px solid var(--b1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+  gap: 8px;
+  z-index: 200;
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  letter-spacing: 0.12em;
+  color: var(--muted2);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.save-bar.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.save-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted2);
+}
+
+.save-dot.saving {
+  background: var(--accent);
+  animation: blinkPulse 0.8s infinite;
+}
+
+.save-dot.saved {
+  background: #44bb44;
+}
+
+.save-dot.error {
+  background: var(--red);
+}
+
+.save-timestamp {
+  color: var(--muted);
+}
+
+/* ════════════════════════════════════════════════════════════════════ */
+/* COLLAPSE INDICATORS (P3)                                              */
+/* ════════════════════════════════════════════════════════════════════ */
+
+.panel-badge {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  padding: 2px 6px;
+  background: var(--accent);
+  color: var(--black);
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.panel-badge.show {
+  opacity: 1;
+}
+
+/* ════════════════════════════════════════════════════════════════════ */
+/* NPC QUICK STATS (P4)                                                   */
+/* ════════════════════════════════════════════════════════════════════ */
+
+.npc-quick-stats {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--p2);
+  border-bottom: 1px solid var(--b1);
+}
+
+.npc-quick-stats .quick-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.npc-quick-stats .quick-label {
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.npc-quick-stats .quick-val {
+  font-family: var(--disp);
+  font-size: 1.4rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.npc-quick-stats .quick-tag {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text);
+  letter-spacing: 0.08em;
+}
+
+.attr-group {
+  margin-bottom: 12px;
+}
+
+.attr-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.attr-group-header:hover {
+  border-color: var(--b2);
+  color: var(--text);
+}
+
+.attr-group-header svg {
+  width: 10px;
+  height: 10px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.2s;
+}
+
+.attr-group-header.open svg {
+  transform: rotate(180deg);
+}
+
+.attr-group-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.attr-group-body.open {
+  grid-template-rows: 1fr;
+}
+
+.attr-group-body .attr-inner {
+  min-height: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════════ */
+/* LAYOUT TRANSITIONS FIX (P7) - grid-template-rows method               */
+/* ════════════════════════════════════════════════════════════════════ */
+
+.enc-body, .pf-settings, .collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.enc-body.open, .pf-settings.open, .collapsible.open {
+  grid-template-rows: 1fr;
+}
+
+.enc-body > *, .pf-settings > *, .collapsible > * {
+  min-height: 0;
 }
