@@ -741,36 +741,42 @@ function populateUserInfo(user, profile) {
 
 // Dashboard initialization
 window.addEventListener('DOMContentLoaded', function() {
-  requireAuth(function(currentUser) {
+  requireAuth().then(function(auth) {
+    if (!auth) return;
+    
+    var userId = auth.session.user.id;
+    
     // Load profile and populate user info
-    window.getProfile(currentUser.id).then(function(profile) {
-      populateUserInfo(currentUser, profile);
+    window.getProfile(userId).then(function(profile) {
+      populateUserInfo(auth.session.user, profile);
     }).catch(function(err) {
       console.error('Error loading profile:', err);
-      populateUserInfo(currentUser, null);
+      populateUserInfo(auth.session.user, null);
     });
     
     // Load and display characters (forceRefresh to get latest)
-    window.listCharacters(currentUser.id, true).then(function(chars) {
+    window.listCharacters(userId, true).then(function(chars) {
       populateCharacterGrid(chars);
     }).catch(function(err) {
       console.error('Error loading characters:', err);
     });
 
     // Load and display party
-    window.getPlayerParty(currentUser.id).then(function(party) {
+    window.getPlayerParty(userId).then(function(party) {
       if (party) {
-        populatePartyInfo(party, currentUser.id);
+        populatePartyInfo(party, userId);
       }
     }).catch(function(err) {
       console.error('Error loading party:', err);
     });
 
-  // Render theme dots with icons
-  renderThemeDots();
-  
-  // Bind event handlers
-  bindDashboardEvents();
+    // Render theme dots with icons
+    renderThemeDots();
+    
+    // Bind event handlers
+    bindDashboardEvents();
+  }).catch(function(err) {
+    console.error('Auth error:', err);
   });
 });
 
@@ -884,25 +890,27 @@ function bindDashboardEvents() {
     });
   }
 
-   // Confirm create party
+    // Confirm create party
   var confirmCreateParty = document.getElementById('confirm-create-party');
   if (confirmCreateParty) {
     confirmCreateParty.addEventListener('click', function() {
       var input = document.getElementById('party-name-input');
       if (input && input.value.trim()) {
-        requireAuth(function(user) {
-           window.createParty(input.value.trim(), user.id).then(function() {
+        requireAuth().then(function(auth) {
+          if (!auth) return;
+          var userId = auth.session.user.id;
+           window.createParty(input.value.trim(), userId).then(function() {
              toast('PARTY CRIADA COM SUCESSO');
              var modal = document.getElementById('create-party-modal');
              if (modal) modal.style.display = 'none';
              input.value = '';
              // Clear cache and reload party info
              if (window.cache) {
-               window.cache.invalidate('gm_party', user.id);
-               window.cache.invalidate('player_party', user.id);
+               window.cache.invalidate('gm_party', userId);
+               window.cache.invalidate('player_party', userId);
              }
-             window.getPlayerParty(user.id).then(function(party) {
-               if (party) populatePartyInfo(party, user.id);
+             window.getPlayerParty(userId).then(function(party) {
+               if (party) populatePartyInfo(party, userId);
              }).catch(function(err) {
                toast('ERRO AO CARREGAR PARTY');
                console.error('Error loading party:', err);
@@ -940,19 +948,21 @@ function bindDashboardEvents() {
     confirmJoinParty.addEventListener('click', function() {
       var input = document.getElementById('party-code-input');
       if (input && input.value.trim()) {
-        requireAuth(function(user) {
+        requireAuth().then(function(auth) {
+          if (!auth) return;
+          var userId = auth.session.user.id;
           window.getPartyByCode(input.value.trim()).then(function(party) {
             if (party) {
-              return window.joinParty(party.id, user.id).then(function() {
+              return window.joinParty(party.id, userId).then(function() {
                 toast('ENTROU NA PARTY: ' + party.name);
                 var modal = document.getElementById('join-party-modal');
                 if (modal) modal.style.display = 'none';
                 input.value = '';
                 // Clear cache before reloading
                 if (window.cache) {
-                  window.cache.invalidate('player_party', user.id);
+                  window.cache.invalidate('player_party', userId);
                 }
-                populatePartyInfo(party, user.id);
+                populatePartyInfo(party, userId);
               }).catch(function(err) {
                 toast('ERRO AO ENTRAR NA PARTY');
                 console.error('Error joining party:', err);
