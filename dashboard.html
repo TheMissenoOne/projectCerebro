@@ -891,31 +891,27 @@ function bindDashboardEvents() {
       var input = document.getElementById('party-name-input');
       if (input && input.value.trim()) {
         requireAuth(function(user) {
-          window.createParty(input.value.trim(), user.id).then(function() {
-            toast('PARTY CRIADA COM SUCESSO');
-            var modal = document.getElementById('create-party-modal');
-            if (modal) modal.style.display = 'none';
-            input.value = '';
-            // Clear cache and reload party info
-            if (window.cache) {
-              window.cache.invalidate('gm_party', user.id);
-              window.cache.invalidate('player_party', user.id);
-            }
-            window.getPlayerParty(user.id).then(function(party) {
-              if (party) populatePartyInfo(party, user.id);
-            }).catch(function(err) {
-              toast('ERRO AO CARREGAR PARTY');
-              console.error('Error loading party:', err);
-            });
-          }).catch(function(err) {
-            toast('ERRO AO CRIAR PARTY');
-            console.error('Error creating party:', err);
-          });
-          }).catch(function(err) {
-            toast('ERRO AO CRIAR PARTY');
-            console.error('Error creating party:', err);
-          });
-        });
+           window.createParty(input.value.trim(), user.id).then(function() {
+             toast('PARTY CRIADA COM SUCESSO');
+             var modal = document.getElementById('create-party-modal');
+             if (modal) modal.style.display = 'none';
+             input.value = '';
+             // Clear cache and reload party info
+             if (window.cache) {
+               window.cache.invalidate('gm_party', user.id);
+               window.cache.invalidate('player_party', user.id);
+             }
+             window.getPlayerParty(user.id).then(function(party) {
+               if (party) populatePartyInfo(party, user.id);
+             }).catch(function(err) {
+               toast('ERRO AO CARREGAR PARTY');
+               console.error('Error loading party:', err);
+             });
+           }).catch(function(err) {
+             toast('ERRO AO CRIAR PARTY');
+             console.error('Error creating party:', err);
+           });
+         });
       }
     });
   }
