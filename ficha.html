@@ -162,14 +162,10 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tcard.humanidade .cat-badge .theme-icon{color:var(--green);}
 .tipo-sel{flex:1;background:transparent;border:none;color:var(--white);font-family:var(--cond);font-size:.72rem;outline:none;cursor:pointer;min-width:0;}
 .tipo-sel option,.tipo-sel optgroup{background:var(--dark);color:var(--white);}
-.collapse-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
-.collapse-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .2s;}
-.tcard.collapsed .collapse-btn svg{transform:rotate(180deg);}
 .del-card-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px;margin-left:4px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .del-card-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
 .del-card-btn:hover{color:var(--red);}
 .card-body{padding:10px;display:flex;flex-direction:column;gap:8px;}
-.tcard.collapsed .card-body{display:none;}
 
 .trackers-row{display:flex;gap:14px;flex-wrap:wrap;}
 .tracker-grp{display:flex;flex-direction:column;gap:4px;}
@@ -689,39 +685,34 @@ function buildGrid(cid,lista){
    }
 }
 function buildCard(card,lista,cid){
-  const div=document.createElement('div');
-  const c=cat(card.tipo);
-  div.className='tcard'+(c?' '+c:'')+(card.collapsed?' collapsed':'');
-  const hdr=document.createElement('div');hdr.className='card-hdr';
-  const main=document.createElement('div');main.className='card-hdr-main';
-  const badge=document.createElement('span');badge.className='cat-badge';
-  const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
-  const icon=c?getThemeIcon(c):'';
-  badge.innerHTML=icon?'<span class="theme-icon">'+icon+'</span>'+tipoLabel:'TIPO';main.appendChild(badge);
-  const sel=document.createElement('select');sel.className='tipo-sel';
-  const o0=document.createElement('option');o0.value='';o0.textContent='— escolha —';sel.appendChild(o0);
-  const gM=document.createElement('optgroup');gM.label='MUTAÇÃO';
-  T_MUTACAO.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gM.appendChild(o);});sel.appendChild(gM);
-  const gH=document.createElement('optgroup');gH.label='HUMANIDADE';
-  T_HUM.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gH.appendChild(o);});sel.appendChild(gH);
-  sel.value=card.tipo||'';
-  sel.addEventListener('change',e=>{
-    card.tipo=e.target.value;const nc=cat(card.tipo);
-    div.className='tcard'+(nc?' '+nc:'')+(card.collapsed?' collapsed':'');
-    const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
-    const newIcon=nc?getThemeIcon(nc):'';
-    badge.innerHTML=newIcon?'<span class="theme-icon">'+newIcon+'</span>'+newLabel:'TIPO';salvarAuto();
-  });
-  main.appendChild(sel);hdr.appendChild(main);
-  const delBtn=document.createElement('button');delBtn.className='del-card-btn';delBtn.title='Remover cartão';
-  delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
-  delBtn.addEventListener('click',()=>{if(confirm('Remover este cartão?')){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
-  hdr.appendChild(delBtn);
-  const colBtn=document.createElement('button');colBtn.className='collapse-btn';
-  colBtn.title=card.collapsed?'Expandir':'Minimizar';
-  colBtn.innerHTML=`<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>`;
-  colBtn.addEventListener('click',()=>{card.collapsed=!card.collapsed;div.classList.toggle('collapsed',card.collapsed);colBtn.title=card.collapsed?'Expandir':'Minimizar';salvarAuto();});
-  hdr.appendChild(colBtn);div.appendChild(hdr);
+   const div=document.createElement('div');
+   const c=cat(card.tipo);
+   div.className='tcard'+(c?' '+c:'');
+   const hdr=document.createElement('div');hdr.className='card-hdr';
+   const main=document.createElement('div');main.className='card-hdr-main';
+   const badge=document.createElement('span');badge.className='cat-badge';
+   const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
+   const icon=card.tipo?getThemeIcon(card.tipo):'';
+   badge.innerHTML=icon?'<span class="theme-icon">'+icon+'</span>'+tipoLabel:'TIPO';main.appendChild(badge);
+   const sel=document.createElement('select');sel.className='tipo-sel';
+   const o0=document.createElement('option');o0.value='';o0.textContent='— escolha —';sel.appendChild(o0);
+   const gM=document.createElement('optgroup');gM.label='MUTAÇÃO';
+   T_MUTACAO.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gM.appendChild(o);});sel.appendChild(gM);
+   const gH=document.createElement('optgroup');gH.label='HUMANIDADE';
+   T_HUM.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gH.appendChild(o);});sel.appendChild(gH);
+   sel.value=card.tipo||'';
+   sel.addEventListener('change',e=>{
+     card.tipo=e.target.value;const nc=cat(card.tipo);
+     div.className='tcard'+(nc?' '+nc:'');
+     const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
+     const newIcon=card.tipo?getThemeIcon(card.tipo):'';
+     badge.innerHTML=newIcon?'<span class="theme-icon">'+newIcon+'</span>'+newLabel:'TIPO';salvarAuto();
+   });
+   main.appendChild(sel);hdr.appendChild(main);
+   const delBtn=document.createElement('button');delBtn.className='del-card-btn';delBtn.title='Remover cartão';
+   delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
+   delBtn.addEventListener('click',()=>{if(confirm('Remover este cartão?')){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
+   hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
   const trow=document.createElement('div');trow.className='trackers-row';
   function mkT(label,lcolor,count,filled,cls,setter){
@@ -914,17 +905,14 @@ function renderThemeDots() {
   }).join('');
 }
 
-// Help tooltip handlers - convert to click-based toasts
-document.addEventListener('DOMContentLoaded',function(){
-  init();
-  document.querySelectorAll('.field-help').forEach(function(el){
-    el.style.cursor='pointer';
-    el.addEventListener('click',function(e){
-      const tooltip=this.querySelector('.tooltip');
-      if(tooltip)showToast(tooltip.textContent);
-      e.stopPropagation();
-    });
-  });
+document.addEventListener('DOMContentLoaded',init);
+document.addEventListener('click',function(e){
+  const help=e.target.closest('.field-help');
+  if(help){
+    const tooltip=help.querySelector('.tooltip');
+    if(tooltip)showToast(tooltip.textContent);
+    e.stopPropagation();
+  }
 });
 </script>
 </body>
