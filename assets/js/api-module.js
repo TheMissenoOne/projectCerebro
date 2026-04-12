@@ -5,13 +5,21 @@
 
 (function() {
   const client = window.getSupabaseClient;
+  const CACHE = window.cache;
 
   /**
    * Profile operations
    */
-  window.api.getProfile = function(userId) {
+  window.api.getProfile = function(userId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('profile', userId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('profiles').select('*').eq('id', userId).single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.set('profile', userId, result.data, 300000);
+        return result.data; 
+      });
   };
 
   /**
@@ -23,9 +31,16 @@
       .then(function(result) { if (result.error) throw result.error; return result.data; });
   };
 
-  window.api.getGMParty = function(gmId) {
+  window.api.getGMParty = function(gmId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('gm_party', gmId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('parties').select('*').eq('gm_id', gmId).single()
-      .then(function(result) { if (result.error) return null; return result.data; });
+      .then(function(result) { 
+        if (result.error) return null; 
+        if (result.data) CACHE.set('gm_party', gmId, result.data, 300000);
+        return result.data; 
+      });
   };
 
   window.api.getPartyByCode = function(code) {
@@ -74,34 +89,31 @@
   /**
    * Character operations
    */
-   window.api.createCharacter = function(playerId, partyId) {
-     console.log('[createCharacter] playerId:', playerId, 'partyId:', partyId);
-     var insertData = { player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true };
-     console.log('[createCharacter] inserting:', insertData);
-     
-     return client().from('characters').insert(insertData)
-       .then(function(result) { 
-         console.log('[createCharacter] insert result:', result);
-         if (result.error) {
-           console.error('[createCharacter] insert error:', result.error);
-           throw result.error; 
-         }
-         
-         // Now get the character we just created
-         return client().from('characters').select('id').eq('player_id', playerId).order('created_at', { ascending: false }).limit(1).single()
-           .then(function(selectResult) {
-             console.log('[createCharacter] select result:', selectResult);
-             if (selectResult.error || !selectResult.data) {
-               throw selectResult.error || new Error('Could not find created character');
-             }
-             return selectResult.data;
-           });
-       });
-   };
+window.api.createCharacter = function(playerId, partyId) {
+      var insertData = { player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true };
+      
+      return client().from('characters').insert(insertData)
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          CACHE.invalidatePattern('chars');
+          return client().from('characters').select('id').eq('player_id', playerId).order('created_at', { ascending: false }).limit(1).single()
+            .then(function(selectResult) {
+              if (selectResult.error || !selectResult.data) throw selectResult.error || new Error('Could not find created character');
+              return selectResult.data;
+            });
+        });
+    };
 
-  window.api.loadCharacter = function(charId) {
+  window.api.loadCharacter = function(charId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('char', charId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('characters').select('*').eq('id', charId).single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.set('char', charId, result.data, 120000);
+        return result.data; 
+      });
   };
 
   window.api.loadPublicCharacter = function(charId) {
@@ -127,20 +139,36 @@
       body: JSON.stringify(updateData)
     }).then(function(res) {
       if (!res.ok) return res.text().then(function(t) { throw new Error(t); });
+      CACHE.set('char', charId, Object.assign({}, updateData, { id: charId }), 120000);
       return res.json();
     });
   };
 
-  window.api.listCharacters = function(playerId) {
+  window.api.listCharacters = function(playerId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('chars', playerId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('characters').select('*').eq('player_id', playerId)
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.set('chars', playerId, result.data, 120000);
+        return result.data; 
+      });
   };
 
-  window.api.listPartyCharacters = function(partyId) {
+  window.api.listPartyCharacters = function(partyId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('party_chars', partyId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('characters').select('*, profiles(display_name)').eq('party_id', partyId).order('name')
-      .then(function(result) { if (result.error) throw result.error; return result.data.map(function(c) {
-        c.player_name = c.profiles?.display_name || c.player_id; return c;
-      });});
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        var mapped = result.data.map(function(c) {
+          c.player_name = c.profiles?.display_name || c.player_id; return c;
+        });
+        CACHE.set('party_chars', partyId, mapped, 300000);
+        return mapped;
+      });
   };
 
   window.api.listAllGMCharacters = function(gmId) {
@@ -169,22 +197,41 @@
 
   window.api.deleteCharacter = function(charId) {
     return client().from('characters').delete().eq('id', charId)
-      .then(function(result) { if (result.error) throw result.error; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.invalidate('char', charId);
+        CACHE.invalidatePattern('chars');
+      });
   };
 
   /**
    * NPC operations
    */
-  window.api.listNPCs = function(partyId, includeGlobal) {
+  window.api.listNPCs = function(partyId, includeGlobal, forceRefresh) {
+    var key = partyId ? 'npcs_' + partyId : 'npcs_global';
+    var cached = !forceRefresh && CACHE.get('npcs', key);
+    if (cached) return Promise.resolve(cached);
+
     var query = client().from('npcs').select('*');
     if (partyId) query = query.or('party_id.eq.' + partyId + ',is_global.eq.true');
     else if (includeGlobal !== false) query = query.eq('is_global', true);
-    return query.then(function(result) { if (result.error) throw result.error; return result.data; });
+    return query.then(function(result) { 
+      if (result.error) throw result.error; 
+      CACHE.set('npcs', key, result.data, 300000);
+      return result.data; 
+    });
   };
 
-  window.api.listAllNPCs = function() {
+  window.api.listAllNPCs = function(forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('npcs', 'all');
+    if (cached) return Promise.resolve(cached);
+
     return client().from('npcs').select('*')
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.set('npcs', 'all', result.data, 300000);
+        return result.data; 
+      });
   };
 
   window.api.createNPC = function(partyId, npcData) {
@@ -197,7 +244,11 @@
       data: npcData.data || {}, 
       is_global: npcData.is_global || false 
     }).select().single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.invalidatePattern('npcs');
+        return result.data; 
+      });
   };
 
   window.api.updateNPC = function(npcId, npcData) {
@@ -208,20 +259,34 @@
       danger: npcData.danger || 'medio', 
       data: npcData.data || {} 
     }).eq('id', npcId).select().single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.invalidatePattern('npcs');
+        return result.data; 
+      });
   };
 
   window.api.deleteNPC = function(npcId) {
     return client().from('npcs').delete().eq('id', npcId)
-      .then(function(result) { if (result.error) throw result.error; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.invalidatePattern('npcs');
+      });
   };
 
   /**
    * Session operations
    */
-  window.api.getSession = function(partyId) {
+  window.api.getSession = function(partyId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('session', partyId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('sessions').select('*').eq('party_id', partyId).order('created_at', { ascending: false }).limit(1).single()
-      .then(function(result) { if (result.error) return null; return result.data; });
+      .then(function(result) { 
+        if (result.error) return null; 
+        if (result.data) CACHE.set('session', partyId, result.data);
+        return result.data; 
+      });
   };
 
   window.api.updateSession = function(partyId, sessionData) {
@@ -232,7 +297,11 @@
       encounter: sessionData.encounter || [], 
       updated_at: new Date().toISOString() 
     }).select().single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { 
+        if (result.error) throw result.error; 
+        CACHE.set('session', partyId, result.data);
+        return result.data; 
+      });
   };
 
 })();
