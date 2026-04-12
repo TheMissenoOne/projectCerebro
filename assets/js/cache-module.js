@@ -51,17 +51,6 @@ get: function(type, id) {
       }
     },
 
-    set: function(type, id, val, ttl) {
-      var key = getStorageKey(type, id);
-      var item = { val: val, ts: Date.now(), ttl: ttl || DEFAULT_TTL };
-      memoryCache[key] = item;
-      try {
-        localStorage.setItem(key, JSON.stringify(item));
-      } catch (e) {
-        console.warn('[cache] set error:', e);
-      }
-    },
-
     invalidate: function(type, id) {
       var key = getStorageKey(type, id);
       delete memoryCache[key];
