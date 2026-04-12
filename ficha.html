@@ -245,8 +245,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   .attr-num{font-size:.38rem;width:14px}
   .attr-name{font-size:.55rem;padding:6px 0}
   .attr-dots{display:none}
-  .attr-val{width:36px;height:28px;font-size:.8rem}
+   .attr-val{width:36px;height:28px;font-size:.8rem}
 }
+
+.add-card-btn{background:var(--p1);border:2px dashed var(--b2);color:var(--muted);font-family:var(--disp);font-size:2rem;width:100%;min-height:120px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.add-card-btn:hover{border-color:var(--red);color:var(--red);background:rgba(232,0,28,.05);}
+.cat-badge .theme-icon svg{stroke:currentColor;fill:currentColor;}
 </style>
 </head>
 <body>
@@ -593,24 +597,21 @@ function validaCampo(el,v){
   if(!isNaN(v)&&v>=min&&v<=max)el.classList.add('valid');else el.classList.add('invalid');
 }
 function salvarAuto(){
-  coletarCampos();
-  clearTimeout(saveTimer);
-  showSaveBar('saving', 'SALVANDO...');
-  setInd('salvando','// SALVANDO...');
-  document.querySelectorAll('.attr-val').forEach(function(el){validaCampo(el);});
-  saveTimer=setTimeout(async()=>{
-    if(!charId)return;
-    try{
-      const fotoB64=D.foto||null;
-      const dataParaSalvar=Object.assign({},D,{foto:''});
-      await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
-      showSaveBar('saved', 'SALVO ✓');
-      setInd('salvo','// SALVO ✓');
-      setTimeout(()=>setInd('','// SALVO'),1800);
-    }catch(e){
-      console.error('Erro ao salvar:',e);
-      showSaveBar('error', 'ERRO');
-      setInd('erro','// ERRO AO SALVAR');
+   coletarCampos();
+   clearTimeout(saveTimer);
+   setInd('salvando','// SALVANDO...');
+   document.querySelectorAll('.attr-val').forEach(function(el){validaCampo(el);});
+   saveTimer=setTimeout(async()=>{
+     if(!charId)return;
+     try{
+       const fotoB64=D.foto||null;
+       const dataParaSalvar=Object.assign({},D,{foto:''});
+       await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
+       setInd('salvo','// SALVO ✓');
+       setTimeout(()=>setInd('','// SALVO'),1800);
+     }catch(e){
+       console.error('Erro ao salvar:',e);
+       setInd('erro','// ERRO AO SALVAR');
     }
   },1000);
 }
@@ -680,8 +681,12 @@ function buildMembros(){
   }
 }
 function buildGrid(cid,lista){
-  const c=document.getElementById(cid);c.innerHTML='';
-  lista.forEach(card=>c.appendChild(buildCard(card,lista,cid)));
+   const c=document.getElementById(cid);c.innerHTML='';
+   lista.forEach(card=>c.appendChild(buildCard(card,lista,cid)));
+   if(cid==='temas-grid'&&lista.length<5){
+     const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title='Adicionar tema';
+     addBtn.addEventListener('click',()=>{lista.push(novoCard());buildGrid(cid,lista);salvarAuto();});c.appendChild(addBtn);
+   }
 }
 function buildCard(card,lista,cid){
   const div=document.createElement('div');
@@ -909,34 +914,18 @@ function renderThemeDots() {
   }).join('');
 }
 
-document.addEventListener('DOMContentLoaded',init);
-
-// Save bar
-var saveBar = document.createElement('div');
-saveBar.id = 'save-bar';
-saveBar.className = 'save-bar';
-saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
-document.body.appendChild(saveBar);
-
-// Save bar status functions
-function showSaveBar(status, msg) {
-  var bar = document.getElementById('save-bar');
-  if (!bar) return;
-  var dot = bar.querySelector('.save-dot');
-  var text = bar.querySelector('.save-text');
-  var ts = bar.querySelector('.save-timestamp');
-  
-  bar.classList.add('active');
-  dot.className = 'save-dot ' + (status || '');
-  text.textContent = msg || '';
-  
-  if (status === 'saved') {
-    ts.textContent = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
-    setTimeout(function() { bar.classList.remove('active'); }, 3000);
-  } else if (status === 'error') {
-    ts.textContent = 'ERRO';
-  }
-}
+// Help tooltip handlers - convert to click-based toasts
+document.addEventListener('DOMContentLoaded',function(){
+  init();
+  document.querySelectorAll('.field-help').forEach(function(el){
+    el.style.cursor='pointer';
+    el.addEventListener('click',function(e){
+      const tooltip=this.querySelector('.tooltip');
+      if(tooltip)showToast(tooltip.textContent);
+      e.stopPropagation();
+    });
+  });
+});
 </script>
 </body>
 </html>
