@@ -242,11 +242,24 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 </style>
 </head>
 <body>
+<div id="toast" class="toast"></div>
 <script>
 (function(){
   var t = localStorage.getItem('cerebro_tema');
   if (t) document.body.className = 'theme-' + t;
 })();
+function showToast(msg){
+  var t=document.getElementById('toast');if(!t)return;
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},2500);
+}
+function initHelpButtons(){
+  document.querySelectorAll('.field-help').forEach(function(b){
+    var tip=b.querySelector('.tooltip');if(!tip)return;
+    b.addEventListener('click',function(e){e.stopPropagation();showToast(tip.textContent.trim());});
+  });
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initHelpButtons);else initHelpButtons();
 </script>
 <header class="header">
   <div class="header-logo">
