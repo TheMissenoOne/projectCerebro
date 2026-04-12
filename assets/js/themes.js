@@ -3,7 +3,9 @@
  * Tom Muller / House of X aesthetic
  */
 
-const THEME_KEY = 'cerebro_tema';
+if (typeof THEME_KEY === 'undefined') {
+  var THEME_KEY = 'cerebro_tema';
+}
 
 const THEMES = {
   yellow: { name: 'AMARELO', color: '#FFD600' },
