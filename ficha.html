@@ -28,7 +28,7 @@ body.theme-purple{--accent:#b040ff;--accent2:#7c1db5;--accent3:#3a0060;--red:#b0
 body.theme-blue{--accent:#3a8fc0;--accent2:#226090;--accent3:#0a2a40;--red:#3a8fc0;--red2:#226090;--red3:#0a2a40;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;min-height:100vh;overflow-x:hidden;animation:bodyIn .4s ease both;}
+body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;min-height:100vh;overflow-y:auto;animation:bodyIn .4s ease both;}
 @keyframes bodyIn{from{opacity:0}to{opacity:1}}
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.05) 3px,rgba(0,0,0,.05) 4px);pointer-events:none;z-index:9999;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -693,7 +693,8 @@ function buildCard(card,lista,cid){
    const main=document.createElement('div');main.className='card-hdr-main';
    const badge=document.createElement('span');badge.className='cat-badge';
    const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
-   const iconUrl = card.tipo ? `/icons/${card.tipo}.svg` : '';
+   const iconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
+    const iconUrl = iconMap ? `/icons/${iconMap}.svg` : '';
    if (iconUrl) {
      const img = document.createElement('img');
      img.src = iconUrl;
