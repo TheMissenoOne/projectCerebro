@@ -694,7 +694,7 @@ function buildCard(card,lista,cid){
    const badge=document.createElement('span');badge.className='cat-badge';
    const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
    const iconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
-    const iconUrl = iconMap ? `/icons/${iconMap}.svg` : '';
+    const iconUrl = iconMap ? `icons/${iconMap}.svg` : '';
    if (iconUrl) {
      const img = document.createElement('img');
      img.src = iconUrl;
@@ -715,7 +715,7 @@ function buildCard(card,lista,cid){
      card.tipo=e.target.value;const nc=cat(card.tipo);
      div.className='tcard'+(nc?' '+nc:'');
      const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
-     const newIconUrl = card.tipo ? `/icons/${card.tipo}.svg` : '';
+     const newIconUrl = card.tipo ? `icons/${iconMap}.svg` : '';
      
      // Clear and rebuild badge
      badge.innerHTML = '';
