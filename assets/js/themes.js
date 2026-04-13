@@ -99,6 +99,7 @@ function getPanelSettingsHTML() {
 window.THEMES = THEMES;
 window.getCurrentTheme = getCurrentTheme;
 window.setTheme = setTheme;
+window.setTema = setTheme;
 window.initTheme = initTheme;
 window.getThemeSwitcherHTML = getThemeSwitcherHTML;
 window.getXLogoSVG = getXLogoSVG;
