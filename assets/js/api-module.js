@@ -50,10 +50,17 @@
 
   window.api.joinParty = function(partyId, playerId) {
     return client().from('party_members').insert({ party_id: partyId, player_id: playerId }).select().single()
-      .then(function(result) { if (result.error) throw result.error; return result.data; });
+      .then(function(result) { if (result.error) throw result.error; return result.data; })
+      .then(function(data) {
+        CACHE.invalidate('player_party', playerId);
+        return data;
+      });
   };
 
-  window.api.getPartyMembers = function(partyId) {
+  window.api.getPartyMembers = function(partyId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('party_members', partyId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('party_members').select('player_id').eq('party_id', partyId)
       .then(function(result) { if (result.error) throw result.error; return result.data; })
       .then(function(members) {
@@ -62,22 +69,30 @@
         return client().from('profiles').select('id, username, display_name').in('id', playerIds)
           .then(function(profiles) {
             if (profiles.error) throw profiles.error;
-            return members.map(function(m) {
+            var mapped = members.map(function(m) {
               var profile = profiles.data.find(function(p) { return p.id === m.player_id; });
               m.username = profile?.username || 'Unknown';
               m.display_name = profile?.display_name || m.username;
               return m;
             });
+            CACHE.set('party_members', partyId, mapped, 300000);
+            return mapped;
           });
       });
   };
 
-  window.api.getPlayerParty = function(playerId) {
+  window.api.getPlayerParty = function(playerId, forceRefresh) {
+    var cached = !forceRefresh && CACHE.get('player_party', playerId);
+    if (cached) return Promise.resolve(cached);
+
     return client().from('party_members').select('party_id').eq('player_id', playerId).limit(1)
       .then(function(result) { 
         if (result.error || !result.data || result.data.length === 0) return null; 
         return client().from('parties').select('*').eq('id', result.data[0].party_id).single()
-          .then(function(p) { return p.data || null; });
+          .then(function(p) { 
+            if (p.data) CACHE.set('player_party', playerId, p.data, 300000);
+            return p.data || null; 
+          });
       });
   };
 

@@ -20,8 +20,22 @@ export const AdminComponent = {
     }
 
     const user = AuthService.getUser();
-    this._party = await ApiService.getPlayerParty(user.id);
-    this._characters = await ApiService.getUserCharacters(user.id);
+    
+    const cachedParty = AppState.get('party');
+    if (cachedParty) {
+      this._party = cachedParty;
+    } else {
+      this._party = await ApiService.getPlayerParty(user.id);
+      if (this._party) AppState.set('party', this._party);
+    }
+    
+    const cachedChars = AppState.get('characters');
+    if (cachedChars) {
+      this._characters = cachedChars;
+    } else {
+      this._characters = await ApiService.getUserCharacters(user.id);
+      AppState.set('characters', this._characters);
+    }
 
     this._render();
   },

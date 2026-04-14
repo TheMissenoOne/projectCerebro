@@ -62,7 +62,14 @@ const AuthService = {
     
     if (error) throw error;
     
-    return this._checkSession();
+    const result = await this._checkSession();
+    
+    const user = result.user || data.user;
+    if (user) {
+      AppState.preload(user);
+    }
+    
+    return result;
   },
   
   async register(email, password, username) {
@@ -86,6 +93,7 @@ const AuthService = {
   async logout() {
     await this._client.auth.signOut();
     AppState.setAuth(null);
+    AppState.clear();
   },
   
   isLoggedIn() {

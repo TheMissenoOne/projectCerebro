@@ -127,21 +127,33 @@ export const DashboardComponent = {
     const user = AuthService.getUser();
     const profile = AuthService.getProfile();
     
-    // Load characters
-    try {
-      this._characters = await ApiService.listCharacters(user.id);
-    } catch (e) {
-      console.error('[Dashboard] Error loading characters:', e);
+    // Load characters from AppState cache first
+    const cachedChars = AppState.get('characters');
+    if (cachedChars) {
+      this._characters = cachedChars;
+    } else {
+      try {
+        this._characters = await ApiService.listCharacters(user.id);
+        AppState.set('characters', this._characters);
+      } catch (e) {
+        console.error('[Dashboard] Error loading characters:', e);
+      }
     }
     
-    // Load party — try GM first (profile role may be stale), then player
-    try {
-      this._party = await ApiService.getGMParty(user.id);
-      if (!this._party) {
-        this._party = await ApiService.getPlayerParty(user.id);
+    // Load party from AppState cache first
+    const cachedParty = AppState.get('party');
+    if (cachedParty) {
+      this._party = cachedParty;
+    } else {
+      try {
+        this._party = await ApiService.getGMParty(user.id);
+        if (!this._party) {
+          this._party = await ApiService.getPlayerParty(user.id);
+        }
+        if (this._party) AppState.set('party', this._party);
+      } catch (e) {
+        console.error('[Dashboard] Error loading party:', e);
       }
-    } catch (e) {
-      console.error('[Dashboard] Error loading party:', e);
     }
     
     this._render();
