@@ -35,6 +35,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 @keyframes slideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes blinkPulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes bgFadeIn{from{opacity:0}to{opacity:.4}}
 .page.active{animation:fadeUp .25s ease both;}
 .tcard{animation:cardIn .2s ease both;}
 
@@ -180,7 +181,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .del-card-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
 .del-card-btn:hover{color:var(--red);}
 .card-body{position:relative;padding:10px;display:flex;flex-direction:column;gap:8px;}
-.card-body[data-icon]{background-image:var(--card-bg);background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.4;}
+.card-body[data-icon]::before{content:'';position:absolute;inset:0;background-image:var(--card-bg);background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.35;pointer-events:none;z-index:0;transition:opacity .3s ease;}
+.card-body[data-icon] > *{position:relative;z-index:1;}
 
 .trackers-row{display:flex;gap:14px;flex-wrap:wrap;}
 .tracker-grp{display:flex;flex-direction:column;gap:4px;}
@@ -721,9 +723,10 @@ const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
    sel.value=card.tipo||'';
 sel.addEventListener('change',e=>{
       card.tipo=e.target.value;const nc=cat(card.tipo);
+      const newIconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
       div.className='tcard'+(nc?' '+nc:'');
-      const newIconUrl = card.tipo ? `icons/${iconMap}.svg` : '';
-      if (newIconUrl) { div.setAttribute('data-icon', iconMap); body.setAttribute('data-icon', iconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
+      const newIconUrl = card.tipo ? `icons/${newIconMap}.svg` : '';
+      if (newIconUrl) { div.setAttribute('data-icon', newIconMap); body.setAttribute('data-icon', newIconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
       badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
       salvarAuto();
     });
