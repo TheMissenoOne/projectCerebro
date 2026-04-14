@@ -154,6 +154,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tcard.mutacao{border-top-color:#E8001C;}
 .tcard{position:relative;overflow:hidden;}
 .tcard::before{content:'';position:absolute;inset:0;background:var(--p1);opacity:.4;pointer-events:none;z-index:0;}
+.tcard[data-icon]::after{content:'';position:absolute;right:-10px;bottom:-10px;width:80px;height:80px;background:var(--p2);opacity:.2;mask-image:var(--card-icon);mask-size:contain;mask-repeat:no-repeat;mask-position:center;-webkit-mask-image:var(--card-icon);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;z-index:0;}
 .tcard > *{position:relative;z-index:1;}
 .card-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--p2);border-bottom:1px solid var(--b1);}
 .card-hdr-main{display:flex;align-items:center;gap:7px;flex:1;min-width:0;}
@@ -697,9 +698,13 @@ function buildGrid(cid,lista){
    }
 }
 function buildCard(card,lista,cid){
-   const div=document.createElement('div');
-   const c=cat(card.tipo);
-   div.className='tcard'+(c?' '+c:'');
+const div=document.createElement('div');
+    const c=cat(card.tipo);
+    div.className='tcard'+(c?' '+c:'');
+    const iconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
+    const iconUrl = iconMap ? `icons/${iconMap}.svg` : '';
+    if (iconUrl) div.setAttribute('data-icon', iconMap);
+    div.style.setProperty('--card-icon', `url(${iconUrl})`);
    const hdr=document.createElement('div');hdr.className='card-hdr';
    const main=document.createElement('div');main.className='card-hdr-main';
    const badge=document.createElement('span');badge.className='cat-badge';
@@ -721,24 +726,23 @@ if (iconUrl) {
    const gH=document.createElement('optgroup');gH.label='HUMANIDADE';
    T_HUM.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gH.appendChild(o);});sel.appendChild(gH);
    sel.value=card.tipo||'';
-   sel.addEventListener('change',e=>{
-     card.tipo=e.target.value;const nc=cat(card.tipo);
-     div.className='tcard'+(nc?' '+nc:'');
-     const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
-     const newIconUrl = card.tipo ? `icons/${iconMap}.svg` : '';
-     
-     // Clear and rebuild badge
-     badge.innerHTML = '';
-     if (newIconUrl) {
-       const img = document.createElement('img');
-       img.src = newIconUrl;
-       img.alt = newLabel;
-       img.className = 'theme-icon';
-       badge.appendChild(img);
-     }
-     badge.innerHTML += newLabel;
-     salvarAuto();
-   });
+sel.addEventListener('change',e=>{
+      card.tipo=e.target.value;const nc=cat(card.tipo);
+      div.className='tcard'+(nc?' '+nc:'');
+      const newIconUrl = card.tipo ? `icons/${iconMap}.svg` : '';
+      if (newIconUrl) { div.setAttribute('data-icon', iconMap); div.style.setProperty('--card-icon', `url(${iconMap}.svg)`); } else { div.removeAttribute('data-icon'); }
+      const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
+      badge.innerHTML = '';
+      if (newIconUrl) {
+        const img = document.createElement('img');
+        img.src = newIconUrl;
+        img.alt = newLabel;
+        img.className = 'theme-icon';
+        badge.appendChild(img);
+      }
+      badge.innerHTML += newLabel;
+      salvarAuto();
+    });
    main.appendChild(sel);hdr.appendChild(main);
    const delBtn=document.createElement('button');delBtn.className='del-card-btn';delBtn.title='Remover cartão';
    delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
