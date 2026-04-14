@@ -181,7 +181,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .del-card-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
 .del-card-btn:hover{color:var(--red);}
 .card-body{position:relative;padding:10px;display:flex;flex-direction:column;gap:8px;}
-.card-body[data-icon]::before{content:'';position:absolute;inset:0;background-image:var(--card-bg);background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.35;pointer-events:none;z-index:0;transition:opacity .3s ease;}
+.card-body[data-icon]::before{content:'';position:absolute;inset:0;background-image:var(--card-bg);background-size:auto;background-position:center;background-repeat:no-repeat;opacity:0.15;pointer-events:none;z-index:0;transition:opacity .3s ease;}
 .card-body[data-icon] > *{position:relative;z-index:1;}
 
 .trackers-row{display:flex;gap:14px;flex-wrap:wrap;}
