@@ -328,16 +328,17 @@
       <div class="wiki-nav-section">
         <div class="wiki-nav-title">Regras</div>
         <a href="wiki.html" class="wiki-nav-link" data-page="index">Introdução</a>
-        <a href="wiki.html?p=movimentos" class="wiki-nav-link" data-page="movimentos">Movimentos</a>
         <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas">Temas</a>
         <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
         <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
-        <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Tipos de Ação</a>
+        <a href="wiki.html?p=sistema_acao" class="wiki-nav-link" data-page="sistema_acao">Sistema de Ações</a>
         <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
-        <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido">Sistema Híbrido</a>
         <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
-        <a href="wiki.html?p=aps_tabelas" class="wiki-nav-link" data-page="aps_tabelas">APs de Referência</a>
+        <a href="wiki.html?p=aps_distancia" class="wiki-nav-link" data-page="aps_distancia">Distância</a>
+        <a href="wiki.html?p=aps_mass" class="wiki-nav-link" data-page="aps_mass">Massa</a>
+        <a href="wiki.html?p=aps_tempo" class="wiki-nav-link" data-page="aps_tempo">Tempo</a>
+        <a href="wiki.html?p=aps_energia" class="wiki-nav-link" data-page="aps_energia">Energia</a>
       </div>
       <div class="wiki-nav-section">
         <div class="wiki-nav-title">Personagens</div>
@@ -384,46 +385,15 @@
         <p>X-Men TTRPG usa uma versão híbrida do sistema City of Mist + DC Heroes para o universo X-Men.</p>
         <h2>Navegação</h2>
         <ul>
-          <li><strong>Movimentos:</strong> As ações básicas que personagens podem tomar</li>
           <li><strong>Temas:</strong> A estrutura de criação de personagens (Mutação vs Humanidade)</li>
           <li><strong>Tags:</strong> O sistema de poderes e fraquezas</li>
           <li><strong>Progressão:</strong> Como personagens evoluem ao longo da campanha</li>
-          <li><strong>Combate:</strong> Regras de combate, condições e recuperação</li>
-          <li><strong>Tipos de Ação:</strong> Os quatro tipos de ação do sistema híbrido e duração de condições</li>
+          <li><strong>Combate:</strong> Regras de combate e condições</li>
+          <li><strong>Sistema de Ações:</strong> Regras completas de ações de oposição, manifestação e automáticas</li>
           <li><strong>Modificadores:</strong> Tabela completa de modificadores para ações de manifestação</li>
           <li><strong>Ação e Resultado:</strong> Tabela interativa AV/OV e EV/RV</li>
+          <li><strong>APs de Referência:</strong> Tabelas de escala para distância, massa, tempo e energia</li>
         </ul>
-      `,
-      movimentos: `
-        <h1>Movimentos</h1>
-        <p>Os movimentos são as ações básicas que seu personagem pode realizar. Cada movimento tem um atributo associado e um resultado determinado por rolagem de dados.</p>
-        
-        <h2>Virar o Jogo</h2>
-        <p>Quando você tenta mudar completamente o rumo de uma situação através de uma ação drástica,uba Virar o Jogo.</p>
-        <ul>
-          <li><strong>Atributo:</strong> depends on the action</li>
-          <li><strong>Sucesso:</strong> Take +1 forward</li>
-          <li><strong>Parcial:</strong> A escolha: take a condition or the GM says how you succeed but not as cleanly as you'd like</li>
-          <li><strong>Falha:</strong> Things go wrong. The GM says how, and you take a condition</li>
-        </ul>
-        
-        <h2>Convencer</h2>
-        <p>Quando você tenta influenciar alguém através de palavras, faça um movimento de Convencer.</p>
-        
-        <h2>Rir na Cara do Perigo</h2>
-        <p>Quando você enfrenta o perigo com desprezo ou humor, faça este movimento.</p>
-        
-        <h2>Partir pro Abraço</h2>
-        <p>Quando você se aproxima para um combate físico direto, faça este movimento.</p>
-        
-        <h2>Investigar</h2>
-        <p>Quando você busca informações, faça um movimento de Investigar.</p>
-        
-        <h2>Agir na Sombra</h2>
-        <p>Quando você tenta algo furtivo ou discreto, faça este movimento.</p>
-        
-        <h2>Correr o Risco</h2>
-        <p>Quando você tenta algo perigoso sem saber o resultado, faça este movimento.</p>
       `,
       temas: `
         <h1>Temas</h1>
@@ -775,6 +745,43 @@
           <li>Modificadores de posicionamento e circunstanciais não têm cap, mas são situacionais e não cumulativos entre si se representarem a mesma condição.</li>
           <li>Ações automáticas <strong>não usam modificadores</strong> — seu limite é o número de tags investidas.</li>
         </ul>
+      `,
+      sistema_acao: `
+        <h1>Sistema de Ações</h1>
+        <p>O sistema utiliza quatro tipos de ações para resolver diferentes situações em jogo.</p>
+
+        <h2>Tipos de Ação</h2>
+        <table>
+          <thead><tr><th>Tipo</th><th>Quando usar</th><th>Mecânica</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Oposição</strong></td><td>Resistência ativa de outro objeto de jogo</td><td>AV/EV vs OV/RV → RAPs</td></tr>
+            <tr><td><strong>Manifestação</strong></td><td>Sem oposição, com dificuldade de execução</td><td>EV vs 1 + modificadores → RAPs</td></tr>
+            <tr><td><strong>Automática</strong></td><td>Ajuste direto sem rolagem</td><td>Tags = APs de ajuste</td></tr>
+            <tr><td><strong>Reação</strong></td><td>Resposta fora do turno</td><td>Tags = APs de ajuste</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Ações de Oposição</h3>
+        <p>Usadas quando há resistência ativa. O agente usa AV/EV contra OV/RV da oposição. O resultado gera RAPs que determinam dano ou condições.</p>
+        <p>Consulte <strong>Sistema Híbrido</strong> para regras completas.</p>
+
+        <h3>Ações de Manifestação</h3>
+        <p>Sem resistência direta. O desafio está na execução. OV/RV começa em 1 e recebe modificadores conforme a natureza do efeito.</p>
+        <p>Consulte <strong>Modificadores</strong> para a tabela completa.</p>
+
+        <h3>Ações Automáticas</h3>
+        <p>Sem rolagem. Criam, reduzem ou removem condições/efeitos usando tags. Não podem aumentar o grau de algo já existente.</p>
+
+        <h3>Reações</h3>
+        <p>Ações automáticas executadas fora do turno, em resposta a um evento. Apenas defensivas — não criam efeitos ofensivos.</p>
+
+        <h2>Tags</h2>
+        <p>Cada tag tem um <strong>grau</strong>. O grau total de uma ação é a soma dos graus das tags usadas.</p>
+        <p><strong>Regra:</strong> tags usadas ficam indisponíveis até o próximo turno.</p>
+
+        <h2>Condições e Efeitos</h2>
+        <p><strong>Condições</strong> são estados anexados a objetos de jogo. <strong>Efeitos</strong> existem independentemente na cena.</p>
+        <p>Consulte <strong>Sistema Híbrido</strong> para detalhes completos sobre limiares, promoção e duração.</p>
       `,
       sistema_hibrido: `
         <h1>Sistema Híbrido de Ações, Tags, Condições e Efeitos</h1>
@@ -1170,11 +1177,8 @@
         
         <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" = Falha automática. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade.</p>
       `,
-      aps_tabelas: `
-        <h1>APs de Referência</h1>
-        <p>As tabelas a seguir fornecem referências de escala para entender o valor em APs (Action Points) em três dimensões: distância/deslocamento, massa e tempo.</p>
-
-        <h2>Distância e Deslocamento (km/h)</h2>
+      aps_distancia: `
+        <h1>APs de Referência — Distância</h1>
         <table>
           <thead><tr><th>APs</th><th>Exemplo</th><th>Velocidade (km/h)</th><th>Comparativo</th></tr></thead>
           <tbody>
@@ -1186,9 +1190,9 @@
             <tr><td>-1</td><td>1,5 m</td><td>1,25</td><td>caminhada lenta</td></tr>
             <tr><td>0</td><td>3 m</td><td>2,5</td><td>deslocamento casual</td></tr>
             <tr><td>1</td><td>6 m</td><td>5</td><td>caminhada humana</td></tr>
-            <tr><td>2</td><td>12 m</td><td>10</td><td>corida leve</td></tr>
+            <tr><td>2</td><td>12 m</td><td>10</td><td>corrida leve</td></tr>
             <tr><td>3</td><td>24 m</td><td>20</td><td>natação rápida</td></tr>
-            <tr><td>4</td><td>45 m</td><td>40</td><td>corida máxima humana</td></tr>
+            <tr><td>4</td><td>45 m</td><td>40</td><td>corrida máxima humana</td></tr>
             <tr><td>5</td><td>91 m</td><td>80</td><td>veículo leve / animal veloz</td></tr>
             <tr><td>6</td><td>183 m</td><td>160</td><td>animal mais rápido em terra</td></tr>
             <tr><td>7</td><td>380 m</td><td>320</td><td>veículo de alta performance</td></tr>
@@ -1241,8 +1245,9 @@
             <tr><td>70+</td><td>—</td><td>—</td><td>extensão de uma galáxia</td></tr>
           </tbody>
         </table>
-
-        <h2>Massa</h2>
+      `,
+      aps_mass: `
+        <h1>APs de Referência — Massa</h1>
         <table>
           <thead><tr><th>APs</th><th>Exemplo</th><th>Comparativo</th></tr></thead>
           <tbody>
@@ -1309,8 +1314,9 @@
             <tr><td>90+</td><td>—</td><td>estrela</td></tr>
           </tbody>
         </table>
-
-        <h2>Tempo</h2>
+      `,
+      aps_tempo: `
+        <h1>APs de Referência — Tempo</h1>
         <table>
           <thead><tr><th>APs</th><th>Tempo</th><th>Exemplo</th></tr></thead>
           <tbody>
@@ -1379,8 +1385,9 @@
             <tr><td>70+</td><td>—</td><td>ciclos universais</td></tr>
           </tbody>
         </table>
-
-        <h2>Energia</h2>
+      `,
+      aps_energia: `
+        <h1>APs de Referência — Energia</h1>
         <table>
           <thead><tr><th>APs</th><th>Energia (J)</th><th>Exemplo</th></tr></thead>
           <tbody>
