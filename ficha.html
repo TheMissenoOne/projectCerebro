@@ -179,7 +179,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .del-card-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px;margin-left:4px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .del-card-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
 .del-card-btn:hover{color:var(--red);}
-.card-body{padding:10px;display:flex;flex-direction:column;gap:8px;}
+.card-body{padding:10px;display:flex;flex-direction:column;gap:8px;background-size:contain;background-position:right bottom;background-repeat:no-repeat;opacity:0.5;filter:brightness(0) saturate(0%) invert(0.9);}
 
 .trackers-row{display:flex;gap:14px;flex-wrap:wrap;}
 .tracker-grp{display:flex;flex-direction:column;gap:4px;}
@@ -730,7 +730,7 @@ sel.addEventListener('change',e=>{
       card.tipo=e.target.value;const nc=cat(card.tipo);
       div.className='tcard'+(nc?' '+nc:'');
       const newIconUrl = card.tipo ? `icons/${iconMap}.svg` : '';
-      if (newIconUrl) { div.setAttribute('data-icon', iconMap); div.style.setProperty('--card-icon', `url(${iconMap}.svg)`); } else { div.removeAttribute('data-icon'); }
+      if (newIconUrl) { div.setAttribute('data-icon', iconMap); div.style.setProperty('--card-icon', `url(${iconMap}.svg)`); body.style.backgroundImage = `url(${newIconUrl})`; } else { div.removeAttribute('data-icon'); body.style.backgroundImage = 'none'; }
       const newLabel=nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
       badge.innerHTML = '';
       if (newIconUrl) {
@@ -749,6 +749,7 @@ sel.addEventListener('change',e=>{
    delBtn.addEventListener('click',()=>{if(confirm('Remover este cartão?')){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
    hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
+   if (iconUrl) body.style.backgroundImage = `url(${iconUrl})`;
   const trow=document.createElement('div');trow.className='trackers-row';
   function mkT(label,lcolor,count,filled,cls,setter){
     const g=document.createElement('div');g.className='tracker-grp';
