@@ -708,10 +708,8 @@ const div=document.createElement('div');
    const hdr=document.createElement('div');hdr.className='card-hdr';
    const main=document.createElement('div');main.className='card-hdr-main';
    const badge=document.createElement('span');badge.className='cat-badge';
-   const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
-   const iconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
-    const iconUrl = iconMap ? `icons/${iconMap}.svg` : '';
-if (iconUrl) {
+const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
+    if (iconUrl) {
       const ic = document.createElement('span');
       ic.className = 'theme-icon';
       ic.style.webkitMaskImage = `url(${iconUrl})`;
