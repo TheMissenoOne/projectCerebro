@@ -335,6 +335,7 @@
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
         <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Tipos de Ação</a>
         <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
+        <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido">Sistema Híbrido</a>
         <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
         <a href="wiki.html?p=aps_tabelas" class="wiki-nav-link" data-page="aps_tabelas">APs de Referência</a>
       </div>
@@ -786,6 +787,376 @@
           <li>O GM pode limitar categorias de ação combinadas para evitar stacking excessivo — recomendado cap de <strong>+8</strong> total em modificadores de ação por efeito.</li>
           <li>Modificadores de posicionamento e circunstanciais não têm cap, mas são situacionais e não cumulativos entre si se representarem a mesma condição.</li>
           <li>Ações automáticas <strong>não usam modificadores</strong> — seu limite é o número de tags investidas.</li>
+        </ul>
+      `,
+      sistema_hibrido: `
+        <h1>Sistema Híbrido de Ações, Tags, Condições e Efeitos</h1>
+        <p>Versão 2 — Revisado e Complementado</p>
+
+        <h2>1. Fundamento do Sistema</h2>
+        <p>O sistema é estruturado em quatro camadas de resolução:</p>
+        <ul>
+          <li><strong>Ações de Oposição:</strong> há resistência ativa de outro objeto de jogo.</li>
+          <li><strong>Ações de Manifestação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
+          <li><strong>Ações Automáticas:</strong> não exigem rolagem; servem para criar, reduzir ou remover efeitos e condições de forma simples.</li>
+          <li><strong>Reações:</strong> ações automáticas executadas fora do turno do personagem, em resposta a um evento.</li>
+        </ul>
+        <p>O sistema utiliza: <strong>tags</strong> como base de execução, <strong>APs</strong> como unidade de escala, <strong>RAPs</strong> como resultado mecânico, <strong>condições</strong> como estados anexados a objetos do jogo, e <strong>efeitos</strong> como entidades independentes.</p>
+
+        <h2>2. Terminologia</h2>
+        <h3>2.1 Grau das Tags</h3>
+        <p>O grau total de uma ação é o somatório dos graus de todas as tags utilizadas nela.</p>
+        <p><strong>Exemplo:</strong> usar uma tag de grau 3 e uma de grau 2 resulta em grau total 5.</p>
+
+        <h3>2.2 Objeto de Jogo</h3>
+        <p>Qualquer entidade ou elemento relevante em mesa: personagem, aliado, inimigo, construto, estrutura, área, ambiente.</p>
+
+        <h3>2.3 Condição</h3>
+        <p>Estado anexado a um objeto de jogo que impacta diretamente um ou mais atributos do alvo. Condições são sempre vinculadas a um objeto.</p>
+
+        <h3>2.4 Efeito</h3>
+        <p>Entidade com existência independente, capaz de afetar um ou mais objetos de jogo. Efeitos não pertencem a nenhum objeto específico — eles existem no espaço da cena.</p>
+
+        <h3>2.5 Cena</h3>
+        <p>Unidade narrativa de tempo que corresponde a um evento dramático contínuo: um combate, uma negociação, uma fuga. A cena termina quando o contexto dramático se resolve ou muda fundamentalmente. Para fins de duração, uma cena equivale a aproximadamente <strong>8 APs de tempo</strong> (15 minutos narrativos).</p>
+
+        <h3>2.6 Turno</h3>
+        <p>Unidade de resolução dentro de uma cena estruturada. Tags consumidas em um turno ficam indisponíveis até o início do próximo turno do mesmo personagem.</p>
+
+        <h2>3. Tipos de Ação</h2>
+        <h3>3.1 Ações de Oposição</h3>
+        <p>São ações em que existe resistência ativa de outro objeto de jogo ou força contrária.</p>
+        <ul>
+          <li>Usam <strong>AV/EV</strong> do agente.</li>
+          <li>Usam <strong>OV/RV</strong> da oposição.</li>
+          <li>Seguem a resolução normal por RAPs.</li>
+          <li>Apropriadas para ataques, bloqueios, disputas, resistências e confrontos diretos.</li>
+          <li>Geram primariamente <strong>condições</strong> no alvo.</li>
+        </ul>
+
+        <h3>3.2 Ações de Manifestação</h3>
+        <p>São ações sem oposição direta, nas quais o desafio está na execução, na complexidade e na materialização do resultado.</p>
+        <ul>
+          <li>Iniciam em <strong>OV/RV 1</strong>.</li>
+          <li>Recebem modificadores conforme a natureza da ação (ver Seção 10).</li>
+          <li>Apropriadas para criar efeitos independentes, aplicar estados sem resistência ativa e produzir alterações relevantes no jogo.</li>
+          <li>Geram primariamente <strong>efeitos</strong>.</li>
+          <li>Podem também gerar <strong>condições</strong> em alvos que não oferecem resistência ativa.</li>
+        </ul>
+
+        <h3>3.3 Ações Automáticas</h3>
+        <p>São ações sem rolagem.</p>
+        <ul>
+          <li>Podem criar novos efeitos ou condições.</li>
+          <li>Podem reduzir efeitos ou condições existentes.</li>
+          <li><strong>Não podem</strong> aumentar o grau de um efeito ou condição já existente.</li>
+          <li>Devem respeitar a trivialidade da ação no contexto ficcional.</li>
+          <li>Tags usadas em ações automáticas ficam indisponíveis até o próximo turno.</li>
+        </ul>
+
+        <h3>3.4 Reações</h3>
+        <p>São ações automáticas executadas fora do turno do personagem, em resposta direta a um evento.</p>
+        <ul>
+          <li>Seguem todas as regras de ações automáticas.</li>
+          <li>Consomem tags normalmente — essas tags ficam indisponíveis até o próximo turno do personagem.</li>
+          <li>Podem ser usadas para interromper, reduzir ou anular efeitos e condições antes que se estabeleçam.</li>
+        </ul>
+        <p><strong>Atenção:</strong> uma reação não pode ser usada para criar uma condição ou efeito novo de forma ofensiva — apenas para responder a algo que está acontecendo.</p>
+
+        <h2>4. Sistema de Resolução</h2>
+        <h3>4.1 Ações de Oposição</h3>
+        <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas + bônus de condições favoráveis</p>
+        <p><strong>OV/RV</strong> = atributo de resistência do alvo + modificadores situacionais + condições desfavoráveis ao agente</p>
+        <p>O resultado gera <strong>RAPs</strong>. RAPs positivos indicam sucesso; RAPs negativos ou zero indicam falha.</p>
+
+        <h3>4.2 Ações de Manifestação</h3>
+        <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas</p>
+        <p><strong>OV/RV final</strong> = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</p>
+        <p>Se a ação falhar (RAPs ≤ 0), o efeito não se estabelece ou apenas "pisca" sem se fixar.</p>
+
+        <h3>4.3 Ações Automáticas e Reações</h3>
+        <p>O valor do ajuste automático é igual ao <strong>grau total das tags gastas</strong>:</p>
+        <ul>
+          <li>1 tag de grau 2 = 2 APs de ajuste</li>
+          <li>2 tags de grau 1 cada = 2 APs de ajuste</li>
+          <li>1 tag de grau 3 + 1 de grau 1 = 4 APs de ajuste</li>
+        </ul>
+        <p>O ajuste pode criar, reduzir ou remover condições e efeitos cujo grau atual seja <strong>igual ou menor</strong> ao valor do ajuste.</p>
+
+        <h2>5. Tags</h2>
+        <h3>5.1 Definição</h3>
+        <p>Tags são descritores mecânicos vinculados a temas do personagem. Cada tag tem um <strong>grau numérico</strong> que representa sua potência.</p>
+
+        <h3>5.2 Uso de Tags</h3>
+        <p>Cada tag usada em uma ação é considerada <strong>gasta</strong> e não pode ser reutilizada até o próximo turno do personagem, independentemente do tipo de ação.</p>
+        <p>As tags podem ser usadas para:</p>
+        <ul>
+          <li>aumentar <strong>AV/EV</strong> em ações de oposição</li>
+          <li>compor o <strong>grau total</strong> em manifestações e automáticas</li>
+          <li>criar, reduzir ou remover estados em ações automáticas</li>
+        </ul>
+
+        <h3>5.3 Tags e AV/EV</h3>
+        <p>Em qualquer ação que exija rolagem, o AV/EV é calculado como:</p>
+        <p><strong>AV/EV = atributo base do personagem + grau total das tags utilizadas</strong></p>
+        <p>O jogador escolhe quais tags usa antes de rolar. Tags relevantes ao contexto ficcional podem ser usadas; tags sem relação narrativa não podem.</p>
+
+        <h3>5.4 Limite de Uso</h3>
+        <p>Cada tag é consumida no uso. Nenhuma tag pode ser usada mais de uma vez no mesmo turno. Tags de diferentes temas podem ser combinadas na mesma ação, desde que haja justificativa narrativa.</p>
+
+        <h2>6. Condições</h2>
+        <h3>6.1 Limiar de Condição</h3>
+        <p>Toda condição possui um <strong>limiar</strong> definido pelo valor do atributo de resistência correspondente à sua natureza:</p>
+        <table>
+          <thead><tr><th>Categoria</th><th>Atributo de Resistência</th></tr></thead>
+          <tbody>
+            <tr><td>Dano físico / estrutural</td><td>Corpo</td></tr>
+            <tr><td>Dano mental / cognitivo</td><td>Mente</td></tr>
+            <tr><td>Dano emocional / espiritual</td><td>Espírito</td></tr>
+          </tbody>
+        </table>
+        <p>O <strong>limiar</strong> é o valor numérico em APs desse atributo no alvo.</p>
+        <p><strong>Exemplo:</strong> se o alvo tem Corpo 5, o limiar de condições físicas é 5. RAPs acima de 5 geram promoções.</p>
+
+        <h3>6.2 Aplicação</h3>
+        <p>Condições são normalmente geradas por <strong>ações de oposição</strong>, mas podem também ser criadas por manifestações (quando o alvo não oferece resistência ativa) ou por ações automáticas.</p>
+        <p>O <strong>grau máximo</strong> de uma condição criada em uma única ação é:</p>
+        <p><strong>Grau máximo = EV + grau total das tags utilizadas</strong></p>
+        <p>RAPs acima desse limite não aumentam o grau da condição — eles podem ser convertidos em promoções.</p>
+
+        <h3>6.3 Acúmulo de Condições</h3>
+        <ul>
+          <li>Condições do <strong>mesmo tipo</strong> no mesmo alvo se <strong>somam</strong>: um Ferido-3 e um Ferido-4 resultam em Ferido-7.</li>
+          <li>Condições de <strong>tipos diferentes</strong> coexistem e aplicam penalidades separadas.</li>
+          <li>Quando o grau acumulado de uma condição excede o dobro do limiar do atributo, o alvo é <strong>incapacitado</strong> na categoria correspondente.</li>
+        </ul>
+        <p><strong>Exemplo:</strong> limiar Corpo 5 → acumular 10 ou mais APs em condições físicas = incapacitado fisicamente.</p>
+
+        <h3>6.4 Promoção por RAP</h3>
+        <p>RAPs que excedem o <strong>limiar do atributo</strong> do alvo podem ser usados para adquirir promoções (ver Seção 9).</p>
+
+        <h3>6.5 Duração</h3>
+        <table>
+          <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td>Temporária</td><td>dura um número de APs de tempo igual ao grau da condição</td></tr>
+            <tr><td>Indefinida</td><td>permanece até ser removida por uma ação apropriada</td></tr>
+            <tr><td>Permanente</td><td>altera a ficha do alvo de forma indefinida</td></tr>
+          </tbody>
+        </table>
+
+        <h3>6.6 Modificadores de Duração na Criação</h3>
+        <table>
+          <thead><tr><th>Duração desejada</th><th>Modificador</th></tr></thead>
+          <tbody>
+            <tr><td>Temporária</td><td>+0</td></tr>
+            <tr><td>Indefinida</td><td>+1 coluna</td></tr>
+            <tr><td>Permanente</td><td>+3 colunas</td></tr>
+          </tbody>
+        </table>
+
+        <h3>6.7 Remoção de Condições</h3>
+        <ul>
+          <li><strong>Ação automática:</strong> remove ou reduz condições em APs igual ao grau das tags gastas</li>
+          <li><strong>Ação de manifestação:</strong> pode remover condições; OV/RV = grau atual da condição + modificadores de duração</li>
+          <li><strong>Tempo:</strong> condições temporárias expiram naturalmente</li>
+          <li><strong>Recuperação narrativa:</strong> a mesa pode permitir redução por repouso, cuidado ou contexto ficcional</li>
+        </ul>
+
+        <h2>7. Efeitos</h2>
+        <h3>7.1 Limiar de Efeito</h3>
+        <p>O limiar de um efeito é igual ao <strong>grau total das tags usadas</strong> para criá-lo.</p>
+        <p><strong>Exemplo:</strong> criar um efeito com tags de grau 2 e 3 → limiar do efeito = 5.</p>
+
+        <h3>7.2 Aplicação</h3>
+        <p>Efeitos são normalmente gerados por <strong>ações de manifestação</strong>. O grau do efeito é determinado pelos RAPs obtidos na ação.</p>
+
+        <h3>7.3 Promoção por RAP</h3>
+        <p>RAPs que excedem o <strong>limiar do efeito</strong> podem ser usados para adquirir promoções (ver Seção 9).</p>
+
+        <h3>7.4 Duração</h3>
+        <table>
+          <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td>Temporária</td><td>dura um número de APs de tempo igual ao grau do efeito</td></tr>
+            <tr><td>Indefinida</td><td>permanece até ser removida por uma ação apropriada</td></tr>
+            <tr><td>Permanente</td><td>altera o estado do jogo de forma indefinida</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.5 Remoção de Efeitos</h3>
+        <ul>
+          <li><strong>Ação automática:</strong> remove ou reduz o efeito em APs igual ao grau das tags gastas</li>
+          <li><strong>Ação de manifestação:</strong> OV/RV = grau atual do efeito + modificadores de duração</li>
+          <li><strong>Ação de oposição:</strong> possível se o efeito tiver um "agente" que pode ser contrariado</li>
+        </ul>
+
+        <h2>8. Limiar de Manifestação e Promoções de Escopo</h2>
+        <h3>8.1 Limiar Base de Manifestação</h3>
+        <p><strong>Limiar base: 6</strong></p>
+        <p>Quando o RAP de uma manifestação atinge ou ultrapassa 6, o efeito recebe uma <strong>promoção de escopo</strong> — uma melhoria qualitativa no alcance, amplitude, controle ou complexidade do efeito.</p>
+
+        <h3>8.2 Progressão de Promoções de Escopo</h3>
+        <table>
+          <thead><tr><th>Promoção</th><th>Limiar de RAP</th></tr></thead>
+          <tbody>
+            <tr><td>1ª promoção</td><td>6</td></tr>
+            <tr><td>2ª promoção</td><td>10</td></tr>
+            <tr><td>3ª promoção</td><td>15</td></tr>
+            <tr><td>4ª promoção</td><td>21</td></tr>
+          </tbody>
+        </table>
+        <p>A progressão segue incrementos crescentes (+4, +5, +6…), representando que efeitos de escala superior são cada vez mais difíceis de alcançar.</p>
+
+        <h3>8.3 Categorias de Promoção de Escopo</h3>
+        <p>Cada promoção de escopo pode melhorar uma das seguintes dimensões do efeito:</p>
+        <ul>
+          <li><strong>duração</strong> (de temporária para indefinida, de indefinida para permanente)</li>
+          <li><strong>amplitude</strong> (de 1 alvo para área, de área pequena para ampla)</li>
+          <li><strong>alcance</strong> (de toque para curto, de curto para médio, etc.)</li>
+          <li><strong>controle</strong> (de bruto para preciso)</li>
+          <li><strong>complexidade</strong> (de simples para duplo, etc.)</li>
+          <li><strong>ocultação</strong> (de visível para discreto, etc.)</li>
+          <li><strong>comportamento</strong> (adiciona efeito secundário, encadeamento, etc.)</li>
+        </ul>
+
+        <h3>8.4 Regra de Identidade</h3>
+        <p>A promoção <strong>não altera o grau numérico</strong> base do efeito. Ela altera a qualidade e a forma como o efeito se manifesta no jogo.</p>
+
+        <h2>9. Promoções por RAP Excedente</h2>
+        <h3>9.1 Custo de Promoção</h3>
+        <table>
+          <thead><tr><th>Nível</th><th>Custo em RAPs excedentes</th><th>Efeito</th></tr></thead>
+          <tbody>
+            <tr><td>Básico</td><td>3 RAPs</td><td>melhoria menor na dimensão escolhida</td></tr>
+            <tr><td>Intermediário</td><td>5 RAPs</td><td>melhoria moderada</td></tr>
+            <tr><td>Avançado</td><td>7 RAPs</td><td>melhoria significativa</td></tr>
+          </tbody>
+        </table>
+
+        <h3>9.2 Dimensões Disponíveis para Promoção por RAP</h3>
+        <p>Cada compra melhora uma dimensão independente: amplitude, alcance, controle, complexidade, ocultação, duração.</p>
+        <p>Cada dimensão deve ser comprada separadamente. Não é possível concentrar todos os RAPs em uma única dimensão além do nível avançado.</p>
+
+        <h3>9.3 Relação com Promoções de Escopo</h3>
+        <p>As promoções de escopo (Seção 8) são concedidas automaticamente ao atingir os limiares. As promoções por RAP (esta seção) são opcionais e exigem gasto deliberado de RAPs excedentes. Ambas podem coexistir na mesma ação.</p>
+
+        <h2>13. Fórmula Geral de Manifestação</h2>
+        <p><strong>OV/RV = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</strong></p>
+        <p>Se o valor final for muito alto, a ação se torna mais difícil, mais rara e mais sujeita a falha. A mesa pode definir um teto razoável para o total de modificadores (recomendado: máximo +8 em modificadores de ação, sem teto nos demais).</p>
+
+        <h2>14. Ações Automáticas — Detalhamento</h2>
+        <h3>14.1 O que Podem Fazer</h3>
+        <ul>
+          <li>criar novos efeitos com grau igual ao total de tags gastas</li>
+          <li>criar novas condições com grau igual ao total de tags gastas</li>
+          <li>reduzir efeitos existentes em APs igual ao total de tags gastas</li>
+          <li>reduzir condições existentes em APs igual ao total de tags gastas</li>
+          <li>remover efeitos ou condições se o valor aplicado for maior ou igual ao grau atual</li>
+        </ul>
+
+        <h3>14.2 O que Não Podem Fazer</h3>
+        <ul>
+          <li><strong>aumentar</strong> o grau de uma condição ou efeito já existente</li>
+          <li>substituir uma ação de oposição em situações que exigem resistência ativa</li>
+          <li>ignorar a trivialidade ficcional da situação</li>
+          <li>ser usadas para criar efeitos ofensivos fora do próprio turno (isso é exclusivo de reações defensivas)</li>
+        </ul>
+
+        <h3>14.3 Regras de Uso</h3>
+        <ul>
+          <li>cada tag usada em ação automática é gasta até o próximo turno</li>
+          <li>ações automáticas podem ocorrer fora do turno, como <strong>reação</strong></li>
+          <li>ações automáticas não usam rolagem</li>
+        </ul>
+
+        <h2>15. Reações — Detalhamento</h2>
+        <h3>15.1 Quando Ocorrem</h3>
+        <p>Reações ocorrem <strong>imediatamente</strong> em resposta a um evento declarado, antes que ele se resolva completamente ou após sua resolução parcial (a critério da mesa).</p>
+
+        <h3>15.2 Custo</h3>
+        <ul>
+          <li>consomem tags normalmente</li>
+          <li>as tags consumidas ficam indisponíveis até o próximo turno do personagem</li>
+        </ul>
+
+        <h3>15.3 Limitações</h3>
+        <ul>
+          <li>não podem ser usadas para criar condições ou efeitos ofensivos</li>
+          <li>só podem <strong>responder</strong> a algo que está acontecendo</li>
+          <li>não interrompem ações de oposição já em resolução — apenas mitigam seus efeitos após os RAPs serem calculados</li>
+        </ul>
+
+        <h3>15.4 Cadeia de Reações</h3>
+        <p>Se dois personagens tentam reagir ao mesmo evento, a ordem é determinada pelo <strong>valor de iniciativa</strong> ou pelo acordo narrativo da mesa.</p>
+
+        <h2>17. Reutilização de Tags</h2>
+        <p>Tags usadas em qualquer ação — de oposição, manifestação, automática ou reação — ficam <strong>indisponíveis</strong> até o início do próximo turno do personagem.</p>
+        <p>Esta regra se aplica sem exceção. Não existe "tag que retorna no mesmo turno".</p>
+
+        <h2>19. Exemplo de Resolução Completo</h2>
+        <p><strong>Situação:</strong> Jean Grey tenta criar um campo de força telepático para proteger aliados em uma zona de combate.</p>
+        <p><strong>Tipo de ação:</strong> Manifestação (não há oposição direta)</p>
+        <p><strong>Tags usadas:</strong> <em>Telepatia</em> grau 4 + <em>Escudo Psiônico</em> grau 3 → <strong>grau total = 7</strong></p>
+        <p><strong>AV/EV:</strong> atributo mental base 8 + grau das tags 7 = <strong>15</strong></p>
+        <p><strong>Modificadores ao OV/RV:</strong></p>
+        <ul>
+          <li>Amplitude: área pequena (+2)</li>
+          <li>Alcance: curto (+1)</li>
+          <li>Duração: cena (+2)</li>
+          <li>Controle: preciso (+2)</li>
+          <li>Ocultação: visível (+0)</li>
+          <li>Posicionamento: usuário estável (-1)</li>
+          <li>Circunstancial: foco total (-1)</li>
+        </ul>
+        <p><strong>OV/RV final:</strong> 1 + 2 + 1 + 2 + 2 + 0 + (-1) + (-1) = <strong>6</strong></p>
+        <p><strong>Resultado:</strong> rola e obtém RAPs 9.</p>
+        <ul>
+          <li>Grau do efeito = 9</li>
+          <li>Limiar do efeito = 7 (grau total das tags)</li>
+          <li>RAPs excedentes = 9 − 7 = <strong>2 RAPs excedentes</strong></li>
+          <li>Limiar de manifestação: 9 ≥ 6 → <strong>1ª promoção de escopo</strong> (Jean escolhe estender para duradoura)</li>
+          <li>2 RAPs excedentes: não suficientes para promoção por RAP (mínimo 3)</li>
+        </ul>
+        <p><strong>Resultado final:</strong> campo de força psiônico de grau 9, cobrindo área pequena, com duração duradoura, precisamente controlado.</p>
+
+        <h2>20. Princípios Gerais</h2>
+        <ul>
+          <li>O grau das tags define a <strong>escala básica</strong> da ação e o limiar de promoção.</li>
+          <li>Condições são aplicadas a objetos de jogo e somam-se entre si.</li>
+          <li>Efeitos existem de forma independente na cena.</li>
+          <li>Ações de oposição resolvem <strong>conflito direto</strong>.</li>
+          <li>Ações de manifestação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
+          <li>Ações automáticas resolvem <strong>ajustes simples</strong> sem rolagem.</li>
+          <li>Reações são automáticas, executadas fora do turno, apenas em resposta.</li>
+          <li>RAPs excedentes compram duração e promoções.</li>
+          <li>Promoções de escopo modificam <strong>qualidade</strong>, não apenas quantidade.</li>
+          <li>Tags gastas só retornam no próximo turno.</li>
+          <li>A trivialidade ficcional sempre prevalece sobre a mecânica.</li>
+        </ul>
+
+        <h2>21. Resumo Operacional</h2>
+        <ol>
+          <li>Identifique o tipo de ação (oposição / manifestação / automática / reação)</li>
+          <li>Escolha as tags; some o grau total</li>
+          <li>Calcule AV/EV: atributo base + grau total das tags</li>
+          <li>Determine OV/RV: resistência do alvo (oposição) ou 1 + modificadores (manifestação)</li>
+          <li>Resolva pela tabela AV/OV ou EV/RV</li>
+          <li>Converta RAPs em grau de condição ou efeito</li>
+          <li>Verifique se RAPs excedem o limiar → aplique promoções</li>
+          <li>Verifique se RAPs ≥ 6 em manifestação → aplique promoção de escopo</li>
+          <li>Declare duração e gaste tags utilizadas até o próximo turno</li>
+        </ol>
+
+        <h2>22. Intenção do Sistema</h2>
+        <p>Este sistema foi desenhado para:</p>
+        <ul>
+          <li>preservar a <strong>leitura narrativa</strong> do jogo;</li>
+          <li>dar <strong>peso mecânico real</strong> às tags;</li>
+          <li>separar claramente <strong>criação, resistência e manutenção</strong> de efeitos;</li>
+          <li>permitir efeitos simples e complexos <strong>sem mudar a estrutura central</strong>;</li>
+          <li>tornar as <strong>promoções</strong> uma ferramenta de expressão narrativa, não apenas numérica;</li>
+          <li>manter o jogo rápido, mas com espaço para <strong>alta escala</strong> de poder.</li>
         </ul>
       `,
       acao_resultado: `
