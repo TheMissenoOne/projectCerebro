@@ -63,9 +63,18 @@
       return getSupabase().auth.signOut();
     },
 
-    getProfile: function(userId) {
+    getProfile: function(userId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('profile', userId);
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('profiles').select('*').eq('id', userId).single()
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          if (cache) cache.set('profile', userId, result.data, 300000);
+          return result.data; 
+        });
     },
 
     createParty: function(name, gmId) {
@@ -74,9 +83,18 @@
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 
-    getGMParty: function(gmId) {
+    getGMParty: function(gmId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('gm_party', gmId);
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('parties').select('*').eq('gm_id', gmId).single()
-        .then(function(result) { if (result.error) return null; return result.data; });
+        .then(function(result) { 
+          if (result.error) return null; 
+          if (cache && result.data) cache.set('gm_party', gmId, result.data, 300000);
+          return result.data; 
+        });
     },
 
     getPartyByCode: function(code) {
@@ -85,32 +103,80 @@
     },
 
     joinParty: function(partyId, playerId) {
+      var cache = window.cache;
       return getSupabase().from('party_members').insert({ party_id: partyId, player_id: playerId }).select().single()
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          if (cache) cache.invalidate('player_party', playerId);
+          return result.data; 
+        });
     },
 
-    getPartyMembers: function(partyId) {
-      return getSupabase().from('party_members').select('*, profiles(id, username, display_name)').eq('party_id', partyId)
-        .then(function(result) { if (result.error) throw result.error; return result.data.map(function(m) {
-          m.username = m.profiles?.username || 'Unknown';
-          m.display_name = m.profiles?.display_name || m.username;
-          return m;
-        });});
+    getPartyMembers: function(partyId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('party_members', partyId);
+        if (cached) return Promise.resolve(cached);
+      }
+      return getSupabase().from('party_members').select('player_id').eq('party_id', partyId)
+        .then(function(result) { if (result.error) throw result.error; return result.data || []; })
+        .then(function(members) {
+          if (!members || members.length === 0) return [];
+          var playerIds = members.map(function(m) { return m.player_id; });
+          return getSupabase().from('profiles').select('id, username, display_name').in('id', playerIds)
+            .then(function(profiles) {
+              if (profiles.error) throw profiles.error;
+              var mapped = members.map(function(m) {
+                var profile = profiles.data ? profiles.data.find(function(p) { return p.id === m.player_id; }) : null;
+                m.username = profile?.username || 'Unknown';
+                m.display_name = profile?.display_name || m.username;
+                return m;
+              });
+              if (cache) cache.set('party_members', partyId, mapped, 300000);
+              return mapped;
+            });
+        });
     },
 
-    getPlayerParty: function(playerId) {
-      return getSupabase().from('party_members').select('party_id, parties(*)').eq('player_id', playerId).single()
-        .then(function(result) { if (result.error) return null; return result.data.parties; });
+    getPlayerParty: function(playerId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('player_party', playerId);
+        if (cached) return Promise.resolve(cached);
+      }
+      return getSupabase().from('party_members').select('party_id').eq('player_id', playerId).limit(1)
+        .then(function(result) { 
+          if (result.error || !result.data || result.data.length === 0) return null; 
+          return getSupabase().from('parties').select('*').eq('id', result.data[0].party_id).single()
+            .then(function(p) { 
+              if (cache && p.data) cache.set('player_party', playerId, p.data, 300000);
+              return p.data || null; 
+            });
+        });
     },
 
     createCharacter: function(playerId, partyId) {
+      var cache = window.cache;
       return getSupabase().from('characters').insert({ player_id: playerId, party_id: partyId || null, name: 'Novo Personagem', is_active: true }).select().single()
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          if (cache) cache.invalidatePattern('chars');
+          return result.data; 
+        });
     },
 
-    loadCharacter: function(charId) {
+    loadCharacter: function(charId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('char', charId);
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('characters').select('*').eq('id', charId).single()
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          if (cache) cache.set('char', charId, result.data, 120000);
+          return result.data; 
+        });
     },
 
     loadPublicCharacter: function(charId) {
@@ -123,31 +189,43 @@
       if (data.name !== undefined) updateData.name = data.name;
       if (data.codename !== undefined) updateData.codename = data.codename;
       if (data.foto_base64 !== undefined && data.foto_base64 !== null) updateData.foto_base64 = data.foto_base64;
-      return fetch(SUPABASE_URL + '/rest/v1/characters?id=eq.' + charId, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-          'Prefer': 'return=representation'
-        },
-        body: JSON.stringify(updateData)
-      }).then(function(res) {
-        if (!res.ok) return res.text().then(function(t) { throw new Error(t); });
-        return res.json();
-      });
+      return getSupabase().from('characters').update(updateData).eq('id', charId).select().single()
+        .then(function(result) { 
+          if (result.error) throw result.error;
+          if (window.cache) window.cache.set('char', charId, result.data, 120000);
+          return result.data; 
+        });
     },
 
-    listCharacters: function(playerId) {
+    listCharacters: function(playerId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('chars', playerId);
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('characters').select('*').eq('player_id', playerId)
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          if (cache) cache.set('chars', playerId, result.data, 120000);
+          return result.data; 
+        });
     },
 
-    listPartyCharacters: function(partyId) {
+    listPartyCharacters: function(partyId, forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('party_chars', partyId);
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('characters').select('*, profiles(display_name)').eq('party_id', partyId).order('name')
-        .then(function(result) { if (result.error) throw result.error; return result.data.map(function(c) {
-          c.player_name = c.profiles?.display_name || c.player_id; return c;
-        });});
+        .then(function(result) { 
+          if (result.error) throw result.error; 
+          var mapped = result.data.map(function(c) {
+            c.player_name = c.profiles?.display_name || c.player_id; return c;
+          });
+          if (cache) cache.set('party_chars', partyId, mapped, 300000);
+          return mapped;
+        });
     },
 
     deleteCharacter: function(charId) {
@@ -155,11 +233,21 @@
         .then(function(result) { if (result.error) throw result.error; });
     },
 
-    listNPCs: function(partyId, includeGlobal) {
+    listNPCs: function(partyId, includeGlobal, forceRefresh) {
+      var cache = window.cache;
+      var key = partyId ? 'npcs_' + partyId : 'npcs_global';
+      if (!forceRefresh && cache) {
+        var cached = cache.get('npcs', key);
+        if (cached) return Promise.resolve(cached);
+      }
       var query = getSupabase().from('npcs').select('*');
       if (partyId) query = query.or('party_id.eq.' + partyId + ',is_global.eq.true');
       else if (includeGlobal !== false) query = query.eq('is_global', true);
-      return query.then(function(result) { if (result.error) throw result.error; return result.data; });
+      return query.then(function(result) { 
+        if (result.error) throw result.error; 
+        if (cache) cache.set('npcs', key, result.data, 300000);
+        return result.data; 
+      });
     },
     listAllNPCs: function() {
       return getSupabase().from('npcs').select('*')
