@@ -12,7 +12,7 @@ JS load order: config.js → supabase-client.js → cache-module.js → auth-mod
 Theme colors: --accent, --accent2, --accent3 | themes: yellow/red/green/purple/blue
 
 ## Known Blockers
-inline CSS in HTML | duplicate pages (xmen-ficha.html, npcs.html) | hardcoded Supabase keys | foto_base64 column missing in remote DB
+duplicate pages (xmen-ficha.html, npcs.html) | foto_base64 added to DB (2025)
 
 ## Commands
 cd server && npm start | cat kanban/INDEX.md
