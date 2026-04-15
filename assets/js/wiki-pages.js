@@ -785,8 +785,8 @@ window.wikiPages = {
         
         <div class="ar-modes">
           <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">APs de Tempo</button>
-          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (-2)</button>
-          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-5)</button>
+          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (-1)</button>
+          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-3)</button>
         </div>
         
         <p id="ar-mode-desc" style="font-size: 0.75rem; color: var(--accent); margin: 8px 0 16px 0;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
