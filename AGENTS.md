@@ -8,7 +8,7 @@ End session: ask "remember [specific thing]?"
 kanban/INDEX.md @ start | check kanban/done/fase-*.md | update when task done
 
 ## Patterns
-JS load order: config.js → supabase-client.js → auth-module.js → api-module.js → globals.js → themes.js → page-specific
+JS load order: config.js → supabase-client.js → cache-module.js → auth-module.js → api.js → globals.js → themes.js → page-specific
 Theme colors: --accent, --accent2, --accent3 | themes: yellow/red/green/purple/blue
 
 ## Known Blockers
