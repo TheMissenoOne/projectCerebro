@@ -217,7 +217,7 @@
         var cached = cache.get('party_chars', partyId);
         if (cached) return Promise.resolve(cached);
       }
-      return getSupabase().from('characters').select('*, profiles(display_name)').eq('party_id', partyId).order('name')
+      return getSupabase().from('characters').select('*, profiles!inner(display_name)').eq('party_id', partyId).order('name')
         .then(function(result) { 
           if (result.error) throw result.error; 
           var mapped = result.data.map(function(c) {
@@ -247,7 +247,7 @@
           var partyNames = {};
           result.data.forEach(function(p) { partyNames[p.id] = p.name; });
           if (partyIds.length === 0) return [];
-          return getSupabase().from('characters').select('*, profiles(display_name)')
+          return getSupabase().from('characters').select('*, profiles!inner(display_name)')
             .in('party_id', partyIds)
             .then(function(r) { 
               if (r.error) throw r.error; 
