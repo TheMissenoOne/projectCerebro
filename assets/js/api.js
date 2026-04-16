@@ -266,6 +266,7 @@
               console.log('[listAllGMCharacters] playerIds:', playerIds);
               return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
                 .then(function(profiles) {
+                  if (profiles.error) console.error('[listAllGMCharacters] profiles error:', profiles.error);
                   console.log('[listAllGMCharacters] profiles:', profiles);
                   var profileMap = {};
                   if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });

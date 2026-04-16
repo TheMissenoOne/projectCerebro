@@ -205,7 +205,9 @@
           return;
         }
         
+        console.log('[loadPartyCharacters] rendering', chars.length, 'rows');
         chars.forEach(char => {
+          console.log('[loadPartyCharacters] row:', char.name, char.player_name);
           const row = document.createElement('tr');
           row.innerHTML = `
             <td><a href="ficha.html?id=${char.id}" class="char-link" target="_blank">${char.name || 'Sem Nome'}</a></td>
@@ -219,6 +221,7 @@
           `;
           tbody.appendChild(row);
         });
+        console.log('[loadPartyCharacters] done, tbody rows:', tbody.children.length);
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
         document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="5" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
