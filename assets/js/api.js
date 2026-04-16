@@ -263,10 +263,13 @@
               var chars = r.data;
               if (!chars || chars.length === 0) return [];
               var playerIds = chars.map(function(c) { return c.player_id; });
+              console.log('[listAllGMCharacters] playerIds:', playerIds);
               return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
                 .then(function(profiles) {
+                  console.log('[listAllGMCharacters] profiles:', profiles);
                   var profileMap = {};
                   if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
+                  console.log('[listAllGMCharacters] profileMap:', profileMap);
                   var mapped = chars.map(function(c) {
                     c.player_name = profileMap[c.player_id] || c.player_id;
                     c.party_name = partyNames[c.party_id] || null;
