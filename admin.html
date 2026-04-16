@@ -197,6 +197,8 @@
         const gmId = currentAuth.session.user.id;
         
         const chars = await api.listAllGMCharacters(gmId);
+        console.log('[loadPartyCharacters] chars:', chars);
+        console.log('[loadPartyCharacters] currentParty:', currentParty);
         const tbody = document.getElementById('party-chars-body');
         tbody.innerHTML = '';
         
