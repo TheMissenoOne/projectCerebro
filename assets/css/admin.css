@@ -46,6 +46,9 @@
 
 .admin-section {
   margin-bottom: 24px;
+  background: var(--black);
+  padding: 16px;
+  border: 1px solid var(--b2);
 }
 
 .admin-section-title {
@@ -117,6 +120,8 @@
 .admin-table {
   width: 100%;
   border-collapse: collapse;
+  background: var(--p1);
+  border: 1px solid var(--accent);
 }
 
 .admin-table th,
