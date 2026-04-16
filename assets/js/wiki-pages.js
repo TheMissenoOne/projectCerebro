@@ -2,19 +2,35 @@ window.wikiPages = {
       index: `
         <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
         <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado com mecânicas DC Heroes.</p>
+        
         <h2>Sobre o Sistema</h2>
         <p>X-Men TTRPG usa uma versão híbrida do sistema City of Mist + DC Heroes para o universo X-Men.</p>
-        <h2>Navegação</h2>
-        <ul>
-          <li><strong>Temas:</strong> A estrutura de criação de personagens (Mutação vs Humanidade)</li>
-          <li><strong>Tags:</strong> O sistema de poderes e fraquezas</li>
-          <li><strong>Progressão:</strong> Como personagens evoluem ao longo da campanha</li>
-          <li><strong>Combate:</strong> Regras de combate e condições</li>
-          <li><strong>Sistema de Ações:</strong> Regras completas de ações de oposição, manifestação e automáticas</li>
-          <li><strong>Modificadores:</strong> Tabela completa de modificadores para ações de manifestação</li>
-          <li><strong>Ação e Resultado:</strong> Tabela interativa AV/OV e EV/RV</li>
-          <li><strong>APs de Referência:</strong> Tabelas de escala para distância, massa, tempo e energia</li>
-        </ul>
+        
+        <h2>Navegação — Sistema de Regras</h2>
+        <div class="wiki-links">
+          <h3>Ações e Resolução</h3>
+          <ul>
+            <li><a href="#acao" data-page="acoes">Ações</a> — Tipos de ação, resolução e terminologia</li>
+            <li><a href="#tags" data-page="tags">Tags</a> — Uso e limites de tags</li>
+            <li><a href="#condicoes" data-page="condicoes">Condições</a> — Aplicação, duração e remoção</li>
+            <li><a href="#efeitos" data-page="efeitos">Efeitos</a> — Criação e gestão</li>
+            <li><a href="#manifestacao" data-page="manifestacao">Manifestação</a> — Promoções de escopo e por RAP</li>
+            <li><a href="#acoesautomaticas" data-page="acoesautomaticas">Ações Automáticas e Reações</a></li>
+            <li><a href="#exemplo" data-page="exemplo_resolucao">Exemplo de Resolução</a></li>
+            <li><a href="#principios" data-page="principios">Princípios e Resumo</a></li>
+            <li><a href="#objetos" data-page="objetos">Objetos de Jogo</a></li>
+          </ul>
+          
+          <h3>Referência</h3>
+          <ul>
+            <li><a href="#acao_resultado" data-page="acao_resultado">Tabela AV/OV e EV/RV</a></li>
+            <li><a href="#modificadores" data-page="modificadores">Modificadores de Manifestação</a></li>
+            <li><a href="#aps_distancia" data-page="aps_distancia">APs de Distância</a></li>
+            <li><a href="#aps_tempo" data-page="aps_tempo">APs de Tempo</a></li>
+            <li><a href="#aps_massa" data-page="aps_massa">APs de Massa</a></li>
+            <li><a href="#aps_energia" data-page="aps_energia">APs de Energia</a></li>
+          </ul>
+        </div>
       `,
       temas: `
         <h1>Temas</h1>
@@ -366,49 +382,33 @@ window.wikiPages = {
           <li>Modificadores de posicionamento e circunstanciais não têm cap, mas são situacionais e não cumulativos entre si se representarem a mesma condição.</li>
           <li>Ações automáticas <strong>não usam modificadores</strong> — seu limite é o número de tags investidas.</li>
         </ul>
-      `,
-      sistema_acao: `
-        <h1>Sistema de Ações</h1>
-        <p>O sistema utiliza quatro tipos de ações para resolver diferentes situações em jogo.</p>
-
-        <h2>Tipos de Ação</h2>
-        <table>
-          <thead><tr><th>Tipo</th><th>Quando usar</th><th>Mecânica</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Oposição</strong></td><td>Resistência ativa de outro objeto de jogo</td><td>AV/EV vs OV/RV → RAPs</td></tr>
-            <tr><td><strong>Manifestação</strong></td><td>Sem oposição, com dificuldade de execução</td><td>EV vs 1 + modificadores → RAPs</td></tr>
-            <tr><td><strong>Automática</strong></td><td>Ajuste direto sem rolagem</td><td>Tags = APs de ajuste</td></tr>
-            <tr><td><strong>Reação</strong></td><td>Resposta fora do turno</td><td>Tags = APs de ajuste</td></tr>
-          </tbody>
+`,
+      aps_distancia: `
+        <h1>Tabela de Ação e Resultado</h1>
+        <p>Use esta tabela para determinar o resultado de ações. Selecione o tipo de tabela e o modo de duração:</p>
+        
+        <div class="ar-table-type">
+          <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV/OV</button>
+          <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV/RV</button>
+        </div>
+        
+        <div class="ar-modes">
+          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">APs de Tempo</button>
+          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (-1)</button>
+          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-3)</button>
+        </div>
+        
+        <p id="ar-mode-desc" style="font-size: 0.75rem; color: var(--accent); margin: 8px 0 16px 0;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
+        
+        <div class="table-container">
+        <table class="ar-table" id="action-table">
         </table>
-
-        <h3>Ações de Oposição</h3>
-        <p>Usadas quando há resistência ativa. O agente usa AV/EV contra OV/RV da oposição. O resultado gera RAPs que determinam dano ou condições.</p>
-        <p>Consulte <strong>Sistema Híbrido</strong> para regras completas.</p>
-
-        <h3>Ações de Manifestação</h3>
-        <p>Sem resistência direta. O desafio está na execução. OV/RV começa em 1 e recebe modificadores conforme a natureza do efeito.</p>
-        <p>Consulte <strong>Modificadores</strong> para a tabela completa.</p>
-
-        <h3>Ações Automáticas</h3>
-        <p>Sem rolagem. Criam, reduzem ou removem condições/efeitos usando tags. Não podem aumentar o grau de algo já existente.</p>
-
-        <h3>Reações</h3>
-        <p>Ações automáticas executadas fora do turno, em resposta a um evento. Apenas defensivas — não criam efeitos ofensivos.</p>
-
-        <h2>Tags</h2>
-        <p>Cada tag tem um <strong>grau</strong>. O grau total de uma ação é a soma dos graus das tags usadas.</p>
-        <p><strong>Regra:</strong> tags usadas ficam indisponíveis até o próximo turno.</p>
-
-        <h2>Condições e Efeitos</h2>
-        <p><strong>Condições</strong> são estados anexados a objetos de jogo. <strong>Efeitos</strong> existem independentemente na cena.</p>
-        <p>Consulte <strong>Sistema Híbrido</strong> para detalhes completos sobre limiares, promoção e duração.</p>
+        </div>
+        
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" = Falha automática. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade.</p>
       `,
-      sistema_hibrido: `
-        <h1>Sistema Híbrido de Ações, Tags, Condições e Efeitos</h1>
-        <p>Versão 2 — Revisado e Complementado</p>
-
-        <h2>1. Fundamento do Sistema</h2>
+      acoes: `
+        <h1>Ações — Tipos e Resolução</h1>
         <p>O sistema é estruturado em quatro camadas de resolução:</p>
         <ul>
           <li><strong>Ações de Oposição:</strong> há resistência ativa de outro objeto de jogo.</li>
@@ -416,30 +416,23 @@ window.wikiPages = {
           <li><strong>Ações Automáticas:</strong> não exigem rolagem; servem para criar, reduzir ou remover efeitos e condições de forma simples.</li>
           <li><strong>Reações:</strong> ações automáticas executadas fora do turno do personagem, em resposta a um evento.</li>
         </ul>
-        <p>O sistema utiliza: <strong>tags</strong> como base de execução, <strong>APs</strong> como unidade de escala, <strong>RAPs</strong> como resultado mecânico, <strong>condições</strong> como estados anexados a objetos do jogo, e <strong>efeitos</strong> como entidades independentes.</p>
-
-        <h2>2. Terminologia</h2>
-        <h3>2.1 Grau das Tags</h3>
+        
+        <h2>Terminologia</h2>
+        <h3>Grau das Tags</h3>
         <p>O grau total de uma ação é o somatório dos graus de todas as tags utilizadas nela.</p>
         <p><strong>Exemplo:</strong> usar uma tag de grau 3 e uma de grau 2 resulta em grau total 5.</p>
-
-        <h3>2.2 Objeto de Jogo</h3>
+        
+        <h3>Objeto de Jogo</h3>
         <p>Qualquer entidade ou elemento relevante em mesa: personagem, aliado, inimigo, construto, estrutura, área, ambiente.</p>
-
-        <h3>2.3 Condição</h3>
-        <p>Estado anexado a um objeto de jogo que impacta diretamente um ou mais atributos do alvo. Condições são sempre vinculadas a um objeto.</p>
-
-        <h3>2.4 Efeito</h3>
-        <p>Entidade com existência independente, capaz de afetar um ou mais objetos de jogo. Efeitos não pertencem a nenhum objeto específico — eles existem no espaço da cena.</p>
-
-        <h3>2.5 Cena</h3>
+        
+        <h3>Cena</h3>
         <p>Unidade narrativa de tempo que corresponde a um evento dramático contínuo: um combate, uma negociação, uma fuga. A cena termina quando o contexto dramático se resolve ou muda fundamentalmente. Para fins de duração, uma cena equivale a aproximadamente <strong>8 APs de tempo</strong> (15 minutos narrativos).</p>
-
-        <h3>2.6 Turno</h3>
+        
+        <h3>Turno</h3>
         <p>Unidade de resolução dentro de uma cena estruturada. Tags consumidas em um turno ficam indisponíveis até o início do próximo turno do mesmo personagem.</p>
-
-        <h2>3. Tipos de Ação</h2>
-        <h3>3.1 Ações de Oposição</h3>
+        
+        <h2>Tipos de Ação</h2>
+        <h3>Ações de Oposição</h3>
         <p>São ações em que existe resistência ativa de outro objeto de jogo ou força contrária.</p>
         <ul>
           <li>Usam <strong>AV/EV</strong> do agente.</li>
@@ -448,18 +441,18 @@ window.wikiPages = {
           <li>Apropriadas para ataques, bloqueios, disputas, resistências e confrontos diretos.</li>
           <li>Geram primariamente <strong>condições</strong> no alvo.</li>
         </ul>
-
-        <h3>3.2 Ações de Manifestação</h3>
+        
+        <h3>Ações de Manifestação</h3>
         <p>São ações sem oposição direta, nas quais o desafio está na execução, na complexidade e na materialização do resultado.</p>
         <ul>
           <li>Iniciam em <strong>OV/RV 1</strong>.</li>
-          <li>Recebem modificadores conforme a natureza da ação (ver Seção 10).</li>
+          <li>Recebem modificadores conforme a natureza da ação (ver <a href="#modificadores" data-page="modificadores">Modificadores</a>).</li>
           <li>Apropriadas para criar efeitos independentes, aplicar estados sem resistência ativa e produzir alterações relevantes no jogo.</li>
           <li>Geram primariamente <strong>efeitos</strong>.</li>
           <li>Podem também gerar <strong>condições</strong> em alvos que não oferecem resistência ativa.</li>
         </ul>
-
-        <h3>3.3 Ações Automáticas</h3>
+        
+        <h3>Ações Automáticas</h3>
         <p>São ações sem rolagem.</p>
         <ul>
           <li>Podem criar novos efeitos ou condições.</li>
@@ -468,8 +461,8 @@ window.wikiPages = {
           <li>Devem respeitar a trivialidade da ação no contexto ficcional.</li>
           <li>Tags usadas em ações automáticas ficam indisponíveis até o próximo turno.</li>
         </ul>
-
-        <h3>3.4 Reações</h3>
+        
+        <h3>Reações</h3>
         <p>São ações automáticas executadas fora do turno do personagem, em resposta direta a um evento.</p>
         <ul>
           <li>Seguem todas as regras de ações automáticas.</li>
@@ -477,19 +470,19 @@ window.wikiPages = {
           <li>Podem ser usadas para interromper, reduzir ou anular efeitos e condições antes que se estabeleçam.</li>
         </ul>
         <p><strong>Atenção:</strong> uma reação não pode ser usada para criar uma condição ou efeito novo de forma ofensiva — apenas para responder a algo que está acontecendo.</p>
-
-        <h2>4. Sistema de Resolução</h2>
-        <h3>4.1 Ações de Oposição</h3>
+        
+        <h2>Sistema de Resolução</h2>
+        <h3>Ações de Oposição</h3>
         <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas + bônus de condições favoráveis</p>
         <p><strong>OV/RV</strong> = atributo de resistência do alvo + modificadores situacionais + condições desfavoráveis ao agente</p>
         <p>O resultado gera <strong>RAPs</strong>. RAPs positivos indicam sucesso; RAPs negativos ou zero indicam falha.</p>
-
-        <h3>4.2 Ações de Manifestação</h3>
+        
+        <h3>Ações de Manifestação</h3>
         <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas</p>
         <p><strong>OV/RV final</strong> = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</p>
         <p>Se a ação falhar (RAPs ≤ 0), o efeito não se estabelece ou apenas "pisca" sem se fixar.</p>
-
-        <h3>4.3 Ações Automáticas e Reações</h3>
+        
+        <h3>Ações Automáticas e Reações</h3>
         <p>O valor do ajuste automático é igual ao <strong>grau total das tags gastas</strong>:</p>
         <ul>
           <li>1 tag de grau 2 = 2 APs de ajuste</li>
@@ -497,12 +490,13 @@ window.wikiPages = {
           <li>1 tag de grau 3 + 1 de grau 1 = 4 APs de ajuste</li>
         </ul>
         <p>O ajuste pode criar, reduzir ou remover condições e efeitos cujo grau atual seja <strong>igual ou menor</strong> ao valor do ajuste.</p>
-
-        <h2>5. Tags</h2>
-        <h3>5.1 Definição</h3>
+      `,
+      tags: `
+        <h1>Tags</h1>
+        <h2>Definição</h2>
         <p>Tags são descritores mecânicos vinculados a temas do personagem. Cada tag tem um <strong>grau numérico</strong> que representa sua potência.</p>
-
-        <h3>5.2 Uso de Tags</h3>
+        
+        <h2>Uso de Tags</h2>
         <p>Cada tag usada em uma ação é considerada <strong>gasta</strong> e não pode ser reutilizada até o próximo turno do personagem, independentemente do tipo de ação.</p>
         <p>As tags podem ser usadas para:</p>
         <ul>
@@ -510,17 +504,18 @@ window.wikiPages = {
           <li>compor o <strong>grau total</strong> em manifestações e automáticas</li>
           <li>criar, reduzir ou remover estados em ações automáticas</li>
         </ul>
-
-        <h3>5.3 Tags e AV/EV</h3>
+        
+        <h2>Tags e AV/EV</h2>
         <p>Em qualquer ação que exija rolagem, o AV/EV é calculado como:</p>
         <p><strong>AV/EV = atributo base do personagem + grau total das tags utilizadas</strong></p>
         <p>O jogador escolhe quais tags usa antes de rolar. Tags relevantes ao contexto ficcional podem ser usadas; tags sem relação narrativa não podem.</p>
-
-        <h3>5.4 Limite de Uso</h3>
+        
+        <h2>Limite de Uso</h2>
         <p>Cada tag é consumida no uso. Nenhuma tag pode ser usada mais de uma vez no mesmo turno. Tags de diferentes temas podem ser combinadas na mesma ação, desde que haja justificativa narrativa.</p>
-
-        <h2>6. Condições</h2>
-        <h3>6.1 Limiar de Condição</h3>
+      `,
+      condicoes: `
+        <h1>Condições</h1>
+        <h2>Limiar de Condição</h2>
         <p>Toda condição possui um <strong>limiar</strong> definido pelo valor do atributo de resistência correspondente à sua natureza:</p>
         <table>
           <thead><tr><th>Categoria</th><th>Atributo de Resistência</th></tr></thead>
@@ -532,25 +527,22 @@ window.wikiPages = {
         </table>
         <p>O <strong>limiar</strong> é o valor numérico em APs desse atributo no alvo.</p>
         <p><strong>Exemplo:</strong> se o alvo tem Corpo 5, o limiar de condições físicas é 5. RAPs acima de 5 geram promoções.</p>
-
-        <h3>6.2 Aplicação</h3>
+        
+        <h2>Aplicação</h2>
         <p>Condições são normalmente geradas por <strong>ações de oposição</strong>, mas podem também ser criadas por manifestações (quando o alvo não oferece resistência ativa) ou por ações automáticas.</p>
         <p>O <strong>grau máximo</strong> de uma condição criada em uma única ação é:</p>
         <p><strong>Grau máximo = EV + grau total das tags utilizadas</strong></p>
         <p>RAPs acima desse limite não aumentam o grau da condição — eles podem ser convertidos em promoções.</p>
-
-        <h3>6.3 Acúmulo de Condições</h3>
+        
+        <h2>Acúmulo de Condições</h2>
         <ul>
           <li>Condições do <strong>mesmo tipo</strong> no mesmo alvo se <strong>somam</strong>: um Ferido-3 e um Ferido-4 resultam em Ferido-7.</li>
           <li>Condições de <strong>tipos diferentes</strong> coexistem e aplicam penalidades separadas.</li>
           <li>Quando o grau acumulado de uma condição excede o dobro do limiar do atributo, o alvo é <strong>incapacitado</strong> na categoria correspondente.</li>
         </ul>
         <p><strong>Exemplo:</strong> limiar Corpo 5 → acumular 10 ou mais APs em condições físicas = incapacitado fisicamente.</p>
-
-        <h3>6.4 Promoção por RAP</h3>
-        <p>RAPs que excedem o <strong>limiar do atributo</strong> do alvo podem ser usados para adquirir promoções (ver Seção 9).</p>
-
-        <h3>6.5 Duração</h3>
+        
+        <h2>Duração</h2>
         <table>
           <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
           <tbody>
@@ -559,8 +551,8 @@ window.wikiPages = {
             <tr><td>Permanente</td><td>altera a ficha do alvo de forma indefinida</td></tr>
           </tbody>
         </table>
-
-        <h3>6.6 Modificadores de Duração na Criação</h3>
+        
+        <h2>Modificadores de Duração na Criação</h2>
         <table>
           <thead><tr><th>Duração desejada</th><th>Modificador</th></tr></thead>
           <tbody>
@@ -569,27 +561,25 @@ window.wikiPages = {
             <tr><td>Permanente</td><td>+3 colunas</td></tr>
           </tbody>
         </table>
-
-        <h3>6.7 Remoção de Condições</h3>
+        
+        <h2>Remoção de Condições</h2>
         <ul>
           <li><strong>Ação automática:</strong> remove ou reduz condições em APs igual ao grau das tags gastas</li>
           <li><strong>Ação de manifestação:</strong> pode remover condições; OV/RV = grau atual da condição + modificadores de duração</li>
           <li><strong>Tempo:</strong> condições temporárias expiram naturalmente</li>
           <li><strong>Recuperação narrativa:</strong> a mesa pode permitir redução por repouso, cuidado ou contexto ficcional</li>
         </ul>
-
-        <h2>7. Efeitos</h2>
-        <h3>7.1 Limiar de Efeito</h3>
+      `,
+      efeitos: `
+        <h1>Efeitos</h1>
+        <h2>Limiar de Efeito</h2>
         <p>O limiar de um efeito é igual ao <strong>grau total das tags usadas</strong> para criá-lo.</p>
         <p><strong>Exemplo:</strong> criar um efeito com tags de grau 2 e 3 → limiar do efeito = 5.</p>
-
-        <h3>7.2 Aplicação</h3>
+        
+        <h2>Aplicação</h2>
         <p>Efeitos são normalmente gerados por <strong>ações de manifestação</strong>. O grau do efeito é determinado pelos RAPs obtidos na ação.</p>
-
-        <h3>7.3 Promoção por RAP</h3>
-        <p>RAPs que excedem o <strong>limiar do efeito</strong> podem ser usados para adquirir promoções (ver Seção 9).</p>
-
-        <h3>7.4 Duração</h3>
+        
+        <h2>Duração</h2>
         <table>
           <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
           <tbody>
@@ -598,20 +588,22 @@ window.wikiPages = {
             <tr><td>Permanente</td><td>altera o estado do jogo de forma indefinida</td></tr>
           </tbody>
         </table>
-
-        <h3>7.5 Remoção de Efeitos</h3>
+        
+        <h2>Remoção de Efeitos</h2>
         <ul>
           <li><strong>Ação automática:</strong> remove ou reduz o efeito em APs igual ao grau das tags gastas</li>
           <li><strong>Ação de manifestação:</strong> OV/RV = grau atual do efeito + modificadores de duração</li>
           <li><strong>Ação de oposição:</strong> possível se o efeito tiver um "agente" que pode ser contrariado</li>
         </ul>
-
-        <h2>8. Limiar de Manifestação e Promoções de Escopo</h2>
-        <h3>8.1 Limiar Base de Manifestação</h3>
+      `,
+      manifestacao: `
+        <h1>Manifestação — Promoções e Fórmula</h1>
+        <h2>Limiar de Manifestação e Promoções de Escopo</h2>
+        <h3>Limiar Base de Manifestação</h3>
         <p><strong>Limiar base: 6</strong></p>
         <p>Quando o RAP de uma manifestação atinge ou ultrapassa 6, o efeito recebe uma <strong>promoção de escopo</strong> — uma melhoria qualitativa no alcance, amplitude, controle ou complexidade do efeito.</p>
-
-        <h3>8.2 Progressão de Promoções de Escopo</h3>
+        
+        <h3>Progressão de Promoções de Escopo</h3>
         <table>
           <thead><tr><th>Promoção</th><th>Limiar de RAP</th></tr></thead>
           <tbody>
@@ -622,8 +614,8 @@ window.wikiPages = {
           </tbody>
         </table>
         <p>A progressão segue incrementos crescentes (+4, +5, +6…), representando que efeitos de escala superior são cada vez mais difíceis de alcançar.</p>
-
-        <h3>8.3 Categorias de Promoção de Escopo</h3>
+        
+        <h3>Categorias de Promoção de Escopo</h3>
         <p>Cada promoção de escopo pode melhorar uma das seguintes dimensões do efeito:</p>
         <ul>
           <li><strong>duração</strong> (de temporária para indefinida, de indefinida para permanente)</li>
@@ -634,12 +626,12 @@ window.wikiPages = {
           <li><strong>ocultação</strong> (de visível para discreto, etc.)</li>
           <li><strong>comportamento</strong> (adiciona efeito secundário, encadeamento, etc.)</li>
         </ul>
-
-        <h3>8.4 Regra de Identidade</h3>
+        
+        <h3>Regra de Identidade</h3>
         <p>A promoção <strong>não altera o grau numérico</strong> base do efeito. Ela altera a qualidade e a forma como o efeito se manifesta no jogo.</p>
-
-        <h2>9. Promoções por RAP Excedente</h2>
-        <h3>9.1 Custo de Promoção</h3>
+        
+        <h2>Promoções por RAP Excedente</h2>
+        <h3>Custo de Promoção</h3>
         <table>
           <thead><tr><th>Nível</th><th>Custo em RAPs excedentes</th><th>Efeito</th></tr></thead>
           <tbody>
@@ -648,20 +640,22 @@ window.wikiPages = {
             <tr><td>Avançado</td><td>7 RAPs</td><td>melhoria significativa</td></tr>
           </tbody>
         </table>
-
-        <h3>9.2 Dimensões Disponíveis para Promoção por RAP</h3>
+        
+        <h3>Dimensões Disponíveis para Promoção por RAP</h3>
         <p>Cada compra melhora uma dimensão independente: amplitude, alcance, controle, complexidade, ocultação, duração.</p>
         <p>Cada dimensão deve ser comprada separadamente. Não é possível concentrar todos os RAPs em uma única dimensão além do nível avançado.</p>
-
-        <h3>9.3 Relação com Promoções de Escopo</h3>
-        <p>As promoções de escopo (Seção 8) são concedidas automaticamente ao atingir os limiares. As promoções por RAP (esta seção) são opcionais e exigem gasto deliberado de RAPs excedentes. Ambas podem coexistir na mesma ação.</p>
-
-        <h2>13. Fórmula Geral de Manifestação</h2>
+        
+        <h3>Relação com Promoções de Escopo</h3>
+        <p>As promoções de escopo são concedidas automaticamente ao atingir os limiares. As promoções por RAP são opcionais e exigem gasto deliberado de RAPs excedentes. Ambas podem coexistir na mesma ação.</p>
+        
+        <h2>Fórmula Geral de Manifestação</h2>
         <p><strong>OV/RV = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</strong></p>
         <p>Se o valor final for muito alto, a ação se torna mais difícil, mais rara e mais sujeita a falha. A mesa pode definir um teto razoável para o total de modificadores (recomendado: máximo +8 em modificadores de ação, sem teto nos demais).</p>
-
-        <h2>14. Ações Automáticas — Detalhamento</h2>
-        <h3>14.1 O que Podem Fazer</h3>
+      `,
+      acoesautomaticas: `
+        <h1>Ações Automáticas e Reações</h1>
+        <h2>Ações Automáticas</h2>
+        <h3>O que Podem Fazer</h3>
         <ul>
           <li>criar novos efeitos com grau igual ao total de tags gastas</li>
           <li>criar novas condições com grau igual ao total de tags gastas</li>
@@ -669,47 +663,48 @@ window.wikiPages = {
           <li>reduzir condições existentes em APs igual ao total de tags gastas</li>
           <li>remover efeitos ou condições se o valor aplicado for maior ou igual ao grau atual</li>
         </ul>
-
-        <h3>14.2 O que Não Podem Fazer</h3>
+        
+        <h3>O que Não Podem Fazer</h3>
         <ul>
           <li><strong>aumentar</strong> o grau de uma condição ou efeito já existente</li>
           <li>substituir uma ação de oposição em situações que exigem resistência ativa</li>
           <li>ignorar a trivialidade ficcional da situação</li>
           <li>ser usadas para criar efeitos ofensivos fora do próprio turno (isso é exclusivo de reações defensivas)</li>
         </ul>
-
-        <h3>14.3 Regras de Uso</h3>
+        
+        <h3>Regras de Uso</h3>
         <ul>
           <li>cada tag usada em ação automática é gasta até o próximo turno</li>
           <li>ações automáticas podem ocorrer fora do turno, como <strong>reação</strong></li>
           <li>ações automáticas não usam rolagem</li>
         </ul>
-
-        <h2>15. Reações — Detalhamento</h2>
-        <h3>15.1 Quando Ocorrem</h3>
+        
+        <h2>Reações</h2>
+        <h3>Quando Ocorrem</h3>
         <p>Reações ocorrem <strong>imediatamente</strong> em resposta a um evento declarado, antes que ele se resolva completamente ou após sua resolução parcial (a critério da mesa).</p>
-
-        <h3>15.2 Custo</h3>
+        
+        <h3>Custo</h3>
         <ul>
           <li>consomem tags normalmente</li>
           <li>as tags consumidas ficam indisponíveis até o próximo turno do personagem</li>
         </ul>
-
-        <h3>15.3 Limitações</h3>
+        
+        <h3>Limitações</h3>
         <ul>
           <li>não podem ser usadas para criar condições ou efeitos ofensivos</li>
           <li>só podem <strong>responder</strong> a algo que está acontecendo</li>
           <li>não interrompem ações de oposição já em resolução — apenas mitigam seus efeitos após os RAPs serem calculados</li>
         </ul>
-
-        <h3>15.4 Cadeia de Reações</h3>
+        
+        <h3>Cadeia de Reações</h3>
         <p>Se dois personagens tentam reagir ao mesmo evento, a ordem é determinada pelo <strong>valor de iniciativa</strong> ou pelo acordo narrativo da mesa.</p>
-
-        <h2>17. Reutilização de Tags</h2>
+        
+        <h2>Reutilização de Tags</h2>
         <p>Tags usadas em qualquer ação — de oposição, manifestação, automática ou reação — ficam <strong>indisponíveis</strong> até o início do próximo turno do personagem.</p>
         <p>Esta regra se aplica sem exceção. Não existe "tag que retorna no mesmo turno".</p>
-
-        <h2>19. Exemplo de Resolução Completo</h2>
+      `,
+      exemplo_resolucao: `
+        <h1>Exemplo de Resolução Completo</h1>
         <p><strong>Situação:</strong> Jean Grey tenta criar um campo de força telepático para proteger aliados em uma zona de combate.</p>
         <p><strong>Tipo de ação:</strong> Manifestação (não há oposição direta)</p>
         <p><strong>Tags usadas:</strong> <em>Telepatia</em> grau 4 + <em>Escudo Psiônico</em> grau 3 → <strong>grau total = 7</strong></p>
@@ -734,8 +729,10 @@ window.wikiPages = {
           <li>2 RAPs excedentes: não suficientes para promoção por RAP (mínimo 3)</li>
         </ul>
         <p><strong>Resultado final:</strong> campo de força psiônico de grau 9, cobrindo área pequena, com duração duradoura, precisamente controlado.</p>
-
-        <h2>20. Princípios Gerais</h2>
+      `,
+      principios: `
+        <h1>Princípios Gerais e Resumo</h1>
+        <h2>Princípios Gerais</h2>
         <ul>
           <li>O grau das tags define a <strong>escala básica</strong> da ação e o limiar de promoção.</li>
           <li>Condições são aplicadas a objetos de jogo e somam-se entre si.</li>
@@ -749,8 +746,8 @@ window.wikiPages = {
           <li>Tags gastas só retornam no próximo turno.</li>
           <li>A trivialidade ficcional sempre prevalece sobre a mecânica.</li>
         </ul>
-
-        <h2>21. Resumo Operacional</h2>
+        
+        <h2>Resumo Operacional</h2>
         <ol>
           <li>Identifique o tipo de ação (oposição / manifestação / automática / reação)</li>
           <li>Escolha as tags; some o grau total</li>
@@ -762,8 +759,8 @@ window.wikiPages = {
           <li>Verifique se RAPs ≥ 6 em manifestação → aplique promoção de escopo</li>
           <li>Declare duração e gaste tags utilizadas até o próximo turno</li>
         </ol>
-
-        <h2>22. Intenção do Sistema</h2>
+        
+        <h2>Intenção do Sistema</h2>
         <p>Este sistema foi desenhado para:</p>
         <ul>
           <li>preservar a <strong>leitura narrativa</strong> do jogo;</li>
@@ -774,29 +771,74 @@ window.wikiPages = {
           <li>manter o jogo rápido, mas com espaço para <strong>alta escala</strong> de poder.</li>
         </ul>
       `,
-      acao_resultado: `
-        <h1>Tabela de Ação e Resultado</h1>
-        <p>Use esta tabela para determinar o resultado de ações. Selecione o tipo de tabela e o modo de duração:</p>
+      objetos: `
+        <h1>Objetos de Jogo — Regras de Criação e Uso</h1>
+        <p>Esta seção define as regras gerais para criar, adquirir, usar e <strong>destruir objetos de jogo</strong>: equipamentos, armas, armaduras, gadgets, artefatos, veículos, construtos e qualquer item com relevância mecânica.</p>
         
-        <div class="ar-table-type">
-          <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV/OV</button>
-          <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV/RV</button>
-        </div>
+        <h2>O que é um Objeto de Jogo</h2>
+        <p>Um objeto de jogo é qualquer item físico ou construto que:</p>
+        <ul>
+          <li>concede <strong>tags</strong> ao portador ou usuário;</li>
+          <li>possui <strong>atributos próprios</strong> (Estrutura, Potência, Complexidade);</li>
+          <li>pode receber <strong>condições</strong> (dano, degradação, sobrecarga);</li>
+          <li>pode ser destruído, roubado, modificado ou aprimorado.</li>
+        </ul>
         
-        <div class="ar-modes">
-          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">APs de Tempo</button>
-          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (-1)</button>
-          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-3)</button>
-        </div>
+        <h2>Anatomia de um Objeto</h2>
+        <p>Todo objeto é definido por três elementos:</p>
+        <ul>
+          <li><strong>Tags do Objeto</strong> — capacidades concretas que o objeto oferece (cada tag tem grau e descritor narrativo).</li>
+          <li><strong>Atributos do Objeto</strong> — Estrutura (resistência física), Potência (escala máx de efeito), Complexidade (número de tags).</li>
+          <li><strong>Limiar de Dano</strong> — igual ao valor de Estrutura.</li>
+        </ul>
         
-        <p id="ar-mode-desc" style="font-size: 0.75rem; color: var(--accent); margin: 8px 0 16px 0;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
-        
-        <div class="table-container">
-        <table class="ar-table" id="action-table">
+        <h2>Categorias de Objetos</h2>
+        <table>
+          <thead><tr><th>Grau Total</th><th>Categoria</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td>1–4</td><td>Comum</td><td>faca, escudo improvisado, kit médico</td></tr>
+            <tr><td>5–9</td><td>Profissional</td><td>armadura tática, arma de fogo, equipamento especializado</td></tr>
+            <tr><td>10–15</td><td>Excepcional</td><td>armadura experimental, gadget de alta tecnologia</td></tr>
+            <tr><td>16–22</td><td>Raro</td><td>equipamento de nível mundial, relíquia de poder</td></tr>
+            <tr><td>23+</td><td>Lendário</td><td>item de escala cósmica, construto Ômega</td></tr>
+          </tbody>
         </table>
-        </div>
         
-        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" = Falha automática. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade.</p>
+        <h2>Criação de Objetos</h2>
+        <p>Criar um objeto é uma <strong>ação de manifestação</strong> com:</p>
+        <ul>
+          <li><strong>OV/RV base = grau total desejado do objeto</strong></li>
+          <li><strong>Modificadores:</strong> Complexidade (+0 a +3), Material (+0 a +3), Ferramentas (+0 a +2), Tempo (+0 a +3), Simplificações (−1)</li>
+        </ul>
+        <p><strong>Tempo de criação:</strong> minutos (1–4), horas (5–9), dias (10–15), semanas (16–22), meses+ (23+).</p>
+        
+        <h2>Uso de Objetos em Ações</h2>
+        <p>Tags do objeto contribuem ao AV/EV do usuário: <code>AV/EV = atributo base + tags do personagem + tags do objeto</code>. Tags do objeto são gastas até o próximo turno.</p>
+        
+        <h2>Dano e Destruição</h2>
+        <p>Objetos podem receber condições. Categorias:</p>
+        <ul>
+          <li><strong>Grau 1–3:</strong> redução de −1 no grau de todas as tags</li>
+          <li><strong>Grau 4–6:</strong> redução de −2 nas tags; uma tag pode ser desativada</li>
+          <li><strong>Grau 7–9:</strong> metade das tags desativadas; objeto opera com dificuldade</li>
+          <li><strong>≥ limiar Estrutura:</strong> objeto <strong>destruído</strong></li>
+        </ul>
+        
+        <h2>Reparo de Objetos</h2>
+        <p>Reparo é ação de manifestação: <code>OV/RV = grau atual da condição + modificadores</code>. RAPs do reparo reduzem o grau da condição.</p>
+        
+        <h2>Aprimoramento</h2>
+        <ul>
+          <li><strong>Aumentar tag:</strong> OV/RV = grau atual da tag + 2</li>
+          <li><strong>Adicionar nova tag:</strong> OV/RV = grau total atual + grau desejado da nova tag</li>
+        </ul>
+        
+        <h2>Objetos Especiais</h2>
+        <ul>
+          <li><strong>Objetos Únicos:</strong> relíquias e artefatos — destruição permanente, tag de Identidade intransferível.</li>
+          <li><strong>Construtos:</strong> objetos com autonomia (robôs, golens, IA) — possuem atributo de Autonomia.</li>
+          <li><strong>Veículos:</strong> escala maior — tag Velocidade (grau em APs), tag Carga.</li>
+        </ul>
       `,
       aps_distancia: `
         <h1>APs de Referência — Distância</h1>
@@ -1079,5 +1121,421 @@ window.wikiPages = {
             <tr><td>70</td><td>~1 YJ</td><td>escala estelar massiva</td></tr>
           </tbody>
         </table>
+      `,
+      sistema_hibrido: `
+        <h1>Sistema Híbrido — Ações, Tags, Condições e Efeitos</h1>
+        <h2>Fundamento do Sistema</h2>
+        <p>O sistema é estruturado em quatro camadas de resolução:</p>
+        <ul>
+          <li><strong>Ações de Oposição:</strong> há resistência ativa de outro objeto de jogo.</li>
+          <li><strong>Ações de Manifestação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
+          <li><strong>Ações Automáticas:</strong> não exigem rolagem; servem para criar, reduzir ou remover efeitos e condições de forma simples.</li>
+          <li><strong>Reações:</strong> ações automáticas executadas fora do turno do personagem, em resposta a um evento.</li>
+        </ul>
+        
+        <h2>Terminologia</h2>
+        <h3>Grau das Tags</h3>
+        <p>O grau total de uma ação é o somatório dos graus de todas as tags utilizadas nela.</p>
+        <p><strong>Exemplo:</strong> usar uma tag de grau 3 e uma de grau 2 resulta em grau total 5.</p>
+        
+        <h3>Objeto de Jogo</h3>
+        <p>Qualquer entidade ou elemento relevante em mesa: personagem, aliado, inimigo, construto, estrutura, área, ambiente.</p>
+        
+        <h3>Condição</h3>
+        <p>Estado anexado a um objeto de jogo que impacta diretamente um ou mais atributos do alvo. Condições são sempre vinculadas a um objeto.</p>
+        
+        <h3>Efeito</h3>
+        <p>Entidade com existência independente, capaz de afetar um ou mais objetos de jogo. Efeitos não pertencem a nenhum objeto específico — eles existem no espaço da cena.</p>
+        
+        <h3>Cena</h3>
+        <p>Unidade narrativa de tempo que corresponde a um evento dramático contínuo: um combate, uma negociação, uma fuga. A cena termina quando o contexto dramático se resolve ou muda fundamentalmente. Para fins de duração, uma cena equivale a aproximadamente <strong>8 APs de tempo</strong> (15 minutos narrativos).</p>
+        
+        <h3>Turno</h3>
+        <p>Unidade de resolução dentro de uma cena estruturada. Tags consumidas em um turno ficam indisponíveis até o início do próximo turno do mesmo personagem.</p>
+        
+        <h2>Tipos de Ação</h2>
+        <h3>Ações de Oposição</h3>
+        <p>São ações em que existe resistência ativa de outro objeto de jogo ou força contrária.</p>
+        <ul>
+          <li>Usam <strong>AV/EV</strong> do agente.</li>
+          <li>Usam <strong>OV/RV</strong> da oposição.</li>
+          <li>Seguem a resolução normal por RAPs.</li>
+          <li>Apropriadas para ataques, bloqueios, disputas, resistências e confrontos diretos.</li>
+          <li>Geram primariamente <strong>condições</strong> no alvo.</li>
+        </ul>
+        
+        <h3>Ações de Manifestação</h3>
+        <p>São ações sem oposição direta, nas quais o desafio está na execução, na complexidade e na materialização do resultado.</p>
+        <ul>
+          <li>Iniciam em <strong>OV/RV 1</strong>.</li>
+          <li>Recebem modificadores conforme a natureza da ação.</li>
+          <li>Apropriadas para criar efeitos independentes, aplicar estados sem resistência ativa e produzir alterações relevantes no jogo.</li>
+          <li>Geram primariamente <strong>efeitos</strong>.</li>
+          <li>Podem também gerar <strong>condições</strong> em alvos que não oferecem resistência ativa.</li>
+        </ul>
+        
+        <h3>Ações Automáticas</h3>
+        <p>São ações sem rolagem.</p>
+        <ul>
+          <li>Podem criar novos efeitos ou condições.</li>
+          <li>Podem reduzir efeitos ou condições existentes.</li>
+          <li><strong>Não podem</strong> aumentar o grau de um efeito ou condição já existente.</li>
+          <li>Devem respeitar a trivialidade da ação no contexto ficcional.</li>
+          <li>Tags usadas em ações automáticas ficam indisponíveis até o próximo turno.</li>
+        </ul>
+        
+        <h3>Reações</h3>
+        <p>São ações automáticas executadas fora do turno do personagem, em resposta direta a um evento.</p>
+        <ul>
+          <li>Seguem todas as regras de ações automáticas.</li>
+          <li>Consomem tags normalmente — essas tags ficam indisponíveis até o próximo turno do personagem.</li>
+          <li>Podem ser usadas para interromper, reduzir ou anular efeitos e condições antes que se estabeleçam.</li>
+        </ul>
+        <p><strong>Atenção:</strong> uma reação não pode ser usada para criar uma condição ou efeito novo de forma ofensiva — apenas para responder a algo que está acontecendo.</p>
+        
+        <h2>Sistema de Resolução</h2>
+        <h3>Ações de Oposição</h3>
+        <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas + bônus de condições favoráveis</p>
+        <p><strong>OV/RV</strong> = atributo de resistência do alvo + modificadores situacionais + condições desfavoráveis ao agente</p>
+        <p>O resultado gera <strong>RAPs</strong>. RAPs positivos indicam sucesso; RAPs negativos ou zero indicam falha.</p>
+        
+        <h3>Ações de Manifestação</h3>
+        <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas</p>
+        <p><strong>OV/RV final</strong> = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</p>
+        <p>Se a ação falhar (RAPs ≤ 0), o efeito não se estabelece ou apenas "pisca" sem se fixar.</p>
+        
+        <h3>Ações Automáticas e Reações</h3>
+        <p>O valor do ajuste automático é igual ao <strong>grau total das tags gastas</strong>:</p>
+        <ul>
+          <li>1 tag de grau 2 = 2 APs de ajuste</li>
+          <li>2 tags de grau 1 cada = 2 APs de ajuste</li>
+          <li>1 tag de grau 3 + 1 de grau 1 = 4 APs de ajuste</li>
+        </ul>
+        <p>O ajuste pode criar, reduzir ou remover condições e efeitos cujo grau atual seja <strong>igual ou menor</strong> ao valor do ajuste.</p>
+        
+        <h2>Condições</h2>
+        <h3>Limiar de Condição</h3>
+        <table>
+          <thead><tr><th>Categoria</th><th>Atributo de Resistência</th></tr></thead>
+          <tbody>
+            <tr><td>Dano físico / estrutural</td><td>Corpo</td></tr>
+            <tr><td>Dano mental / cognitivo</td><td>Mente</td></tr>
+            <tr><td>Dano emocional / espiritual</td><td>Espírito</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Aplicação</h3>
+        <p>O <strong>grau máximo</strong> de uma condição criada em uma única ação é:</p>
+        <p><strong>Grau máximo = EV + grau total das tags utilizadas</strong></p>
+        
+        <h3>Acúmulo de Condições</h3>
+        <ul>
+          <li>Condições do <strong>mesmo tipo</strong> no mesmo alvo se <strong>somam</strong>.</li>
+          <li>Condições de <strong>tipos diferentes</strong> coexistem e aplicam penalidades separadas.</li>
+          <li>Quando o grau acumulado de uma condição excede o dobro do limiar do atributo, o alvo é <strong>incapacitado</strong>.</li>
+        </ul>
+        
+        <h3>Duração</h3>
+        <table>
+          <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td>Temporária</td><td>dura um número de APs de tempo igual ao grau da condição</td></tr>
+            <tr><td>Duradoura</td><td>permanece até ser removida por uma ação apropriada</td></tr>
+            <tr><td>Permanente</td><td>altera a ficha do alvo de forma indefinida</td></tr>
+          </tbody>
+        </table>
+        
+        <h2>Efeitos</h2>
+        <h3>Limiar de Efeito</h3>
+        <p>O limiar de um efeito é igual ao <strong>grau total das tags usadas</strong> para criá-lo.</p>
+        
+        <h3>Promoção de Escopo</h3>
+        <table>
+          <thead><tr><th>Promoção</th><th>Limiar de RAP</th></tr></thead>
+          <tbody>
+            <tr><td>1ª promoção</td><td>6</td></tr>
+            <tr><td>2ª promoção</td><td>10</td></tr>
+            <tr><td>3ª promoção</td><td>15</td></tr>
+            <tr><td>4ª promoção</td><td>21</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Dimensões de Promoção</h3>
+        <ul>
+          <li><strong>duração</strong> (de temporária para duradoura, de duradoura para permanente)</li>
+          <li><strong>amplitude</strong> (de 1 alvo para área, de área pequena para ampla)</li>
+          <li><strong>alcance</strong> (de toque para curto, de curto para médio, etc.)</li>
+          <li><strong>controle</strong> (de bruto para preciso)</li>
+          <li><strong>complexidade</strong> (de simples para duplo, etc.)</li>
+          <li><strong>ocultação</strong> (de visível para discreto, etc.)</li>
+          <li><strong>comportamento</strong> (adiciona efeito secundário, encadeamento, etc.)</li>
+        </ul>
+        
+        <h2>Atributos dos Personagens</h2>
+        <h3>Atributos Físicos</h3>
+        <table>
+          <thead><tr><th>Atributo</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Força</strong></td><td>peso que pode mover, dano físico em corpo a corpo, destruição de estruturas</td></tr>
+            <tr><td><strong>Destreza</strong></td><td>precisão, velocidade de ação, evasão, equilíbrio</td></tr>
+            <tr><td><strong>Corpo</strong></td><td>resistência a dano físico, fadiga, veneno, doença</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Atributos Mentais</h3>
+        <table>
+          <thead><tr><th>Atributo</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Intelecto</strong></td><td>raciocínio, análise, conhecimento técnico, planejamento</td></tr>
+            <tr><td><strong>Intuição</strong></td><td>percepção, leitura de situação, reação a surpresas</td></tr>
+            <tr><td><strong>Mente</strong></td><td>resistência a dano mental, influência, ilusão, controle</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Atributos de Influência</h3>
+        <table>
+          <thead><tr><th>Atributo</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Presença</strong></td><td>carisma, liderança, intimidação, negociação</td></tr>
+            <tr><td><strong>Espírito</strong></td><td>resistência emocional, força de vontade, senso de identidade</td></tr>
+          </tbody>
+        </table>
+        
+        <h2>Escala de Atributos</h2>
+        <table>
+          <thead><tr><th>Valor</th><th>Nível</th><th>Referência</th></tr></thead>
+          <tbody>
+            <tr><td>1–2</td><td>Abaixo da média</td><td>criança, idoso frágil</td></tr>
+            <tr><td>3–4</td><td>Humano médio</td><td>adulto saudável</td></tr>
+            <tr><td>5–6</td><td>Humano excepcional</td><td>atleta olímpico, gênio</td></tr>
+            <tr><td>7–8</td><td>Pico humano</td><td>limite absoluto do humano sem aprimoramento</td></tr>
+            <tr><td>9–11</td><td>Super-humano baixo</td><td>capacidades que excedem qualquer humano</td></tr>
+            <tr><td>12–15</td><td>Super-humano médio</td><td>equivalente a Homem-Aranha, Wolverine</td></tr>
+            <tr><td>16–20</td><td>Super-humano elevado</td><td>Colossus, Tempestade em plena força</td></tr>
+            <tr><td>21–25</td><td>Classe de Poder</td><td>Hulk, Thor, Phoenix</td></tr>
+            <tr><td>26+</td><td>Cósmico</td><td>Entidades, Omega absoluto</td></tr>
+          </tbody>
+        </table>
+        
+        <h2>Temas</h2>
+        <p>Temas são a estrutura narrativa e mecânica central de cada personagem. Cada personagem possui <strong>dois a quatro temas</strong>.</p>
+        
+        <h3>Tipos de Tema</h3>
+        <table>
+          <thead><tr><th>Categoria</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mutação</strong></td><td>poderes, capacidades sobrenaturais, origem genética</td></tr>
+            <tr><td><strong>Humanidade</strong></td><td>identidade, relações, missão, passado, posses, conflito</td></tr>
+          </tbody>
+        </table>
+        
+        <p>Cada personagem deve ter <strong>ao menos um tema de cada categoria</strong>.</p>
+        
+        <h3>Subcategorias de Tema de Mutação</h3>
+        <ul>
+          <li><strong>Adaptação</strong> — capacidade de responder e mudar em situação de risco</li>
+          <li><strong>Bastião</strong> — proteção, resistência, capacidade defensiva</li>
+          <li><strong>Conjuração</strong> — criação de efeitos, entidades ou materiais do nada</li>
+          <li><strong>Destino</strong> — ligação com forças maiores, profecia, inevitabilidade</li>
+          <li><strong>Adivinhação</strong> — percepção expandida, visão além do presente</li>
+          <li><strong>Enclave</strong> — vínculo com grupo, espaço sagrado, rede mutante</li>
+          <li><strong>Expressão</strong> — manifestação criativa do poder, estilo único</li>
+          <li><strong>Familiar</strong> — conexão com um ser ligado ao mutante</li>
+          <li><strong>Mobilidade</strong> — movimento, deslocamento, velocidade</li>
+          <li><strong>Relíquia</strong> — objeto carregado que amplifica ou ancora o poder</li>
+          <li><strong>Subversão</strong> — inversão de regras, quebra de padrões, disrupção</li>
+        </ul>
+        
+        <h3>Subcategorias de Tema de Humanidade</h3>
+        <ul>
+          <li><strong>Evento Marcante</strong> — algo que aconteceu e moldou o personagem</li>
+          <li><strong>Relação Marcante</strong> — um vínculo com outra pessoa ou grupo</li>
+          <li><strong>Missão</strong> — um objetivo ou propósito que guia o personagem</li>
+          <li><strong>Personalidade</strong> — traços de caráter, comportamento, forma de ser</li>
+          <li><strong>Posses</strong> — objetos significativos, recursos, conexões materiais</li>
+          <li><strong>Rotina</strong> — hábitos, práticas, estrutura cotidiana</li>
+          <li><strong>Conflito / Dificuldade</strong> — um problema interno ou externo recorrente</li>
+          <li><strong>Treinamento</strong> — habilidade adquirida por esforço e disciplina</li>
+          <li><strong>Território</strong> — um lugar de pertencimento, proteção ou relevância</li>
+        </ul>
+        
+        <h2>Iniciativa e Ordem de Ação</h2>
+        <p>O sistema não usa iniciativa numérica por padrão. A ordem de ação é determinada por <strong>contexto narrativo e consenso de mesa</strong>.</p>
+        
+        <h3>Critérios de Ordem</h3>
+        <table>
+          <thead><tr><th>Situação</th><th>Quem age primeiro</th></tr></thead>
+          <tbody>
+            <tr><td>Emboscada ou surpresa total</td><td>atacante age antes</td></tr>
+            <tr><td>Combate iniciado naturalmente</td><td>Destreza mais alta</td></tr>
+            <tr><td>Personagem com poder de velocidade</td><td>age antes de qualquer ação normal</td></tr>
+            <tr><td>Reação declarada</td><td>ocorre imediatamente após o evento gatilho</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Estrutura do Turno</h3>
+        <ol>
+          <li><strong>Declaração:</strong> todos declaram suas intenções em ordem reversa de Destreza</li>
+          <li><strong>Resolução:</strong> ações se resolvem em ordem de Destreza (maior para menor)</li>
+          <li><strong>Reações:</strong> podem ocorrer em qualquer ponto durante a resolução</li>
+          <li><strong>Atualização de estado:</strong> condições e efeitos temporários têm seu grau reduzido ou expiram</li>
+        </ol>
+        
+        <h2>Ações Estendidas e Atividades de Intervalo</h2>
+        <p>Entre cenas ou arcos narrativos, os personagens têm a oportunidade de realizar <strong>atividades de intervalo</strong>.</p>
+        
+        <h3>Modificador de Ritmo</h3>
+        <table>
+          <thead><tr><th>Ritmo</th><th>Tempo</th><th>Modificador</th></tr></thead>
+          <tbody>
+            <tr><td>Urgência extrema</td><td>1 turno</td><td>+5</td></tr>
+            <tr><td>Pressão alta</td><td>1 cena</td><td>+3</td></tr>
+            <tr><td>Pressão moderada</td><td>hora</td><td>+1</td></tr>
+            <tr><td>Calma relativa</td><td>horas</td><td>+0</td></tr>
+            <tr><td>Foco total</td><td>dia</td><td>-1</td></tr>
+            <tr><td>Trabalho estendido</td><td>dias</td><td>-2</td></tr>
+            <tr><td>Projeto longo</td><td>semanas+</td><td>-3</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Atividades de Intervalo</h3>
+        <ul>
+          <li><strong>Recuperar</strong> — descanso, tratamento, cuidado pessoal</li>
+          <li><strong>Investigar</strong> — pesquisar tema, pessoa, local ou situação</li>
+          <li><strong>Preparar</strong> — criar, modificar ou organizar recursos</li>
+          <li><strong>Treinar</strong> — desenvolver habilidade ou poder (acumula pontos de progresso)</li>
+          <li><strong>Conectar</strong> — cultivar, reparar ou aprofundar vínculos</li>
+          <li><strong>Criar Obra</strong> — produzir algo de valor narrativo ou expressivo</li>
+        </ul>
+        
+        <h2>Princípios Gerais</h2>
+        <ul>
+          <li>O grau das tags define a <strong>escala básica</strong> da ação e o limiar de promoção.</li>
+          <li>Condições são aplicadas a objetos de jogo e somam-se entre si.</li>
+          <li>Efeitos existem de forma independente na cena.</li>
+          <li>Ações de oposição resolvem <strong>conflito direto</strong>.</li>
+          <li>Ações de manifestação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
+          <li>Ações automáticas resolvem <strong>ajustes simples</strong> sem rolagem.</li>
+          <li>Reações são automáticas, executadas fora do turno, apenas em resposta.</li>
+          <li>RAPs excedentes compram duração e promoções.</li>
+          <li>Promoções de escopo modificam <strong>qualidade</strong>, não apenas quantidade.</li>
+          <li>Tags gastas só retornam no próximo turno.</li>
+          <li>A trivialidade ficcional sempre prevalece sobre a mecânica.</li>
+        </ul>
+      `,
+      timeline: `
+        <h1>Cronologia do Cenário — Universo X-Men RPG</h1>
+        <p>Os X-Men não surgiram em manchete. Surgiram em silêncio, numa mansão em Westchester, com cinco adolescentes que não sabiam exatamente o que estavam construindo — mas sabiam que estavam construindo algo.</p>
+        <p>Os jogadores entram nessa história como <strong>estudantes do Instituto Xavier</strong>, por volta de 2005–2006, com 14 a 16 anos. Eles não são heróis ainda. São pessoas tentando entender o que são — num mundo que ainda não decidiu o que fazer com elas.</p>
+        
+        <h2>Leitura da Tabela</h2>
+        <p>A tabela registra cada período com:</p>
+        <ul>
+          <li><strong>o que estava acontecendo no mundo</strong></li>
+          <li><strong>quem estava no campo</strong></li>
+          <li><strong>onde os PJs estavam nisso tudo</strong></li>
+        </ul>
+        
+        <h2>Cronologia Narrativa</h2>
+        
+        <h3>🕵️ 1988–1991 — A Era do Segredo</h3>
+        <p><em>Tom: conspirativo, íntimo, de coisas ditas em voz baixa</em></p>
+        <p>Xavier não queria um exército. Queria uma prova. Cinco jovens reunidos numa mansão que parecia escola mas funcionava como laboratório de um ideal: que mutantes e humanos podiam coexistir, se alguém estivesse disposto a pagar o preço do exemplo.</p>
+        <p>Eles não tinham uniforme no início. Tinham dúvida, e treino, e Xavier olhando para cada um como se visse algo que eles mesmos ainda não sabiam que carregavam.</p>
+        <p>Nesse mesmo período, em algum bunker governamental, o <strong>Programa Sentinela</strong> era rabiscado em papel que ninguém deveria ver. <strong>Magneto</strong> observava de longe — não com raiva, ainda. Com ceticismo. <strong>Mística</strong> já movia peças na sombra. <strong>Sinistro</strong> registrava DNA como quem cataloga espécies raras antes da extinção.</p>
+        <p>E em 1989, longe desse mundo mutante em formação, <strong>Steve Rogers foi descongelado</strong>. O mundo ganhou de volta um símbolo que não sabia que precisava — e os mutantes ganharam um espelho: o que significa ser extraordinário num mundo de ordinários?</p>
+        <p><strong>X-Men ativos:</strong> Ciclope, Jean Grey, Homem de Gelo, Fera, Anjo</p>
+        
+        <h3>🌍 1992–1994 — A Era da Expansão</h3>
+        <p><em>Tom: épico, colorido, de rostos novos e horizontes maiores</em></p>
+        <p>Krakoa quase os matou a todos. O que sobrou foi reorganização forçada — e com ela, uma ideia que Xavier relutou em admitir: que o mundo era grande demais para cinco pessoas.</p>
+        <p>O <strong>Time Dourado</strong> emergiu como contrapartida ao <strong>Time Azul</strong>: Tempestade, Colossus, Noturno, Wolverine, Gambit. Mutantes de origens tão diferentes que sua coesão parecia improvável — e justamente por isso, funcionava. Enquanto isso, os <strong>Vingadores</strong> tornavam-se públicos nos EUA, equipe humana de elite, e o contraste não escapou a ninguém.</p>
+        <p><strong>Legião</strong> manifestava instabilidade crescente, como uma pergunta que Xavier ainda não sabia como responder. <strong>Sinistro</strong> intensificava manipulações que ninguém ainda conseguia mapear completamente.</p>
+        <p><strong>X-Men ativos:</strong> Time Azul + Time Dourado (estrutura dupla)</p>
+        
+        <h3>💔 1994–1996 — A Era da Fênix</h3>
+        <p><em>Tom: dramático, íntimo, de amor e destruição</em></p>
+        <p>Jean Grey estava mudando. Ninguém falava sobre isso diretamente — esse era o problema. O <strong>Clube do Inferno</strong> soube explorar o silêncio.</p>
+        <p>O que veio depois não tem nome limpo. A <strong>Fênix Negra</strong> não era Jean e era Jean ao mesmo tempo — poder demais para um corpo que ainda amava, ainda lembrava, ainda tentava escolher. O julgamento Shi'ar não foi sobre culpa. Foi sobre medo.</p>
+        <p>Scott voltou sem ela. Encontrou seu pai — <strong>Corsário</strong>, entre estrelas, comandando pirates. Descobriu que herança cósmica não é privilégio: é peso. Conheceu <strong>Madelyne Pryor</strong> num aeroporto chuvoso, e ela tinha o jeito de Jean de inclinar a cabeça quando pensava.</p>
+        <p><strong>X-Men ativos:</strong> Times Azul e Dourado desestabilizados</p>
+        
+        <h3>🏛️ 1997 — A Era da Exposição</h3>
+        <p><em>Tom: político, de revelação e desconforto</em></p>
+        <p>Xavier foi ferido. E então aconteceu algo que ninguém tinha previsto: <strong>Magneto assumiu a liderança dos X-Men</strong>. Não por conquista. Por protocolo. Porque Xavier, antes de cair, tinha deixado instruções — e Magneto, por razões que nunca explicou completamente, honrou-as.</p>
+        <p>Foi Magneto quem os tornou públicos pela primeira vez. Foi Magneto quem se entregou para mostrar boa-fé. O gesto foi real, o risco foi real — e o governo os tratou como cúmplices de um terrorista que acabava de se render.</p>
+        <p><strong>X-Men ativos:</strong> estrutura instável; Magneto no centro</p>
+        
+        <h3>🌊 1998–2000 — A Era de Genosha</h3>
+        <p><em>Tom: bélico, de soberania e ruptura</em></p>
+        <p>Magneto foi preso. As Sentinelas foram ativadas. Os X-Men desapareceram — o mundo acreditou que estavam mortos.</p>
+        <p>Na Europa, <strong>Noturno</strong> não acreditou. Fundou a <strong>Excalibur</strong> como ato de recusa: a resistência mutante não morreria enquanto houvesse alguém em pé para carregá-la.</p>
+        <p>Quando Magneto voltou, voltou diferente. Genosha não era projeto político — era declaração. O <strong>Asteroide M</strong> desceu em órbita, soberano e incontestável. Wanda e Pietro dividiram lealdades entre pai e convicção.</p>
+        <p><strong>Sinistro</strong> coletava material genético nos bastidores. Sempre nos bastidores.</p>
+        <p><strong>X-Men ativos:</strong> em reconstrução</p>
+        <p><strong>Times paralelos:</strong> Excalibur (Europa, fundada por Noturno)</p>
+        
+        <h3>⏳ 2001–2004 — A Era dos Paradoxos</h3>
+        <p><em>Tom: filosófico, de paradoxos e escolhas impossíveis</em></p>
+        <p>Scott voltou. A fase <strong>New X-Men</strong> começou com a sensação de que algo havia mudado fundamentalmente — não nos poderes, mas nas perguntas. Os ecos de <strong>Days of Future Past</strong> chegavam em missões como pesadelos de alguém que ainda não nasceu.</p>
+        <p><strong>Legião</strong> manifestou nova personalidade dominante. A mente de um filho é o arquivo dos pecados do pai.</p>
+        <p>Em 2003, a crise com Xavier abriu espaço para o <strong>X-Factor</strong> — equipe paralela com mandato diferente, mais político, menos messiânico. <strong>Apocalipse</strong> chegou ao presente, recrutou Cavaleiros, fez Anjo em Arcanjo de novo.</p>
+        <p><strong>Nathan nasce. Madelyne descobre ser clone.</strong> O plano de <strong>Sinistro</strong> emergiu parcialmente — parcialmente, porque Sinistro nunca revela tudo de uma vez.</p>
+        <p><strong>X-Men ativos:</strong> Scott no centro; X-Factor integrado a partir de 2004</p>
+        
+        <h3>🎒 2005–2006 — A Era dos Estudantes</h3>
+        <p><em>Tom: juvenil, de descoberta, de primeiros erros e primeiras lealdades</em></p>
+        <p><strong>Os PJs entram aqui.</strong></p>
+        <p>Com 14 a 16 anos. Num mundo que já passou por tudo isso acima e ainda não se resolveu. O Instituto Xavier é escola e trincheira ao mesmo tempo — e para novos alunos, parece mais escola do que trincheira, até que deixa de parecer.</p>
+        <p><strong>Rachel Summers</strong> chegou do futuro sem dizer tudo sobre si mesma. Juntou-se à Excalibur. Carregava o peso de uma linha temporal que os PJs nem sabem que existe.</p>
+        <p>Em 2006, a <strong>Guerra Civil</strong> dividiu heróis com identidade secreta de heróis sem. Os veteranos se dividiram. Os PJs assistiram — porque ainda não tinham permissão de fazer outra coisa.</p>
+        <p><strong>X-Men ativos:</strong> Scott, Kitty, Tempestade, Wolverine, Gambit, Psylocke; Emma Frost chegando</p>
+        <p><strong>PJs:</strong> estudantes do Instituto (14–16 anos); sem missões de campo</p>
+        
+        <h3>⚡ 2007–2009 — A Era das Forças Paralelas</h3>
+        <p><em>Tom: fragmentado, de múltiplas frentes e identidades em conflito</em></p>
+        <p><strong>Cable chegou do futuro</strong> com a lembrança de guerras que os PJs ainda não travaram. Recrutou veteranos dos Novos Mutantes para a <strong>X-Force</strong> — unidade que faz o que os X-Men decidem não fazer, porque alguém tem que fazer.</p>
+        <p>Os PJs não foram recrutados. Eram jovens demais, ou não tinham o perfil, ou Cable simplesmente viu algo diferente neles. A saída dos veteranos deixou espaço — e responsabilidade.</p>
+        <p><strong>Emma e Scott</strong> consolidaram a liderança conjunta dos X-Men em 2008: fria precisão e fervor controlado, dois estilos que funcionavam juntos exatamente porque não eram iguais.</p>
+        <p>Em 2009, o Instituto reabriu publicamente como escola. Tempestade dividia tempo entre Wakanda e Westchester. Os Novos Mutantes tornaram-se ativos — missões de suporte, sempre com supervisão, mas missões reais.</p>
+        <p><strong>X-Men ativos:</strong> Scott + Emma co-lideram; Kitty, Wolverine (escola), Tempestade em trânsito</p>
+        <p><strong>Times paralelos:</strong> X-Force (Cable); Excalibur (Rachel + Noturno)</p>
+        <p><strong>PJs:</strong> treinamento avançado (2008); Novos Mutantes ativos com supervisão (2009)</p>
+        
+        <h3>🌐 2010± — A Era da Exposição Total</h3>
+        <p><em>Tom: institucional, midiático, de dilemas sem resposta limpa</em></p>
+        <p>Os X-Men são instituição agora. Têm escola, têm imprensa, têm debates no Congresso. Têm inimigos que usam advogados antes de usar exércitos.</p>
+        <p><strong>Sinistro</strong> permanece nas sombras — sempre nas sombras. <strong>Mística</strong> muda de forma, literalmente. <strong>Magneto</strong> tornou-se figura filosófica: não mais general, mas voz que ainda ecoa em qualquer sala onde mutantes e humanos discutem o futuro. <strong>Legião</strong> é variável imprevisível. <strong>Apocalipse</strong> é ameaça latente.</p>
+        <p>Os PJs têm 18–20 anos. Sobreviveram ao Instituto. Estão a um passo de se tornarem X-Men — e talvez já sejam, sem que alguém tenha dito isso oficialmente ainda.</p>
+        <p><strong>X-Men ativos:</strong> Scott, Emma, Kitty, núcleo central; Tempestade entre Wakanda e Instituto</p>
+        <p><strong>Times paralelos:</strong> X-Factor; X-Force; Excalibur</p>
+        <p><strong>PJs:</strong> Novos Mutantes plenamente ativos; podem operar como equipe própria</p>
+        
+        <h2>Times Paralelos</h2>
+        <table>
+          <thead><tr><th>Time</th><th>Fundação</th><th>Origem</th><th>Papel</th><th>Relação com PJs</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Excalibur</strong></td><td>1998–1999</td><td>X-Men parecem mortos; Noturno recusa o luto</td><td>Resistência mutante europeia</td><td>Equipe irmã distante; Rachel é figura de mistério</td></tr>
+            <tr><td><strong>X-Factor</strong></td><td>2003</td><td>Vácuo ideológico; crise com Xavier</td><td>Mandato político e investigativo</td><td>Referência institucional; veteranos conhecidos</td></tr>
+            <tr><td><strong>X-Force</strong></td><td>2007</td><td>Cable chega do futuro</td><td>Faz o que os X-Men decidem não fazer</td><td>A razão pela qual os PJs avançam</td></tr>
+          </tbody>
+        </table>
+        
+        <h2>Trajetória dos PJs</h2>
+        <table>
+          <thead><tr><th>Período</th><th>O que os PJs são</th><th>O que podem fazer</th></tr></thead>
+          <tbody>
+            <tr><td>2005–2006</td><td>Estudantes novos, 14–16 anos</td><td>Aulas, treinamento, vínculos no Instituto</td></tr>
+            <tr><td>2006</td><td>Estudantes durante a Guerra Civil</td><td>Observam; não participam de decisões</td></tr>
+            <tr><td>2007</td><td>Estudantes que perdem colegas para a X-Force</td><td>Sentem o vazio; treinamento torna-se mais sério</td></tr>
+            <tr><td>2008</td><td>Novos Mutantes em formação avançada</td><td>Primeiras missões menores com supervisão</td></tr>
+            <tr><td>2009</td><td>Novos Mutantes ativos</td><td>Missões reais de suporte; alguma autonomia</td></tr>
+            <tr><td>2010±</td><td>Agentes em formação, 18–20 anos</td><td>Operam como equipe; a um passo de X-Men oficiais</td></tr>
+          </tbody>
+        </table>
+        
+        <blockquote style="margin-top: 20px; padding: 15px; border-left: 3px solid var(--accent); background: rgba(0,0,0,0.3);">
+          <p>Os PJs não foram para a X-Force porque Cable viu algo diferente — ou porque eram jovens demais. Isso é tensão narrativa viva: o que acontece quando os veteranos que os PJs admiravam partiram para fazer o trabalho duro, e agora o Instituto precisa que <em>eles</em> cresçam?</p>
+        </blockquote>
       `
     };
