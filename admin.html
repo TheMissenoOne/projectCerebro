@@ -26,7 +26,8 @@
 <script>
 (function(){
   var t = localStorage.getItem('cerebro_tema');
-  if (t) document.body.className = 'theme-' + t;
+  console.log('[theme] localStorage:', t, 'body class:', document.body.className);
+        if (t) document.body.className = 'theme-' + t;
 })();
 </script>
 <header class="header">
