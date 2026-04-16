@@ -217,14 +217,23 @@
         var cached = cache.get('party_chars', partyId);
         if (cached) return Promise.resolve(cached);
       }
-      return getSupabase().from('characters').select('*, profiles!inner(display_name)').eq('party_id', partyId).order('name')
+      return getSupabase().from('characters').select('*, player_id').eq('party_id', partyId).order('name')
         .then(function(result) { 
-          if (result.error) throw result.error; 
-          var mapped = result.data.map(function(c) {
-            c.player_name = c.profiles?.display_name || c.player_id; return c;
-          });
-          if (cache) cache.set('party_chars', partyId, mapped, 300000);
-          return mapped;
+          if (result.error) throw result.error;
+          var chars = result.data;
+          if (!chars || chars.length === 0) return [];
+          var playerIds = chars.map(function(c) { return c.player_id; });
+          return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
+            .then(function(profiles) {
+              var profileMap = {};
+              if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
+              var mapped = chars.map(function(c) {
+                c.player_name = profileMap[c.player_id] || c.player_id;
+                return c;
+              });
+              if (cache) cache.set('party_chars', partyId, mapped, 300000);
+              return mapped;
+            });
         });
     },
 
@@ -247,17 +256,25 @@
           var partyNames = {};
           result.data.forEach(function(p) { partyNames[p.id] = p.name; });
           if (partyIds.length === 0) return [];
-          return getSupabase().from('characters').select('*, profiles!inner(display_name)')
+          return getSupabase().from('characters').select('*, player_id')
             .in('party_id', partyIds)
             .then(function(r) { 
-              if (r.error) throw r.error; 
-              var mapped = r.data.map(function(c) {
-                c.player_name = c.profiles?.display_name || c.player_id;
-                c.party_name = partyNames[c.party_id] || null;
-                return c;
-              });
-              if (cache) cache.set('gm_chars', key, mapped, 300000);
-              return mapped;
+              if (r.error) throw r.error;
+              var chars = r.data;
+              if (!chars || chars.length === 0) return [];
+              var playerIds = chars.map(function(c) { return c.player_id; });
+              return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
+                .then(function(profiles) {
+                  var profileMap = {};
+                  if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
+                  var mapped = chars.map(function(c) {
+                    c.player_name = profileMap[c.player_id] || c.player_id;
+                    c.party_name = partyNames[c.party_id] || null;
+                    return c;
+                  });
+                  if (cache) cache.set('gm_chars', key, mapped, 300000);
+                  return mapped;
+                });
             });
         })
         .catch(function(err) {
