@@ -223,6 +223,10 @@
           tbody.appendChild(row);
         });
         console.log('[loadPartyCharacters] done, tbody rows:', tbody.children.length);
+        // Force table visibility debug
+        const table = document.querySelector('.party-chars-table');
+        console.log('[loadPartyCharacters] table element:', table);
+        console.log('[loadPartyCharacters] table HTML:', table ? table.outerHTML.substring(0, 200) : 'NOT FOUND');
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
         document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="5" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
