@@ -220,8 +220,10 @@
 
 /* ── PARTY CHARS TABLE ─────────────────────── */
 .party-chars-table {
-  width: 100%;
-  border-collapse: collapse;
+  margin-top: 16px;
+  display: table !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .party-chars-table th,
