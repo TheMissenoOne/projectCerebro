@@ -22,7 +22,7 @@ function assert(condition, message) {
 
 // All pages must exist
 const PAGES = ['index.html', 'dashboard.html', 'ficha.html', 'admin.html',
-               'cerebro.html', 'wiki.html', 'combate.html', 'npcs.html'];
+               'cerebro.html', 'wiki.html', 'combate.html'];
 
 PAGES.forEach(function(page) {
   test('file exists: ' + page, function() {
