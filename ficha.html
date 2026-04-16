@@ -458,18 +458,20 @@ function showToast(msg){
         <span style="font-family:var(--mono);font-size:.5rem;color:var(--muted);letter-spacing:.12em">ESQUADRÃO</span>
         <input type="text" class="id-input" id="esq-nome" placeholder="Nome do esquadrão / time" style="width:100%" oninput="salvarAuto()">
       </div>
-      <div class="aa-grp">
-        <span class="aa-lbl">APOIO</span>
-        <input type="number" class="aa-val" id="apoio" placeholder="0" min="0" max="99" oninput="salvarAuto()">
-      </div>
-      <div class="aa-grp">
-        <span class="aa-lbl" style="color:#c87060">ANTAGONISMO</span>
-        <input type="number" class="aa-val" id="antagonismo" placeholder="0" min="0" max="99" style="color:#dd8866" oninput="salvarAuto()">
-      </div>
     </div>
     <div class="panel" style="margin-bottom:18px">
       <div class="panel-title">Membros</div>
-      <table class="mbr-table" id="mbr-table"></table>
+      <table class="mbr-table" id="mbr-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th style="width:60px">Apoio</th>
+            <th style="width:60px">Antagonismo</th>
+          </tr>
+        </thead>
+        <tbody id="mbr-tbody"></tbody>
+      </table>
     </div>
     <div class="sec"><div class="sec-bar"></div><span class="sec-label">Cards Extras</span><div class="sec-line"></div></div>
     <div class="cards-grid" id="esq-grid"></div>
@@ -521,8 +523,8 @@ const PADRAO={
   stats:Object.fromEntries(STATS.map(s=>[s,''])),
   status:'',progressao:0,evolucao:['','','','',''],
   temas:Array.from({length:4},novoCard),
-  esq_nome:'',apoio:'',antagonismo:'',
-  membros:Array(7).fill(''),
+  esq_nome:'',
+  membros:Array.from({length:7},()=>({nome:'',apoio:0,antagonismo:0})),
   extras:Array.from({length:4},novoCard),
 };
 let D=clone(PADRAO);
@@ -680,16 +682,27 @@ function buildEvo(){
   }
 }
 function buildMembros(){
-  const tb=document.getElementById('mbr-table');tb.innerHTML='';
+  const tb=document.getElementById('mbr-tbody');tb.innerHTML='';
   for(let i=0;i<7;i++){
+    const m=D.membros[i]||{nome:'',apoio:0,antagonismo:0};
     const tr=document.createElement('tr');
-    const tdN=document.createElement('td');
-    const idx=document.createElement('span');idx.className='mbr-idx';idx.textContent=String(i+1).padStart(2,'0');tdN.appendChild(idx);
-    const tdI=document.createElement('td');tdI.style.width='100%';
-    const inp=document.createElement('input');inp.type='text';inp.className='mbr-inp';
-    inp.placeholder=`Membro ${i+1}...`;inp.value=D.membros[i]||'';inp.dataset.i=i;
-    inp.addEventListener('input',e=>{D.membros[+e.target.dataset.i]=e.target.value;salvarAuto();});
-    tdI.appendChild(inp);tr.appendChild(tdN);tr.appendChild(tdI);tb.appendChild(tr);
+    const tdIdx=document.createElement('td');
+    const idx=document.createElement('span');idx.className='mbr-idx';idx.textContent=String(i+1).padStart(2,'0');tdIdx.appendChild(idx);
+    const tdNome=document.createElement('td');tdNome.style.width='100%';
+    const inpNome=document.createElement('input');inpNome.type='text';inpNome.className='mbr-inp';
+    inpNome.placeholder='Nome...';inpNome.value=m.nome||'';inpNome.dataset.i=i;
+    inpNome.addEventListener('input',e=>{D.membros[+e.target.dataset.i].nome=e.target.value;salvarAuto();});
+    tdNome.appendChild(inpNome);tr.appendChild(tdIdx);tr.appendChild(tdNome);
+    const tdApoio=document.createElement('td');
+    const inpApoio=document.createElement('input');inpApoio.type='number';inpApoio.className='aa-val';inpApoio.style='width:50px';
+    inpApoio.placeholder='0';inpApoio.min=0;inpApoio.max=99;inpApoio.value=m.apoio||0;inpApoio.dataset.i=i;
+    inpApoio.addEventListener('input',e=>{D.membros[+e.target.dataset.i].apoio=+e.target.value;salvarAuto();});
+    tdApoio.appendChild(inpApoio);tr.appendChild(tdApoio);
+    const tdAnt=document.createElement('td');
+    const inpAnt=document.createElement('input');inpAnt.type='number';inpAnt.className='aa-val';inpAnt.style='width:50px;color:#dd8866';
+    inpAnt.placeholder='0';inpAnt.min=0;inpAnt.max=99;inpAnt.value=m.antagonismo||0;inpAnt.dataset.i=i;
+    inpAnt.addEventListener('input',e=>{D.membros[+e.target.dataset.i].antagonismo=+e.target.value;salvarAuto();});
+    tdAnt.appendChild(inpAnt);tr.appendChild(tdAnt);tb.appendChild(tr);
   }
 }
 function buildGrid(cid,lista){
@@ -774,14 +787,12 @@ function preencherCampos(){
   sv('nome',D.nome);sv('codinome',D.codinome);sv('jogador',D.jogador);
   sv('mutacao-ficha',D.mutacao_ficha);sv('mutacao-temas',D.mutacao_temas);
   sv('status',D.status);sv('esq-nome',D.esq_nome);
-  sv('apoio',D.apoio);sv('antagonismo',D.antagonismo);
   STATS.forEach(s=>sv('stat-'+s,D.stats[s]));
 }
 function coletarCampos(){
   D.nome=gv('nome');D.codinome=gv('codinome');D.jogador=gv('jogador');
   D.mutacao_ficha=gv('mutacao-ficha');D.mutacao_temas=gv('mutacao-temas');
   D.status=gv('status');D.esq_nome=gv('esq-nome');
-  D.apoio=gv('apoio');D.antagonismo=gv('antagonismo');
   STATS.forEach(s=>{D.stats[s]=gv('stat-'+s);});
 }
 function sv(id,val){const e=document.getElementById(id);if(e)e.value=val||'';}
@@ -820,8 +831,8 @@ function exportarMD(){
   const agora=new Date().toLocaleString('pt-BR');
   let md=`# FICHA DE PERSONAGEM — ${nome.toUpperCase()}\n> X-MEN TTRPG // CITY OF MIST SYSTEM\n> Exportado em: ${agora}\n\n---\n\n## IDENTIFICAÇÃO\n\n| Campo | Valor |\n|---|---|\n| **Nome** | ${d.nome||'—'} |\n| **Codinome** | ${d.codinome||'—'} |\n| **Jogador** | ${d.jogador||'—'} |\n| **Mutação** | ${d.mutacao_ficha||'—'} |\n\n---\n\n## ATRIBUTOS\n\n| | Destreza | Força | Corpo |\n|---|---|---|---|\n| **Físico** | ${d.stats.destreza||'—'} | ${d.stats.forca||'—'} | ${d.stats.corpo||'—'} |\n\n| | Inteligência | Vontade | Mente |\n|---|---|---|---|\n| **Mental** | ${d.stats.inteligencia||'—'} | ${d.stats.vontade||'—'} | ${d.stats.mente||'—'} |\n\n| | Influência | Aura | Espírito |\n|---|---|---|---|\n| **Social** | ${d.stats.influencia||'—'} | ${d.stats.aura||'—'} | ${d.stats.espirito||'—'} |\n\n---\n\n## STATUS\n\n${d.status||'*Sem status registrado.*'}\n\n---\n\n## PROGRESSÃO\n\nProgresso: ${'●'.repeat(d.progressao)}${'○'.repeat(Math.max(0,6-d.progressao))} (${d.progressao}/6)\n\n### Momentos de Evolução\n\n${d.evolucao.map((e,i)=>`${i+1}. ${e||'—'}`).join('\n')}\n\n---\n\n## MUTAÇÃO — TEMA CENTRAL\n\n${d.mutacao_temas||'*Não definida.*'}\n\n---\n\n## CARDS DE TEMAS\n\n`;
   d.temas.forEach((c,i)=>{md+=cardMD(c,i+1);});
-  md+=`---\n\n## ESQUADRÃO\n\n**Nome:** ${d.esq_nome||'—'}  \n**Apoio:** ${d.apoio||'0'} | **Antagonismo:** ${d.antagonismo||'0'}\n\n### Membros\n\n`;
-  d.membros.forEach((m,i)=>{md+=`${i+1}. ${m||'—'}\n`;});
+  md+=`---\n\n## ESQUADRÃO\n\n**Nome:** ${d.esq_nome||'—'}\n\n### Membros\n\n`;
+  d.membros.forEach((m,i)=>{md+=`${i+1}. **${m.nome||'—'}** | Apoio: ${m.apoio||0} | Antagonismo: ${m.antagonismo||0}\n`;});
   md+=`\n---\n\n## CARDS EXTRAS — ESQUADRÃO\n\n`;
   d.extras.forEach((c,i)=>{md+=cardMD(c,i+1);});
   md+=`---\n*AG—17.19349.583 · LS—16.23435.161 · XAVIER INSTITUTE*\n`;
@@ -888,9 +899,8 @@ function importarMD(){
         const isExtras=secaoAtual.includes('EXTRAS');
         if(num!==null&&num<4){if(isExtras)novo.extras[num]=card;else novo.temas[num]=card;}
       }
-      if(l.startsWith('**Nome:**')&&i+1<linhas.length&&linhas[i+1].includes('Apoio')){novo.esq_nome=l.replace('**Nome:**','').trim().replace(/^—$/,'');}
-      if(l.startsWith('**Apoio:**')){const am=l.match(/\*\*Apoio:\*\*\s*(\d+)/);const anm=l.match(/\*\*Antagonismo:\*\*\s*(\d+)/);if(am)novo.apoio=am[1];if(anm)novo.antagonismo=anm[1];}
-      if(l==='### Membros'){let j=i+1,mi=0;while(j<linhas.length&&mi<7){const mv=linhas[j].trim().replace(/^\d+\.\s*/,'').trim();if(!mv||mv==='---')break;if(mv!=='—')novo.membros[mi]=mv;mi++;j++;}}
+      if(l.startsWith('**Nome:**')){novo.esq_nome=l.replace('**Nome:**','').trim().replace(/^—$/,'');}
+      if(l==='### Membros'){let j=i+1,mi=0;while(j<linhas.length&&mi<7){const mv=linhas[j].trim();if(!mv||mv==='---')break;const nomeMatch=mv.match(/\*\*(.+?)\*\*/);const apMatch=mv.match(/Apoio:\s*(\d+)/);const antMatch=mv.match(/Antagonismo:\s*(\d+)/);novo.membros[mi]={nome:nomeMatch?nomeMatch[1]:'',apoio:apMatch?+apMatch[1]:0,antagonismo:antMatch?+antMatch[1]:0};mi++;j++;}}
     }
     D=novo;
     preencherCampos();buildDots();buildEvo();
