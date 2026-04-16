@@ -233,6 +233,39 @@
         .then(function(result) { if (result.error) throw result.error; });
     },
 
+    listAllGMCharacters: function(gmId, forceRefresh) {
+      var cache = window.cache;
+      var key = 'gm_chars_' + gmId;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('gm_chars', key);
+        if (cached) return Promise.resolve(cached);
+      }
+      return getSupabase().from('parties').select('id, name').eq('gm_id', gmId)
+        .then(function(result) { 
+          if (result.error) throw result.error;
+          var partyIds = result.data.map(function(p) { return p.id; });
+          var partyNames = {};
+          result.data.forEach(function(p) { partyNames[p.id] = p.name; });
+          if (partyIds.length === 0) return [];
+          return getSupabase().from('characters').select('*, profiles(display_name)')
+            .in('party_id', partyIds)
+            .then(function(r) { 
+              if (r.error) throw r.error; 
+              var mapped = r.data.map(function(c) {
+                c.player_name = c.profiles?.display_name || c.player_id;
+                c.party_name = partyNames[c.party_id] || null;
+                return c;
+              });
+              if (cache) cache.set('gm_chars', key, mapped, 300000);
+              return mapped;
+            });
+        })
+        .catch(function(err) {
+          console.error('[listAllGMCharacters error]', err);
+          return [];
+        });
+    },
+
     listNPCs: function(partyId, includeGlobal, forceRefresh) {
       var cache = window.cache;
       var key = partyId ? 'npcs_' + partyId : 'npcs_global';

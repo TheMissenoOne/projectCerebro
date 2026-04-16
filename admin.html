@@ -79,6 +79,7 @@
         <div id="tab-party" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Todos os Personagens</span>
+            <button class="btn" onclick="refreshCharacters()">⟳ Atualizar</button>
           </div>
           <table class="party-chars-table">
             <thead>
@@ -87,11 +88,30 @@
                 <th>Jogador</th>
                 <th>Party</th>
                 <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody id="party-chars-body">
             </tbody>
           </table>
+        </div>
+
+        <!-- Character Edit Modal -->
+        <div id="char-edit-modal" class="modal" style="display:none;">
+          <div class="modal-overlay" onclick="closeCharModal()"></div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="modal-title" id="char-modal-title">Editar Personagem</span>
+              <button class="modal-close" onclick="closeCharModal()">×</button>
+            </div>
+            <div class="modal-body" id="char-modal-body">
+              <!-- Character data will be loaded here -->
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" onclick="closeCharModal()">Cancelar</button>
+              <button class="btn btn-primary" onclick="saveCharData()">Salvar</button>
+            </div>
+          </div>
         </div>
 
         <div id="tab-encounter" class="admin-section">
@@ -181,25 +201,219 @@
         tbody.innerHTML = '';
         
         if (!chars || chars.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
           return;
         }
         
         chars.forEach(char => {
           const row = document.createElement('tr');
           row.innerHTML = `
-            <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
+            <td><a href="ficha.html?id=${char.id}" class="char-link" target="_blank">${char.name || 'Sem Nome'}</a></td>
             <td>${char.player_name || char.player_id}</td>
             <td>${char.party_name || 'Sem Party'}</td>
             <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
+            <td>
+              <button class="admin-btn" onclick="editCharacter('${char.id}')">Editar</button>
+              <button class="admin-btn admin-btn-danger" onclick="deleteCharacter('${char.id}')">Excluir</button>
+            </td>
           `;
           tbody.appendChild(row);
         });
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
-        document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="4" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
+        document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="5" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
       }
     }
+
+    window.refreshCharacters = async function() {
+      await api.listAllGMCharacters(currentAuth.session.user.id, true);
+      await loadPartyCharacters();
+    };
+
+    let currentEditingChar = null;
+
+    window.editCharacter = async function(charId) {
+      try {
+        const char = await api.loadCharacter(charId);
+        currentEditingChar = char;
+        document.getElementById('char-modal-title').textContent = 'Editar: ' + (char.name || 'Sem Nome');
+        
+        const data = char.data || {};
+        
+        document.getElementById('char-modal-body').innerHTML = `
+          <div class="char-edit-form">
+            <div class="char-edit-section">
+              <h4>Informações Básicas</h4>
+              <div class="char-edit-row">
+                <label>Nome</label>
+                <input type="text" id="edit-char-name" value="${char.name || ''}">
+              </div>
+              <div class="char-edit-row">
+                <label>Codename</label>
+                <input type="text" id="edit-char-codename" value="${char.codename || ''}">
+              </div>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Atributos</h4>
+              <div class="char-data-editor" id="atributos-editor">
+                ${renderCharDataFields(data.atributos || {}, 'atributos')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('atributos')">+ Adicionar Atributo</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Tags</h4>
+              <div class="char-data-editor" id="tags-editor">
+                ${renderCharDataFields(data.tags || [], 'tags')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('tags')">+ Adicionar Tag</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Poderes</h4>
+              <div class="char-data-editor" id="poderes-editor">
+                ${renderCharDataFields(data.poderes || {}, 'poderes')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('poderes')">+ Adicionar Poder</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Notas</h4>
+              <div class="char-edit-row">
+                <label>Descrição</label>
+                <textarea id="edit-char-desc" rows="3">${data.descricao || ''}</textarea>
+              </div>
+              <div class="char-edit-row">
+                <label>Background</label>
+                <textarea id="edit-char-background" rows="3">${data.background || ''}</textarea>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('char-edit-modal').style.display = 'flex';
+      } catch (e) {
+        console.error('[editCharacter error]', e);
+        alert('Erro ao carregar personagem: ' + e.message);
+      }
+    };
+
+    function renderCharDataFields(objOrArr, prefix) {
+      if (Array.isArray(objOrArr)) {
+        return objOrArr.map((item, i) => `
+          <div class="char-data-field" data-index="${i}" data-type="array">
+            <input type="text" value="${typeof item === 'object' ? JSON.stringify(item) : item}" data-key="${i}">
+            <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', ${i})">×</button>
+          </div>
+        `).join('');
+      } else if (typeof objOrArr === 'object') {
+        return Object.entries(objOrArr).map(([key, val], i) => `
+          <div class="char-data-field" data-index="${i}" data-keyname="${key}">
+            <input type="text" value="${key}" placeholder="chave" data-key="${key}">
+            <input type="text" value="${typeof val === 'object' ? JSON.stringify(val) : val}" placeholder="valor">
+            <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', '${key}')">×</button>
+          </div>
+        `).join('');
+      }
+      return '';
+    }
+
+    window.addCharDataField = function(prefix) {
+      const container = document.getElementById(prefix + '-editor');
+      const isArray = prefix === 'tags';
+      const field = document.createElement('div');
+      field.className = 'char-data-field';
+      if (isArray) {
+        field.innerHTML = `
+          <input type="text" placeholder="nova tag" data-key="${container.children.length}">
+          <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', ${container.children.length})">×</button>
+        `;
+      } else {
+        field.innerHTML = `
+          <input type="text" placeholder="chave" data-key="newkey">
+          <input type="text" placeholder="valor">
+          <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', 'newkey')">×</button>
+        `;
+      }
+      container.appendChild(field);
+    };
+
+    window.removeCharDataField = function(btn, prefix, index) {
+      btn.parentElement.remove();
+    };
+
+    window.saveCharData = async function() {
+      if (!currentEditingChar) return;
+      
+      try {
+        const name = document.getElementById('edit-char-name').value;
+        const codename = document.getElementById('edit-char-codename').value;
+        
+        const atributos = collectCharData('atributos-editor');
+        const tags = collectCharData('tags-editor', true);
+        const poderes = collectCharData('poderes-editor');
+        const descricao = document.getElementById('edit-char-desc').value;
+        const background = document.getElementById('edit-char-background').value;
+        
+        const newData = {
+          ...currentEditingChar.data,
+          atributos,
+          tags,
+          poderes,
+          descricao,
+          background
+        };
+        
+        await api.saveCharacter(currentEditingChar.id, {
+          name: name,
+          codename: codename,
+          data: newData
+        });
+        
+        closeCharModal();
+        await loadPartyCharacters();
+        alert('Personagem salvo com sucesso!');
+      } catch (e) {
+        console.error('[saveCharData error]', e);
+        alert('Erro ao salvar: ' + e.message);
+      }
+    };
+
+    function collectCharData(editorId, asArray = false) {
+      const container = document.getElementById(editorId);
+      const fields = container.querySelectorAll('.char-data-field');
+      const result = asArray ? [] : {};
+      
+      fields.forEach(field => {
+        const inputs = field.querySelectorAll('input');
+        if (asArray && inputs[0]?.value) {
+          result.push(inputs[0].value);
+        } else if (!asArray && inputs.length >= 2 && inputs[0]?.value) {
+          result[inputs[0].value] = inputs[1]?.value || '';
+        }
+      });
+      
+      return result;
+    }
+
+    window.closeCharModal = function() {
+      document.getElementById('char-edit-modal').style.display = 'none';
+      currentEditingChar = null;
+    };
+
+    window.deleteCharacter = async function(charId) {
+      if (!confirm('Tem certeza que deseja excluir este personagem? Esta ação não pode ser desfeita.')) return;
+      
+      try {
+        await api.deleteCharacter(charId);
+        await loadPartyCharacters();
+        alert('Personagem excluído.');
+      } catch (e) {
+        console.error('[deleteCharacter error]', e);
+        alert('Erro ao excluir: ' + e.message);
+      }
+    };
 
     async function loadSessionNotes() {
       const session = await api.getSession(currentParty.id);
