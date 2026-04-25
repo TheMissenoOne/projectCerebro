@@ -633,6 +633,7 @@ function internalToApi(n){
     iniciativa:n.iniciativa||0,
     atributos:attrs,
     data:data,
+    is_global:n.isGlobal||n.is_global||false,
   };
 }
 
@@ -1149,15 +1150,15 @@ function npcParaMD(n){
 async function importarMarkdown(){
   const raw=document.getElementById('import-text').value;
   if(!raw.trim()){toast('NENHUM CONTEÚDO');return;}
-  if(!currentPartyId){toast('FAÇA LOGIN COMO GM PARA IMPORTAR');return;}
   const novos=parseMD(raw);if(!novos.length){toast('NENHUM NPC VÁLIDO');return;}
   let c=0,u=0;
   for(const n of novos){
-    const existente=NPC_DB.find(e=>e.nome===n.nome&&!e.isGlobal);
+    const existente=NPC_DB.find(e=>e.nome===n.nome);
+    n.isGlobal=true;
     const apiData=internalToApi(n);
     try{
       if(existente){await api.updateNPC(existente.id,apiData);u++;}
-      else{await api.createNPC(currentPartyId,apiData);c++;}
+      else{await api.createNPC(null,apiData);c++;}
     }catch(e){console.error(e);}
   }
   fecharImportModal();document.getElementById('import-text').value='';
