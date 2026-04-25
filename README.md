@@ -2,80 +2,74 @@
 
 X-MEN TTRPG Character Management System
 
-A web-based character sheet and campaign management tool for the X-Men City of Mist tabletop RPG. Features include character creation, theme-based power systems, party management, and campaign tracking.
+Web-based character sheet and campaign management tool for X-Men City of Mist tabletop RPG.
 
 ## Features
 
-- Character creation with attributes, powers, and themes
-- Theme card system (Mutazione/Umanità) with visual icons
-- Party management (create/join parties)
-- Campaign tracking (Cerebro wiki, encounters, NPCs)
-- Local data persistence with caching
-- Responsive design for desktop and mobile
-- Theme customization (5 color schemes)
-- Export/import character data as Markdown
-- Toast notifications for user feedback
-- Automatic saving with visual indicators
+- **Character Sheet** - Full character creation with:
+  - Portrait upload (base64)
+  - Attributes (9 stats: Destreza, Força, Corpo, Inteligência, Vontade, Mente, Influência, Aura, Espírito)
+  - Theme cards (Mutação, Humanidade, Adicional)
+  - Power/Fraqueza tags from JSON
+  - Melhorias checkboxes
+  - Momentos de Evolução checkboxes
+  - Progressão tracker (5 dots)
+  - Membros do esquadrão
+  
+- **Themes** (from JSON):
+  - Mutação: Adaptabilidade, Bastião, Destino, Adivinhação, Enclave, Expressão, Familiar, Mobilidade, Relíquia, Subversão
+  - Humanidade: Evento Marcante, Relação Marcante, Missão, Personalidade, Posses, Rotina, Treinamento, Território
+  - Adicional: Aliado, Base de Operações, Transporte
 
-## Technology Stack
+- **Pages**:
+  - `dashboard.html` - Player dashboard with party/characters
+  - `ficha.html` - Character sheet editor
+  - `admin.html` - GM panel (characters, encounters, session notes)
+  - `cerebro.html` - NPC management, wiki, combat tracker
+  - `wiki.html` - Campaign wiki
 
-- HTML5, CSS3, Vanilla JavaScript
-- Supabase backend (authentication, database)
-- LocalStorage caching with TTL
-- Modular JavaScript architecture
-- Responsive design with CSS variables
+- **Technical**:
+  - Supabase (auth, database)
+  - LocalStorage caching with TTL
+  - Responsive design (mobile: 520px, 600px, 900px breakpoints)
+  - 5 color themes (yellow/red/green/purple/blue)
+  - Auto-save with visual indicators
+  - Toast notifications
+
+## Quick Start
+
+1. Open `dashboard.html`
+2. Login with Supabase auth
+3. Create character via + button
+4. Edit themes in character sheet
 
 ## Project Structure
 
 ```
 /projectCerebro
-├── dashboard.html        # Main dashboard (characters, party)
-├── ficha.html           # Character sheet editor
-├── cerebro.html         # Campaign wiki/NPC management
-├── combatt.html         # Combat tracker
-├── wiki.html            # Campaign wiki
-├── admin.html           # GM administration panel
+├── dashboard.html     # Main player hub
+├── ficha.html       # Character sheet
+├── admin.html      # GM panel
+├── cerebro.html    # NPCs & wiki
+├── wiki.html       # Campaign wiki
+├── temas.json      # Theme definitions
+├── momentosDeEvolucao.json  # Evolution moments
 ├── assets/
-│   ├── js/              # JavaScript modules
-│   │   ├── config.js           # App configuration
-│   │   ├── supabase-client.js  # Supabase setup
-│   │   ├── auth-module.js      # Authentication
-│   │   ├── api-module.js       # Data operations
-│   │   ├── globals.js          # Global exports
-│   │   ├── cache-module.js     # LocalStorage caching
-│   │   ├── themes.js           # Theme definitions
-│   │   ├── theme-icons.js      # Theme SVG icons
-│   │   └── header.js           # Header functionality
-│   ├── css/             # Stylesheets
-│   │   ├── base.css          # Base styles
-│   │   ├── components.css    # Shared components
-│   │   ├── dashboard.css     # Dashboard-specific
-│   │   ├── ficha.css         # Character sheet
-│   │   ├── cerebro.css       # Cerebro/wiki
-│   │   ├── combatt.css       # Combat tracker
-│   │   ├── wiki.css          # Wiki pages
-│   │   └── admin.css         # Admin panel
-│   └── img/             # Images and icons
-└── kanban/              # Project tracking
+│   ├── js/
+│   │   ├── config.js
+│   │   ├── supabase-client.js
+│   │   ├── api.js
+│   │   ├── cache-module.js
+│   │   └── auth-module.js
+│   └── css/
+│       ├── base.css
+│       ├── components.css
+│       ├── dashboard.css
+│       ├── admin.css
+│       └── *.css
+└── supabase/
+    └── sql/        # Database schema
 ```
-
-## Development
-
-### Prerequisites
-- Node.js (for development tools)
-- Supabase account (for backend)
-
-### Setup
-1. Clone repository
-2. Configure Supabase credentials in `assets/js/config.js`
-3. Open `dashboard.html` in browser
-
-### Architecture
-- Modular JavaScript with global exports via `globals.js`
-- Event-driven UI with delegated event handlers
-- LocalStorage caching with TTL for performance
-- CSS variables for easy theming
-- Web Components-like patterns for reusable UI
 
 ## License
 
