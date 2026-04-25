@@ -3,11 +3,11 @@
     {
       "tipo": "Mutação",
       "nome": "Adaptação",
-      "descricao": "DIVERSOS FEITIÇOS MÁGICOS • ADAPTAÇÃO A AMBIENTES HOSTIS • MUDANÇA DE FORMA OU CÓPIA DE PODER • UMA FORÇA MISTERIOSA E IMPREVISÍVEL • MANIPULAÇÃO DE ELEMENTOS\n\nA vida mortal permanece em estado constante de fluxo e de mudança: nada é permanente, tudo é efêmero. Cada desafio requer soluções completamente diferentes para ser superado. Alguns Mythoi concedem aos Portais o poder de se adaptar às circunstâncias. Isso é uma característica consciente, para melhorar as chances do Portal de contar sua história? Ou só acontece porque a história já começa cheia de recursos e possibilidades ilimitadas? É impossível saber.\n\nO Mythos aborígene do Tempo dos Sonhos pode permitir que o Portal se conectasse a uma dimensão inerente à criação, modificando a realidade. Merlin, o feiticeiro, tinha um feitiço para cada situação. Um xamã pode se transformar em animais e monstros. Um doppelganger pode imitar os poderes de outros Portais que toca. E o pai de Pinóquio, Geppetto, construía brinquedos e marionetes que ganham vida.\n\nOs temas de adaptação gravitam em torno de rótulos de natureza genérica e costumam ocupar o único espaço de rótulo genérico da personagem. No entanto, se a variedade de efeitos concedidos pelo tema for muito restrita, como no caso de um doppelganger, que só pode copiar poderes já existentes, a MC pode determinar que o rótulo ainda se qualifica como específico.",
+      "descricao": "DIVERSOS PODERES MUTANTES • ADAPTAÇÃO A AMBIENTES HOSTIS • MUDANÇA DE FORMA OU CÓPIA DE PODER • UMA FORÇA MISTERIOSA E IMPREVISÍVEL • MANIPULAÇÃO DE ELEMENTOS\n\nA vida mutante permanece em estado constante de fluxo e de mudança: nada é permanente, tudo é efêmero. Cada desafio requer soluções completamente diferentes para ser superado. Alguns genes-X concedem aos mutantes o poder de se adaptar às circunstâncias. Isso é uma característica consciente, para melhorar as chances do mutante de sobreviver e prosperar? Ou só acontece porque a mutação já começa cheia de recursos e possibilidades ilimitadas? É impossível saber.\n\nO mutante com poderes de adaptação pode se conectar a uma dimensão de criação, modificando a realidade. Um mutante versátil tem uma solução para cada situação. Um metamorfo pode se transformar em animais e monstros. Um replicante pode imitar os poderes de outros mutantes que toca. E um construtor de marionetes vivas pode dar vida a suas criações.\n\nOs temas de adaptação gravitam em torno de tags de natureza genérica e costumam ocupar o único espaço de tag genérica do personagem. No entanto, se a variedade de efeitos concedidos pelo tema for muito restrita, como no caso de um replicante que só pode copiar poderes já existentes, o GM pode determinar que a tag ainda se qualifica como específica.",
       "perguntas_poder": [
-        "A. QUE PODER DO MYTHOS PERMITE QUE VOCÊ TENHA UMA RESPOSTA DIFERENTE PARA CADA SITUAÇÃO?",
-        "B. QUAL GRUPO RESTRITO DE EFEITOS QUE SE ENCAIXAM NO DOMÍNIO DO MYTHOS VOCÊ JÁ CONTROLA?",
-        "C. QUAL É A SUA MANIFESTAÇÃO ESPECÍFICA DO MYTHOS FAVORITA?",
+        "A. QUE PODER DA MUTAÇÃO PERMITE QUE VOCÊ TENHA UMA RESPOSTA DIFERENTE PARA CADA SITUAÇÃO?",
+        "B. QUAL GRUPO RESTRITO DE EFEITOS QUE SE ENCAIXAM NO DOMÍNIO DA MUTAÇÃO VOCÊ JÁ CONTROLA?",
+        "C. QUAL É A SUA MANIFESTAÇÃO ESPECÍFICA DA MUTAÇÃO FAVORITA?",
         "D. QUE CIRCUNSTÂNCIAS AMPLIAM A ADAPTABILIDADE DA SUA HABILIDADE?",
         "E. EM QUAIS SITUAÇÕES VOCÊ CHEGA A UMA SOLUÇÃO RÁPIDA OU COM QUAIS SITUAÇÃO ESTÁ ACOSTUMADA?",
         "F. SEUS PODERES OFERECEM PROTEÇÃO NATURAL CONTRA O QUÊ?",
@@ -18,29 +18,30 @@
       ],
       "perguntas_fraqueza": [
         "A. SEUS PODERES DE ADAPTABILIDADE DEPENDEM DE QUÊ?",
-        "B. QUE RESULTADOS SÃO MAIS DIFÍCEIS PARA O MYTHOS?",
-        "C. O QUE ATRAPALHA OU LIMITA AS POSSIBILIDADES DO MYTHOS?",
+        "B. QUE RESULTADOS SÃO MAIS DIFÍCEIS PARA A MUTAÇÃO?",
+        "C. O QUE ATRAPALHA OU LIMITA AS POSSIBILIDADES DA MUTAÇÃO?",
         "D. QUE HÁBITOS RUINS VOCÊ ADQUIRIU DEVIDO AOS PODERES ADAPTATIVOS?"
       ],
       "misterio_exemplos": [
-        "(Merlin) “Onde está o Santo Graal?”",
-        "(Doppelganger) “Qual é o máximo poder que posso roubar?”",
-        "(Gepeto) “Quem ou o que pode dar vida aos meus brinquedos?”"
+        "(Mutante versátil) “Qual é a origem dos meus múltiplos poderes?”",
+        "(Replicante) “Qual é o máximo poder que posso copiar?”",
+        "(Criador de marionetes) “Quem ou o que pode dar vida às minhas criações?”"
       ],
       "titulo_exemplos": [
-        "(Merlin) Mago e Guia",
-        "(Doppelganger) Poderes dos outros",
-        "(Geppetto) Ama fabricar brinquedos"
+        "(Merlin mutante) “Mago e Guia Genético”",
+        "(Doppelganger) “Poderes dos outros”",
+        "(Geppetto mutante) “Ama fabricar brinquedos vivos”"
       ],
       "relacionamentos_galera": [
         "Em um momento crítico, uma das outras personagens desafiou você a ultrapassar os limites e a flexibilidade de seus poderes adaptativos. O que aconteceu? Anote um ponto de Apoio para essa personagem.",
         "Você acha que uma das outras personagens só sabe fazer uma única coisa direito, e sempre tem a mesma solução para todo tipo de situação. Isso inclusive já prejudicou a galera em algum momento. Quais foram as circunstâncias? Anote um ponto de Antagonismo para essa personagem."
       ],
       "melhorias": [
-        "Resposta Fisiológica: Ao sofrer uma condição física de grau ≥ 3, gere uma tag bônus de grau 2 representando a adaptação a essa condição. Essa tag expira quando a condição é removida.",
-        "Memória de Ameaça: Adaptações usadas para resistir a uma fonte específica de dano podem ser reativadas como ação automática (consumindo 1 tag) quando a mesma fonte aparecer novamente.",
-        "Curva Acelerada: Quando atuar em condições de desvantagem (AV menor que OV), role os dados duas vezes e escolha o resultado mais favorável.",
-        "Especialização Derivada: Responda a uma pergunta de tag de poder de qualquer outra subcategoria de Mutação, exceto Relíquia. Anote a resposta como novo rótulo de poder neste tema com grau 2."
+        "Covirando o jogo: Quando empoderar o movimento Virar o jogo com as tags deste tema, é Animal!",
+        "Covidireto na Fonte: Uma vez por sessão, você recebe um lote grátis de 2 de Gás de algum método relacionado a este tema e às circunstâncias da cena corrente. Você não pode somar este lote de Gás a nenhum outro.",
+        "CovEu Tenho Uma Coisinha Aqui...: Quando gasta uma Informação para perguntar ao GM 'O que seria mais útil para mim nesta situação?', eles respondem normalmente. Se ainda lhe restarem Informações da mesma fonte, você pode convertê-las em Gás, uma por uma, e usá-las para encontrar o que mais precisa. Este Gás usa o mesmo método das Informações que o originaram.",
+        "CovCriatividade: Quando for criativo no uso das tags deste tema, escolha uma das personagens mais afetadas e pergunte a quem a controla (GM ou jogador) se sua atitude era esperada. A resposta precisa ser franca. Se tiver sido uma surpresa, receba uma condição temporária criatividade 1 (ou similar).",
+        "CovEspecialização: Você domina um tipo específico de manifestação. Responda a uma pergunta de tag de poder de qualquer outro guia de tema de Mutação, exceto Relíquia. Anote a resposta como nova tag de poder neste tema."
       ]
     },
     {
@@ -70,9 +71,9 @@
         "(Escudo coletivo) “Quem mais posso proteger sem me destruir?”"
       ],
       "melhorias": [
-        "Muro Inabalável: Condições físicas recebidas enquanto protegendo ativamente um aliado têm grau reduzido em 2 (mínimo 1).",
+        "Muro Inabalável: Enquanto estiver protegendo ativamente um aliado, as condições físicas que você receber têm o grau reduzido em 2 (mínimo 1).",
         "Proteção em Área: O campo de proteção cobre aliados em alcance curto sem custo de modificador de amplitude.",
-        "Resistência Acumulada: Após receber a mesma categoria de dano (físico, energético, psiônico) pela segunda vez na mesma cena, as ocorrências subsequentes têm grau reduzido em 1.",
+        "Resistência Acumulada: Após a segunda ocorrência da mesma categoria de dano (físico, energético ou psiônico) na mesma cena, as ocorrências subsequentes dessa categoria têm grau reduzido em 1 (não cumulativo).",
         "Fortaleza Viva: Uma vez por arco, declare uma posição defensiva total. Por uma cena inteira, todas as condições físicas recebidas têm grau reduzido em 3 (mínimo 1), mas você não pode se deslocar nem realizar ações ofensivas."
       ]
     },
@@ -103,7 +104,7 @@
         "(Vítima da Profecia) “Quem escreveu meu destino? Posso encontrá-lo?”"
       ],
       "melhorias": [
-        "Inevitável: Uma vez por arco, declare que um evento está destinado a acontecer. O GM deve integrá-lo à narrativa, podendo ajustar o contexto mas não negar o evento.",
+        "Inevitável: Uma vez por arco, declare que um evento está destinado a acontecer. O GM deve integrá-lo à narrativa; ele pode ajustar o contexto, mas não negar o evento.",
         "Resistente à Mudança: Ações que tentam alterar o curso de algo que você declarou como seu destino têm OV aumentado em +2.",
         "Convergência: Quando dois eventos que você previu ou antecipou se conectam na mesma cena, some +2 AP ao AV da próxima ação.",
         "Cumprir o Propósito: Uma vez por campanha, quando o personagem age em alinhamento direto com seu propósito central, todos os RAPs dessa ação são tratados como máximos sem rolagem."
@@ -136,7 +137,7 @@
         "(Precog) “O futuro é múltiplo ou eu apenas escolho um caminho?”"
       ],
       "melhorias": [
-        "Visão Preventiva: Ao investigar uma cena, faça ao GM uma pergunta sobre o futuro imediato. O GM responde com verdade, podendo ser críptico.",
+        "Visão Preventiva: Uma vez por cena, ao investigar uma cena, faça ao GM uma pergunta sobre o futuro imediato. O GM responde com verdade, podendo ser críptico.",
         "Leitura de Intenção: Em interações sociais, determine se um NPC está mentindo ou ocultando algo sem rolagem.",
         "Mapa Mental: Ao entrar em um local, faça ao GM uma pergunta sobre a estrutura, ocupantes ou história recente do lugar.",
         "Varredura Ampla: Uma vez por sessão, expanda a percepção para cobrir um raio amplo. Faça até 3 perguntas factuais sobre o que está acontecendo nessa área."
@@ -169,9 +170,9 @@
         "(Fugitivo do Enclave) “O enclave ainda controla alguma parte de mim?”"
       ],
       "melhorias": [
-        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos, cada participante adicional contribui com +1 AP ao total.",
+        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos, cada participante adicional contribui com +1 AP ao total, até o máximo de +3 AP.",
         "Rede de Apoio: Uma vez por sessão, acione um recurso do enclave que não estava previsto. O GM define os limites, mas não pode negar completamente.",
-        "Escudo Coletivo: Quando um membro do enclave for receber uma condição, você pode assumir metade do grau como condição própria, se estiver em alcance próximo.",
+        "Escudo Coletivo: Quando um membro do enclave for receber uma condição, você pode assumir metade do grau como condição própria, arredondando para cima, se estiver em alcance próximo.",
         "Lar Onde Estiver: O personagem pode declarar qualquer local habitado por pelo menos dois membros do enclave como território para fins de mecânicas de Território."
       ]
     },
@@ -202,7 +203,7 @@
         "(Manipulação emocional) “As emoções que eu inspiro são reais ou apenas um eco?”"
       ],
       "melhorias": [
-        "Descarga Total: Quando gastar três ou mais tags deste tema em uma ação bem-sucedida, os RAPs são iguais ao EV total. Uma vez por cena.",
+        "Descarga Total: Quando gastar três ou mais tags deste tema em uma ação bem-sucedida, os RAPs são iguais ao EV total, até o máximo de +5 RAPs adicionais. Uma vez por cena.",
         "Dano Controlado: Ao criar efeito em área, exclua qualquer número de alvos específicos sem teste adicional.",
         "Arte como Arma: Expressões criativas do poder podem ser usadas em ações de oposição quando a oposição for vulnerável ao tipo de expressão.",
         "Assinatura Registrada: Seus efeitos são inconfundíveis. Ao revelar sua assinatura voluntariamente, some +2 AP a ações de influência naquela cena."
@@ -236,7 +237,7 @@
       ],
       "melhorias": [
         "Vínculo Telepático: Comunicação com o Familiar não exige palavras nem linha de visão.",
-        "Extensão de Poder: O Familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente.",
+        "Extensão de Poder: O Familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente, mas não pode reutilizar a mesma tag no mesmo turno que o personagem.",
         "Sentidos Compartilhados: Quando o Familiar está em campo, o personagem percebe tudo que o Familiar percebe.",
         "Retorno: Se o Familiar for incapacitado, o personagem pode gastar uma cena de recuperação para restaurá-lo. Uma vez por arco."
       ]
@@ -304,7 +305,7 @@
         "Vínculo Inquebrável: A relíquia não pode ser removida por ação automática — exige ação de oposição com AV ≥ 10.",
         "Potencial Oculto: Uma vez por arco, a relíquia manifesta capacidade ainda não descrita. O jogador declara o efeito; o GM define os limites.",
         "Amplificação: Quando usar a relíquia com outra tag deste tema, o grau combinado é aumentado em +2.",
-        "Legado: Uma vez por campanha, revele um aspecto do passado da relíquia que justifique um efeito novo. O GM deve tratar como canônico."
+        "Legado: Uma vez por campanha, revele um aspecto do passado da relíquia que justifique um efeito novo. O GM deve tratar como canônico e definir os limites conforme o tom da campanha."
       ]
     },
     {
@@ -337,7 +338,7 @@
         "Contra a Corrente: Quando age de forma inesperada, o OV da ação é reduzido em 1.",
         "Inversão: Uma vez por cena, converta uma condição negativa sofrida em vantagem para uma única ação.",
         "Brecha: Ao identificar uma fraqueza em um oponente, declare-a. Nas próximas 2 ações que a explorarem, o OV é reduzido em 2.",
-        "Nenhuma Regra se Aplica: Uma vez por sessão, declare que uma regra mecânica ou restrição narrativa não se aplica a você nessa ação."
+        "Nenhuma Regra se Aplica: Uma vez por sessão, declare que uma regra mecânica ou restrição narrativa não se aplica a você nessa ação, exceto consequências diretas de falha ou limites fundamentais definidos pelo GM."
       ]
     },
     {
@@ -368,7 +369,7 @@
       ],
       "melhorias": [
         "Memória de Combate: Uma vez por cena, ao identificar paralelo com o evento, declare e some +1 AP à ação seguinte.",
-        "Não de Novo: Em circunstância muito similar ao evento, você age antes de qualquer outro naquele turno.",
+        "Não de Novo: Em circunstância muito similar ao evento, você age primeiro dentro da cena.",
         "Ecos do Passado: Escolha uma melhoria de Treinamento, Rotina ou Relação que reflita um aspecto de quem você era antes.",
         "Já Superei: Uma vez por cena, quando uma condição social/emocional relacionada ao evento seria aplicada, ignore-a e marque Atenção."
       ]
@@ -403,7 +404,7 @@
         "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, use tags sem gastá-las — permanecem para o turno seguinte.",
         "Presença Reconfortante: Uma vez por sessão, a presença ou lembrança desse personagem remove uma condição mental/emocional de grau ≤ 3.",
         "Experiências Compartilhadas: Escolha uma melhoria de Evento Marcante ou Personalidade que reflita uma transformação por causa dessa relação.",
-        "Quem é que Manda Aqui: Escolha dois Movimentos Principais. Quando usá-los contra essa pessoa, são sempre Precisos."
+        "Quem é que Manda Aqui: Escolha dois Movimentos Principais. Quando usá-los contra essa pessoa, são sempre Precisos, uma vez por cena."
       ]
     },
     {
@@ -534,7 +535,7 @@
       "melhorias": [
         "Preparo Constante: Uma vez por arco, declare antes da cena que se preparou para uma situação específica. Isso conta como tag adicional de grau 2.",
         "Difícil de Surpreender: Nunca recebe o modificador Sem Visão do Alvo em situações relacionadas à rotina.",
-        "Boa Memória: A cada sessão, receba até três Informações de uma fonte relacionada à rotina. A primeira é grátis.",
+        "Boa Memória: A cada sessão, receba até três Informações de uma fonte relacionada à rotina. A primeira é grátis; as demais devem ser perguntas curtas e da mesma fonte.",
         "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente sua rotina. Quando usá-lo com tags deste tema, é Preciso."
       ]
     },
