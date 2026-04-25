@@ -527,8 +527,9 @@ const T_HUM=[
   {v:'personalidade',l:'Personalidade'},{v:'posses',l:'Posses'},{v:'rotina',l:'Rotina'},
   {v:'treinamento',l:'Treinamento'},{v:'territorio',l:'Território'},
 ];
-const TODOS=[...T_MUTACAO,...T_HUM];
-const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':'';
+const T_ADICIONAL=[];
+const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
+const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const t=TODOS.find(t=>t.v===v);return t?t.l:(v||'SEM TIPO');};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
 const novoCard=()=>({tipo:'',misterio:'',atencao:0,dissipacao:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
@@ -543,6 +544,21 @@ const loadTemaData=async()=>{
         const k=normalizeKey(t.nome);
         PERGUNTAS[k]={p:t.perguntas_poder||[],f:t.perguntas_fraqueza||[]};
         MELHORIAS[k]=t.melhorias||[];
+      });
+      T_MUTACAO.length=0;T_HUM.length=0;
+      d.temas.forEach(t=>{
+        const v=normalizeKey(t.nome);
+        const l=t.nome;
+        if(t.tipo==='Mutação')T_MUTACAO.push({v,l});
+        else if(t.tipo==='Humanidade')T_HUM.push({v,l});
+      });
+    }
+    if(d.temas_adicionais){
+      d.temas_adicionais.forEach(t=>{
+        const k=normalizeKey(t.nome);
+        PERGUNTAS[k]={p:t.perguntas_poder||[],f:t.perguntas_fraqueza||[]};
+        MELHORIAS[k]=t.melhorias||[];
+        T_ADICIONAL.push({v:k,l:t.nome});
       });
     }
   }catch(e){console.error('load temas err',e);}
@@ -772,16 +788,20 @@ const div=document.createElement('div');
    const hdr=document.createElement('div');hdr.className='card-hdr';
    const main=document.createElement('div');main.className='card-hdr-main';
    const badge=document.createElement('span');badge.className='cat-badge';
-const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':'';
+const tipoLabel=c==='mutacao'?'MUTAÇÃO':c==='humanidade'?'HUMANIDADE':c==='adicional'?'ADICIONAL':'';
     badge.textContent = tipoLabel;
     main.appendChild(badge);
-   const sel=document.createElement('select');sel.className='tipo-sel';
-   const o0=document.createElement('option');o0.value='';o0.textContent='— escolha —';sel.appendChild(o0);
-   const gM=document.createElement('optgroup');gM.label='MUTAÇÃO';
-   T_MUTACAO.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gM.appendChild(o);});sel.appendChild(gM);
-   const gH=document.createElement('optgroup');gH.label='HUMANIDADE';
-   T_HUM.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gH.appendChild(o);});sel.appendChild(gH);
-   sel.value=card.tipo||'';
+const sel=document.createElement('select');sel.className='tipo-sel';
+    const o0=document.createElement('option');o0.value='';o0.textContent='— escolha —';sel.appendChild(o0);
+    const gM=document.createElement('optgroup');gM.label='MUTAÇÃO';
+    T_MUTACAO.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gM.appendChild(o);});sel.appendChild(gM);
+    const gH=document.createElement('optgroup');gH.label='HUMANIDADE';
+    T_HUM.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gH.appendChild(o);});sel.appendChild(gH);
+    if(T_ADICIONAL.length>0){
+      const gA=document.createElement('optgroup');gA.label='ADICIONAL';
+      T_ADICIONAL.forEach(t=>{const o=document.createElement('option');o.value=t.v;o.textContent=t.l;gA.appendChild(o);});sel.appendChild(gA);
+    }
+    sel.value=card.tipo||'';
 sel.addEventListener('change',e=>{
        const newTipo=e.target.value;
        card.tipo=newTipo;
