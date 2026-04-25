@@ -407,8 +407,79 @@
 
 /* ── RESPONSIVE ───────────────────────────── */
 @media(max-width: 768px) {
-  .admin-layout { flex-direction: column; }
-  .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
+  .admin-layout { 
+    flex-direction: column; 
+  }
+  .admin-sidebar { 
+    width: 100%; 
+    border-right: none; 
+    border-bottom: 1px solid var(--b1);
+    display: flex;
+    overflow-x: auto;
+    padding: 8px;
+    gap: 4px;
+  }
+  .admin-nav-link {
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+  .admin-nav-link.active {
+    border-bottom-color: var(--red);
+    background: rgba(232,0,28,.1);
+  }
+}
+
+@media(max-width: 600px) {
+  .admin-section {
+    padding: 12px 8px;
+  }
+  .encounter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .enc-counter {
+    border-left: none;
+    border-top: 1px solid var(--b1);
+    padding-left: 0;
+    padding-top: 12px;
+    justify-content: center;
+  }
+  .char-edit-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .char-edit-row label {
+    font-size: .42rem;
+  }
+  .modal-content {
+    width: 95%;
+    margin: 8px;
+    max-height: 85vh;
+  }
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+  .modal-footer .btn {
+    flex: 1;
+    min-width: 100px;
+  }
+  .admin-btn {
+    padding: 8px 6px;
+    font-size: .4rem;
+  }
+  .party-chars-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .party-chars-table th,
+  .party-chars-table td {
+    white-space: nowrap;
+    padding: 8px;
+    font-size: .68rem;
+  }
 }
 
 /* ── MODAL ────────────────────────────────── */
