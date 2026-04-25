@@ -58,6 +58,18 @@
 }
 #foto-input { display: none; }
 
+@media(max-width: 600px) {
+  .portrait-zone {
+    min-height: calc((4/3) * 90vw);
+    width: 90vw;
+    max-width: 300px;
+    aspect-ratio: 3 / 4;
+    clip-path: none;
+    border-radius: 4px;
+  }
+  .portrait-zone::before { display: none; }
+}
+
 .id-fields { display: flex; flex-direction: column; gap: 0; }
 .id-row {
   display: flex;
