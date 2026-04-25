@@ -3,6 +3,7 @@
     {
       "tipo": "Mutação",
       "nome": "Adaptação",
+      "descricao": "DIVERSOS FEITIÇOS MÁGICOS • ADAPTAÇÃO A AMBIENTES HOSTIS • MUDANÇA DE FORMA OU CÓPIA DE PODER • UMA FORÇA MISTERIOSA E IMPREVISÍVEL • MANIPULAÇÃO DE ELEMENTOS\n\nA vida mortal permanece em estado constante de fluxo e de mudança: nada é permanente, tudo é efêmero. Cada desafio requer soluções completamente diferentes para ser superado. Alguns Mythoi concedem aos Portais o poder de se adaptar às circunstâncias. Isso é uma característica consciente, para melhorar as chances do Portal de contar sua história? Ou só acontece porque a história já começa cheia de recursos e possibilidades ilimitadas? É impossível saber.\n\nO Mythos aborígene do Tempo dos Sonhos pode permitir que o Portal se conectasse a uma dimensão inerente à criação, modificando a realidade. Merlin, o feiticeiro, tinha um feitiço para cada situação. Um xamã pode se transformar em animais e monstros. Um doppelganger pode imitar os poderes de outros Portais que toca. E o pai de Pinóquio, Geppetto, construía brinquedos e marionetes que ganham vida.\n\nOs temas de adaptação gravitam em torno de rótulos de natureza genérica e costumam ocupar o único espaço de rótulo genérico da personagem. No entanto, se a variedade de efeitos concedidos pelo tema for muito restrita, como no caso de um doppelganger, que só pode copiar poderes já existentes, a MC pode determinar que o rótulo ainda se qualifica como específico.",
       "perguntas_poder": [
         "A. QUE TIPO DE DANO OU AMEAÇA SEU CORPO APRENDEU A RESISTIR DEPOIS DE SOFRER?",
         "B. QUAL MANIFESTAÇÃO DE ADAPTAÇÃO VOCÊ USA PARA PROTEGER ALIADOS?",
@@ -68,39 +69,6 @@
     },
     {
       "tipo": "Mutação",
-      "nome": "Conjuração",
-      "perguntas_poder": [
-        "A. QUE TIPO DE OBJETO, SER OU ENERGIA VOCÊ É CAPAZ DE CONJURAR DO NADA?",
-        "B. QUE GRUPO RESTRITO DE CRIATURAS OU ELEMENTOS VOCÊ JÁ DOMINA?",
-        "C. QUAL É SUA MANIFESTAÇÃO FAVORITA DA CONJURAÇÃO?",
-        "D. QUE CIRCUNSTÂNCIAS AUMENTAM A EFICÁCIA DA CONJURAÇÃO?",
-        "E. Em que situações você conjura soluções rápidas ou está acostumado a conjurar?",
-        "F. Seus poderes de conjuração oferecem proteção natural contra quê?",
-        "G. Que atitude ou emoção está no cerne da sua conjuração?",
-        "H. Que classe de coisas ou seres você consegue produzir ou convocar?",
-        "I. Que estratégia ou combinação de efeitos você emprega com conjuração?",
-        "J. Como fortalecer ou enfraquecer outros com suas criações conjuradas?"
-      ],
-      "perguntas_fraqueza": [
-        "A. Seus poderes de conjuração dependem de quê? (ingredientes, concentração, etc.)",
-        "B. Que resultados são mais difíceis para a conjuração alcançar?",
-        "C. O que atrapalha ou limita as possibilidades da conjuração?",
-        "D. Que hábitos ruins você adquiriu devido à facilidade de conjurar?"
-      ],
-      "misterio_exemplos": [
-        "(Conjurar armas) “De onde vêm realmente essas armas?”",
-        "(Criar construtos) “Os construtos têm alguma forma de consciência?”",
-        "(Evocar elementais) “O que acontece com os elementais quando desaparecem?”"
-      ],
-      "melhorias": [
-        "Evocação Estável: Efeitos criados por conjuração duram pelo menos uma cena inteira sem custo de manutenção.",
-        "Material Especializado: Escolha um tipo de matéria ou energia que você conjura. Criações desse tipo têm limiar de manifestação reduzido em 2.",
-        "Multiplicação: Uma vez por cena, ao criar um efeito conjurado, crie duas instâncias do mesmo efeito com os RAPs divididos entre elas (mínimo 1 RAP cada).",
-        "Permanência: Uma vez por arco, um efeito conjurado pode ser declarado permanente em vez de temporário ou duradouro, sem custo de modificador adicional. O GM define as consequências narrativas."
-      ]
-    },
-    {
-      "tipo": "Mutação",
       "nome": "Destino",
       "perguntas_poder": [
         "A. QUE EVENTO FUTURO VOCÊ SENTE QUE É INEVITÁVEL PARA VOCÊ OU PARA O MUNDO?",
@@ -151,7 +119,7 @@
         "A. O que acontece quando sua adivinhação se torna opressora ou invasiva?",
         "B. O que pode atrapalhar ou bloquear sua capacidade de ver?",
         "C. O que está além do alcance da sua adivinhação?",
-        "D. Do que você precisa para ativar seus dons?" 
+        "D. Do que você precisa para ativar seus dons?"
       ],
       "misterio_exemplos": [
         "(Vidente) “Por que algumas visões são mais claras que outras?”",
@@ -277,13 +245,13 @@
         "G. Como você usa sua mobilidade para ganhar vantagem em combate?",
         "H. O que permite que você mova outras pessoas (ex: carregar, portais)?",
         "I. Como você pode usar seus poderes para conter o movimento dos outros?",
-        "J. Sua mobilidade dá acesso a que recurso especial (ex: atalhos, dimensões)?" 
+        "J. Sua mobilidade dá acesso a que recurso especial (ex: atalhos, dimensões)?"
       ],
       "perguntas_fraqueza": [
         "A. O que pode atrasar ou impedir seu movimento?",
         "B. O que acontece quando você vai rápido demais ou longe demais?",
         "C. O que acontece quando você é pego ou contido?",
-        "D. Que evidência residual seu movimento deixa (rastros, sons, marcas)?" 
+        "D. Que evidência residual seu movimento deixa (rastros, sons, marcas)?"
       ],
       "misterio_exemplos": [
         "(Teleporte) “Existe algum lugar onde eu não possa me teletransportar?”",
@@ -316,7 +284,7 @@
         "A. Qual é a deficiência mais problemática da sua relíquia?",
         "B. O que pode interferir nos poderes da relíquia?",
         "C. O que pode danificar ou destruir sua relíquia?",
-        "D. Que mudança para pior a relíquia provocou em você?" 
+        "D. Que mudança para pior a relíquia provocou em você?"
       ],
       "misterio_exemplos": [
         "(Arma ancestral) “De onde veio realmente esse poder?”",
@@ -343,7 +311,7 @@
         "G. Quem ou o que ajuda nas suas tramoias (cúmplices, tecnologia)?",
         "H. O que tem poucas chances de afetar você graças aos seus poderes?",
         "I. Que circunstâncias melhoram sua capacidade de agir sem ser detectado?",
-        "J. Que poderes secundários de subversão você desenvolveu (ex: disfarce, camuflagem)?" 
+        "J. Que poderes secundários de subversão você desenvolveu (ex: disfarce, camuflagem)?"
       ],
       "perguntas_fraqueza": [
         "A. O que poderia expor suas atividades?",
@@ -559,39 +527,6 @@
         "Difícil de Surpreender: Nunca recebe o modificador Sem Visão do Alvo em situações relacionadas à rotina estabelecida.",
         "Boa Memória: A cada sessão, você pode optar por receber até três Informações de uma localização ou pessoa relacionada à sua rotina. A primeira é grátis, as outras exigem exposição.",
         "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente sua rotina. Sempre que usá-lo com tags deste tema, é Preciso."
-      ]
-    },
-    {
-      "tipo": "Humanidade",
-      "nome": "Conflito / Dificuldade",
-      "perguntas_poder": [
-        "A. QUE CONFLITO INTERNO OU EXTERNO DEFINE SUA LUTA DIÁRIA?",
-        "B. Que habilidade ou recurso você desenvolveu para compensar essa dificuldade?",
-        "C. Em que tipo de situação o conflito se torna uma vantagem inesperada?",
-        "D. Que pessoa, lugar ou objeto está no centro desse conflito?",
-        "E. Como você aprendeu a esconder ou mascarar essa dificuldade?",
-        "F. Que conhecimento você adquiriu por causa do conflito?",
-        "G. Que atitude ou postura você adotou para sobreviver a ele?",
-        "H. Que grupo ou indivíduo te apoia nesse conflito?",
-        "I. Que manobra ou estratégia você desenvolveu especificamente para lidar com isso?",
-        "J. O que você ganhou (ou perdeu) que agora é uma ferramenta?"
-      ],
-      "perguntas_fraqueza": [
-        "A. Como o conflito te expõe a perigos específicos?",
-        "B. Que hábitos autodestrutivos o conflito gerou?",
-        "C. Quem ou o que explora essa dificuldade contra você?",
-        "D. O que você não consegue fazer por causa do conflito?"
-      ],
-      "identidade_exemplos": [
-        "(Vício) “Eu posso parar quando quiser. Só não agora.”",
-        "(Dívida de sangue) “Não descanso até pagar.”",
-        "(Doença crônica) “Meu corpo é um campo de batalha.”"
-      ],
-      "melhorias": [
-        "Força de Adversidade: Ao agir sob condição negativa de grau ≥ 3, some +1 AP ao AV de qualquer ação de oposição.",
-        "Nada a Perder: Uma vez por sessão, ao enfrentar risco extremo relacionado ao conflito central, declare 'nada a perder' — o resultado mínimo da ação é sucesso parcial.",
-        "Superar o Limite: Uma vez por cena, use uma tag deste tema como se o grau fosse +1 além do declarado. Após usá-la assim, marque Atenção no tema.",
-        "Resiliência: Condições psicológicas ou sociais relacionadas ao conflito têm duração reduzida pela metade (arredondado para baixo) antes de poderem ser removidas."
       ]
     },
     {
