@@ -425,8 +425,8 @@ function showToast(msg){
         </div>
         </div>
 
-        <div class="evolucao-section" id="evolucao-section">
-          <div class="sec" id="sec-evolucao"><div class="sec-bar"></div><span class="sec-label">Momentos de Evolução</span><div class="sec-line"></div><span class="sec-code">ME-001</span></div>
+        <div class="panel">
+          <div class="panel-title">Momentos de Evolução</div>
           <div class="evolucao-grid" id="evolucao-grid"></div>
         </div>
       </div>
@@ -728,7 +728,7 @@ function buildDots(){
   }
 }
 function buildEvo(){
-  const grid=document.getElementById('evolucao-grid');grid.innerHTML='';
+  const grid=document.getElementById('evolucao-grid');if(!grid)return;grid.innerHTML='';
   const keys=Object.keys(MOMENTOS_EVOLUCAO);
   if(keys.length===0){
     grid.innerHTML='<p style="color:var(--muted);padding:8px;">Carregando momentos...</p>';return;
