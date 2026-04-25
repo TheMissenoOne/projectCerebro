@@ -60,14 +60,17 @@
 
 @media(max-width: 600px) {
   .portrait-zone {
-    min-height: calc((4/3) * 90vw);
     width: 90vw;
     max-width: 300px;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
     clip-path: none;
     border-radius: 4px;
   }
   .portrait-zone::before { display: none; }
+  .portrait-img {
+    object-fit: cover;
+  }
 }
 
 .id-fields { display: flex; flex-direction: column; gap: 0; }
