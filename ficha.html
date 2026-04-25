@@ -506,7 +506,7 @@ function showToast(msg){
 function clone(o){return JSON.parse(JSON.stringify(o));}
 
 const T_MUTACAO=[
-  {v:'adaptacao',l:'Adaptação'},{v:'bastiao',l:'Bastião / Proteção'},{v:'conjuracao',l:'Conjuração'},
+  {v:'adaptacao',l:'Adaptação'},{v:'bastiao',l:'Bastião / Proteção'},
   {v:'destino',l:'Destino'},{v:'adivinhacao',l:'Adivinhação'},{v:'enclave',l:'Enclave'},
   {v:'expressao',l:'Expressão'},{v:'familiar',l:'Familiar'},{v:'mobilidade',l:'Mobilidade'},
   {v:'reliquia',l:'Relíquia'},{v:'subversao',l:'Subversão'},
@@ -514,7 +514,7 @@ const T_MUTACAO=[
 const T_HUM=[
   {v:'evento',l:'Evento Marcante'},{v:'relacao',l:'Relação Marcante'},{v:'missao',l:'Missão'},
   {v:'personalidade',l:'Personalidade'},{v:'posses',l:'Posses'},{v:'rotina',l:'Rotina'},
-  {v:'conflito',l:'Conflito / Dificuldade'},{v:'treinamento',l:'Treinamento'},{v:'territorio',l:'Território'},
+  {v:'treinamento',l:'Treinamento'},{v:'territorio',l:'Território'},
 ];
 const TODOS=[...T_MUTACAO,...T_HUM];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':'';
