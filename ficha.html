@@ -802,10 +802,12 @@ hdr.appendChild(delBtn);div.appendChild(hdr);
     const melL=document.createElement('div');melL.className='c-label';melL.textContent='MELHORIAS';body.appendChild(melL);
     const melWrap=document.createElement('div');melWrap.className='mel-check-list';melWrap.style.cssText='display:flex;flex-direction:column;gap:4px;margin-top:6px;';
     melList.forEach((m,i)=>{
-      const row=document.createElement('label');row.style.cssText='display:flex;align-items:flex-start;gap:6px;cursor:pointer;';
-      const chk=document.createElement('input');chk.type='checkbox';chk.style.cssText='width:14px;height:14px;margin-top:2px;accent-color:var(--red);';
+      const row=document.createElement('label');row.style.cssText='display:flex;align-items:flex-start;gap:6px;cursor:pointer;padding:4px 6px;background:var(--p2);border:1px solid var(--b1);border-left:2px solid var(--red);transition:border-color .15s;';
+      row.addEventListener('mouseenter',()=>row.style.borderColor='var(--red)');
+      row.addEventListener('mouseleave',()=>row.style.borderColor='var(--b1)');
+      const chk=document.createElement('input');chk.type='checkbox';chk.style.cssText='width:14px;height:14px;margin-top:2px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;';
       chk.checked=(card.melhorias_checked&&card.melhorias_checked[i])||false;
-      chk.addEventListener('change',e=>{if(!card.melhorias_checked)card.melhorias_checked=[];card.melhorias_checked[i]=e.target.checked;salvarAuto();});
+      chk.addEventListener('change',e=>{if(!card.melhorias_checked)card.melhorias_checked=[];card.melhorias_checked[i]=e.target.checked;salvarAuto();row.style.borderLeftColor=e.target.checked?'var(--accent)':'var(--red)';});
       const txt=document.createElement('span');txt.style.cssText='font-family:var(--mono);font-size:.5rem;color:var(--text);line-height:1.3;';txt.textContent=m;
       row.appendChild(chk);row.appendChild(txt);melWrap.appendChild(row);
     });
