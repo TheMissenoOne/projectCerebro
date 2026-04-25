@@ -193,6 +193,13 @@
 }
 .char-card:hover::before { border-right-color: var(--accent); }
 
+.char-card-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+}
+
 .char-card-name {
   font-family: var(--cond);
   font-size: .82rem;

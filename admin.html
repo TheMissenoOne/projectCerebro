@@ -81,19 +81,7 @@
             <span class="admin-section-title">Todos os Personagens</span>
             <button class="btn" onclick="refreshCharacters()">⟳ Atualizar</button>
           </div>
-          <table class="party-chars-table">
-            <thead>
-              <tr>
-                <th>Personagem</th>
-                <th>Jogador</th>
-                <th>Party</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="party-chars-body">
-            </tbody>
-          </table>
+          <div class="chars-grid" id="party-chars-grid"></div>
         </div>
 
         <!-- Character Edit Modal -->
@@ -198,39 +186,31 @@
         
         const chars = await api.listAllGMCharacters(gmId);
         console.log('[loadPartyCharacters] chars:', chars);
-        console.log('[loadPartyCharacters] currentParty:', currentParty);
-        const tbody = document.getElementById('party-chars-body');
-        tbody.innerHTML = '';
+        const grid = document.getElementById('party-chars-grid');
+        grid.innerHTML = '';
         
         if (!chars || chars.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted)">Nenhum personagem encontrado</td></tr>';
+          grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum personagem encontrado</p>';
           return;
         }
         
-        console.log('[loadPartyCharacters] rendering', chars.length, 'rows');
+        console.log('[loadPartyCharacters] rendering', chars.length, 'cards');
         chars.forEach(char => {
-          console.log('[loadPartyCharacters] row:', char.name, char.player_name);
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td><a href="ficha.html?id=${char.id}" class="char-link" target="_blank">${char.name || 'Sem Nome'}</a></td>
-            <td>${char.player_name || char.player_id}</td>
-            <td>${char.party_name || 'Sem Party'}</td>
-            <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
-            <td>
-              <button class="admin-btn" onclick="editCharacter('${char.id}')">Editar</button>
-              <button class="admin-btn admin-btn-danger" onclick="deleteCharacter('${char.id}')">Excluir</button>
-            </td>
-          `;
-          tbody.appendChild(row);
+          const card = document.createElement('a');
+          card.className = 'char-card';
+          card.href = 'ficha.html?id=' + char.id + '&t=' + Date.now();
+          card.target = '_blank';
+          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.name ? char.name.charAt(0).toUpperCase() : '?');
+          const foto = char.foto_base64 || '';
+          card.innerHTML = foto 
+            ? '<div class="char-card-img" style="background-image:url(' + foto + ')"></div>'
+            : '<div class="char-card-avatar">' + initial + '</div>';
+          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.name || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
+          grid.appendChild(card);
         });
-        console.log('[loadPartyCharacters] done, tbody rows:', tbody.children.length);
-        // Force table visibility debug
-        const table = document.querySelector('.party-chars-table');
-        console.log('[loadPartyCharacters] table element:', table);
-        console.log('[loadPartyCharacters] table HTML:', table ? table.outerHTML.substring(0, 200) : 'NOT FOUND');
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
-        document.getElementById('party-chars-body').innerHTML = '<tr><td colspan="5" style="color:var(--red)">Erro: ' + e.message + '</td></tr>';
+        document.getElementById('party-chars-grid').innerHTML = '<p style="color:var(--red);text-align:center;padding:20px;">Erro: ' + e.message + '</p>';
       }
     }
 
