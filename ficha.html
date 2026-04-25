@@ -763,14 +763,26 @@ sel.addEventListener('change',e=>{
        div.className='tcard'+(nc?' '+nc:'');
        const newIconUrl = newTipo ? `icons/${newIconMap}.svg` : '';
        if (newIconUrl) { div.setAttribute('data-icon', newIconMap); body.setAttribute('data-icon', newIconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
-       badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
-       const pwrInps=body.querySelectorAll('.poder-tags .tag-inp');
-       pwrInps.forEach((inp,i)=>{inp.placeholder=getPlaceholder(newTipo,i,true)||`tag ${i+1}`;});
-       const frqInps=body.querySelectorAll('.fraq-tags .tag-inp');
-       frqInps.forEach((inp,i)=>{inp.placeholder=getPlaceholder(newTipo,i,false)||`fraqueza ${i+1}`;});
-       const oldMel=body.querySelector('.mel-check-list');
-       if(oldMel)oldMel.remove();
-       const melList=getMelhorias(newTipo);
+badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':'';
+        const oldPwr=body.querySelector('.poder-tags');const oldFraq=body.querySelector('.fraq-tags');
+        const pwrLbl=body.querySelector('.poder-lbl');const fraqLbl=body.querySelector('.fraq-lbl');
+        if(oldPwr)oldPwr.remove();if(oldFraq)oldFraq.remove();if(pwrLbl)pwrLbl.remove();if(fraqLbl)fraqLbl.remove();
+        const pergs=getPlaceholder(newTipo,0,true)?getPlaceholder(newTipo,0,true).split(' ')[0]:null;
+        if(pergs){
+          const newPwrLbl=document.createElement('div');newPwrLbl.className='c-label poder poder-lbl';newPwrLbl.innerHTML='▲ TAGS DE PODER';body.appendChild(newPwrLbl);
+          const newPwrList=document.createElement('div');newPwrList.className='tags-list poder-tags';
+          const pCount=(PERGUNTAS[normalizeKey(newTipo)]?.p||[]).length;
+          for(let i=0;i<pCount;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(newTipo,i,true)||`tag ${i+1}`;inp.value=(card.poder&&card.poder[i])||'';inp.addEventListener('input',e=>{if(!card.poder)card.poder=[];card.poder[i]=e.target.value;salvarAuto();});newPwrList.appendChild(inp);}
+          body.appendChild(newPwrList);
+          const newFraqLbl=document.createElement('div');newFraqLbl.className='c-label fraq fraq-lbl';newFraqLbl.innerHTML='▼ TAGS DE FRAQUEZA';body.appendChild(newFraqLbl);
+          const newFraqList=document.createElement('div');newFraqList.className='tags-list fraq-tags';
+          const fCount=(PERGUNTAS[normalizeKey(newTipo)]?.f||[]).length;
+          for(let i=0;i<fCount;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(newTipo,i,false)||`fraqueza ${i+1}`;inp.value=(card.fraqueza&&card.fraqueza[i])||'';inp.addEventListener('input',e=>{if(!card.fraqueza)card.fraqueza=[];card.fraqueza[i]=e.target.value;salvarAuto();});newFraqList.appendChild(inp);}
+          body.appendChild(newFraqList);
+        }
+        const oldMelLbl=body.querySelector('.mel-lbl');const oldMel=body.querySelector('.mel-check-list');
+        if(oldMelLbl)oldMelLbl.remove();if(oldMel)oldMel.remove();
+        const melList=getMelhorias(newTipo);
        if(melList.length){
          const melL=document.createElement('div');melL.className='c-label';melL.textContent='MELHORIAS';body.appendChild(melL);
          const melWrap=document.createElement('div');melWrap.className='mel-check-list';melWrap.style.cssText='display:flex;flex-direction:column;gap:4px;margin-top:6px;';
