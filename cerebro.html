@@ -1173,13 +1173,49 @@ function parseMD(md){
       const fracaoM=bloco.match(/\*\*Fração:\*\*\s*(.+)/);
       const perigoM=bloco.match(/\*\*Perigo:\*\*\s*(.+)/);
       let iniciativa=0,atributos={},tags=[],descricao='',modo='';
-      bloco.split('\n').forEach(l=>{
+      const linhas=bloco.split('\n');
+      for(let i=0;i<linhas.length;i++){
+        const l=linhas[i];
         const lt=l.trim();
-        if(lt.startsWith('|')){const cells=lt.split('|').map(c=>c.trim()).filter(c=>c);if(cells.length>=2){if(cells[0].toLowerCase()==='iniciativa')iniciativa=parseInt(cells[1])||0;const sk=SK.find(s=>s.toLowerCase()===cells[0].toLowerCase());if(sk)atributos[sk]=parseInt(cells[1])||0;}}
-        if(lt==='## Tags'){modo='tags';return;}if(lt==='## Descrição'){modo='desc';return;}
-        if(modo==='tags'&&lt.startsWith('-'))tags.push(lt.replace(/^-\s*/,'').replace(/^\*|\*$/g,'').trim());
-        if(modo==='desc'&&lt&&!lt.startsWith('##')&&!lt.startsWith('---'))descricao+=l+'\n';
-      });
+        if(!lt)continue;
+        if(lt.startsWith('|')){
+          const cells=lt.split('|').map(c=>c.trim()).filter(c=>c);
+          if(cells.length>=2){
+            const key=(cells[0]||'').toLowerCase();
+            const val=parseInt(cells[1])||0;
+            if(key==='iniciativa'||key==='campo'){
+              if(key==='iniciativa')iniciativa=val;
+            }else{
+              const sk=SK.find(s=>s.toLowerCase()===key);
+              if(sk)atributos[sk]=val;
+            }
+            continue;
+          }
+        }
+        if(lt.startsWith('|')&&(lt.includes('Atributo')||lt.includes('Campo'))){
+          for(let j=i+1;j<linhas.length;j++){
+            const row=linhas[j].trim();
+            if(!row.startsWith('|'))break;
+            const cells=row.split('|').map(c=>c.trim()).filter(c=>c);
+            if(cells.length>=2){
+              const key=cells[0].toLowerCase();
+              const val=parseInt(cells[1])||0;
+              const sk=SK.find(s=>s.toLowerCase()===key);
+              if(sk)atributos[sk]=val;
+            }
+          }
+          continue;
+        }
+        if(lt==='## Tags'){modo='tags';continue;}
+        if(lt==='## Descrição'){modo='desc';continue;}
+        if(modo==='tags'&&lt.startsWith('-')){
+          const tagTxt=lt.replace(/^-\s*/,'').replace(/^\*|\*$/g,'').trim();
+          if(tagTxt)tags.push(tagTxt);
+        }
+        if(modo==='desc'&&lt&&!lt.startsWith('##')&&!lt.startsWith('---')){
+          descricao+=l+'\n';
+        }
+      }
       SK.forEach(k=>{if(atributos[k]===undefined)atributos[k]=0;});
       return{nome,codinome:codinomeM?codinomeM[1].trim():'',fracao:fracaoM?fracaoM[1].trim():'neutro',perigo:perigoM?perigoM[1].trim():'baixo',iniciativa,atributos,tags,descricao:descricao.trim()};
     }catch(e){return null;}
