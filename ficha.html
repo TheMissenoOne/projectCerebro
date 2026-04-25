@@ -512,7 +512,7 @@ const T_MUTACAO=[
   {v:'reliquia',l:'Relíquia'},{v:'subversao',l:'Subversão'},
 ];
 const T_HUM=[
-  {v:'evento',l:'Evento Marcante'},{v:'relacao',l:'Relação Marcante'},{v:'missao',l:'Missão'},
+  {v:'eventomarcante',l:'Evento Marcante'},{v:'relacaomarcante',l:'Relação Marcante'},{v:'missao',l:'Missão'},
   {v:'personalidade',l:'Personalidade'},{v:'posses',l:'Posses'},{v:'rotina',l:'Rotina'},
   {v:'treinamento',l:'Treinamento'},{v:'territorio',l:'Território'},
 ];
@@ -738,7 +738,7 @@ function buildCard(card,lista,cid){
 const div=document.createElement('div');
     const c=cat(card.tipo);
     div.className='tcard'+(c?' '+c:'');
-    const iconMap={evento:'eventomarcante',relacao:'relacao'}[card.tipo]||card.tipo;
+    const iconMap={eventomarcante:'eventomarcante',relacaomarcante:'relacao'}[card.tipo]||card.tipo;
     const iconUrl = iconMap ? `icons/${iconMap}.svg` : '';
     if (iconUrl) div.setAttribute('data-icon', iconMap);
     div.style.setProperty('--card-icon', `url(${iconUrl})`);
@@ -759,7 +759,7 @@ sel.addEventListener('change',e=>{
        const newTipo=e.target.value;
        card.tipo=newTipo;
        const nc=cat(newTipo);
-       const newIconMap={evento:'eventomarcante',relacao:'relacao'}[newTipo]||newTipo;
+       const newIconMap={eventomarcante:'eventomarcante',relacaomarcante:'relacao'}[newTipo]||newTipo;
        div.className='tcard'+(nc?' '+nc:'');
        const newIconUrl = newTipo ? `icons/${newIconMap}.svg` : '';
        if (newIconUrl) { div.setAttribute('data-icon', newIconMap); body.setAttribute('data-icon', newIconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
