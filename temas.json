@@ -5,27 +5,36 @@
       "nome": "Adaptação",
       "descricao": "DIVERSOS FEITIÇOS MÁGICOS • ADAPTAÇÃO A AMBIENTES HOSTIS • MUDANÇA DE FORMA OU CÓPIA DE PODER • UMA FORÇA MISTERIOSA E IMPREVISÍVEL • MANIPULAÇÃO DE ELEMENTOS\n\nA vida mortal permanece em estado constante de fluxo e de mudança: nada é permanente, tudo é efêmero. Cada desafio requer soluções completamente diferentes para ser superado. Alguns Mythoi concedem aos Portais o poder de se adaptar às circunstâncias. Isso é uma característica consciente, para melhorar as chances do Portal de contar sua história? Ou só acontece porque a história já começa cheia de recursos e possibilidades ilimitadas? É impossível saber.\n\nO Mythos aborígene do Tempo dos Sonhos pode permitir que o Portal se conectasse a uma dimensão inerente à criação, modificando a realidade. Merlin, o feiticeiro, tinha um feitiço para cada situação. Um xamã pode se transformar em animais e monstros. Um doppelganger pode imitar os poderes de outros Portais que toca. E o pai de Pinóquio, Geppetto, construía brinquedos e marionetes que ganham vida.\n\nOs temas de adaptação gravitam em torno de rótulos de natureza genérica e costumam ocupar o único espaço de rótulo genérico da personagem. No entanto, se a variedade de efeitos concedidos pelo tema for muito restrita, como no caso de um doppelganger, que só pode copiar poderes já existentes, a MC pode determinar que o rótulo ainda se qualifica como específico.",
       "perguntas_poder": [
-        "A. QUE TIPO DE DANO OU AMEAÇA SEU CORPO APRENDEU A RESISTIR DEPOIS DE SOFRER?",
-        "B. QUAL MANIFESTAÇÃO DE ADAPTAÇÃO VOCÊ USA PARA PROTEGER ALIADOS?",
-        "C. QUE CARACTERÍSTICA TORNA SUA ADAPTAÇÃO PARTICULARMENTE EFICAZ?",
-        "D. EM QUE AMBIENTES OU CONDIÇÕES SUA ADAPTAÇÃO FUNCIONA MELHOR?",
-        "E. Como você usa sua adaptação ativamente, não apenas como defesa?",
-        "F. QUE EFEITO SECUNDÁRIO SUA ADAPTAÇÃO PRODUZ ALÉM DA RESISTÊNCIA?",
-        "G. QUE HABILIDADE OFENSIVA OU DE MOBILIDADE DERIVA DA SUA ADAPTAÇÃO?",
-        "H. O QUE SEU CORPO ADAPTOU PARA PERCEBER QUE OUTROS NÃO PERCEBEM?",
-        "I. EM SITUAÇÕES EXTREMAS, COMO VOCÊ FORÇA SUA ADAPTAÇÃO ALÉM DO LIMITE?",
-        "J. QUE ESTRATÉGIA VOCÊ USA PARA EXPLORAR AS FRAQUEZAS DE OPONENTES APÓS ADAPTAR-SE?"
+        "A. QUE PODER DO MYTHOS PERMITE QUE VOCÊ TENHA UMA RESPOSTA DIFERENTE PARA CADA SITUAÇÃO?",
+        "B. QUAL GRUPO RESTRITO DE EFEITOS QUE SE ENCAIXAM NO DOMÍNIO DO MYTHOS VOCÊ JÁ CONTROLA?",
+        "C. QUAL É A SUA MANIFESTAÇÃO ESPECÍFICA DO MYTHOS FAVORITA?",
+        "D. QUE CIRCUNSTÂNCIAS AMPLIAM A ADAPTABILIDADE DA SUA HABILIDADE?",
+        "E. EM QUAIS SITUAÇÕES VOCÊ CHEGA A UMA SOLUÇÃO RÁPIDA OU COM QUAIS SITUAÇÃO ESTÁ ACOSTUMADA?",
+        "F. SEUS PODERES OFERECEM PROTEÇÃO NATURAL CONTRA O QUÊ?",
+        "G. QUE ATITUDE OU EMOÇÃO ESTÁ NO CERNE DE SEUS PODERES ADAPTATIVOS?",
+        "H. QUE CLASSE DE COISAS OU SERES VOCÊ CONSEGUE PRODUZIR OU CONVOCAR?",
+        "I. QUE ESTRATÉGIA OU COMBINAÇÃO DE EFEITOS VOCÊ EMPREGA NA BATALHA?",
+        "J. COMO FORTALECER OU ENFRAQUECER OS OUTROS COM SEUS PODERES?"
       ],
       "perguntas_fraqueza": [
-        "A. QUE CICATRIZES OU DEFORMIDADES A ADAPTAÇÃO DEIXOU EM VOCÊ?",
-        "B. QUE TIPO DE ATAQUE OU CONDIÇÃO AINDA É EFICAZ CONTRA VOCÊ APESAR DA ADAPTAÇÃO?",
-        "C. O QUE LIMITA OU TRAVA SUA CAPACIDADE DE ADAPTAR-SE RAPIDAMENTE?",
-        "D. QUE HÁBITO OU COMPULSÃO VOCÊ DESENVOLVEU COMO EFEITO COLATERAL DA ADAPTAÇÃO?"
+        "A. SEUS PODERES DE ADAPTABILIDADE DEPENDEM DE QUÊ?",
+        "B. QUE RESULTADOS SÃO MAIS DIFÍCEIS PARA O MYTHOS?",
+        "C. O QUE ATRAPALHA OU LIMITA AS POSSIBILIDADES DO MYTHOS?",
+        "D. QUE HÁBITOS RUINS VOCÊ ADQUIRIU DEVIDO AOS PODERES ADAPTATIVOS?"
       ],
       "misterio_exemplos": [
-        "(Adaptação a fogo) “O que acontece quando eu enfrento algo que meu corpo não consegue reconhecer?”",
-        "(Regeneração acelerada) “Até onde vai minha capacidade de me reconstruir?”",
-        "(Adaptação ambiental) “Existe algum ambiente que meu corpo não pode aprender a sobreviver?”"
+        "(Merlin) “Onde está o Santo Graal?”",
+        "(Doppelganger) “Qual é o máximo poder que posso roubar?”",
+        "(Gepeto) “Quem ou o que pode dar vida aos meus brinquedos?”"
+      ],
+      "titulo_exemplos": [
+        "(Merlin) Mago e Guia",
+        "(Doppelganger) Poderes dos outros",
+        "(Geppetto) Ama fabricar brinquedos"
+      ],
+      "relacionamentos_galera": [
+        "Em um momento crítico, uma das outras personagens desafiou você a ultrapassar os limites e a flexibilidade de seus poderes adaptativos. O que aconteceu? Anote um ponto de Apoio para essa personagem.",
+        "Você acha que uma das outras personagens só sabe fazer uma única coisa direito, e sempre tem a mesma solução para todo tipo de situação. Isso inclusive já prejudicou a galera em algum momento. Quais foram as circunstâncias? Anote um ponto de Antagonismo para essa personagem."
       ],
       "melhorias": [
         "Resposta Fisiológica: Ao sofrer uma condição física de grau ≥ 3, gere uma tag bônus de grau 2 representando a adaptação a essa condição. Essa tag expira quando a condição é removida.",
@@ -51,7 +60,7 @@
       ],
       "perguntas_fraqueza": [
         "A. Como seus poderes defensivos afetam sua aparência ou presença?",
-        "B. Quais as implicações indesejáveis dessa proteção? Ex: mobilidade reduzida, vulnerabilidade a truques.",
+        "B. Quais as implicações indesejáveis dessa proteção?",
         "C. A que tipo de ataque sua defesa é mais suscetível?",
         "D. Que traço de personalidade você desenvolveu por causa da necessidade de proteger?"
       ],
@@ -74,16 +83,16 @@
         "A. QUE EVENTO FUTURO VOCÊ SENTE QUE É INEVITÁVEL PARA VOCÊ OU PARA O MUNDO?",
         "B. Como você pode manipular as probabilidades para aproximar um desfecho desejado?",
         "C. Qual é a manifestação específica mais comum do seu poder de destino?",
-        "D. Que circunstâncias ampliam sua conexão com o destino? (ex: rituais, lugares sagrados)",
+        "D. Que circunstâncias ampliam sua conexão com o destino?",
         "E. Em quais situações você age por instinto, como se já soubesse o resultado?",
         "F. Seus poderes de destino oferecem proteção contra o acaso ou contra quem tenta te manipular?",
-        "G. Que emoção ou atitude está no cerne do seu destino (aceitação, rebeldia, esperança)?",
+        "G. Que emoção ou atitude está no cerne do seu destino?",
         "H. Que tipo de presságio ou sinal você consegue produzir ou interpretar?",
         "I. Que estratégia você usa para forçar o destino a agir no combate?",
         "J. Como você impõe ou desvia destinos sobre outras pessoas?"
       ],
       "perguntas_fraqueza": [
-        "A. Seus poderes de destino dependem de quê? (linhagem, objetos, profecias)",
+        "A. Seus poderes de destino dependem de quê?",
         "B. Que resultados são mais difíceis ou caros de se forçar?",
         "C. O que atrapalha ou limita suas visões ou manipulações de destino?",
         "D. Que hábitos ruins você adquiriu por confiar demais no destino?"
@@ -94,10 +103,10 @@
         "(Vítima da Profecia) “Quem escreveu meu destino? Posso encontrá-lo?”"
       ],
       "melhorias": [
-        "Inevitável: Uma vez por arco, declare que um evento está destinado a acontecer. O GM deve integrá-lo à narrativa do arco, podendo ajustar o contexto mas não negar o evento.",
+        "Inevitável: Uma vez por arco, declare que um evento está destinado a acontecer. O GM deve integrá-lo à narrativa, podendo ajustar o contexto mas não negar o evento.",
         "Resistente à Mudança: Ações que tentam alterar o curso de algo que você declarou como seu destino têm OV aumentado em +2.",
-        "Convergência: Quando dois eventos que você previu ou antecipou se conectam na mesma cena, some +2 AP ao AV da próxima ação tomada nessa cena.",
-        "Cumprir o Propósito: Uma vez por campanha, quando o personagem age em alinhamento direto com o propósito central de sua existência conforme definido pelo jogador e pelo GM, todos os RAPs dessa ação são tratados como máximos (iguais ao EV total) sem rolagem."
+        "Convergência: Quando dois eventos que você previu ou antecipou se conectam na mesma cena, some +2 AP ao AV da próxima ação.",
+        "Cumprir o Propósito: Uma vez por campanha, quando o personagem age em alinhamento direto com seu propósito central, todos os RAPs dessa ação são tratados como máximos sem rolagem."
       ]
     },
     {
@@ -110,7 +119,7 @@
         "D. Que condições ampliam a clareza ou alcance de sua adivinhação?",
         "E. Em que situações você age como se já soubesse o que vai acontecer?",
         "F. Sua adivinhação oferece proteção contra emboscadas ou armadilhas?",
-        "G. Que emoção ou atitude está no cerne do seu dom (curiosidade, medo, responsabilidade)?",
+        "G. Que emoção ou atitude está no cerne do seu dom?",
         "H. Que tipo de presságio ou símbolo você consegue produzir para alertar outros?",
         "I. Que tática você usa para obter vantagem em combate com previsão?",
         "J. Como você afeta outras pessoas com visões ou advertências?"
@@ -127,10 +136,10 @@
         "(Precog) “O futuro é múltiplo ou eu apenas escolho um caminho?”"
       ],
       "melhorias": [
-        "Visão Preventiva: Ao investigar uma cena, faça ao GM uma pergunta sobre o futuro imediato (próximas 2 cenas). O GM responde com verdade, podendo ser críptico.",
-        "Leitura de Intenção: Em interações sociais, determine se um NPC está mentindo ou ocultando algo sem rolagem — o GM confirma ou nega diretamente.",
-        "Mapa Mental: Ao entrar em um local, faça ao GM uma pergunta sobre a estrutura, ocupantes ou história recente do lugar. A resposta é direta e factual.",
-        "Varredura Ampla: Uma vez por sessão, expanda a percepção para cobrir um raio amplo (uma cidade, uma instalação, um campo de batalha). Faça até 3 perguntas factuais sobre o que está acontecendo nessa área neste momento. O GM responde a todas com honestidade."
+        "Visão Preventiva: Ao investigar uma cena, faça ao GM uma pergunta sobre o futuro imediato. O GM responde com verdade, podendo ser críptico.",
+        "Leitura de Intenção: Em interações sociais, determine se um NPC está mentindo ou ocultando algo sem rolagem.",
+        "Mapa Mental: Ao entrar em um local, faça ao GM uma pergunta sobre a estrutura, ocupantes ou história recente do lugar.",
+        "Varredura Ampla: Uma vez por sessão, expanda a percepção para cobrir um raio amplo. Faça até 3 perguntas factuais sobre o que está acontecendo nessa área."
       ]
     },
     {
@@ -160,54 +169,54 @@
         "(Fugitivo do Enclave) “O enclave ainda controla alguma parte de mim?”"
       ],
       "melhorias": [
-        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos na mesma ação, cada participante adicional contribui com +1 AP ao total (além das tags normais).",
-        "Rede de Apoio: Uma vez por sessão, acione um recurso do enclave que não estava previsto. O GM define os limites do que está disponível, mas não pode negar o recurso completamente.",
-        "Escudo Coletivo: Quando um membro do enclave estiver prestes a receber uma condição, você pode voluntariamente assumir metade do grau (arredondado para baixo) como condição própria, desde que esteja em alcance próximo.",
-        "Lar Onde Estiver: O personagem pode declarar qualquer local habitado por pelo menos dois membros do enclave como território para fins de mecânicas de Território. Essa declaração dura até que o grupo deixe o local."
+        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos, cada participante adicional contribui com +1 AP ao total.",
+        "Rede de Apoio: Uma vez por sessão, acione um recurso do enclave que não estava previsto. O GM define os limites, mas não pode negar completamente.",
+        "Escudo Coletivo: Quando um membro do enclave for receber uma condição, você pode assumir metade do grau como condição própria, se estiver em alcance próximo.",
+        "Lar Onde Estiver: O personagem pode declarar qualquer local habitado por pelo menos dois membros do enclave como território para fins de mecânicas de Território."
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Expressão",
       "perguntas_poder": [
-        "A. QUAL É A FORMA MAIS COMUM DE SEU PODER SE EXPRESSAR NO MUNDO? (ex: rajadas, ondas, transformações)",
-        "B. Que efeito reverso você pode exercer (ex: sugar energia, esfriar)?",
-        "C. Qual característica do seu poder é mais útil em combate? (ex: penetração, área, precisão)",
+        "A. QUAL É A FORMA MAIS COMUM DE SEU PODER SE EXPRESSAR NO MUNDO?",
+        "B. Que efeito reverso você pode exercer?",
+        "C. Qual característica do seu poder é mais útil em combate?",
         "D. Que condições ou situações amplificam sua Expressão?",
         "E. Contra que tipo de alvo seu poder é mais eficaz?",
         "F. Que variantes ou usos específicos da forma principal você já domina?",
         "G. Que outra forma de expressão, não relacionada à principal, você tem?",
         "H. Que truques ou manobras especiais você pode fazer com seu poder?",
-        "I. Que atitude você adota ao usar seu poder? (ex: fúria, precisão clínica, arte)",
+        "I. Que atitude você adota ao usar seu poder?",
         "J. Como você usa seu poder para se proteger de efeitos semelhantes?"
       ],
       "perguntas_fraqueza": [
         "A. Que condições ou situações enfraquecem ou suprimem sua expressão de poder?",
         "B. Que alvos são imunes ou resistentes ao seu poder?",
         "C. O que acontece quando você perde o controle sobre seu poder?",
-        "D. Quais são as repercussões de trazer seu poder ao mundo (dano colateral, marcas, etc.)?"
+        "D. Quais são as repercussões de trazer seu poder ao mundo?"
       ],
       "misterio_exemplos": [
         "(Controle de fogo) “O fogo que eu crio tem vontade própria?”",
         "(Força sobre-humana) “Até onde vai minha força antes de quebrar algo em mim?”",
-        "(Manipulação emocional) “As emoções que eu inspiro são reais ou apenas um eco do meu poder?”"
+        "(Manipulação emocional) “As emoções que eu inspiro são reais ou apenas um eco?”"
       ],
       "melhorias": [
-        "Descarga Total: Quando gastar três ou mais tags deste tema em uma única ação bem-sucedida, os RAPs são iguais ao EV total — use o valor diretamente, sem rolar. Pode ser usado uma vez por cena.",
-        "Dano Controlado: Ao criar efeito em área ou múltiplos alvos, exclua qualquer número de alvos específicos do efeito sem teste adicional.",
-        "Arte como Arma: Expressões criativas do poder podem ser usadas em ações de oposição, não apenas manifestação, quando a oposição for vulnerável ao tipo de expressão.",
-        "Assinatura Registrada: Seus efeitos são inconfundíveis — qualquer um que os experiencie pode identificá-lo. Ao revelar sua assinatura voluntariamente, some +2 AP a qualquer ação de influência ou intimidação naquela cena."
+        "Descarga Total: Quando gastar três ou mais tags deste tema em uma ação bem-sucedida, os RAPs são iguais ao EV total. Uma vez por cena.",
+        "Dano Controlado: Ao criar efeito em área, exclua qualquer número de alvos específicos sem teste adicional.",
+        "Arte como Arma: Expressões criativas do poder podem ser usadas em ações de oposição quando a oposição for vulnerável ao tipo de expressão.",
+        "Assinatura Registrada: Seus efeitos são inconfundíveis. Ao revelar sua assinatura voluntariamente, some +2 AP a ações de influência naquela cena."
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Familiar",
       "perguntas_poder": [
-        "A. QUE TIPO DE SER (ANIMAL, ESPECTRAL, CONSTRUTO) É SEU FAMILIAR?",
-        "B. Qual é a principal habilidade útil que seu familiar possui além da companhia?",
+        "A. QUE TIPO DE SER É SEU FAMILIAR?",
+        "B. Qual é a principal habilidade útil que seu familiar possui?",
         "C. Que característica específica torna seu familiar único?",
-        "D. Em que circunstâncias o familiar é mais eficaz? (ex: noturno, urbano)",
-        "E. Como você usa o familiar para soluções rápidas em situações cotidianas?",
+        "D. Em que circunstâncias o familiar é mais eficaz?",
+        "E. Como você usa o familiar para soluções rápidas?",
         "F. Seu familiar oferece proteção contra perigos específicos?",
         "G. Que atitude ou emoção define a relação entre vocês?",
         "H. Que outras criaturas ou espíritos o familiar pode invocar ou atrair?",
@@ -226,32 +235,32 @@
         "(Constructo) “Posso criar outro familiar se este for destruído?”"
       ],
       "melhorias": [
-        "Vínculo Telepático: Comunicação com o Familiar não exige palavras nem linha de visão — funciona até em ambientes com bloqueio sensorial.",
-        "Extensão de Poder: O Familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente como se fosse o personagem.",
-        "Sentidos Compartilhados: Quando o Familiar está em campo, o personagem percebe tudo que o Familiar percebe — inclui linhas de visão, presença de ameaças e informação sensorial que o personagem não alcançaria de outra forma.",
-        "Retorno: Se o Familiar for incapacitado, neutralizado ou destruído, o personagem pode gastando uma cena de recuperação (sem ação de intervalo formal) restaurá-lo ao pleno funcionamento. Isso pode ser feito uma vez por arco."
+        "Vínculo Telepático: Comunicação com o Familiar não exige palavras nem linha de visão.",
+        "Extensão de Poder: O Familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente.",
+        "Sentidos Compartilhados: Quando o Familiar está em campo, o personagem percebe tudo que o Familiar percebe.",
+        "Retorno: Se o Familiar for incapacitado, o personagem pode gastar uma cena de recuperação para restaurá-lo. Uma vez por arco."
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Mobilidade",
       "perguntas_poder": [
-        "A. QUAL É SUA PRINCIPAL FORMA DE SE DESLOCAR (VOO, TELEPORTE, VELOCIDADE, ETC.)?",
+        "A. QUAL É SUA PRINCIPAL FORMA DE SE DESLOCAR?",
         "B. Como você atinge sua velocidade máxima ou ultrapassa obstáculos?",
         "C. O que permite que você evite restrições ou confinamentos?",
-        "D. Que movimento secundário você aprendeu a usar (ex: planar, nadar)?",
-        "E. Que estilo ou técnica de movimento você domina (ex: parkour, acrobacia)?",
-        "F. Que efeitos prejudiciais sua mobilidade permite evitar (ex: quedas, áreas de efeito)?",
+        "D. Que movimento secundário você aprendeu a usar?",
+        "E. Que estilo ou técnica de movimento você domina?",
+        "F. Que efeitos prejudiciais sua mobilidade permite evitar?",
         "G. Como você usa sua mobilidade para ganhar vantagem em combate?",
-        "H. O que permite que você mova outras pessoas (ex: carregar, portais)?",
+        "H. O que permite que você mova outras pessoas?",
         "I. Como você pode usar seus poderes para conter o movimento dos outros?",
-        "J. Sua mobilidade dá acesso a que recurso especial (ex: atalhos, dimensões)?"
+        "J. Sua mobilidade dá acesso a que recurso especial?"
       ],
       "perguntas_fraqueza": [
         "A. O que pode atrasar ou impedir seu movimento?",
         "B. O que acontece quando você vai rápido demais ou longe demais?",
         "C. O que acontece quando você é pego ou contido?",
-        "D. Que evidência residual seu movimento deixa (rastros, sons, marcas)?"
+        "D. Que evidência residual seu movimento deixa?"
       ],
       "misterio_exemplos": [
         "(Teleporte) “Existe algum lugar onde eu não possa me teletransportar?”",
@@ -259,24 +268,24 @@
         "(Voo) “O que me sustenta no ar? Posso cair?”"
       ],
       "melhorias": [
-        "Sempre em Movimento: Nunca recebe os modificadores Usuário Instável ou Área Apertada em ações que envolvam deslocamento.",
-        "Primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, age antes de todos os outros sem necessidade de declaração.",
-        "Extração: Uma vez por cena, pode retirar um aliado de uma posição de perigo e reposicioná-lo em local seguro dentro do alcance de movimento, sem custo de ação para o aliado.",
-        "Impossível de Conter: Condições que restrinjam movimento (imobilização, aprisionamento, sobrecarga gravitacional) têm seu grau reduzido em 3 antes de ser aplicado (mínimo 1). Uma vez por sessão, pode ignorar completamente uma condição desse tipo já aplicada — ela expira."
+        "Sempre em Movimento: Nunca recebe modificadores de Usuário Instável ou Área Apertada em ações de deslocamento.",
+        "Primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, age antes de todos os outros.",
+        "Extração: Uma vez por cena, pode retirar um aliado de perigo e reposicioná-lo em local seguro.",
+        "Impossível de Conter: Condições que restrinjam movimento têm grau reduzido em 3. Uma vez por sessão, ignore completamente uma condição desse tipo já aplicada."
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Relíquia",
       "perguntas_poder": [
-        "A. QUAL É A FUNÇÃO PRINCIPAL DA RELÍQUIA (ARMA, ESCUDO, CATALISADOR, ETC.)?",
+        "A. QUAL É A FUNÇÃO PRINCIPAL DA RELÍQUIA?",
         "B. Cite outra maneira de usar a relíquia que não seja a óbvia.",
         "C. Qual qualidade útil essencial está no cerne da relíquia?",
         "D. Quais são os atributos cosméticos ou estéticos da relíquia?",
         "E. Qual é outra característica, peça ou item complementar da relíquia?",
         "F. Que revelação ou conhecimento vem com o uso da relíquia?",
         "G. O que ou quem a relíquia foi projetada para afetar prioritariamente?",
-        "H. O que você aprendeu com a relíquia (habilidades, conhecimentos)?",
+        "H. O que você aprendeu com a relíquia?",
         "I. O que acontece quando você explora a força total da relíquia?",
         "J. Que aspecto ou elemento da relíquia você ainda está começando a desbloquear?"
       ],
@@ -293,9 +302,9 @@
       ],
       "melhorias": [
         "Vínculo Inquebrável: A relíquia não pode ser removida por ação automática — exige ação de oposição com AV ≥ 10.",
-        "Potencial Oculto: Uma vez por arco, a relíquia manifesta capacidade ainda não descrita nos rótulos. O jogador declara o efeito; o GM define os limites narrativos.",
-        "Amplificação: Quando usar a relíquia em conjunto com outra tag deste tema, o grau combinado das duas tags é aumentado em +2 (além da soma normal).",
-        "Legado: A relíquia tem história. Uma vez por campanha, o jogador pode revelar um aspecto do passado da relíquia que justifique um efeito completamente novo — o GM deve tratar essa revelação como canônica e integrá-la à narrativa. O novo efeito torna-se um rótulo de poder permanente no tema."
+        "Potencial Oculto: Uma vez por arco, a relíquia manifesta capacidade ainda não descrita. O jogador declara o efeito; o GM define os limites.",
+        "Amplificação: Quando usar a relíquia com outra tag deste tema, o grau combinado é aumentado em +2.",
+        "Legado: Uma vez por campanha, revele um aspecto do passado da relíquia que justifique um efeito novo. O GM deve tratar como canônico."
       ]
     },
     {
@@ -304,14 +313,14 @@
       "perguntas_poder": [
         "A. QUAL É SUA PRINCIPAL HABILIDADE PARA ENGANAR, ILUDIR OU AGIR ÀS ESCONDIDAS?",
         "B. Como você usa seus poderes para distrair ou confundir os outros?",
-        "C. Qual característica do seu engano é mais útil (ex: realismo, abrangência, sutileza)?",
+        "C. Qual característica do seu engano é mais útil?",
         "D. O que você faz de melhor quando usa subterfúgio?",
         "E. Que tipo de alvo tem mais chance de cair no seu engodo?",
         "F. Como suas operações secretas rendem informações?",
-        "G. Quem ou o que ajuda nas suas tramoias (cúmplices, tecnologia)?",
+        "G. Quem ou o que ajuda nas suas tramoias?",
         "H. O que tem poucas chances de afetar você graças aos seus poderes?",
         "I. Que circunstâncias melhoram sua capacidade de agir sem ser detectado?",
-        "J. Que poderes secundários de subversão você desenvolveu (ex: disfarce, camuflagem)?"
+        "J. Que poderes secundários de subversão você desenvolveu?"
       ],
       "perguntas_fraqueza": [
         "A. O que poderia expor suas atividades?",
@@ -325,10 +334,10 @@
         "(Manipulador) “Manipular os outros me impede de me conectar de verdade?”"
       ],
       "melhorias": [
-        "Contra a Corrente: Quando age de forma inesperada ou contrária ao que a oposição antecipa, o OV da ação é reduzido em 1.",
-        "Inversão: Uma vez por cena, converta uma condição negativa sofrida em vantagem — ela passa a contribuir como tag positiva de grau igual ao seu grau original para uma única ação declarada pelo jogador.",
-        "Brecha: Ao identificar uma fraqueza, inconsistência ou padrão previsível em um oponente ou sistema, declare essa brecha ao GM. Nas próximas 2 ações que explorar essa brecha, o OV é reduzido em 2.",
-        "Nenhuma Regra se Aplica: Uma vez por sessão, declare que uma regra mecânica ou restrição narrativa não se aplica a você nessa ação específica. O GM pode vetar se for narrativamente incoerente com o personagem, mas deve oferecer uma alternativa equivalente."
+        "Contra a Corrente: Quando age de forma inesperada, o OV da ação é reduzido em 1.",
+        "Inversão: Uma vez por cena, converta uma condição negativa sofrida em vantagem para uma única ação.",
+        "Brecha: Ao identificar uma fraqueza em um oponente, declare-a. Nas próximas 2 ações que a explorarem, o OV é reduzido em 2.",
+        "Nenhuma Regra se Aplica: Uma vez por sessão, declare que uma regra mecânica ou restrição narrativa não se aplica a você nessa ação."
       ]
     },
     {
@@ -342,7 +351,7 @@
         "E. Com quem você passou a se relacionar após o evento?",
         "F. Que perícia ou habilidade mundana você adquiriu por causa do evento?",
         "G. Que conhecimento você passou a ter acesso graças ao seu marco?",
-        "H. Como você passou a levar a vida após o evento (mudança de comportamento)?",
+        "H. Como você passou a levar a vida após o evento?",
         "I. Que mudança física ou melhoria resultou do evento?",
         "J. Como as pessoas tratam você por causa desse evento?"
       ],
@@ -358,10 +367,10 @@
         "(Redenção) “Preciso compensar o que fiz.”"
       ],
       "melhorias": [
-        "Memória de Combate: Uma vez por cena, ao identificar um paralelo entre a situação atual e o evento, declare o paralelo e some +1 AP à ação imediatamente seguinte.",
-        "Não de Novo: Em circunstância idêntica ou muito similar ao evento, você age antes de qualquer outro personagem naquele turno, independentemente de iniciativa.",
-        "Ecos do Passado: Escolha uma melhoria de Treinamento, Rotina ou Relação que reflita um aspecto de quem você era antes e que às vezes reaparece. Anote como novo benefício.",
-        "Já Superei: Uma vez por cena, quando uma condição social ou emocional relacionada ao evento seria aplicada, você pode ignorá-la completamente e marcar Atenção no tema."
+        "Memória de Combate: Uma vez por cena, ao identificar paralelo com o evento, declare e some +1 AP à ação seguinte.",
+        "Não de Novo: Em circunstância muito similar ao evento, você age antes de qualquer outro naquele turno.",
+        "Ecos do Passado: Escolha uma melhoria de Treinamento, Rotina ou Relação que reflita um aspecto de quem você era antes.",
+        "Já Superei: Uma vez por cena, quando uma condição social/emocional relacionada ao evento seria aplicada, ignore-a e marque Atenção."
       ]
     },
     {
@@ -371,7 +380,7 @@
         "A. POR QUE ESSE RELACIONAMENTO É TÃO IMPORTANTE PARA VOCÊ?",
         "B. Cite uma qualidade ou habilidade útil que a outra pessoa pode usar para te ajudar.",
         "C. O que você foi forçado a aprender por causa dessa relação?",
-        "D. Estar perto dessa pessoa te deixa... (ex: confiante, irritado, inspirado)",
+        "D. Estar perto dessa pessoa te deixa...",
         "E. Quando você pede ajuda, quem atende o chamado?",
         "F. Que dom, herança ou ferramenta você ganhou dessa relação?",
         "G. Para lidar com eles, você precisa ser/estar...",
@@ -391,10 +400,10 @@
         "(Família disfuncional) “Sangue é mais grosso que água, não importa o que façam.”"
       ],
       "melhorias": [
-        "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, use tags deste tema sem gastá-las — elas permanecem disponíveis para o turno seguinte.",
-        "Presença Reconfortante: Uma vez por sessão, a presença ou lembrança desse personagem remove uma condição mental ou emocional de grau ≤ 3 sem rolagem.",
-        "Experiências Compartilhadas: Escolha uma melhoria de Evento Marcante ou Personalidade que reflita uma transformação pela qual você passou por causa dessa relação.",
-        "Quem é que Manda Aqui: Escolha dois Movimentos Principais que melhor reflitam sua atitude em relação a essa pessoa. Quando usá-los contra ela, são sempre Precisos."
+        "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, use tags sem gastá-las — permanecem para o turno seguinte.",
+        "Presença Reconfortante: Uma vez por sessão, a presença ou lembrança desse personagem remove uma condição mental/emocional de grau ≤ 3.",
+        "Experiências Compartilhadas: Escolha uma melhoria de Evento Marcante ou Personalidade que reflita uma transformação por causa dessa relação.",
+        "Quem é que Manda Aqui: Escolha dois Movimentos Principais. Quando usá-los contra essa pessoa, são sempre Precisos."
       ]
     },
     {
@@ -406,9 +415,9 @@
         "C. Quem está ajudando na missão?",
         "D. O que você sabe sobre o alvo ou objetivo da missão?",
         "E. Que tática ou método você emprega para atingir seu objetivo?",
-        "F. Correr atrás da sua missão te deixou... (ex: forte, rico, famoso)",
+        "F. Correr atrás da sua missão te deixou...",
         "G. Qual é a origem do seu compromisso com a missão?",
-        "H. Que posição ou situação útil você teve de conquistar para que a missão fosse bem-sucedida?",
+        "H. Que posição ou situação útil você teve de conquistar?",
         "I. O que você tem que pode ajudar na missão?",
         "J. Que parte do plano você bolou melhor?"
       ],
@@ -424,10 +433,10 @@
         "(Redenção) “Vou provar que não sou um monstro.”"
       ],
       "melhorias": [
-        "Propósito Claro: Quando suas ações estão diretamente alinhadas à missão, o modificador circunstancial Foco Total se aplica automaticamente sem precisar ser declarado.",
-        "Sem Hesitação: Nunca recebe o modificador Distração quando está ativamente cumprindo a missão declarada.",
-        "Melhor Prevenir que Remediar: Escolha uma melhoria de Treinamento ou Posses que reflita algo que você adquiriu para completar sua missão.",
-        "Quando o Inferno Congelar: Quando sacrifica algo que realmente deseja para cumprir a Identidade da Missão, preencha Atenção e remova uma Quebra."
+        "Propósito Claro: Quando alinhado à missão, o modificador Foco Total se aplica automaticamente.",
+        "Sem Hesitação: Nunca recebe Distração quando cumprindo a missão declarada.",
+        "Melhor Prevenir que Remediar: Escolha uma melhoria de Treinamento ou Posses que reflita algo adquirido para a missão.",
+        "Quando o Inferno Congelar: Quando sacrifica algo que deseja para cumprir a Identidade, preencha Atenção e remova uma Quebra."
       ]
     },
     {
@@ -439,7 +448,7 @@
         "C. Que habilidades sociais você só tem graças à personalidade?",
         "D. Quando quer, você também consegue ser...",
         "E. Que habilidade ou vantagem especial você tem por conta da personalidade?",
-        "F. Que aspecto da sua personalidade mantém você segura ou ajuda a resistir a influências?",
+        "F. Que aspecto da sua personalidade mantém você segura ou ajuda a resistir?",
         "G. Que característica ou objeto mais expressa ou acentua seu estilo?",
         "H. Que hábito ou rotina útil você só cultivou graças à personalidade?",
         "I. O que costuma atrair seu interesse?",
@@ -457,10 +466,10 @@
         "(Paranoico) “Confiar é a primeira armadilha.”"
       ],
       "melhorias": [
-        "Reação Instintiva: Uma vez por sessão, declare que a personalidade do personagem levaria a uma reação que outros não esperariam. O GM deve tratar essa ação como narrativamente plausível.",
-        "Impossível de Ler: Ações de oposição que tentam prever ou manipular o comportamento do personagem têm OV aumentado em +1.",
-        "Se Reinventar: Quando substituir este tema, você pode escolher um novo tema Personalidade, em vez de um tema Mutação. Como de costume, perde melhorias e ganha Progressão.",
-        "A Prática Leva à Perfeição: Escolha um Movimento Principal que melhor represente sua personalidade. Sempre que usá-lo com tags deste tema, é Preciso (ou benefício similar)."
+        "Reação Instintiva: Uma vez por sessão, declare que a personalidade levaria a uma reação inesperada. O GM deve tratar como narrativamente plausível.",
+        "Impossível de Ler: Ações que tentam prever ou manipular seu comportamento têm OV aumentado em +1.",
+        "Se Reinventar: Quando substituir este tema, pode escolher um novo tema Personalidade em vez de Mutação.",
+        "A Prática Leva à Perfeição: Escolha um Movimento Principal que melhor represente sua personalidade. Quando usá-lo com tags deste tema, é Preciso."
       ]
     },
     {
@@ -472,7 +481,7 @@
         "C. Que outras coisas importantes você possui?",
         "D. Que componente ou parte adicional pode alterar ou melhorar um de seus itens?",
         "E. Que tipo de manobra ou acrobacia você costuma fazer com suas posses?",
-        "F. O que ajuda a ocultar suas posses ou o fato de que você está portando um item relevante?",
+        "F. O que ajuda a ocultar suas posses ou o fato de que está portando um item relevante?",
         "G. O que mantém suas posses seguras?",
         "H. Como você cuida, conserta ou manuseia suas posses?",
         "I. Qual é a característica útil da sua posse?",
@@ -490,10 +499,10 @@
         "(Acumulador) “Um dia isso vai ser útil.”"
       ],
       "melhorias": [
-        "Ferramenta Certa: Escolha um item descrito neste tema. Quando usado na situação para a qual foi projetado, o rótulo contribui com +2 AP ao AV em vez de +1.",
-        "Sempre à Mão: O item principal do tema nunca pode ser declarado perdido por ação automática — exige ação de oposição com AV ≥ 10 para removê-lo permanentemente.",
+        "Ferramenta Certa: Escolha um item. Quando usado na situação para a qual foi projetado, contribui com +2 AP em vez de +1.",
+        "Sempre à Mão: O item principal não pode ser declarado perdido por ação automática — exige AV ≥ 10.",
         "Ossos do Ofício: Escolha uma melhoria de Treinamento ou Rotina que reflita habilidades associadas às suas posses.",
-        "O que Importa é a Qualidade: Uma de suas posses é perfeita. Escolha um rótulo deste tema que descreva um objeto. Ações usando esse rótulo têm resultado mínimo de sucesso parcial."
+        "O que Importa é a Qualidade: Uma de suas posses é perfeita. Ações usando esse rótulo têm resultado mínimo de sucesso parcial."
       ]
     },
     {
@@ -523,10 +532,10 @@
         "(Desempregado) “Um dia de cada vez.”"
       ],
       "melhorias": [
-        "Preparo Constante: Uma vez por arco, declare antes da cena começar que se preparou para uma situação específica. Essa preparação conta como tag adicional de grau 2 na ação pertinente.",
-        "Difícil de Surpreender: Nunca recebe o modificador Sem Visão do Alvo em situações relacionadas à rotina estabelecida.",
-        "Boa Memória: A cada sessão, você pode optar por receber até três Informações de uma localização ou pessoa relacionada à sua rotina. A primeira é grátis, as outras exigem exposição.",
-        "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente sua rotina. Sempre que usá-lo com tags deste tema, é Preciso."
+        "Preparo Constante: Uma vez por arco, declare antes da cena que se preparou para uma situação específica. Isso conta como tag adicional de grau 2.",
+        "Difícil de Surpreender: Nunca recebe o modificador Sem Visão do Alvo em situações relacionadas à rotina.",
+        "Boa Memória: A cada sessão, receba até três Informações de uma fonte relacionada à rotina. A primeira é grátis.",
+        "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente sua rotina. Quando usá-lo com tags deste tema, é Preciso."
       ]
     },
     {
@@ -557,23 +566,23 @@
       ],
       "melhorias": [
         "Memória Muscular: Ações físicas treinadas nunca recebem o modificador Usuário Instável.",
-        "Superar o Limite: Uma vez por cena, use uma tag deste tema como se o grau fosse +1 além do declarado. Após usá-la assim, marque Atenção no tema.",
-        "Propósito: Escolha uma melhoria de Rotina, Evento Marcante ou Missão que descreva como você está aplicando seu treinamento hoje.",
-        "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente seu treinamento. Sempre que usá-lo com tags deste tema, é Preciso."
+        "Superar o Limite: Uma vez por cena, use uma tag como se o grau fosse +1. Após, marque Atenção.",
+        "Propósito: Escolha uma melhoria de Rotina, Evento Marcante ou Missão que descreva como você aplica seu treinamento hoje.",
+        "Ficando Boa Nisso: Escolha um Movimento Principal que melhor represente seu treinamento. Quando usá-lo com tags deste tema, é Preciso."
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Território",
       "perguntas_poder": [
-        "A. QUE LOCAL VOCÊ RECLAMA COMO SEU TERRITÓRIO (BAIRRO, EDIFÍCIO, ÁREA)?",
+        "A. QUE LOCAL VOCÊ RECLAMA COMO SEU TERRITÓRIO?",
         "B. Que recurso específico seu território oferece?",
         "C. Quem vive ou frequenta seu território regularmente?",
         "D. Qual é a vantagem tática de lutar em seu território?",
         "E. Que sistema de alerta ou defesa você instalou?",
         "F. O que você esconde ou armazena no território?",
         "G. Que influência ou reputação você construiu ali?",
-        "H. Como o território se protege de intrusos (natural ou por meios humanos)?",
+        "H. Como o território se protege de intrusos?",
         "I. Que rotina ou ritual você mantém para manter o território?",
         "J. O que você faz para expandir ou fortalecer seu território?"
       ],
@@ -589,10 +598,10 @@
         "(Zona de guerra) “Isso aqui não é território, é armadilha.”"
       ],
       "melhorias": [
-        "Campo Próprio: Em seu território, modificadores de posicionamento desfavoráveis têm valor reduzido em 1 (mínimo 0).",
-        "Reconhecido: NPCs e forças que habitam o território tratam o personagem como autoridade. Ações sociais nesse contexto têm OV reduzido em 1.",
-        "Espaço de Armazenamento: Uma vez por sessão, acesse o território e retire um objeto útil. Receba uma tag temporária adequada.",
-        "Longe de Olhares Curiosos: Quando Age na Encolha com tags deste tema, é Preciso (ou benefício similar)."
+        "Campo Próprio: Em seu território, modificadores de posicionamento desfavoráveis são reduzidos em 1 (mínimo 0).",
+        "Reconhecido: NPCs que habitam o território tratam o personagem como autoridade. Ações sociais têm OV reduzido em 1.",
+        "Espaço de Armazenamento: Uma vez por sessão, acesse o território e retire um objeto útil. Receba uma tag temporária.",
+        "Longe de Olhares Curiosos: Quando Age na Encolha com tags deste tema, é Preciso."
       ]
     }
   ]
