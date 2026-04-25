@@ -599,6 +599,7 @@ function apiToInternal(npc){
     };
     for(const k in d.stats){const cap=LCmap[k];if(cap)atributos[cap]=d.stats[k];}
   }
+  if(!atributos||typeof atributos!=='object')atributos={};
   const rawTags=npc.tags||d.tags||[];
   const tags=rawTags.map(t=>{
     if(typeof t==='string')return t;
@@ -623,13 +624,15 @@ function internalToApi(n){
   if(n.atributos&&typeof n.atributos==='object'){
     for(const k in n.atributos){const en=PT_TO_EN[k];if(en)attrs[en]=n.atributos[k];else attrs[k]=n.atributos[k];}
   }
+  const data={};
+  if(n.tags)data.tags=n.tags;
+  if(n.descricao)data.descricao=n.descricao;
   return {
     name:n.nome,codename:n.codinome||'',
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
     iniciativa:n.iniciativa||0,
     atributos:attrs,
-    tags:n.tags||[],
-    descricao:n.descricao||'',
+    data:data,
   };
 }
 
