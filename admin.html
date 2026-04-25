@@ -200,12 +200,12 @@
           card.className = 'char-card';
           card.href = 'ficha.html?id=' + char.id + '&t=' + Date.now();
           card.target = '_blank';
-          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.name ? char.name.charAt(0).toUpperCase() : '?');
+          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.nome ? char.nome.charAt(0).toUpperCase() : '?');
           const foto = char.foto_base64 || '';
           card.innerHTML = foto 
             ? '<div class="char-card-img" style="background-image:url(' + foto + ')"></div>'
             : '<div class="char-card-avatar">' + initial + '</div>';
-          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.name || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
+          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.nome || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
           grid.appendChild(card);
         });
       } catch (e) {
