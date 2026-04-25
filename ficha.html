@@ -536,7 +536,6 @@ const loadTemaData=async()=>{
     }
   }catch(e){console.error('load temas err',e);}
 };
-const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
 const getPlaceholder=(tipo,i,isPoder)=>{const k=normalizeKey(tipo);const arr=isPoder?(PERGUNTAS[k]?.p||[]):(PERGUNTAS[k]?.f||[]);return arr[i]||'';};
 const getMelhorias=(tipo)=>{const k=normalizeKey(tipo);return MELHORIAS[k]||[];};
 const PADRAO={
