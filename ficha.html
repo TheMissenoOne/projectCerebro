@@ -86,8 +86,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .sec-line{flex:1;height:1px;background:var(--b2);margin-left:10px;}
 .sec-code{font-family:var(--mono);font-size:.44rem;color:var(--muted2);letter-spacing:.08em;margin-left:8px;flex-shrink:0;}
 
-.ficha-top{display:grid;grid-template-columns:110px 1fr;grid-template-rows:auto auto auto;gap:14px;margin-bottom:18px;}
-.ficha-middle{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ficha-top{display:grid;grid-template-columns:110px 1fr 1fr;gap:14px;margin-bottom:18px;}
+.ficha-middle{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .portrait-zone{width:110px;height:140px;background:var(--p1);border:1px solid var(--b2);cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:border-color .2s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);}
 .portrait-zone::before{content:'';position:absolute;top:0;right:0;border-style:solid;border-width:0 12px 12px 0;border-color:transparent var(--b2) transparent transparent;}
 .portrait-zone:hover{border-color:var(--red);}
@@ -255,7 +255,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--red);color:var(--white);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:8px 16px;z-index:1000;opacity:0;pointer-events:none;transition:all .2s;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-@media(max-width:900px){.ficha-top{grid-template-columns:1fr;}.ficha-middle{grid-template-columns:1fr;}.cards-grid{grid-template-columns:1fr;}.hdr-sub{display:none;}}
+@media(max-width:900px){.ficha-top{grid-template-columns:110px 1fr;}.ficha-middle{grid-template-columns:1fr;}.cards-grid{grid-template-columns:1fr;}.hdr-sub{display:none;}}
 @media(max-width:520px){.ficha-top{grid-template-columns:1fr;}.ficha-middle{grid-template-columns:1fr;}.portrait-zone{width:100%;height:100px;}.cards-grid{grid-template-columns:1fr;}.header{height:auto;padding:8px 14px;}.hdr-codes{display:none;}.tbtn span{display:none;}.tbtn svg{display:block!important;}}
 
 /* Atributos responsivo mobile */
@@ -429,30 +429,7 @@ function showToast(msg){
         <div class="evolucao-grid" id="evolucao-grid"></div>
       </div>
 
-      <div class="attr-section">
-        <div class="sec"><div class="sec-bar"></div><span class="sec-label">Atributos</span><div class="sec-line"></div><span class="sec-code">ATTR-001</span></div>
-        <div class="attr-group" id="grp-fisico">
-          <div class="attr-group-header"><span class="attr-group-name">Físico</span><div class="attr-group-line"></div></div>
-          <div class="attr-row"><span class="attr-num">01</span><span class="attr-name">Destreza<button class="field-help" type="button" title="Agilidade, reflexos, coordenação motora">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-destreza" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">02</span><span class="attr-name">Força<button class="field-help" type="button" title="Potência física, capacidade de levantamento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-forca" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">03</span><span class="attr-name">Corpo<button class="field-help" type="button" title="Resistência, vitalidade, saúde">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-corpo" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-        </div>
-        <div class="attr-group">
-          <div class="attr-group-header"><span class="attr-group-name">Mental</span><div class="attr-group-line"></div></div>
-          <div class="attr-row"><span class="attr-num">04</span><span class="attr-name">Inteligência<button class="field-help" type="button" title="Raciocínio, memória, conhecimento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-inteligencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">05</span><span class="attr-name">Vontade<button class="field-help" type="button" title="Determinação, autocontrole, fé">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-vontade" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">06</span><span class="attr-name">Mente<button class="field-help" type="button" title="Percepção extrasensorial, telepatia">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-mente" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-        </div>
-        <div class="attr-group">
-          <div class="attr-group-header"><span class="attr-group-name">Social</span><div class="attr-group-line"></div></div>
-          <div class="attr-row"><span class="attr-num">07</span><span class="attr-name">Influência<button class="field-help" type="button" title="Carisma, persuasão, liderança">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-influencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">08</span><span class="attr-name">Aura<button class="field-help" type="button" title="Magnetismo pessoal, presença">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-aura" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          <div class="attr-row"><span class="attr-num">09</span><span class="attr-name">Espírito<button class="field-help" type="button" title="Sorte, conexão com o mundo espiritual">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-espirito" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ficha-bottom">
+      <div class="ficha-bottom">
       <div class="panel">
         <div class="panel-title">Status</div>
         <textarea class="ftextarea" id="status" placeholder="Estado atual, condições, efeitos ativos, notas de sessão..." style="min-height:110px" oninput="salvarAuto()"></textarea>
