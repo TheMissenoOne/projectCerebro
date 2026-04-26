@@ -3,726 +3,768 @@
     {
       "tipo": "Mutação",
       "nome": "Adaptabilidade",
+      "descricao": "Seu X-Gene não fixou uma forma. Ele aprende. Cada ameaça que você sobreviveu deixou uma resposta nova gravada no corpo ou na mente. Você não enfrenta problemas — você os absorve e os devolve como solução.",
       "perguntas_poder": [
-        "QUE PODER DA MUTAÇÃO PERMITE RESPOSTAS DIFERENTES PARA CADA SITUAÇÃO?",
-        "Que grupo restrito de efeitos do seu domínio você já controla?",
-        "Qual sua manifestação favorita da mutação?",
-        "Que circunstâncias ampliam sua adaptabilidade?",
-        "Em que situações você chega a uma solução rápida ou está acostumado?",
-        "Seus poderes oferecem proteção natural contra o quê?",
-        "Que atitude ou emoção está no cerne dos seus poderes adaptativos?",
-        "Que classe de coisas ou seres você consegue produzir ou convocar?",
-        "Que estratégia ou combinação de efeitos você emprega na batalha?",
-        "Como fortalecer ou enfraquecer outros com seus poderes?"
+        "QUE ASPECTO DO SEU X-GENE PERMITE RESPOSTAS DIFERENTES PARA CADA SITUAÇÃO?",
+        "Que grupo restrito de efeitos você já domina com segurança e controle?",
+        "Qual manifestação do poder você prefere e usa com mais frequência?",
+        "Em que condições sua capacidade de adaptar-se é mais eficaz?",
+        "Em que tipo de situação você encontra soluções onde outros travam?",
+        "Contra que ameaças seus poderes oferecem resistência natural?",
+        "Que atitude ou estado emocional está no núcleo do seu poder?",
+        "O que você consegue produzir, imitar ou replicar quando necessário?",
+        "Que combinação de efeitos você desenvolveu para situações de batalha?",
+        "Como você usa a mutação para fortalecer aliados ou fragilizar inimigos?"
       ],
       "perguntas_fraqueza": [
-        "SEUS PODERES DE ADAPTABILIDADE DEPENDEM DE QUÊ?",
-        "Que resultados são mais difíceis para a mutação?",
-        "O que atrapalha ou limita as possibilidades da mutação?",
-        "Que hábitos ruins você adquiriu devido aos poderes adaptativos?"
+        "DE QUE SUA MUTAÇÃO ADAPTATIVA DEPENDE PARA FUNCIONAR?",
+        "Que resultados ou transformações ainda estão fora do seu alcance?",
+        "O que trava ou perturba sua capacidade de adaptar-se rapidamente?",
+        "Que hábito ou compulsão você desenvolveu por confiar demais na adaptação?"
       ],
       "misterio_exemplos": [
-        "(Mutante versátil) “Qual é a origem dos meus múltiplos poderes?”",
-        "(Replicante) “Qual é o máximo poder que posso copiar?”",
-        "(Criador de marionetes) “Quem ou o que pode dar vida às minhas criações?”"
-      ],
-      "titulo_exemplos": [
-        "(Merlin mutante) “Mago e Guia Genético”",
-        "(Doppelganger) “Poderes dos outros”",
-        "(Geppetto mutante) “Ama fabricar brinquedos vivos”"
-      ],
-      "relacionamentos_galera": [
-        "Em um momento crítico, uma das outras personagens desafiou você a ultrapassar os limites e a flexibilidade de seus poderes adaptativos. O que aconteceu? Anote um ponto de Apoio para essa personagem.",
-        "Você acha que uma das outras personagens só sabe fazer uma única coisa direito, e sempre tem a mesma solução para todo tipo de situação. Isso inclusive já prejudicou a galera em algum momento. Quais foram as circunstâncias? Anote um ponto de Antagonismo para essa personagem."
+        "(Mutante versátil) Qual é a origem real dos meus múltiplos poderes — e qual é o limite que ainda não encontrei?",
+        "(Replicante) Posso realmente copiar qualquer poder ou há algo que nunca poderei imitar?",
+        "(Criador) As formas que crio têm alguma experiência própria ou são apenas extensões minhas?"
       ],
       "melhorias": [
-        "Forma Camaleão: Uma vez por cena, crie uma condição temporária representando adaptação instantânea. O grau é igual ao número de tags deste tema. (Condição temporária)",
-        "Especialização Derivada: Responda a uma pergunta de tag de poder de qualquer outra subcategoria de Mutação (exceto Relíquia). Anote a resposta como nova tag neste tema. (Tag de outro tema – Adaptabilidade copia de outro tipo)",
-        "Recomposição Rápida: Uma vez por sessão, remova um marcador de Quebra de qualquer tema de Humanidade. (Remove Quebra)",
-        "Curva Acelerada: Quando estiver em desvantagem (AV < OV), role os dados duas vezes e escolha o melhor resultado. (Especial)"
+        "Resposta Imediata: Uma vez por cena, ao sofrer uma condição ou enfrentar ameaça nova, crie uma condição temporária representando a adaptação a ela. O grau é igual ao número de tags deste tema usadas na cena até agora (mínimo 1). [Condição temporária]",
+        "Especialização Derivada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação, exceto Relíquia. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Recomposição: Uma vez por sessão, ao superar ativamente uma condição que parecia permanente, remova um marcador de Quebra de qualquer tema de Humanidade. [Remove Quebra]",
+        "Curva Acelerada: Quando atua em desvantagem (AV menor que OV), role os dados duas vezes e use o resultado mais favorável. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Bastião",
+      "descricao": "Seu corpo ou poder é uma estrutura. Outros avançam — você fica. Não por incapacidade de recuar, mas porque alguém precisa estar entre o que importa e o que quer destruí-lo, e você decidiu que esse alguém é você.",
       "perguntas_poder": [
         "QUAL É O MÉTODO PRINCIPAL DE PROTEÇÃO QUE SEU CORPO OU PODER OFERECE?",
-        "Como você estende essa proteção para aliados próximos?",
-        "Qual característica torna sua defesa notavelmente resistente?",
+        "De que forma você estende essa proteção para aliados em campo?",
+        "Que característica torna sua defesa notavelmente difícil de penetrar?",
         "Contra que tipo de ataque ou influência sua proteção é mais eficaz?",
-        "Como você usa ativamente sua defesa para além da proteção passiva?",
-        "Que efeito defensivo secundário acompanha sua manifestação?",
-        "Que outra vantagem (não defensiva) a Bastião lhe concede?",
-        "Quem ou o que seus poderes deveriam proteger como prioridade?",
-        "Em emergência, como você usa sua defesa para mudar o rumo da luta?",
-        "Que tática emprega para maximizar a eficácia da sua proteção?"
+        "Como você usa ativamente a defesa para além da proteção passiva?",
+        "Que efeito secundário acompanha sua forma de proteção?",
+        "Que outra vantagem, além da proteção direta, sua mutação concede?",
+        "Quem ou o que seus poderes deveriam proteger como prioridade absoluta?",
+        "Em situação crítica, como você usa a defesa para mudar o curso da luta?",
+        "Que tática você emprega para maximizar a eficácia da proteção em campo?"
       ],
       "perguntas_fraqueza": [
-        "COMO SEUS PODERES DEFENSIVOS AFETAM SUA APARÊNCIA OU PRESENÇA?",
-        "Quais as implicações indesejáveis dessa proteção?",
-        "A que tipo de ataque sua defesa é mais suscetível?",
-        "Que traço de personalidade você desenvolveu por causa da necessidade de proteger?"
+        "COMO SUA FORMA DE PROTEÇÃO AFETA SUA APARÊNCIA, MOBILIDADE OU PRESENÇA?",
+        "Que implicações indesejadas vêm com esse poder defensivo?",
+        "A que tipo de ataque ou abordagem sua defesa é mais vulnerável?",
+        "Que traço de personalidade você desenvolveu por ser sempre quem protege?"
       ],
       "misterio_exemplos": [
-        "(Campo de força) “O que acontece quando eu paro de conter meu campo?”",
-        "(Pele de pedra) “Até onde vai minha dureza? Posso ficar mole?”",
-        "(Escudo coletivo) “Quem mais posso proteger sem me destruir?”"
+        "(Campo de força) O que acontece quando eu paro de conter meu campo — quem mais é afetado além de mim?",
+        "(Corpo endurecido) Meu corpo pode ficar tão duro que eu mesmo deixe de senti-lo por dentro?",
+        "(Escudo coletivo) Até onde posso expandir minha proteção sem me destruir no processo?"
       ],
       "melhorias": [
-        "Resistência Acumulada: Quando sofre dano da mesma categoria pela segunda vez na cena, crie uma condição temporária de proteção adaptada com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Proteção Reativa: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que envolva defesa ou resistência. Anote a resposta como nova tag neste tema. (Tag de outro tema – Bastião aprende defesa de outro tipo)",
-        "Cicatrizes Internas: Uma vez por sessão, ao receber uma condição de dano físico, remova um marcador de Quebra de um tema de Humanidade. (Remove Quebra)",
-        "Muro Inabalável: Enquanto protege ativamente um aliado, as condições físicas que você recebe têm grau reduzido em 2 (mínimo 1). (Especial)"
+        "Resistência Aprendida: Ao sofrer dano da mesma categoria pela segunda vez na mesma cena, crie uma condição temporária de proteção adaptada com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Defesa Composta: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que envolva resistência, campo ou estrutura física. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Cicatrizes Construtivas: Uma vez por sessão, ao receber uma condição física grave (grau 3 ou mais) enquanto protege um aliado declarado, remova um marcador de Quebra de um tema de Humanidade desse aliado ou do seu próprio. [Remove Quebra]",
+        "Muro Inabalável: Enquanto protege ativamente um aliado declarado no início da cena, condições físicas que você recebe têm grau reduzido em 2 (mínimo 1). [Especial]"
+      ]
+    },
+    {
+      "tipo": "Mutação",
+      "nome": "Conjuração",
+      "descricao": "Você traz à existência o que não estava lá. Não é ilusão — é criação. O que você conjura ocupa espaço, tem peso e age no mundo. A questão não é se vai existir. É por quanto tempo, e o que fará enquanto existe.",
+      "perguntas_poder": [
+        "QUE TIPO DE OBJETO, SER OU ENERGIA VOCÊ É CAPAZ DE TRAZER À EXISTÊNCIA?",
+        "Que categoria de criações você domina com segurança e controle total?",
+        "Qual é sua conjuração mais usada e por que ela é confiável?",
+        "Que condições ou estado emocional amplificam a qualidade das suas criações?",
+        "Em que situações a conjuração resolve o problema onde outros poderes falhariam?",
+        "Que propriedade defensiva suas criações têm naturalmente?",
+        "Que atitude ou crença define a relação entre você e o que você cria?",
+        "Que criaturas, entidades ou construtos você pode evocar além de objetos?",
+        "Que estratégia ou combinação de conjurações você usa em combate?",
+        "Como você usa suas criações para afetar aliados ou adversários indiretamente?"
+      ],
+      "perguntas_fraqueza": [
+        "DO QUE SUAS CONJURAÇÕES DEPENDEM PARA EXISTIR E PERSISTIR?",
+        "Que tipo de criação ainda está além do seu alcance ou controle?",
+        "O que perturba, dissolve ou reverte suas conjurações antes do tempo?",
+        "Que hábito ou impulso compulsivo você desenvolveu por criar demais?"
+      ],
+      "misterio_exemplos": [
+        "(Construtos de energia) As coisas que conjuro têm alguma forma de experiência ou são apenas matéria sem dentro?",
+        "(Evocador de criaturas) De onde vêm as criaturas que chamo — e elas ficam em algum lugar depois que as dispenso?",
+        "(Criador de armas) Existe um limite para o que posso criar, ou o limite sou eu mesmo?"
+      ],
+      "melhorias": [
+        "Criação Imediata: Uma vez por cena, conjure um objeto ou construto que impõe uma condição temporária a um alvo ou ao ambiente. O grau é igual ao número de tags deste tema. [Condição temporária]",
+        "Matéria Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a energia, forma ou controle. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Sacrifício Criativo: Uma vez por sessão, dissolva voluntariamente uma conjuração ativa para remover um marcador de Quebra de qualquer tema de Humanidade. O ato de deixar ir algo criado restaura o que estava quebrado. [Remove Quebra]",
+        "Permanência Declarada: Uma vez por arco, declare que uma conjuração é permanente em vez de temporária ou duradoura, sem custo de modificador adicional. O GM define as consequências narrativas. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Destino",
+      "descricao": "Você não vê o futuro porque seja clarividente. Você o sente porque seu X-Gene está sintonizado com a corrente do que vai acontecer — e às vezes, em vez de ler essa corrente, você consegue puxá-la.",
       "perguntas_poder": [
-        "QUE EVENTO FUTURO VOCÊ SENTE QUE É INEVITÁVEL PARA VOCÊ OU PARA O MUNDO?",
+        "QUE EVENTO FUTURO VOCÊ SENTE COMO INEVITÁVEL PARA VOCÊ OU PARA O MUNDO?",
         "Como você manipula probabilidades para aproximar um desfecho desejado?",
-        "Qual a manifestação específica mais comum do seu poder de destino?",
-        "Que circunstâncias ampliam sua conexão com o destino?",
-        "Em que situações você age por instinto, como se já soubesse o resultado?",
-        "Seus poderes de destino oferecem proteção contra o acaso ou manipulação?",
-        "Que emoção ou atitude está no cerne do seu destino?",
-        "Que tipo de presságio ou sinal você consegue produzir ou interpretar?",
-        "Que estratégia usa para forçar o destino a agir no combate?",
-        "Como impõe ou desvia destinos sobre outras pessoas?"
+        "Qual é a manifestação mais comum e confiável do seu poder de destino?",
+        "Em que circunstâncias a conexão com o que está por vir se intensifica?",
+        "Em que situações você age por instinto, como se o resultado já fosse dado?",
+        "Seus poderes oferecem proteção contra o acaso, o imprevisto ou a manipulação?",
+        "Que emoção ou convicção está no núcleo da sua relação com o destino?",
+        "Que tipo de presságio, sinal ou visão você consegue produzir ou interpretar?",
+        "Que estratégia você emprega para usar o destino como ferramenta em combate?",
+        "Como você age sobre o destino de outras pessoas — impondo ou desviando?"
       ],
       "perguntas_fraqueza": [
-        "SEUS PODERES DE DESTINO DEPENDEM DE QUÊ?",
-        "Que resultados são mais difíceis ou caros de se forçar?",
-        "O que atrapalha ou limita suas visões ou manipulações?",
-        "Que hábitos ruins você adquiriu por confiar demais no destino?"
+        "DO QUE SEUS PODERES DE DESTINO DEPENDEM PARA SE MANIFESTAR?",
+        "Que resultados são caros demais ou impossíveis de forçar?",
+        "O que perturba suas visões ou bloqueia sua conexão com o que está por vir?",
+        "Que hábito ou paralisia você desenvolveu por confiar demais no destino?"
       ],
       "misterio_exemplos": [
-        "(Predestinado) “Meu destino é uma prisão ou uma ferramenta?”",
-        "(Agente da Mudança) “Posso mudar o destino de outra pessoa, ou apenas o meu?”",
-        "(Vítima da Profecia) “Quem escreveu meu destino? Posso encontrá-lo?”"
+        "(Predestinado) Meu destino é uma ferramenta que uso — ou uma corrente que me usa?",
+        "(Agente da mudança) Posso realmente mudar o destino de outra pessoa, ou apenas o meu?",
+        "(Vítima da profecia) Quem escreveu o que está escrito sobre mim — e posso encontrá-lo?"
       ],
       "melhorias": [
-        "Presságio Iminente: Uma vez por cena, crie uma condição temporária de 'presságio' sobre oponente ou situação com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Fio do Destino: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a percepção ou previsão. Anote a resposta como nova tag neste tema. (Tag de outro tema – Destino empresta visão)",
-        "Fio de Volta: Uma vez por campanha, cancele uma Quebra que você sofreria em um tema de Humanidade e receba uma visão do destino. (Remove Quebra)",
-        "Inevitável: Uma vez por arco, declare que um evento está destinado a acontecer. O GM deve integrá-lo à narrativa, podendo ajustar o contexto, mas não negar o evento. (Especial)"
+        "Presságio em Campo: Uma vez por cena, declare um presságio sobre um oponente, aliado ou situação. Isso cria uma condição temporária com grau igual ao número de tags deste tema, representando o peso do que está por vir. [Condição temporária]",
+        "Fio Convergente: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a percepção, previsão ou tempo. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Reversão do Fio: Uma vez por campanha, cancele uma Quebra que você sofreria em um tema de Humanidade. Em troca, receba uma visão não solicitada sobre o arco atual — o GM decide o conteúdo. [Remove Quebra]",
+        "Inevitável: Uma vez por arco, declare que um evento específico está destinado a acontecer. O GM deve integrá-lo à narrativa do arco; pode ajustar o contexto, mas não pode negar o evento. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Adivinhação",
+      "descricao": "Você percebe o que não deveria ser perceptível: o passado de um objeto, a intenção por trás de uma mentira, o que vai acontecer na próxima esquina. Não é premonição — é leitura. Você aprendeu a interpretar um sinal que outros nem sabem que existe.",
       "perguntas_poder": [
-        "QUE TIPO DE INFORMAÇÃO SOBRE PASSADO, PRESENTE OU FUTURO VOCÊ PERCEBE?",
-        "Que método ou ritual você usa para acessar suas visões?",
-        "Qual aspecto da clarividência é mais útil em investigação?",
-        "Que condições ampliam a clareza ou alcance da sua adivinhação?",
+        "QUE TIPO DE INFORMAÇÃO SOBRE PASSADO, PRESENTE OU FUTURO VOCÊ É CAPAZ DE ACESSAR?",
+        "Que método, ritual ou estado você usa para ativar ou afinar suas visões?",
+        "Qual aspecto do seu dom é mais útil em investigação e coleta de informações?",
+        "Que condições ampliam a clareza, o alcance ou a profundidade da percepção?",
         "Em que situações você age como se já soubesse o que vai acontecer?",
-        "Sua adivinhação oferece proteção contra emboscadas ou armadilhas?",
-        "Que emoção ou atitude está no cerne do seu dom?",
-        "Que tipo de presságio ou símbolo você produz para alertar outros?",
-        "Que tática usa para obter vantagem em combate com previsão?",
-        "Como afeta outras pessoas com visões ou advertências?"
+        "Sua adivinhação oferece algum tipo de proteção contra emboscadas ou armadilhas?",
+        "Que emoção ou postura está no núcleo do seu dom?",
+        "Que tipo de alerta ou presságio você consegue produzir para avisar outros?",
+        "Que vantagem tática você extrai em combate a partir do que percebe antes dos outros?",
+        "Como suas visões e advertências afetam as pessoas ao redor?"
       ],
       "perguntas_fraqueza": [
-        "O QUE ACONTECE QUANDO SUA ADIVINHAÇÃO SE TORNA OPRESSORA?",
-        "O que pode atrapalhar ou bloquear sua capacidade de ver?",
-        "O que está além do alcance da sua adivinhação?",
-        "Do que você precisa para ativar seus dons?"
+        "O QUE ACONTECE QUANDO SUA PERCEPÇÃO SE TORNA OPRESSIVA OU INVOLUNTÁRIA?",
+        "O que pode bloquear, distorcer ou silenciar completamente o seu dom?",
+        "O que permanece fora do seu alcance, independente do esforço?",
+        "Do que você depende para ativar ou controlar o poder conscientemente?"
       ],
       "misterio_exemplos": [
-        "(Vidente) “Por que algumas visões são mais claras que outras?”",
-        "(Leitor de mentes) “As mentes que eu leio me afetam de volta?”",
-        "(Precog) “O futuro é múltiplo ou eu apenas escolho um caminho?”"
+        "(Vidente) Por que algumas visões chegam com clareza perfeita e outras chegam quebradas?",
+        "(Telepata) As mentes que leio deixam alguma parte delas dentro de mim?",
+        "(Precog) O futuro que vejo é o único possível ou apenas o mais provável daquele momento?"
       ],
       "melhorias": [
-        "Sobrecarga Sensorial: Ao ler uma pessoa ou cena, crie uma condição temporária nela ou em si com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento ou informação. Anote a resposta como nova tag neste tema. (Tag de outro tema – Adivinhação acessa outro saber)",
-        "Clareza Interior: Uma vez por sessão, ao falhar em um teste social que geraria Quebra, transforme a falha em sucesso parcial e evite a Quebra. (Remove Quebra)",
-        "Varredura Ampla: Uma vez por sessão, expanda sua percepção para cobrir um raio amplo. Faça até 3 perguntas factuais sobre o que acontece na área. (Especial)"
+        "Sobrecarga Reveladora: Ao usar seu dom para ler uma pessoa ou cena, crie uma condição temporária nela ou em si mesmo com grau igual ao número de tags deste tema, representando o peso da informação recebida. [Condição temporária]",
+        "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento, percepção ou rastreamento. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Clareza no Fracasso: Uma vez por sessão, ao falhar em um teste social ou de informação que geraria Quebra, trate o resultado como sucesso parcial em vez de falha e evite a Quebra. [Remove Quebra]",
+        "Varredura Ampla: Uma vez por sessão, expanda a percepção para cobrir um raio amplo (instalação, campo de batalha, quarteirão). Faça até 3 perguntas factuais sobre o que acontece nessa área agora. O GM responde todas com honestidade. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Enclave",
+      "descricao": "Seu X-Gene não foi feito para operar sozinho. O poder que você carrega só faz sentido completo dentro de uma rede — e essa rede, ao mesmo tempo que te fortalece, define onde você termina e onde os outros começam.",
       "perguntas_poder": [
         "COMO A CONEXÃO COM O ENCLAVE AUMENTA SEU PODER INDIVIDUAL?",
-        "Que habilidade ou recurso específico você acessa por ser parte do enclave?",
-        "Qual a manifestação característica do poder coletivo do enclave?",
-        "Que condições ou rituais fortalecem o vínculo do enclave?",
-        "Em que situações o enclave age como um só organismo?",
-        "O enclave oferece proteção contra ameaças externas?",
-        "Que valor ou propósito central une o enclave?",
-        "Que tipo de ser, espírito ou conceito o enclave produz ou convoca?",
-        "Que estratégia ou formação o enclave usa na batalha?",
-        "Como o enclave fortalece ou enfraquece membros específicos?"
+        "Que habilidade ou recurso específico você acessa por pertencer ao enclave?",
+        "Qual é a manifestação mais reconhecível do poder coletivo do enclave?",
+        "Que condições ou rituais fortalecem o vínculo entre os membros?",
+        "Em que situações o enclave age como um organismo único e coordenado?",
+        "O enclave oferece proteção contra ameaças que você não poderia enfrentar sozinho?",
+        "Que valor ou propósito central une o enclave além da sobrevivência?",
+        "Que tipo de ser, espírito ou construto coletivo o enclave produz ou convoca?",
+        "Que estratégia ou formação o enclave emprega em batalha?",
+        "Como o enclave pode fortalecer ou neutralizar membros específicos quando necessário?"
       ],
       "perguntas_fraqueza": [
-        "DO QUE O ENCLAVE DEPENDE PARA SE MANTER COESO?",
-        "Que tipo de conflito interno é mais difícil de superar?",
-        "O que atrapalha ou limita a ação coordenada do enclave?",
-        "Que hábito ou dinâmica tóxica o enclave desenvolveu?"
+        "DO QUE O ENCLAVE DEPENDE PARA SE MANTER COESO E FUNCIONAL?",
+        "Que tipo de conflito interno é mais difícil de superar sem fraturar o grupo?",
+        "O que perturba ou impossibilita a ação coordenada do enclave?",
+        "Que dinâmica tóxica o enclave desenvolveu que ninguém quer nomear?"
       ],
       "misterio_exemplos": [
-        "(Líder de Enclave) “O enclave me serve ou eu sirvo ao enclave?”",
-        "(Mutante Coletivo) “Onde termina minha identidade e começa a do grupo?”",
-        "(Fugitivo do Enclave) “O enclave ainda controla alguma parte de mim?”"
+        "(Líder de enclave) O enclave me serve — ou eu sirvo ao enclave? E consigo distinguir os dois?",
+        "(Mutante coletivo) Onde termina minha identidade e começa a identidade do grupo?",
+        "(Fugitivo do enclave) O enclave ainda controla alguma parte de mim mesmo à distância?"
       ],
       "melhorias": [
-        "Conexão Coletiva: Uma vez por cena, crie uma condição temporária compartilhada entre membros do enclave presentes, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Simbionte: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder emprestado ou inspirado por outro membro do enclave. Anote a resposta como nova tag neste tema. (Tag de outro tema – Enclave compartilha mutação)",
-        "Vínculo de Confiança: Uma vez por arco, quando um membro do enclave sofreria uma Quebra, você pode absorvê-la (com aprovação do jogador) e transformá-la em tag temporária para o grupo. (Remove Quebra)",
-        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos, cada participante adicional contribui com +1 AP ao total (máximo +3). (Especial)"
+        "Pulso Coletivo: Uma vez por cena, crie uma condição temporária compartilhada entre os membros do enclave presentes na cena, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Poder Emprestado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente uma habilidade que outro membro do enclave possui. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Absorção de Ruptura: Uma vez por arco, quando um membro do enclave sofreria uma Quebra, você pode absorvê-la voluntariamente com aprovação do jogador. A Quebra é removida do aliado; você ganha uma condição temporária representando a tensão absorvida, mas não marca Quebra. [Remove Quebra]",
+        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos na mesma ação, cada participante adicional contribui com +1 AP ao total (máximo +3 adicional). [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Expressão",
+      "descricao": "Seu X-Gene não ficou guardado — saiu. Cada uso é uma declaração do que você é, do que pode fazer, de quanto isso custa ao mundo ao seu redor. Controle não é segurar o poder. É escolher onde ele vai.",
       "perguntas_poder": [
-        "QUAL É A FORMA MAIS COMUM DE SEU PODER SE EXPRESSAR NO MUNDO?",
-        "Que efeito reverso você pode exercer?",
-        "Qual característica do seu poder é mais útil em combate?",
-        "Que condições ou situações amplificam sua expressão?",
-        "Contra que tipo de alvo seu poder é mais eficaz?",
-        "Que variantes ou usos específicos da forma principal você domina?",
-        "Que outra forma de expressão (não relacionada) você tem?",
-        "Que truques ou manobras especiais pode fazer com seu poder?",
-        "Que atitude adota ao usar seu poder?",
-        "Como usa seu poder para se proteger de efeitos semelhantes?"
+        "QUAL É A FORMA MAIS COMUM E RECONHECÍVEL DE SEU PODER SE MANIFESTAR?",
+        "Que efeito reverso ou contrário você pode exercer com o mesmo poder?",
+        "Qual característica da sua expressão é mais útil em confronto direto?",
+        "Que condições ou estado emocional amplificam a intensidade da manifestação?",
+        "Contra que tipo de alvo ou estrutura seu poder é naturalmente mais eficaz?",
+        "Que variantes ou aplicações específicas da forma principal você domina?",
+        "Que outra forma de expressão, não relacionada à principal, você desenvolveu?",
+        "Que manobras ou usos não óbvios do poder você descobriu com experiência?",
+        "Que atitude você adota ao usar o poder — precisão clínica, arte ou fúria?",
+        "Como você usa a expressão para se proteger de efeitos de natureza semelhante?"
       ],
       "perguntas_fraqueza": [
-        "QUE CONDIÇÕES OU SITUAÇÕES ENFRAQUECEM OU SUPRIMEM SUA EXPRESSÃO?",
-        "Que alvos são imunes ou resistentes ao seu poder?",
-        "O que acontece quando você perde o controle sobre seu poder?",
-        "Quais as repercussões de trazer seu poder ao mundo (dano colateral, marcas)?"
+        "QUE CONDIÇÕES OU CIRCUNSTÂNCIAS SUPRIMEM OU ENFRAQUECEM SUA EXPRESSÃO?",
+        "Que alvos ou estruturas são imunes ou resistentes ao seu poder?",
+        "O que acontece quando você perde o controle — o que vaza ou explode?",
+        "Que rastro, marca ou dano colateral a manifestação inevitavelmente deixa?"
       ],
       "misterio_exemplos": [
-        "(Controle de fogo) “O fogo que eu crio tem vontade própria?”",
-        "(Força sobre-humana) “Até onde vai minha força antes de quebrar algo em mim?”",
-        "(Manipulação emocional) “As emoções que eu inspiro são reais ou apenas um eco?”"
+        "(Controle de fogo) O fogo que crio tem alguma vontade própria quando fico inconsciente?",
+        "(Força sobre-humana) Até onde vai a força antes de quebrar algo que não consigo consertar?",
+        "(Manipulação emocional) As emoções que inspiro são genuínas ou apenas eco do meu poder?"
       ],
       "melhorias": [
-        "Manifestação Residual: Ao usar seu poder, deixe uma condição temporária no ambiente ou alvo com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Estilo Adaptado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a alcance, forma ou controle. Anote a resposta como nova tag neste tema. (Tag de outro tema – Expressão aprende nova forma)",
-        "Expressão Catártica: Uma vez por sessão, ao usar sua mutação de forma intensa e emocional, remova um marcador de Quebra de um tema de Humanidade. (Remove Quebra)",
-        "Descarga Total: Quando gastar três ou mais tags deste tema em uma ação bem-sucedida, os RAPs são iguais ao EV total. Uma vez por cena. (Especial)"
+        "Rastro de Manifestação: Ao usar o poder, deixe uma condição temporária no ambiente ou alvo com grau igual ao número de tags deste tema, representando o resíduo físico, energético ou emocional do uso. [Condição temporária]",
+        "Forma Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a alcance, área ou controle. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Catarse: Uma vez por sessão, ao usar a mutação de forma intensa em momento narrativamente significativo, remova um marcador de Quebra de um tema de Humanidade. O ato de expressar restaura o que estava reprimido. [Remove Quebra]",
+        "Descarga Total: Ao gastar três ou mais tags deste tema em uma única ação bem-sucedida, os RAPs são iguais ao EV total sem rolagem. Pode ser usado uma vez por cena. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Familiar",
+      "descricao": "Uma parte de você existe fora de você. Não é ferramenta — é extensão. O que acontece com o familiar acontece com a relação entre vocês, e essa relação é tão real quanto qualquer poder que você carrega.",
       "perguntas_poder": [
-        "QUE TIPO DE SER É SEU FAMILIAR?",
-        "Qual a principal habilidade útil que seu familiar possui?",
-        "Que característica específica torna seu familiar único?",
-        "Em que circunstâncias o familiar é mais eficaz?",
-        "Como você usa o familiar para soluções rápidas?",
-        "Seu familiar oferece proteção contra perigos específicos?",
-        "Que atitude ou emoção define a relação entre vocês?",
-        "Que outras criaturas ou espíritos seu familiar pode invocar ou atrair?",
-        "Que estratégia emprega em combate com o familiar?",
-        "Como o familiar ajuda a fortalecer ou enfraquecer outros?"
+        "QUE TIPO DE SER É SEU FAMILIAR — ANIMAL, CONSTRUTO, ESPECTRO OU OUTRA COISA?",
+        "Qual a principal habilidade útil que o familiar possui além de simplesmente existir?",
+        "Que característica específica torna esse familiar diferente de qualquer outro de seu tipo?",
+        "Em que circunstâncias ou ambientes o familiar opera com mais eficiência?",
+        "Como você usa o familiar para soluções rápidas em situações cotidianas ou urgentes?",
+        "Seu familiar oferece proteção contra algum tipo específico de perigo?",
+        "Que atitude ou emoção define a relação entre vocês no cotidiano?",
+        "Que outras criaturas, entidades ou espíritos o familiar pode invocar ou atrair?",
+        "Que estratégia você emprega em campo usando o familiar?",
+        "Como o familiar ajuda a fortalecer aliados ou fragilizar adversários?"
       ],
       "perguntas_fraqueza": [
-        "DO QUE O FAMILIAR DEPENDE PARA AGIR?",
-        "Que resultados ou missões são mais difíceis para o familiar executar?",
-        "O que atrapalha ou limita as ações do familiar?",
-        "Que hábito ou traço do familiar te deixa em apuros?"
+        "DO QUE O FAMILIAR DEPENDE PARA AGIR COM PLENA CAPACIDADE?",
+        "Que tipos de missão ou situação são mais difíceis para o familiar executar?",
+        "O que perturba, paralisa ou corrompe as ações do familiar?",
+        "Que hábito, impulso ou traço do familiar te coloca em situações inconvenientes?"
       ],
       "misterio_exemplos": [
-        "(Familiar animal) “O familiar é um espírito ou um animal de verdade?”",
-        "(Espectro vinculado) “O que mantém o familiar preso a mim?”",
-        "(Constructo) “Posso criar outro familiar se este for destruído?”"
+        "(Familiar animal) O familiar é genuinamente um animal ou um espírito que escolheu essa forma?",
+        "(Espectro vinculado) O que mantém o familiar preso a mim — e o que acontece se esse vínculo se romper?",
+        "(Construto) Se este familiar for destruído, o próximo que criar será o mesmo ou algo diferente?"
       ],
       "melhorias": [
-        "Marca do Familiar: Uma vez por cena, o familiar pode impor uma condição temporária em um alvo igual ao número de tags deste tema. (Condição temporária)",
-        "Essência Compartilhada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita ou transfere. Anote a resposta como nova tag neste tema. (Tag de outro tema – Familiar empresta poder)",
-        "Elo Empático: Uma vez por sessão, transfira uma Quebra que sofreu para o familiar. Ele fica abalado por uma cena, mas depois se recupera. (Remove Quebra)",
-        "Extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente, mas não pode reutilizar a mesma tag no mesmo turno que o personagem. (Especial)"
+        "Marca do Familiar: Uma vez por cena, o familiar pode impor uma condição temporária a um alvo ou área com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Essência Transferida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita, canaliza ou transfere. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Elo Empático: Uma vez por sessão, transfira uma Quebra que você sofreria para o familiar. Ele fica incapacitado por uma cena e depois se recupera; a Quebra não é marcada no seu tema. [Remove Quebra]",
+        "Extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente — mas não pode usar a mesma tag no mesmo turno que o personagem já a usou. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Mobilidade",
+      "descricao": "O espaço é uma pergunta. Você respondeu. Paredes, distâncias, gravidade — são restrições que se aplicam a outros. Você há muito tempo aprendeu que outros não incluía você.",
       "perguntas_poder": [
-        "QUAL É SUA PRINCIPAL FORMA DE SE DESLOCAR?",
-        "Como você atinge sua velocidade máxima ou ultrapassa obstáculos?",
-        "O que permite que você evite restrições ou confinamentos?",
-        "Que movimento secundário você aprendeu a usar?",
-        "Que estilo ou técnica de movimento você domina?",
-        "Que efeitos prejudiciais sua mobilidade permite evitar?",
-        "Como usa sua mobilidade para ganhar vantagem em combate?",
-        "O que permite que você mova outras pessoas?",
-        "Como pode usar seus poderes para conter o movimento dos outros?",
-        "Sua mobilidade dá acesso a que recurso especial?"
+        "QUAL É SUA PRINCIPAL FORMA DE SE DESLOCAR — VOO, TELEPORTE, VELOCIDADE OU OUTRA?",
+        "Como você atinge velocidade máxima ou ultrapassa obstáculos físicos?",
+        "O que permite que você evite restrições, contenções ou confinamentos?",
+        "Que forma secundária de movimento você desenvolveu além da principal?",
+        "Que estilo, técnica ou acrobacia de movimento você domina?",
+        "Que efeitos prejudiciais sua mobilidade permite evitar ou anular?",
+        "Como você usa o deslocamento para ganhar vantagem tática em combate?",
+        "O que permite que você mova aliados junto com você quando necessário?",
+        "Como você pode usar seu poder para limitar ou conter o movimento de outros?",
+        "Que acesso especial ou recurso sua mobilidade dá que nenhum outro poder daria?"
       ],
       "perguntas_fraqueza": [
-        "O QUE PODE ATRASAR OU IMPEDIR SEU MOVIMENTO?",
-        "O que acontece quando você vai rápido demais ou longe demais?",
-        "O que acontece quando você é pego ou contido?",
-        "Que evidência residual seu movimento deixa (rastros, sons, marcas)?"
+        "O QUE PODE ATRASAR, BLOQUEAR OU ANULAR COMPLETAMENTE SEU MOVIMENTO?",
+        "O que acontece quando você vai rápido demais ou longe demais sem ancoragem?",
+        "O que acontece quando você é pego, contido ou impedido de se mover?",
+        "Que rastro, evidência ou marca residual seu deslocamento inevitavelmente deixa?"
       ],
       "misterio_exemplos": [
-        "(Teleporte) “Existe algum lugar onde eu não possa me teletransportar?”",
-        "(Supervelocidade) “O tempo passa mais devagar para mim ou eu apenas me movo rápido?”",
-        "(Voo) “O que me sustenta no ar? Posso cair？”"
+        "(Teleporte) Existe algum lugar onde não posso ir — e por que esse lugar especificamente?",
+        "(Supervelocidade) O tempo passa mais devagar para mim ou eu simplesmente me movo fora do ritmo de todos?",
+        "(Voo) O que me sustenta no ar — e o que acontece se aquilo parar?"
       ],
       "melhorias": [
-        "Rastro Cinético: Quando se move, deixe uma condição temporária de perturbação no espaço percorrido, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Manobra Evasiva: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag neste tema. (Tag de outro tema – Mobilidade aprende esquiva)",
-        "Fuga Transformadora: Uma vez por sessão, ao evitar uma situação que forçaria uma Quebra, use sua mobilidade para escapar e remover a Quebra iminente. (Remove Quebra)",
-        "Primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros. (Especial)"
+        "Rastro Cinético: Ao se mover de forma significativa em campo, deixe uma condição temporária de perturbação no espaço percorrido com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Manobra Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Fuga Transformadora: Uma vez por sessão, ao usar a mobilidade para escapar de situação que forçaria uma Quebra, declare que conseguiu sair a tempo — a Quebra não é marcada. [Remove Quebra]",
+        "Primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros sem precisar declarar intenção. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Relíquia",
+      "descricao": "O poder não vive apenas em você — vive no objeto. Ou talvez viva em ambos, e nenhum de vocês funciona completamente sem o outro. O que você tem em mãos é mais do que ferramenta: é parceria, herança e, possivelmente, armadilha.",
       "perguntas_poder": [
-        "QUAL É A FUNÇÃO PRINCIPAL DA RELÍQUIA?",
-        "Cite outra maneira de usar a relíquia que não seja a óbvia.",
-        "Qual qualidade útil essencial está no cerne da relíquia?",
-        "Quais os atributos cosméticos ou estéticos da relíquia?",
-        "Outra característica, peça ou item complementar da relíquia?",
-        "Que revelação ou conhecimento vem com o uso da relíquia?",
-        "O que ou quem a relíquia foi projetada para afetar prioritariamente?",
-        "O que você aprendeu com a relíquia (habilidades, conhecimentos)?",
-        "O que acontece quando explora a força total da relíquia?",
-        "Que aspecto ou elemento da relíquia você ainda está desbloqueando?"
+        "QUAL É A FUNÇÃO PRINCIPAL DA RELÍQUIA — ARMA, ESCUDO, CATALISADOR OU OUTRA COISA?",
+        "Que outro uso a relíquia tem que não é o óbvio?",
+        "Que qualidade essencial está no núcleo do que ela pode fazer?",
+        "Que atributo cosmético, estético ou histórico define a aparência da relíquia?",
+        "Que outra peça, componente ou item complementar a relíquia possui?",
+        "Que revelação, conhecimento ou sensação vem com o uso da relíquia?",
+        "O que ou quem a relíquia foi originalmente criada para afetar?",
+        "O que você aprendeu — habilidades, perspectivas, histórias — por carregar a relíquia?",
+        "O que acontece quando você explora a força total dela sem limitações?",
+        "Que aspecto ou capacidade da relíquia você ainda está aprendendo a acessar?"
       ],
       "perguntas_fraqueza": [
-        "QUAL É A DEFICIÊNCIA MAIS PROBLEMÁTICA DA SUA RELÍQUIA?",
-        "O que pode interferir nos poderes da relíquia?",
-        "O que pode danificar ou destruir sua relíquia?",
-        "Que mudança para pior a relíquia provocou em você?"
+        "QUAL É A FALHA MAIS PROBLEMÁTICA DA SUA RELÍQUIA?",
+        "O que pode interferir, suprimir ou inverter os poderes da relíquia?",
+        "O que pode danificar, destruir ou separar você permanentemente da relíquia?",
+        "Que mudança para pior — em comportamento, perspectiva ou relações — a relíquia provocou em você?"
       ],
       "misterio_exemplos": [
-        "(Arma ancestral) “De onde veio realmente esse poder?”",
-        "(Amuleto de família) “O que meus antepassados sacrificaram para criar isso?”",
-        "(Relíquia corrompida) “A relíquia está me controlando ou eu a controlo?”"
+        "(Arma ancestral) De onde veio esse poder realmente — e quem mais já o carregou antes de mim?",
+        "(Amuleto de família) O que meus antepassados sacrificaram para criar este objeto — e eles cobram isso de mim?",
+        "(Relíquia corrompida) A relíquia está me usando ou sou eu que a uso — e essa distinção ainda muda alguma coisa?"
       ],
       "melhorias": [
-        "Marca do Artefato: Uma vez por cena, a relíquia pode impor uma condição temporária em um alvo igual ao número de tags deste tema. (Condição temporária)",
-        "Eco do Legado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder armazenado ou despertado pela relíquia. Anote a resposta como nova tag neste tema. (Tag de outro tema – Relíquia manifesta poder de outro tipo)",
-        "Herança Redentora: Uma vez por campanha, a relíquia pode absorver uma Quebra que você sofreria. A Quebra não é marcada. (Remove Quebra)",
-        "Amplificação: Quando usar a relíquia em conjunto com outra tag deste tema, o grau combinado das duas tags é aumentado em +2. (Especial)"
+        "Marca do Artefato: Uma vez por cena, a relíquia pode impor uma condição temporária em um alvo com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Eco do Legado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder armazenado, despertado ou revelado pela relíquia. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Herança Redentora: Uma vez por campanha, a relíquia absorve uma Quebra que você sofreria. A Quebra não é marcada; a relíquia mostra um sinal visível de desgaste ou transformação. [Remove Quebra]",
+        "Amplificação: Quando usa a relíquia em conjunto com outra tag deste tema na mesma ação, o grau combinado das duas tags é aumentado em +2 além da soma normal. [Especial]"
       ]
     },
     {
       "tipo": "Mutação",
       "nome": "Subversão",
+      "descricao": "Você não joga o jogo deles. Você muda as regras enquanto todos ainda acham que estão jogando o mesmo jogo. A invisibilidade não precisa ser literal para ser completa.",
       "perguntas_poder": [
-        "QUAL É SUA PRINCIPAL HABILIDADE PARA ENGANAR, ILUDIR OU AGIR ÀS ESCONDIDAS?",
-        "Como você usa seus poderes para distrair ou confundir os outros?",
-        "Qual característica do seu engano é mais útil?",
-        "O que você faz de melhor quando usa subterfúgio?",
-        "Que tipo de alvo tem mais chance de cair no seu engodo?",
-        "Como suas operações secretas rendem informações?",
-        "Quem ou o que ajuda nas suas tramoias?",
-        "O que tem poucas chances de afetar você graças aos seus poderes?",
-        "Que circunstâncias melhoram sua capacidade de agir sem ser detectado?",
-        "Que poderes secundários de subversão você desenvolveu?"
+        "QUAL É SUA PRINCIPAL HABILIDADE PARA ENGANAR, ILUDIR OU AGIR SEM SER PERCEBIDO?",
+        "Como você usa seus poderes para distrair, confundir ou desorientar adversários?",
+        "Que característica do seu engano é mais difícil de detectar ou reverter?",
+        "O que você faz com mais eficácia quando ninguém está prestando atenção em você?",
+        "Que tipo de alvo ou perfil tem mais facilidade de cair na sua abordagem?",
+        "Como suas operações nas sombras geram informação que você não teria de outra forma?",
+        "Quem ou o que te ajuda nas situações que exigem colaboração discreta?",
+        "Contra que tipos de detecção, análise ou contra-inteligência você é resistente?",
+        "Que condições ambientais ou contextuais amplificam sua capacidade de agir sem ser notado?",
+        "Que poderes ou habilidades secundárias você desenvolveu além da subversão principal?"
       ],
       "perguntas_fraqueza": [
-        "O QUE PODERIA EXPOR SUAS ATIVIDADES?",
-        "O que é revelado quando você é desmascarado?",
-        "De quem você está se escondendo ativamente?",
-        "Que tendências psicológicas desvantajosas você desenvolveu nas sombras?"
+        "O QUE PODERIA EXPOR SUAS OPERAÇÕES OU REVELAR SUA PRESENÇA?",
+        "O que é revelado sobre você quando o disfarce cai — o que não pode mais ser escondido?",
+        "De quem ou do quê você está ativamente se escondendo fora das missões?",
+        "Que tendência psicológica você desenvolveu por operar tanto tempo nas sombras?"
       ],
       "misterio_exemplos": [
-        "(Ilusionista) “Minhas ilusões podem se tornar reais se eu tentar?”",
-        "(Invisibilidade) “Eu realmente desapareço ou apenas engano a percepção?”",
-        "(Manipulador) “Manipular os outros me impede de me conectar de verdade?”"
+        "(Ilusionista) Minhas ilusões poderiam se tornar reais se eu acreditasse nelas o suficiente?",
+        "(Invisibilidade) Eu realmente desapareço ou apenas convenço o mundo de que desapareci?",
+        "(Manipulador) Manipular os outros me tornou incapaz de me conectar de forma genuína?"
       ],
       "melhorias": [
-        "Ilusão Persistente: Uma vez por cena, crie uma condição temporária ilusória em um alvo ou área com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Disfarce Adaptativo: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a furtividade, ilusão ou manipulação. Anote a resposta como nova tag neste tema. (Tag de outro tema – Subversão copia truque)",
-        "Máscara de Normalidade: Uma vez por sessão, quando estiver prestes a agir contra sua Identidade, crie uma ilusão convincente de que agiu conforme esperado, evitando a Quebra. (Remove Quebra)",
-        "Inversão: Uma vez por cena, converta uma condição negativa que você sofreu em vantagem para uma única ação. (Especial)"
+        "Ilusão Persistente: Uma vez por cena, crie uma condição temporária ilusória em um alvo ou área com grau igual ao número de tags deste tema, representando confusão, desorientação ou falsa crença. [Condição temporária]",
+        "Disfarce Aprendido: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a furtividade, manipulação ou informação. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Máscara de Normalidade: Uma vez por sessão, quando estiver prestes a agir contra sua Identidade de Humanidade, crie a aparência convincente de que agiu conforme esperado. A Quebra não é marcada; o custo emocional fica para depois. [Remove Quebra]",
+        "Inversão: Uma vez por cena, converta uma condição negativa que você sofreu em vantagem declarada para uma única ação — o que tentaram usar contra você se torna a ferramenta. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Evento Marcante",
+      "descricao": "Há um antes e um depois. O evento não foi a origem dos seus poderes — foi a origem de como você os usa, do que você recusa fazer com eles, e do que não consegue parar de tentar consertar.",
       "perguntas_poder": [
-        "QUE EMOÇÃO INTENSA O EVENTO DESPERTOU EM VOCÊ QUE AGORA É UMA FERRAMENTA?",
-        "Que parte do seu antigo eu, embora alterada, ainda é útil?",
-        "Que objeto mundano e útil você obteve durante o evento e mantém até hoje?",
-        "Que autoridade ou posição você recebeu durante ou depois do evento?",
-        "Com quem você passou a se relacionar após o evento?",
-        "Que perícia ou habilidade mundana você adquiriu por causa do evento?",
-        "Que conhecimento você passou a ter acesso graças ao evento?",
-        "Como você passou a levar a vida após o evento?",
-        "Que mudança física ou melhoria resultou do evento?",
-        "Como as pessoas tratam você por causa desse evento?"
+        "QUE EMOÇÃO INTENSA O EVENTO DESPERTOU QUE AGORA FUNCIONA COMO FERRAMENTA?",
+        "Que parte do que você era antes, transformada, ainda é útil hoje?",
+        "Que objeto, contato ou recurso você mantém desde então?",
+        "Que autoridade, papel ou posição você recebeu como consequência do evento?",
+        "Com quem você passou a se relacionar de forma significativa por causa do evento?",
+        "Que habilidade ou conhecimento você adquiriu por ter passado por isso?",
+        "Que acesso — a informação, locais ou redes — o evento abriu para você?",
+        "Como sua forma de encarar a vida mudou a partir do evento?",
+        "Que mudança física, psicológica ou de postura resultou do evento?",
+        "Como as pessoas que sabem do evento te tratam por causa dele?"
       ],
       "perguntas_fraqueza": [
-        "QUE CICATRIZES OU BAGAGEM EMOCIONAL O EVENTO DEIXOU?",
-        "Com que responsabilidade ou fardo social você tem que arcar depois disso?",
-        "Quem ou o que assombra você por causa do evento?",
-        "O que se quebrou dentro de você (física ou mentalmente) por causa do evento?"
+        "QUE CICATRIZES OU BAGAGEM EMOCIONAL O EVENTO DEIXOU ATIVAS HOJE?",
+        "Que responsabilidade ou fardo o evento criou que você não escolheu carregar?",
+        "Quem ou o que assombra você como consequência direta do evento?",
+        "O que se quebrou dentro de você — física, emocional ou psicologicamente — por causa disso?"
       ],
       "identidade_exemplos": [
-        "(Sobrevivente) “Nunca mais vou ser vítima.”",
-        "(Trauma de combate) “O barulho alto me lembra que estou vivo.”",
-        "(Redenção) “Preciso compensar o que fiz.”"
+        "(Sobrevivente) Nunca mais vou ser vítima — e nunca mais vou deixar alguém estar no lugar em que estive.",
+        "(Trauma de combate) Meu corpo sabe que sobreviveu. Minha cabeça ainda está decidindo se isso foi bom.",
+        "(Redenção) Preciso compensar o que fiz — e sei que talvez nunca seja suficiente."
       ],
       "melhorias": [
-        "Cicatriz Emocional: Uma vez por cena, crie uma condição temporária baseada na emoção do evento, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Lição Internalizada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade (exceto este) que represente habilidade ou conhecimento adquirido com o evento. Anote como nova tag neste tema. (Tag de outro tema – Evento ensina algo novo)",
-        "Lição Aprendida: Uma vez por sessão, quando uma Quebra estiver prestes a ser marcada neste tema, você pode, em vez disso, reforçar sua identidade e remover uma Quebra existente. (Remove Quebra)",
-        "Não de Novo: Em circunstância muito similar ao evento, você age primeiro dentro da cena. (Especial)"
+        "Cicatriz Ativa: Uma vez por cena, ao identificar paralelo direto com o evento, crie uma condição temporária baseada na emoção central com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Lição Internalizada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou conhecimento adquirido especificamente por causa do evento. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Perspectiva do Sobrevivente: Uma vez por sessão, quando uma Quebra estiver prestes a ser marcada neste tema, fortaleça a identidade em vez de quebrá-la — remova uma Quebra existente de qualquer tema de Humanidade. [Remove Quebra]",
+        "Não de Novo: Em circunstância muito similar ao evento, você age em primeiro lugar dentro da cena — o corpo sabe o que fazer antes da mente processar. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Relação Marcante",
+      "descricao": "Esta pessoa não é pano de fundo. É a razão pela qual alguns limites existem e outros não existem. A relação não te define — mas define o que você não consegue deixar para trás.",
       "perguntas_poder": [
-        "POR QUE ESSE RELACIONAMENTO É TÃO IMPORTANTE PARA VOCÊ?",
-        "Cite uma qualidade ou habilidade útil que a outra pessoa pode usar para te ajudar.",
-        "O que você foi forçado a aprender por causa dessa relação?",
-        "Estar perto dessa pessoa te deixa como?",
-        "Quando você pede ajuda, quem atende o chamado?",
-        "Que dom, herança ou ferramenta você ganhou dessa relação?",
-        "Para lidar com eles, você precisa ser/estar como?",
-        "Defina uma atividade que vocês compartilham.",
-        "O que lhe ajuda a proteger esse relacionamento?",
-        "Onde vocês passam tempo juntos?"
+        "POR QUE ESSE RELACIONAMENTO É INSUBSTITUÍVEL PARA VOCÊ?",
+        "Que habilidade, conhecimento ou recurso específico essa pessoa pode oferecer quando você precisa?",
+        "O que você foi forçado a aprender sobre si mesmo por causa dessa relação?",
+        "Estar perto dessa pessoa te deixa como — confiante, em alerta, em paz ou inquieto?",
+        "Quando você pede ajuda de verdade, quem atende?",
+        "Que dom, ferramenta, oportunidade ou perspectiva essa relação te deu?",
+        "Para manter essa relação funcional, você precisa ser ou estar como?",
+        "Que atividade, ritual ou hábito vocês compartilham que pertence só a vocês dois?",
+        "O que você faz para proteger essa relação quando ela é ameaçada?",
+        "Onde e como vocês passam tempo juntos?"
       ],
       "perguntas_fraqueza": [
-        "COMO ESSE RELACIONAMENTO PODE SER ROMPIDO OU PREJUDICADO?",
-        "Que efeito negativo essa relação tem em você?",
-        "Contra quem ou o que você compete por atenção ou tempo?",
-        "Sob que circunstâncias seu relacionamento não seria capaz de lhe ajudar?"
+        "COMO ESSA RELAÇÃO PODE SER ROMPIDA, ENVENENADA OU DESTRUÍDA?",
+        "Que efeito negativo essa relação produz em você — dependência, cegueira, vulnerabilidade?",
+        "Por quem ou pelo quê você compete, mesmo que não admita, pela atenção ou presença dessa pessoa?",
+        "Em que circunstâncias essa pessoa simplesmente não consegue te ajudar?"
       ],
       "identidade_exemplos": [
-        "(Melhor amigo) “Eu não teria sobrevivido sem ele.”",
-        "(Rival) “Ele me empurra para ser melhor, mesmo que eu odeie admitir.”",
-        "(Família disfuncional) “Sangue é mais grosso que água, não importa o que façam.”"
+        "(Parceria) Eu não teria sobrevivido a isso. Essa é a verdade simples.",
+        "(Rivalidade) Ela me empurra para ser melhor — e eu odeio o quanto preciso disso.",
+        "(Família difícil) Não importa o que façam. Sangue é mais espesso que qualquer coisa que já enfrentei."
       ],
       "melhorias": [
-        "Apoio Incondicional: Uma vez por cena, a outra pessoa pode lhe conceder uma condição temporária de confiança ou motivação com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Aprendizado Mútuo: Responda a uma pergunta de tag de poder de qualquer tema (Mutação ou Humanidade) que represente algo que você aprendeu com essa relação. Anote como nova tag neste tema. (Tag de outro tema – Relação ensina nova capacidade)",
-        "Presença Reconfortante: Uma vez por sessão, a presença ou lembrança desse personagem remove uma condição mental/emocional de grau ≤ 3 ou remove uma Quebra de um tema de Humanidade. (Remove Quebra)",
-        "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, use tags sem gastá-las — elas permanecem para o turno seguinte. (Especial)"
+        "Apoio Incondicional: Uma vez por cena, a presença ativa ou a lembrança dessa pessoa cria uma condição temporária de confiança ou motivação com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Aprendizado Mútuo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente algo que você aprendeu especificamente por causa dessa relação. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Presença Reconfortante: Uma vez por sessão, a presença ou lembrança ativa dessa pessoa remove uma condição mental ou emocional de grau 3 ou menos, ou remove um marcador de Quebra de um tema de Humanidade. [Remove Quebra]",
+        "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, as tags usadas não são marcadas como gastas — elas permanecem disponíveis para o turno seguinte. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Missão",
+      "descricao": "Existe uma coisa que você precisa fazer. Não porque alguém pediu — porque você decidiu, e essa decisão organizou tudo o mais. Identidade, relações, riscos: tudo passa por isso primeiro.",
       "perguntas_poder": [
-        "DO QUE VOCÊ MAIS PRECISA PARA CUMPRIR SUA MISSÃO?",
-        "O que você foi forçado a aprender enquanto tenta completar a missão?",
-        "Quem está ajudando na missão?",
-        "O que você sabe sobre o alvo ou objetivo da missão?",
-        "Que tática ou método emprega para atingir seu objetivo?",
-        "Correr atrás da sua missão te deixou como?",
-        "Qual a origem do seu compromisso com a missão?",
-        "Que posição ou situação útil você teve de conquistar?",
-        "O que você tem que pode ajudar na missão?",
-        "Que parte do plano você bolou melhor?"
+        "DO QUE VOCÊ MAIS PRECISA AGORA PARA AVANÇAR NA MISSÃO?",
+        "O que você foi forçado a aprender enquanto tentava cumprir o objetivo?",
+        "Quem está do seu lado nessa missão — e por que esse apoio existe?",
+        "O que você sabe sobre o alvo ou objetivo que outros não sabem?",
+        "Que tática, método ou abordagem você desenvolveu especificamente para essa missão?",
+        "O que perseguir a missão te deu — força, recursos, reputação ou perspectiva?",
+        "De onde vem o compromisso — trauma, dever, amor, raiva ou esperança?",
+        "Que posição, acesso ou recurso você teve que conquistar para que a missão fosse viável?",
+        "O que você tem agora — físico, relacional, informacional — que a missão criou?",
+        "Qual parte do plano você elaborou melhor do que qualquer pessoa poderia?"
       ],
       "perguntas_fraqueza": [
-        "QUAIS OS EFEITOS COLATERAIS OU ENCARGOS DE CUMPRIR A MISSÃO?",
-        "Quais os pontos fracos ou curingas do plano?",
-        "Que abordagem ou disposição psicológica vai atrapalhar seus esforços?",
-        "Por que você não conseguiu cumprir a missão até agora?"
+        "QUAIS OS CUSTOS REAIS — FÍSICOS, RELACIONAIS, MORAIS — DE CUMPRIR ESTA MISSÃO?",
+        "Quais são os pontos cegos, as apostas arriscadas ou as partes que você sabe que podem falhar?",
+        "Que abordagem psicológica sua ou de outros vai atrapalhar o andamento da missão?",
+        "Por que você ainda não cumpriu a missão — o que realmente te deteve até agora?"
       ],
       "identidade_exemplos": [
-        "(Vingança) “Ela vai pagar.”",
-        "(Proteção) “Meu bairro não vai cair.”",
-        "(Redenção) “Vou provar que não sou um monstro.”"
+        "(Vingança) Ela vai pagar pelo que fez — e eu vou estar lá quando acontecer.",
+        "(Proteção) Este lugar não vai cair enquanto eu ainda tiver como impedi-lo.",
+        "(Redenção) Vou provar que não sou o monstro que eles me fizeram ser."
       ],
       "melhorias": [
-        "Marca do Propósito: Uma vez por cena, ao agir diretamente pela missão, crie uma condição temporária em si ou em aliado com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Preparação Estratégica: Responda a uma pergunta de tag de poder de qualquer tema (Mutação ou Humanidade) que represente algo treinado ou adquirido para a missão. Anote como nova tag neste tema. (Tag de outro tema – Missão prepara com outro recurso)",
-        "Foco Inabalável: Uma vez por sessão, quando uma ação necessária para a missão forçaria uma Quebra, execute-a sem marcar Quebra (mas ganha condição temporária de 'crise de consciência'). (Remove Quebra condicional)",
-        "Propósito Claro: Quando alinhado à missão, o modificador Foco Total se aplica automaticamente, sem precisar declarar. (Especial)"
+        "Propósito em Ação: Uma vez por cena, ao agir diretamente pela missão, crie uma condição temporária em si ou em aliado representando foco ou determinação, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Preparação de Campo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade, recurso ou contato adquirido especificamente para cumprir a missão. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Foco Inabalável: Uma vez por sessão, ao realizar uma ação necessária para a missão que forçaria uma Quebra, execute-a sem marcar Quebra — mas ganhe uma condição temporária representando o custo pessoal da decisão. [Remove Quebra]",
+        "Propósito Claro: Quando suas ações estão diretamente alinhadas à missão, o modificador Foco Total se aplica automaticamente sem precisar ser declarado. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Personalidade",
+      "descricao": "Existe algo em você que persiste independente de quantos poderes você tenha ou de quantas batalhas você perca. É o que as pessoas reconhecem quando você entra em uma sala. O problema é que é também o que exploram quando querem te atingir.",
       "perguntas_poder": [
-        "O QUE TEM NO CERNE DA SUA PERSONALIDADE?",
-        "Qual a primeira coisa que reparam em você?",
-        "Que habilidades sociais você só tem graças à personalidade?",
-        "Quando quer, você também consegue ser como?",
-        "Que habilidade ou vantagem especial você tem por conta da personalidade?",
-        "Que aspecto da sua personalidade mantém você segura ou ajuda a resistir?",
-        "Que característica ou objeto mais expressa ou acentua seu estilo?",
-        "Que hábito ou rotina útil você só cultivou graças à personalidade?",
-        "O que costuma atrair seu interesse?",
-        "Como você tenta ser melhor?"
+        "O QUE HÁ NO NÚCLEO DA SUA PERSONALIDADE QUE NUNCA MUDA?",
+        "Qual é a primeira coisa que as pessoas percebem em você antes que você diga uma palavra?",
+        "Que habilidades sociais ou interpessoais você só tem por causa de quem você é?",
+        "Quando você quer ou quando a situação exige, você também consegue ser como?",
+        "Que vantagem ou capacidade específica sua personalidade cria em situações complexas?",
+        "Que aspecto de quem você é te protege de influências, manipulações ou armadilhas?",
+        "Que objeto, hábito ou estética expressa ou amplifica quem você é?",
+        "Que rotina ou prática útil você desenvolveu como expressão direta da personalidade?",
+        "O que consistentemente atrai seu interesse — que padrão revela algo sobre você?",
+        "De que forma você ativamente tenta crescer ou superar os limites de quem você é?"
       ],
       "perguntas_fraqueza": [
-        "O QUE ACONTECE QUANDO VOCÊ VAI LONGE DEMAIS?",
-        "Que ambiente ou tipo de pessoa minimiza a eficácia da sua personalidade?",
-        "Que aspectos da sua aparência, estilo ou físico podem atrapalhar?",
-        "O que acontece quando você é deixado de lado?"
+        "O QUE ACONTECE QUANDO VOCÊ EXAGERA — QUANDO VAI LONGE DEMAIS SENDO VOCÊ?",
+        "Que tipo de ambiente ou pessoa neutraliza sua personalidade ou te deixa sem chão?",
+        "Que aspecto da sua aparência, estilo ou forma de ser atrapalha quando seria melhor desaparecer?",
+        "O que acontece com você quando é ignorado, excluído ou tratado como irrelevante?"
       ],
       "identidade_exemplos": [
-        "(Durão) “Ninguém me derruba.”",
-        "(Sedutora) “Todos querem me agradar.”",
-        "(Paranoico) “Confiar é a primeira armadilha.”"
+        "(Durão) Ninguém me derruba. Isso não é arrogância — é só o que aprendi sobre mim.",
+        "(Sedutor) Todos querem me agradar. Não é manipulação; é apenas como as coisas funcionam.",
+        "(Paranoico) Confiar é sempre a primeira armadilha. Sempre."
       ],
       "melhorias": [
-        "Marca da Personalidade: Uma vez por cena, imponha uma condição temporária em um alvo baseada em seu traço dominante, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Traço Inspirado: Responda a uma pergunta de tag de poder de qualquer tema (Mutação ou Humanidade) que represente faceta de sua personalidade manifestada como habilidade. Anote como nova tag neste tema. (Tag de outro tema – Personalidade gera poder)",
-        "Autoconhecimento: Uma vez por arco, ao falhar em um teste que ameaçaria sua Identidade, reconheça o padrão e, em vez de marcar Quebra, remova uma Quebra existente. (Remove Quebra)",
-        "Impossível de Ler: Ações que tentam prever ou manipular seu comportamento têm OV aumentado em +1. (Especial)"
+        "Impressão Marcante: Uma vez por cena, crie uma condição temporária em um alvo baseada no traço dominante da sua personalidade, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Traço como Poder: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente uma capacidade que nasce diretamente de como você é. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Autoconhecimento: Uma vez por arco, ao falhar em algo que ameaça sua Identidade, reconheça o padrão em voz alta — em vez de marcar Quebra, remova uma Quebra existente. [Remove Quebra]",
+        "Impossível de Ler: Ações que tentam prever, manipular ou condicionar seu comportamento têm OV aumentado em +1. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Posses",
+      "descricao": "O que você carrega diz o que você é. Não as armas ou a armadura — os objetos que você não consegue deixar para trás mesmo quando seria mais prático. O que você guarda que outros jogariam fora.",
       "perguntas_poder": [
-        "QUAL É A COISA MAIS IMPORTANTE QUE VOCÊ TEM?",
-        "Como você descreveria suas posses no geral?",
-        "Que outras coisas importantes você possui?",
-        "Que componente ou parte adicional pode alterar ou melhorar um de seus itens?",
-        "Que tipo de manobra ou acrobacia você costuma fazer com suas posses?",
-        "O que ajuda a ocultar suas posses ou o fato de estar portando algo relevante?",
-        "O que mantém suas posses seguras?",
-        "Como você cuida, conserta ou manuseia suas posses?",
-        "Qual a característica útil da sua posse?",
-        "Que item completa o conjunto com seus outros rótulos?"
+        "QUAL É A COISA MAIS IMPORTANTE QUE VOCÊ TEM — E POR QUE ESPECIFICAMENTE ESSA?",
+        "Como você descreveria o conjunto das suas posses como um todo?",
+        "Que outras coisas importantes você carrega ou mantém guardadas?",
+        "Que componente, modificação ou adição melhora ou altera algum dos seus itens?",
+        "Que tipo de manobra, uso criativo ou acrobacia você faz com suas posses?",
+        "O que te ajuda a ocultar o que você carrega ou o fato de que está portando algo relevante?",
+        "O que mantém suas posses seguras — sistema, hábito ou esconderijo?",
+        "Como você cuida, conserta, mantém e conhece o que possui?",
+        "Que característica útil da sua posse mais importante outros ignoram?",
+        "Que item que você ainda não tem completaria o conjunto do que já carrega?"
       ],
       "perguntas_fraqueza": [
-        "QUAL A FALHA TÉCNICA OU PRÁTICA DOS OBJETOS QUE VOCÊ POSSUI?",
-        "Que hábitos ou traços ruins você demonstra em relação às posses?",
-        "Que condições podem reduzir a eficácia das suas posses?",
-        "Quem ou o que pode evitar que você use suas posses?"
+        "QUAL É A FALHA TÉCNICA, PRÁTICA OU EMOCIONAL DO QUE VOCÊ MAIS DEPENDE?",
+        "Que hábito ruim você tem em relação às posses — acúmulo, obsessão ou descuido?",
+        "Que condições climáticas, ambientais ou táticas reduzem a eficácia do que você carrega?",
+        "Quem ou o que pode te impedir de usar o que tem — ou pode simplesmente pegá-lo?"
       ],
       "identidade_exemplos": [
-        "(Arsenal) “Estou sempre preparado.”",
-        "(Relíquia de família) “Isso é tudo o que me resta dele.”",
-        "(Acumulador) “Um dia isso vai ser útil.”"
+        "(Arsenal) Estou sempre preparado. Sempre. Isso não é paranoia — é profissionalismo.",
+        "(Relíquia familiar) Isso é tudo o que me resta dele. Tudo.",
+        "(Acumulador) Um dia isso vai ser útil. Sempre acaba sendo."
       ],
       "melhorias": [
-        "Marca do Pertence: Uma vez por cena, ao usar um objeto importante, crie uma condição temporária relacionada a ele com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Utilidade Adaptada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente uma função inesperada de suas posses. Anote como nova tag neste tema. (Tag de outro tema – Posse imita ferramenta de outro tipo)",
-        "Âncora Material: Uma vez por sessão, quando uma Quebra estiver prestes a ser marcada, segure seu objeto mais significativo, queime uma tag de Posses e cancele a Quebra. (Remove Quebra)",
-        "Ferramenta Certa: Escolha um item. Quando usado na situação para a qual foi projetado, contribui com +2 AP em vez de +1. (Especial)"
+        "Objeto em Ação: Uma vez por cena, ao usar uma posse importante, crie uma condição temporária relacionada a ela ou ao que ela representa com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Função Inesperada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente uso não óbvio ou função inesperada de algo que você possui. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Âncora Material: Uma vez por sessão, quando uma Quebra estiver prestes a ser marcada, segure ou mencione o objeto mais significativo, queime uma tag deste tema e cancele a Quebra. [Remove Quebra]",
+        "Ferramenta Certa: Escolha uma posse específica. Quando usada na situação para a qual foi feita ou adaptada, o rótulo contribui com +2 AP ao AV em vez de +1. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Rotina",
+      "descricao": "O que você faz todos os dias é o que você é quando ninguém está olhando. A rotina não é o que faz quando é herói. É o que faz quando é apenas você.",
       "perguntas_poder": [
-        "O QUE VOCÊ FAZ COM A MAIOR PARTE DO SEU TEMPO?",
-        "Sua rotina traz que privilégios?",
-        "Que tipo de ferramentas você usa na rotina?",
-        "E você recebe ajuda de quem na rotina?",
-        "O que aprendeu com essas atividades diárias?",
-        "Que atividade específica é parte da sua principal ocupação?",
-        "Que truques você aprendeu fazendo o que faz?",
-        "Que característica física ou mental foi adquirida com a rotina?",
-        "Onde desempenha sua rotina, ou onde vai para fugir dela?",
-        "O que leva você ao mesmo lugar todo dia?"
+        "O QUE VOCÊ FAZ COM A MAIOR PARTE DO SEU TEMPO QUANDO NÃO HÁ MISSÃO?",
+        "Que acesso, privilégio ou rede sua rotina te dá que poucos têm?",
+        "Que ferramentas, equipamentos ou ambientes fazem parte do dia a dia?",
+        "Quem te ajuda, acompanha ou depende de você dentro da rotina?",
+        "O que você aprendeu fazendo a mesma coisa repetidamente que não se aprende em treinamento?",
+        "Que atividade específica é parte central da sua ocupação principal?",
+        "Que truque, atalho ou solução elegante você descobriu por fazer isso tantas vezes?",
+        "Que característica física ou mental foi moldada diretamente pela rotina ao longo do tempo?",
+        "Onde você está quando a rotina acontece — e onde vai quando precisa de um intervalo?",
+        "O que te leva ao mesmo lugar todo dia?"
       ],
       "perguntas_fraqueza": [
-        "NO FIM DO DIA, O QUE VOCÊ TEM?",
-        "Quais os limites ou desvantagens mundanos da sua rotina?",
-        "Quem ou o quê pode interferir na sua rotina?",
-        "O que acontece quando você sai da rotina?"
+        "NO FIM DO DIA, COM O QUE VOCÊ FICA — E O QUE ISSO CUSTA?",
+        "Que limitações ou desvantagens práticas a rotina impõe na sua vida fora dela?",
+        "Quem ou o quê pode interromper, sabotar ou destruir a rotina quando menos espera?",
+        "O que acontece com você — emocionalmente, taticamente — quando a rotina é quebrada?"
       ],
       "identidade_exemplos": [
-        "(Policial) “Proteger e servir, mesmo que custe tudo.”",
-        "(Professor) “Educação é a única arma contra a ignorância.”",
-        "(Desempregado) “Um dia de cada vez.”"
+        "(Policial) Proteger e servir. Mesmo quando custa. Especialmente quando custa.",
+        "(Professor) A única coisa que dura é o que você ensina. Tudo o mais passa.",
+        "(Desempregado) Um dia de cada vez. Isso não é desistência — é sobrevivência."
       ],
       "melhorias": [
-        "Marca da Rotina: Uma vez por cena, crie uma condição temporária baseada em sua atividade diária, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Hábito Produtivo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente truque ou atalho aprendido com a rotina. Anote como nova tag neste tema. (Tag de outro tema – Rotina eficiente)",
-        "Ritual de Estabilização: Uma vez por dia (narrativamente), após seguir sua rotina sem interrupções, remova um marcador de Quebra de qualquer tema de Humanidade. (Remove Quebra)",
-        "Preparo Constante: Uma vez por arco, declare antes da cena que se preparou para uma situação específica. Isso conta como tag adicional de grau 2 na ação pertinente. (Especial)"
+        "Ritmo Estabelecido: Uma vez por cena, crie uma condição temporária baseada em algo aprendido ou forjado pela rotina, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Hábito Produtivo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente truque, atalho ou habilidade descoberta pela repetição. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Ritual de Estabilização: Uma vez por dia narrativo, após seguir a rotina sem interrupção em cena de intervalo, remova um marcador de Quebra de qualquer tema de Humanidade. [Remove Quebra]",
+        "Preparo Constante: Uma vez por arco, declare antes de uma cena que se preparou para um tipo específico de situação. Essa preparação conta como tag adicional de grau 2 na primeira ação pertinente. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Conflito / Dificuldade",
+      "descricao": "Existe algo em você que não está resolvido. Não como fraqueza que você esconde — como pressão que você aprendeu a carregar. Às vezes ela te destrói. Às vezes é o único motor que sobrou.",
       "perguntas_poder": [
         "QUE CONFLITO INTERNO OU EXTERNO DEFINE SUA LUTA DIÁRIA?",
-        "Que habilidade ou recurso desenvolveu para compensar essa dificuldade?",
-        "Em que tipo de situação o conflito se torna uma vantagem inesperada?",
-        "Que pessoa, lugar ou objeto está no centro desse conflito?",
-        "Como aprendeu a esconder ou mascarar essa dificuldade?",
-        "Que conhecimento adquiriu por causa do conflito?",
-        "Que atitude ou postura adotou para sobreviver a ele?",
-        "Que grupo ou indivíduo te apoia nesse conflito?",
-        "Que manobra ou estratégia desenvolveu especificamente para lidar com isso?",
-        "O que você ganhou (ou perdeu) que agora é uma ferramenta?"
+        "Que habilidade, recurso ou perspectiva você desenvolveu para compensar essa dificuldade?",
+        "Em que situação o conflito se inverte e vira vantagem inesperada?",
+        "Que pessoa, lugar ou objeto está no núcleo desse conflito?",
+        "Como você aprendeu a ocultar, normalizar ou conviver com essa dificuldade?",
+        "Que conhecimento, empatia ou acesso o conflito abriu que nenhuma formação abre?",
+        "Que postura ou atitude você adotou como estratégia de sobrevivência?",
+        "Quem ou o que te apoia nesse conflito — e por que esse apoio existe?",
+        "Que manobra, rotina ou estratégia você criou especificamente para lidar com isso?",
+        "O que você ganhou — ou perdeu — que agora funciona como ferramenta?"
       ],
       "perguntas_fraqueza": [
-        "COMO O CONFLITO TE EXPÕE A PERIGOS ESPECÍFICOS?",
-        "Que hábitos autodestrutivos o conflito gerou?",
-        "Quem ou o que explora essa dificuldade contra você?",
-        "O que você não consegue fazer por causa do conflito?"
+        "COMO O CONFLITO TE EXPÕE A PERIGOS QUE OUTROS NÃO TÊM?",
+        "Que hábito autodestrutivo o conflito gerou que você ainda não conseguiu eliminar?",
+        "Quem ou o que explora ativamente essa dificuldade contra você?",
+        "O que você não consegue fazer por causa do conflito — o que ele fechou?"
       ],
       "identidade_exemplos": [
-        "(Vício) “Eu posso parar quando quiser. Só não agora.”",
-        "(Dívida de sangue) “Não descanso até pagar.”",
-        "(Doença crônica) “Meu corpo é um campo de batalha.”"
+        "(Dependência) Eu posso parar quando quiser. Só decido não querer agora.",
+        "(Dívida de sangue) Não descanso até pagar o que devo. Nem que leve o resto da vida.",
+        "(Doença crônica) Meu corpo é um campo de batalha. Aprendi a lutar nele."
       ],
       "melhorias": [
-        "Marca da Adversidade: Uma vez por cena, ao agir sob efeito do conflito, crie uma condição temporária representando sua resiliência, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Forja da Dificuldade: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade forjada por seu conflito. Anote como nova tag neste tema. (Tag de outro tema – Conflito gera poder)",
-        "Aceitação: Uma vez por arco, ao falhar em resistir ao seu conflito, em vez de marcar Quebra, aceite esse aspecto e remova uma Quebra existente. (Remove Quebra)",
-        "Força de Adversidade: Ao agir sob condição negativa de grau 3 ou mais, some +1 AP ao AV da ação. (Especial)"
+        "Resiliência Visível: Uma vez por cena, ao agir sob efeito ativo do conflito, crie uma condição temporária representando a resistência que isso gerou, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Forjado pela Dificuldade: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou perspectiva nascida especificamente do conflito. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Aceitação Ativa: Uma vez por arco, ao falhar em resistir ao conflito de forma narrativamente coerente, aceite esse aspecto de si mesmo — em vez de marcar Quebra, remova uma Quebra existente. [Remove Quebra]",
+        "Força de Adversidade: Ao agir sob condição negativa de grau 3 ou mais, some +1 AP ao AV de qualquer ação de oposição. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Treinamento",
+      "descricao": "Você construiu isso. Não veio com o X-Gene, não foi dado por ninguém. Cada hora de repetição, cada falha corrigida, cada limite empurrado. Quando o poder falha, isso fica. Quando tudo falha, isso ainda fica.",
       "perguntas_poder": [
-        "QUAL É SEU CAMPO DE EXPERTISE?",
-        "Dentro da sua área, em que habilidade ou assunto específico se destaca?",
-        "Em que outro campo paralelo se aventurou indiretamente?",
-        "Que movimento, método ou truque aprendeu durante o treinamento?",
-        "Que qualidade ou característica adquiriu com seu treinamento?",
-        "Nomeie um professor, treinador ou colega com quem possa contar para ajudar.",
-        "Tem acesso a que equipamento relacionado ao seu treinamento?",
-        "Contra quem ou o que seu treinamento dá os melhores resultados?",
-        "Em que condições sua técnica funciona melhor?",
-        "Qual a nova aplicação incomum do seu treinamento que está explorando?"
+        "QUAL É SEU CAMPO DE EXPERTISE — ONDE VOCÊ É INEGAVELMENTE COMPETENTE?",
+        "Dentro da área, em que habilidade ou conhecimento específico você é excepcional?",
+        "Em que campo paralelo você se aventurou indiretamente e ganhou competência útil?",
+        "Que movimento, técnica ou método você aprendeu que poucos sabem que existe?",
+        "Que qualidade física ou mental foi diretamente moldada pelo treinamento?",
+        "Quem te ensinou, treinou ou forma seu círculo de competência — e por que conta com eles?",
+        "A que equipamento, instalação ou recurso você tem acesso por causa do treinamento?",
+        "Contra que tipo de oposição, estrutura ou situação seu treinamento é mais eficaz?",
+        "Em que condições específicas sua técnica funciona melhor?",
+        "Que aplicação incomum do seu treinamento você está explorando e ainda refinando?"
       ],
       "perguntas_fraqueza": [
-        "QUAL A FALHA MAIS PROBLEMÁTICA DA SUA TÉCNICA?",
-        "Como seu treinamento afetou negativamente seu corpo ou mente?",
-        "Quem está atrás de você devido ao seu destaque na área?",
-        "Cite uma falha exclusiva de um movimento ou método específico que descreveu."
+        "QUAL É A FALHA MAIS PROBLEMÁTICA DA SUA TÉCNICA?",
+        "Como o treinamento afetou negativamente seu corpo, sua mente ou suas relações?",
+        "Quem ou o quê te persegue, desafia ou ameaça por causa do nível em que você opera?",
+        "Que falha exclusiva de um movimento ou método específico pode ser explorada contra você?"
       ],
       "identidade_exemplos": [
-        "(Artes marciais) “A disciplina vence o caos.”",
-        "(Técnico) “Se não tem manual, eu faço.”",
-        "(Sobrevivencialista) “Nunca se sabe o dia de amanhã.”"
+        "(Artes marciais) A disciplina vence o caos. Sempre. Isso não é crença — é experiência.",
+        "(Técnico) Se não tem manual, eu faço o manual. Sempre tem solução.",
+        "(Sobrevivencialista) Você nunca sabe quando o mundo muda. Eu me preparei para quando mudar."
       ],
       "melhorias": [
-        "Marca do Especialista: Uma vez por cena, crie uma condição temporária representando sua técnica superior, com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Aplicação Cruzada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Rotina que represente aplicação inusitada de seu treinamento. Anote como nova tag neste tema. (Tag de outro tema – Treinamento versátil)",
-        "Disciplina Inabalável: Uma vez por sessão, quando estiver prestes a agir contra sua Identidade por fraqueza momentânea, seu treinamento permite cancelar a ação ou anular a Quebra. (Remove Quebra)",
-        "Memória Muscular: Ações físicas treinadas nunca recebem o modificador Usuário Instável. (Especial)"
+        "Técnica em Campo: Uma vez por cena, crie uma condição temporária representando a eficiência do treinamento aplicado, com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Aplicação Cruzada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Rotina que represente aplicação inusitada ou transferência do treinamento para outro contexto. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Disciplina Inabalável: Uma vez por sessão, quando estiver prestes a agir contra sua Identidade por fraqueza momentânea, o treinamento interrompe o impulso — cancele a ação e evite a Quebra. [Remove Quebra]",
+        "Memória Muscular: Ações físicas dentro do campo de treinamento nunca recebem o modificador Usuário Instável, independente das circunstâncias externas. [Especial]"
       ]
     },
     {
       "tipo": "Humanidade",
       "nome": "Território",
+      "descricao": "Este lugar existe porque você existe. Não é propriedade — é responsabilidade. Você não defende território porque é seu. Você defende porque, sem você, este lugar e as pessoas nele não teriam nenhuma defesa.",
       "perguntas_poder": [
-        "QUE LOCAL VOCÊ RECLAMA COMO SEU TERRITÓRIO?",
-        "Que recurso específico seu território oferece?",
-        "Quem vive ou frequenta seu território regularmente?",
-        "Qual a vantagem tática de lutar em seu território?",
-        "Que sistema de alerta ou defesa você instalou?",
-        "O que você esconde ou armazena no território?",
-        "Que influência ou reputação construiu ali?",
-        "Como o território se protege de intrusos?",
-        "Que rotina ou ritual mantém para manter o território?",
-        "O que faz para expandir ou fortalecer seu território?"
+        "QUE LOCAL VOCÊ RECLAMA COMO SEU TERRITÓRIO — FISICAMENTE E POR RESPONSABILIDADE?",
+        "Que recurso específico seu território oferece que nenhum outro lugar oferece?",
+        "Quem vive, habita ou frequenta o território regularmente e depende de você?",
+        "Que vantagem tática lutar no seu território te dá sobre qualquer intruso?",
+        "Que sistema de alerta, defesa ou monitoramento você instalou ou desenvolveu?",
+        "O que você guarda, esconde ou armazena no território que não poderia guardar em outro lugar?",
+        "Que influência, reputação ou autoridade você construiu dentro deste espaço?",
+        "Como o território se protege de intrusos — por meios físicos, sociais ou por você?",
+        "Que rotina ou ritual você mantém para preservar o território como seu?",
+        "O que você faz para expandir, fortalecer ou tornar o território mais resiliente?"
       ],
       "perguntas_fraqueza": [
-        "QUAL A AMEAÇA MAIS CONSTANTE AO SEU TERRITÓRIO?",
-        "Que ponto fraco ou brecha o território possui?",
-        "O que acontece quando você fica muito tempo fora?",
-        "Que responsabilidade ou dívida vem com o território?"
+        "QUAL É A AMEAÇA MAIS CONSTANTE AO TERRITÓRIO — O QUE NUNCA PARA DE TENTAR?",
+        "Que ponto fraco, brecha ou vulnerabilidade existe que você ainda não resolveu?",
+        "O que acontece com o território quando você fica fora por tempo demais?",
+        "Que responsabilidade, dívida ou obrigação vem com o território que você não escolheu?"
       ],
       "identidade_exemplos": [
-        "(Líder comunitário) “Ninguém toca no meu bairro.”",
-        "(Esconderijo) “Todo mundo precisa de um lugar seguro.”",
-        "(Zona de guerra) “Isso aqui não é território, é armadilha.”"
+        "(Líder comunitário) Ninguém toca no meu bairro. Ninguém.",
+        "(Santuário) Todo mundo precisa de um lugar seguro. Este é o nosso.",
+        "(Zona de conflito) Isso aqui não é lar — é posição. E posição não se abandona."
       ],
       "melhorias": [
-        "Marca do Território: Uma vez por cena, dentro de seu território, crie uma condição temporária em um invasor ou visitante com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Simbologia Local: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente recurso ou aliado exclusivo do território. Anote como nova tag neste tema. (Tag de outro tema – Território fornece nova vantagem)",
-        "Santuário Pessoal: Uma vez por arco, quando retorna ao seu território após provação que ameaçou sua Identidade, remova um marcador de Quebra de qualquer tema de Humanidade. (Remove Quebra)",
-        "Campo Próprio: Em seu território, modificadores de posicionamento desfavoráveis são reduzidos em 1 (mínimo 0). (Especial)"
+        "Marcação de Terreno: Uma vez por cena, dentro do território, crie uma condição temporária em um invasor, visitante ou elemento do ambiente com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Recurso Local: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente aliado, contato ou recurso exclusivo do território. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Santuário Pessoal: Uma vez por arco, ao retornar ao território após provação que ameaçou sua Identidade, remova um marcador de Quebra de qualquer tema de Humanidade. [Remove Quebra]",
+        "Campo Próprio: Dentro do território, modificadores de posicionamento desfavoráveis têm valor reduzido em 1 (mínimo 0). [Especial]"
       ]
-    }
-  ],
-  "temas_adicionais": [
+    },
     {
       "tipo": "Adicional",
       "nome": "Aliado",
-      "descricao": "Aliados são raros no mundo dos mutantes. Encontrar alguém que acredite em você e queira ajudar, mesmo sabendo dos riscos, é um privilégio. Podem ser colegas de equipe, ex-humanos que simpatizam com a causa, mutantes mais jovens que te veem como mentor, ou até mesmo criaturas ligadas ao seu X-Gene.",
+      "descricao": "Mutantes não costumam ter aliados por acidente. Quem escolhe estar do seu lado — sabendo dos riscos, sabendo do que você é — é raro. Pode ser colega de equipe, humano que acredita na causa, ex-inimigo que mudou, ou mutante mais jovem que te vê como referência.",
       "perguntas_poder": [
-        "COMO SEU ALIADO AJUDA VOCÊ?",
-        "Qual a profissão, treinamento ou natureza especial do seu aliado?",
-        "Quais outras habilidades seu aliado possui?",
-        "Por que seu aliado está ao seu lado?",
-        "Como seu aliado lida com oposição ou conflito?",
-        "O que seu aliado faz para proteger você ou a si mesmo?",
-        "Que fontes de informação especiais seu aliado acessa?",
-        "Que recursos, equipamentos ou artefatos seu aliado possui?",
-        "Quem seu aliado conhece que pode ser útil?",
-        "Por que você confia nele?"
+        "COMO SEU ALIADO AJUDA VOCÊ — CONCRETAMENTE, EM CAMPO?",
+        "Que profissão, treinamento, mutação ou natureza especial o aliado possui?",
+        "Que outras habilidades ou capacidades o aliado tem além da principal?",
+        "Por que esse aliado está do seu lado — o que criou ou mantém essa lealdade?",
+        "Como o aliado age quando enfrenta oposição ou conflito?",
+        "O que o aliado faz para te proteger ou se proteger quando a situação fica crítica?",
+        "A que fontes de informação, redes ou locais o aliado tem acesso especial?",
+        "Que recursos, equipamentos, tecnologia ou contatos o aliado possui?",
+        "Quem o aliado conhece que pode ser útil para você?",
+        "Por que você confia nele — e que experiência específica construiu essa confiança?"
       ],
       "perguntas_fraqueza": [
-        "COMO SEU ALIADO ACABA TE DEIXANDO EM APUROS?",
-        "Quais as deficiências de habilidades, equipamento ou atitude do seu aliado?",
-        "Que característica dele mais incomoda?",
-        "Quem ou o que tem mais chance de prejudicar seu aliado?"
+        "COMO SEU ALIADO ACABA TE COLOCANDO EM SITUAÇÕES DIFÍCEIS?",
+        "Que deficiências de habilidade, julgamento ou equipamento o aliado tem?",
+        "Que característica ou hábito do aliado é genuinamente inconveniente?",
+        "Quem ou o quê tem mais chance de prejudicar, sequestrar ou usar o aliado contra você?"
       ],
       "melhorias": [
-        "Marca de Confiança: Uma vez por cena, seu aliado pode lhe conceder uma condição temporária (ex: inspirado, protegido, guiado) com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Treinamento Cruzado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade (exceto este tema). A resposta se torna uma nova tag de poder neste tema, representando algo que você aprendeu com seu aliado. (Tag de outro tema)",
-        "Elo de Lealdade: Uma vez por sessão, quando seu aliado testemunha você agindo contra sua Identidade (de Humanidade) ou falhando em proteger algo que importa, ele pode intervir e remover um marcador de Quebra de um tema de Humanidade à sua escolha. (Remove Quebra)",
-        "Presença Constante: Uma vez por arco, você pode fazer seu aliado aparecer em qualquer cena onde haja uma justificativa narrativa mínima (ex: “ele estava me seguindo”, “eu o chamei antes”). Ele chega no início da cena seguinte. (Especial)"
+        "Presença do Aliado: Uma vez por cena, o aliado pode criar uma condição temporária de apoio com grau igual ao número de tags deste tema, representando inspiração, cobertura, informação ou distração. [Condição temporária]",
+        "Aprendizado de Campo: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente algo que você aprendeu diretamente com esse aliado. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Elo de Lealdade: Uma vez por sessão, quando o aliado testemunha você agir contra sua Identidade ou falhar em proteger algo que importa, ele pode intervir ativamente — remova um marcador de Quebra de um tema de Humanidade à sua escolha. [Remove Quebra]",
+        "Presença Garantida: Uma vez por arco, declare que o aliado aparece em uma cena onde há justificativa narrativa mínima para sua presença. Ele chega no início da cena. [Especial]"
       ]
     },
     {
       "tipo": "Adicional",
       "nome": "Base de Operações",
-      "descricao": "Mutantes precisam de lugares seguros — seja o porão de uma igreja abandonada, uma caverna nos arredores, um laboratório escondido ou até mesmo um andar inteiro do Instituto Xavier. É onde você planeja missões, guarda equipamentos e descansa da luta contra a intolerância.",
+      "descricao": "Mutantes precisam de lugares onde possam parar de estar em alerta. Seja o laboratório do Instituto, um porão abandonado, um endereço seguro na cidade ou algo mais elaborado — a base é onde você planeja, descansa e recupera o que a luta tira.",
       "perguntas_poder": [
-        "QUAL O RECURSO MAIS ÚTIL DA SUA BASE?",
-        "Que defesas ou sistemas protegem sua base de intrusos?",
-        "Que vantagem você ganha ao trabalhar na base?",
-        "Que tipo de instalações especiais a base possui?",
-        "Que equipamento especial você guarda lá?",
-        "Quem trabalha ou mora na base?",
-        "Que tipo de tecnologia ou poder especial a base possui?",
-        "O que é útil na aparência da base (ex: discreta, inúmera)?",
-        "O que fica embaixo ou nos fundos da base?",
-        "Que meio de transporte ou acesso especial a base oferece?"
+        "QUAL É O RECURSO MAIS ÚTIL DA SUA BASE EM CAMPO?",
+        "Que defesas, sistemas ou protocolos protegem a base de intrusos?",
+        "Que vantagem específica você ganha ao trabalhar ou planejar dentro da base?",
+        "Que tipo de instalação especial a base possui — laboratório, arsenal, comunicações?",
+        "Que equipamento ou material específico você guarda lá que não poderia guardar em outro lugar?",
+        "Quem trabalha, vive ou frequenta a base regularmente?",
+        "Que tecnologia, conexão ou capacidade especial a base possui além do espaço físico?",
+        "O que torna a base discreta, irreconhecível ou difícil de localizar?",
+        "O que existe nas partes menos visíveis ou mais profundas da base?",
+        "Que acesso, saída, veículo ou rota de escape a base oferece?"
       ],
       "perguntas_fraqueza": [
-        "QUE CONDIÇÃO OU ASPECTO NEGATIVO DA BASE A TORNA MAIS DIFÍCIL DE USAR?",
-        "Qual a fraqueza mais significativa na segurança da base?",
-        "O que acontece quando você passa muito tempo na base (ex: fica paranóico, relaxa demais)?",
-        "Quais os efeitos colaterais dos aspectos mutantes da base (ex: rastros energéticos, interferência em equipamentos)?"
+        "QUE CONDIÇÃO OU ASPECTO NEGATIVO TORNA A BASE DIFÍCIL DE USAR?",
+        "Qual é a maior fragilidade na segurança ou estrutura da base?",
+        "O que acontece com você quando passa tempo demais dentro dela?",
+        "Que rastro, emissão ou consequência os aspectos mutantes da base deixam no ambiente?"
       ],
       "melhorias": [
-        "Marca do Refúgio: Uma vez por cena, dentro da base, você pode criar uma condição temporária (ex: camuflado, suprido, em vantagem) com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Tecnologia Adaptada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade (exceto este tema) que represente um equipamento ou defesa que sua base possui. Anote a resposta como nova tag neste tema. (Tag de outro tema)",
-        "Santuário Psíquico: Uma vez por arco, ao retornar à base após uma provação que ameaçou sua Identidade (de Humanidade), você pode remover um marcador de Quebra de qualquer tema de Humanidade, como se o local tivesse restaurado sua sanidade. (Remove Quebra)",
-        "Campo de Treinamento: Uma vez por sessão, você pode declarar que passou tempo treinando na base para se preparar para um tipo específico de desafio (ex: combate urbano, infiltração, resgate). Na primeira ação relacionada a esse desafio, você recebe +2 AP. (Especial)"
+        "Vantagem de Terreno: Uma vez por cena, dentro da base, crie uma condição temporária de vantagem tática, logística ou psicológica com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Recurso Instalado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente equipamento, sistema ou defesa presente na base. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Santuário Operacional: Uma vez por arco, ao retornar à base após provação que ameaçou uma Identidade de Humanidade, remova um marcador de Quebra de qualquer tema de Humanidade. [Remove Quebra]",
+        "Campo de Preparo: Uma vez por sessão, declare que passou tempo treinando ou se preparando na base para uma situação específica. A primeira ação relacionada a essa situação na cena seguinte recebe +2 AP. [Especial]"
       ]
     },
     {
       "tipo": "Adicional",
       "nome": "Transporte",
-      "descricao": "Mutantes em fuga precisam de meios de locomoção rápidos e confiáveis — um carro blindado, uma moto modificada, até mesmo um pássaro gigante ou um portal dimensional portátil. Seu meio de transporte reflete seu estilo e pode ser tão icônico quanto seus poderes.",
+      "descricao": "Mutantes em missão precisam chegar, escapar e às vezes desaparecer. O transporte não é só veículo — é autonomia, é plano B, é parte da identidade operacional de quem não pode depender de rotas convencionais.",
       "perguntas_poder": [
-        "COMO SEU TRANSPORTE PERMITE QUE VOCÊ VIAJE?",
-        "O que torna seu transporte mais rápido ou capaz de ir mais longe?",
-        "O que permite que seu transporte leve carga extra ou passageiros?",
-        "Que manobras você pode fazer com seu transporte?",
-        "Que impressão seu transporte causa nas pessoas?",
-        "Que armas estão armazenadas, montadas ou fazem parte do transporte?",
-        "Que particularidade seu transporte possui graças ao X-Gene (ex: invisibilidade, salto dimensional)?",
-        "O que ajuda seu transporte a evitar ou sobreviver a golpes?",
-        "Que habilidades de vigilância ou reconhecimento seu transporte possui?",
-        "Como seu transporte evita ser detectado?"
+        "COMO SEU TRANSPORTE FUNCIONA E DE QUE FORMA ELE EXPANDE SEU ALCANCE?",
+        "O que torna seu transporte mais rápido, mais resistente ou capaz de ir mais longe?",
+        "O que permite que o transporte carregue outros ou leve carga relevante?",
+        "Que manobras específicas você pode executar com este transporte?",
+        "Que impressão o transporte causa — medo, admiração ou discrição?",
+        "Que sistemas, armas ou capacidades defensivas o transporte possui?",
+        "Que característica mutante, modificada ou incomum o transporte tem que outros não têm?",
+        "O que ajuda o transporte a resistir, evitar ou sobreviver a danos?",
+        "Que capacidade de vigilância, escuta ou reconhecimento o transporte possui?",
+        "Como o transporte evita ser detectado, rastreado ou identificado?"
       ],
       "perguntas_fraqueza": [
-        "O QUE PODE ATRASAR OU IMPEDIR SEU TRANSPORTE?",
-        "Qual a maior vulnerabilidade do seu transporte?",
-        "Em que condições seu transporte deixa de responder?",
-        "Como a história ou a origem do transporte acaba te deixando em apuros (ex: foi roubado, tem rastreador, é visado)?"
+        "O QUE PODE ATRASAR, BLOQUEAR OU DESTRUIR SEU TRANSPORTE?",
+        "Qual é a maior vulnerabilidade do transporte em campo ou em trânsito?",
+        "Em que condições o transporte para de responder ou se torna inutilizável?",
+        "Como a história ou a origem do transporte te cria problemas — é roubado, vigiado ou marcado?"
       ],
       "melhorias": [
-        "Marca do Motor: Uma vez por cena, ao usar seu transporte, você pode criar uma condição temporária (ex: acelerado, camuflado, instável para perseguidores) com grau igual ao número de tags deste tema. (Condição temporária)",
-        "Adaptação Veicular: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade (exceto este tema) que represente uma modificação ou habilidade que seu transporte adquiriu. Anote a resposta como nova tag neste tema. (Tag de outro tema)",
-        "Rota de Fuga: Uma vez por sessão, quando você está em perigo iminente e usaria seu transporte para escapar (Correr o Risco, Agir na Encolha, etc.), você pode, em vez disso, declarar que já havia planejado uma rota de fuga. Isso anula uma Quebra que seria marcada em um tema de Humanidade por ações precipitadas nessa fuga. (Remove Quebra condicional)",
-        "Corcel Genético: Seu transporte é excepcionalmente confiável. Uma vez por cena, quando você faz um movimento que envolve deslocamento com este tema, você pode considerar o resultado como sucesso (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não evita complicações, mas garante que você chega onde queria. (Especial)"
+        "Em Movimento: Uma vez por cena, ao usar o transporte ativamente, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Modificação Estratégica: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente modificação, capacidade ou adaptação que seu transporte adquiriu. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Rota Planejada: Uma vez por sessão, ao usar o transporte para escapar de situação que forçaria uma Quebra por ação precipitada ou arriscada, declare que havia planejado a rota — a Quebra não é marcada. [Remove Quebra]",
+        "Confiável: Uma vez por cena, ao fazer uma ação de deslocamento usando este tema, você pode tratar o resultado como sucesso parcial (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não elimina complicações, mas garante que você chega onde queria. [Especial]"
       ]
     }
   ]
