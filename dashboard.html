@@ -819,11 +819,11 @@ function populateCharacterGrid(chars) {
       card.className = 'char-card';
       card.href = 'ficha.html?id=' + char.id;
       var foto = char.foto_base64 || '';
-      var initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.name ? char.name.charAt(0).toUpperCase() : '?');
+      var initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.nome ? char.nome.charAt(0).toUpperCase() : '?');
       if (foto) {
-card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + (char.name || 'Sem nome') + '</div><div class="char-info-codename">' + (char.codinome || '—') + '</div></div>';
+card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + (char.nome || 'Sem nome') + '</div><div class="char-info-codename">' + (char.codinome || '—') + '</div></div>';
 
-          card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + (char.name || 'Sem nome') + '</div><div class="char-info-codename">' + (char.codinome || '—') + '</div></div>';
+          card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + (char.nome || 'Sem nome') + '</div><div class="char-info-codename">' + (char.codinome || '—') + '</div></div>';
       }
       grid.appendChild(card);
     });
