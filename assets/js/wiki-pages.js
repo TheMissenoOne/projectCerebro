@@ -1541,7 +1541,7 @@ window.wikiPages = {
       
       relatorios: `
         <h1>Relatórios de Missão</h1>
-        <p>Chronologia de operações e missões conduzidas pelos X-Men.</p>
+        <p>Crônicas de operações e missões conduzidas pelos X-Men.</p>
         
         <div class="relatorios-container">
           <div class="relatorio-card" style="border-left: 3px solid var(--red);">
@@ -1566,35 +1566,34 @@ window.wikiPages = {
               <h3>3. Fase 2 — Operação de Resgate</h3>
               <p><strong>Local:</strong> Prédio isolado de 3 andares</p>
               <p><strong>Equipe:</strong> Atalho (Líder Vermelho), Maestro, Nemesis</p>
-              <p><strong>Execução:</strong> Maestro concedeu a Atalho habilidades de invisibilidade e resistência. Sob esses efeitos, infiltrei o prédio e localizei Hanmza no 3º andar.</p>
-              <p>Ao estabelecer contato, iniciei extração via portal. Um dos sequestradores percebeu movimentação, gerando risco de comprometimento.</p>
-              <p>Nemesis e Maestro avançaram para suporte, neutralizando 5 hostis. Durante a retirada, enfrento um combatente altamente treinado, sendo necessário eliminá-lo para garantir a missão.</p>
+              <p><strong>Execução:</strong> Maestro concedeu a Atalho habilidades de invisibilidade e resistência. Sob esses efeitos, infiltramo-nos no prédio e localizamos Hanmza no 3º andar.</p>
+              <p>Ao estabelecer contato, iniciamos extração via portal. Um dos sequestradores percebeu movimentação estranha e passou a bater na porta.</p>
+              <p>Maestro e Nemesis avançaram para suporte, neutralizando os 5 sequestradores — Nemesis utilizou uma explosão elétrica. No 3º andar, enfrento um sequestrador extremamente habilidoso em batalha, sendo necessário eliminá-lo para garantir a missão.</p>
               <p><strong>Resultado:</strong> Hanmza resgatado com sucesso.</p>
               
               <h3>4. Revelação Crítica</h3>
-              <p>Durante o debriefing, Hanmza informou que o mutante real não era ele, mas Soraya Cadir.</p>
+              <p>Durante o debriefing, Hanmza revelou que o mutante real não era ele, mas Soraya Cadir.</p>
               <p><strong>Informações coletadas:</strong></p>
               <ul>
-                <li>Origem: Afeganistão</li>
-                <li>Grupo inimigo liderado por "Omar"</li>
-                <li>Atuação: Tráfico de mutantes</li>
-                <li>Histórico: Família de Soraya foi morta ao tentar protegê-la</li>
-                <li>Status: Poder recentemente estabilizado</li>
-                <li>Motivação do sequestro: Atrair Soraya através de Hanmza</li>
+                <li><strong>Nome:</strong> Soraya Cadir, 15 anos</li>
+                <li><strong>Origem:</strong> Afeganistão</li>
+                <li><strong>Grupo:</strong> Homens de Omar — operação de tráfico de mutantes</li>
+                <li><strong>Histórico:</strong> Família tentou defendê-la e foi morta; ela escapou</li>
+                <li><strong>Poder:</strong> recientemente estabilizado; uso permanente</li>
+                <li><strong>Motivação do sequestro:</strong> Usar Hanmza para atrair Soraya</li>
               </ul>
               
               <h3>5. Fase 3 — Localização de Soraya</h3>
-              <p>Utilizando detecção mágica concedida por Maestro, criei múltiplos portais para triangulação da localização.</p>
-              <p>Identificamos Soraya em zona rural.</p>
-              <p>Inicialmente, Soraya não respondeu à aproximação direta. Sugeri que Hanmza fizesse o contato, considerando vínculo emocional. Estratégia bem-sucedida.</p>
-              <p>Soraya cooperou após explicação da situação.</p>
+              <p>Utilizando magia de detecção concedida por Maestro, criei múltiplos portais pela cidade para triangular a localização de Soraya. Identificamos que ela estava em uma zona rural.</p>
+              <p>Atravessamos o portal: Nemesis, Atalho e Hanmza. Nemesis tentou aproximar-se, mas sem sucesso. Achei a solução: pedi a Hanmza que chamasse Soraya, pois ela confiava nele. Estratégia bem-sucedida.</p>
+              <p>Soraya cooperou após explicação da situação. O restante da equipe chegou de tuk-tuk e a apresentação foi feita.</p>
               
               <h3>6. Extração e Recrutamento</h3>
               <p>Acionamos o Pássaro Negro para evacuação.<br>
               Soraya foi integrada sob proteção dos X-Men, com promessa de futuras operações de resgate.</p>
               
               <h3>7. Ponto de Atenção Operacional</h3>
-              <p><em>Maestro: Necessidade de comunicar intenções antes de conceder poderes. A ausência de alinhamento prévio compromete previsibilidade tática.</em></p>
+              <p><em><strong>Alerta:</strong> Maestro precisa informar intentiones antes de imbuir poder. Na operação do prédio e na identificação da mutante, ele apenas concedeu poderes ao Atalho e falou depois. Não houve planejamento adequado.</em></p>
               
               <h3>8. Fase 4 — Operação Afeganistão</h3>
               <p><strong>Objetivo:</strong> Identificar e desmantelar operação liderada por Omar.</p>
@@ -1620,16 +1619,18 @@ window.wikiPages = {
               </ul>
               
               <h3>9. Avaliação de Liderança</h3>
-              <p>A divisão estratégica da equipe foi intencional, visando:<br>
-              - Estimular autonomia<br>
-              - Explorar sinergia de habilidades<br>
-              - Desenvolver tomada de decisão em campo</p>
+              <p>A divisão estratégica da equipe foi intencional, visando:</p>
+              <ul>
+                <li>Estimular autonomia</li>
+                <li>Explorar sinergia de habilidades</li>
+                <li>Desenvolver tomada de decisão em campo</li>
+              </ul>
               <p><strong>Resultado:</strong> A equipe respondeu de forma eficiente e coordenada.</p>
               
               <h3>10. Conclusão</h3>
-              <p>A missão evoluiu de investigação local para desmantelamento parcial de uma rede internacional de tráfego mutante.</p>
-              <p>Soraya Cadir encontra-se sob nossa proteção.<br>
-              A ameaça ligada a Omar permanece ativa e organizada.</p>
+              <p>A missão evoluiu de investigação local para desmantelamento parcial de uma rede internacional de tráfico mutante.</p>
+              <p>Soraya Cadir encontra-se sob nossa proteção.</p>
+              <p>A ameaça ligada a Omar permanece ativa e organizada.</p>
             </div>
           </div>
         </div>
