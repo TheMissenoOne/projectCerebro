@@ -2,17 +2,12 @@
  * X-MEN TTRPG - Global API Exports
  * Maps all module functions to window for global access
  * Load order: config.js → supabase-client.js → cache-module.js → auth-module.js → api.js → globals.js → themes.js → page-specific
+ * Note: api.js already sets window.requireAuth, window.requireGM, etc. - no need to reassign
  */
 
 (function() {
-  // Auth functions
-  window.login = window.api.login;
-  window.register = window.api.register;
-  window.logout = window.api.logout;
-  window.checkAuth = window.api.checkAuth;
-  window.getCurrentUser = window.api.getCurrentUser;
-  window.requireAuth = window.api.requireAuth;
-  window.requireGM = window.api.requireGM;
+  // Auth functions - api.js sets these, no need to override
+  // window.login, window.register, window.logout, window.checkAuth, window.requireAuth, window.requireGM set by api.js
 
   // Party functions
   window.createParty = window.api.createParty;
