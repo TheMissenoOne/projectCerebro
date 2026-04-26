@@ -68,12 +68,12 @@
       border-left: 2px solid var(--red);
     }
 
-.wiki-content {
-  flex: 1;
-  padding: clamp(16px, 3vw, 32px);
-  overflow-y: auto;
-  max-height: calc(100vh - var(--hdr-h) - var(--bar-h));
-}
+    .wiki-content {
+      flex: 1;
+      padding: clamp(16px, 3vw, 32px);
+      overflow-y: auto;
+      max-height: calc(100vh - var(--hdr-h) - var(--bar-h));
+    }
 
     .wiki-content h1 {
       font-family: var(--disp);
@@ -146,147 +146,120 @@
       padding: 0;
     }
 
-.wiki-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: .52rem;
-}
+    /* ===== TABELAS CORRIGIDAS ===== */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+      border: 1px solid var(--b1);
+    }
+
+    .wiki-content table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.7rem;
+      min-width: 400px;
+    }
 
     .wiki-content th, .wiki-content td {
-      padding: 8px 10px;
+      padding: 10px 12px;
       border: 1px solid var(--b1);
+      text-align: center;
+      vertical-align: middle;
       font-family: var(--mono);
-      font-size: .58rem;
     }
 
     .wiki-content th {
       background: var(--p2);
       color: var(--white);
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .1em;
+      letter-spacing: 0.05em;
+      font-size: 0.65rem;
     }
 
-    .wiki-content td {
-      text-align: center;
-    }
-
-.wiki-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: .52rem;
-}
-    
+    /* Sticky header e primeira coluna CORRIGIDOS */
     .wiki-content table thead {
       position: sticky;
       top: 0;
       z-index: 10;
+      background: var(--p2);
     }
-    
+
     .wiki-content table th {
       position: sticky;
       top: 0;
       background: var(--p2);
       z-index: 15;
     }
-    
+
     .wiki-content table th:first-child {
       position: sticky;
       left: 0;
       z-index: 20;
+      background: var(--p2);
     }
-    
-    .wiki-content table th:first-child {
-      position: sticky;
-      left: 0;
-      z-index: 20;
-    }
-    
+
     .wiki-content table td:first-child {
       position: sticky;
       left: 0;
       background: var(--p1);
       z-index: 5;
+      font-weight: 600;
     }
 
-    .wiki-content table th, .wiki-content table td {
-      padding: 4px 6px;
-      min-width: 24px;
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin: 12px 0;
-    }
-
-    .ar-modes {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .ar-table-type {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .ar-type-btn {
-      font-family: var(--mono);
-      font-size: .65rem;
-      padding: 8px 20px;
-      background: var(--p1);
-      border: 1px solid var(--b2);
-      color: var(--muted);
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      transition: all .15s;
-    }
-
-    .ar-type-btn:hover {
-      border-color: var(--accent2);
-      color: var(--text);
-    }
-
-    .ar-type-btn.active {
-      background: var(--accent2);
-      color: var(--black);
-      border-color: var(--accent2);
+    /* Destaque de célula na tabela AV/OV - texto escuro */
+    .wiki-content table td.highlight-cell,
+    .wiki-content table tr td.highlight-cell,
+    .wiki-content table .highlight-cell {
+      background: var(--accent) !important;
+      color: #111 !important;
       font-weight: bold;
     }
 
-    .ar-mode-btn {
+    /* Override para qualquer outra cor que possa vir do script */
+    .wiki-content table td[style*="background: var(--accent)"] {
+      color: #111 !important;
+    }
+
+    .ar-modes, .ar-table-type {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ar-type-btn, .ar-mode-btn {
       font-family: var(--mono);
-      font-size: .6rem;
+      font-size: 0.7rem;
       padding: 8px 16px;
       background: var(--p1);
       border: 1px solid var(--b2);
       color: var(--muted);
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: .1em;
-      transition: all .15s;
+      letter-spacing: 0.1em;
+      transition: all 0.15s;
     }
 
-    .ar-mode-btn:hover {
-      border-color: var(--accent);
+    .ar-type-btn:hover, .ar-mode-btn:hover {
+      border-color: var(--accent2);
       color: var(--text);
     }
 
-    .ar-mode-btn.active {
+    .ar-type-btn.active, .ar-mode-btn.active {
       background: var(--accent);
       color: var(--black);
       border-color: var(--accent);
       font-weight: bold;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       .wiki-layout { flex-direction: column; }
       .wiki-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
+      .wiki-content table th, .wiki-content table td { padding: 6px 8px; font-size: 0.6rem; }
     }
-</style>
+  </style>
 </head>
 <body>
 <script>
@@ -392,7 +365,110 @@
           link.classList.add('active');
         }
       });
+      
+      // Reaplica os event listeners das tabelas após carregar novo conteúdo
+      attachTableHighlightListeners();
     }
+    
+    // Função para destacar células da tabela AV/OV com texto escuro
+    function attachTableHighlightListeners() {
+      const tables = document.querySelectorAll('.wiki-content table');
+      tables.forEach(table => {
+        // Remove listeners antigos para evitar duplicação (simplificando, vamos usar delegação)
+      });
+    }
+    
+    // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
+    document.body.addEventListener('click', function(e) {
+      const cell = e.target.closest('td');
+      if (!cell) return;
+      
+      const table = cell.closest('table');
+      if (!table) return;
+      
+      // Verifica se a tabela é uma tabela de AV/OV (contém cabeçalhos com AV/OV ou EV/RV)
+      const headers = Array.from(table.querySelectorAll('th'));
+      const isAVTable = headers.some(h => h.textContent.includes('AV') || h.textContent.includes('OV'));
+      const isRVTable = headers.some(h => h.textContent.includes('EV') || h.textContent.includes('RV'));
+      
+      if (!isAVTable && !isRVTable) return;
+      
+      // Limpa highlights anteriores
+      const allCells = table.querySelectorAll('td');
+      allCells.forEach(td => {
+        td.style.background = '';
+        td.style.color = '';
+        td.style.fontWeight = '';
+        td.classList.remove('highlight-cell');
+      });
+      const allHeaders = table.querySelectorAll('th');
+      allHeaders.forEach(th => {
+        th.style.background = '';
+        th.style.color = '';
+      });
+      
+      // Obtém linha e coluna
+      const row = cell.parentElement;
+      const rowIndex = row.rowIndex;
+      const colIndex = cell.cellIndex;
+      
+      // Destaca toda a coluna
+      table.querySelectorAll('tr').forEach(tr => {
+        if (tr.cells[colIndex]) {
+          const targetCell = tr.cells[colIndex];
+          targetCell.style.background = 'var(--accent)';
+          targetCell.style.color = '#111';  // texto escuro para contraste
+          targetCell.style.fontWeight = 'bold';
+          targetCell.classList.add('highlight-cell');
+        }
+      });
+      
+      // Destaca toda a linha (mas preserva o fundo já aplicado na coluna)
+      row.querySelectorAll('td').forEach(td => {
+        td.style.background = 'var(--accent)';
+        td.style.color = '#111';
+        td.style.fontWeight = 'bold';
+        td.classList.add('highlight-cell');
+      });
+      
+      // Pega valores de linha e coluna
+      let firstColText = row.cells[0] ? row.cells[0].textContent.trim() : '?';
+      let headerText = table.querySelector('thead') ? 
+        table.querySelectorAll('th')[colIndex]?.textContent.trim() : 
+        table.rows[0].cells[colIndex]?.textContent.trim();
+      
+      let tipo = isAVTable ? 'AV' : 'EV';
+      let oposto = isAVTable ? 'OV' : 'RV';
+      let raps = cell.textContent.trim();
+      
+      let displayText = `${tipo}: ${firstColText} | ${oposto}: ${headerText} → RAPs: ${raps}`;
+      
+      // Exibe barra inferior
+      let display = document.getElementById('ar-display');
+      if (!display) {
+        display = document.createElement('div');
+        display.id = 'ar-display';
+        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:#111;padding:12px 20px;font-size:1rem;font-weight:bold;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);font-family:monospace;';
+        document.body.appendChild(display);
+      }
+      display.textContent = displayText;
+    });
+    
+    // Limpa a barra inferior ao clicar fora de uma célula de tabela
+    document.body.addEventListener('click', function(e) {
+      if (!e.target.closest('td')) {
+        const display = document.getElementById('ar-display');
+        if (display) display.remove();
+        
+        // Remove todos os destaques manuais das tabelas
+        document.querySelectorAll('.wiki-content td').forEach(td => {
+          td.style.background = '';
+          td.style.color = '';
+          td.style.fontWeight = '';
+          td.classList.remove('highlight-cell');
+        });
+      }
+    });
     
     const urlParams = new URLSearchParams(window.location.search);
     const initialPage = urlParams.get('p') || 'index';
@@ -408,71 +484,6 @@
     });
     
     initTheme();
-    
-    function highlightARCell(e) {
-      const cell = e.target;
-      if (!cell.tagName === 'TD') return;
-      
-      document.querySelectorAll('.ar-table td').forEach(td => {
-        td.style.background = '';
-        td.style.color = '';
-        td.style.fontWeight = '';
-      });
-      
-      const row = cell.parentElement;
-      const colIndex = cell.cellIndex;
-      const table = cell.closest('table');
-      const thead = table.querySelector('thead');
-      const theadRow = thead.querySelector('tr');
-      
-      let avOvEv = '';
-      let rap = cell.textContent;
-      if (table.querySelector('th').textContent.includes('AV')) {
-        avOvEv = 'AV: ' + row.children[0].textContent + ' | OV: ' + theadRow.children[colIndex].textContent + ' → RAPs: ' + rap;
-      } else {
-        avOvEv = 'EV: ' + row.children[0].textContent + ' | RV: ' + theadRow.children[colIndex].textContent + ' → RAPs: ' + rap;
-      }
-      
-      table.querySelectorAll('tr').forEach(tr => {
-        if (tr.children[colIndex]) {
-          tr.children[colIndex].style.background = 'var(--accent)';
-          tr.children[colIndex].style.color = 'var(--bg)';
-          tr.children[colIndex].style.fontWeight = 'bold';
-        }
-      });
-      row.querySelectorAll('td').forEach(td => {
-        td.style.background = 'var(--accent)';
-        td.style.color = 'var(--bg)';
-        td.style.fontWeight = 'bold';
-      });
-      
-      let display = document.getElementById('ar-display');
-      if (!display) {
-        display = document.createElement('div');
-        display.id = 'ar-display';
-        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:var(--bg);padding:12px 20px;font-size:1.1rem;font-weight:bold;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);';
-        document.body.appendChild(display);
-      }
-      display.textContent = avOvEv;
-    }
-    
-    function clearARDisplay() {
-      const display = document.getElementById('ar-display');
-      if (display) display.remove();
-    }
-    
-    document.addEventListener('click', function(e) {
-      if (e.target.tagName === 'TD' && e.target.closest('.ar-table')) {
-        highlightARCell({target: e.target});
-      } else if (!e.target.closest('.ar-table') && !e.target.closest('nav')) {
-        clearARDisplay();
-        document.querySelectorAll('.ar-table td').forEach(td => {
-          td.style.background = '';
-          td.style.color = '';
-          td.style.fontWeight = '';
-        });
-      }
-    });
     
     function renderThemeDots() {
       var themes = [

@@ -385,84 +385,217 @@ window.wikiPages = {
       `,
       aps_referencia: `
         <h1>APs de Referência</h1>
-        <p>Esta tabela mostra os valores de APs equivalentes para Distância, Massa, Tempo e Energia.</p>
+        <p>Esta página mostra os valores de APs equivalentes para Distância, Energia, Massa e Tempo.</p>
         
-        <h2>Tabela Unificada</h2>
+        <h2>Energia (Joules)</h2>
         <table>
-          <thead>
-            <tr><th>APs</th><th>Distância</th><th>Massa</th><th>Tempo</th><th>Energia</th></tr>
-          </thead>
+          <thead><tr><th>APs</th><th>Energia (J)</th><th>Exemplo</th></tr></thead>
           <tbody>
-            <tr><td>-13</td><td>—</td><td>~2 g (inseto)</td><td>—</td><td>—</td></tr>
-            <tr><td>-9</td><td>5 mm</td><td>~30 g</td><td>—</td><td>—</td></tr>
-            <tr><td>-7</td><td>—</td><td>~125 g</td><td>—</td><td>—força de dedão</td></tr>
-            <tr><td>-5</td><td>7,6 cm</td><td>~450 g</td><td>—</td><td>—</td></tr>
-            <tr><td>-4</td><td>15 cm</td><td>1 kg</td><td>—</td><td>—</td></tr>
-            <tr><td>-3</td><td>30 cm</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>-2</td><td>76 cm</td><td>~4,5 kg</td><td>1 segundo</td><td>—</td></tr>
-            <tr><td>-1</td><td>1,5 m</td><td>~8 kg</td><td>2 segundos</td><td>—</td></tr>
-            <tr><td>0</td><td>3 m</td><td>~22 kg</td><td>4 segundos</td><td>—</td></tr>
-            <tr><td>1</td><td>6 m</td><td>~45 kg</td><td>8 segundos</td><td>—</td></tr>
-            <tr><td>2</td><td>12 m</td><td>~90 kg</td><td>15 segundos</td><td>—</td></tr>
-            <tr><td>3</td><td>24 m</td><td>~180 kg</td><td>30 segundos</td><td>—</td></tr>
-            <tr><td>4</td><td>45 m</td><td>~340 kg</td><td>1 minuto</td><td>—</td></tr>
-            <tr><td>5</td><td>91 m</td><td>~680 kg</td><td>2 minutos</td><td>—</td></tr>
-            <tr><td>6</td><td>183 m</td><td>~1,5 t</td><td>4 minutos</td><td>—</td></tr>
-            <tr><td>7</td><td>380 m</td><td>~3 t</td><td>8 minutos</td><td>—</td></tr>
-            <tr><td>8</td><td>760 m</td><td>~6 t</td><td>15 minutos</td><td>—</td></tr>
-            <tr><td>9</td><td>1,5 km</td><td>~12 t</td><td>30 minutos</td><td>—</td></tr>
-            <tr><td>10</td><td>3 km</td><td>~24 t</td><td>1 hora</td><td>—</td></tr>
-            <tr><td>11</td><td>5 km</td><td>~50 t</td><td>2 horas</td><td>—</td></tr>
-            <tr><td>12</td><td>11 km</td><td>~100 t</td><td>4 horas</td><td>—</td></tr>
-            <tr><td>13</td><td>24 km</td><td>~200 t</td><td>8 horas</td><td>—</td></tr>
-            <tr><td>14</td><td>45 km</td><td>~400 t</td><td>15 horas</td><td>—</td></tr>
-            <tr><td>15</td><td>90 km</td><td>~800 t</td><td>1 dia</td><td>—</td></tr>
-            <tr><td>16</td><td>180 km</td><td>~1.600 t</td><td>2 dias</td><td>—</td></tr>
-            <tr><td>17</td><td>360 km</td><td>~3.200 t</td><td>4 dias</td><td>—</td></tr>
-            <tr><td>18</td><td>700 km</td><td>~6.500 t</td><td>1 semana</td><td>—</td></tr>
-            <tr><td>19</td><td>1.400 km</td><td>~13.000 t</td><td>2 semanas</td><td>—</td></tr>
-            <tr><td>20</td><td>2.800 km</td><td>~26.000 t</td><td>1 mês</td><td>—</td></tr>
-            <tr><td>21</td><td>5.600 km</td><td>~52.000 t</td><td>2 meses</td><td>—</td></tr>
-            <tr><td>22</td><td>11.000 km</td><td>~100.000 t</td><td>4 meses</td><td>—</td></tr>
-            <tr><td>23</td><td>22.000 km</td><td>—</td><td>8 meses</td><td>—</td></tr>
-            <tr><td>24</td><td>44.000 km</td><td>—</td><td>1 ano</td><td>—</td></tr>
-            <tr><td>25</td><td>88.000 km</td><td>—</td><td>2 anos</td><td>—</td></tr>
-            <tr><td>26</td><td>176.000 km</td><td>—</td><td>4 anos</td><td>—</td></tr>
-            <tr><td>27</td><td>350.000 km</td><td>—</td><td>8 anos</td><td>—</td></tr>
-            <tr><td>28</td><td>700.000 km</td><td>—</td><td>16 anos</td><td>—</td></tr>
-            <tr><td>29</td><td>1,4 milhão km</td><td>—</td><td>32 anos</td><td>—</td></tr>
-            <tr><td>30</td><td>3 milhões km</td><td>—</td><td>64 anos</td><td>—</td></tr>
-            <tr><td>31</td><td>6 milhões km</td><td>—</td><td>128 anos</td><td>—</td></tr>
-            <tr><td>32</td><td>12 milhões km</td><td>—</td><td>256 anos</td><td>—</td></tr>
-            <tr><td>33</td><td>25 milhões km</td><td>—</td><td>512 anos</td><td>—</td></tr>
-            <tr><td>34</td><td>50 milhões km</td><td>—</td><td>1.000 anos</td><td>—</td></tr>
-            <tr><td>35</td><td>100 milhões km</td><td>—</td><td>2.000 anos</td><td>—</td></tr>
-            <tr><td>36</td><td>200 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>37</td><td>400 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>38</td><td>800 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>39</td><td>1,6 bilhão km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>40</td><td>3 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>41</td><td>6 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>42</td><td>12 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>43</td><td>25 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>44</td><td>50 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>45</td><td>100 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>46</td><td>200 billions km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>47</td><td>400 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>48</td><td>800 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>49</td><td>1,6 trilhão km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>50</td><td>3 trilhões km</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>51+</td><td>1 ano-luz</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>-10</td><td>~1 J</td><td>impacto mínimo</td></tr>
+            <tr><td>-9</td><td>~2 J</td><td>toque leve</td></tr>
+            <tr><td>-8</td><td>~4 J</td><td>pequeno impacto</td></tr>
+            <tr><td>-7</td><td>~8 J</td><td>batida fraca</td></tr>
+            <tr><td>-6</td><td>~16 J</td><td>golpe leve</td></tr>
+            <tr><td>-5</td><td>~32 J</td><td>esforço físico pequeno</td></tr>
+            <tr><td>-4</td><td>~64 J</td><td>empurrão</td></tr>
+            <tr><td>-3</td><td>~125 J</td><td>soco fraco</td></tr>
+            <tr><td>-2</td><td>~250 J</td><td>impacto moderado</td></tr>
+            <tr><td>-1</td><td>~500 J</td><td>soco forte</td></tr>
+            <tr><td>0</td><td>~1.000 J</td><td>impacto humano significativo</td></tr>
+            <tr><td>1</td><td>~2.000 J</td><td>golpe potente</td></tr>
+            <tr><td>2</td><td>~4.000 J</td><td>impacto de arma leve</td></tr>
+            <tr><td>3</td><td>~8.000 J</td><td>colisão leve</td></tr>
+            <tr><td>4</td><td>~16.000 J</td><td>veículo em baixa velocidade</td></tr>
+            <tr><td>5</td><td>~32.000 J</td><td>impacto forte</td></tr>
+            <tr><td>6</td><td>~64.000 J</td><td>colisão severa</td></tr>
+            <tr><td>7</td><td>~125.000 J</td><td>dano estrutural leve</td></tr>
+            <tr><td>8</td><td>~250.000 J</td><td>destruição localizada</td></tr>
+            <tr><td>9</td><td>~500.000 J</td><td>explosão pequena</td></tr>
+            <tr><td>10</td><td>~1 MJ</td><td>granada</td></tr>
+            <tr><td>11</td><td>~2 MJ</td><td>explosão forte</td></tr>
+            <tr><td>12</td><td>~4 MJ</td><td>destruição de sala</td></tr>
+            <tr><td>13</td><td>~8 MJ</td><td>colapso estrutural parcial</td></tr>
+            <tr><td>14</td><td>~16 MJ</td><td>destruição de prédio pequeno</td></tr>
+            <tr><td>15</td><td>~32 MJ</td><td>explosão massiva</td></tr>
+            <tr><td>16</td><td>~64 MJ</td><td>destruição de quarteirão</td></tr>
+            <tr><td>17</td><td>~125 MJ</td><td>devastação urbana</td></tr>
+            <tr><td>18</td><td>~250 MJ</td><td>grande explosão</td></tr>
+            <tr><td>19</td><td>~500 MJ</td><td>destruição extensa</td></tr>
+            <tr><td>20</td><td>~1 GJ</td><td>devastação de larga escala</td></tr>
+            <tr><td>21</td><td>~2 GJ</td><td>explosão massiva</td></tr>
+            <tr><td>22</td><td>~4 GJ</td><td>destruição urbana pesada</td></tr>
+            <tr><td>23</td><td>~8 GJ</td><td>múltiplos quarteirões</td></tr>
+            <tr><td>24</td><td>~16 GJ</td><td>impacto massivo</td></tr>
+            <tr><td>25</td><td>~32 GJ</td><td>destruição de distrito</td></tr>
+            <tr><td>26</td><td>~64 GJ</td><td>devastação regional</td></tr>
+            <tr><td>27</td><td>~125 GJ</td><td>impacto extremo</td></tr>
+            <tr><td>28</td><td>~250 GJ</td><td>destruição massiva</td></tr>
+            <tr><td>29</td><td>~500 GJ</td><td>impacto de grande escala</td></tr>
+            <tr><td>30</td><td>~1 TJ</td><td>impacto catastrófico</td></tr>
+            <tr><td>31</td><td>~2 TJ</td><td>devastação ampla</td></tr>
+            <tr><td>32</td><td>~4 TJ</td><td>impacto geológico</td></tr>
+            <tr><td>33</td><td>~8 TJ</td><td>ruptura massiva</td></tr>
+            <tr><td>34</td><td>~16 TJ</td><td>destruição de área extensa</td></tr>
+            <tr><td>35</td><td>~32 TJ</td><td>impacto sísmico</td></tr>
+            <tr><td>36</td><td>~64 TJ</td><td>evento natural severo</td></tr>
+            <tr><td>37</td><td>~125 TJ</td><td>desastre massivo</td></tr>
+            <tr><td>38</td><td>~250 TJ</td><td>impacto continental leve</td></tr>
+            <tr><td>39</td><td>~500 TJ</td><td>evento extremo</td></tr>
+            <tr><td>40</td><td>~1 PJ</td><td>escala continental</td></tr>
+            <tr><td>41</td><td>~2 PJ</td><td>impacto gigantesco</td></tr>
+            <tr><td>42</td><td>~4 PJ</td><td>destruição continental</td></tr>
+            <tr><td>43</td><td>~8 PJ</td><td>evento planetário leve</td></tr>
+            <tr><td>44</td><td>~16 PJ</td><td>impacto planetário</td></tr>
+            <tr><td>45</td><td>~32 PJ</td><td>devastação planetária</td></tr>
+            <tr><td>46</td><td>~64 PJ</td><td>ruptura de crosta</td></tr>
+            <tr><td>47</td><td>~125 PJ</td><td>impacto massivo global</td></tr>
+            <tr><td>48</td><td>~250 PJ</td><td>evento de extinção</td></tr>
+            <tr><td>49</td><td>~500 PJ</td><td>cataclismo global</td></tr>
+            <tr><td>50</td><td>~1 EJ</td><td>escala planetária total</td></tr>
+            <tr><td>55</td><td>~32 EJ</td><td>alteração global</td></tr>
+            <tr><td>60</td><td>~1 ZJ</td><td>escala estelar inicial</td></tr>
+            <tr><td>65</td><td>~32 ZJ</td><td>energia estelar</td></tr>
+            <tr><td>70+</td><td>~1 YJ</td><td>escala estelar massiva</td></tr>
           </tbody>
         </table>
         
-        <h3>Notas</h3>
-        <ul>
-          <li>Distância: escala de milímetros a anos-luz</li>
-          <li>Massa: de gramas a milhares de toneladas</li>
-          <li>Tempo: de segundos a milênios</li>
-          <li>Energia: valores equivalentes em Joules (em desenvolvimento)</li>
-        </ul>
+        <h2>Tempo</h2>
+        <table>
+          <thead><tr><th>APs</th><th>Tempo</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>-2</td><td>1 segundo</td><td>reação instantânea</td></tr>
+            <tr><td>-1</td><td>2 segundos</td><td>ação muito rápida</td></tr>
+            <tr><td>0</td><td>4 segundos</td><td>um turno básico</td></tr>
+            <tr><td>1</td><td>8 segundos</td><td>troca rápida de ação</td></tr>
+            <tr><td>2</td><td>15 segundos</td><td>interação breve</td></tr>
+            <tr><td>3</td><td>30 segundos</td><td>pequena tarefa</td></tr>
+            <tr><td>4</td><td>1 minuto</td><td>ação sustentada curta</td></tr>
+            <tr><td>5</td><td>2 minutos</td><td>preparação simples</td></tr>
+            <tr><td>6</td><td>4 minutos</td><td>tarefa breve</td></tr>
+            <tr><td>7</td><td>8 minutos</td><td>cena rápida</td></tr>
+            <tr><td>8</td><td>15 minutos</td><td>interação social ou planejamento curto</td></tr>
+            <tr><td>9</td><td>30 minutos</td><td>exploração limitada</td></tr>
+            <tr><td>10</td><td>1 hora</td><td>tarefa significativa</td></tr>
+            <tr><td>11</td><td>2 horas</td><td>operação curta</td></tr>
+            <tr><td>12</td><td>4 horas</td><td>metade de um turno de trabalho</td></tr>
+            <tr><td>13</td><td>8 horas</td><td>um período completo de atividade</td></tr>
+            <tr><td>14</td><td>15 horas</td><td>esforço prolongado</td></tr>
+            <tr><td>15</td><td>1 dia</td><td>ciclo completo</td></tr>
+            <tr><td>16</td><td>2 dias</td><td>sobrevivência sem recursos</td></tr>
+            <tr><td>17</td><td>4 dias</td><td>limite físico prolongado</td></tr>
+            <tr><td>18</td><td>1 semana</td><td>projeto simples</td></tr>
+            <tr><td>19</td><td>2 semanas</td><td>tarefa estruturada</td></tr>
+            <tr><td>20</td><td>1 mês</td><td>atividade contínua</td></tr>
+            <tr><td>21</td><td>2 meses</td><td>processo longo</td></tr>
+            <tr><td>22</td><td>4 meses</td><td>mudança significativa</td></tr>
+            <tr><td>23</td><td>8 meses</td><td>ciclo biológico</td></tr>
+            <tr><td>24</td><td>1 ano</td><td>período anual</td></tr>
+            <tr><td>25</td><td>2 anos</td><td>desenvolvimento médio</td></tr>
+            <tr><td>26</td><td>4 anos</td><td>ciclo de formação</td></tr>
+            <tr><td>27</td><td>8 anos</td><td>crescimento prolongado</td></tr>
+            <tr><td>28</td><td>15 anos</td><td>geração curta</td></tr>
+            <tr><td>29</td><td>30 anos</td><td>geração humana</td></tr>
+            <tr><td>30</td><td>60 anos</td><td>vida humana média</td></tr>
+            <tr><td>31</td><td>120 anos</td><td>longevidade extrema</td></tr>
+            <tr><td>32</td><td>250 anos</td><td>escala histórica</td></tr>
+            <tr><td>33</td><td>500 anos</td><td>mudança cultural</td></tr>
+            <tr><td>34</td><td>1.000 anos</td><td>civilizações</td></tr>
+            <tr><td>35</td><td>2.000 anos</td><td>eras históricas</td></tr>
+            <tr><td>36</td><td>4.000 anos</td><td>antiguidade</td></tr>
+            <tr><td>37</td><td>8.000 anos</td><td>pré-história recente</td></tr>
+            <tr><td>38</td><td>16.000 anos</td><td>mudanças climáticas antigas</td></tr>
+            <tr><td>39</td><td>32.000 anos</td><td>evolução cultural</td></tr>
+            <tr><td>40</td><td>64.000 anos</td><td>humanidade primitiva</td></tr>
+            <tr><td>41</td><td>128.000 anos</td><td>espécie moderna</td></tr>
+            <tr><td>42</td><td>256.000 anos</td><td>evolução humana</td></tr>
+            <tr><td>43</td><td>500.000 anos</td><td>escala evolutiva</td></tr>
+            <tr><td>44</td><td>1 milhão de anos</td><td>espécies</td></tr>
+            <tr><td>45</td><td>2 milhões de anos</td><td>eras biológicas</td></tr>
+            <tr><td>46</td><td>4 milhões de anos</td><td>evolução animal</td></tr>
+            <tr><td>47</td><td>8 milhões de anos</td><td>linhagens</td></tr>
+            <tr><td>48</td><td>16 milhões de anos</td><td>mudanças planetárias</td></tr>
+            <tr><td>49</td><td>32 milhões de anos</td><td>eras geológicas</td></tr>
+            <tr><td>50</td><td>64 milhões de anos</td><td>extinções em massa</td></tr>
+            <tr><td>51</td><td>128 milhões de anos</td><td>evolução de ecossistemas</td></tr>
+            <tr><td>52</td><td>256 milhões de anos</td><td>eras geológicas profundas</td></tr>
+            <tr><td>53</td><td>500 milhões de anos</td><td>vida complexa</td></tr>
+            <tr><td>54</td><td>1 bilhão de anos</td><td>evolução planetária</td></tr>
+            <tr><td>55</td><td>2 bilhões de anos</td><td>formação de sistemas</td></tr>
+            <tr><td>56</td><td>4 bilhões de anos</td><td>idade planetária</td></tr>
+            <tr><td>57</td><td>8 bilhões de anos</td><td>escala cósmica</td></tr>
+            <tr><td>58</td><td>16 bilhões de anos</td><td>idade do universo</td></tr>
+            <tr><td>60+</td><td>—</td><td>escalas cosmológicas</td></tr>
+            <tr><td>70+</td><td>—</td><td>ciclos universais</td></tr>
+          </tbody>
+        </table>
+        
+        <h2>Massa</h2>
+        <table>
+          <thead><tr><th>APs</th><th>Massa</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>-13</td><td>~2 g</td><td>inseto muito leve</td></tr>
+            <tr><td>-9</td><td>~30 g</td><td>pequeno roedor / objeto leve</td></tr>
+            <tr><td>-7</td><td>~125 g</td><td>celular / fruta</td></tr>
+            <tr><td>-5</td><td>~450 g</td><td>pacote pequeno</td></tr>
+            <tr><td>-4</td><td>1 kg</td><td>litro de água</td></tr>
+            <tr><td>-2</td><td>~4,5 kg</td><td>animal pequeno / equipamento leve</td></tr>
+            <tr><td>-1</td><td>~8 kg</td><td>gato</td></tr>
+            <tr><td>0</td><td>~22 kg</td><td>saco pesado / cão médio</td></tr>
+            <tr><td>1</td><td>~45 kg</td><td>criança</td></tr>
+            <tr><td>2</td><td>~90 kg</td><td>humano adulto</td></tr>
+            <tr><td>3</td><td>~180 kg</td><td>grande animal</td></tr>
+            <tr><td>4</td><td>~340 kg</td><td>objeto pesado / estrutura leve</td></tr>
+            <tr><td>5</td><td>~680 kg</td><td>grande animal / carga pesada</td></tr>
+            <tr><td>6</td><td>~1,5 t</td><td>veículo pequeno</td></tr>
+            <tr><td>7</td><td>~3 t</td><td>animal muito grande</td></tr>
+            <tr><td>8</td><td>~6 t</td><td>veículo pesado</td></tr>
+            <tr><td>9</td><td>~13 t</td><td>máquina industrial</td></tr>
+            <tr><td>10</td><td>~25 t</td><td>veículo blindado leve</td></tr>
+            <tr><td>11</td><td>~50 t</td><td>caminhão carregado</td></tr>
+            <tr><td>12</td><td>~100 t</td><td>aeronave pequena</td></tr>
+            <tr><td>13</td><td>~200 t</td><td>aeronave grande</td></tr>
+            <tr><td>14</td><td>~400 t</td><td>transporte pesado</td></tr>
+            <tr><td>15</td><td>~800 t</td><td>estrutura massiva</td></tr>
+            <tr><td>16</td><td>~1.500 t</td><td>árvore gigante / estrutura natural</td></tr>
+            <tr><td>17</td><td>~3.000 t</td><td>pequena construção</td></tr>
+            <tr><td>18</td><td>~6.000 t</td><td>edifício pequeno</td></tr>
+            <tr><td>19</td><td>~12.000 t</td><td>grande estrutura metálica</td></tr>
+            <tr><td>20</td><td>~25.000 t</td><td>monumento pesado</td></tr>
+            <tr><td>21</td><td>~50.000 t</td><td>navio médio</td></tr>
+            <tr><td>22</td><td>~100.000 t</td><td>trem de carga</td></tr>
+            <tr><td>23</td><td>~200.000 t</td><td>grande estrutura urbana</td></tr>
+            <tr><td>24</td><td>~400.000 t</td><td>arranha-céu</td></tr>
+            <tr><td>25</td><td>~800.000 t</td><td>megaestrutura</td></tr>
+            <tr><td>26</td><td>~1,5 milhão t</td><td>grande volume de água</td></tr>
+            <tr><td>27</td><td>~3 milhões t</td><td>formação rochosa</td></tr>
+            <tr><td>28</td><td>~6 milhões t</td><td>pirâmide ou estrutura maciça</td></tr>
+            <tr><td>29</td><td>~10 milhões t</td><td>massa industrial acumulada</td></tr>
+            <tr><td>30</td><td>~13 milhões t</td><td>pequena montanha</td></tr>
+            <tr><td>31</td><td>~26 milhões t</td><td>colina grande</td></tr>
+            <tr><td>32</td><td>~52 milhões t</td><td>estrutura continental</td></tr>
+            <tr><td>33</td><td>~100 milhões t</td><td>massa geológica</td></tr>
+            <tr><td>34</td><td>~200 milhões t</td><td>crosta terrestre localizada</td></tr>
+            <tr><td>35</td><td>~400 milhões t</td><td>população global</td></tr>
+            <tr><td>36</td><td>~800 milhões t</td><td>biomassa global parcial</td></tr>
+            <tr><td>37</td><td>~1,6 bilhões t</td><td>biomassa oceânica</td></tr>
+            <tr><td>38</td><td>~3 bilhões t</td><td>produção global anual</td></tr>
+            <tr><td>39</td><td>~6 bilhões t</td><td>escala industrial global</td></tr>
+            <tr><td>40</td><td>~12 bilhões t</td><td>massa regional massiva</td></tr>
+            <tr><td>41</td><td>~25 bilhões t</td><td>estrutura continental grande</td></tr>
+            <tr><td>42</td><td>~50 bilhões t</td><td>montanha massiva</td></tr>
+            <tr><td>43</td><td>~100 bilhões t</td><td>grande formação geológica</td></tr>
+            <tr><td>44</td><td>~200 bilhões t</td><td>crosta terrestre ampla</td></tr>
+            <tr><td>45</td><td>~400 bilhões t</td><td>placa tectônica parcial</td></tr>
+            <tr><td>46</td><td>~800 bilhões t</td><td>asteroide pequeno</td></tr>
+            <tr><td>47</td><td>~1,6 trilhões t</td><td>asteroide médio</td></tr>
+            <tr><td>48</td><td>~3 trilhões t</td><td>corpo celeste pequeno</td></tr>
+            <tr><td>49</td><td>~6 trilhões t</td><td>lua pequena</td></tr>
+            <tr><td>50</td><td>~12 trilhões t</td><td>satélite natural</td></tr>
+            <tr><td>60+</td><td>—</td><td>escala planetária</td></tr>
+            <tr><td>70+</td><td>—</td><td>planeta</td></tr>
+            <tr><td>90+</td><td>—</td><td>estrela</td></tr>
+          </tbody>
+        </table>
       `,
       acao_resultado: `
         <h1>Tabela de Ação e Resultado</h1>
