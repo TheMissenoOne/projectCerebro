@@ -377,6 +377,16 @@
     // Lookup table for APs reference values
     const apsReference = {
       energia: {
+      distancia: {
+        '-9': '5 mm', '-5': '7,6 cm', '-4': '15 cm', '-3': '30 cm', '-2': '76 cm', '-1': '1,5 m', '0': '3 m', '1': '6 m', '2': '12 m', '3': '24 m',
+        '4': '45 m', '5': '91 m', '6': '183 m', '7': '380 m', '8': '760 m', '9': '1,5 km', '10': '3 km', '11': '5 km', '12': '11 km', '13': '24 km',
+        '14': '45 km', '15': '90 km', '16': '180 km', '17': '360 km', '18': '700 km', '19': '1.400 km', '20': '2.800 km', '21': '5.600 km', '22': '11.000 km',
+        '23': '22.000 km', '24': '44.000 km', '25': '88.000 km', '26': '176.000 km', '27': '350.000 km', '28': '700.000 km', '29': '1,4 milhão km', '30': '3 milhões km',
+        '31': '6 milhões km', '32': '12 milhões km', '33': '25 milhões km', '34': '50 milhões km', '35': '100 milhões km', '36': '200 milhões km', '37': '400 milhões km', '38': '800 milhões km',
+        '39': '1,6 bilhão km', '40': '3 bilhões km', '41': '6 bilhões km', '42': '12 bilhões km', '43': '25 bilhões km', '44': '50 bilhões km', '45': '100 bilhões km',
+        '46': '200 bilhões km', '47': '400 bilhões km', '48': '800 bilhões km', '49': '1,6 trilhão km', '50': '3 trilhões km'
+      },
+      energia: {
         '-10': '~1 J', '-9': '~2 J', '-8': '~4 J', '-7': '~8 J', '-6': '~16 J', '-5': '~32 J', '-4': '~64 J', '-3': '~125 J', '-2': '~250 J', '-1': '~500 J',
         '0': '~1.000 J', '1': '~2.000 J', '2': '~4.000 J', '3': '~8.000 J', '4': '~16.000 J', '5': '~32.000 J', '6': '~64.000 J', '7': '~125.000 J', '8': '~250.000 J', '9': '~500.000 J',
         '10': '~1 MJ', '11': '~2 MJ', '12': '~4 MJ', '13': '~8 MJ', '14': '~16 MJ', '15': '~32 MJ', '16': '~64 MJ', '17': '~125 MJ', '18': '~250 MJ', '19': '~500 MJ',
@@ -411,9 +421,10 @@
       if (numVal < -13 || numVal > 70) return '';
       
       let refs = [];
+      if (apsReference.distancia[numVal]) refs.push('Distância: ' + apsReference.distancia[numVal]);
       if (apsReference.energia[numVal]) refs.push('Energia: ' + apsReference.energia[numVal]);
-      if (apsReference.tempo[numVal]) refs.push('Tempo: ' + apsReference.tempo[numVal]);
       if (apsReference.massa[numVal]) refs.push('Massa: ' + apsReference.massa[numVal]);
+      if (apsReference.tempo[numVal]) refs.push('Tempo: ' + apsReference.tempo[numVal]);
       return refs.length > 0 ? ' | ' + refs.join(' | ') : '';
     }
     
