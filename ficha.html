@@ -539,7 +539,7 @@ const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const t=TODOS.find(t=>t.v===v);return t?t.l:(v||'SEM TIPO');};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
-const novoCard=()=>({tipo:'',misterio:'',atencao:0,dissipacao:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
+const novoCard=()=>({tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
 const MELHORIAS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
