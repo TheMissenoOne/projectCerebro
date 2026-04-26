@@ -339,8 +339,8 @@
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
         <a href="wiki.html?p=sistema_acao" class="wiki-nav-link" data-page="sistema_acao">Sistema de Ações</a>
         <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
-        <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
-        <a href="wiki.html?p=aps_distancia" class="wiki-nav-link" data-page="aps_distancia">Distância</a>
+        <a href="wiki.html?p=aps_distancia" class="wiki-nav-link" data-page="aps_distancia">Tabela AV/OV e EV/RV</a>
+        <a href="wiki.html?p=aps_mass" class="wiki-nav-link" data-page="aps_mass">Massa</a>
         <a href="wiki.html?p=aps_mass" class="wiki-nav-link" data-page="aps_mass">Massa</a>
         <a href="wiki.html?p=aps_tempo" class="wiki-nav-link" data-page="aps_tempo">Tempo</a>
         <a href="wiki.html?p=aps_energia" class="wiki-nav-link" data-page="aps_energia">Energia</a>
@@ -401,22 +401,12 @@
     const initialPage = urlParams.get('p') || 'index';
     loadPage(initialPage);
     
-    if (initialPage === 'acao_resultado') {
-      renderActionTable();
-    }
-    
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.dataset.page;
         window.history.pushState({}, '', `wiki.html?p=${page}`);
         loadPage(page);
-        
-        if (page === 'acao_resultado') {
-          setTimeout(function() {
-            renderActionTable();
-          }, 50);
-        }
       });
     });
     
