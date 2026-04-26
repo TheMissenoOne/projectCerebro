@@ -617,7 +617,7 @@ async function loadCharacters() {
     chars.forEach(char => {
       const opt = document.createElement('option');
       opt.value = char.id;
-      opt.textContent = char.name || char.codename || 'Sem nome';
+      opt.textContent = char.nome || char.codename || 'Sem nome';
       select.appendChild(opt);
     });
   } catch (e) {

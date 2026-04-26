@@ -180,17 +180,26 @@
 
     window.showTab = showTab;
 
-    async function loadPartyCharacters() {
+    let charsOffset = 0;
+    const CHARS_LIMIT = 20;
+
+    async function loadPartyCharacters(append) {
       try {
         const gmId = currentAuth.session.user.id;
-        
-        const chars = await api.listAllGMCharacters(gmId);
-        console.log('[loadPartyCharacters] chars:', chars);
         const grid = document.getElementById('party-chars-grid');
-        grid.innerHTML = '';
+        
+        if (!append) {
+          charsOffset = 0;
+          grid.innerHTML = '<div class="loading-skeleton"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>';
+        }
+        
+        const chars = await api.listAllGMCharacters(gmId, false, charsOffset, CHARS_LIMIT);
+        console.log('[loadPartyCharacters] chars:', chars);
+        
+        if (!append) grid.innerHTML = '';
         
         if (!chars || chars.length === 0) {
-          grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum personagem encontrado</p>';
+          if (!append) grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum personagem encontrado</p>';
           return;
         }
         
@@ -200,14 +209,31 @@
           card.className = 'char-card';
           card.href = 'ficha.html?id=' + char.id + '&t=' + Date.now();
           card.target = '_blank';
-          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.name ? char.name.charAt(0).toUpperCase() : '?');
+          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.nome ? char.nome.charAt(0).toUpperCase() : '?');
           const foto = char.foto_base64 || '';
           card.innerHTML = foto 
             ? '<div class="char-card-img" style="background-image:url(' + foto + ')"></div>'
             : '<div class="char-card-avatar">' + initial + '</div>';
-          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.name || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
+          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.nome || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
           grid.appendChild(card);
         });
+        
+        charsOffset += chars.length;
+        
+        if (chars.length === CHARS_LIMIT) {
+          const loadMore = document.getElementById('load-more-chars');
+          if (!loadMore) {
+            const btn = document.createElement('button');
+            btn.id = 'load-more-chars';
+            btn.className = 'load-more-btn';
+            btn.textContent = 'Carregar mais...';
+            btn.onclick = () => loadPartyCharacters(true);
+            grid.parentNode.appendChild(btn);
+          }
+        } else {
+          const loadMore = document.getElementById('load-more-chars');
+          if (loadMore) loadMore.remove();
+        }
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
         document.getElementById('party-chars-grid').innerHTML = '<p style="color:var(--red);text-align:center;padding:20px;">Erro: ' + e.message + '</p>';
@@ -216,7 +242,7 @@
 
     window.refreshCharacters = async function() {
       await api.listAllGMCharacters(currentAuth.session.user.id, true);
-      await loadPartyCharacters();
+      await loadPartyCharacters(false);
     };
 
     let currentEditingChar = null;

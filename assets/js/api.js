@@ -174,7 +174,7 @@
       return getSupabase().from('characters').select('*').eq('id', charId).single()
         .then(function(result) { 
           if (result.error) throw result.error; 
-          result.data.nome = result.data.nome || result.data.name || null;
+          result.data.nome = result.data.name || result.data.nome || null;
           if (cache) cache.set('char', charId, result.data, 120000);
           return result.data; 
         });
@@ -243,44 +243,45 @@
         .then(function(result) { if (result.error) throw result.error; });
     },
 
-    listAllGMCharacters: function(gmId, forceRefresh) {
+    listAllGMCharacters: function(gmId, forceRefresh, offset, limit) {
       var cache = window.cache;
-      var key = 'gm_chars_' + gmId;
+      var key = 'gm_chars_' + gmId + '_' + (offset || 0) + '_' + (limit || 9999);
       if (!forceRefresh && cache) {
         var cached = cache.get('gm_chars', key);
         if (cached) return Promise.resolve(cached);
       }
       return getSupabase().from('parties').select('id, name').eq('gm_id', gmId)
-        .then(function(result) { 
-          if (result.error) throw result.error;
-          var partyIds = result.data.map(function(p) { return p.id; });
+        .then(async function(partiesResult) { 
+          if (partiesResult.error) throw partiesResult.error;
+          var partyIds = partiesResult.data.map(function(p) { return p.id; });
           var partyNames = {};
-          result.data.forEach(function(p) { partyNames[p.id] = p.name; });
+          partiesResult.data.forEach(function(p) { partyNames[p.id] = p.name; });
           if (partyIds.length === 0) return [];
-          return getSupabase().from('characters').select('*, player_id')
-            .in('party_id', partyIds)
-            .then(function(r) { 
-              if (r.error) throw r.error;
-              var chars = r.data;
-              if (!chars || chars.length === 0) return [];
-              var playerIds = chars.map(function(c) { return c.player_id; });
-              console.log('[listAllGMCharacters] playerIds:', playerIds);
-              return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
-                .then(function(profiles) {
-                  if (profiles.error) console.error('[listAllGMCharacters] profiles error:', profiles.error);
-                  console.log('[listAllGMCharacters] profiles:', profiles);
-                  var profileMap = {};
-                  if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
-                  console.log('[listAllGMCharacters] profileMap:', profileMap);
-                  var mapped = chars.map(function(c) {
-                    c.player_name = profileMap[c.player_id] || c.player_id;
-                    c.party_name = partyNames[c.party_id] || null;
-                    return c;
-                  });
-                  if (cache) cache.set('gm_chars', key, mapped, 300000);
-                  return mapped;
-                });
-            });
+          
+          var charsQuery = getSupabase().from('characters').select('*, player_id').in('party_id', partyIds);
+          if (offset !== undefined && limit !== undefined) {
+            charsQuery = charsQuery.range(offset, offset + limit - 1);
+          }
+          
+          var charsResult = await charsQuery;
+          if (charsResult.error) throw charsResult.error;
+          var chars = charsResult.data;
+          if (!chars || chars.length === 0) return { chars: [], total: 0, partyNames: partyNames };
+          
+          var playerIds = chars.map(function(c) { return c.player_id; });
+          
+          var profilesResult = await getSupabase().from('profiles').select('id, display_name').in('id', playerIds);
+          var profileMap = {};
+          if (profilesResult.data) profilesResult.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
+          
+          var mapped = chars.map(function(c) {
+            c.player_name = profileMap[c.player_id] || c.player_id;
+            c.party_name = partyNames[c.party_id] || null;
+            return c;
+          });
+          
+          if (cache) cache.set('gm_chars', key, mapped, 300000);
+          return mapped;
         })
         .catch(function(err) {
           console.error('[listAllGMCharacters error]', err);

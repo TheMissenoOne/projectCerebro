@@ -742,3 +742,41 @@
   margin-top: 4px;
   padding: 4px 8px;
 }
+
+.loading-skeleton {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.skeleton-card {
+  width: 140px;
+  height: 180px;
+  background: linear-gradient(90deg, var(--p2) 25%, var(--p1) 50%, var(--p2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.load-more-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  background: var(--p2);
+  border: 1px solid var(--b2);
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.load-more-btn:hover {
+  background: var(--p1);
+  border-color: var(--accent);
+}
