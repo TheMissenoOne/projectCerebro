@@ -1537,5 +1537,148 @@ window.wikiPages = {
         <blockquote style="margin-top: 20px; padding: 15px; border-left: 3px solid var(--accent); background: rgba(0,0,0,0.3);">
           <p>Os PJs não foram para a X-Force porque Cable viu algo diferente — ou porque eram jovens demais. Isso é tensão narrativa viva: o que acontece quando os veteranos que os PJs admiravam partiram para fazer o trabalho duro, e agora o Instituto precisa que <em>eles</em> cresçam?</p>
         </blockquote>
+      `,
+      
+      relatorios: `
+        <h1>Relatórios de Missão</h1>
+        <p>Chronologia de operações e missões conduzidas pelos X-Men.</p>
+        
+        <div class="relatorios-container">
+          <div class="relatorio-card" style="border-left: 3px solid var(--red);">
+            <div class="relatorio-header" onclick="this.parentElement.classList.toggle('expanded')">
+              <span class="relatorio-title">Relatório de Missão — Avaliação, Resgate e Contenção Mutante</span>
+              <span class="relatorio-leader">Líder: Ishan Patel (Atalho)</span>
+            </div>
+            <div class="relatorio-body">
+              <p><strong>Responsável:</strong> Ishan Patel (Atalho)<br>
+              <strong>Codinome:</strong> Líder Vermelho<br>
+              <strong>Designação:</strong> X-Men Vermelho (liderança temporária)</p>
+              
+              <hr style="border-color: var(--b2); margin: 15px 0;">
+              
+              <h3>1. Objetivo Inicial</h3>
+              <p>Avaliar e identificar possível despertar mutante na região indicada por Emma Frost, no Líbano.</p>
+              
+              <h3>2. Fase 1 — Investigação (Líbano)</h3>
+              <p>Após período de observação, localizamos a escola suspeita. Em coordenação com a direção, realizamos triagem comportamental entre os alunos. Apenas um apresentou sinais claros de estresse elevado.</p>
+              <p>Identificamos sua residência e, após diálogo com o garoto e seus pais, descobrimos que seu irmão, Hanmza, havia sido sequestrado. A partir das descrições, solicitamos a Emma Frost a identificação do possível local de cativeiro.</p>
+              
+              <h3>3. Fase 2 — Operação de Resgate</h3>
+              <p><strong>Local:</strong> Prédio isolado de 3 andares</p>
+              <p><strong>Equipe:</strong> Atalho (Líder Vermelho), Maestro, Nemesis</p>
+              <p><strong>Execução:</strong> Maestro concedeu a Atalho habilidades de invisibilidade e resistência. Sob esses efeitos, infiltrei o prédio e localizei Hanmza no 3º andar.</p>
+              <p>Ao estabelecer contato, iniciei extração via portal. Um dos sequestradores percebeu movimentação, gerando risco de comprometimento.</p>
+              <p>Nemesis e Maestro avançaram para suporte, neutralizando 5 hostis. Durante a retirada, enfrento um combatente altamente treinado, sendo necessário eliminá-lo para garantir a missão.</p>
+              <p><strong>Resultado:</strong> Hanmza resgatado com sucesso.</p>
+              
+              <h3>4. Revelação Crítica</h3>
+              <p>Durante o debriefing, Hanmza informou que o mutante real não era ele, mas Soraya Cadir.</p>
+              <p><strong>Informações coletadas:</strong></p>
+              <ul>
+                <li>Origem: Afeganistão</li>
+                <li>Grupo inimigo liderado por "Omar"</li>
+                <li>Atuação: Tráfico de mutantes</li>
+                <li>Histórico: Família de Soraya foi morta ao tentar protegê-la</li>
+                <li>Status: Poder recentemente estabilizado</li>
+                <li>Motivação do sequestro: Atrair Soraya através de Hanmza</li>
+              </ul>
+              
+              <h3>5. Fase 3 — Localização de Soraya</h3>
+              <p>Utilizando detecção mágica concedida por Maestro, criei múltiplos portais para triangulação da localização.</p>
+              <p>Identificamos Soraya em zona rural.</p>
+              <p>Inicialmente, Soraya não respondeu à aproximação direta. Sugeri que Hanmza fizesse o contato, considerando vínculo emocional. Estratégia bem-sucedida.</p>
+              <p>Soraya cooperou após explicação da situação.</p>
+              
+              <h3>6. Extração e Recrutamento</h3>
+              <p>Acionamos o Pássaro Negro para evacuação.<br>
+              Soraya foi integrada sob proteção dos X-Men, com promessa de futuras operações de resgate.</p>
+              
+              <h3>7. Ponto de Atenção Operacional</h3>
+              <p><em>Maestro: Necessidade de comunicar intenções antes de conceder poderes. A ausência de alinhamento prévio compromete previsibilidade tática.</em></p>
+              
+              <h3>8. Fase 4 — Operação Afeganistão</h3>
+              <p><strong>Objetivo:</strong> Identificar e desmantelar operação liderada por Omar.</p>
+              <p>Após reconhecimento aéreo (Signar), identificamos uma pequena cidade com pontos estratégicos.</p>
+              
+              <h4>Divisão de Equipes</h4>
+              <table>
+                <thead><tr><th>Equipe</th><th>Membros</th><th>Resultado</th></tr></thead>
+                <tbody>
+                  <tr><td>MESQUITA</td><td>Maestro, Nemesis</td><td>Identificação de mutantes e humanos encarcerados</td></tr>
+                  <tr><td>ARMAZÉM</td><td>Atalho, Fusion</td><td>Estrutura abandonada; caminhão adaptado para transporte</td></tr>
+                  <tr><td>CAMINHÃO</td><td>Signar, Kaleb</td><td>Motorista capturado e interrogado</td></tr>
+                  <tr><td>TRILHA</td><td>Texugo</td><td>Reconhecimento de terreno e busca por rotas</td></tr>
+                </tbody>
+              </table>
+              
+              <p><strong>Resultado Final:</strong></p>
+              <ul>
+                <li>Civis e mutantes resgatados</li>
+                <li>Dispositivos móveis apreendidos</li>
+                <li>Informações coletadas sobre a rede de Omar</li>
+                <li>Intervenção policial ao final da operação</li>
+              </ul>
+              
+              <h3>9. Avaliação de Liderança</h3>
+              <p>A divisão estratégica da equipe foi intencional, visando:<br>
+              - Estimular autonomia<br>
+              - Explorar sinergia de habilidades<br>
+              - Desenvolver tomada de decisão em campo</p>
+              <p><strong>Resultado:</strong> A equipe respondeu de forma eficiente e coordenada.</p>
+              
+              <h3>10. Conclusão</h3>
+              <p>A missão evoluiu de investigação local para desmantelamento parcial de uma rede internacional de tráfego mutante.</p>
+              <p>Soraya Cadir encontra-se sob nossa proteção.<br>
+              A ameaça ligada a Omar permanece ativa e organizada.</p>
+            </div>
+          </div>
+        </div>
+        
+        <style>
+          .relatorios-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 10px;
+          }
+          .relatorio-card {
+            background: var(--p2);
+            border: 1px solid var(--b2);
+            border-radius: 4px;
+            overflow: hidden;
+          }
+          .relatorio-header {
+            padding: 12px 15px;
+            background: var(--p1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+          .relatorio-header:hover {
+            background: var(--p0);
+          }
+          .relatorio-title {
+            font-weight: bold;
+            color: var(--text);
+          }
+          .relatorio-leader {
+            font-size: 0.85rem;
+            color: var(--muted);
+          }
+          .relatorio-body {
+            padding: 15px;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+          }
+          .relatorio-card.expanded .relatorio-body {
+            display: block;
+          }
+        </style>
       `
     };
