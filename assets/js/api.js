@@ -64,16 +64,17 @@
     },
 
     getProfile: function(userId, forceRefresh) {
-      // No longer use profiles table - use Supabase Auth user data instead
-      return getSupabase().auth.getUser(userId)
+      // Use Supabase Auth session
+      return getSupabase().auth.getSession()
         .then(function(result) { 
-          if (result.error) throw result.error;
-          var user = result.data.user;
+          var session = result.data.session;
+          if (!session) throw new Error('No session');
+          var user = session.user;
           return {
             id: user.id,
             email: user.email,
             display_name: user.email.split('@')[0],
-            role: 'player'
+            role: user.user_metadata?.role || 'player'
           };
         });
     },
