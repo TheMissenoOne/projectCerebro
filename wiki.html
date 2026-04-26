@@ -452,7 +452,7 @@
         display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:#111;padding:12px 20px;font-size:1rem;font-weight:bold;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);font-family:monospace;';
         document.body.appendChild(display);
       }
-      display.textContent = texts.join(' || ');
+      display.textContent = texts.join('\n');
     }
     
     // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
