@@ -415,14 +415,27 @@
     function highlightARCell(e) {
       const cell = e.target;
       if (!cell.tagName === 'TD') return;
+      
       document.querySelectorAll('.ar-table td').forEach(td => {
         td.style.background = '';
         td.style.color = '';
         td.style.fontWeight = '';
       });
+      
       const row = cell.parentElement;
       const colIndex = cell.cellIndex;
       const table = cell.closest('table');
+      const thead = table.querySelector('thead');
+      const theadRow = thead.querySelector('tr');
+      
+      let avOvEv = '';
+      let rap = cell.textContent;
+      if (table.querySelector('th').textContent.includes('AV')) {
+        avOvEv = 'AV: ' + row.children[0].textContent + ' | OV: ' + theadRow.children[colIndex].textContent + ' → RAPs: ' + rap;
+      } else {
+        avOvEv = 'EV: ' + row.children[0].textContent + ' | RV: ' + theadRow.children[colIndex].textContent + ' → RAPs: ' + rap;
+      }
+      
       table.querySelectorAll('tr').forEach(tr => {
         if (tr.children[colIndex]) {
           tr.children[colIndex].style.background = 'var(--accent)';
@@ -435,11 +448,32 @@
         td.style.color = 'var(--bg)';
         td.style.fontWeight = 'bold';
       });
+      
+      let display = document.getElementById('ar-display');
+      if (!display) {
+        display = document.createElement('div');
+        display.id = 'ar-display';
+        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:var(--bg);padding:12px 20px;font-size:1.1rem;font-weight:bold;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);';
+        document.body.appendChild(display);
+      }
+      display.textContent = avOvEv;
+    }
+    
+    function clearARDisplay() {
+      const display = document.getElementById('ar-display');
+      if (display) display.remove();
     }
     
     document.addEventListener('click', function(e) {
       if (e.target.tagName === 'TD' && e.target.closest('.ar-table')) {
         highlightARCell({target: e.target});
+      } else if (!e.target.closest('.ar-table') && !e.target.closest('nav')) {
+        clearARDisplay();
+        document.querySelectorAll('.ar-table td').forEach(td => {
+          td.style.background = '';
+          td.style.color = '';
+          td.style.fontWeight = '';
+        });
       }
     });
     
