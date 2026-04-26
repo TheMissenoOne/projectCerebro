@@ -422,6 +422,37 @@
     
     initTheme();
     
+    function highlightARCell(e) {
+      const cell = e.target;
+      if (!cell.tagName === 'TD') return;
+      document.querySelectorAll('.ar-table td').forEach(td => {
+        td.style.background = '';
+        td.style.color = '';
+        td.style.fontWeight = '';
+      });
+      const row = cell.parentElement;
+      const colIndex = cell.cellIndex;
+      const table = cell.closest('table');
+      table.querySelectorAll('tr').forEach(tr => {
+        if (tr.children[colIndex]) {
+          tr.children[colIndex].style.background = 'var(--accent)';
+          tr.children[colIndex].style.color = 'var(--bg)';
+          tr.children[colIndex].style.fontWeight = 'bold';
+        }
+      });
+      row.querySelectorAll('td').forEach(td => {
+        td.style.background = 'var(--accent)';
+        td.style.color = 'var(--bg)';
+        td.style.fontWeight = 'bold';
+      });
+    }
+    
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'TD' && e.target.closest('.ar-table')) {
+        highlightARCell({target: e.target});
+      }
+    });
+    
     function renderThemeDots() {
       var themes = [
         { id: 'yellow', color: '#FFD600' },

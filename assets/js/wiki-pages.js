@@ -458,33 +458,6 @@ window.wikiPages = {
         </ul>
         
         <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade. Clique em uma célula para destacar linha e coluna.</p>
-        
-        <script>
-        document.querySelectorAll('.ar-table td').forEach(cell => {
-          cell.style.cursor = 'pointer';
-          cell.addEventListener('click', function() {
-            document.querySelectorAll('.ar-table td').forEach(td => {
-              td.style.background = '';
-              td.style.fontWeight = '';
-            });
-            const row = this.parentElement;
-            const colIndex = this.cellIndex;
-            row.querySelectorAll('td').forEach(td => {
-              td.style.background = 'var(--accent)';
-              td.style.color = 'var(--bg)';
-              td.style.fontWeight = 'bold';
-            });
-            const table = this.closest('table');
-            table.querySelectorAll('tr').forEach(tr => {
-              if (tr.children[colIndex]) {
-                tr.children[colIndex].style.background = 'var(--accent)';
-                tr.children[colIndex].style.color = 'var(--bg)';
-                tr.children[colIndex].style.fontWeight = 'bold';
-              }
-            });
-          });
-        });
-        </script>
       `,
       acoes: `
         <h1>Ações — Tipos e Resolução</h1>
