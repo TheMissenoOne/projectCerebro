@@ -381,9 +381,90 @@ window.wikiPages = {
           <li>O GM pode limitar categorias de ação combinadas para evitar stacking excessivo — recomendado cap de <strong>+8</strong> total em modificadores de ação por efeito.</li>
           <li>Modificadores de posicionamento e circunstanciais não têm cap, mas são situacionais e não cumulativos entre si se representarem a mesma condição.</li>
           <li>Ações automáticas <strong>não usam modificadores</strong> — seu limite é o número de tags investidas.</li>
+</ul>
+      `,
+      aps_referencia: `
+        <h1>APs de Referência</h1>
+        <p>Esta tabela mostra os valores de APs equivalentes para Distância, Massa, Tempo e Energia.</p>
+        
+        <h2>Tabela Unificada</h2>
+        <table>
+          <thead>
+            <tr><th>APs</th><th>Distância</th><th>Massa</th><th>Tempo</th><th>Energia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>-13</td><td>—</td><td>~2 g (inseto)</td><td>—</td><td>—</td></tr>
+            <tr><td>-9</td><td>5 mm</td><td>~30 g</td><td>—</td><td>—</td></tr>
+            <tr><td>-7</td><td>—</td><td>~125 g</td><td>—</td><td>—força de dedão</td></tr>
+            <tr><td>-5</td><td>7,6 cm</td><td>~450 g</td><td>—</td><td>—</td></tr>
+            <tr><td>-4</td><td>15 cm</td><td>1 kg</td><td>—</td><td>—</td></tr>
+            <tr><td>-3</td><td>30 cm</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>-2</td><td>76 cm</td><td>~4,5 kg</td><td>1 segundo</td><td>—</td></tr>
+            <tr><td>-1</td><td>1,5 m</td><td>~8 kg</td><td>2 segundos</td><td>—</td></tr>
+            <tr><td>0</td><td>3 m</td><td>~22 kg</td><td>4 segundos</td><td>—</td></tr>
+            <tr><td>1</td><td>6 m</td><td>~45 kg</td><td>8 segundos</td><td>—</td></tr>
+            <tr><td>2</td><td>12 m</td><td>~90 kg</td><td>15 segundos</td><td>—</td></tr>
+            <tr><td>3</td><td>24 m</td><td>~180 kg</td><td>30 segundos</td><td>—</td></tr>
+            <tr><td>4</td><td>45 m</td><td>~340 kg</td><td>1 minuto</td><td>—</td></tr>
+            <tr><td>5</td><td>91 m</td><td>~680 kg</td><td>2 minutos</td><td>—</td></tr>
+            <tr><td>6</td><td>183 m</td><td>~1,5 t</td><td>4 minutos</td><td>—</td></tr>
+            <tr><td>7</td><td>380 m</td><td>~3 t</td><td>8 minutos</td><td>—</td></tr>
+            <tr><td>8</td><td>760 m</td><td>~6 t</td><td>15 minutos</td><td>—</td></tr>
+            <tr><td>9</td><td>1,5 km</td><td>~12 t</td><td>30 minutos</td><td>—</td></tr>
+            <tr><td>10</td><td>3 km</td><td>~24 t</td><td>1 hora</td><td>—</td></tr>
+            <tr><td>11</td><td>5 km</td><td>~50 t</td><td>2 horas</td><td>—</td></tr>
+            <tr><td>12</td><td>11 km</td><td>~100 t</td><td>4 horas</td><td>—</td></tr>
+            <tr><td>13</td><td>24 km</td><td>~200 t</td><td>8 horas</td><td>—</td></tr>
+            <tr><td>14</td><td>45 km</td><td>~400 t</td><td>15 horas</td><td>—</td></tr>
+            <tr><td>15</td><td>90 km</td><td>~800 t</td><td>1 dia</td><td>—</td></tr>
+            <tr><td>16</td><td>180 km</td><td>~1.600 t</td><td>2 dias</td><td>—</td></tr>
+            <tr><td>17</td><td>360 km</td><td>~3.200 t</td><td>4 dias</td><td>—</td></tr>
+            <tr><td>18</td><td>700 km</td><td>~6.500 t</td><td>1 semana</td><td>—</td></tr>
+            <tr><td>19</td><td>1.400 km</td><td>~13.000 t</td><td>2 semanas</td><td>—</td></tr>
+            <tr><td>20</td><td>2.800 km</td><td>~26.000 t</td><td>1 mês</td><td>—</td></tr>
+            <tr><td>21</td><td>5.600 km</td><td>~52.000 t</td><td>2 meses</td><td>—</td></tr>
+            <tr><td>22</td><td>11.000 km</td><td>~100.000 t</td><td>4 meses</td><td>—</td></tr>
+            <tr><td>23</td><td>22.000 km</td><td>—</td><td>8 meses</td><td>—</td></tr>
+            <tr><td>24</td><td>44.000 km</td><td>—</td><td>1 ano</td><td>—</td></tr>
+            <tr><td>25</td><td>88.000 km</td><td>—</td><td>2 anos</td><td>—</td></tr>
+            <tr><td>26</td><td>176.000 km</td><td>—</td><td>4 anos</td><td>—</td></tr>
+            <tr><td>27</td><td>350.000 km</td><td>—</td><td>8 anos</td><td>—</td></tr>
+            <tr><td>28</td><td>700.000 km</td><td>—</td><td>16 anos</td><td>—</td></tr>
+            <tr><td>29</td><td>1,4 milhão km</td><td>—</td><td>32 anos</td><td>—</td></tr>
+            <tr><td>30</td><td>3 milhões km</td><td>—</td><td>64 anos</td><td>—</td></tr>
+            <tr><td>31</td><td>6 milhões km</td><td>—</td><td>128 anos</td><td>—</td></tr>
+            <tr><td>32</td><td>12 milhões km</td><td>—</td><td>256 anos</td><td>—</td></tr>
+            <tr><td>33</td><td>25 milhões km</td><td>—</td><td>512 anos</td><td>—</td></tr>
+            <tr><td>34</td><td>50 milhões km</td><td>—</td><td>1.000 anos</td><td>—</td></tr>
+            <tr><td>35</td><td>100 milhões km</td><td>—</td><td>2.000 anos</td><td>—</td></tr>
+            <tr><td>36</td><td>200 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>37</td><td>400 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>38</td><td>800 milhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>39</td><td>1,6 bilhão km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>40</td><td>3 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>41</td><td>6 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>42</td><td>12 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>43</td><td>25 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>44</td><td>50 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>45</td><td>100 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>46</td><td>200 billions km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>47</td><td>400 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>48</td><td>800 bilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>49</td><td>1,6 trilhão km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>50</td><td>3 trilhões km</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>51+</td><td>1 ano-luz</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+        
+        <h3>Notas</h3>
+        <ul>
+          <li>Distância: escala de milímetros a anos-luz</li>
+          <li>Massa: de gramas a milhares de toneladas</li>
+          <li>Tempo: de segundos a milênios</li>
+          <li>Energia: valores equivalentes em Joules (em desenvolvimento)</li>
         </ul>
-`,
-      aps_distancia: `
+      `,
+      acao_resultado: `
         <h1>Tabela de Ação e Resultado</h1>
         <p>Use a tabela apropriada para determinar o resultado de ações. Selecione o <strong>valor de atuação</strong> (linha) e o <strong>valor de obstáculo</strong> (coluna):</p>
         
