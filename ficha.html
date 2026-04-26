@@ -860,19 +860,18 @@ badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':''
    delBtn.addEventListener('click',()=>{if(confirm('Remover este cartão?')){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
 hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
-  if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
+if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
   const trow=document.createElement('div');trow.className='trackers-row';
-  const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Mais Atenção';btnM.onclick=()=>{const v=(card.atencao||0)-(card.dissipacao||0);if(v<3){card.atencao++;card.dissipacao=0;buildGrid(cid,lista);salvarAuto();}};
+  const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Mais Atenção →';btnM.onclick=()=>{if((card.atencao||0)<3){card.atencao++;card.dissipacao=0;buildGrid(cid,lista);salvarAuto();}};
   const triCont=document.createElement('div');triCont.className='q-row';
   const v=(card.atencao||0)-(card.dissipacao||0);
   for(let i=-3;i<=3;i++){
-    const filled=v>=-i&&i<0?true:(v<=-i&&i>0?false:(v===0&&i===0));
-    const isFilled=v>=-i&&i<=0?true:(v<=-i&&i>=0?false:(i===0));
+    const isFilled=v>=-i&&i<0?true:(v<=-i&&i>0?false:(i===0));
     const w=document.createElement('div');w.className='tri-wrap'+(isFilled?' '+(i<0?'dissip':'atencao'):'');
     w.innerHTML=i<0?'<div class="tri-down"></div>':(i>0?'<div class="tri-up"></div>':'');
     triCont.appendChild(w);
   }
-  const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Mais Quebra';btnP.onclick=()=>{const v=(card.atencao||0)-(card.dissipacao||0);if(v>-3){card.dissipacao++;card.atencao=0;buildGrid(cid,lista);salvarAuto();}};
+  const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='← Mais Quebra';btnP.onclick=()=>{if((card.dissipacao||0)<3){card.dissipacao++;card.atencao=0;buildGrid(cid,lista);salvarAuto();}};
   trow.appendChild(btnM);trow.appendChild(triCont);trow.appendChild(btnP);
   body.appendChild(trow);
   const ml=document.createElement('div');ml.className='c-label';ml.textContent='MISTÉRIO / IDENTIDADE';body.appendChild(ml);
