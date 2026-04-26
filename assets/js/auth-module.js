@@ -34,19 +34,10 @@
     }).then(function(result) {
       if (result.error) throw result.error;
       
-      // After login, fetch the profile to get the correct role and update user metadata
-      return client().from('profiles').select('role').eq('id', result.data.user.id).single()
-        .then(function(profileResult) {
-          if (profileResult.data) {
-            // Update user metadata with correct role
-            return client().auth.updateUser({
-              data: { role: profileResult.data.role }
-            }).then(function() {
-              return { user: result.data.user, session: result.data.session };
-            });
-          }
-          return { user: result.data.user, session: result.data.session };
-        });
+      // Return user data directly - use Supabase Auth
+      var user = result.data.user;
+      user.user_metadata = user.user_metadata || {};
+      return { user: user, session: result.data.session };
     });
   };
 
@@ -85,50 +76,22 @@
       console.log('[requireAuth] User from session:', user.id, user.email);
       console.log('[requireAuth] User metadata role:', user.user_metadata?.role);
       
-      // Fetch profile from database to get the correct role
-      return client.from('profiles').select('id, email, username, display_name, role').eq('id', user.id).single()
-        .then(function(profileResult) {
-          console.log('[requireAuth] Profile query result:', profileResult.status, profileResult.data);
-          
-          var profile;
-          if (profileResult.data) {
-            profile = profileResult.data;
-          } else {
-            console.log('[requireAuth] Profile query failed, using metadata role:', user.user_metadata?.role);
-            profile = {
-              id: user.id,
-              email: user.email,
-              username: user.user_metadata?.username || user.email.split('@')[0],
-              display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User',
-              role: user.user_metadata?.role || 'player'
-            };
-          }
-          
-          console.log('[requireAuth] Final profile role:', profile.role);
-          
-          if (requiredRole && profile.role !== requiredRole) {
-            window.location.href = 'dashboard.html';
-            return null;
-          }
-          return { session: session, profile: profile };
-        })
-        .catch(function(err) {
-          console.log('[requireAuth] Profile query error, using metadata:', err.message);
-          var profile = {
-            id: user.id,
-            email: user.email,
-            username: user.user_metadata?.username || user.email.split('@')[0],
-            display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User',
-            role: user.user_metadata?.role || 'player'
-          };
-          console.log('[requireAuth] Final profile role (fallback):', profile.role);
-          
-          if (requiredRole && profile.role !== requiredRole) {
-            window.location.href = 'dashboard.html';
-            return null;
-          }
-          return { session: session, profile: profile };
-        });
+      // Use Supabase Auth user data directly - no profiles table needed
+      var profile = {
+        id: user.id,
+        email: user.email,
+        username: user.user_metadata?.username || user.email.split('@')[0],
+        display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User',
+        role: user.user_metadata?.role || 'player'
+      };
+      
+      console.log('[requireAuth] Final profile role:', profile.role);
+      
+      if (requiredRole && profile.role !== requiredRole) {
+        window.location.href = 'dashboard.html';
+        return null;
+      }
+      return { session: session, profile: profile };
     });
   };
 

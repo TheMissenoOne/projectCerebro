@@ -36,26 +36,16 @@
         password: password
       }).then(function(result) {
         if (result.error) throw result.error;
-        // Check if user is in GM whitelist
+        var user = result.data.user;
+        user.user_metadata = user.user_metadata || {};
+        // Check GM whitelist
         if (GM_WHITELIST.indexOf(email.toLowerCase()) !== -1) {
-          result.data.user.user_metadata = result.data.user.user_metadata || {};
-          result.data.user.user_metadata.role = 'gm';
-          result.data.user.user_metadata.username = 'GM';
-          result.data.user.user_metadata.display_name = 'GM';
+          user.user_metadata.role = 'gm';
+          user.user_metadata.username = 'GM';
+        } else if (!user.user_metadata.role) {
+          user.user_metadata.role = 'player';
         }
-        // Fetch role from profiles table
-        return getSupabase().from('profiles').select('role,username,display_name').eq('id', result.data.user.id).single().then(function(profResult) {
-          var user = result.data.user;
-          if (profResult.data) {
-            user.user_metadata = user.user_metadata || {};
-            user.user_metadata.role = profResult.data.role || 'player';
-            user.user_metadata.username = profResult.data.username || user.user_metadata.username;
-            user.user_metadata.display_name = profResult.data.display_name || user.user_metadata.display_name;
-          }
-          return { user: user, session: result.data.session };
-        }).catch(function() {
-          return { user: result.data.user, session: result.data.session };
-        });
+        return { user: user, session: result.data.session };
       });
     },
 
@@ -124,19 +114,14 @@
         .then(function(result) { if (result.error) throw result.error; return result.data || []; })
         .then(function(members) {
           if (!members || members.length === 0) return [];
-          var playerIds = members.map(function(m) { return m.player_id; });
-          return getSupabase().from('profiles').select('id, username, display_name').in('id', playerIds)
-            .then(function(profiles) {
-              if (profiles.error) throw profiles.error;
-              var mapped = members.map(function(m) {
-                var profile = profiles.data ? profiles.data.find(function(p) { return p.id === m.player_id; }) : null;
-                m.username = profile?.username || 'Unknown';
-                m.display_name = profile?.display_name || m.username;
-                return m;
-              });
-              if (cache) cache.set('party_members', partyId, mapped, 300000);
-              return mapped;
-            });
+          // No profiles table - use player_id directly
+          var mapped = members.map(function(m) {
+            m.username = m.player_id;
+            m.display_name = m.player_id;
+            return m;
+          });
+          if (cache) cache.set('party_members', partyId, mapped, 300000);
+          return mapped;
         });
     },
 
@@ -225,18 +210,13 @@
           if (result.error) throw result.error;
           var chars = result.data;
           if (!chars || chars.length === 0) return [];
-          var playerIds = chars.map(function(c) { return c.player_id; });
-          return getSupabase().from('profiles').select('id, display_name').in('id', playerIds)
-            .then(function(profiles) {
-              var profileMap = {};
-              if (profiles.data) profiles.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
-              var mapped = chars.map(function(c) {
-                c.player_name = profileMap[c.player_id] || c.player_id;
-                return c;
-              });
-              if (cache) cache.set('party_chars', partyId, mapped, 300000);
-              return mapped;
-            });
+          // No profiles table - use player_id directly
+          var mapped = chars.map(function(c) {
+            c.player_name = c.player_id;
+            return c;
+          });
+          if (cache) cache.set('party_chars', partyId, mapped, 300000);
+          return mapped;
         });
     },
 
@@ -260,6 +240,7 @@
           partiesResult.data.forEach(function(p) { partyNames[p.id] = p.name; });
           if (partyIds.length === 0) return [];
           
+          // Get characters - no profiles query needed
           var charsQuery = getSupabase().from('characters').select('*, player_id').in('party_id', partyIds);
           if (offset !== undefined && limit !== undefined) {
             charsQuery = charsQuery.range(offset, offset + limit - 1);
@@ -270,14 +251,9 @@
           var chars = charsResult.data;
           if (!chars || chars.length === 0) return { chars: [], total: 0, partyNames: partyNames };
           
-          var playerIds = chars.map(function(c) { return c.player_id; });
-          
-          var profilesResult = await getSupabase().from('profiles').select('id, display_name').in('id', playerIds);
-          var profileMap = {};
-          if (profilesResult.data) profilesResult.data.forEach(function(p) { profileMap[p.id] = p.display_name; });
-          
+          // Map player IDs to emails from auth - use session user data where possible
           var mapped = chars.map(function(c) {
-            c.player_name = profileMap[c.player_id] || c.player_id;
+            c.player_name = c.player_id; // Use ID as fallback name
             c.party_name = partyNames[c.party_id] || null;
             return c;
           });
@@ -363,23 +339,14 @@ function requireAuth(requiredRole) {
     var session = result.data.session;
     if (!session) { window.location.href = 'index.html'; return null; }
     var user = session.user;
-    // Check if user is in GM whitelist
+    // Check GM whitelist
+    var role = user.user_metadata?.role || 'player';
     if (typeof GM_WHITELIST !== 'undefined' && GM_WHITELIST.indexOf(user.email.toLowerCase()) !== -1) {
-      var profile = { id: user.id, email: user.email, username: 'GM', display_name: 'GM', role: 'gm' };
-      return { session: session, profile: profile };
+      role = 'gm';
     }
-    // Try to get role from profiles table first
-    return client.from('profiles').select('role').eq('id', user.id).single().then(function(profResult) {
-      var role = (profResult.data && profResult.data.role) || user.user_metadata?.role || 'player';
-      var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: role };
-      if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
-      return { session: session, profile: profile };
-    }).catch(function() {
-      // Fallback if profiles table doesn't exist
-      var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: user.user_metadata?.role || 'player' };
-      if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
-      return { session: session, profile: profile };
-    });
+    var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: role };
+    if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
+    return { session: session, profile: profile };
   });
 }
 
