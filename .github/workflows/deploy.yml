@@ -18,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,10 +29,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install and Build
+      - name: Inject env vars
         run: |
-          npm install
-          # Static site - no build step needed, HTML files are served directly
+          # Inject GitHub env vars into HTML files for client-side JS
+          find . -name "*.html" -type f -exec sed -i \
+            "s|{{VITE_GM_WHITELIST}}|${VITE_GM_WHITELIST}|g" \
+            {} \;
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
