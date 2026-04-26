@@ -652,6 +652,8 @@ const newUrl = 'ficha.html?id=' + char.id;
   try {
     const char = await window.api.loadCharacter(charId);
     if (char && char.data) D = mesclar(PADRAO, char.data);
+    if (D.temas) D.temas.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
+    if (D.extras) D.extras.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (char && char.foto_base64) D.foto = char.foto_base64;
     setInd('','// SALVO');
   } catch(e) {
@@ -862,13 +864,13 @@ hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
 if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
   const trow=document.createElement('div');trow.className='trackers-row';
-  const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Quebrar';btnM.onclick=()=>{if(card.valor>-3){card.valor--;if(card.valor>0)card.valor=0;buildGrid(cid,lista);salvarAuto();}};
+  const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Quebrar';btnM.onclick=()=>{if(card.valor>-3){card.valor--;buildGrid(cid,lista);salvarAuto();}};
   const triCont=document.createElement('div');triCont.className='q-row';
   const v=card.valor||0;
   for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v<=-i?' dissip':'');w.innerHTML='<div class="tri-down"></div>';triCont.appendChild(w);}
   const ctr=document.createElement('div');ctr.className='tri-wrap';ctr.innerHTML='<div class="tri-center"></div>';triCont.appendChild(ctr);
   for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v>=i?' atencao':'');w.innerHTML='<div class="tri-up"></div>';triCont.appendChild(w);}
-  const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Atenção';btnP.onclick=()=>{if(card.valor<3){card.valor++;if(card.valor<0)card.valor=0;buildGrid(cid,lista);salvarAuto();}};
+  const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Atenção';btnP.onclick=()=>{if(card.valor<3){card.valor++;buildGrid(cid,lista);salvarAuto();}};
   trow.appendChild(btnP);trow.appendChild(triCont);trow.appendChild(btnM);
   body.appendChild(trow);
   const ml=document.createElement('div');ml.className='c-label';ml.textContent='MISTÉRIO / IDENTIDADE';body.appendChild(ml);
