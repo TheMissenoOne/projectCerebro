@@ -866,7 +866,7 @@ if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--ca
   const triCont=document.createElement('div');triCont.className='q-row';
   const v=card.valor||0;
   for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v<=-i?' dissip':'');w.innerHTML='<div class="tri-down"></div>';triCont.appendChild(w);}
-  const c=document.createElement('div');c.className='tri-wrap';c.innerHTML='<div class="tri-center"></div>';triCont.appendChild(c);
+  const ctr=document.createElement('div');ctr.className='tri-wrap';ctr.innerHTML='<div class="tri-center"></div>';triCont.appendChild(ctr);
   for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v>=i?' atencao':'');w.innerHTML='<div class="tri-up"></div>';triCont.appendChild(w);}
   const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Atenção';btnP.onclick=()=>{if(card.valor<3){card.valor++;if(card.valor<0)card.valor=0;buildGrid(cid,lista);salvarAuto();}};
   trow.appendChild(btnP);trow.appendChild(triCont);trow.appendChild(btnM);
