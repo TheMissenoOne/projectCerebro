@@ -819,9 +819,13 @@ function populateCharacterGrid(chars) {
       card.className = 'char-card';
       card.href = 'ficha.html?id=' + char.id;
       var foto = char.foto_base64 || '';
-      var charName = char.name || (char.data && char.data.nome && char.data.nome.trim()) || 'Novo Personagem';
-      var charCodinome = char.codename || (char.data && char.data.codinome) || '—';
-      var nameForInitial = charCodinome !== '—' ? charCodinome : (charName !== 'Novo Personagem' ? charName : 'N');
+      var topNome = char.name && char.name.trim();
+      var dataNome = char.data && char.data.nome && char.data.nome.trim();
+      var charName = topNome || dataNome || 'Novo Personagem';
+      var topCodinome = char.codename && char.codename.trim();
+      var dataCodinome = char.data && char.data.codinome && char.data.codinome.trim();
+      var charCodinome = topCodinome || dataCodinome || '—';
+      var nameForInitial = charCodinome !== '—' ? charCodinome : charName;
       var initial = nameForInitial.charAt(0).toUpperCase();
       if (foto) {
 card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
