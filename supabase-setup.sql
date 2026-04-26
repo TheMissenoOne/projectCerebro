@@ -14,16 +14,18 @@ DROP POLICY IF EXISTS "Public read characters" ON characters;
 CREATE POLICY "Public read characters" ON characters FOR SELECT USING (true);
 
 DROP POLICY IF EXISTS "Owner can manage own characters" ON characters;
-CREATE POLICY "Owner can manage own characters" ON characters FOR ALL USING (auth.uid() = player_id);
+CREATE POLICY "Owner can manage own characters" ON characters FOR ALL
+  USING (auth.uid() = player_id)
+  WITH CHECK (auth.uid() = player_id);
 
 -- NPCs: public read, GM manage
 DROP POLICY IF EXISTS "Public read NPCs" ON npcs;
 CREATE POLICY "Public read NPCs" ON npcs FOR SELECT USING (true);
 
 DROP POLICY IF EXISTS "GM can manage NPCs" ON npcs;
-CREATE POLICY "GM can manage NPCs" ON npcs FOR ALL USING (
-  auth.uid() IN (SELECT gm_id FROM parties)
-);
+CREATE POLICY "GM can manage NPCs" ON npcs FOR ALL
+  USING (auth.uid() IN (SELECT gm_id FROM parties WHERE id = npcs.party_id))
+  WITH CHECK (auth.uid() IN (SELECT gm_id FROM parties WHERE id = party_id));
 
 -- Parties: owner only, members can view
 DROP POLICY IF EXISTS "Party members can view party" ON parties;
@@ -33,7 +35,9 @@ CREATE POLICY "Party members can view party" ON parties FOR SELECT USING (
 );
 
 DROP POLICY IF EXISTS "Owner can manage party" ON parties;
-CREATE POLICY "Owner can manage party" ON parties FOR ALL USING (auth.uid() = gm_id);
+CREATE POLICY "Owner can manage party" ON parties FOR ALL
+  USING (auth.uid() = gm_id)
+  WITH CHECK (auth.uid() = gm_id);
 
 -- Party members: can view own membership, GM can manage, members can leave
 DROP POLICY IF EXISTS "Party members can view" ON party_members;
@@ -56,14 +60,18 @@ CREATE POLICY "Party members can view sessions" ON sessions FOR SELECT USING (
 );
 
 DROP POLICY IF EXISTS "GM can manage session" ON sessions;
-CREATE POLICY "GM can manage session" ON sessions FOR ALL USING (auth.uid() IN (SELECT gm_id FROM parties WHERE id = party_id));
+CREATE POLICY "GM can manage session" ON sessions FOR ALL
+  USING (auth.uid() IN (SELECT gm_id FROM parties WHERE id = party_id))
+  WITH CHECK (auth.uid() IN (SELECT gm_id FROM parties WHERE id = party_id));
 
 -- Profiles: public read, owner write
 DROP POLICY IF EXISTS "Public read profiles" ON profiles;
 CREATE POLICY "Public read profiles" ON profiles FOR SELECT USING (true);
 
 DROP POLICY IF EXISTS "Owner can manage profile" ON profiles;
-CREATE POLICY "Owner can manage profile" ON profiles FOR ALL USING (auth.uid() = id);
+CREATE POLICY "Owner can manage profile" ON profiles FOR ALL
+  USING (auth.uid() = id)
+  WITH CHECK (auth.uid() = id);
 
 -- Verify RLS is enabled
 SELECT schemaname, tablename, rowsecurity 

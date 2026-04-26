@@ -10,17 +10,20 @@
     return;
   }
   
-  window.api.getProfile = window.api.getProfile || function() {};
-  window.api.getGMParty = window.api.getGMParty || function() {};
-  window.api.getPlayerParty = window.api.getPlayerParty || function() {};
-  window.api.getPartyMembers = window.api.getPartyMembers || function() {};
-  window.api.joinParty = window.api.joinParty || function() {};
-  window.api.createCharacter = window.api.createCharacter || function() {};
-  window.api.loadCharacter = window.api.loadCharacter || function() {};
-  window.api.saveCharacter = window.api.saveCharacter || function() {};
-  window.api.listCharacters = window.api.listCharacters || function() {};
-  window.api.listPartyCharacters = window.api.listPartyCharacters || function() {};
-  window.api.listNPCs = window.api.listNPCs || function() {};
+  const stubMethod = (name) => () => {
+    console.warn('[api-module.js] ' + name + ' not implemented in api.js');
+    return Promise.reject(new Error(name + ' not implemented'));
+  };
+
+  const methods = [
+    'getProfile', 'getGMParty', 'getPlayerParty', 'getPartyMembers',
+    'joinParty', 'createCharacter', 'loadCharacter', 'saveCharacter',
+    'listCharacters', 'listPartyCharacters', 'listNPCs'
+  ];
+
+  methods.forEach(m => {
+    window.api[m] = window.api[m] || stubMethod(m);
+  });
   
   console.log('[api-module.js] Bridge initialized - using window.api');
 })();

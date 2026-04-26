@@ -9,9 +9,7 @@
 - [Fase D: combate.html](done/fase-d-combate.md)
 - [Fase E: Seed NPCs](done/fase-e-seed-npcs.md)
 - [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
-- [Fase G: CodeRabbit Review - TESTS PASSED ✅](kanban/fase-g-coderabbit-review.md)
-
-### ✅ Done
+- [Fase G: CodeRabbit Review - TESTS PASSED ✅](done/fase-g-coderabbit-review.md)
 - [Fase L: Wiki + Cerebro + NPCs + Combate](done/fase-l-outros.md)
 
 ---

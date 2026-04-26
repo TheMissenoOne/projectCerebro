@@ -1,7 +1,7 @@
 /**
  * X-MEN TTRPG - Global API Exports
  * Maps all module functions to window for global access
- * Load order: config.js → supabase-client.js → auth-module.js → api-module.js → globals.js
+ * Load order: config.js → supabase-client.js → cache-module.js → auth-module.js → api.js → globals.js → themes.js → page-specific
  */
 
 (function() {
@@ -9,10 +9,10 @@
   window.login = window.api.login;
   window.register = window.api.register;
   window.logout = window.api.logout;
-  window.checkAuth = window.checkAuth;
+  window.checkAuth = window.api.checkAuth;
   window.getCurrentUser = window.api.getCurrentUser;
-  window.requireAuth = window.requireAuth;
-  window.requireGM = window.requireGM;
+  window.requireAuth = window.api.requireAuth;
+  window.requireGM = window.api.requireGM;
 
   // Party functions
   window.createParty = window.api.createParty;
