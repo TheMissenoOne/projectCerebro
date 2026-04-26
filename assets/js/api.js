@@ -64,16 +64,17 @@
     },
 
     getProfile: function(userId, forceRefresh) {
-      var cache = window.cache;
-      if (!forceRefresh && cache) {
-        var cached = cache.get('profile', userId);
-        if (cached) return Promise.resolve(cached);
-      }
-      return getSupabase().from('profiles').select('*').eq('id', userId).single()
+      // No longer use profiles table - use Supabase Auth user data instead
+      return getSupabase().auth.getUser(userId)
         .then(function(result) { 
-          if (result.error) throw result.error; 
-          if (cache) cache.set('profile', userId, result.data, 300000);
-          return result.data; 
+          if (result.error) throw result.error;
+          var user = result.data.user;
+          return {
+            id: user.id,
+            email: user.email,
+            display_name: user.email.split('@')[0],
+            role: 'player'
+          };
         });
     },
 
