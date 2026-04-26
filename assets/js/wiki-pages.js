@@ -385,27 +385,106 @@ window.wikiPages = {
 `,
       aps_distancia: `
         <h1>Tabela de Ação e Resultado</h1>
-        <p>Use esta tabela para determinar o resultado de ações. Selecione o tipo de tabela e o modo de duração:</p>
+        <p>Use a tabela apropriada para determinar o resultado de ações. Selecione o <strong>valor de atuação</strong> (linha) e o <strong>valor de obstáculo</strong> (coluna):</p>
         
-        <div class="ar-table-type">
-          <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV/OV</button>
-          <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV/RV</button>
-        </div>
-        
-        <div class="ar-modes">
-          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">APs de Tempo</button>
-          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (-1)</button>
-          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (-3)</button>
-        </div>
-        
-        <p id="ar-mode-desc" style="font-size: 0.75rem; color: var(--accent); margin: 8px 0 16px 0;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
-        
+        <h2>Action Table</h2>
+        <p>Para ações de <strong>Ação de Atuação (AA)</strong> —iha dificuldade como <strong>Valor de Obstáculo (OV)</strong>.</p>
         <div class="table-container">
-        <table class="ar-table" id="action-table">
+        <table class="ar-table">
+          <thead>
+            <tr><th>AV\\OV</th><th>0</th><th>1–2</th><th>3–4</th><th>5–6</th><th>7–8</th><th>9–10</th><th>11–12</th><th>13–15</th><th>16–18</th><th>19–21</th><th>22–24</th><th>25–27</th><th>28–30</th><th>31–35</th><th>36–40</th><th>41–45</th><th>46–50</th><th>51–55</th><th>56–60</th><th>+5</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1–2</td><td>6</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td><td>75</td><td>80</td><td>+5</td></tr>
+            <tr><td>3–4</td><td>5</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td><td>75</td><td>80</td><td></td></tr>
+            <tr><td>5–6</td><td>4</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td><td></td></tr>
+            <tr><td>7–8</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td></td></tr>
+            <tr><td>9–10</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td></td></tr>
+            <tr><td>11–12</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td></td></tr>
+            <tr><td>13–15</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td>50</td><td></td></tr>
+            <tr><td>16–18</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td>45</td><td></td></tr>
+            <tr><td>19–21</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td>40</td><td></td></tr>
+            <tr><td>22–24</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td>36</td><td></td></tr>
+            <tr><td>25–27</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td>32</td><td></td></tr>
+            <tr><td>28–30</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td></td></tr>
+            <tr><td>31–35</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td>24</td><td>28</td><td></td></tr>
+            <tr><td>36–40</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td>21</td><td></td></tr>
+            <tr><td>41–45</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td>18</td><td></td></tr>
+            <tr><td>46–50</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td><td></td></tr>
+            <tr><td>51–55</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td></td></tr>
+            <tr><td>56–60</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td><td>11</td><td></td></tr>
+          </tbody>
         </table>
         </div>
         
-        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" = Falha automática. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade.</p>
+        <h2>Result Table</h2>
+        <p>Para ações de <strong>Evento de Resolução (ER)</strong> —iha dificuldade como <strong>Valor de Resultado (RV)</strong>.</p>
+        <div class="table-container">
+        <table class="ar-table">
+          <thead>
+            <tr><th>EV\\RV</th><th>x</th><th>0</th><th>1–2</th><th>3–4</th><th>5–6</th><th>7–8</th><th>9–10</th><th>11–12</th><th>13–15</th><th>16–18</th><th>19–21</th><th>22–24</th><th>25–27</th><th>28–30</th><th>31–35</th><th>36–40</th><th>41–45</th><th>46–50</th><th>51–55</th><th>56–60</th><th>+5</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1–2</td><td>+1</td><td>A</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>3–4</td><td>+1</td><td>A</td><td>2</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>5–6</td><td>+1</td><td>A</td><td>3</td><td>2</td><td>1</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>7–8</td><td>+1</td><td>A</td><td>5</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>9–10</td><td>+1</td><td>A</td><td>8</td><td>6</td><td>4</td><td>3</td><td>2</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>11–12</td><td>+1</td><td>A</td><td>10</td><td>9</td><td>7</td><td>6</td><td>4</td><td>3</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>13–15</td><td>+1</td><td>A</td><td>12</td><td>11</td><td>9</td><td>8</td><td>7</td><td>5</td><td>3</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>16–18</td><td>+1</td><td>A</td><td>14</td><td>13</td><td>11</td><td>10</td><td>9</td><td>8</td><td>6</td><td>4</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>19–21</td><td>+1</td><td>A</td><td>18</td><td>17</td><td>16</td><td>14</td><td>12</td><td>10</td><td>8</td><td>6</td><td>4</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>22–24</td><td>+1</td><td>A</td><td>21</td><td>20</td><td>19</td><td>17</td><td>15</td><td>13</td><td>11</td><td>9</td><td>7</td><td>5</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>25–27</td><td>+1</td><td>A</td><td>24</td><td>23</td><td>22</td><td>20</td><td>18</td><td>16</td><td>14</td><td>12</td><td>10</td><td>8</td><td>6</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>28–30</td><td>+1</td><td>A</td><td>27</td><td>26</td><td>25</td><td>23</td><td>21</td><td>19</td><td>17</td><td>15</td><td>13</td><td>11</td><td>9</td><td>7</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>31–35</td><td>+1</td><td>A</td><td>30</td><td>29</td><td>28</td><td>26</td><td>24</td><td>22</td><td>20</td><td>18</td><td>16</td><td>14</td><td>12</td><td>10</td><td>8</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>36–40</td><td>+1</td><td>A</td><td>35</td><td>34</td><td>33</td><td>31</td><td>29</td><td>27</td><td>25</td><td>23</td><td>21</td><td>19</td><td>17</td><td>14</td><td>12</td><td>9</td><td>N</td><td>N</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>41–45</td><td>+1</td><td>A</td><td>40</td><td>38</td><td>36</td><td>34</td><td>32</td><td>30</td><td>28</td><td>26</td><td>24</td><td>22</td><td>20</td><td>18</td><td>16</td><td>13</td><td>10</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>46–50</td><td>+1</td><td>A</td><td>45</td><td>43</td><td>41</td><td>40</td><td>38</td><td>36</td><td>34</td><td>31</td><td>28</td><td>26</td><td>24</td><td>22</td><td>20</td><td>17</td><td>14</td><td>11</td><td>N</td><td>N</td><td>*</td></tr>
+            <tr><td>51–55</td><td>+1</td><td>A</td><td>50</td><td>48</td><td>46</td><td>44</td><td>42</td><td>40</td><td>38</td><td>36</td><td>34</td><td>32</td><td>30</td><td>27</td><td>24</td><td>21</td><td>18</td><td>15</td><td>12</td><td>N</td><td>*</td></tr>
+            <tr><td>56–60</td><td>+1</td><td>A</td><td>55</td><td>53</td><td>51</td><td>49</td><td>47</td><td>45</td><td>43</td><td>41</td><td>39</td><td>36</td><td>33</td><td>30</td><td>27</td><td>24</td><td>21</td><td>18</td><td>15</td><td>13</td><td>*</td></tr>
+            <tr><td>+5</td><td></td><td>A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>C</td></tr>
+          </tbody>
+        </table>
+        </div>
+        
+        <h3>Legenda</h3>
+        <ul>
+          <li><strong>A</strong> = All (sucesso total)</li>
+          <li><strong>C</strong> = Cancel (cancela o efeito)</li>
+          <li><strong>N</strong> = No Effect (sem efeito)</li>
+          <li><strong>*</strong> = regra especial</li>
+          <li><strong>+5</strong> = deslocamento de uma coluna por cada +5</li>
+        </ul>
+        
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade. Clique em uma célula para destacar linha e coluna.</p>
+        
+        <script>
+        document.querySelectorAll('.ar-table td').forEach(cell => {
+          cell.style.cursor = 'pointer';
+          cell.addEventListener('click', function() {
+            document.querySelectorAll('.ar-table td').forEach(td => {
+              td.style.background = '';
+              td.style.fontWeight = '';
+            });
+            const row = this.parentElement;
+            const colIndex = this.cellIndex;
+            row.querySelectorAll('td').forEach(td => {
+              td.style.background = 'var(--accent)';
+              td.style.color = 'var(--bg)';
+              td.style.fontWeight = 'bold';
+            });
+            const table = this.closest('table');
+            table.querySelectorAll('tr').forEach(tr => {
+              if (tr.children[colIndex]) {
+                tr.children[colIndex].style.background = 'var(--accent)';
+                tr.children[colIndex].style.color = 'var(--bg)';
+                tr.children[colIndex].style.fontWeight = 'bold';
+              }
+            });
+          });
+        });
+        </script>
       `,
       acoes: `
         <h1>Ações — Tipos e Resolução</h1>
