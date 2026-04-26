@@ -863,11 +863,11 @@ badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':''
 hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
 if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
-  const trow=document.createElement('div');trow.className='trackers-row';
+const trow=document.createElement('div');trow.className='trackers-row';
   const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Quebrar';btnM.onclick=()=>{if(card.valor>-3){card.valor--;buildGrid(cid,lista);salvarAuto();}};
   const triCont=document.createElement('div');triCont.className='q-row';
   const v=card.valor||0;
-  for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v>=i?' atencao':'');w.innerHTML='<div class="tri-up"></div>';triCont.appendChild(w);}
+  for(let i=3;i>=1;i--){const w=document.createElement('div');w.className='tri-wrap'+(v>=i?' atencao':'');w.innerHTML='<div class="tri-up"></div>';triCont.appendChild(w);}
   const ctr=document.createElement('div');ctr.className='tri-wrap';ctr.innerHTML='<div class="tri-center"></div>';triCont.appendChild(ctr);
   for(let i=1;i<=3;i++){const w=document.createElement('div');w.className='tri-wrap'+(v<=-i?' dissip':'');w.innerHTML='<div class="tri-down"></div>';triCont.appendChild(w);}
   const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Atenção';btnP.onclick=()=>{if(card.valor<3){card.valor++;buildGrid(cid,lista);salvarAuto();}};
