@@ -31,9 +31,9 @@ jobs:
 
       - name: Inject env vars
         run: |
-          # Inject GitHub env vars into HTML files for client-side JS
-          find . -name "*.html" -type f -exec sed -i \
-            "s|{{VITE_GM_WHITELIST}}|${VITE_GM_WHITELIST}|g" \
+          # Inject GitHub env vars into JS files for client-side
+          find . -name "*.js" -type f -exec sed -i \
+            "s/{{VITE_GM_WHITELIST}}/${{ vars.VITE_GM_WHITELIST }}/g" \
             {} \;
 
       - name: Upload artifact
