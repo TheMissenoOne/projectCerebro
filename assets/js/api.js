@@ -174,6 +174,7 @@
       return getSupabase().from('characters').select('*').eq('id', charId).single()
         .then(function(result) { 
           if (result.error) throw result.error; 
+          result.data.nome = result.data.nome || result.data.name || null;
           if (cache) cache.set('char', charId, result.data, 120000);
           return result.data; 
         });
