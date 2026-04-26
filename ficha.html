@@ -201,11 +201,15 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tri-row{display:flex;gap:3px;}
 .tri-wrap{width:18px;height:18px;border:1px solid var(--b2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .tri-wrap:hover{border-color:var(--b3);}
+.tri-down,.tri-up{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;}
+.tri-down{border-top:8px solid var(--b3);border-bottom:none;}
+.tri-up{border-bottom:8px solid var(--b3);border-top:none;}
 .tri-wrap.atencao{background:rgba(232,0,28,.15);border-color:var(--red);}
+.tri-wrap.atencao .tri-up{border-bottom-color:var(--red);}
 .tri-wrap.dissip{background:rgba(192,112,64,.15);border-color:#c07040;}
-.tri{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--b3);}
-.tri-wrap.atencao .tri{border-bottom-color:var(--red);}
-.tri-wrap.dissip .tri{border-bottom-color:#c07040;}
+.tri-wrap.dissip .tri-down{border-top-color:#c07040;}
+.q-btn{width:20px;height:20px;background:var(--p2);border:1px solid var(--b2);color:var(--text);font-size:.7rem;cursor:pointer;border-radius:2px;}
+.q-btn:hover{background:var(--p1);border-color:var(--accent);}
 
 .c-label{font-family:var(--mono);font-size:.44rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
 .c-label.poder{color:var(--red2);}
@@ -857,28 +861,13 @@ hdr.appendChild(delBtn);div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
   if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
   const trow=document.createElement('div');trow.className='trackers-row';
-  function mkT(label,lcolor,count,filled,cls,setter,getter){
-    const g=document.createElement('div');g.className='tracker-grp';
-    const l=document.createElement('span');l.className='tracker-lbl';l.textContent=label;if(lcolor)l.style.color=lcolor;
-    const r=document.createElement('div');r.className='tri-row';
-    for(let i=0;i<count;i++){
-      const w=document.createElement('div');w.className='tri-wrap'+(i<filled?' '+cls:'');
-      const t=document.createElement('div');t.className='tri';w.appendChild(t);
-      w.addEventListener('click',()=>{
-        const isLeft=label.includes('DISSIP');
-        const cur=isLeft?(getter()||0):(getter()||0);
-        if(i<filled){
-          setter(Math.max(0,i));
-        }else{
-          setter(i+1);
-        }
-        buildGrid(cid,lista);salvarAuto();
-      });r.appendChild(w);
-    }
-    g.appendChild(l);g.appendChild(r);return g;
-  }
-  trow.appendChild(mkT('ATENÇÃO',null,3,card.atencao||0,'atencao',v=>card.atencao=v,()=>card.atencao));
-  trow.appendChild(mkT('DISSIP/QUEBRA','#c07040',3,card.dissipacao||0,'dissip',v=>card.dissipacao=v,()=>card.dissipacao));
+  const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Remover Atenção';btnM.onclick=()=>{if(card.atencao>0){card.atencao--;buildGrid(cid,lista);salvarAuto();}};
+  const triL=document.createElement('div');triL.className='tri-row';
+  for(let i=0;i<3;i++){const w=document.createElement('div');w.className='tri-wrap'+(i<(card.dissipacao||0)?' dissip':'');w.innerHTML='<div class="tri-down"></div>';w.onclick=()=>{card.dissipacao=i+1>card.dissipacao?i+1:Math.max(0,i);buildGrid(cid,lista);salvarAuto();};triL.appendChild(w);}
+  const triR=document.createElement('div');triR.className='tri-row';
+  for(let i=0;i<3;i++){const w=document.createElement('div');w.className='tri-wrap'+(i<(card.atencao||0)?' atencao':'');w.innerHTML='<div class="tri-up"></div>';w.onclick=()=>{card.atencao=i+1>card.atencao?i+1:Math.max(0,i);buildGrid(cid,lista);salvarAuto();};triR.appendChild(w);}
+  const btnP=document.createElement('button');btnP.className='q-btn';btnP.textContent='+';btnP.title='Adicionar Quebra';btnP.onclick=()=>{if(card.dissipacao<3){card.dissipacao++;buildGrid(cid,lista);salvarAuto();}};
+  trow.appendChild(btnM);trow.appendChild(triL);trow.appendChild(triR);trow.appendChild(btnP);
   body.appendChild(trow);
   const ml=document.createElement('div');ml.className='c-label';ml.textContent='MISTÉRIO / IDENTIDADE';body.appendChild(ml);
   const mi=document.createElement('input');mi.type='text';mi.className='card-inp';mi.placeholder='...';mi.value=card.misterio||'';
