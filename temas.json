@@ -767,5 +767,94 @@
         "Confiável: Uma vez por cena, ao fazer uma ação de deslocamento usando este tema, você pode tratar o resultado como sucesso parcial (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não elimina complicações, mas garante que você chega onde queria. [Especial]"
       ]
     }
+  ],
+  "temas_adicionais": [
+    {
+      "tipo": "Adicional",
+      "nome": "Aliado",
+      "descricao": "Aliados são raros no mundo dos mutantes. Encontrar alguém que acredite em você e queira ajudar, mesmo sabendo dos riscos, é um privilégio. Podem ser colegas de equipe, ex-humanos que simpatizam com a causa, mutantes mais jovens que te veem como mentor, ou até mesmo criaturas liées ao seu X-Gene.",
+      "perguntas_poder": [
+        "COMO SEU ALIADO AJUDA VOCÊ?",
+        "Qual a profissão, treinamento ou natureza especial do seu aliado?",
+        "Quais outras habilidades seu aliado possui?",
+        "Por que seu aliado está ao seu lado?",
+        "Como seu aliado lida com oposição ou conflito?",
+        "O que seu aliado faz para proteger você ou a si mesmo?",
+        "Que fontes de informação especiais seu aliado acessa?",
+        "Que recursos, equipamentos ou artefatos seu aliado possui?",
+        "Quem seu aliado conhece que pode ser útil?",
+        "Por que você confia nele?"
+      ],
+      "perguntas_fraqueza": [
+        "COMO SEU ALIADO ACABA TE DEIXANDO EM APUROS?",
+        "Quais as deficiências de habilidades, equipamento ou atitude do seu aliado?",
+        "Que característica dele mais incomoda?",
+        "Quem ou o que tem mais chance de prejudicar seu aliado?"
+      ],
+      "melhorias": [
+        "Marca de Confiança: Uma vez por cena, seu aliado pode lhe conceder uma condição temporária (ex: inspirado, protegido, guiado) com grau igual ao número de tags deste tema. (Condição temporária)",
+        "Treinamento Cruzado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade (exceto este tema). A resposta se torna uma nova tag de poder neste tema. (Tag de outro tema)",
+        "Elo de Lealdade: Uma vez por sessão, quando seu aliado testemunha você agindo contra sua Identidade ou falhando em proteger algo que importa, ele pode intervir e remover um marcador de Quebra de um tema de Humanidade. (Remove Quebra)",
+        "Presença Constante: Uma vez por arco, você pode fazer seu aliado aparecer em qualquer cena onde haja uma justificativa narrativa mínima. Ele chega no início da cena seguinte. (Especial)"
+      ]
+    },
+    {
+      "tipo": "Adicional",
+      "nome": "Base de Operações",
+      "descricao": "Mutantes precisam de lugares seguros — seja o porão de uma igreja abandonada, uma caverna nos arredores, um laboratório escondido ou até mesmo um andar inteiro do Instituto Xavier.",
+      "perguntas_poder": [
+        "QUAL O RECURSO MAIS ÚTIL DA SUA BASE?",
+        "Que defesas ou sistemas protegem sua base de intrusos?",
+        "Que vantagem você ganha ao trabalhar na base?",
+        "Que tipo de instalações especiais a base possui?",
+        "Que equipamento especial você guarda lá?",
+        "Quem trabalha ou mora na base?",
+        "Que tipo de tecnologia ou poder especial a base possui?",
+        "O que é útil na aparência da base?",
+        "O que fica embaixo ou nos fundos da base?",
+        "Que meio de transporte ou acesso especial a base oferece?"
+      ],
+      "perguntas_fraqueza": [
+        "QUE CONDIÇÃO OU ASPECTO NEGATIVO DA BASE A TORNA MAIS DIFÍCIL DE USAR?",
+        "Qual a fraqueza mais significativa na segurança da base?",
+        "O que acontece quando você passa muito tempo na base?",
+        "Quais os efeitos colaterais dos aspectos mutantes da base?"
+      ],
+      "melhorias": [
+        "Marca do Refúgio: Uma vez por cena, dentro da base, você pode criar uma condição temporária com grau igual ao número de tags deste tema. (Condição temporária)",
+        "Tecnologia Adaptada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente um equipamento ou defesa que sua base possui. (Tag de outro tema)",
+        "Santuário Psíquico: Uma vez por arco, ao retornar à base após uma provação que ameaçou sua Identidade, você pode remover um marcador de Quebra. (Remove Quebra)",
+        "Campo de Treinamento: Uma vez por sessão, você pode declarar que passou tempo treinando para um tipo específico de desafio. Na primeira ação relacionada, recebe +2 AP. (Especial)"
+      ]
+    },
+    {
+      "tipo": "Adicional",
+      "nome": "Transporte",
+      "descricao": "Mutantes em fuga precisam de meios de locomoção rápidos e confiáveis — um carro blindado, uma moto modificada, até mesmo um pássaro gigante ou um portal dimensional portátil.",
+      "perguntas_poder": [
+        "COMO SEU TRANSPORTE PERMITE QUE VOCÊ VIAJE?",
+        "O que torna seu transporte mais rápido ou capaz de ir mais longe?",
+        "O que permite que seu transporte leve carga extra ou passageiros?",
+        "Que manobras você pode fazer com seu transporte?",
+        "Que impressão seu transporte causa nas pessoas?",
+        "Que armas estão armazenadas ou fazem parte do transporte?",
+        "Que particularidade seu transporte possui graças ao X-Gene?",
+        "O que ajuda seu transporte a evitar ou sobreviver a golpes?",
+        "Que habilidades de vigilância ou reconhecimento seu transporte possui?",
+        "Como seu transporte evita ser detectado?"
+      ],
+      "perguntas_fraqueza": [
+        "O QUE PODE ATRASAR OU IMPEDIR SEU TRANSPORTE?",
+        "Qual a maior vulnerabilidade do seu transporte?",
+        "Em que condições seu transporte deixa de responder?",
+        "Como a história ou a origem do transporte acaba te deixando em apuros?"
+      ],
+      "melhorias": [
+        "Marca do Motor: Uma vez por cena, ao usar seu transporte, você pode criar uma condição temporária com grau igual ao número de tags deste tema. (Condição temporária)",
+        "Adaptação Veicular: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente uma modificação ou habilidade que seu transporte adquiriu. (Tag de outro tema)",
+        "Rota de Fuga: Uma vez por sessão, quando você está em perigo iminente e usaria seu transporte para escapar, declare que já havia planejado uma rota de fuga. Isso anula uma Quebra. (Remove Quebra condicional)",
+        "Corcel Genético: Seu transporte é excepcionalmente confiável. Uma vez por cena, ao fazer um movimento que envolve deslocamento, você pode considerar o resultado como sucesso (7 a 9) mesmo que tenha rolado 6 ou menos. (Especial)"
+      ]
+    }
   ]
 }
