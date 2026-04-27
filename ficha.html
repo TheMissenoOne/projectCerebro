@@ -132,8 +132,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .ftextarea:focus{border-color:var(--red);}
 .ftextarea::placeholder{color:var(--b3);}
 
-.dots-row{display:flex;gap:5px;}
-.dot{width:18px;height:18px;border:1px solid var(--b3);cursor:pointer;transition:all .15s;position:relative;}
+.dots-row{display:flex;gap:8px;}
+.dot{width:22px;height:22px;border:1px solid var(--b3);cursor:pointer;transition:all .15s;position:relative;}
 .dot::after{content:'';position:absolute;inset:2px;background:var(--red);opacity:0;transition:opacity .15s;}
 .dot.filled::after{opacity:1;}
 .dot:hover{border-color:var(--red);}
@@ -452,7 +452,7 @@ function showToast(msg){
       <div style="display:flex;flex-direction:column;gap:12px">
         <div class="panel">
           <div class="panel-title">Progressão</div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:4px 0 16px">
             <span style="font-family:var(--mono);font-size:.55rem;color:var(--muted);flex-shrink:0">PROGRESSO</span>
             <div class="dots-row" id="dots-prog"></div>
           </div>
