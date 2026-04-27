@@ -337,7 +337,7 @@ function requireAuth(requiredRole) {
   if (!client) { window.location.href = 'index.html'; return Promise.resolve(null); }
   return client.auth.getSession().then(function(result) {
     var session = result.data.session;
-    if (!session) { window.location.href = 'index.html'; return null; }
+    if (!session) { window.location.href = 'index.html'; return Promise.resolve(null); }
     var user = session.user;
     // Check GM whitelist
     var role = user.user_metadata?.role || 'player';
@@ -345,19 +345,25 @@ function requireAuth(requiredRole) {
       role = 'gm';
     }
     var profile = { id: user.id, email: user.email, username: user.user_metadata?.username || user.email.split('@')[0], display_name: user.user_metadata?.display_name || user.user_metadata?.username || 'User', role: role };
-    if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return null; }
+    if (requiredRole && profile.role !== requiredRole) { window.location.href = 'dashboard.html'; return Promise.resolve(null); }
     return { session: session, profile: profile };
   });
 }
 
 function login(email, password) { return window.api.login(email, password); }
 function register(email, password, username, displayName, role) { return window.api.register(email, password, username, displayName, role); }
-function logout() { return window.api.logout().then(function() { window.location.href = 'index.html'; }); }
+function logout() { 
+  return window.api.logout().then(function() { 
+    window.location.href = 'index.html'; 
+  }); 
+}
 
 function checkAuth() {
   var client = window.getSupabaseInternal();
-  if (!client) { console.warn('Supabase client not initialized'); return; }
-  client.auth.getSession().then(function(result) { if (result.data.session) window.location.href = 'dashboard.html'; });
+  if (!client) { console.warn('[checkAuth] Supabase client not initialized'); return; }
+  client.auth.getSession().then(function(result) { 
+    if (result.data.session) window.location.href = 'dashboard.html'; 
+  });
 }
 
 function getCurrentUser() {

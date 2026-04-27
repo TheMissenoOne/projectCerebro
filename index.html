@@ -84,14 +84,13 @@
     <p class="auth-footer">X-MEN // CITY OF MIST</p>
   </div>
 
-  <script src="assets/js/config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase-client.js"></script>
-  <script src="assets/js/auth-module.js"></script>
-  <script src="assets/js/themes.js"></script>
   <script>
-    // Redirect if already logged in
-    window.checkAuth();
+    // Redirect if already logged in - wait for fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        window.checkAuth();
+      }, 100);
+    });
 
     var errorEl = document.getElementById('auth-error');
 
@@ -115,6 +114,11 @@
       btn.textContent = 'Entrando...';
       btn.disabled = true;
       window.api.login(e.target.email.value, e.target.password.value)
+        .then(function() {
+          // Wait for session to persist before redirecting
+          var client = window.getSupabaseInternal();
+          return client.auth.getSession();
+        })
         .then(function() {
           window.location.href = 'dashboard.html';
         })
@@ -171,6 +175,11 @@
         e.target.displayName.value,
         'player'
       )
+        .then(function() {
+          // Wait for session to persist
+          var client = window.getSupabase();
+          return client.auth.getSession();
+        })
         .then(function() {
           window.location.href = 'dashboard.html';
         })

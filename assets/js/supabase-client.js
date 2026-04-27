@@ -16,17 +16,14 @@
   /**
    * Get or create Supabase client instance
    */
-  window.getSupabaseClient = (function() {
-    var supabaseClient = null;
-
-    return function() {
-      if (!supabaseClient && window.supabase) {
-        supabaseClient = window.supabase.createClient(config.url, config.anonKey);
-        console.log('[supabase-client.js] Client created');
-      }
-      return supabaseClient;
-    };
-  })();
+  var supabaseClient = null;
+  window.getSupabaseClient = function() {
+    if (!supabaseClient && window.supabase) {
+      supabaseClient = window.supabase.createClient(config.url, config.anonKey);
+      console.log('[supabase-client.js] Client created');
+    }
+    return supabaseClient;
+  };
 
   // Alias for backwards compatibility
   window.getSupabaseInternal = window.getSupabaseClient;
