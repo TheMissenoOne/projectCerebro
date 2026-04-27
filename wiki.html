@@ -233,9 +233,64 @@
       font-weight: bold;
     }
 
-    #ar-display { font-size: .75rem; font-weight: 600; }
-    #ar-display .ar-label { font-size: .6rem; font-weight: 900; letter-spacing: .1em; opacity: .6; text-transform: uppercase; }
-    #ar-display .ar-raps { font-weight: 900; font-size: .8rem; }
+    #ar-display {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--p1); border-top: 2px solid var(--accent);
+      z-index: 1000; box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+      font-family: var(--mono); padding: 0;
+    }
+    .ard-section {
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ard-section:last-child { border-bottom: none; }
+    .ard-section-label {
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-size: .5rem; font-weight: 900; letter-spacing: .2em;
+      text-transform: uppercase; padding: 8px 6px;
+      color: #111; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      min-width: 22px; flex-shrink: 0;
+    }
+    .ard-cards {
+      display: flex; flex: 1; overflow-x: auto; gap: 0;
+    }
+    .ard-card {
+      flex: 1; min-width: 120px; padding: 7px 12px;
+      border-right: 1px solid var(--b1);
+    }
+    .ard-card:last-child { border-right: none; }
+    .ard-card-header {
+      display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;
+    }
+    .ard-card-tag {
+      font-size: .45rem; font-weight: 900; letter-spacing: .15em;
+      color: #111; background: var(--accent);
+      padding: 1px 4px; text-transform: uppercase;
+    }
+    .ard-card-val {
+      font-size: .82rem; font-weight: 700; color: var(--white);
+    }
+    .ard-refs { display: flex; flex-direction: column; gap: 2px; }
+    .ard-ref-row {
+      display: flex; gap: 6px; font-size: .6rem; line-height: 1.3;
+    }
+    .ard-ref-k {
+      color: var(--muted2); text-transform: uppercase;
+      letter-spacing: .06em; flex-shrink: 0; min-width: 36px;
+    }
+    .ard-ref-v { color: var(--text); }
+    .ard-ref-ex {
+      display: block; color: var(--muted2); font-size: .54rem;
+      font-style: italic; margin-top: 1px; line-height: 1.2;
+    }
+    .ard-card.ard-raps .ard-card-tag { background: var(--red); color: #fff; }
+    .ard-card.ard-raps .ard-card-val { color: var(--accent); }
+    @media (max-width: 768px) {
+      .ard-card { min-width: 100px; padding: 5px 8px; }
+      .ard-card-val { font-size: .72rem; }
+      .ard-ref-row { font-size: .54rem; }
+    }
 
     @media (max-width: 768px) {
       .wiki-layout { flex-direction: column; }
@@ -391,47 +446,304 @@
         '43': '~100 bilhões t', '44': '~200 bilhões t', '45': '~400 bilhões t', '46': '~800 bilhões t', '47': '~1,6 trilhões t', '48': '~3 trilhões t', '49': '~6 trilhões t', '50': '~12 trilhões t'
       }
     };
-    
-    function getRefValues(rapValue) {
-      if (!rapValue || rapValue === 'N' || rapValue === 'A' || rapValue === 'C' || rapValue === '*' || rapValue === '+5') return '';
-      
-      // Extrai número base dos RAPs
-      let numVal = parseInt(rapValue.toString().replace(/[^-0-9]/g, '')) || 0;
-      if (numVal < -13 || numVal > 70) return '';
-      
-      let refs = [];
-      if (apsReference.distancia[numVal] !== undefined) refs.push('Dist: ' + apsReference.distancia[numVal]);
-      if (apsReference.energia[numVal]   !== undefined) refs.push('E: '    + apsReference.energia[numVal]);
-      if (apsReference.massa[numVal]     !== undefined) refs.push('Massa: ' + apsReference.massa[numVal]);
-      if (apsReference.tempo[numVal]     !== undefined) refs.push('Tempo: ' + apsReference.tempo[numVal]);
-      return refs.length > 0 ? '  ·  ' + refs.join('  ·  ') : '';
+
+    const apsExamples = {
+      massa: {
+        '-13': 'semente de alface',
+        '-12': 'pétala de rosa',
+        '-11': 'grão de uva',
+        '-10': 'ovo de codorna',
+        '-9':  'bola de golfe',
+        '-8':  'ovo de galinha',
+        '-7':  'maçã média',
+        '-6':  'hamburguer artesanal',
+        '-5':  'garrafa d\'água (500 ml)',
+        '-4':  'abacaxi médio',
+        '-3':  'gato doméstico',
+        '-2':  'bebê recém-nascido',
+        '-1':  'filhote de labrador',
+        '0':   'criança de 7 anos',
+        '1':   'adulto leve',
+        '2':   'adulto médio',
+        '3':   'urso pardo',
+        '4':   'leão marinho',
+        '5':   'vaca',
+        '6':   'cavalo adulto',
+        '7':   'SUV grande',
+        '8':   'elefante africano (fêmea)',
+        '9':   'elefante africano (macho)',
+        '10':  'ônibus escolar',
+        '11':  'baleia-franca-do-pacífico',
+        '12':  'baleia-azul adulta',
+        '13':  'Boeing 747 (máx decolagem)',
+        '14':  'trem de passageiros (10 vagões)',
+        '15':  'fragata classe Niterói',
+        '16':  'submarino classe Tikuna',
+        '17':  'destroyer classe Arleigh Burke',
+        '18':  'cruzador classe Ticonderoga',
+        '19':  'porta-aviões classe Clemenceau',
+        '20':  'navio de cruzeiro médio',
+        '21':  'navio-escola Cisne Branco',
+        '22':  'superpetroleiro ULCC',
+        '23':  'barragem de Itaipu (concreto)',
+        '24':  'pirâmide de Quéops',
+        '25':  'asteroide Bennu',
+        '26':  'Monte Everest',
+        '27':  'Lua (×0,001)',
+        '28':  'Lua (×0,002)',
+        '29':  'Lua (×0,005)',
+        '30':  'Lua (×0,01)',
+        '35':  'Lua',
+        '40':  'Terra (×0,001)',
+        '45':  'Terra (×0,1)',
+        '50':  'Terra'
+      },
+      distancia: {
+        '-9':  'diâmetro de ervilha',
+        '-8':  'largura de dedo',
+        '-7':  'comprimento de besouro',
+        '-6':  'tecla de teclado',
+        '-5':  'comprimento de beija-flor',
+        '-4':  'régua escolar',
+        '-3':  'pé (medida inglesa)',
+        '-2':  'largura de porta',
+        '-1':  'altura de pessoa sentada',
+        '0':   'altura de teto padrão',
+        '1':   'comprimento de carro',
+        '2':   'ônibus articulado',
+        '3':   'quadra de tênis',
+        '4':   'campo de futebol (largura)',
+        '5':   'campo de futebol (comprimento)',
+        '6':   'pista de atletismo',
+        '7':   'altura do Empire State Building',
+        '8':   'corrida de 800 m',
+        '9':   'Central Park (comprimento)',
+        '10':  'travessia de bairro grande',
+        '11':  'corrida 5K',
+        '12':  'Fossa das Marianas (profundidade)',
+        '13':  'largura de cidade grande',
+        '14':  'maratona olímpica',
+        '15':  'RJ → Petrópolis',
+        '16':  'SP → Campinas',
+        '17':  'SP → Belo Horizonte',
+        '18':  'SP → Porto Alegre',
+        '19':  'SP → Belém do Pará',
+        '20':  'SP → Lima (Peru)',
+        '21':  'Brasil ponta-a-ponta',
+        '22':  'SP → Tóquio',
+        '23':  'meia-volta ao redor da Terra',
+        '24':  'volta completa ao redor da Terra',
+        '25':  'Terra → Lua (×0,25)',
+        '26':  'Terra → Lua (×0,5)',
+        '27':  'Terra → Lua',
+        '28':  'raio do Sol',
+        '29':  'Terra → Marte (próximo)',
+        '30':  'Terra → Marte (médio)',
+        '31':  'Terra → Marte (distante)',
+        '32':  'Terra → Júpiter (próximo)',
+        '33':  'Terra → Saturno',
+        '34':  'Terra → Netuno',
+        '35':  'Sistema Solar (diâmetro)',
+        '36':  'Nuvem de Oort (interna)',
+        '40':  '1/4 ano-luz',
+        '43':  'Proxima Centauri',
+        '44':  'Alpha Centauri',
+        '50':  'centro da galáxia'
+      },
+      energia: {
+        '-10': 'clique de mouse',
+        '-9':  'batida leve de dedo',
+        '-8':  'estalo de dedo',
+        '-7':  'arremesso de bola de tênis',
+        '-6':  'soco fraco',
+        '-5':  'chute de criança',
+        '-4':  'soco treinado',
+        '-3':  'chute de caratê',
+        '-2':  'impacto de bala de pistola',
+        '-1':  'martelo batendo prego',
+        '0':   'pessoa caindo de 1 m',
+        '1':   'flecha de arco composto',
+        '2':   'carro a 30 km/h (colisão)',
+        '3':   'rifle calibre .50',
+        '4':   'explosivo TATP (pequeno)',
+        '5':   'granada de mão M67',
+        '6':   'colisão de veículo a 100 km/h',
+        '7':   'carga de C4 (250 g)',
+        '8':   'raio médio',
+        '9':   'bomba de morteiro 120 mm',
+        '10':  'carro a 100 km/h (energia cinética)',
+        '11':  'explosão de cilindro de gás',
+        '12':  '1 kg de TNT',
+        '13':  '2 kg de TNT',
+        '14':  'propulsor de foguete (1 estágio)',
+        '15':  '7 kg de TNT',
+        '16':  'bomba de artilharia pesada',
+        '17':  'míssil ar-ar AIM-120',
+        '18':  'colisão de trens',
+        '19':  '100 kg de TNT',
+        '20':  'terremoto M3',
+        '21':  'explosão de navio-munição',
+        '22':  'Bomba GBU-43 MOAB',
+        '23':  'terremoto M4',
+        '24':  '1 tonelada de TNT',
+        '25':  'Bomba Davy Crockett (menor arma nuclear)',
+        '26':  'teste Trinity (1ª bomba atômica)',
+        '27':  'bomba nuclear tática (1 kt)',
+        '28':  'terremoto M5',
+        '29':  'bomba de Hiroshima (Little Boy ~15 kt)',
+        '30':  'bomba de Nagasaki (Fat Man ~21 kt)',
+        '31':  'terremoto M6',
+        '32':  'bomba nuclear estratégica (100 kt)',
+        '33':  'terremoto M7 (Haiti 2010)',
+        '34':  'megabomba W53 (9 Mt)',
+        '35':  'terremoto M8 (Chile 2010)',
+        '36':  'Tsar Bomba (50 Mt)',
+        '37':  'terremoto M9 (Japão 2011)',
+        '38':  'impacto de asteroide (Tunguska)',
+        '39':  'terremoto M9.5 (Chile 1960)',
+        '40':  'impacto de Chicxulub (extinção K-Pg)',
+        '45':  'erupção de supernova próxima',
+        '50':  'explosão de supernova'
+      },
+      tempo: {
+        '-2':  'piscar de olhos',
+        '-1':  'respiração normal',
+        '0':   'compasso musical (120 bpm)',
+        '1':   'recorde mundial dos 100 m rasos',
+        '2':   'comercial de TV',
+        '3':   'intervalo de comerciais',
+        '4':   'minuto de silêncio',
+        '5':   'round de boxe',
+        '6':   'música popular média',
+        '7':   'corrida de 1 mile',
+        '8':   'intervalo escolar',
+        '9':   'episódio de série',
+        '10':  'aula universitária',
+        '11':  'filme longa-metragem',
+        '12':  'voo SP → RJ',
+        '13':  'jornada de trabalho',
+        '14':  'dia com deslocamento',
+        '15':  'um dia',
+        '16':  'fim de semana',
+        '17':  'feriado prolongado',
+        '18':  'semana',
+        '19':  'quinzena',
+        '20':  'mês',
+        '21':  'bimestre',
+        '22':  'semestre',
+        '23':  'gestação humana',
+        '24':  'um ano',
+        '25':  'dois anos',
+        '26':  'mandato presidencial',
+        '27':  'dois mandatos presidenciais',
+        '28':  'meia geração',
+        '29':  'carreira profissional',
+        '30':  'vida ativa (20–80 anos)',
+        '31':  'expectativa máxima humana',
+        '32':  'Independência dos EUA',
+        '33':  'Descobrimento do Brasil',
+        '34':  'Império Romano (duração)',
+        '35':  'era cristã',
+        '36':  'pirâmides do Egito',
+        '37':  'início da agricultura',
+        '38':  'últimas pinturas rupestres',
+        '39':  'extinção dos Neandertais',
+        '40':  'migração humana p/ Austrália',
+        '41':  'Homo sapiens moderno',
+        '42':  'origem do Homo sapiens',
+        '43':  'Homo heidelbergensis',
+        '44':  'surgimento do gênero Homo',
+        '45':  'australopitecos',
+        '46':  'primeiros hominídeos',
+        '47':  'divergência humano/chimpanzé',
+        '48':  'primeiros primatas',
+        '49':  'primeiros macacos',
+        '50':  'extinção dos dinossauros',
+        '51':  'dinossauros no Jurássico',
+        '52':  'Grande Extinção Permiana',
+        '53':  'explosão cambriana',
+        '54':  'início da vida multicelular',
+        '55':  'fotossíntese oxigênica',
+        '56':  'origem da vida na Terra',
+        '57':  'formação do Sistema Solar',
+        '58':  'idade do universo'
+      }
+    };
+
+    function getRefCard(apStr) {
+      const match = (apStr || '').toString().match(/-?\d+/);
+      if (!match) return '';
+      const num = parseInt(match[0]);
+      if (isNaN(num) || num < -13 || num > 70) return '';
+      const rows = [];
+      const dims = [
+        { key: 'distancia', label: 'dist' },
+        { key: 'energia',   label: 'energia' },
+        { key: 'massa',     label: 'massa' },
+        { key: 'tempo',     label: 'tempo' }
+      ];
+      dims.forEach(({ key, label }) => {
+        const val = apsReference[key][num];
+        if (val === undefined) return;
+        const ex = apsExamples[key]?.[num];
+        const exHtml = ex ? `<span class="ard-ref-ex">${ex}</span>` : '';
+        rows.push(`<div class="ard-ref-row"><span class="ard-ref-k">${label}</span><span class="ard-ref-v">${val}${exHtml}</span></div>`);
+      });
+      return rows.join('');
     }
-    
+
+    function buildARCard(tag, val, extraClass = '') {
+      const refs = getRefCard(val);
+      return `
+        <div class="ard-card ${extraClass}">
+          <div class="ard-card-header">
+            <span class="ard-card-tag">${tag}</span>
+            <span class="ard-card-val">${val}</span>
+          </div>
+          <div class="ard-refs">${refs || '<span class="ard-ref-v" style="opacity:.4">—</span>'}</div>
+        </div>`;
+    }
+
     function updateARDisplay() {
-      let lines = [];
-      
+      const sections = [];
+
       if (avSelection) {
-        lines.push(`<span class="ar-label">AV</span> ${avSelection.valorLinha} &nbsp;·&nbsp; <span class="ar-label">OV</span> ${avSelection.valorCol} &nbsp;→&nbsp; <span class="ar-raps">RAPs: ${avSelection.raps}</span>${getRefValues(avSelection.raps)}`);
+        sections.push(`
+          <div class="ard-section">
+            <div class="ard-section-label">Ação</div>
+            <div class="ard-cards">
+              ${buildARCard('AV', avSelection.valorLinha)}
+              ${buildARCard('OV', avSelection.valorCol)}
+              ${buildARCard('RAPs', avSelection.raps, 'ard-raps')}
+            </div>
+          </div>`);
       }
-      
+
       if (rvSelection) {
-        lines.push(`<span class="ar-label">EV</span> ${rvSelection.valorLinha} &nbsp;·&nbsp; <span class="ar-label">RV</span> ${rvSelection.valorCol} &nbsp;→&nbsp; <span class="ar-raps">RAPs: ${rvSelection.raps}</span>${getRefValues(rvSelection.raps)}`);
+        sections.push(`
+          <div class="ard-section">
+            <div class="ard-section-label">Efeito</div>
+            <div class="ard-cards">
+              ${buildARCard('EV', rvSelection.valorLinha)}
+              ${buildARCard('RV', rvSelection.valorCol)}
+              ${buildARCard('RAPs', rvSelection.raps, 'ard-raps')}
+            </div>
+          </div>`);
       }
-      
-      if (lines.length === 0) {
+
+      if (sections.length === 0) {
         const display = document.getElementById('ar-display');
         if (display) display.remove();
         return;
       }
-      
+
       let display = document.getElementById('ar-display');
       if (!display) {
         display = document.createElement('div');
         display.id = 'ar-display';
-        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:#111;padding:10px 20px;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);font-family:monospace;line-height:1.7;';
         document.body.appendChild(display);
       }
-      display.innerHTML = lines.join('<hr style="border:none;border-top:1px solid rgba(0,0,0,0.2);margin:4px 0;">');
+      display.innerHTML = sections.join('');
     }
     
     // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
