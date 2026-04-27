@@ -4,7 +4,7 @@
 
 const { chromium } = require('playwright');
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:3000';
 
 async function runTests() {
   console.log('Running E2E Tests...\n');
