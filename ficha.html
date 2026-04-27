@@ -841,7 +841,7 @@ badge.textContent = nc==='mutacao'?'MUTAÇÃO':nc==='humanidade'?'HUMANIDADE':''
         if(oldMelLbl)oldMelLbl.remove();if(oldMel)oldMel.remove();
         const melList=getMelhorias(newTipo);
        if(melList.length){
-         const melL=document.createElement('div');melL.className='c-label';melL.textContent='MELHORIAS';body.appendChild(melL);
+const melL=document.createElement('div');melL.className='c-label mel-lbl';melL.textContent='MELHORIAS';body.appendChild(melL);
          const melWrap=document.createElement('div');melWrap.className='mel-check-list';melWrap.style.cssText='display:flex;flex-direction:column;gap:4px;margin-top:6px;';
          melList.forEach((m,i)=>{
            const row=document.createElement('label');row.style.cssText='display:flex;align-items:flex-start;gap:6px;cursor:pointer;padding:4px 6px;background:var(--p2);border:1px solid var(--b1);border-left:2px solid var(--red);transition:border-color .15s;';
