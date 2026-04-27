@@ -146,19 +146,19 @@
       padding: 0;
     }
 
-    /* ===== TABELAS CORRIGIDAS ===== */
+    /* ===== TABELAS ===== */
     .table-container {
       overflow-x: auto;
       margin: 20px 0;
       border-radius: 4px;
       border: 1px solid var(--b1);
+      -webkit-overflow-scrolling: touch;
     }
 
     .wiki-content table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.7rem;
-      min-width: 400px;
     }
 
     .wiki-content th, .wiki-content td {
@@ -167,6 +167,7 @@
       text-align: center;
       vertical-align: middle;
       font-family: var(--mono);
+      white-space: nowrap;
     }
 
     .wiki-content th {
@@ -176,35 +177,13 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-size: 0.65rem;
-    }
-
-    /* Sticky header e primeira coluna CORRIGIDOS */
-    .wiki-content table thead {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: var(--p2);
-    }
-
-    .wiki-content table th {
-      position: sticky;
-      top: 0;
-      background: var(--p2);
-      z-index: 15;
-    }
-
-    .wiki-content table th:first-child {
-      position: sticky;
-      left: 0;
-      z-index: 20;
-      background: var(--p2);
+      z-index: 2;
     }
 
     .wiki-content table td:first-child {
-      position: sticky;
-      left: 0;
       background: var(--p1);
-      z-index: 5;
       font-weight: 600;
     }
 
@@ -253,6 +232,10 @@
       border-color: var(--accent);
       font-weight: bold;
     }
+
+    #ar-display { font-size: .75rem; font-weight: 600; }
+    #ar-display .ar-label { font-size: .6rem; font-weight: 900; letter-spacing: .1em; opacity: .6; text-transform: uppercase; }
+    #ar-display .ar-raps { font-weight: 900; font-size: .8rem; }
 
     @media (max-width: 768px) {
       .wiki-layout { flex-direction: column; }
@@ -310,7 +293,7 @@
         <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
         <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
         <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
-        <a href="wiki.html?p=sistema_acao" class="wiki-nav-link" data-page="sistema_acao">Sistema de Ações</a>
+        <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Sistema de Ações</a>
         <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
         <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Tabela AV/OV e EV/RV</a>
         <a href="wiki.html?p=aps_referencia" class="wiki-nav-link" data-page="aps_referencia">APs Referência</a>
@@ -349,26 +332,19 @@
     </main>
   </div>
 
-  <script src="assets/js/wiki-pages.js"></script>
   <script>
     const wikiContent = document.getElementById('wiki-content');
     const navLinks = document.querySelectorAll('.wiki-nav-link');
     const pages = window.wikiPages;
     
-    function loadPage(page) {
-      const content = pages[page] || pages.index;
-      wikiContent.innerHTML = content;
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.page === page || (page === 'index' && !link.dataset.page)) {
-          link.classList.add('active');
-        }
-      });
-      
-      // Reaplica os event listeners das tabelas após carregar novo conteúdo
-      attachTableHighlightListeners();
-    }
+      function loadPage(page) {
+        const content = pages[page] || pages.index;
+        wikiContent.innerHTML = content;
+        
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.page === page);
+        });
+      }
     
     // Armazena seleção de cada tabela
     let avSelection = null;
@@ -376,15 +352,15 @@
     
     // Lookup table for APs reference values
     const apsReference = {
-      energia: {
       distancia: {
-        '-9': '5 mm', '-5': '7,6 cm', '-4': '15 cm', '-3': '30 cm', '-2': '76 cm', '-1': '1,5 m', '0': '3 m', '1': '6 m', '2': '12 m', '3': '24 m',
+        '-9': '5 mm', '-8': '~1 cm', '-7': '~2 cm', '-6': '~4 cm',
+        '-5': '7,6 cm', '-4': '15 cm', '-3': '30 cm', '-2': '76 cm', '-1': '1,5 m', '0': '3 m', '1': '6 m', '2': '12 m', '3': '24 m',
         '4': '45 m', '5': '91 m', '6': '183 m', '7': '380 m', '8': '760 m', '9': '1,5 km', '10': '3 km', '11': '5 km', '12': '11 km', '13': '24 km',
         '14': '45 km', '15': '90 km', '16': '180 km', '17': '360 km', '18': '700 km', '19': '1.400 km', '20': '2.800 km', '21': '5.600 km', '22': '11.000 km',
-        '23': '22.000 km', '24': '44.000 km', '25': '88.000 km', '26': '176.000 km', '27': '350.000 km', '28': '700.000 km', '29': '1,4 milhão km', '30': '3 milhões km',
-        '31': '6 milhões km', '32': '12 milhões km', '33': '25 milhões km', '34': '50 milhões km', '35': '100 milhões km', '36': '200 milhões km', '37': '400 milhões km', '38': '800 milhões km',
-        '39': '1,6 bilhão km', '40': '3 bilhões km', '41': '6 bilhões km', '42': '12 bilhões km', '43': '25 bilhões km', '44': '50 bilhões km', '45': '100 bilhões km',
-        '46': '200 bilhões km', '47': '400 bilhões km', '48': '800 bilhões km', '49': '1,6 trilhão km', '50': '3 trilhões km'
+        '23': '22.000 km', '24': '44.000 km', '25': '88.000 km', '26': '176.000 km', '27': '350.000 km', '28': '700.000 km', '29': '1,4 mi km', '30': '3 mi km',
+        '31': '6 mi km', '32': '12 mi km', '33': '25 mi km', '34': '50 mi km', '35': '100 mi km', '36': '200 mi km', '37': '400 mi km', '38': '800 mi km',
+        '39': '1,6 bi km', '40': '3 bi km', '41': '6 bi km', '42': '12 bi km', '43': '25 bi km', '44': '50 bi km', '45': '100 bi km',
+        '46': '200 bi km', '47': '400 bi km', '48': '800 bi km', '49': '1,6 tri km', '50': '3 tri km'
       },
       energia: {
         '-10': '~1 J', '-9': '~2 J', '-8': '~4 J', '-7': '~8 J', '-6': '~16 J', '-5': '~32 J', '-4': '~64 J', '-3': '~125 J', '-2': '~250 J', '-1': '~500 J',
@@ -393,7 +369,9 @@
         '20': '~1 GJ', '21': '~2 GJ', '22': '~4 GJ', '23': '~8 GJ', '24': '~16 GJ', '25': '~32 GJ', '26': '~64 GJ', '27': '~125 GJ', '28': '~250 GJ', '29': '~500 GJ',
         '30': '~1 TJ', '31': '~2 TJ', '32': '~4 TJ', '33': '~8 TJ', '34': '~16 TJ', '35': '~32 TJ', '36': '~64 TJ', '37': '~125 TJ', '38': '~250 TJ', '39': '~500 TJ',
         '40': '~1 PJ', '41': '~2 PJ', '42': '~4 PJ', '43': '~8 PJ', '44': '~16 PJ', '45': '~32 PJ', '46': '~64 PJ', '47': '~125 PJ', '48': '~250 PJ', '49': '~500 PJ',
-        '50': '~1 EJ', '55': '~32 EJ', '60': '~1 ZJ', '65': '~32 ZJ', '70': '~1 YJ'
+        '50': '~1 EJ', '51': '~2 EJ', '52': '~4 EJ', '53': '~8 EJ', '54': '~16 EJ', '55': '~32 EJ', '56': '~64 EJ', '57': '~125 EJ', '58': '~250 EJ', '59': '~500 EJ',
+        '60': '~1 ZJ', '61': '~2 ZJ', '62': '~4 ZJ', '63': '~8 ZJ', '64': '~16 ZJ', '65': '~32 ZJ', '66': '~64 ZJ', '67': '~125 ZJ', '68': '~250 ZJ', '69': '~500 ZJ',
+        '70': '~1 YJ'
       },
       tempo: {
         '-2': '1 segundo', '-1': '2 segundos', '0': '4 segundos', '1': '8 segundos', '2': '15 segundos', '3': '30 segundos', '4': '1 minuto', '5': '2 minutos', '6': '4 minutos', '7': '8 minutos',
@@ -404,7 +382,8 @@
         '48': '16 milhões anos', '49': '32 milhões anos', '50': '64 milhões anos', '51': '128 milhões anos', '52': '256 milhões anos', '53': '500 milhões anos', '54': '1 bilhão anos', '55': '2 bilhões anos', '56': '4 bilhões anos', '57': '8 bilhões anos', '58': '16 bilhões anos'
       },
       massa: {
-        '-13': '~2 g', '-9': '~30 g', '-7': '~125 g', '-5': '~450 g', '-4': '1 kg', '-2': '~4,5 kg', '-1': '~8 kg', '0': '~22 kg', '1': '~45 kg', '2': '~90 kg',
+        '-13': '~2 g', '-12': '~4 g', '-11': '~8 g', '-10': '~15 g', '-9': '~30 g', '-8': '~60 g', '-7': '~125 g', '-6': '~250 g',
+        '-5': '~450 g', '-4': '1 kg', '-3': '~2 kg', '-2': '~4,5 kg', '-1': '~8 kg', '0': '~22 kg', '1': '~45 kg', '2': '~90 kg',
         '3': '~180 kg', '4': '~340 kg', '5': '~680 kg', '6': '~1,5 t', '7': '~3 t', '8': '~6 t', '9': '~13 t', '10': '~25 t', '11': '~50 t', '12': '~100 t',
         '13': '~200 t', '14': '~400 t', '15': '~800 t', '16': '~1.500 t', '17': '~3.000 t', '18': '~6.000 t', '19': '~12.000 t', '20': '~25.000 t', '21': '~50.000 t', '22': '~100.000 t',
         '23': '~200.000 t', '24': '~400.000 t', '25': '~800.000 t', '26': '~1,5 milhão t', '27': '~3 milhões t', '28': '~6 milhões t', '29': '~10 milhões t', '30': '~13 milhões t', '31': '~26 milhões t', '32': '~52 milhões t',
@@ -417,29 +396,29 @@
       if (!rapValue || rapValue === 'N' || rapValue === 'A' || rapValue === 'C' || rapValue === '*' || rapValue === '+5') return '';
       
       // Extrai número base dos RAPs
-      let numVal = parseInt(rapValue.toString().replace(/[^0-9]/g, '')) || 0;
+      let numVal = parseInt(rapValue.toString().replace(/[^-0-9]/g, '')) || 0;
       if (numVal < -13 || numVal > 70) return '';
       
       let refs = [];
-      if (apsReference.distancia[numVal]) refs.push('Distância: ' + apsReference.distancia[numVal]);
-      if (apsReference.energia[numVal]) refs.push('Energia: ' + apsReference.energia[numVal]);
-      if (apsReference.massa[numVal]) refs.push('Massa: ' + apsReference.massa[numVal]);
-      if (apsReference.tempo[numVal]) refs.push('Tempo: ' + apsReference.tempo[numVal]);
-      return refs.length > 0 ? ' | ' + refs.join(' | ') : '';
+      if (apsReference.distancia[numVal] !== undefined) refs.push('Dist: ' + apsReference.distancia[numVal]);
+      if (apsReference.energia[numVal]   !== undefined) refs.push('E: '    + apsReference.energia[numVal]);
+      if (apsReference.massa[numVal]     !== undefined) refs.push('Massa: ' + apsReference.massa[numVal]);
+      if (apsReference.tempo[numVal]     !== undefined) refs.push('Tempo: ' + apsReference.tempo[numVal]);
+      return refs.length > 0 ? '  ·  ' + refs.join('  ·  ') : '';
     }
     
     function updateARDisplay() {
-      let texts = [];
+      let lines = [];
       
       if (avSelection) {
-        texts.push(`${avSelection.tipo}: ${avSelection.valorLinha} | ${avSelection.oposto}: ${avSelection.valorCol} → RAPs: ${avSelection.raps}${getRefValues(avSelection.raps)}`);
+        lines.push(`<span class="ar-label">AV</span> ${avSelection.valorLinha} &nbsp;·&nbsp; <span class="ar-label">OV</span> ${avSelection.valorCol} &nbsp;→&nbsp; <span class="ar-raps">RAPs: ${avSelection.raps}</span>${getRefValues(avSelection.raps)}`);
       }
       
       if (rvSelection) {
-        texts.push(`${rvSelection.tipo}: ${rvSelection.valorLinha} | ${rvSelection.oposto}: ${rvSelection.valorCol} → RAPs: ${rvSelection.raps}${getRefValues(rvSelection.raps)}`);
+        lines.push(`<span class="ar-label">EV</span> ${rvSelection.valorLinha} &nbsp;·&nbsp; <span class="ar-label">RV</span> ${rvSelection.valorCol} &nbsp;→&nbsp; <span class="ar-raps">RAPs: ${rvSelection.raps}</span>${getRefValues(rvSelection.raps)}`);
       }
       
-      if (texts.length === 0) {
+      if (lines.length === 0) {
         const display = document.getElementById('ar-display');
         if (display) display.remove();
         return;
@@ -449,10 +428,10 @@
       if (!display) {
         display = document.createElement('div');
         display.id = 'ar-display';
-        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:#111;padding:12px 20px;font-size:1rem;font-weight:bold;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);font-family:monospace;';
+        display.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:var(--accent);color:#111;padding:10px 20px;text-align:center;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.5);font-family:monospace;line-height:1.7;';
         document.body.appendChild(display);
       }
-      display.textContent = texts.join('\n');
+      display.innerHTML = lines.join('<hr style="border:none;border-top:1px solid rgba(0,0,0,0.2);margin:4px 0;">');
     }
     
     // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
@@ -530,9 +509,14 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.dataset.page;
-        window.history.pushState({}, '', `wiki.html?p=${page}`);
+        window.history.pushState({ page }, '', `wiki.html?p=${page}`);
         loadPage(page);
       });
+    });
+
+    window.addEventListener('popstate', () => {
+      const p = new URLSearchParams(window.location.search).get('p') || 'index';
+      loadPage(p);
     });
     
     initTheme();
