@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/admin.css">
   <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/supabase-client.js"></script>
   <script src="assets/js/cache-module.js"></script>
@@ -21,6 +22,7 @@
   <script src="assets/js/api.js"></script>
   <script src="assets/js/globals.js"></script>
   <script src="assets/js/themes.js"></script>
+  <script src="assets/js/header.js"></script>
 </head>
 <body>
 <script>
@@ -30,37 +32,8 @@
         if (t) document.body.className = 'theme-' + t;
 })();
 </script>
-<header class="header">
-    <div class="header-logo">
-      <a href="dashboard.html" class="x-logo">
-        <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
-          <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-          <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
-          <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-          <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-          <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-        </svg>
-      </a>
-      <div class="hdr-title">
-        <h1>X-MEN</h1>
-        <span class="hdr-sub">PAINEL DO GM</span>
-      </div>
-    </div>
-    <div class="hdr-spacer"></div>
-  </header>
-
-  <div class="toolbar">
-    <a href="dashboard.html" class="tbtn">Dashboard</a>
-    <a href="ficha.html" class="tbtn">Ficha</a>
-    <a href="wiki.html" class="tbtn">Wiki</a>
-    <div class="toolbar-spacer"></div>
-    <div class="theme-switcher" style="border-left:none;padding:0;">
-      <div class="theme-dots-row" id="theme-dots-row"></div>
-    </div>
-  </div>
+<div id="header-container"></div>
+<div id="toolbar-container"></div>
 
   <div class="admin-layout">
     <nav class="admin-sidebar">
@@ -137,8 +110,9 @@
 let currentParty = null;
 
     async function init() {
+      initLanguage();
       initTheme();
-      renderThemeDots();
+      renderNavBar({ page: 'admin' });
       
       const params = new URLSearchParams(window.location.search);
       const tab = params.get('tab') || 'party';
@@ -490,22 +464,6 @@ let currentParty = null;
       document.getElementById('settings-dropdown').classList.toggle('open');
     }
     
-    function renderThemeDots() {
-      var themes = [
-        { id: 'yellow', color: '#FFD600' },
-        { id: 'red', color: '#E8001C' },
-        { id: 'green', color: '#00C853' },
-        { id: 'purple', color: '#b040ff' },
-        { id: 'blue', color: '#3a8fc0' }
-      ];
-      var current = getCurrentTheme();
-      var container = document.getElementById('theme-dots-row');
-      if (!container) return;
-      container.innerHTML = themes.map(function(t) {
-        return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') + '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id + '\');renderThemeDots();" title="' + t.name + '"></div>';
-      }).join('');
-    }
-
     init();
     
     // Save bar

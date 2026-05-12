@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
 <script src="assets/js/config.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <script src="assets/js/supabase-client.js" defer></script>
 <script src="assets/js/cache-module.js" defer></script>
@@ -283,8 +284,8 @@ select.f-inp option{background:var(--dark);color:var(--white);}
   </div>
   <div class="hdr-spacer"></div>
   <div class="hdr-codes">
-    <span class="red-code">AG—17.19349.583</span>
-    <span>VERSÃO 6.0 // GM MODE</span>
+    <span class="red-code">AG\u201417.19349.583</span>
+    <span data-i18n="cerebro.version">VERSÃO 6.0 // GM MODE</span>
   </div>
   <button class="hdr-ham" onclick="abrirPainel()">
     <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -292,27 +293,27 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 </header>
 
   <div class="toolbar">
-    <span class="save-ind" id="save-ind">// CARREGANDO...</span>
+      <span class="save-ind" id="save-ind" data-i18n="common.loading">// CARREGANDO...</span>
     <div class="tb-div"></div>
-    <a href="dashboard.html" class="tbtn">
+    <a href="dashboard.html" class="tbtn" data-i18n="common.dashboard">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       DASHBOARD
     </a>
     <div class="tb-div"></div>
-    <button class="tbtn tbtn-acc" onclick="abrirAddModal()">
+    <button class="tbtn tbtn-acc" onclick="abrirAddModal()" data-i18n="cerebro.newNpc">
       <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       NOVO NPC
     </button>
     <div class="tb-div"></div>
-    <button class="tbtn" onclick="abrirImportModal()">
+    <button class="tbtn" onclick="abrirImportModal()" data-i18n="common.import">
       <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
       IMPORTAR
     </button>
-    <button class="tbtn" onclick="exportarTodos()">
+    <button class="tbtn" onclick="exportarTodos()" data-i18n="common.export">
       <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
       EXPORTAR
     </button>
-    <button class="tbtn" onclick="recarregarDB()">
+    <button class="tbtn" onclick="recarregarDB()" data-i18n="common.reload">
       <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
       RECARREGAR
     </button>
@@ -321,12 +322,12 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       <div class="theme-dots-row" id="theme-dots-row"></div>
     </div>
     <div class="tb-div"></div>
-    <button class="tbtn" onclick="window.open('dashboard.html','_self')">
+    <button class="tbtn" onclick="window.open('dashboard.html','_self')" data-i18n="common.config">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       CONFIG
     </button>
     <div class="tb-div"></div>
-    <button class="tbtn" onclick="logout()">
+    <button class="tbtn" onclick="logout()" data-i18n="common.logout">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
       SAIR
     </button>
@@ -334,9 +335,9 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 
 <div id="no-access" style="display:none;text-align:center;padding:60px 20px;font-family:var(--mono);font-size:.62rem;color:var(--muted);">
   <div style="font-size:3rem;margin-bottom:16px;">🔒</div>
-  <div>ACESSO RESTRITO</div>
-  <div style="margin-top:12px;color:var(--b3);">Apenas mestres (GMs) podem acessar o Cérebro.</div>
-  <a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>
+  <div data-i18n="cerebro.noAccess">ACESSO RESTRITO</div>
+  <div style="margin-top:12px;color:var(--b3);" data-i18n="cerebro.gmOnly">Apenas mestres (GMs) podem acessar o Cérebro.</div>
+  <a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;" data-i18n="cerebro.backDash">Voltar ao Dashboard</a>
 </div>
 
 <div class="app-layout" id="app-layout" style="display:none;">
@@ -347,11 +348,11 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       <div class="enc-header" id="enc-header" onclick="toggleEncSection()">
         <button class="enc-title-btn">
           <span class="enc-sword"></span>
-          <span class="enc-lbl">ENCONTRO ATIVO</span>
+          <span class="enc-lbl" data-i18n="cerebro.encounterTitle">ENCONTRO ATIVO</span>
           <span class="panel-badge" id="enc-count-badge">0</span>
         </button>
         <div class="enc-round-ctrl" onclick="event.stopPropagation()">
-          <span class="enc-round-lbl">R</span>
+          <span class="enc-round-lbl" data-i18n="cerebro.round">R</span>
           <button class="enc-round-btn" onclick="mudaRodada(-1)">−</button>
           <span class="enc-round-val" id="enc-rodada">1</span>
           <button class="enc-round-btn" onclick="mudaRodada(1)">+</button>
@@ -362,7 +363,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
         <div class="enc-inner">
           <div class="enc-npc-list" id="enc-npc-list"></div>
           <div class="enc-add-bar">
-            <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
+            <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()" data-i18n="cerebro.addSelected">
               + ADICIONAR NPC SELECIONADO
             </button>
           </div>
@@ -372,21 +373,21 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 
     <div class="panel-head">
       <div class="panel-head-top">
-        <span class="panel-title">// MUTANTES REGISTRADOS</span>
+        <span class="panel-title" data-i18n="cerebro.registered">// MUTANTES REGISTRADOS</span>
         <span class="npc-count" id="npc-count">0</span>
       </div>
-      <input type="search" class="search-box" id="search-inp" placeholder="FILTRAR..." oninput="filtrar()">
+      <input type="search" class="search-box" id="search-inp" data-i18n-placeholder="cerebro.filter" placeholder="FILTRAR..." oninput="filtrar()">
     </div>
 
     <div class="cat-pills">
-      <button class="cat-pill active" data-cat="todos" onclick="setCat(this)">TODOS</button>
-      <button class="cat-pill" data-cat="x-men" onclick="setCat(this)">X-MEN</button>
-      <button class="cat-pill" data-cat="novatos" onclick="setCat(this)">NOVATOS</button>
-      <button class="cat-pill" data-cat="morlock" onclick="setCat(this)">MORLOCK</button>
-      <button class="cat-pill" data-cat="irmandade" onclick="setCat(this)">IRMANDADE</button>
-      <button class="cat-pill" data-cat="vilao" onclick="setCat(this)">VILÃO</button>
-      <button class="cat-pill" data-cat="criminoso" onclick="setCat(this)">CRIME</button>
-      <button class="cat-pill" data-cat="neutro" onclick="setCat(this)">NEUTRO</button>
+      <button class="cat-pill active" data-cat="todos" onclick="setCat(this)" data-i18n="common.all">TODOS</button>
+      <button class="cat-pill" data-cat="x-men" onclick="setCat(this)" data-i18n="faction.xmen">X-MEN</button>
+      <button class="cat-pill" data-cat="novatos" onclick="setCat(this)" data-i18n="faction.novatos">NOVATOS</button>
+      <button class="cat-pill" data-cat="morlock" onclick="setCat(this)" data-i18n="faction.morlock">MORLOCK</button>
+      <button class="cat-pill" data-cat="irmandade" onclick="setCat(this)" data-i18n="faction.irmandade">IRMANDADE</button>
+      <button class="cat-pill" data-cat="vilao" onclick="setCat(this)" data-i18n="faction.vilao">VILÃO</button>
+      <button class="cat-pill" data-cat="criminoso" onclick="setCat(this)" data-i18n="faction.criminoso">CRIME</button>
+      <button class="cat-pill" data-cat="neutro" onclick="setCat(this)" data-i18n="faction.neutro">NEUTRO</button>
     </div>
 
     <div class="npc-list-wrap" id="npc-list"></div>
@@ -398,13 +399,13 @@ select.f-inp option{background:var(--dark);color:var(--white);}
   <div class="right-content" id="right-content">
     <div class="data-header">
       <span>[LSSP-78445] [DB-NPC] [GM-v6]</span>
-      <span class="ac">▌ BANCO DE DADOS CÉREBRO ▐</span>
+      <span class="ac" data-i18n="cerebro.dbTitle">▌ BANCO DE DADOS CÉREBRO ▐</span>
     </div>
     <div id="npc-detail">
       <div class="empty-state">
         <div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <div class="empty-title">NENHUM NPC</div>
-        <div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU CRIE UM NOVO</div>
+        <div class="empty-title" data-i18n="cerebro.emptyTitle">NENHUM NPC</div>
+        <div class="empty-sub" data-i18n="cerebro.emptySub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU CRIE UM NOVO</div>
       </div>
     </div>
   </div>
@@ -414,12 +415,12 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <!-- MODAL: IMPORTAR -->
 <div class="modal-bg" id="modal-import">
   <div class="modal">
-    <div class="modal-title">IMPORTAR .MD</div>
-    <div class="modal-sub">Cole o Markdown com NPCs (formato "# NPC: Nome").<br>NPCs com mesmo nome serão atualizados. NPCs importados ficam vinculados à sua party.</div>
+    <div class="modal-title" data-i18n="cerebro.importTitle">IMPORTAR .MD</div>
+    <div class="modal-sub" data-i18n="cerebro.importDesc">Cole o Markdown com NPCs (formato "# NPC: Nome").<br>NPCs com mesmo nome serão atualizados.</div>
     <textarea class="modal-ta" id="import-text" placeholder="# NPC: Nome&#10;**Fração:** x-men&#10;..."></textarea>
     <div class="modal-acts">
-      <button class="tbtn" onclick="fecharImportModal()">CANCELAR</button>
-      <button class="tbtn tbtn-acc" onclick="importarMarkdown()">CONFIRMAR</button>
+      <button class="tbtn" onclick="fecharImportModal()" data-i18n="common.cancel">CANCELAR</button>
+      <button class="tbtn tbtn-acc" onclick="importarMarkdown()" data-i18n="common.confirm">CONFIRMAR</button>
     </div>
   </div>
 </div>
@@ -427,14 +428,14 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <!-- MODAL: NPC FORM -->
 <div class="modal-bg" id="modal-npc">
   <div class="modal">
-    <div class="modal-title" id="modal-npc-title">NOVO NPC</div>
+    <div class="modal-title" id="modal-npc-title" data-i18n="cerebro.newNpcTitle">NOVO NPC</div>
     <div class="form-grid-2">
-      <div class="form-grp"><label class="form-lbl">NOME *</label><input type="text" class="f-inp" id="f-nome" placeholder="Nome"></div>
-      <div class="form-grp"><label class="form-lbl">CODINOME</label><input type="text" class="f-inp" id="f-codinome" placeholder="Identidade / codinome"></div>
+      <div class="form-grp"><label class="form-lbl" data-i18n="common.name">NOME *</label><input type="text" class="f-inp" id="f-nome" placeholder="Nome"></div>
+      <div class="form-grp"><label class="form-lbl" data-i18n="common.codename">CODINOME</label><input type="text" class="f-inp" id="f-codinome" placeholder="Identidade / codinome"></div>
     </div>
     <div class="form-grid-2">
       <div class="form-grp">
-        <label class="form-lbl">FRAÇÃO</label>
+        <label class="form-lbl" data-i18n="cerebro.faction">FRAÇÃO</label>
         <select class="f-inp" id="f-fracao">
           <option value="x-men">X-Men</option>
           <option value="novatos">Novos Mutantes / Gen.X</option>
@@ -449,7 +450,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
       <div class="form-grid-2" style="gap:6px">
         <div class="form-grp">
-          <label class="form-lbl">PERIGO</label>
+          <label class="form-lbl" data-i18n="cerebro.danger">PERIGO</label>
           <select class="f-inp" id="f-perigo">
             <option value="baixo">Baixo</option>
             <option value="medio" selected>Médio</option>
@@ -461,7 +462,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
     </div>
     <div class="stat-grp-box">
-      <div class="stat-grp-title">FÍSICO</div>
+      <div class="stat-grp-title" data-i18n="cerebro.physical">FÍSICO</div>
       <div class="form-grid-3">
         <div class="stat-inp-w"><div class="stat-lbl-sm">DESTREZA</div><input type="number" class="stat-num" id="f-Destreza" placeholder="0" min="0" max="25"></div>
         <div class="stat-inp-w"><div class="stat-lbl-sm">FORÇA</div><input type="number" class="stat-num" id="f-Forca" placeholder="0" min="0" max="25"></div>
@@ -469,7 +470,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
     </div>
     <div class="stat-grp-box">
-      <div class="stat-grp-title">MENTAL</div>
+      <div class="stat-grp-title" data-i18n="cerebro.mental">MENTAL</div>
       <div class="form-grid-3">
         <div class="stat-inp-w"><div class="stat-lbl-sm">INTELIGÊNCIA</div><input type="number" class="stat-num" id="f-Inteligencia" placeholder="0" min="0" max="25"></div>
         <div class="stat-inp-w"><div class="stat-lbl-sm">VONTADE</div><input type="number" class="stat-num" id="f-Vontade" placeholder="0" min="0" max="25"></div>
@@ -477,7 +478,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
     </div>
     <div class="stat-grp-box">
-      <div class="stat-grp-title">SOCIAL / MÍSTICO</div>
+      <div class="stat-grp-title" data-i18n="cerebro.social">SOCIAL / MÍSTICO</div>
       <div class="form-grid-3">
         <div class="stat-inp-w"><div class="stat-lbl-sm">INFLUÊNCIA</div><input type="number" class="stat-num" id="f-Influencia" placeholder="0" min="0" max="25"></div>
         <div class="stat-inp-w"><div class="stat-lbl-sm">AURA</div><input type="number" class="stat-num" id="f-Aura" placeholder="0" min="0" max="25"></div>
@@ -485,7 +486,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
     </div>
     <div>
-      <div class="form-lbl" style="margin-bottom:6px">TAGS // CITY OF MIST (grau 1-6, negativo = fraqueza)</div>
+      <div class="form-lbl" style="margin-bottom:6px" data-i18n="cerebro.tagsHelp">TAGS // CITY OF MIST (grau 1-6, negativo = fraqueza)</div>
       <div class="tags-edit-wrap">
         <div class="tags-edit-list" id="tags-edit-list"></div>
         <div class="tag-add-row">
@@ -496,7 +497,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       </div>
     </div>
     <div class="form-grp">
-      <label class="form-lbl">DESCRIÇÃO</label>
+      <label class="form-lbl" data-i18n="common.description">DESCRIÇÃO</label>
       <textarea class="modal-ta" id="f-descricao" placeholder="Histórico, notas, personalidade..." style="height:90px"></textarea>
     </div>
     <div class="modal-acts">
@@ -509,8 +510,8 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <!-- MODAL: CONDIÇÃO -->
 <div class="modal-bg" id="modal-cond">
   <div class="modal" style="max-width:400px">
-    <div class="modal-title">CONDIÇÃO</div>
-    <div class="modal-sub">Selecione ou escreva uma condição para <strong id="cond-npc-alvo"></strong>.</div>
+    <div class="modal-title" data-i18n="cerebro.condition">CONDIÇÃO</div>
+    <div class="modal-sub" data-i18n="cerebro.conditionFor">Selecione ou escreva uma condição para <strong id="cond-npc-alvo"></strong>.</div>
     <div class="cond-presets">
       <button class="cond-preset-btn" onclick="aplicarCondPreset('Ferido Leve')">Ferido Leve</button>
       <button class="cond-preset-btn" onclick="aplicarCondPreset('Ferido Grave')">Ferido Grave</button>
@@ -524,14 +525,14 @@ select.f-inp option{background:var(--dark);color:var(--white);}
       <button class="cond-preset-btn" onclick="aplicarCondPreset('Inconsciente')">Inconsciente</button>
     </div>
     <div class="form-grp">
-      <label class="form-lbl">CONDIÇÃO CUSTOMIZADA</label>
+      <label class="form-lbl" data-i18n="cerebro.customCondition">CONDIÇÃO CUSTOMIZADA</label>
       <div style="display:flex;gap:6px">
         <input type="text" class="f-inp" id="cond-custom-inp" placeholder="Descreva a condição..." style="flex:1" onkeydown="if(event.key==='Enter'){aplicarCondCustom();event.preventDefault();}">
         <button class="tbtn tbtn-acc" onclick="aplicarCondCustom()">+</button>
       </div>
     </div>
     <div class="modal-acts">
-      <button class="tbtn" onclick="fecharCondModal()">FECHAR</button>
+      <button class="tbtn" onclick="fecharCondModal()" data-i18n="common.close">FECHAR</button>
     </div>
   </div>
 </div>
@@ -637,12 +638,14 @@ function internalToApi(n){
 }
 
 async function init(){
+  initLanguage();
   initTheme();
   document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
   
   const auth = await requireAuth();
   if (!auth) {
     document.getElementById('no-access').style.display='block';
+    applyTranslations();
     return;
   }
   
@@ -652,41 +655,40 @@ async function init(){
   document.getElementById('app-layout').style.display='flex';
   
   if (isGM) {
-    // GM: load ALL NPCs regardless of party
     const party = await api.getGMParty(auth.session.user.id);
     if (party) currentPartyId = party.id;
     await recarregarNPCs();
     if (party) await recarregarPartyMembers();
-    setStatus('// GM MODE - DB CARREGADO');
+    setStatus(t('cerebro.gmMode'));
   } else {
-    // Player: load only party members
     const party = await api.getPlayerParty(auth.session.user.id);
     if (!party) {
-      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>SEM PARTY</div><div style="margin-top:12px;color:var(--b3);">Você não faz parte de nenhuma party.</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>';
+      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>'+t('cerebro.noParty')+'</div><div style="margin-top:12px;color:var(--b3);">'+t('cerebro.noPartyMsg')+'</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">'+t('cerebro.backDash')+'</a>';
       document.getElementById('no-access').style.display='block';
       document.getElementById('app-layout').style.display='none';
       return;
     }
     currentPartyId = party.id;
     await recarregarPartyMembers();
-    setStatus('// SQUAD MODE - MEMBROS CARREGADOS');
+    setStatus(t('cerebro.squadMode'));
   }
   
+  applyTranslations();
   document.getElementById('enc-header').classList.add('open');
   document.getElementById('enc-body').classList.add('open');
 }
 
 async function recarregarNPCs() {
-  setStatus('// CARREGANDO NPCs...');
+  setStatus(t('cerebro.loadingNpcs'));
   try {
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId, true);
     NPC_DB = raw.map(apiToInternal);
     renderizarLista();
     renderizarEncontro();
-    setStatus(`// DB: ${NPC_DB.length} NPCs`, 'saved');
+    setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs', 'saved');
   } catch(e) { 
     console.error(e); 
-    setStatus('// ERRO AO CARREGAR NPCs');
+    setStatus(t('cerebro.errorLoad'));
   }
 }
 
@@ -695,37 +697,36 @@ async function recarregarPartyMembers() {
     const chars = await api.listPartyCharacters(currentPartyId);
     const members = chars.map(c => ({
       id: c.id,
-      nome: c.name || 'Sem Nome',
+      nome: c.name || t('common.noName'),
       codinome: c.codename || '',
       faction: 'squad',
       danger: 'baixo',
       data: { 
         tags: [],
-        descricao: 'Membro do esquadão',
+        descricao: t('cerebro.memberSquad'),
         stats: c.data?.stats || {}
       },
       isPlayer: true
     }));
-    // Add members to NPC_DB
     NPC_DB = [...members, ...NPC_DB];
     renderizarLista();
-    setStatus(`// ${isGM ? 'SQUAD + NPCs' : 'SQUAD'}: ${NPC_DB.length}`, 'saved');
+    setStatus(`// ${isGM ? t('cerebro.squadAndNpcs') : t('cerebro.squad')}: ${NPC_DB.length}`, 'saved');
   } catch(e) {
     console.error('Erro ao carregar membros:', e);
   }
 }
 
 async function recarregarDB(){
-  setStatus('// CARREGANDO...');
+  setStatus(t('cerebro.loadingDb'));
   try{
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
     renderizarLista();
     renderizarEncontro();
-    setStatus(`// DB: ${NPC_DB.length} NPCs`,'saved');
-    if(currentId){const npc=NPC_DB.find(n=>n.id===currentId);if(npc)exibirNPC(npc.id);else{currentId=null;document.getElementById('npc-detail').innerHTML='<div class="empty-state"><div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><div class="empty-title">NENHUM NPC</div></div>';}}
+    setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs','saved');
+    if(currentId){const npc=NPC_DB.find(n=>n.id===currentId);if(npc)exibirNPC(npc.id);else{currentId=null;document.getElementById('npc-detail').innerHTML='<div class="empty-state"><div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><div class="empty-title">'+t('cerebro.emptyTitle')+'</div></div>';}}
     else if(NPC_DB.length)exibirNPC(NPC_DB[0].id);
-  }catch(e){console.error(e);setStatus('// ERRO AO CARREGAR');}
+  }catch(e){console.error(e);setStatus(t('cerebro.errorLoadDb'));}
 }
 
 function setStatus(txt,cls=''){const el=document.getElementById('save-ind');el.textContent=txt;el.className='save-ind'+(cls?' '+cls:'');}
@@ -738,7 +739,7 @@ function carregarEncontro(){
 }
 function salvarEncontro(){
   localStorage.setItem(CHAVE_ENC,JSON.stringify(ENCONTRO));
-  showSaveBar('saved', 'SALVO ✓');
+  showSaveBar('saved', t('common.saved'));
 }
 
 /* ═══ RENDER LIST ═══ */
@@ -833,14 +834,14 @@ function renderCondBanner(conds,id){
 
 /* ═══ CRUD ═══ */
 async function deletarNPC(id){
-  const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast('NPC GLOBAL — NÃO PODE SER DELETADO');return;}
-  if(!confirm(`Deletar "${npc.nome}"?`))return;
+  const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast(t('cerebro.cantDeleteGlobal'));return;}
+  if(!confirm(t('cerebro.confirmDelete')+' "'+npc.nome+'"?'))return;
   try{
     await api.deleteNPC(id);
     ENCONTRO.participantes=ENCONTRO.participantes.filter(p=>p.id!==id);salvarEncontro();
     if(currentId===id)currentId=null;
-    await recarregarDB();toast(`"${npc.nome}" REMOVIDO`);
-  }catch(e){toast('ERRO AO DELETAR');}
+    await recarregarDB();toast('"'+npc.nome+'" '+t('cerebro.deleted'));
+  }catch(e){toast(t('cerebro.deleteError'));}
 }
 
 function renderTagItem(tag){
@@ -860,7 +861,7 @@ function tagGrauClass(g){
   return'grau-'+Math.min(g,6);
 }
 function renderTagsHTML(tags){
-  if(!tags?.length)return'<span class="no-tags">— Nenhuma tag —</span>';
+  if(!tags?.length)return'<span class="no-tags">'+t('cerebro.noTags')+'</span>';
   return tags.map(t=>{
     const{texto,grau}=parseTag(t);
     const neg=grau<0;
@@ -941,7 +942,7 @@ async function adicionarAoEncontro(){
   renderEncounterList();
   renderNPCList();
   renderNPCDetail();
-  showToast('NPC ADICIONADO AO ENCONTRO');
+  showToast(t('cerebro.addedEncounter'));
 }
 
 async function adicionarNPCAtualAoEncontro(){
@@ -957,7 +958,7 @@ async function removerDoEncontro(id){
   if(selectedNpc?.id===id){
     renderNPCDetail();
   }
-  showToast('NPC REMOVIDO DO ENCONTRO');
+  showToast(t('cerebro.removedEncounter'));
 }
 
 function mudaRodada(delta){
@@ -968,8 +969,8 @@ function mudaRodada(delta){
 
 function abrirAddModal(){
   editingId=null;tagsEdit=[];
-  document.getElementById('modal-npc-title').textContent='NOVO NPC';
-  document.getElementById('btn-salvar-npc').textContent='CRIAR NPC';
+  document.getElementById('modal-npc-title').textContent=t('cerebro.newNpcTitle');
+  document.getElementById('btn-salvar-npc').textContent=t('cerebro.create');
   ['nome','codinome','iniciativa','descricao'].forEach(id=>{const el=document.getElementById('f-'+id);if(el)el.value='';});
   document.getElementById('f-fracao').value='neutro';
   document.getElementById('f-perigo').value='medio';
@@ -979,10 +980,10 @@ function abrirAddModal(){
 }
 
 function abrirEditModal(id){
-  const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast('NPCs GLOBAIS NÃO SÃO EDITÁVEIS');return;}
+  const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast(t('cerebro.cantEditGlobal'));return;}
   editingId=id;tagsEdit=[...(npc.tags||[])];
-  document.getElementById('modal-npc-title').textContent='EDITAR NPC';
-  document.getElementById('btn-salvar-npc').textContent='SALVAR';
+  document.getElementById('modal-npc-title').textContent=t('cerebro.editNpcTitle');
+  document.getElementById('btn-salvar-npc').textContent=t('cerebro.save');
   document.getElementById('f-nome').value=npc.nome||'';
   document.getElementById('f-codinome').value=npc.codinome||'';
   document.getElementById('f-fracao').value=npc.fracao||'neutro';
@@ -998,7 +999,7 @@ function fecharNPCModal(){document.getElementById('modal-npc').classList.remove(
 
 async function salvarNPC(){
   const nome=document.getElementById('f-nome').value.trim();
-  if(!nome){toast('NOME OBRIGATÓRIO');return;}
+  if(!nome){toast(t('cerebro.nameRequired'));return;}
   const atributos={};
   SK.forEach((k,i)=>{atributos[k]=parseInt(document.getElementById('f-'+SK_IDS[i]).value)||0;});
   const npcData={nome,codinome:document.getElementById('f-codinome').value.trim(),
@@ -1008,15 +1009,15 @@ async function salvarNPC(){
   const apiData=internalToApi(npcData);
   try{
     if(editingId){
-      await api.updateNPC(editingId,apiData);toast('NPC ATUALIZADO');
+      await api.updateNPC(editingId,apiData);toast(t('cerebro.updated'));
     }else{
-      if(!currentPartyId){toast('FAÇA LOGIN COMO GM PARA CRIAR NPCs');fecharNPCModal();return;}
-      await api.createNPC(currentPartyId,apiData);toast('NPC CRIADO');
+      if(!currentPartyId){toast(t('cerebro.loginAsGm'));fecharNPCModal();return;}
+      await api.createNPC(currentPartyId,apiData);toast(t('cerebro.created'));
     }
     fecharNPCModal();await recarregarDB();
     if(!editingId){const novo=NPC_DB.find(n=>n.nome===nome);if(novo)exibirNPC(novo.id);}
     else exibirNPC(editingId);
-  }catch(e){console.error(e);toast('ERRO AO SALVAR NPC');}
+  }catch(e){console.error(e);toast(t('cerebro.saveError'));}
 }
 
 /* ═══ TAGS EDIT ═══ */
@@ -1037,23 +1038,23 @@ function removerTag(i){tagsEdit.splice(i,1);renderTagsEditList();}
 
 /* ═══ ENCONTRO ═══ */
 function adicionarAoEncontro(id){
-  if(ENCONTRO.participantes.find(p=>p.id===id)){toast('JÁ NO ENCONTRO');return;}
+  if(ENCONTRO.participantes.find(p=>p.id===id)){toast(t('cerebro.alreadyEncounter'));return;}
   const npc=NPC_DB.find(n=>n.id===id);if(!npc)return;
   ENCONTRO.participantes.push({id,nome:npc.nome,condicoes:[]});
   salvarEncontro();renderizarEncontro();renderizarLista();
   if(currentId===id)exibirNPC(id);
-  toast(`${npc.nome} ADICIONADO AO ENCONTRO`);
+  toast(npc.nome+' '+t('cerebro.addedEncounter'));
   if(!encSectionOpen)toggleEncSection();
 }
 function adicionarNPCAtualAoEncontro(){
-  if(!currentId){toast('SELECIONE UM NPC PRIMEIRO');return;}
+  if(!currentId){toast(t('cerebro.selectFirst'));return;}
   adicionarAoEncontro(currentId);
 }
 function removerDoEncontro(id){
   ENCONTRO.participantes=ENCONTRO.participantes.filter(p=>p.id!==id);
   salvarEncontro();renderizarEncontro();renderizarLista();
   if(currentId===id)exibirNPC(id);
-  const npc=NPC_DB.find(n=>n.id===id);toast(`${npc?npc.nome:id} REMOVIDO DO ENCONTRO`);
+  const npc=NPC_DB.find(n=>n.id===id);toast((npc?npc.nome:id)+' '+t('cerebro.removedEncounter'));
 }
 function mudaRodada(delta){
   ENCONTRO.rodada=Math.max(1,(ENCONTRO.rodada||1)+delta);
@@ -1084,7 +1085,7 @@ function renderizarEncontro(){
   document.getElementById('enc-rodada').textContent = ENCONTRO.rodada || 1;
   document.getElementById('enc-header').classList.toggle('has-enc', count > 0);
   const list = document.getElementById('enc-npc-list');
-  if (!ENCONTRO.participantes.length) { list.innerHTML = '<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO<br>SELECIONE E CLIQUE "+ ADICIONAR"</div>'; return; }
+  if (!ENCONTRO.participantes.length) { list.innerHTML = '<div class="enc-empty-msg">'+t('cerebro.encounterEmpty').replace(/\n/g,'<br>')+'</div>'; return; }
   list.innerHTML = ENCONTRO.participantes.map(p => {
     const npc = NPC_DB.find(n => n.id === p.id);
     const fc = npc ? (FRACOES[npc.fracao] || FRACOES.neutro) : FRACOES.neutro;
@@ -1115,7 +1116,7 @@ function aplicarCondCustom(){const v=document.getElementById('cond-custom-inp').
 function adicionarCondicao(id,cond){
   const p=ENCONTRO.participantes.find(p=>p.id===id);if(!p)return;
   if(!p.condicoes)p.condicoes=[];p.condicoes.push(cond);
-  salvarEncontro();renderizarEncontro();if(currentId===id)exibirNPC(id);toast(`CONDIÇÃO: ${cond}`);
+  salvarEncontro();renderizarEncontro();if(currentId===id)exibirNPC(id);toast(t('cerebro.conditionApplied')+' '+cond);
 }
 function removerCondicao(id,idx){
   const p=ENCONTRO.participantes.find(p=>p.id===id);if(!p||!p.condicoes)return;
@@ -1131,7 +1132,7 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('modal-bg')
 function exportarTodos(){
   let md=`# CÉREBRO DATABASE\n> Exportado em: ${new Date().toLocaleString('pt-BR')}\n> Total: ${NPC_DB.length} NPCs\n\n`;
   NPC_DB.forEach(n=>{md+=npcParaMD(n);});
-  baixar(md,`cerebro_${Date.now()}.md`,'text/markdown');toast('EXPORTADO');
+  baixar(md,`cerebro_${Date.now()}.md`,'text/markdown');toast(t('cerebro.exported'));
 }
 function npcParaMD(n){
   let md=`# NPC: ${n.nome}\n`;
@@ -1148,8 +1149,8 @@ function npcParaMD(n){
 }
 async function importarMarkdown(){
   const raw=document.getElementById('import-text').value;
-  if(!raw.trim()){toast('NENHUM CONTEÚDO');return;}
-  const novos=parseMD(raw);if(!novos.length){toast('NENHUM NPC VÁLIDO');return;}
+  if(!raw.trim()){toast(t('common.noContent'));return;}
+  const novos=parseMD(raw);if(!novos.length){toast(t('cerebro.noValidNpcs'));return;}
   let c=0,u=0;
   for(const n of novos){
     const existente=NPC_DB.find(e=>e.nome===n.nome);
@@ -1161,7 +1162,7 @@ async function importarMarkdown(){
     }catch(e){console.error(e);}
   }
   fecharImportModal();document.getElementById('import-text').value='';
-  await recarregarDB();toast(`✓ ${c} criados · ${u} atualizados`);
+  await recarregarDB();toast('\u2713 '+c+' '+t('cerebro.imported'));
 }
 function parseMD(md){
   const blocos=md.split(/(?=^# NPC:)/m).filter(b=>b.trim().startsWith('# NPC:'));
@@ -1260,7 +1261,7 @@ function showSaveBar(status, msg) {
     ts.textContent = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
     setTimeout(function() { bar.classList.remove('active'); }, 3000);
   } else if (status === 'error') {
-    ts.textContent = 'ERRO';
+    ts.textContent = t('common.error');
   }
 }
 </script>

@@ -284,6 +284,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .cat-badge .theme-icon svg{stroke:currentColor;fill:currentColor;}
 </style>
 <script src="assets/js/config.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <script src="assets/js/supabase-client.js" defer></script>
 <script src="assets/js/cache-module.js" defer></script>
@@ -291,6 +292,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <script src="assets/js/api.js" defer></script>
 <script src="assets/js/globals.js" defer></script>
 <script src="assets/js/themes.js" defer></script>
+<script src="assets/js/header.js" defer></script>
 </head>
 <body>
 <div id="toast" class="toast"></div>
@@ -305,66 +307,8 @@ function showToast(msg){
   clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},2500);
 }
 </script>
-<header class="header">
-  <div class="header-logo">
-    <a href="dashboard.html" class="x-logo" title="Dashboard">
-      <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
-        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
-        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-        <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-      </svg>
-    </a>
-    <div class="hdr-title">
-      <h1>X-MEN</h1>
-      <div class="hdr-sub">FICHA DE PERSONAGEM</div>
-    </div>
-  </div>
-  <div class="hdr-spacer"></div>
-  <div class="hdr-codes">
-    <span class="red-code">AG—17.19349.583</span>
-    <span>LS—16.23435.161</span>
-    <span>XAVIER INSTITUTE</span>
-  </div>
-</header>
-
-<div class="toolbar">
-  <span class="save-ind" id="saveInd">// CARREGANDO...</span>
-  <div class="toolbar-divider"></div>
-  <a href="dashboard.html" class="tbtn">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    <span>DASHBOARD</span>
-  </a>
-  <div class="toolbar-divider"></div>
-  <a href="cerebro.html" class="tbtn">Cérebro</a>
-  <a href="wiki.html" class="tbtn">Wiki</a>
-  <div class="toolbar-divider"></div>
-  <button class="tbtn" onclick="abrirImport()">
-    <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
-    <span>IMPORTAR .MD</span>
-  </button>
-  <button class="tbtn tbtn-red" onclick="exportarMD()">
-    <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-    <span>EXPORTAR .MD</span>
-  </button>
-  <div class="toolbar-spacer"></div>
-  <div class="theme-switcher" style="border-left:none;padding:0;">
-    <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo"><span style="background:#FFD600;"></span></button>
-    <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho"><span style="background:#E8001C;"></span></button>
-    <button class="tbtn th-btn" onclick="setTema('green')" title="Verde"><span style="background:#00C853;"></span></button>
-    <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo"><span style="background:#b040ff;"></span></button>
-    <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul"><span style="background:#3a8fc0;"></span></button>
-  </div>
-  <div class="toolbar-divider"></div>
-  <button class="tbtn" onclick="resetarFicha()">
-    <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
-    <span>RESETAR</span>
-  </button>
-</div>
+<div id="header-container"></div>
+<div id="toolbar-container"></div>
 
 <nav class="tabs">
   <button class="tab active" onclick="trocarAba('ficha',this)">01 &nbsp;FICHA</button>
@@ -597,8 +541,9 @@ let charId=null;
 
 /* ── API ── */
 async function init(){
+  initLanguage();
   initTheme();
-  renderThemeDots();
+  renderNavBar({ page: 'ficha' });
   await loadTemaData();
   
   const auth = await window.requireAuth();
@@ -1042,22 +987,6 @@ function toast(msg){
 
 function toggleSettings() {
   document.getElementById('settings-dropdown').classList.toggle('open');
-}
-
-function renderThemeDots() {
-  var themes = [
-    { id: 'yellow', color: '#FFD600' },
-    { id: 'red', color: '#E8001C' },
-    { id: 'green', color: '#00C853' },
-    { id: 'purple', color: '#b040ff' },
-    { id: 'blue', color: '#3a8fc0' }
-  ];
-  var current = getCurrentTheme();
-  var container = document.getElementById('theme-dots-row');
-  if (!container) return;
-  container.innerHTML = themes.map(function(t) {
-    return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') + '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id + '\');renderThemeDots();" title="' + t.name + '"></div>';
-  }).join('');
 }
 
 document.addEventListener('DOMContentLoaded',init);

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="assets/js/supabase-client.js" defer></script>
   <script src="assets/js/cache-module.js" defer></script>
@@ -20,6 +21,7 @@
   <script src="assets/js/api.js" defer></script>
   <script src="assets/js/globals.js" defer></script>
   <script src="assets/js/themes.js" defer></script>
+  <script src="assets/js/header.js" defer></script>
   <style>
     :root {
       --fc-xmen:#FFD600;--fc-novatos:#66aaff;--fc-geracaox:#88cc99;
@@ -98,38 +100,8 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="header-logo">
-    <div class="x-logo">
-      <svg viewBox="0 0 64 64" fill="none">
-        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
-        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <rect x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-        <rect x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-      </svg>
-    </div>
-    <div class="hdr-title">
-      <h1>COMBATE</h1>
-      <div class="hdr-sub">CALCULADORA // MEGS SYSTEM</div>
-    </div>
-  </div>
-  <div class="hdr-spacer"></div>
-  <div class="hdr-codes">
-    <span class="red-code">MEGS v1.0</span>
-  </div>
-  <div id="theme-switcher"></div>
-</header>
-
-<div class="toolbar">
-  <a href="dashboard.html" class="tbtn">Dashboard</a>
-  <div class="toolbar-divider"></div>
-  <a href="wiki.html" class="tbtn">Wiki</a>
-  <a href="cerebro.html" class="tbtn">Cérebro</a>
-</div>
+<div id="header-container"></div>
+<div id="toolbar-container"></div>
 
 <div class="content">
   <div class="combate-container">
@@ -638,14 +610,14 @@ async function loadNPCs() {
 // ═══════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLanguage();
   initTheme();
-  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  renderNavBar({ page: 'combate' });
   
   renderTables();
   loadCharacters();
   loadNPCs();
   
-  // Make rollDice available globally
   window.rollDice = rollDiceManual;
 });
 </script>

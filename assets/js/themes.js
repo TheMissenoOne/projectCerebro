@@ -74,20 +74,28 @@ function getXLogoSVG() {
 }
 
 function getPanelSettingsHTML() {
+  const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
+  const L = window.LANGUAGES || { 'pt-BR': { name: 'PT-BR', icon: '' }, 'en': { name: 'EN', icon: '' } };
   return `
     <div class="panel-footer">
       <button class="pf-toggle" onclick="window.togglePanelSettings()">
-        // CONFIGURAÇÕES
+        // ${window.t ? t('common.config') : 'CONFIGURAÇÕES'}
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
       </button>
       <div class="pf-settings" id="pf-settings">
         <div class="pf-inner">
-          <div style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em">TEMA DE COR</div>
+          <div style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em">${window.t ? t('theme.title') : 'TEMA DE COR'}</div>
           <div class="theme-btns">
             ${Object.entries(THEMES).map(([key, val]) => `
               <button class="th-btn" onclick="window.setTheme('${key}')">
-                <div class="th-dot" style="background:${val.color}"></div>${val.name}
+                <div class="th-dot" style="background:${val.color}"></div>${window.t ? t('theme.' + key) : val.name}
               </button>
+            `).join('')}
+          </div>
+          <div style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em;margin-top:8px">${window.t ? t('lang.title') : 'IDIOMA'}</div>
+          <div class="theme-btns">
+            ${Object.entries(L).map(([key, val]) => `
+              <button class="th-btn${key === lang ? ' active' : ''}" onclick="window.setLanguage('${key}')">${val.icon} ${val.name}</button>
             `).join('')}
           </div>
         </div>
