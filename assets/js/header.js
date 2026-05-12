@@ -162,8 +162,8 @@ function renderToolbar(items, gmRole) {
   // Theme switcher
   html += '<div class="theme-switcher" id="theme-switcher">';
   html += '<div class="theme-dots-row">';
-  THEME_COLORS.forEach(function(t) {
-    html += '<div class="theme-dot" style="background:' + t.color + '" title="' + (window.t ? t(t.i18n) : t.key.toUpperCase()) + '" onclick="window.setTheme(\'' + t.key + '\')"></div>';
+  THEME_COLORS.forEach(function(th) {
+    html += '<div class="theme-dot" style="background:' + th.color + '" title="' + (window.t ? window.t(th.i18n) : th.key.toUpperCase()) + '" onclick="window.setTheme(\'' + th.key + '\')"></div>';
   });
   html += '</div></div>';
   html += '<div class="toolbar-divider"></div>';
