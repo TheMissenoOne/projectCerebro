@@ -192,11 +192,7 @@ function setGMFlag(isGM) {
   window._isGM = isGM;
 }
 
-document.addEventListener('langchange', function() {
-  var btn = document.getElementById('lang-toggle-btn');
-  if (btn) btn.textContent = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
-  // data-i18n elements updated by applyTranslations() in setLanguage()
-});
+
 
 window.renderNavBar = renderNavBar;
 window.setGMFlag = setGMFlag;

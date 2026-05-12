@@ -334,9 +334,7 @@ function setLanguage(locale) {
   if (!I18N[locale]) return;
   localStorage.setItem(LANG_KEY, locale);
   document.documentElement.lang = locale;
-  document.dispatchEvent(new CustomEvent('langchange', { detail: { locale } }));
-  applyTranslations();
-  toast(I18N[locale]['lang.changed']);
+  window.location.reload();
 }
 
 function t(key) {
