@@ -754,9 +754,9 @@ function populateCharacterGrid(chars) {
       var nameForInitial = charCodinome !== '—' ? charCodinome : charName;
       var initial = nameForInitial.charAt(0).toUpperCase();
       if (foto) {
-card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
-
-          card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
+      card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
+      } else {
+      card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
       }
       grid.appendChild(card);
     });
