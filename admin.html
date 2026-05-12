@@ -83,12 +83,6 @@
             <div class="encounter-toggle">
               <button class="btn" id="toggle-encounter-btn">Iniciar Encontro</button>
             </div>
-            <div class="enc-counter">
-              <span class="enc-counter-label">Rodada</span>
-              <button class="enc-counter-btn" id="round-dec">-</button>
-              <span class="enc-counter-value" id="round-value">0</span>
-              <button class="enc-counter-btn" id="round-inc">+</button>
-            </div>
           </div>
           <div class="quick-actions">
             <a href="cerebro.html" class="btn">Selecionar NPCs</a>
@@ -131,7 +125,6 @@ let currentParty = null;
 
       await loadPartyCharacters();
       await loadSessionNotes();
-      await loadEncounterState();
     }
 
     function showTab(tabId) {
@@ -399,66 +392,34 @@ let currentParty = null;
       const session = await api.getSession(currentParty.id);
       if (session) {
         document.getElementById('session-notes').value = session.notes || '';
-        currentRound = session.round || 0;
-        encounterActive = session.encounter && session.encounter.length > 0;
-        updateEncounterUI();
       }
-    }
-
-    async function loadEncounterState() {
-      document.getElementById('round-value').textContent = currentRound;
-    }
-
-    function updateEncounterUI() {
-      const btn = document.getElementById('toggle-encounter-btn');
-      if (encounterActive) {
-        btn.textContent = 'Encerrar Encontro';
-        btn.classList.add('btn-primary');
-      } else {
-        btn.textContent = 'Iniciar Encontro';
-        btn.classList.remove('btn-primary');
-      }
-      document.getElementById('round-value').textContent = currentRound;
     }
 
     document.getElementById('toggle-encounter-btn').addEventListener('click', async () => {
-      encounterActive = !encounterActive;
-      if (!encounterActive) currentRound = 0;
-      updateEncounterUI();
-      await saveSessionState();
+      const btn = document.getElementById('toggle-encounter-btn');
+      const active = btn.textContent.includes('Encerrar');
+      btn.textContent = active ? 'Iniciar Encontro' : 'Encerrar Encontro';
+      btn.classList.toggle('btn-primary', !active);
+      await saveSessionState(!active);
     });
 
-    document.getElementById('round-inc').addEventListener('click', async () => {
-      currentRound++;
-      document.getElementById('round-value').textContent = currentRound;
-      await saveSessionState();
-    });
-
-    document.getElementById('round-dec').addEventListener('click', async () => {
-      if (currentRound > 0) {
-        currentRound--;
-        document.getElementById('round-value').textContent = currentRound;
-        await saveSessionState();
-      }
-    });
+    async function saveSessionState(encounterActive) {
+      try {
+        await api.updateSession(currentParty.id, {
+          notes: document.getElementById('session-notes').value,
+          encounter: encounterActive ? ['active'] : []
+        });
+      } catch(e) { console.error('save session', e); }
+    }
 
     let notesTimeout;
     document.getElementById('session-notes').addEventListener('input', async (e) => {
       clearTimeout(notesTimeout);
       notesTimeout = setTimeout(async () => {
-        await saveSessionState();
+        const notes = document.getElementById('session-notes').value;
+        await api.updateSession(currentParty.id, { notes });
       }, 1000);
     });
-
-    async function saveSessionState() {
-      const notes = document.getElementById('session-notes').value;
-      await api.updateSession(currentParty.id, {
-        title: `Sessão - ${new Date().toLocaleDateString()}`,
-        notes,
-        round: currentRound,
-        encounter: encounterActive ? ['active'] : []
-      });
-    }
     
     function toggleSettings() {
       document.getElementById('settings-dropdown').classList.toggle('open');
