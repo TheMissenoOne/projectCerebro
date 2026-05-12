@@ -95,6 +95,7 @@ function renderNavBar(opts) {
   const gmRole = window._isGM === true;
   const userCode = opts.userCode || '';
 
+  window._lastToolbar = { items: items, gmRole: gmRole };
   renderHeader(title, sub, codes, hamburger, userCode);
   renderToolbar(items, gmRole);
 }
@@ -168,6 +169,11 @@ function renderToolbar(items, gmRole) {
   html += '</div></div>';
   html += '<div class="toolbar-divider"></div>';
 
+  // Language toggle
+  var lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
+  html += '<button class="tbtn" id="lang-toggle-btn" onclick="var l=window.getCurrentLanguage();window.setLanguage(l===\'pt-BR\'?\'en\':\'pt-BR\')" style="min-width:32px;font-size:.5rem;letter-spacing:.06em">' + lang + '</button>';
+  html += '<div class="toolbar-divider"></div>';
+
   // Config + logout always at end when requested
   if (items.indexOf('config') !== -1) {
     const it = NAV_ITEMS.config;
@@ -186,6 +192,16 @@ function renderToolbar(items, gmRole) {
 function setGMFlag(isGM) {
   window._isGM = isGM;
 }
+
+document.addEventListener('langchange', function() {
+  var btn = document.getElementById('lang-toggle-btn');
+  if (btn) btn.textContent = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
+  if (window._lastToolbar) {
+    var el = document.getElementById('toolbar-container');
+    if (el) el.innerHTML = '';
+    renderToolbar(window._lastToolbar.items, window._lastToolbar.gmRole);
+  }
+});
 
 window.renderNavBar = renderNavBar;
 window.setGMFlag = setGMFlag;
