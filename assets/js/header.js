@@ -95,7 +95,6 @@ function renderNavBar(opts) {
   const gmRole = window._isGM === true;
   const userCode = opts.userCode || '';
 
-  window._lastToolbar = { items: items, gmRole: gmRole };
   renderHeader(title, sub, codes, hamburger, userCode);
   renderToolbar(items, gmRole);
 }
@@ -141,8 +140,9 @@ function renderToolbar(items, gmRole) {
     { key: 'blue', color: '#3a8fc0', i18n: 'theme.blue' }
   ];
 
+  var lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
   let html = '<div class="toolbar">';
-  html += '<span class="save-ind" id="save-ind">' + t('common.loading') + '</span>';
+  html += '<span class="save-ind" id="save-ind" data-i18n="common.loading">' + t('common.loading') + '</span>';
   html += '<div class="toolbar-divider"></div>';
 
   items.forEach(function(id) {
@@ -156,7 +156,7 @@ function renderToolbar(items, gmRole) {
     const click = it.action ? ' onclick="' + it.action + '"' : '';
     const href = it.href ? ' href="' + it.href + '"' : '';
     const tag = it.href ? 'a' : 'button';
-    html += '<' + tag + ' class="' + cls + '"' + click + href + '>' + icon + (icon ? ' ' : '') + (window.t ? t(it.i18n) : it.label) + '</' + tag + '>';
+    html += '<' + tag + ' class="' + cls + '"' + click + href + ' data-i18n="' + it.i18n + '">' + icon + (icon ? ' ' : '') + t(it.i18n) + '</' + tag + '>';
     html += '<div class="toolbar-divider"></div>';
   });
 
@@ -164,25 +164,24 @@ function renderToolbar(items, gmRole) {
   html += '<div class="theme-switcher" id="theme-switcher">';
   html += '<div class="theme-dots-row">';
   THEME_COLORS.forEach(function(th) {
-    html += '<div class="theme-dot" style="background:' + th.color + '" title="' + (window.t ? window.t(th.i18n) : th.key.toUpperCase()) + '" onclick="window.setTheme(\'' + th.key + '\')"></div>';
+    html += '<div class="theme-dot" style="background:' + th.color + '" title="' + t(th.i18n) + '" onclick="window.setTheme(\'' + th.key + '\')"></div>';
   });
   html += '</div></div>';
   html += '<div class="toolbar-divider"></div>';
 
   // Language toggle
-  var lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
   html += '<button class="tbtn" id="lang-toggle-btn" onclick="var l=window.getCurrentLanguage();window.setLanguage(l===\'pt-BR\'?\'en\':\'pt-BR\')" style="min-width:32px;font-size:.5rem;letter-spacing:.06em">' + lang + '</button>';
   html += '<div class="toolbar-divider"></div>';
 
   // Config + logout always at end when requested
   if (items.indexOf('config') !== -1) {
     const it = NAV_ITEMS.config;
-    html += '<button class="tbtn" onclick="' + it.action + '">' + (NAV_ICONS[it.icon] ? '<svg viewBox="0 0 24 24" width="10" height="10" style="stroke:currentColor;fill:none;stroke-width:2">' + NAV_ICONS[it.icon] + '</svg> ' : '') + (window.t ? t(it.i18n) : it.label) + '</button>';
+    html += '<button class="tbtn" data-i18n="' + it.i18n + '" onclick="' + it.action + '">' + (NAV_ICONS[it.icon] ? '<svg viewBox="0 0 24 24" width="10" height="10" style="stroke:currentColor;fill:none;stroke-width:2">' + NAV_ICONS[it.icon] + '</svg> ' : '') + t(it.i18n) + '</button>';
     html += '<div class="toolbar-divider"></div>';
   }
   if (items.indexOf('logout') !== -1) {
     const it = NAV_ITEMS.logout;
-    html += '<button class="tbtn" onclick="' + it.action + '">' + (NAV_ICONS[it.icon] ? '<svg viewBox="0 0 24 24" width="10" height="10" style="stroke:currentColor;fill:none;stroke-width:2">' + NAV_ICONS[it.icon] + '</svg> ' : '') + (window.t ? t(it.i18n) : it.label) + '</button>';
+    html += '<button class="tbtn" data-i18n="' + it.i18n + '" onclick="' + it.action + '">' + (NAV_ICONS[it.icon] ? '<svg viewBox="0 0 24 24" width="10" height="10" style="stroke:currentColor;fill:none;stroke-width:2">' + NAV_ICONS[it.icon] + '</svg> ' : '') + t(it.i18n) + '</button>';
   }
 
   html += '</div>';
@@ -196,11 +195,7 @@ function setGMFlag(isGM) {
 document.addEventListener('langchange', function() {
   var btn = document.getElementById('lang-toggle-btn');
   if (btn) btn.textContent = window.getCurrentLanguage ? window.getCurrentLanguage() : 'pt-BR';
-  if (window._lastToolbar) {
-    var el = document.getElementById('toolbar-container');
-    if (el) el.innerHTML = '';
-    renderToolbar(window._lastToolbar.items, window._lastToolbar.gmRole);
-  }
+  // data-i18n elements updated by applyTranslations() in setLanguage()
 });
 
 window.renderNavBar = renderNavBar;
