@@ -590,10 +590,12 @@ function apiToInternal(npc){
     if(t&&typeof t==='object'&&t.texto){return t.grau&&t.grau!==0?`${t.texto} ${t.grau}`:t.texto;}
     return String(t);
   }).filter(Boolean);
+  var inic = npc.iniciativa || d.iniciativa || 0;
+  if (!inic) inic = (atributos['Destreza']||0) + (atributos['Inteligência']||0) + (atributos['Influência']||0);
   return {
     id:npc.id,nome:npc.name||'',codinome:npc.codename||'',
     fracao:npc.faction||'neutro',perigo:npc.danger||'medio',
-    iniciativa:npc.iniciativa||d.iniciativa||0,atributos,tags,
+    iniciativa:inic,atributos,tags,
     descricao:npc.descricao||d.descricao||'',isGlobal:npc.is_global||false,
   };
 }
@@ -810,7 +812,7 @@ function exibirNPC(id){
         <div class="npc-actions">${editBtn}${delBtn}</div>
       </div>
       <div class="npc-meta">
-        <div class="npc-initiative" style="border-color:${fc.cor}">INICIATIVA <strong>${npc.iniciativa||'—'}</strong></div>
+        <div class="npc-initiative" style="border-color:${fc.cor}">INICIATIVA <strong>${(npc.atributos?.['Destreza']||0)+(npc.atributos?.['Inteligência']||0)+(npc.atributos?.['Influência']||0)}</strong></div>
         <div class="npc-frac-badge" style="color:${fc.cor};border-color:${fc.cor};background:rgba(0,0,0,.4)">${fc.l}</div>
         <div class="npc-pr-badge" style="color:${pr.cor};border-color:${pr.cor};background:rgba(0,0,0,.4)">⬥ ${pr.l}</div>
       </div>
