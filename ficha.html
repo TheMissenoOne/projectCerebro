@@ -866,7 +866,8 @@ function sv(id,val){const e=document.getElementById(id);if(e)e.value=val||'';}
 function gv(id){const e=document.getElementById(id);return e?e.value:'';}
 
 function setInd(cls,txt){
-  const e=document.getElementById('saveInd');
+  const e=document.getElementById('save-ind')||document.getElementById('saveInd');
+  if(!e) return;
   e.className='save-ind'+(cls?' '+cls:'');e.textContent=txt;
 }
 
