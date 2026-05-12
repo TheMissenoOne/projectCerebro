@@ -695,19 +695,24 @@ async function recarregarNPCs() {
 async function recarregarPartyMembers() {
   try {
     const chars = await api.listPartyCharacters(currentPartyId);
-    const members = chars.map(c => ({
-      id: c.id,
-      nome: c.name || t('common.noName'),
-      codinome: c.codename || '',
-      faction: 'squad',
-      danger: 'baixo',
-      data: { 
+    const members = chars.map(c => {
+      var stats = c.data?.stats || {};
+      var attrs = {};
+      var attrMap = {destreza:'Destreza',força:'Força',forca:'Força',corpo:'Corpo',inteligência:'Inteligência',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente',influência:'Influência',influencia:'Influência',aura:'Aura',espírito:'Espírito',espirito:'Espírito'};
+      for (var k in stats) { var cap = attrMap[k]; if (cap) attrs[cap] = stats[k]; }
+      return {
+        id: c.id,
+        nome: c.name || t('common.noName'),
+        codinome: c.codename || '',
+        fracao: 'neutro',
+        perigo: 'baixo',
+        iniciativa: 0,
+        atributos: attrs,
         tags: [],
         descricao: t('cerebro.memberSquad'),
-        stats: c.data?.stats || {}
-      },
-      isPlayer: true
-    }));
+        isPlayer: true
+      };
+    });
     NPC_DB = [...members, ...NPC_DB];
     renderizarLista();
     setStatus(`// ${isGM ? t('cerebro.squadAndNpcs') : t('cerebro.squad')}: ${NPC_DB.length}`, 'saved');
