@@ -243,7 +243,7 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 .cond-preset-btn:hover{border-color:#c07040;color:#c07040;background:rgba(192,112,64,.08);}
 .panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;}
 .panel-overlay.open{display:block;}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--accent);color:var(--black);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:8px 16px;z-index:1000;opacity:0;pointer-events:none;transition:all .2s;white-space:nowrap;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--accent);color:#000;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:8px 16px;z-index:1000;opacity:0;pointer-events:none;transition:all .2s;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 @media(max-width:900px){.attr-grid{grid-template-columns:1fr;}}
 @media(max-width:768px){
@@ -263,24 +263,8 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 
 <div class="panel-overlay" id="panel-overlay" onclick="fecharPainel()"></div>
 
-<header class="header">
-  <div class="header-logo">
-    <a href="dashboard.html" class="x-logo" title="Dashboard">
-      <svg viewBox="0 0 64 64" fill="none">
-        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
-        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-        <rect x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-        <rect x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-        <rect x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-      </svg>
-    </a>
-    <div class="hdr-title">
-      <h1>CÉREBRO DATABASE</h1>
-      <div class="hdr-sub">NPCs // XAVIER INSTITUTE // X-MEN TTRPG</div>
-    </div>
+<div id="header-container"></div>
+<div id="toolbar-container"></div>
   </div>
   <div class="hdr-spacer"></div>
   <div class="hdr-codes">
@@ -640,7 +624,7 @@ function internalToApi(n){
 async function init(){
   initLanguage();
   initTheme();
-  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  renderNavBar({ page: 'cerebro', hamburger: true });
   
   const auth = await requireAuth();
   if (!auth) {
@@ -697,19 +681,31 @@ async function recarregarPartyMembers() {
     const chars = await api.listPartyCharacters(currentPartyId);
     const members = chars.map(c => {
       var stats = c.data?.stats || {};
+      var data = c.data || {};
       var attrs = {};
       var attrMap = {destreza:'Destreza',força:'Força',forca:'Força',corpo:'Corpo',inteligência:'Inteligência',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente',influência:'Influência',influencia:'Influência',aura:'Aura',espírito:'Espírito',espirito:'Espírito'};
-      for (var k in stats) { var cap = attrMap[k]; if (cap) attrs[cap] = stats[k]; }
+      for (var k in stats) { var cap = attrMap[k.toLowerCase ? k.toLowerCase() : k]; if (cap) attrs[cap] = parseInt(stats[k]) || 0; }
+      var dex = attrs['Destreza'] || 0;
+      var int = attrs['Inteligência'] || 0;
+      var inf = attrs['Influência'] || 0;
+      var tags = [];
+      if (data.tags && Array.isArray(data.tags)) tags = data.tags;
+      if (data.temas && Array.isArray(data.temas)) {
+        data.temas.forEach(function(t) {
+          if (t.poder && Array.isArray(t.poder)) t.poder.forEach(function(p) { if (p) tags.push(p); });
+          if (t.fraqueza && Array.isArray(t.fraqueza)) t.fraqueza.forEach(function(f) { if (f) tags.push(f); });
+        });
+      }
       return {
         id: c.id,
         nome: c.name || t('common.noName'),
         codinome: c.codename || '',
         fracao: 'neutro',
         perigo: 'baixo',
-        iniciativa: 0,
+        iniciativa: dex + int + inf,
         atributos: attrs,
-        tags: [],
-        descricao: t('cerebro.memberSquad'),
+        tags: tags,
+        descricao: data.status || data.descricao || t('cerebro.memberSquad'),
         isPlayer: true
       };
     });
