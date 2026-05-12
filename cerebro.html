@@ -4,7 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>CÉREBRO DATABASE // NPCs X-MEN</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap"></noscript>
+<script src="assets/js/config.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="assets/js/supabase-client.js" defer></script>
+<script src="assets/js/cache-module.js" defer></script>
+<script src="assets/js/auth-module.js" defer></script>
+<script src="assets/js/api.js" defer></script>
+<script src="assets/js/globals.js" defer></script>
+<script src="assets/js/themes.js" defer></script>
+<script src="assets/js/header.js" defer></script>
 <style>
 :root {
   --accent:#FFD600;--accent2:#c4a800;--accent3:#5a4a00;--accentRGB:255,214,0;
@@ -70,8 +83,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .enc-round-val{font-family:var(--mono);font-size:.7rem;color:#c07040;min-width:16px;text-align:center;}
 .enc-round-btn{background:none;border:1px solid var(--b2);color:var(--muted);font-family:var(--mono);font-size:.55rem;width:16px;height:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .12s;-webkit-tap-highlight-color:transparent;}
 .enc-round-btn:hover{border-color:#c07040;color:#c07040;}
-.enc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.enc-body.open{max-height:320px;}
+.enc-body{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .3s ease;}
+.enc-body.open{grid-template-rows:1fr;}
 .enc-npc-list{overflow-y:auto;max-height:280px;padding:4px 0;}
 .enc-npc-list::-webkit-scrollbar{width:3px;}
 .enc-npc-list::-webkit-scrollbar-thumb{background:var(--b2);}
@@ -120,9 +133,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .pf-toggle:hover{color:var(--accent);}
 .pf-toggle svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .25s;}
 .pf-toggle.open svg{transform:rotate(180deg);}
-.pf-settings{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.pf-settings.open{max-height:200px;}
-.pf-inner{padding:8px 12px;display:flex;flex-direction:column;gap:7px;}
+.pf-settings{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .3s ease;}
+.pf-settings.open{grid-template-rows:1fr;}
+.pf-inner{padding:8px 12px;display:flex;flex-direction:column;gap:7px;min-height:0;}
 .theme-btns{display:flex;flex-wrap:wrap;gap:4px;}
 .th-btn{font-family:var(--mono);font-size:.42rem;letter-spacing:.05em;padding:4px 7px;border:1px solid var(--b2);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .12s;-webkit-tap-highlight-color:transparent;}
 .th-btn:hover{border-color:var(--b3);color:var(--text);}
@@ -233,16 +246,19 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 @media(max-width:900px){.attr-grid{grid-template-columns:1fr;}}
 @media(max-width:768px){
-  .hdr-codes{display:none;}.hdr-ham{display:flex;}
-  .left-panel{position:fixed;top:0;left:0;bottom:0;z-index:600;transform:translateX(-100%);width:min(var(--panel-w),88vw);}
-  .left-panel.mobile-open{transform:translateX(0);}
-  .right-content{padding:12px 14px 100px;}.npc-name{font-size:1.6rem;}
+  .hdr-codes{display:none}.hdr-ham{display:flex}
+  .app-layout{position:relative}
+  .left-panel{position:fixed !important;top:56px !important;left:0 !important;bottom:0 !important;z-index:550 !important;transform:translateX(-100%);width:min(var(--panel-w),88vw) !important;display:flex !important;transition:transform .3s}
+  .left-panel.mobile-open,body.sidebar-open .left-panel{transform:translateX(0)}
+  .right-content{padding:12px 14px 100px;width:100% !important;}.npc-name{font-size:1.6rem;}
   .npc-actions{width:100%;}.form-grid-2{grid-template-columns:1fr;}.attr-grid{grid-template-columns:1fr;}
 }
 @media(max-width:480px){.form-grid-3{grid-template-columns:1fr 1fr 1fr;}.toolbar{padding:0 10px;gap:3px;}.tbtn{padding:4px 7px;font-size:.5rem;}}
 </style>
 </head>
 <body class="theme-yellow">
+
+<div class="toast" id="toast"></div>
 
 <div class="panel-overlay" id="panel-overlay" onclick="fecharPainel()"></div>
 
@@ -270,55 +286,57 @@ select.f-inp option{background:var(--dark);color:var(--white);}
     <span class="red-code">AG—17.19349.583</span>
     <span>VERSÃO 6.0 // GM MODE</span>
   </div>
-  <div class="hdr-settings">
-    <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-    </button>
-    <div class="settings-dropdown" id="settings-dropdown">
-      <div class="settings-label">TEMA</div>
-      <div class="theme-dots-row" id="theme-dots-row"></div>
-      <div class="settings-dropdown-divider"></div>
-      <div class="settings-dropdown-item" onclick="logout()">
-        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        SAIR
-      </div>
-    </div>
-  </div>
   <button class="hdr-ham" onclick="abrirPainel()">
     <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
 </header>
 
-<div class="toolbar">
-  <span class="save-ind" id="save-ind">// CARREGANDO...</span>
-  <div class="tb-div"></div>
-  <a href="dashboard.html" class="tbtn">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    DASHBOARD
-  </a>
-  <div class="tb-div"></div>
-  <button class="tbtn tbtn-acc" onclick="abrirAddModal()">
-    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    NOVO NPC
-  </button>
-  <div class="tb-div"></div>
-  <button class="tbtn" onclick="abrirImportModal()">
-    <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
-    IMPORTAR
-  </button>
-  <button class="tbtn" onclick="exportarTodos()">
-    <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-    EXPORTAR
-  </button>
-  <div class="tb-div"></div>
-  <button class="tbtn" onclick="recarregarDB()">
-    <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
-    RECARREGAR
-  </button>
-</div>
+  <div class="toolbar">
+    <span class="save-ind" id="save-ind">// CARREGANDO...</span>
+    <div class="tb-div"></div>
+    <a href="dashboard.html" class="tbtn">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      DASHBOARD
+    </a>
+    <div class="tb-div"></div>
+    <button class="tbtn tbtn-acc" onclick="abrirAddModal()">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      NOVO NPC
+    </button>
+    <div class="tb-div"></div>
+    <button class="tbtn" onclick="abrirImportModal()">
+      <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
+      IMPORTAR
+    </button>
+    <button class="tbtn" onclick="exportarTodos()">
+      <svg viewBox="0 0 24 24"><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+      EXPORTAR
+    </button>
+    <button class="tbtn" onclick="recarregarDB()">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
+      RECARREGAR
+    </button>
+    <div class="tb-div"></div>
+    <div class="theme-switcher" id="theme-switcher">
+      <div class="theme-dots-row" id="theme-dots-row"></div>
+    </div>
+    <div class="tb-div"></div>
+    <button class="tbtn" onclick="window.open('dashboard.html','_self')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      CONFIG
+    </button>
+    <div class="tb-div"></div>
+    <button class="tbtn" onclick="logout()">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      SAIR
+    </button>
+  </div>
 
 <div id="no-access" style="display:none;text-align:center;padding:60px 20px;font-family:var(--mono);font-size:.62rem;color:var(--muted);">
-  Acesso restrito. Apenas GMs podem acessar o Cérebro.
+  <div style="font-size:3rem;margin-bottom:16px;">🔒</div>
+  <div>ACESSO RESTRITO</div>
+  <div style="margin-top:12px;color:var(--b3);">Apenas mestres (GMs) podem acessar o Cérebro.</div>
+  <a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>
 </div>
 
 <div class="app-layout" id="app-layout" style="display:none;">
@@ -328,9 +346,9 @@ select.f-inp option{background:var(--dark);color:var(--white);}
     <div class="enc-section" id="enc-section">
       <div class="enc-header" id="enc-header" onclick="toggleEncSection()">
         <button class="enc-title-btn">
-          <span class="enc-sword">⚔</span>
+          <span class="enc-sword"></span>
           <span class="enc-lbl">ENCONTRO ATIVO</span>
-          <span class="enc-count-badge" id="enc-count-badge">0</span>
+          <span class="panel-badge" id="enc-count-badge">0</span>
         </button>
         <div class="enc-round-ctrl" onclick="event.stopPropagation()">
           <span class="enc-round-lbl">R</span>
@@ -341,11 +359,13 @@ select.f-inp option{background:var(--dark);color:var(--white);}
         <svg class="enc-toggle-ico" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
       </div>
       <div class="enc-body" id="enc-body">
-        <div class="enc-npc-list" id="enc-npc-list"></div>
-        <div class="enc-add-bar">
-          <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
-            + ADICIONAR NPC SELECIONADO
-          </button>
+        <div class="enc-inner">
+          <div class="enc-npc-list" id="enc-npc-list"></div>
+          <div class="enc-add-bar">
+            <button class="tbtn" style="width:100%;justify-content:center;font-size:.44rem" onclick="adicionarNPCAtualAoEncontro()">
+              + ADICIONAR NPC SELECIONADO
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -516,15 +536,14 @@ select.f-inp option{background:var(--dark);color:var(--white);}
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-
-<script src="assets/js/api.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/themes.js"></script>
+<!-- ═══ APP JS ═══ -->
 <script>
+/* ═══ UTILITIES ═══ */
+window.esc = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';};
+window.escJs = function(s){return s?s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"):'';};
 /* ═══ CONSTANTS ═══ */
 const SK=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
-const SK_IDS=["Destreza","Forca","Corpo","Inteligencia","Vontade","Mente","Influencia","Aura","Espirito"];
+const SK_IDS=["Destreza","Força","Corpo","Inteligência","Vontade","Mente","Influência","Aura","Espírito"];
 const CHAVE_ENC="cerebro_enc_v6";
 const CHAVE_TEMA="cerebro_tema_v6";
 const FRACOES={
@@ -551,7 +570,6 @@ function condCor(n){return COND_CORES[n]||{c:'#888',b:'rgba(136,136,136,.15)'};}
 /* ═══ STATE ═══ */
 let NPC_DB=[];
 let currentId=null;
-let isGM=false;
 let categoriaAtual='todos';
 let searchTerm='';
 let encSectionOpen=true;
@@ -566,13 +584,22 @@ let ENCONTRO={rodada:1,participantes:[]};
 function apiToInternal(npc){
   const d=npc.data||{};
   let atributos={};
-  if(d.atributos&&typeof d.atributos==='object'){
+  if(npc.atributos&&typeof npc.atributos==='object'){
+    atributos=npc.atributos;
+  } else if(d.atributos&&typeof d.atributos==='object'){
     atributos=d.atributos;
   } else if(d.stats&&typeof d.stats==='object'){
-    const LCmap={destreza:'Destreza',forca:'Força',corpo:'Corpo',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente',influencia:'Influência',aura:'Aura',espirito:'Espírito'};
+    const LCmap={
+      'destreza':'Destreza','força':'Força','forca':'Força',
+      'corpo':'Corpo','inteligência':'Inteligência','inteligencia':'Inteligência',
+      'vontade':'Vontade','mente':'Mente',
+      'influência':'Influência','influencia':'Influência',
+      'aura':'Aura','espírito':'Espírito','espirito':'Espírito'
+    };
     for(const k in d.stats){const cap=LCmap[k];if(cap)atributos[cap]=d.stats[k];}
   }
-  const rawTags=d.tags||[];
+  if(!atributos||typeof atributos!=='object')atributos={};
+  const rawTags=npc.tags||d.tags||[];
   const tags=rawTags.map(t=>{
     if(typeof t==='string')return t;
     if(t&&typeof t==='object'&&t.texto){return t.grau&&t.grau!==0?`${t.texto} ${t.grau}`:t.texto;}
@@ -581,69 +608,117 @@ function apiToInternal(npc){
   return {
     id:npc.id,nome:npc.name||'',codinome:npc.codename||'',
     fracao:npc.faction||'neutro',perigo:npc.danger||'medio',
-    iniciativa:d.iniciativa||0,atributos,tags,
-    descricao:d.descricao||'',isGlobal:npc.is_global||false,
+    iniciativa:npc.iniciativa||d.iniciativa||0,atributos,tags,
+    descricao:npc.descricao||d.descricao||'',isGlobal:npc.is_global||false,
   };
 }
 
 function internalToApi(n){
+  const PT_TO_EN={
+    'Destreza':'destreza','Força':'força','Corpo':'corpo',
+    'Inteligência':'inteligência','Vontade':'vontade','Mente':'mente',
+    'Influência':'influência','Aura':'aura','Espírito':'espírito'
+  };
+  const attrs={};
+  if(n.atributos&&typeof n.atributos==='object'){
+    for(const k in n.atributos){const en=PT_TO_EN[k];if(en)attrs[en]=n.atributos[k];else attrs[k]=n.atributos[k];}
+  }
+  const data={};
+  if(n.tags)data.tags=n.tags;
+  if(n.descricao)data.descricao=n.descricao;
   return {
     name:n.nome,codename:n.codinome||'',
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
-    data:{iniciativa:n.iniciativa||0,atributos:n.atributos||{},tags:n.tags||[],descricao:n.descricao||''},
+    iniciativa:n.iniciativa||0,
+    atributos:attrs,
+    data:data,
+    is_global:n.isGlobal||n.is_global||false,
   };
 }
 
-/* ═══ TAG PARSING ═══ */
-function parseTag(t){
-  if(typeof t==='object'&&t.texto)return{texto:t.texto,grau:t.grau||0};
-  const s=String(t).trim();
-  const m=s.match(/^(.*?)\s+([-−]?\d+)$/) || s.match(/^(.*?)\s+(-\d+)$/);
-  if(m){const g=parseInt(m[2]);return{texto:m[1].trim(),grau:g};}
-  return{texto:s,grau:0};
-}
-function tagGrauClass(g){
-  if(g<0)return'grau-neg';if(g===0)return'grau-0';if(g<=2)return`grau-${g}`;if(g<=6)return`grau-${g}`;return'grau-6';
-}
-function renderTagsHTML(tags){
-  if(!tags||!tags.length)return'<span class="no-tags">Sem tags registradas</span>';
-  return tags.map(t=>{
-    const{texto,grau}=parseTag(t);const neg=grau<0;const cls=tagGrauClass(grau);
-    return`<span class="tag-item${neg?' neg':''}"><span class="tag-txt">${esc(texto)}</span><span class="tag-grau ${cls}">${grau!==0?grau:'?'}</span></span>`;
-  }).join('');
-}
-
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,"&#39;");}
-function escJs(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
-
-/* ═══ API CALLS ═══ */
 async function init(){
   initTheme();
-  renderThemeDots();
-  const auth=await requireAuth();
-  if(!auth){document.getElementById('no-access').style.display='block';return;}
-  const profile=auth.profile||{};
-  isGM=profile.role==='gm';
-  document.getElementById('app-layout').style.display='flex';
-  if(isGM){
-    try{
-      const party=await api.getGMParty(auth.session.user.id);
-      if(party)currentPartyId=party.id;
-    }catch(e){}
-  } else {
-    try{
-      const party=await api.getPlayerParty(auth.session.user.id);
-      if(party)currentPartyId=party.id;
-    }catch(e){}
+  document.getElementById('theme-switcher').innerHTML = getThemeSwitcherHTML();
+  
+  const auth = await requireAuth();
+  if (!auth) {
+    document.getElementById('no-access').style.display='block';
+    return;
   }
-  carregarEncontro();
-  await recarregarDB();
+  
+  const profile = auth.profile || {};
+  isGM = profile.role === 'gm';
+  
+  document.getElementById('app-layout').style.display='flex';
+  
+  if (isGM) {
+    // GM: load ALL NPCs regardless of party
+    const party = await api.getGMParty(auth.session.user.id);
+    if (party) currentPartyId = party.id;
+    await recarregarNPCs();
+    if (party) await recarregarPartyMembers();
+    setStatus('// GM MODE - DB CARREGADO');
+  } else {
+    // Player: load only party members
+    const party = await api.getPlayerParty(auth.session.user.id);
+    if (!party) {
+      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>SEM PARTY</div><div style="margin-top:12px;color:var(--b3);">Você não faz parte de nenhuma party.</div><a href="dashboard.html" class="tbtn" style="display:inline-block;margin-top:24px;">Voltar ao Dashboard</a>';
+      document.getElementById('no-access').style.display='block';
+      document.getElementById('app-layout').style.display='none';
+      return;
+    }
+    currentPartyId = party.id;
+    await recarregarPartyMembers();
+    setStatus('// SQUAD MODE - MEMBROS CARREGADOS');
+  }
+  
+  document.getElementById('enc-header').classList.add('open');
+  document.getElementById('enc-body').classList.add('open');
+}
+
+async function recarregarNPCs() {
+  setStatus('// CARREGANDO NPCs...');
+  try {
+    const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId, true);
+    NPC_DB = raw.map(apiToInternal);
+    renderizarLista();
+    renderizarEncontro();
+    setStatus(`// DB: ${NPC_DB.length} NPCs`, 'saved');
+  } catch(e) { 
+    console.error(e); 
+    setStatus('// ERRO AO CARREGAR NPCs');
+  }
+}
+
+async function recarregarPartyMembers() {
+  try {
+    const chars = await api.listPartyCharacters(currentPartyId);
+    const members = chars.map(c => ({
+      id: c.id,
+      nome: c.name || 'Sem Nome',
+      codinome: c.codename || '',
+      faction: 'squad',
+      danger: 'baixo',
+      data: { 
+        tags: [],
+        descricao: 'Membro do esquadão',
+        stats: c.data?.stats || {}
+      },
+      isPlayer: true
+    }));
+    // Add members to NPC_DB
+    NPC_DB = [...members, ...NPC_DB];
+    renderizarLista();
+    setStatus(`// ${isGM ? 'SQUAD + NPCs' : 'SQUAD'}: ${NPC_DB.length}`, 'saved');
+  } catch(e) {
+    console.error('Erro ao carregar membros:', e);
+  }
 }
 
 async function recarregarDB(){
   setStatus('// CARREGANDO...');
   try{
-    const raw=isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
+    const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
     renderizarLista();
     renderizarEncontro();
@@ -661,7 +736,10 @@ function carregarEncontro(){
   document.getElementById('enc-rodada').textContent=ENCONTRO.rodada||1;
   renderizarEncontro();
 }
-function salvarEncontro(){localStorage.setItem(CHAVE_ENC,JSON.stringify(ENCONTRO));}
+function salvarEncontro(){
+  localStorage.setItem(CHAVE_ENC,JSON.stringify(ENCONTRO));
+  showSaveBar('saved', 'SALVO ✓');
+}
 
 /* ═══ RENDER LIST ═══ */
 function filtrar(){searchTerm=document.getElementById('search-inp').value;renderizarLista();}
@@ -687,7 +765,7 @@ function renderizarLista(){
         <div class="npc-item-name">${esc(n.nome)}</div>
         <div class="npc-item-sub">${n.codinome?esc(n.codinome)+' · ':''}${fc.l}</div>
       </div>
-      ${inEnc?'<span class="npc-item-enc" title="No encontro">⚔</span>':''}
+      ${inEnc?'<span class="npc-item-enc" title="No encontro"></span>':''}
       <div class="npc-item-pr" style="border-color:${pr.cor};color:${pr.cor}">${pr.l}</div>
     </div>`;
   }).join('');
@@ -704,7 +782,7 @@ function exibirNPC(id){
   const encBanner=encPart?`
     <div class="enc-status-banner">
       <div class="enc-banner-top">
-        <div class="enc-banner-title">⚔ ENCONTRO — RODADA ${ENCONTRO.rodada}</div>
+        <div class="enc-banner-title"> ENCONTRO — RODADA ${ENCONTRO.rodada}</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <button class="tbtn tbtn-red" style="font-size:.46rem;padding:3px 8px" onclick="removerDoEncontro('${escJs(id)}')">✕ REMOVER DO ENCONTRO</button>
           <button class="enc-add-cond" onclick="abrirCondModal('${escJs(id)}')">+ CONDIÇÃO</button>
@@ -714,7 +792,7 @@ function exibirNPC(id){
     </div>`:`
     <div style="margin-bottom:14px">
       <button class="tbtn tbtn-enc" onclick="adicionarAoEncontro('${escJs(id)}')" style="font-size:.5rem">
-        ⚔ ADICIONAR AO ENCONTRO ATIVO
+         ADICIONAR AO ENCONTRO ATIVO
       </button>
     </div>`;
   const editBtn=npc.isGlobal?'':`<button class="tbtn tbtn-acc" onclick="abrirEditModal('${escJs(id)}')"><svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>EDITAR</button>`;
@@ -772,17 +850,39 @@ function renderTagItem(tag){
   const gcls=isNeg?'grau-neg':g>0?'grau-'+g:'grau-0';
   return `<span class="${cls}"><span class="tag-txt">${tag.texto||tag}</span><span class="tag-grau ${gcls}">${g>0?'+':''}${g}</span></span>`;
 }
+function parseTag(t){
+  if(typeof t!=='string')return{texto:String(t),grau:0};
+  const m=t.match(/^(.+?)\s+([-]?\d+)$/);
+  return m?{texto:m[1].trim(),grau:parseInt(m[2],10)}:{texto:t,grau:0};
+}
+function tagGrauClass(g){
+  if(g<0)return'grau-neg';
+  return'grau-'+Math.min(g,6);
+}
+function renderTagsHTML(tags){
+  if(!tags?.length)return'<span class="no-tags">— Nenhuma tag —</span>';
+  return tags.map(t=>{
+    const{texto,grau}=parseTag(t);
+    const neg=grau<0;
+    const cls=tagGrauClass(grau);
+    const badgeLabel=grau!==0?(grau>0?grau:grau):'';
+    return`<span class="tag-item${neg?' neg':''}">
+      <span class="tag-txt">${texto}</span>
+      <span class="tag-grau ${cls}">${badgeLabel}</span>
+    </span>`;
+  }).join('');
+}
 
 function filtrar(){
   searchTerm=document.getElementById('search-inp').value;
-  renderNPCList();
+  renderizarLista();
 }
 
 function setCat(btn){
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
-  currentCat=btn.dataset.cat;
-  renderNPCList();
+  categoriaAtual=btn.dataset.cat;
+  renderizarLista();
 }
 
 function toggleEncSection(){
@@ -791,12 +891,17 @@ function toggleEncSection(){
 }
 
 function abrirPainel(){
-  document.getElementById('left-panel').classList.add('mobile-open');
-  document.getElementById('panel-overlay').classList.add('open');
+  const panel=document.getElementById('left-panel');
+  panel.classList.add('mobile-open');
+  panel.style.transform='translateX(0)';
+  panel.style.visibility='visible';
+  document.getElementById('panel-overlay').style.visibility='visible';
 }
 function fecharPainel(){
-  document.getElementById('left-panel').classList.remove('mobile-open');
-  document.getElementById('panel-overlay').classList.remove('open');
+  const panel=document.getElementById('left-panel');
+  panel.classList.remove('mobile-open');
+  panel.style.transform='translateX(-100%)';
+  document.getElementById('panel-overlay').style.visibility='hidden';
 }
 
 function showToast(msg){
@@ -859,7 +964,6 @@ function mudaRodada(delta){
   currentRound=Math.max(1,currentRound+delta);
   document.getElementById('enc-rodada').textContent=currentRound;
   saveEncounter();
->>>>>>> 4b35090 (feat: Global theme system and unified X logo)
 }
 
 function abrirAddModal(){
@@ -961,20 +1065,35 @@ function toggleEncSection(){
   document.getElementById('enc-body').classList.toggle('open',encSectionOpen);
 }
 function renderizarEncontro(){
-  document.getElementById('enc-count-badge').textContent=ENCONTRO.participantes.length;
-  document.getElementById('enc-rodada').textContent=ENCONTRO.rodada||1;
-  document.getElementById('enc-header').classList.toggle('has-enc',ENCONTRO.participantes.length>0);
-  const list=document.getElementById('enc-npc-list');
-  if(!ENCONTRO.participantes.length){list.innerHTML='<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO<br>SELECIONE E CLIQUE "+ ADICIONAR"</div>';return;}
-  list.innerHTML=ENCONTRO.participantes.map(p=>{
-    const npc=NPC_DB.find(n=>n.id===p.id);
-    const fc=npc?(FRACOES[npc.fracao]||FRACOES.neutro):FRACOES.neutro;
-    const condHtml=p.condicoes?.length?p.condicoes.map(c=>{const{c:cor}=condCor(c);return`<span class="enc-cond-chip" style="color:${cor};border-color:${cor};background:${cor}18">${esc(c)}</span>`;}).join(''):'';
-    return`<div class="enc-npc-item${currentId===p.id?' active':''}" onclick="exibirNPC('${escJs(p.id)}');fecharPainel()">
+  var badge = document.getElementById('enc-count-badge');
+  var count = ENCONTRO.participantes.length;
+  badge.textContent = count;
+  
+  // Show badge when there are participants
+  if (count > 0) {
+    badge.classList.add('show');
+    // Auto-expand if collapsed
+    if (!document.getElementById('enc-body').classList.contains('open')) {
+      document.getElementById('enc-header').classList.add('open');
+      document.getElementById('enc-body').classList.add('open');
+    }
+  } else {
+    badge.classList.remove('show');
+  }
+  
+  document.getElementById('enc-rodada').textContent = ENCONTRO.rodada || 1;
+  document.getElementById('enc-header').classList.toggle('has-enc', count > 0);
+  const list = document.getElementById('enc-npc-list');
+  if (!ENCONTRO.participantes.length) { list.innerHTML = '<div class="enc-empty-msg">NENHUM NPC NO ENCONTRO<br>SELECIONE E CLIQUE "+ ADICIONAR"</div>'; return; }
+  list.innerHTML = ENCONTRO.participantes.map(p => {
+    const npc = NPC_DB.find(n => n.id === p.id);
+    const fc = npc ? (FRACOES[npc.fracao] || FRACOES.neutro) : FRACOES.neutro;
+    const condHtml = p.condicoes?.length ? p.condicoes.map(c => { const { c: cor } = condCor(c); return `<span class="enc-cond-chip" style="color:${cor};border-color:${cor};background:${cor}18">${esc(c)}</span>`; }).join('') : '';
+    return `<div class="enc-npc-item${currentId === p.id ? ' active' : ''}" onclick="exibirNPC('${escJs(p.id)}');fecharPainel()">
       <div class="enc-npc-dot" style="background:${fc.cor}"></div>
       <div class="enc-npc-info">
         <div class="enc-npc-name">${esc(p.nome)}</div>
-        ${condHtml?`<div class="enc-npc-conds">${condHtml}</div>`:''}
+        ${condHtml ? `<div class="enc-npc-conds">${condHtml}</div>` : ''}
       </div>
       <button class="enc-npc-rem" onclick="event.stopPropagation();abrirCondModal('${escJs(p.id)}')" title="Condições">⊕</button>
       <button class="enc-npc-rem" onclick="event.stopPropagation();removerDoEncontro('${escJs(p.id)}')" title="Remover">×</button>
@@ -1030,15 +1149,15 @@ function npcParaMD(n){
 async function importarMarkdown(){
   const raw=document.getElementById('import-text').value;
   if(!raw.trim()){toast('NENHUM CONTEÚDO');return;}
-  if(!currentPartyId){toast('FAÇA LOGIN COMO GM PARA IMPORTAR');return;}
   const novos=parseMD(raw);if(!novos.length){toast('NENHUM NPC VÁLIDO');return;}
   let c=0,u=0;
   for(const n of novos){
-    const existente=NPC_DB.find(e=>e.nome===n.nome&&!e.isGlobal);
+    const existente=NPC_DB.find(e=>e.nome===n.nome);
+    n.isGlobal=true;
     const apiData=internalToApi(n);
     try{
       if(existente){await api.updateNPC(existente.id,apiData);u++;}
-      else{await api.createNPC(currentPartyId,apiData);c++;}
+      else{await api.createNPC(null,apiData);c++;}
     }catch(e){console.error(e);}
   }
   fecharImportModal();document.getElementById('import-text').value='';
@@ -1054,13 +1173,49 @@ function parseMD(md){
       const fracaoM=bloco.match(/\*\*Fração:\*\*\s*(.+)/);
       const perigoM=bloco.match(/\*\*Perigo:\*\*\s*(.+)/);
       let iniciativa=0,atributos={},tags=[],descricao='',modo='';
-      bloco.split('\n').forEach(l=>{
+      const linhas=bloco.split('\n');
+      for(let i=0;i<linhas.length;i++){
+        const l=linhas[i];
         const lt=l.trim();
-        if(lt.startsWith('|')){const cells=lt.split('|').map(c=>c.trim()).filter(c=>c);if(cells.length>=2){if(cells[0].toLowerCase()==='iniciativa')iniciativa=parseInt(cells[1])||0;const sk=SK.find(s=>s.toLowerCase()===cells[0].toLowerCase());if(sk)atributos[sk]=parseInt(cells[1])||0;}}
-        if(lt==='## Tags'){modo='tags';return;}if(lt==='## Descrição'){modo='desc';return;}
-        if(modo==='tags'&&lt.startsWith('-'))tags.push(lt.replace(/^-\s*/,'').replace(/^\*|\*$/g,'').trim());
-        if(modo==='desc'&&lt&&!lt.startsWith('##')&&!lt.startsWith('---'))descricao+=l+'\n';
-      });
+        if(!lt)continue;
+        if(lt.startsWith('|')){
+          const cells=lt.split('|').map(c=>c.trim()).filter(c=>c);
+          if(cells.length>=2){
+            const key=(cells[0]||'').toLowerCase();
+            const val=parseInt(cells[1])||0;
+            if(key==='iniciativa'||key==='campo'){
+              if(key==='iniciativa')iniciativa=val;
+            }else{
+              const sk=SK.find(s=>s.toLowerCase()===key);
+              if(sk)atributos[sk]=val;
+            }
+            continue;
+          }
+        }
+        if(lt.startsWith('|')&&(lt.includes('Atributo')||lt.includes('Campo'))){
+          for(let j=i+1;j<linhas.length;j++){
+            const row=linhas[j].trim();
+            if(!row.startsWith('|'))break;
+            const cells=row.split('|').map(c=>c.trim()).filter(c=>c);
+            if(cells.length>=2){
+              const key=cells[0].toLowerCase();
+              const val=parseInt(cells[1])||0;
+              const sk=SK.find(s=>s.toLowerCase()===key);
+              if(sk)atributos[sk]=val;
+            }
+          }
+          continue;
+        }
+        if(lt==='## Tags'){modo='tags';continue;}
+        if(lt==='## Descrição'){modo='desc';continue;}
+        if(modo==='tags'&&lt.startsWith('-')){
+          const tagTxt=lt.replace(/^-\s*/,'').replace(/^\*|\*$/g,'').trim();
+          if(tagTxt)tags.push(tagTxt);
+        }
+        if(modo==='desc'&&lt&&!lt.startsWith('##')&&!lt.startsWith('---')){
+          descricao+=l+'\n';
+        }
+      }
       SK.forEach(k=>{if(atributos[k]===undefined)atributos[k]=0;});
       return{nome,codinome:codinomeM?codinomeM[1].trim():'',fracao:fracaoM?fracaoM[1].trim():'neutro',perigo:perigoM?perigoM[1].trim():'baixo',iniciativa,atributos,tags,descricao:descricao.trim()};
     }catch(e){return null;}
@@ -1072,18 +1227,6 @@ function baixar(conteudo,nome,tipo){
 
 /* ═══ UI HELPERS ═══ */
 function setTema(t){document.body.className='theme-'+t;localStorage.setItem(CHAVE_TEMA,t);renderThemeDots();}
-function toggleSettings(){document.getElementById('settings-dropdown').classList.toggle('open');}
-function renderThemeDots(){
-  var themes=[{id:'yellow',color:'#FFD600'},{id:'red',color:'#E8001C'},{id:'green',color:'#00C853'},{id:'purple',color:'#b040ff'},{id:'blue',color:'#3a8fc0'}];
-  var current=getCurrentTheme();
-  var container=document.getElementById('theme-dots-row');
-  container.innerHTML=themes.map(function(t){return'<div class="theme-dot-sm '+(t.id===current?'active':'')+'" style="background:'+t.color+'" onclick="setTheme(\''+t.id+'\');renderThemeDots();" title="'+t.name+'"></div>';}).join('');
-}
-document.addEventListener('click',function(e){
-  var dropdown=document.getElementById('settings-dropdown');
-  var btn=document.querySelector('.hdr-settings-btn');
-  if(!dropdown.contains(e.target)&&!btn.contains(e.target)){dropdown.classList.remove('open');}
-});
 function abrirPainel(){document.getElementById('left-panel').classList.add('mobile-open');document.getElementById('panel-overlay').classList.add('open');}
 function fecharPainel(){document.getElementById('left-panel').classList.remove('mobile-open');document.getElementById('panel-overlay').classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent='// '+msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600);}
@@ -1094,6 +1237,32 @@ window.addEventListener('load',()=>{
     document.getElementById('enc-body').classList.add('open');
   });
 });
+
+// Save bar status functions
+function showSaveBar(status, msg) {
+  var bar = document.getElementById('save-bar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'save-bar';
+    bar.className = 'save-bar';
+    bar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text"></span></div><span class="save-timestamp"></span>';
+    document.body.appendChild(bar);
+  }
+  var dot = bar.querySelector('.save-dot');
+  var text = bar.querySelector('.save-text');
+  var ts = bar.querySelector('.save-timestamp');
+  
+  bar.classList.add('active');
+  dot.className = 'save-dot ' + (status || '');
+  text.textContent = msg || '';
+  
+  if (status === 'saved') {
+    ts.textContent = new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+    setTimeout(function() { bar.classList.remove('active'); }, 3000);
+  } else if (status === 'error') {
+    ts.textContent = 'ERRO';
+  }
+}
 </script>
 </body>
 </html>

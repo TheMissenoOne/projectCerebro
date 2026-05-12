@@ -3,263 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <title>X-MEN TTRPG // PAINEL DO GM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <style>
-    .admin-layout {
-      display: flex;
-      min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
-    }
-
-    .admin-sidebar {
-      width: 200px;
-      background: var(--dark);
-      border-right: 1px solid var(--b1);
-      flex-shrink: 0;
-      padding: 12px 0;
-    }
-
-    .admin-nav-link {
-      display: block;
-      padding: 10px 16px;
-      font-family: var(--mono);
-      font-size: .52rem;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      transition: all .12s;
-      border-left: 2px solid transparent;
-    }
-    .admin-nav-link:hover {
-      background: rgba(255,255,255,.03);
-      color: var(--white);
-    }
-    .admin-nav-link.active {
-      background: rgba(232,0,28,.1);
-      color: var(--red);
-      border-left-color: var(--red);
-    }
-
-    .admin-content {
-      flex: 1;
-      padding: clamp(16px, 3vw, 24px);
-      overflow-y: auto;
-    }
-
-    .admin-section {
-      margin-bottom: 24px;
-    }
-
-    .admin-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--b1);
-    }
-
-    .admin-section-title {
-      font-family: var(--cond);
-      font-size: .75rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .party-chars-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .party-chars-table th,
-    .party-chars-table td {
-      padding: 10px 12px;
-      border: 1px solid var(--b1);
-      text-align: left;
-    }
-
-    .party-chars-table th {
-      background: var(--p2);
-      font-family: var(--mono);
-      font-size: .44rem;
-      color: var(--muted);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .party-chars-table td {
-      font-family: var(--body);
-      font-size: .72rem;
-      color: var(--text);
-    }
-
-    .party-chars-table tr:hover td {
-      background: rgba(255,255,255,.02);
-    }
-
-    .party-chars-table .char-link {
-      color: var(--white);
-      text-decoration: none;
-    }
-    .party-chars-table .char-link:hover {
-      color: var(--red);
-    }
-
-    .members-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .member-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      background: var(--p1);
-      border: 1px solid var(--b1);
-    }
-
-    .member-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--p2);
-      border: 1px solid var(--b2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: .6rem;
-      color: var(--muted);
-    }
-
-    .member-info {
-      flex: 1;
-    }
-
-    .member-name {
-      font-family: var(--body);
-      font-size: .78rem;
-      color: var(--white);
-      font-weight: 600;
-    }
-
-    .member-username {
-      font-family: var(--mono);
-      font-size: .44rem;
-      color: var(--muted);
-    }
-
-    .member-role {
-      font-family: var(--mono);
-      font-size: .42rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      padding: 3px 6px;
-      background: rgba(255,214,0,.1);
-      border: 1px solid var(--accent);
-    }
-
-    .session-notes {
-      width: 100%;
-      min-height: 200px;
-      background: var(--p2);
-      border: 1px solid var(--b2);
-      color: var(--white);
-      font-family: var(--mono);
-      font-size: .6rem;
-      padding: 12px;
-      resize: vertical;
-      outline: none;
-    }
-    .session-notes:focus {
-      border-color: var(--red);
-    }
-
-    .encounter-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: var(--p1);
-      border: 1px solid var(--b1);
-      margin-bottom: 16px;
-    }
-
-    .encounter-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .enc-counter {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-left: 12px;
-      border-left: 1px solid var(--b1);
-    }
-
-    .enc-counter-label {
-      font-family: var(--mono);
-      font-size: .48rem;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .enc-counter-value {
-      font-family: var(--mono);
-      font-size: 1.2rem;
-      color: var(--red);
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .enc-counter-btn {
-      width: 24px;
-      height: 24px;
-      background: none;
-      border: 1px solid var(--b2);
-      color: var(--text);
-      font-family: var(--mono);
-      cursor: pointer;
-      transition: all .12s;
-    }
-    .enc-counter-btn:hover {
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    .quick-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .no-party {
-      text-align: center;
-      padding: 40px;
-      font-family: var(--mono);
-      font-size: .6rem;
-      color: var(--muted);
-    }
-
-    @media(max-width: 768px) {
-      .admin-layout { flex-direction: column; }
-      .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="assets/js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/cache-module.js"></script>
+  <script src="assets/js/auth-module.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/globals.js"></script>
+  <script src="assets/js/themes.js"></script>
 </head>
 <body>
-  <header class="header">
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  console.log('[theme] localStorage:', t, 'body class:', document.body.className);
+        if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
     <div class="header-logo">
       <a href="dashboard.html" class="x-logo">
         <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
@@ -279,33 +50,24 @@
       </div>
     </div>
     <div class="hdr-spacer"></div>
-    <a href="cerebro.html" class="tbtn tbtn-red">Cérebro</a>
-    <div class="hdr-settings">
-      <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-      <div class="settings-dropdown" id="settings-dropdown">
-        <div class="settings-label">TEMA</div>
-        <div class="theme-dots-row" id="theme-dots-row"></div>
-        <div class="settings-dropdown-divider"></div>
-        <div class="settings-dropdown-item" onclick="logout()">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          SAIR
-        </div>
-      </div>
-    </div>
   </header>
 
   <div class="toolbar">
     <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="ficha.html" class="tbtn">Ficha</a>
+    <a href="wiki.html" class="tbtn">Wiki</a>
+    <div class="toolbar-spacer"></div>
+    <div class="theme-switcher" style="border-left:none;padding:0;">
+      <div class="theme-dots-row" id="theme-dots-row"></div>
+    </div>
   </div>
 
   <div class="admin-layout">
     <nav class="admin-sidebar">
-      <a href="admin.html" class="admin-nav-link active">Party</a>
-      <a href="admin.html?tab=notes" class="admin-nav-link">Notas de Sessão</a>
-      <a href="admin.html?tab=encounter" class="admin-nav-link">Encontro</a>
-      <a href="admin.html?tab=members" class="admin-nav-link">Membros</a>
+      <a href="admin.html?tab=party" class="admin-nav-link" data-tab="party">Party</a>
+      <a href="admin.html?tab=encounter" class="admin-nav-link" data-tab="encounter">Encontro</a>
+      <a href="admin.html?tab=notes" class="admin-nav-link" data-tab="notes">Notas de Sessão</a>
+      <a href="admin.html?tab=members" class="admin-nav-link" data-tab="members">Membros</a>
     </nav>
 
     <main class="admin-content">
@@ -314,24 +76,33 @@
       </div>
 
       <div id="party-admin-content">
-        <div class="admin-section">
+        <div id="tab-party" class="admin-section">
           <div class="admin-section-header">
-            <span class="admin-section-title">Personagens da Party</span>
+            <span class="admin-section-title">Todos os Personagens</span>
+            <button class="btn" onclick="refreshCharacters()">⟳ Atualizar</button>
           </div>
-          <table class="party-chars-table">
-            <thead>
-              <tr>
-                <th>Personagem</th>
-                <th>Jogador</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="party-chars-body">
-            </tbody>
-          </table>
+          <div class="chars-grid" id="party-chars-grid"></div>
         </div>
 
-        <div class="admin-section">
+        <!-- Character Edit Modal -->
+        <div id="char-edit-modal" class="modal" style="display:none;">
+          <div class="modal-overlay" onclick="closeCharModal()"></div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="modal-title" id="char-modal-title">Editar Personagem</span>
+              <button class="modal-close" onclick="closeCharModal()">×</button>
+            </div>
+            <div class="modal-body" id="char-modal-body">
+              <!-- Character data will be loaded here -->
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" onclick="closeCharModal()">Cancelar</button>
+              <button class="btn btn-primary" onclick="saveCharData()">Salvar</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-encounter" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Controle de Encontro</span>
           </div>
@@ -351,32 +122,32 @@
           </div>
         </div>
 
-        <div class="admin-section">
+        <div id="tab-notes" class="admin-section">
           <div class="admin-section-header">
             <span class="admin-section-title">Notas de Sessão</span>
           </div>
           <textarea class="session-notes" id="session-notes" placeholder="Anote aqui os eventos da sessão..."></textarea>
         </div>
       </div>
-    </main>
+</main>
   </div>
 
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/themes.js"></script>
+  <!-- Scripts already loaded in <head> -->
   <script>
-    let currentParty = null;
-    let currentRound = 0;
-    let encounterActive = false;
+let currentParty = null;
 
     async function init() {
       initTheme();
       renderThemeDots();
       
-      const auth = await requireAuth('gm');
-      if (!auth) return;
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab') || 'party';
+      showTab(tab);
+      
+      currentAuth = await requireAuth('gm');
+      if (!currentAuth) return;
 
-      currentParty = await api.getGMParty(auth.session.user.id);
+      currentParty = await api.getGMParty(currentAuth.session.user.id);
       
       if (!currentParty) {
         document.getElementById('no-party-msg').style.display = 'block';
@@ -389,20 +160,266 @@
       await loadEncounterState();
     }
 
-    async function loadPartyCharacters() {
-      const chars = await api.listPartyCharacters(currentParty.id);
-      const tbody = document.getElementById('party-chars-body');
-      
-      chars.forEach(char => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><a href="ficha.html?id=${char.id}" class="char-link">${char.name || 'Sem Nome'}</a></td>
-          <td>${char.player_id}</td>
-          <td>${char.is_active ? 'Ativo' : 'Inativo'}</td>
-        `;
-        tbody.appendChild(row);
+    function showTab(tabId) {
+      document.querySelectorAll('.admin-nav-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.tab === tabId);
       });
+      document.getElementById('tab-party').style.display = tabId === 'party' ? 'block' : 'none';
+      document.getElementById('tab-encounter').style.display = tabId === 'encounter' ? 'block' : 'none';
+      document.getElementById('tab-notes').style.display = tabId === 'notes' ? 'block' : 'none';
     }
+
+    window.showTab = showTab;
+
+    let charsOffset = 0;
+    const CHARS_LIMIT = 20;
+
+    async function loadPartyCharacters(append) {
+      try {
+        const gmId = currentAuth.session.user.id;
+        const grid = document.getElementById('party-chars-grid');
+        
+        if (!append) {
+          charsOffset = 0;
+          grid.innerHTML = '<div class="loading-skeleton"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>';
+        }
+        
+        const chars = await api.listAllGMCharacters(gmId, false, charsOffset, CHARS_LIMIT);
+        console.log('[loadPartyCharacters] chars:', chars);
+        
+        if (!append) grid.innerHTML = '';
+        
+        if (!chars || chars.length === 0) {
+          if (!append) grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum personagem encontrado</p>';
+          return;
+        }
+        
+        console.log('[loadPartyCharacters] rendering', chars.length, 'cards');
+        chars.forEach(char => {
+          const card = document.createElement('a');
+          card.className = 'char-card';
+          card.href = 'ficha.html?id=' + char.id + '&t=' + Date.now();
+          card.target = '_blank';
+          const initial = char.codinome ? char.codinome.charAt(0).toUpperCase() : (char.nome ? char.nome.charAt(0).toUpperCase() : '?');
+          const foto = char.foto_base64 || '';
+          card.innerHTML = foto 
+            ? '<div class="char-card-img" style="background-image:url(' + foto + ')"></div>'
+            : '<div class="char-card-avatar">' + initial + '</div>';
+          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.nome || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
+          grid.appendChild(card);
+        });
+        
+        charsOffset += chars.length;
+        
+        if (chars.length === CHARS_LIMIT) {
+          const loadMore = document.getElementById('load-more-chars');
+          if (!loadMore) {
+            const btn = document.createElement('button');
+            btn.id = 'load-more-chars';
+            btn.className = 'load-more-btn';
+            btn.textContent = 'Carregar mais...';
+            btn.onclick = () => loadPartyCharacters(true);
+            grid.parentNode.appendChild(btn);
+          }
+        } else {
+          const loadMore = document.getElementById('load-more-chars');
+          if (loadMore) loadMore.remove();
+        }
+      } catch (e) {
+        console.error('[loadPartyCharacters error]', e);
+        document.getElementById('party-chars-grid').innerHTML = '<p style="color:var(--red);text-align:center;padding:20px;">Erro: ' + e.message + '</p>';
+      }
+    }
+
+    window.refreshCharacters = async function() {
+      await api.listAllGMCharacters(currentAuth.session.user.id, true);
+      await loadPartyCharacters(false);
+    };
+
+    let currentEditingChar = null;
+
+    window.editCharacter = async function(charId) {
+      try {
+        const char = await api.loadCharacter(charId);
+        currentEditingChar = char;
+        document.getElementById('char-modal-title').textContent = 'Editar: ' + (char.nome || 'Sem Nome');
+        
+        const data = char.data || {};
+        
+        document.getElementById('char-modal-body').innerHTML = `
+          <div class="char-edit-form">
+            <div class="char-edit-section">
+              <h4>Informações Básicas</h4>
+              <div class="char-edit-row">
+                <label>Nome</label>
+                <input type="text" id="edit-char-name" value="${char.nome || ''}">
+              </div>
+              <div class="char-edit-row">
+                <label>Codename</label>
+                <input type="text" id="edit-char-codename" value="${char.codename || ''}">
+              </div>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Atributos</h4>
+              <div class="char-data-editor" id="atributos-editor">
+                ${renderCharDataFields(data.atributos || {}, 'atributos')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('atributos')">+ Adicionar Atributo</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Tags</h4>
+              <div class="char-data-editor" id="tags-editor">
+                ${renderCharDataFields(data.tags || [], 'tags')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('tags')">+ Adicionar Tag</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Poderes</h4>
+              <div class="char-data-editor" id="poderes-editor">
+                ${renderCharDataFields(data.poderes || {}, 'poderes')}
+              </div>
+              <button class="add-field-btn" onclick="addCharDataField('poderes')">+ Adicionar Poder</button>
+            </div>
+            
+            <div class="char-edit-section">
+              <h4>Notas</h4>
+              <div class="char-edit-row">
+                <label>Descrição</label>
+                <textarea id="edit-char-desc" rows="3">${data.descricao || ''}</textarea>
+              </div>
+              <div class="char-edit-row">
+                <label>Background</label>
+                <textarea id="edit-char-background" rows="3">${data.background || ''}</textarea>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('char-edit-modal').style.display = 'flex';
+      } catch (e) {
+        console.error('[editCharacter error]', e);
+        alert('Erro ao carregar personagem: ' + e.message);
+      }
+    };
+
+    function renderCharDataFields(objOrArr, prefix) {
+      if (Array.isArray(objOrArr)) {
+        return objOrArr.map((item, i) => `
+          <div class="char-data-field" data-index="${i}" data-type="array">
+            <input type="text" value="${typeof item === 'object' ? JSON.stringify(item) : item}" data-key="${i}">
+            <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', ${i})">×</button>
+          </div>
+        `).join('');
+      } else if (typeof objOrArr === 'object') {
+        return Object.entries(objOrArr).map(([key, val], i) => `
+          <div class="char-data-field" data-index="${i}" data-keyname="${key}">
+            <input type="text" value="${key}" placeholder="chave" data-key="${key}">
+            <input type="text" value="${typeof val === 'object' ? JSON.stringify(val) : val}" placeholder="valor">
+            <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', '${key}')">×</button>
+          </div>
+        `).join('');
+      }
+      return '';
+    }
+
+    window.addCharDataField = function(prefix) {
+      const container = document.getElementById(prefix + '-editor');
+      const isArray = prefix === 'tags';
+      const field = document.createElement('div');
+      field.className = 'char-data-field';
+      if (isArray) {
+        field.innerHTML = `
+          <input type="text" placeholder="nova tag" data-key="${container.children.length}">
+          <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', ${container.children.length})">×</button>
+        `;
+      } else {
+        field.innerHTML = `
+          <input type="text" placeholder="chave" data-key="newkey">
+          <input type="text" placeholder="valor">
+          <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', 'newkey')">×</button>
+        `;
+      }
+      container.appendChild(field);
+    };
+
+    window.removeCharDataField = function(btn, prefix, index) {
+      btn.parentElement.remove();
+    };
+
+    window.saveCharData = async function() {
+      if (!currentEditingChar) return;
+      
+      try {
+        const name = document.getElementById('edit-char-name').value;
+        const codename = document.getElementById('edit-char-codename').value;
+        
+        const atributos = collectCharData('atributos-editor');
+        const tags = collectCharData('tags-editor', true);
+        const poderes = collectCharData('poderes-editor');
+        const descricao = document.getElementById('edit-char-desc').value;
+        const background = document.getElementById('edit-char-background').value;
+        
+        const newData = {
+          ...currentEditingChar.data,
+          atributos,
+          tags,
+          poderes,
+          descricao,
+          background
+        };
+        
+        await api.saveCharacter(currentEditingChar.id, {
+          name: name,
+          codename: codename,
+          data: newData
+        });
+        
+        closeCharModal();
+        await loadPartyCharacters();
+        alert('Personagem salvo com sucesso!');
+      } catch (e) {
+        console.error('[saveCharData error]', e);
+        alert('Erro ao salvar: ' + e.message);
+      }
+    };
+
+    function collectCharData(editorId, asArray = false) {
+      const container = document.getElementById(editorId);
+      const fields = container.querySelectorAll('.char-data-field');
+      const result = asArray ? [] : {};
+      
+      fields.forEach(field => {
+        const inputs = field.querySelectorAll('input');
+        if (asArray && inputs[0]?.value) {
+          result.push(inputs[0].value);
+        } else if (!asArray && inputs.length >= 2 && inputs[0]?.value) {
+          result[inputs[0].value] = inputs[1]?.value || '';
+        }
+      });
+      
+      return result;
+    }
+
+    window.closeCharModal = function() {
+      document.getElementById('char-edit-modal').style.display = 'none';
+      currentEditingChar = null;
+    };
+
+    window.deleteCharacter = async function(charId) {
+      if (!confirm('Tem certeza que deseja excluir este personagem? Esta ação não pode ser desfeita.')) return;
+      
+      try {
+        await api.deleteCharacter(charId);
+        await loadPartyCharacters();
+        alert('Personagem excluído.');
+      } catch (e) {
+        console.error('[deleteCharacter error]', e);
+        alert('Erro ao excluir: ' + e.message);
+      }
+    };
 
     async function loadSessionNotes() {
       const session = await api.getSession(currentParty.id);
@@ -490,6 +507,13 @@
     }
 
     init();
+    
+    // Save bar
+    var saveBar = document.createElement('div');
+    saveBar.id = 'save-bar';
+    saveBar.className = 'save-bar';
+    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
+    document.body.appendChild(saveBar);
   </script>
 </body>
 </html>

@@ -4,659 +4,1006 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X-MEN TTRPG // DASHBOARD</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/cache-module.js" defer></script>
+  <script src="assets/js/auth-module.js" defer></script>
+  <script src="assets/js/api.js" defer></script>
+  <script src="assets/js/globals.js" defer></script>
+  <script src="assets/js/themes.js" defer></script>
+  <script src="assets/js/header.js" defer></script>
   <style>
-    .dashboard { padding-bottom: 40px; }
-    
-    .dash-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    
-    .dash-welcome h2 {
-      font-family: var(--disp);
-      font-size: clamp(1.4rem, 4vw, 1.8rem);
-      color: var(--white);
-      letter-spacing: .1em;
-    }
-    .dash-welcome p {
-      font-family: var(--mono);
-      font-size: .48rem;
-      color: var(--muted);
-      letter-spacing: .1em;
-      margin-top: 4px;
-    }
-    
-    .dash-user {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .dash-user-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--p2);
-      border: 1px solid var(--b2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: .7rem;
-      color: var(--muted);
-    }
-    .dash-user-name {
-      font-family: var(--mono);
-      font-size: .52rem;
-      color: var(--text);
-    }
-    .dash-user-role {
-      font-family: var(--mono);
-      font-size: .4rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-    .dash-logout {
-      background: none;
-      border: 1px solid var(--b2);
-      color: var(--muted);
-      padding: 6px 10px;
-      font-family: var(--mono);
-      font-size: .46rem;
-      cursor: pointer;
-      transition: all .15s;
-    }
-    .dash-logout:hover {
-      border-color: var(--red);
-      color: var(--red);
-    }
+/* ── DASHBOARD PAGE-LOCAL OVERRIDES ─────────────────────────────── */
 
-    .dash-section {
-      margin-bottom: 28px;
-    }
-    
-    .dash-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    
-    .dash-section-title {
-      font-family: var(--cond);
-      font-size: .7rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
+/* Staggered page-load reveal */
+@keyframes dashIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.dash-animate { animation: dashIn .4s ease both; }
+.dash-animate:nth-child(1) { animation-delay: .04s; }
+.dash-animate:nth-child(2) { animation-delay: .1s; }
+.dash-animate:nth-child(3) { animation-delay: .17s; }
+.dash-animate:nth-child(4) { animation-delay: .24s; }
 
-    .chars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
+/* ── LAYOUT ──────────────────────────────── */
+.dash-body {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 28px) 60px;
+}
 
-    .char-card {
-      background: var(--p1);
-      border: 1px solid var(--b1);
-      padding: 14px;
-      cursor: pointer;
-      transition: all .15s;
-      position: relative;
-    }
-    .char-card:hover {
-      border-color: var(--red);
-      transform: translateY(-2px);
-    }
-    .char-card-name {
-      font-family: var(--cond);
-      font-size: .82rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .char-card-codename {
-      font-family: var(--mono);
-      font-size: .44rem;
-      color: var(--muted);
-      letter-spacing: .08em;
-    }
-    .char-card-new {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 80px;
-      border: 1px dashed var(--b2);
-      color: var(--muted);
-    }
-    .char-card-new svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--b3);
-      margin-bottom: 6px;
-    }
-    .char-card-new span {
-      font-family: var(--mono);
-      font-size: .44rem;
-      letter-spacing: .1em;
-    }
+/* ── IDENTITY ROW ────────────────────────── */
+.dash-identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  border-left: 3px solid var(--accent);
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+/* subtle diagonal accent */
+.dash-identity::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 120px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--accentRGB),.04));
+  pointer-events: none;
+}
 
-    .party-section {
-      background: var(--p1);
-      border: 1px solid var(--b1);
-      padding: 16px;
-    }
+.dash-avatar {
+  width: 48px; height: 48px;
+  background: var(--p2);
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--disp);
+  font-size: 1.5rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  letter-spacing: .05em;
+}
 
-    .party-empty {
-      text-align: center;
-      padding: 20px;
-    }
-    .party-empty p {
-      font-family: var(--mono);
-      font-size: .52rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .party-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .party-actions .btn {
-      padding: 8px 14px;
-      font-size: .5rem;
-    }
+.dash-identity-info { flex: 1; min-width: 0; }
 
-    .party-info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .party-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .party-name {
-      font-family: var(--disp);
-      font-size: 1.2rem;
-      color: var(--white);
-      letter-spacing: .1em;
-    }
-    .party-code {
-      font-family: var(--mono);
-      font-size: .52rem;
-      color: var(--accent2);
-      letter-spacing: .1em;
-      background: var(--p2);
-      padding: 4px 8px;
-      border: 1px solid var(--b2);
-    }
-    .party-members {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .party-member {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--p2);
-      padding: 4px 8px;
-      font-family: var(--mono);
-      font-size: .46rem;
-      color: var(--text);
-    }
-    .party-member.is-gm {
-      color: var(--accent);
-    }
-    .party-gm-badge {
-      font-size: .36rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
+.dash-greeting {
+  font-family: var(--disp);
+  font-size: clamp(1.2rem, 3vw, 1.65rem);
+  color: var(--white);
+  letter-spacing: .12em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-greeting span { color: var(--accent); }
 
-    .party-admin-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      padding: 6px 12px;
-      background: var(--accent);
-      color: var(--black);
-      font-family: var(--mono);
-      font-size: .48rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-    .party-admin-link:hover {
-      background: var(--accent2);
-      text-decoration: none;
-    }
+.dash-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.dash-role-badge {
+  font-family: var(--mono);
+  font-size: .48rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: rgba(var(--accentRGB), .08);
+}
+.dash-username {
+  font-family: var(--mono);
+  font-size: .48rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
 
-    .encounter-banner {
-      background: rgba(192,112,64,.1);
-      border: 1px solid rgba(192,112,64,.4);
-      border-left: 3px solid #c07040;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      display: none;
-    }
-    .encounter-banner.active {
-      display: block;
-    }
-    .enc-banner-title {
-      font-family: var(--mono);
-      font-size: .52rem;
-      color: #c07040;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
+.dash-identity-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
 
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.8);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal.open { display: flex; }
-    .modal-card {
-      background: var(--p1);
-      border: 1px solid var(--b1);
-      padding: 24px;
-      width: 100%;
-      max-width: 360px;
-    }
-    .modal-title {
-      font-family: var(--disp);
-      font-size: 1.2rem;
-      color: var(--white);
-      letter-spacing: .1em;
-      margin-bottom: 16px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    .modal-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
-    }
-    .modal-actions .btn { flex: 1; }
+/* ── ENCOUNTER BANNER ────────────────────── */
+.encounter-banner {
+  display: none;
+  padding: 10px 16px;
+  background: rgba(192,112,64,.08);
+  border: 1px solid rgba(192,112,64,.35);
+  border-left: 3px solid #c07040;
+  margin-bottom: 20px;
+}
+.encounter-banner.active { display: flex; align-items: center; gap: 8px; }
+.enc-banner-title {
+  font-family: var(--mono);
+  font-size: .58rem;
+  color: #c07040;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* ── SECTION HEADERS ─────────────────────── */
+.dash-section {
+  margin-bottom: 28px;
+}
+
+.dash-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 14px;
+}
+
+.section-bar {
+  width: 3px;
+  height: 18px;
+  background: var(--accent);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.dash-section-title {
+  font-family: var(--cond);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--b1);
+  margin-left: 12px;
+}
+
+/* ── CHARACTER GRID ──────────────────────── */
+.chars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.char-card {
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: border-color .15s, transform .15s, background .15s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+/* clip corner */
+.char-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  border-style: solid;
+  border-width: 0 14px 14px 0;
+  border-color: transparent var(--b1) transparent transparent;
+  transition: border-right-color .15s;
+}
+.char-card:hover {
+  border-color: var(--accent);
+  background: var(--p2);
+  transform: translateY(-2px);
+}
+.char-card:hover::before { border-right-color: var(--accent); }
+
+.char-card-name {
+  font-family: var(--cond);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.char-card-codename {
+  font-family: var(--mono);
+  font-size: .46rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.char-card-accent-line {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity .15s;
+}
+.char-card:hover .char-card-accent-line { opacity: 1; }
+
+/* NEW CHAR CARD */
+.char-card-new {
+  border-style: dashed;
+  border-color: var(--b2);
+  background: transparent;
+  min-height: 76px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.char-card-new:hover {
+  border-color: var(--accent);
+  border-style: solid;
+  background: rgba(var(--accentRGB), .04);
+  transform: none;
+}
+.char-card-new svg {
+  width: 20px; height: 20px;
+  stroke: var(--b3);
+  transition: stroke .15s;
+}
+.char-card-new:hover svg { stroke: var(--accent); }
+.char-card-new span {
+  font-family: var(--mono);
+  font-size: .46rem;
+  color: var(--muted2);
+  letter-spacing: .14em;
+  transition: color .15s;
+}
+.char-card-new:hover span { color: var(--accent); }
+
+/* ── PARTY PANEL ─────────────────────────── */
+.party-section {
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+}
+
+/* Empty state */
+.party-empty {
+  padding: 32px 24px;
+  text-align: center;
+}
+.party-empty-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  opacity: .4;
+}
+.party-empty p {
+  font-family: var(--mono);
+  font-size: .56rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.party-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.party-actions .btn {
+  font-size: .56rem;
+  padding: 9px 18px;
+}
+
+/* Party Info */
+.party-info {
+  display: none;
+  flex-direction: column;
+}
+.party-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--b1);
+  background: var(--p2);
+}
+.party-name-display {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.party-name {
+  font-family: var(--disp);
+  font-size: 1.3rem;
+  color: var(--white);
+  letter-spacing: .12em;
+  line-height: 1;
+}
+.party-code {
+  font-family: var(--mono);
+  font-size: .48rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+.party-code strong {
+  color: var(--accent);
+  font-weight: normal;
+  letter-spacing: .14em;
+}
+
+.party-body {
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.party-members-label {
+  font-family: var(--mono);
+  font-size: .46rem;
+  color: var(--muted2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.party-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.party-member {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: .52rem;
+  color: var(--text);
+  background: var(--p3);
+  padding: 4px 10px;
+  border: 1px solid var(--b1);
+  letter-spacing: .06em;
+}
+.party-member.is-gm {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(var(--accentRGB), .06);
+}
+.party-gm-badge {
+  font-size: .38rem;
+  letter-spacing: .08em;
+  opacity: .7;
+}
+.party-member-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--b3);
+  flex-shrink: 0;
+}
+.party-member.is-gm .party-member-dot { background: var(--accent); }
+
+.party-admin-link {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(var(--accentRGB), .1);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: .5rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+  margin-left: auto;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.party-admin-link:hover {
+  background: var(--accent);
+  color: var(--black);
+  text-decoration: none;
+}
+
+/* ── MODALS ──────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.82);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn .2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal.open { display: flex; }
+
+.modal-card {
+  background: var(--p1);
+  border: 1px solid var(--b2);
+  border-top: 3px solid var(--accent);
+  padding: 26px 24px;
+  width: 100%;
+  max-width: 360px;
+  animation: dashIn .25s ease both;
+}
+.modal-title {
+  font-family: var(--disp);
+  font-size: 1.3rem;
+  color: var(--white);
+  letter-spacing: .15em;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+.modal-actions .btn { flex: 1; justify-content: center; }
+
+/* ── THEME SWITCHER ──────────────────────── */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.th-btn {
+  padding: 5px !important;
+  min-width: unset !important;
+  border: 1px solid var(--b2) !important;
+  border-radius: 50% !important;
+  transition: border-color .15s, transform .15s !important;
+}
+.th-btn:hover {
+  border-color: var(--accent) !important;
+  transform: scale(1.2);
+}
+.th-btn span {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 600px) {
+  .dash-identity { gap: 12px; padding: 14px 16px; }
+  .dash-avatar { width: 40px; height: 40px; font-size: 1.2rem; }
+  .dash-greeting { font-size: 1rem; }
+  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .party-body { gap: 12px; }
+  .party-admin-link { margin-left: 0; }
+}
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="header-logo">
-      <div class="x-logo">
-        <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
-          <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
-          <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
-          <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-          <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
-          <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-          <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
-        </svg>
-      </div>
-      <div class="hdr-title">
-        <h1>X-MEN</h1>
-        <span class="hdr-sub">TTRPG</span>
-      </div>
-    </div>
-    <div class="hdr-spacer"></div>
-    <div class="hdr-codes">
-      <span>SESSION ACTIVE</span>
-    </div>
-    <div class="hdr-settings">
-      <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-      <div class="settings-dropdown" id="settings-dropdown">
-        <div class="settings-label">TEMA</div>
-        <div class="theme-dots-row" id="theme-dots-row"></div>
-        <div class="settings-dropdown-divider"></div>
-        <div class="settings-dropdown-item" onclick="logout()">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          SAIR
-        </div>
-      </div>
-    </div>
-  </header>
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
 
-  <div class="toolbar">
-    <span class="save-ind salvo">●</span>
-    <div class="toolbar-divider"></div>
-    <a href="ficha.html?new=true" class="tbtn">
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Nova Ficha
-    </a>
-    <div class="toolbar-divider"></div>
-    <a href="wiki.html" class="tbtn">Wiki</a>
-    <div class="toolbar-divider"></div>
-    <a href="cerebro.html" class="tbtn">Cérebro</a>
-    <div class="toolbar-divider"></div>
-    <a href="combate.html" class="tbtn" id="combate-link" style="display:none;">Combate</a>
+<header class="header">
+  <div class="header-logo">
+    <div class="x-logo">
+      <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
+        <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+        <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
+        <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+        <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+        <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+      </svg>
+    </div>
+    <div class="hdr-title">
+      <h1>X-MEN</h1>
+      <span class="hdr-sub">TTRPG // DASHBOARD</span>
+    </div>
+  </div>
+  <div class="hdr-spacer"></div>
+  <div class="hdr-codes">
+    <span class="ac" id="hdr-user-code">—</span>
+    <span>XAVIER INSTITUTE</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <span class="save-ind salvo" id="status-dot" style="display:none;">●</span>
+  <div class="save-bar" id="save-bar">
+    <div class="save-status">
+      <span class="save-dot"></span>
+      <span class="save-text">AGUARDANDO</span>
+    </div>
+    <span class="save-timestamp"></span>
+  </div>
+  <div class="toolbar-divider"></div>
+  <a href="ficha.html?new=true" class="tbtn">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    Nova Ficha
+  </a>
+  <div class="toolbar-divider"></div>
+  <a href="cerebro.html" class="tbtn">Cérebro</a>
+  <a href="wiki.html" class="tbtn">Wiki</a>
+  <a href="combate.html" class="tbtn" id="combate-link" style="display:none;">Combate</a>
+  <a href="admin.html" class="tbtn tbtn-acc" id="admin-link" style="display:none;">
+    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Admin GM
+  </a>
+  <div class="toolbar-spacer"></div>
+  <div class="theme-switcher" id="theme-switcher">
+    <div class="theme-dots-row" id="theme-dots-row"></div>
+  </div>
+  <div class="toolbar-divider"></div>
+  <button class="tbtn" onclick="logout()">
+    <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    Sair
+  </button>
+</div>
+
+<div class="content dash-body">
+
+  <!-- Encounter banner -->
+  <div id="encounter-banner" class="encounter-banner">
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="#c07040" fill="none" stroke-width="2" style="flex-shrink:0"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 9H17v1.5c0 .83-.67 1.5-1.5 1.5S14 11.33 14 10.5 14.67 9 15.5 9z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 15H7v-1.5c0-.83.67-1.5 1.5-1.5S10 12.67 10 13.5 9.33 15 8.5 15z"/></svg>
+    <span class="enc-banner-title">Encontro Ativo!</span>
   </div>
 
-  <div class="content dashboard">
-    <div id="encounter-banner" class="encounter-banner">
-      <span class="enc-banner-title">⚔️ Encontro Ativo!</span>
-    </div>
-
-    <div class="dash-header">
-      <div class="dash-welcome">
-        <h2>Bem-vindo, <span id="user-name">...</span></h2>
-        <p><span id="user-role">JOGADOR</span></p>
-      </div>
-      <div class="dash-user">
-        <div class="dash-user-avatar" id="user-avatar">?</div>
-        <div>
-          <div class="dash-user-name" id="user-display">...</div>
-          <div class="dash-user-role" id="user-role-display">JOGADOR</div>
-        </div>
-        <button class="dash-logout" id="logout-btn">Sair</button>
+  <!-- Identity row -->
+  <div class="dash-identity dash-animate">
+    <div class="dash-avatar" id="user-avatar">?</div>
+    <div class="dash-identity-info">
+      <div class="dash-greeting">Bem-vindo, <span id="user-name">...</span></div>
+      <div class="dash-meta">
+        <span class="dash-role-badge" id="user-role">JOGADOR</span>
+        <span class="dash-username" id="user-display">...</span>
       </div>
     </div>
+    <div class="dash-identity-actions">
+      <button class="tbtn" id="logout-btn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sair
+      </button>
+    </div>
+  </div>
 
-    <div class="dash-section">
-      <div class="dash-section-header">
-        <span class="dash-section-title">Personagens</span>
-      </div>
-      <div class="chars-grid" id="chars-grid">
-        <div class="char-card char-card-new" id="new-char-btn">
-          <svg viewBox="0 0 24 24" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span>NOVA FICHA</span>
-        </div>
+  <!-- Personagens -->
+  <div class="dash-section dash-animate">
+    <div class="dash-section-header">
+      <div class="section-bar"></div>
+      <span class="dash-section-title">Personagens</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="chars-grid" id="chars-grid">
+      <div class="char-card char-card-new" id="new-char-btn">
+        <svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>NOVA FICHA</span>
       </div>
     </div>
+  </div>
 
-    <div class="dash-section">
-      <div class="dash-section-header">
-        <span class="dash-section-title">Party</span>
-      </div>
-      <div class="party-section" id="party-section">
-        <div class="party-empty" id="party-empty">
-          <p>Você ainda não faz parte de uma party.</p>
-          <div class="party-actions">
-            <button class="btn" id="create-party-btn">Criar Party</button>
-            <button class="btn" id="join-party-btn">Entrar com Código</button>
-          </div>
+  <!-- Party -->
+  <div class="dash-section dash-animate">
+    <div class="dash-section-header">
+      <div class="section-bar"></div>
+      <span class="dash-section-title">Party</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="party-section" id="party-section">
+
+      <!-- Empty state -->
+      <div class="party-empty" id="party-empty">
+        <div class="party-empty-icon">⊞</div>
+        <p>Você ainda não faz parte de uma party.<br>Crie uma ou entre com o código fornecido pelo GM.</p>
+        <div class="party-actions">
+          <button class="btn" id="create-party-btn">Criar Party</button>
+          <button class="btn" id="join-party-btn">Entrar com Código</button>
         </div>
-        <div class="party-info" id="party-info" style="display: none;">
-          <div class="party-header">
+      </div>
+
+      <!-- Active party -->
+      <div class="party-info" id="party-info">
+        <div class="party-info-header">
+          <div class="party-name-display">
             <span class="party-name" id="party-name">...</span>
-            <span class="party-code">Código: <span id="party-code">...</span></span>
+            <span class="party-code">Código de acesso: <strong id="party-code">...</strong></span>
           </div>
-          <div class="party-members" id="party-members"></div>
-          <a href="admin.html" class="party-admin-link" id="admin-link" style="display: none;">
-            ⚔️ Gerenciar Party
+          <a href="admin.html" class="party-admin-link" id="admin-party-link" style="display:none;">
+            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Painel GM
           </a>
         </div>
+        <div class="party-body">
+          <div style="flex:1;min-width:0;">
+            <div class="party-members-label">Membros</div>
+            <div class="party-members" id="party-members"></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <div class="modal" id="create-party-modal">
-    <div class="modal-card">
-      <h3 class="modal-title">Criar Party</h3>
-      <div class="form-group">
-        <label class="form-label">Nome da Party</label>
-        <input type="text" class="form-input" id="party-name-input" placeholder="X-Men Squad">
-      </div>
-      <div class="modal-actions">
-        <button class="btn" id="cancel-create-party">Cancelar</button>
-        <button class="btn btn-primary" id="confirm-create-party">Criar</button>
-      </div>
+</div><!-- /dash-body -->
+
+<!-- Modal: Criar Party -->
+<div class="modal" id="create-party-modal">
+  <div class="modal-card">
+    <h3 class="modal-title">Criar Party</h3>
+    <div class="form-group">
+      <label class="form-label">Nome da Party</label>
+      <input type="text" class="form-input" id="party-name-input" placeholder="X-Men Squad" autocomplete="off">
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="cancel-create-party">Cancelar</button>
+      <button class="btn btn-primary" id="confirm-create-party">Criar</button>
     </div>
   </div>
+</div>
 
-  <div class="modal" id="join-party-modal">
-    <div class="modal-card">
-      <h3 class="modal-title">Entrar na Party</h3>
-      <div class="form-group">
-        <label class="form-label">Código de Acesso</label>
-        <input type="text" class="form-input" id="party-code-input" placeholder="ABC123" maxlength="6" style="text-transform: uppercase;">
-      </div>
-      <div class="modal-actions">
-        <button class="btn" id="cancel-join-party">Cancelar</button>
-        <button class="btn btn-primary" id="confirm-join-party">Entrar</button>
-      </div>
+<!-- Modal: Entrar na Party -->
+<div class="modal" id="join-party-modal">
+  <div class="modal-card">
+    <h3 class="modal-title">Entrar na Party</h3>
+    <div class="form-group">
+      <label class="form-label">Código de Acesso</label>
+      <input type="text" class="form-input" id="party-code-input" placeholder="ABC123" maxlength="6" style="text-transform:uppercase;letter-spacing:.2em;" autocomplete="off">
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="cancel-join-party">Cancelar</button>
+      <button class="btn btn-primary" id="confirm-join-party">Entrar</button>
     </div>
   </div>
+</div>
 
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/themes.js"></script>
-  <script>
-    var currentUser = null;
-    var currentProfile = null;
-    var currentParty = null;
+<!-- Toast notification -->
+<div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  max-width: 90%;
+  word-wrap: break-word;
+  text-align: center;
+">—</div>
 
-    function init() {
-      initTheme();
-      renderThemeDots();
-      
-      requireAuth().then(function(auth) {
-        if (!auth) return;
-        
-        currentUser = auth.session.user;
-        currentProfile = auth.profile;
-        
-        document.getElementById('user-name').textContent = currentProfile.username;
-        document.getElementById('user-display').textContent = currentProfile.display_name;
-        document.getElementById('user-avatar').textContent = currentProfile.username.charAt(0).toUpperCase();
-        
-        var roleLabel = currentProfile.role === 'gm' ? 'MESTRE' : 'JOGADOR';
-        document.getElementById('user-role').textContent = roleLabel;
-        document.getElementById('user-role-display').textContent = roleLabel;
-        
-        loadCharacters().catch(function(e) { console.error('loadCharacters:', e); });
-        loadParty().catch(function(e) { console.error('loadParty:', e); });
-        
-        // Polling: refresh data every 15 seconds
-        setInterval(function() {
-          loadCharacters().catch(function(e) { console.error('polling chars:', e); });
-          loadParty().catch(function(e) { console.error('polling party:', e); });
-        }, 15000);
-      }).catch(function(e) {
-        console.error('init error:', e);
-      });
-    }
+<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
+<!-- Scripts already loaded in <head> -->
+<script>
+// Toast notification
+function toast(msg) {
+  var el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = '// ' + msg;
+  el.style.opacity = '1';
+  clearTimeout(el._timeout);
+  el._timeout = setTimeout(function() {
+    el.style.opacity = '0';
+  }, 2600);
+}
 
-    function loadCharacters() {
-      return api.listCharacters(currentUser.id).then(function(chars) {
-        var grid = document.getElementById('chars-grid');
-        var newBtn = document.getElementById('new-char-btn');
-        
-        // Clear existing character cards (but keep new button)
-        var existingCards = grid.querySelectorAll('.char-card:not(.char-card-new)');
-        existingCards.forEach(function(card) { card.remove(); });
-        
-        chars.forEach(function(char) {
-          var card = document.createElement('div');
-          card.className = 'char-card';
-          card.innerHTML = '<div class="char-card-name">' + (char.name || 'Sem Nome') + '</div>' +
-            '<div class="char-card-codename">' + (char.codename || '') + '</div>';
-          card.addEventListener('click', function() {
-            window.location.href = 'ficha.html?id=' + char.id;
-          });
-          grid.insertBefore(card, newBtn);
-        });
-      });
-    }
+</script>
 
-    function loadParty() {
-      console.log('[DEBUG] loadParty called, userId:', currentUser.id);
-      return api.getPlayerParty(currentUser.id)
-        .then(function(party) {
-          console.log('[DEBUG] getPlayerParty result:', party);
-          if (!party && currentProfile.role === 'gm') {
-            console.log('[DEBUG] No party found, trying getGMParty');
-            return api.getGMParty(currentUser.id).then(function(p) {
-              console.log('[DEBUG] getGMParty result:', p);
-              return showParty(p);
-            });
-          }
-          return showParty(party);
-        })
-        .catch(function(err) {
-          console.error('[DEBUG] loadParty error:', err);
-        });
-    }
+<script>
+// Populate user info in header
+function populateUserInfo(user, profile) {
+  var userNameEl = document.getElementById('user-name');
+  var userAvatarEl = document.getElementById('user-avatar');
+  var userRoleEl = document.getElementById('user-role');
+  var userDisplayEl = document.getElementById('user-display');
+  var userCodeEl = document.getElementById('hdr-user-code');
+  
+  var displayName = profile?.display_name || profile?.username || user?.email || 'Player';
+  var initial = displayName.charAt(0).toUpperCase();
+  var role = profile?.role === 'gm' ? 'MESTRE' : 'JOGADOR';
+  var username = profile?.username || user?.email?.split('@')[0] || 'user';
+  
+  if (userNameEl) userNameEl.textContent = displayName;
+  if (userAvatarEl) userAvatarEl.textContent = initial;
+  if (userRoleEl) userRoleEl.textContent = role;
+  if (userDisplayEl) userDisplayEl.textContent = username.toUpperCase();
+  if (userCodeEl) userCodeEl.textContent = username.toUpperCase();
+}
 
-    function showParty(party) {
-      console.log('[DEBUG] showParty called with:', party);
-      if (!party) {
-        console.log('[DEBUG] No party, keeping empty state');
-        return;
+// Dashboard initialization
+window.addEventListener('DOMContentLoaded', function() {
+  requireAuth().then(function(auth) {
+    if (!auth) return;
+    
+    var userId = auth.session.user.id;
+    
+    // Load profile and populate user info
+    window.getProfile(userId).then(function(profile) {
+      populateUserInfo(auth.session.user, profile);
+    }).catch(function(err) {
+      console.error('Error loading profile:', err);
+      populateUserInfo(auth.session.user, null);
+    });
+    
+    // Load and display characters (forceRefresh to get latest)
+    window.listCharacters(userId, true).then(function(chars) {
+      populateCharacterGrid(chars);
+    }).catch(function(err) {
+      console.error('Error loading characters:', err);
+    });
+
+    // Load and display party
+    window.getPlayerParty(userId).then(function(party) {
+      if (party) {
+        populatePartyInfo(party, userId);
       }
-      currentParty = party;
-      document.getElementById('party-empty').style.display = 'none';
-      document.getElementById('party-info').style.display = 'flex';
-      document.getElementById('party-name').textContent = party.name;
-      document.getElementById('party-code').textContent = party.code;
-      document.getElementById('combate-link').style.display = 'flex';
-      
-      if (currentProfile.role === 'gm') {
-        document.getElementById('admin-link').style.display = 'inline-flex';
+    }).catch(function(err) {
+      console.error('Error loading party:', err);
+    });
+
+    // Render theme dots with icons
+    renderThemeDots();
+    
+    // Bind event handlers
+    bindDashboardEvents();
+  }).catch(function(err) {
+    console.error('Auth error:', err);
+  });
+});
+
+// Render theme dots with icons instead of just colors
+function renderThemeDots() {
+  var container = document.getElementById('theme-dots-row');
+  if (!container || !window.THEMES) return;
+  
+  var current = localStorage.getItem('cerebro_tema') || 'yellow';
+  container.innerHTML = Object.entries(window.THEMES).map(function(entry) {
+    var key = entry[0];
+    var theme = entry[1];
+    return '<div class="theme-dot-sm ' + (key === current ? 'active' : '') + '" ' +
+           'style="background:' + theme.color + ';cursor:pointer;" ' +
+           'onclick="changeTheme(\'' + key + '\')" ' +
+           'title="' + theme.name + '"></div>';
+  }).join('');
+}
+
+function changeTheme(themeName) {
+  localStorage.setItem('cerebro_tema', themeName);
+  document.body.className = 'theme-' + themeName;
+  renderThemeDots();
+  toast('TEMA ALTERADO: ' + (window.THEMES[themeName]?.name || themeName));
+}
+
+function populateCharacterGrid(chars) {
+  var grid = document.getElementById('chars-grid');
+  if (!grid) return;
+
+  // Keep new char button
+  var newBtn = grid.querySelector('.char-card-new');
+  grid.innerHTML = '';
+  if (newBtn) grid.appendChild(newBtn);
+
+  // Add character cards
+  if (chars && chars.length > 0) {
+    chars.forEach(function(char) {
+      var card = document.createElement('a');
+      card.className = 'char-card';
+      card.href = 'ficha.html?id=' + char.id;
+      var foto = char.foto_base64 || '';
+      var topNome = char.name && char.name.trim();
+      var dataNome = char.data && char.data.nome && char.data.nome.trim();
+      var charName = topNome || dataNome || 'Novo Personagem';
+      var topCodinome = char.codename && char.codename.trim();
+      var dataCodinome = char.data && char.data.codinome && char.data.codinome.trim();
+      var charCodinome = topCodinome || dataCodinome || '—';
+      var nameForInitial = charCodinome !== '—' ? charCodinome : charName;
+      var initial = nameForInitial.charAt(0).toUpperCase();
+      if (foto) {
+card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
+
+          card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
       }
-      
-      return api.getPartyMembers(party.id).then(function(members) {
-        var membersEl = document.getElementById('party-members');
-        membersEl.innerHTML = '';
-        members.forEach(function(m) {
-          var p = m.profiles || {};
+      grid.appendChild(card);
+    });
+  }
+}
+
+function populatePartyInfo(party, playerId) {
+  var emptyState = document.getElementById('party-empty');
+  var infoState = document.getElementById('party-info');
+  if (!infoState || !emptyState) return;
+
+  // Show party info, hide empty
+  emptyState.style.display = 'none';
+  infoState.style.display = 'block';
+
+  // Set party name and code
+  var nameEl = document.getElementById('party-name');
+  var codeEl = document.getElementById('party-code');
+  if (nameEl) nameEl.textContent = party.name || 'Party';
+  if (codeEl) codeEl.textContent = party.code || '—';
+
+  // Show admin link if current user is GM
+  var adminLink = document.getElementById('admin-party-link');
+  if (adminLink && party.gm_id === playerId) {
+    adminLink.style.display = 'inline-flex';
+  }
+
+  // Load and display members
+  window.getPartyMembers(party.id).then(function(members) {
+    var membersContainer = document.getElementById('party-members');
+    if (membersContainer) {
+      membersContainer.innerHTML = '';
+      if (members && members.length > 0) {
+        members.forEach(function(member) {
           var memberEl = document.createElement('div');
-          memberEl.className = 'party-member' + (p.id === party.gm_id ? ' is-gm' : '');
-          memberEl.innerHTML = (p.display_name || 'Unknown') +
-            (p.id === party.gm_id ? ' <span class="party-gm-badge">(GM)</span>' : '');
-          membersEl.appendChild(memberEl);
+          memberEl.className = 'party-member';
+          memberEl.textContent = member.name || 'Membro';
+          membersContainer.appendChild(memberEl);
         });
-      });
+      }
     }
+  });
+}
 
-    document.getElementById('new-char-btn').addEventListener('click', function() {
-      api.createCharacter(currentUser.id, currentParty ? currentParty.id : null).then(function(char) {
-        window.location.href = 'ficha.html?id=' + char.id;
-      }).catch(function(e) {
-        alert('Erro ao criar personagem: ' + e.message);
-      });
+function bindDashboardEvents() {
+  // New character button
+  var newBtn = document.getElementById('new-char-btn');
+  if (newBtn) {
+    newBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'ficha.html?new=true';
     });
+  }
 
-    document.getElementById('logout-btn').addEventListener('click', function() {
-      logout();
+  // Create party button
+  var createPartyBtn = document.getElementById('create-party-btn');
+  if (createPartyBtn) {
+    createPartyBtn.addEventListener('click', function() {
+      var modal = document.getElementById('create-party-modal');
+      if (modal) modal.style.display = 'flex';
     });
+  }
 
-    document.getElementById('create-party-btn').addEventListener('click', function() {
-      document.getElementById('create-party-modal').classList.add('open');
+  // Cancel create party
+  var cancelCreateParty = document.getElementById('cancel-create-party');
+  if (cancelCreateParty) {
+    cancelCreateParty.addEventListener('click', function() {
+      var modal = document.getElementById('create-party-modal');
+      if (modal) modal.style.display = 'none';
     });
+  }
 
-    document.getElementById('join-party-btn').addEventListener('click', function() {
-      document.getElementById('join-party-modal').classList.add('open');
-    });
-
-    document.getElementById('cancel-create-party').addEventListener('click', function() {
-      document.getElementById('create-party-modal').classList.remove('open');
-    });
-
-    document.getElementById('cancel-join-party').addEventListener('click', function() {
-      document.getElementById('join-party-modal').classList.remove('open');
-    });
-
-    document.getElementById('confirm-create-party').addEventListener('click', function() {
-      var name = document.getElementById('party-name-input').value;
-      if (!name) return;
-      
-      console.log('[DEBUG] Creating party:', name);
-      api.createParty(name, currentUser.id).then(function(party) {
-        console.log('[DEBUG] Party created:', party);
-        return api.joinParty(party.id, currentUser.id).then(function() {
-          console.log('[DEBUG] Joined party');
-          document.getElementById('create-party-modal').classList.remove('open');
-          return loadParty();
-        });
-      }).catch(function(e) {
-        console.error('[DEBUG] Error creating party:', e);
-        alert('Erro ao criar party: ' + e.message);
-      });
-    });
-
-    document.getElementById('confirm-join-party').addEventListener('click', function() {
-      var code = document.getElementById('party-code-input').value;
-      if (!code) return;
-      
-      api.getPartyByCode(code).then(function(party) {
-        if (!party) {
-          alert('Código inválido!');
-          return;
-        }
-        return api.joinParty(party.id, currentUser.id).then(function() {
-          document.getElementById('join-party-modal').classList.remove('open');
-          return loadParty();
-        });
-      }).catch(function(e) {
-        alert('Erro ao entrar na party: ' + e.message);
-      });
-    });
-
-    function toggleSettings() {
-      document.getElementById('settings-dropdown').classList.toggle('open');
-    }
-    
-    function renderThemeDots() {
-      var themes = [
-        { id: 'yellow', color: '#FFD600' },
-        { id: 'red', color: '#E8001C' },
-        { id: 'green', color: '#00C853' },
-        { id: 'purple', color: '#b040ff' },
-        { id: 'blue', color: '#3a8fc0' }
-      ];
-      var current = getCurrentTheme();
-      var container = document.getElementById('theme-dots-row');
-      container.innerHTML = themes.map(function(t) {
-        return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') + '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id + '\');renderThemeDots();" title="' + t.name + '"></div>';
-      }).join('');
-    }
-    
-    document.addEventListener('click', function(e) {
-      var dropdown = document.getElementById('settings-dropdown');
-      var btn = document.querySelector('.hdr-settings-btn');
-      if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
-        dropdown.classList.remove('open');
+    // Confirm create party
+  var confirmCreateParty = document.getElementById('confirm-create-party');
+  if (confirmCreateParty) {
+    confirmCreateParty.addEventListener('click', function() {
+      var input = document.getElementById('party-name-input');
+      if (input && input.value.trim()) {
+        requireAuth().then(function(auth) {
+          if (!auth) return;
+          var userId = auth.session.user.id;
+           window.createParty(input.value.trim(), userId).then(function() {
+             toast('PARTY CRIADA COM SUCESSO');
+             var modal = document.getElementById('create-party-modal');
+             if (modal) modal.style.display = 'none';
+             input.value = '';
+             // Clear cache and reload party info
+             if (window.cache) {
+               window.cache.invalidate('gm_party', userId);
+               window.cache.invalidate('player_party', userId);
+             }
+             window.getPlayerParty(userId).then(function(party) {
+               if (party) populatePartyInfo(party, userId);
+             }).catch(function(err) {
+               toast('ERRO AO CARREGAR PARTY');
+               console.error('Error loading party:', err);
+             });
+           }).catch(function(err) {
+             toast('ERRO AO CRIAR PARTY');
+             console.error('Error creating party:', err);
+           });
+         });
       }
     });
+  }
 
-    init();
-  </script>
+  // Join party button
+  var joinPartyBtn = document.getElementById('join-party-btn');
+  if (joinPartyBtn) {
+    joinPartyBtn.addEventListener('click', function() {
+      var modal = document.getElementById('join-party-modal');
+      if (modal) modal.style.display = 'flex';
+    });
+  }
+
+  // Cancel join party
+  var cancelJoinParty = document.getElementById('cancel-join-party');
+  if (cancelJoinParty) {
+    cancelJoinParty.addEventListener('click', function() {
+      var modal = document.getElementById('join-party-modal');
+      if (modal) modal.style.display = 'none';
+    });
+  }
+
+  // Confirm join party
+  var confirmJoinParty = document.getElementById('confirm-join-party');
+  if (confirmJoinParty) {
+    confirmJoinParty.addEventListener('click', function() {
+      var input = document.getElementById('party-code-input');
+      if (input && input.value.trim()) {
+        requireAuth().then(function(auth) {
+          if (!auth) return;
+          var userId = auth.session.user.id;
+          window.getPartyByCode(input.value.trim()).then(function(party) {
+            if (party) {
+              return window.joinParty(party.id, userId).then(function() {
+                toast('ENTROU NA PARTY: ' + party.name);
+                var modal = document.getElementById('join-party-modal');
+                if (modal) modal.style.display = 'none';
+                input.value = '';
+                // Clear cache before reloading
+                if (window.cache) {
+                  window.cache.invalidate('player_party', userId);
+                }
+                populatePartyInfo(party, userId);
+              }).catch(function(err) {
+                toast('ERRO AO ENTRAR NA PARTY');
+                console.error('Error joining party:', err);
+              });
+            } else {
+              toast('PARTY NÃO ENCONTRADA');
+            }
+          }).catch(function(err) {
+            toast('ERRO AO BUSCAR PARTY');
+            console.error('Error finding party:', err);
+          });
+        });
+      }
+    });
+  }
+
+  // Close modals on outside click
+  document.querySelectorAll('.modal').forEach(function(modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+}
+</script>
 </body>
 </html>

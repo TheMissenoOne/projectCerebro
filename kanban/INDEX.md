@@ -8,6 +8,9 @@
 - [Fase C: Dashboard](done/fase-c-dashboard.md)
 - [Fase D: combate.html](done/fase-d-combate.md)
 - [Fase E: Seed NPCs](done/fase-e-seed-npcs.md)
+- [Fase F: Modularização - Config Centralizada](done/fase-f-modularizacao.md)
+- [Fase G: CodeRabbit Review - TESTS PASSED ✅](done/fase-g-coderabbit-review.md)
+- [Fase L: Wiki + Cerebro + NPCs + Combate](done/fase-l-outros.md)
 
 ---
 
@@ -20,22 +23,10 @@
 | C - Dashboard | ✅ Done |
 | D - Calculadora AV/OV | ✅ Done |
 | E - Seed NPCs | ✅ Done |
-
----
-
-## Todas as Fases Completas! 🎉
-
-### Funcionalidades Implementadas:
-
-1. **Backend Express.js** com PostgreSQL via Supabase
-2. **Autenticação JWT** com registro/login
-3. **Dashboard** completo com personagens e parties
-4. **Cérebro Database** para NPCs do GM
-5. **Calculadora de Combate** (AV/OV e EV/RV)
-6. **Seed de 133 NPCs** do X-MEN TTRPG
-
-### Próximos Passos (Opcionais):
-- Deploy para produção no Render
-- Adicionar mais páginas (wiki expandida)
-- Melhorar integração com personagens
-- Adicionar testes automatizados
+| F - Modularização | ✅ Done |
+| G - CodeRabbit Review | ✅ Done |
+| H - SPA Core | ✅ Done |
+| I - Dashboard Component | ✅ Done |
+| J - Ficha Component | ✅ Done |
+| K - Admin Component | ✅ Done |
+| L - Outros Componentes | ✅ Done |

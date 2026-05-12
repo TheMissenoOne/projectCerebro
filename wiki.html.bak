@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN TTRPG // WIKI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    .wiki-layout {
+      display: flex;
+      min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
+    }
+
+    .wiki-sidebar {
+      width: 220px;
+      background: var(--dark);
+      border-right: 1px solid var(--b1);
+      flex-shrink: 0;
+      overflow-y: auto;
+      padding: 12px 0;
+    }
+
+    .wiki-nav-section {
+      margin-bottom: 16px;
+    }
+
+    .wiki-nav-title {
+      font-family: var(--mono);
+      font-size: .4rem;
+      color: var(--muted2);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+    }
+
+    .wiki-nav-link {
+      display: block;
+      padding: 8px 16px;
+      font-family: var(--body);
+      font-size: .72rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: all .12s;
+    }
+    .wiki-nav-link:hover {
+      background: rgba(255,255,255,.03);
+      color: var(--white);
+    }
+    .wiki-nav-link.active {
+      background: rgba(232,0,28,.1);
+      color: var(--red);
+      border-left: 2px solid var(--red);
+    }
+
+    .wiki-content {
+      flex: 1;
+      padding: clamp(16px, 3vw, 32px);
+      overflow-y: auto;
+    }
+
+    .wiki-content h1 {
+      font-family: var(--disp);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--white);
+      letter-spacing: .1em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 8px;
+    }
+
+    .wiki-content h2 {
+      font-family: var(--cond);
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin: 24px 0 12px;
+      border-left: 3px solid var(--red);
+      padding-left: 10px;
+    }
+
+    .wiki-content h3 {
+      font-family: var(--body);
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 18px 0 8px;
+    }
+
+    .wiki-content p {
+      font-family: var(--body);
+      font-size: .78rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .wiki-content ul, .wiki-content ol {
+      margin: 8px 0 12px 20px;
+    }
+
+    .wiki-content li {
+      font-family: var(--body);
+      font-size: .74rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .wiki-content code {
+      font-family: var(--mono);
+      font-size: .68rem;
+      background: var(--p2);
+      padding: 2px 6px;
+      color: var(--red);
+    }
+
+    .wiki-content pre {
+      background: var(--p1);
+      border: 1px solid var(--b1);
+      padding: 12px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .wiki-content pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .wiki-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+    }
+
+    .wiki-content th, .wiki-content td {
+      padding: 8px 10px;
+      border: 1px solid var(--b1);
+      font-family: var(--mono);
+      font-size: .58rem;
+    }
+
+    .wiki-content th {
+      background: var(--p2);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .wiki-content td {
+      text-align: center;
+    }
+
+    .wiki-content table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: .52rem;
+    }
+
+    .wiki-content table th, .wiki-content table td {
+      padding: 4px 6px;
+      min-width: 24px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    .ar-modes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .ar-mode-btn {
+      font-family: var(--mono);
+      font-size: .6rem;
+      padding: 8px 16px;
+      background: var(--p1);
+      border: 1px solid var(--b2);
+      color: var(--muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      transition: all .15s;
+    }
+
+    .ar-mode-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .ar-mode-btn.active {
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+      font-weight: bold;
+    }
+
+    @media(max-width: 768px) {
+      .wiki-layout { flex-direction: column; }
+      .wiki-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
+    }
+</style>
+</head>
+<body>
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
+    <div class="header-logo">
+      <a href="dashboard.html" class="x-logo">
+        <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
+          <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
+          <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity=".3"/>
+          <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+          <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="square"/>
+          <rect class="logo-ext" x="27" y="3" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="27" y="57.5" width="10" height="3.5" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="3" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+          <rect class="logo-ext" x="57.5" y="27" width="3.5" height="10" fill="var(--accent)" opacity=".6"/>
+        </svg>
+      </a>
+      <div class="hdr-title">
+        <h1>X-MEN</h1>
+        <span class="hdr-sub">TTRPG // WIKI</span>
+      </div>
+    </div>
+    <div class="hdr-spacer"></div>
+    <div class="hdr-settings">
+      <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <div class="settings-dropdown" id="settings-dropdown">
+        <div class="settings-label">TEMA</div>
+        <div class="theme-dots-row" id="theme-dots-row"></div>
+        <div class="settings-dropdown-divider"></div>
+        <div class="settings-dropdown-item" onclick="logout()">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          SAIR
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="ficha.html" class="tbtn">Ficha</a>
+    <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <div class="toolbar-spacer"></div>
+    <div class="theme-switcher" style="border-left:none;padding:0;">
+      <button class="tbtn th-btn" onclick="setTema('yellow')" title="Amarelo"><span style="background:#FFD600;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('red')" title="Vermelho"><span style="background:#E8001C;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('green')" title="Verde"><span style="background:#00C853;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('purple')" title="Roxo"><span style="background:#b040ff;"></span></button>
+      <button class="tbtn th-btn" onclick="setTema('blue')" title="Azul"><span style="background:#3a8fc0;"></span></button>
+    </div>
+  </div>
+
+  <div class="wiki-layout">
+    <nav class="wiki-sidebar">
+      <div class="wiki-nav-section">
+        <div class="wiki-nav-title">Regras</div>
+        <a href="wiki.html" class="wiki-nav-link" data-page="index">Introdução</a>
+        <a href="wiki.html?p=movimentos" class="wiki-nav-link" data-page="movimentos">Movimentos</a>
+        <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas">Temas</a>
+        <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
+        <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
+        <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
+        <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Ação e Resultado</a>
+      </div>
+      <div class="wiki-nav-section">
+        <div class="wiki-nav-title">Personagens</div>
+        <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera">Tema de Galera</a>
+        <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs">NPCs & Cérebro</a>
+      </div>
+    </nav>
+
+    <main class="wiki-content" id="wiki-content">
+      <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
+      <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado. Aqui você encontrará todas as informações necessárias para criar seus personagens, entender os movimentos, e rodar suas sessões.</p>
+      
+      <h2>Sobre o Sistema</h2>
+      <p>X-Men TTRPG usa uma versão adaptada do sistema City of Mist para o universo X-Men. O foco está em:</p>
+      <ul>
+        <li><strong>Dramaticidade:</strong> Personagens são definidos por seus Temas e identidades</li>
+        <li><strong>Poder:</strong> Mutantes com habilidades extraordinárias, desde Telepatia até Fator de Cura</li>
+        <li><strong>Conflito:</strong> A eterna luta entre mutantes e humanos, e as complexas relações entre os personagens</li>
+      </ul>
+      
+      <h2>Navegação</h2>
+      <p>Use a barra lateral para navegar pelas diferentes seções:</p>
+      <ul>
+        <li><strong>Movimentos:</strong> As ações básicas que personagens podem tomar</li>
+        <li><strong>Temas:</strong> A estrutura de criação de personagens (Mutação vs Humanidade)</li>
+        <li><strong>Tags:</strong> O sistema de poderes e fraquezas</li>
+        <li><strong>Progressão:</strong> Como personagens evoluem ao longo da campanha</li>
+        <li><strong>Combate:</strong> Regras de combate, condições e recuperação</li>
+      </ul>
+    </main>
+  </div>
+
+  <script src="assets/js/themes.js"></script>
+  <script src="assets/js/music.js"></script>
+  <script src="assets/js/wiki.js"></script>
+  <script>
+    const wikiContent = document.getElementById('wiki-content');
+    const navLinks = document.querySelectorAll('.wiki-nav-link');
+    
+    const pages = {
+      index: `
+        <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
+        <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado.</p>
+        <h2>Sobre o Sistema</h2>
+        <p>X-Men TTRPG usa uma versão adaptada do sistema City of Mist para o universo X-Men.</p>
+        <h2>Navegação</h2>
+        <p>Use a barra lateral para navegar pelas diferentes seções do sistema.</p>
+      `,
+      movimentos: `
+        <h1>Movimentos</h1>
+        <p>Os movimentos são as ações básicas que seu personagem pode realizar. Cada movimento tem um atributo associado e um resultado determinado por rolagem de dados.</p>
+        
+        <h2>Virar o Jogo</h2>
+        <p>Quando você tenta mudar completamente o rumo de uma situação através de uma ação drástica,uba Virar o Jogo.</p>
+        <ul>
+          <li><strong>Atributo:</strong> depends on the action</li>
+          <li><strong>Sucesso:</strong> Take +1 forward</li>
+          <li><strong>Parcial:</strong> A escolha: take a condition or the GM says how you succeed but not as cleanly as you'd like</li>
+          <li><strong>Falha:</strong> Things go wrong. The GM says how, and you take a condition</li>
+        </ul>
+        
+        <h2>Convencer</h2>
+        <p>Quando você tenta influenciar alguém através de palavras, faça um movimento de Convencer.</p>
+        
+        <h2>Rir na Cara do Perigo</h2>
+        <p>Quando você enfrenta o perigo com desprezo ou humor, faça este movimento.</p>
+        
+        <h2>Partir pro Abraço</h2>
+        <p>Quando você se aproxima para um combate físico direto, faça este movimento.</p>
+        
+        <h2>Investigar</h2>
+        <p>Quando você busca informações, faça um movimento de Investigar.</p>
+        
+        <h2>Agir na Sombra</h2>
+        <p>Quando você tenta algo furtivo ou discreto, faça este movimento.</p>
+        
+        <h2>Correr o Risco</h2>
+        <p>Quando você tenta algo perigoso sem saber o resultado, faça este movimento.</p>
+      `,
+      temas: `
+        <h1>Temas</h1>
+        <p>Temas são a estrutura central de criação de personagens em City of Mist. Cada personagem tem dois tipos de Temas: um de Mist (poder místico/sobrenatural) e um de Histórias (humanidade/ Background).</p>
+        
+        <h2>Tipos de Temas</h2>
+        
+        <h3>Temas de Mist</h3>
+        <p>Estes representam os poderes e a natureza sobrenatural do personagem:</p>
+        <ul>
+          <li><strong>Mutação:</strong> O poder mutante em si</li>
+          <li><strong>Artefato:</strong> Um objeto com poderes</li>
+          <li><strong>Pacto:</strong> Um acordo com alguma entidade</li>
+          <li><strong>Influência:</strong> Uma conexão com o mundo místico</li>
+        </ul>
+        
+        <h3>Temas de História</h3>
+        <p>Estes representam a humanidade e o Background do personagem:</p>
+        <ul>
+          <li><strong>Passado:</strong> De onde você veio</li>
+          <li><strong>Relacionamento:</strong> Conexões com outros</li>
+          <li><strong>Ideologia:</strong> O que você acredita</li>
+          <li><strong>Obrigação:</strong> Um dever ou responsabilidade</li>
+        </ul>
+        
+        <h2>Criando Temas</h2>
+        <p>Cada Tema tem um nome, um Status (número de Tags ativas), e um Flavor (descrição narrativa).</p>
+        <p>Tags são poder concretizado - frases que descrevem o que seu Tema permite fazer.</p>
+      `,
+      tags: `
+        <h1>Tags</h1>
+        <p>Tags são a representação mecânica dos poderes, habilidades e fraquezas do seu personagem.</p>
+        
+        <h2>Estrutura das Tags</h2>
+        <p>Uma Tag segue o formato: <code>[Descrição] [Grau]</code></p>
+        <ul>
+          <li><strong>Descrição:</strong> O que a Tag permite fazer</li>
+          <li><strongGrau (1-6):</strong> O nível de poder (6 é Ômega)</li>
+        </ul>
+        
+        <h2>Tags Positivas vs Negativas</h2>
+        
+        <h3>Tags Positivas</h3>
+        <p>Representam poderes e habilidades:</p>
+        <ul>
+          <li><code>Telepatia 5</code> - Capacidade de ler mentes</li>
+          <li><code>Força Sobre-Humana 4</code> - Capacidade de levantar carros</li>
+        </ul>
+        
+        <h3>Tags Negativas (Fraquezas)</h3>
+        <p>Representam vulnerabilidades:</p>
+        <ul>
+          <li><code>Prata Mortal -2</code> - Vulnerabilidade a prata</li>
+          <li><code>Intoxicado pela Luz -3</code> - Não pode ficar sob luz solar</li>
+        </ul>
+        
+        <h2>Usando Tags</h2>
+        <p>Para usar uma Tag em um movimento, você deve ter o Status alto o suficiente para suportar o grau da Tag.</p>
+        <p>O GM pode determinar que Tags específicas são relevantes para certain ações.</p>
+      `,
+      progressao: `
+        <h1>Progressão</h1>
+        <p>A progressão em City of Mist é driven por dois conceitos: Atenção e Dissipação.</p>
+        
+        <h2>Atenção</h2>
+        <p>Quando você usa um Tema de Mist de forma dramática ou significativa, você ganha Atenção. Isso representa o mundo místico notando você.</p>
+        <p>Quando a Atenção atinge 5, você pode "Virar Avatar" - um momento de poder máximo que pode mudar o jogo.</p>
+        
+        <h2>Dissipação</h2>
+        <p>Quando você ignora sua natureza mística ou age de forma completamente humana, você ganha Dissipação.</p>
+        <p>Quando a Dissipação atinge 5, você pode "Cair no Sono" - um momento de humanidade total que também pode ser poderoso.</p>
+        
+        <h2>Evolução de Temas</h2>
+        <p>Between sessions, players can:</p>
+        <ul>
+          <li>Adicionar novas Tags aos Temas existentes</li>
+          <li>Alterar a natureza de um Tema</li>
+          <li>Criar novos Temas</li>
+          <li>Remover Tags velhas</li>
+        </ul>
+        
+        <h2>Condições e Recuperação</h2>
+        <p>Condições são markers de trauma físico e emocional. Para se recuperar, você deve enfrentar o origen da condição através de roleplay significativo.</p>
+      `,
+      combate: `
+        <h1>Combate</h1>
+        <p>O combate em X-Men TTRPG é fluido e narrativo, focado em cinema e drama.</p>
+        
+        <h2>Iniciativa</h2>
+        <p>O GM determina a ordem de iniciativa baseado na situação narrativa. Personagens com alta velocidade ou habilidades de combate podem ter vantagem.</p>
+        
+        <h2>Condições em Combate</h2>
+        <p>Durante o combate, personagens podem receber condições:</p>
+        <ul>
+          <li><strong>Ferido:</strong> Dano físico</li>
+          <li><strong>Exausto:</strong> Exaustão física</li>
+          <li><strong>Assustado:</strong> Medo intenso</li>
+          <li><strong>Confuso:</strong> Desorientação mental</li>
+          <li><strong>Enfangado:</strong> Preso ou imobilizado</li>
+        </ul>
+        
+        <h2>Dano</h2>
+        <p>Dano é abstracto em City of Mist. Em vez de pontos de vida, usamos condições que representam o estado do personagem.</p>
+        
+        <h2>Recuperação</h2>
+        <p>Between scenes, personagens podem tentar recuperação através de descanso, медикаменты, ou outros meios narrativos.</p>
+      `,
+      galera: `
+        <h1>Tema de Galera</h1>
+        <p>O Tema de Galera representa os relacionamentos e conexões entre personagens jogadores.</p>
+        
+        <h2>Estrutura</h2>
+        <p>O Tema de Galera tem 6 slots que podem ser filled com diferentes tipos de conexão:</p>
+        
+        <h3>Conexões de Equipe</h3>
+        <ul>
+          <li>Companheiro de quarto</li>
+          <li>Rival amigável</li>
+          <li>Mentor/aprendiz</li>
+        </ul>
+        
+        <h3>Conexões de História</h3>
+        <ul>
+          <li>Antigo aliado</li>
+          <li>Segredo compartilhado</li>
+          <li>Inimigo comum</li>
+        </ul>
+        
+        <h2>Usando a Galera</h2>
+        <p>As conexões do Tema de Galera podem ser usadas para:</p>
+        <ul>
+          <li>Obter ajuda em movimentos</li>
+          <li>Justificar Tags de suporte</li>
+          <li>Criar oportunidades narrativas</li>
+        </ul>
+      `,
+      npcs: `
+        <h1>NPCs & Cérebro</h1>
+        <p>O Cérebro é o banco de dados de NPCs do jogo, contains 134 personagens pré-definidos do universo X-Men.</p>
+        
+        <h2>Níveis de Perigo</h2>
+        <p>NPCs são categorizados por nível de perigo:</p>
+        <ul>
+          <li><strong>Baixo:</strong> Civis, NPCs secundários</li>
+          <li><strong>Médio:</strong> Capangas, operativos de nível baixo</li>
+          <li><strong>Alto:</strong> Vilões de categoria, heroes secundários</li>
+          <li><strong>Extremo:</strong> Villains principais, Omega-level mutants</li>
+        </ul>
+        
+        <h2>Frações</h2>
+        <p>NPCs são associados a frações:</p>
+        <ul>
+          <li>X-Men</li>
+          <li>Novatos/X-Men Iniciados</li>
+          <li>Geração X</li>
+          <li>Morlocks</li>
+          <li>Irmandade</li>
+          <li>Vilões</li>
+          <li>Criminosos</li>
+          <li>Neutros</li>
+          <li>Humanos</li>
+        </ul>
+        
+        <h2>Usando o Cérebro</h2>
+        <p>O Cérebro é tool para GMs criarem encounters rapidamente. Cada NPC tem:</p>
+        <ul>
+          <li>Atributos (Destreza, Força, Corpo, etc.)</li>
+          <li>Iniciativa</li>
+          <li>Tags de poder</li>
+          <li>Descrição narrativa</li>
+        </ul>
+        
+        <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
+      `,
+      acao_resultado: \`
+        <h1>Tabela de Ação e Resultado</h1>
+        <p>A tabela de Ação e Resultado é usada para determinar o resultado de ações baseada no atributo do personagem (linhas) e no nível de dificuldade (colunas).</p>
+        
+        <div class="ar-modes">
+          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">Temporário</button>
+          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Persistente (+2)</button>
+          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (+5)</button>
+        </div>
+        
+        <h2>AV/OV - Ação vs Obstáculo</h2>
+        <p>Use esta tabela para ações normais onde o nível de dificuldade é o valor na coluna.</p>
+        
+        <div class="table-container">
+        <table class="ar-table">
+          <tr><th>AV/OV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>31</th><th>32</th><th>33</th><th>34</th><th>35</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th><th>46</th><th>47</th><th>48</th><th>49</th><th>50</th></tr>
+          <tr><th>1</th><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td><td>349</td><td>362</td></tr>
+          <tr><th>2</th><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td><td>349</td></tr>
+          <tr><th>3</th><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td><td>336</td></tr>
+          <tr><th>4</th><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td><td>323</td></tr>
+          <tr><th>5</th><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td><td>311</td></tr>
+          <tr><th>6</th><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td><td>299</td></tr>
+          <tr><th>7</th><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td><td>287</td></tr>
+          <tr><th>8</th><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td><td>275</td></tr>
+          <tr><th>9</th><td>N</td><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td><td>264</td></tr>
+          <tr><th>10</th><td>N</td><td>N</td><td>N</td><td>3</td><td>5</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>26</td><td>29</td><td>32</td><td>35</td><td>39</td><td>43</td><td>47</td><td>51</td><td>56</td><td>61</td><td>66</td><td>71</td><td>77</td><td>83</td><td>89</td><td>95</td><td>102</td><td>109</td><td>116</td><td>123</td><td>131</td><td>139</td><td>147</td><td>155</td><td>164</td><td>173</td><td>182</td><td>191</td><td>201</td><td>211</td><td>221</td><td>231</td><td>242</td><td>253</td></tr>
+        </table>
+        </div>
+        
+        <h2>EV/RV - Efeito vs Resistência</h2>
+        <p id="ar-mode-desc">Para efeitos temporários que não persistem após a cena.</p>
+        
+        <div class="table-container">
+        <table class="ar-table" id="evrv-table">
+          <tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>
+        </table>
+        </div>
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: "N" significa que a ação falha automaticamente.</p>
+        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 8px;"><em>Exemplo: Se seu EV é 3 e o efeito é persistente, some +2 ao EV (3+2=5) e use 5 na tabela.</em></p>
+      \`
+    };
+    
+    var evrvData = {
+      1: [1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      2: [2,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      3: [4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      4: [6,4,3,1,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      5: [8,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      6: [9,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      7: [11,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N','N'],
+      8: [12,9,8,6,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N','N'],
+      9: [14,11,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N','N'],
+      10: [16,12,10,9,8,7,5,4,3,2,'N','N','N','N','N','N','N','N','N','N'],
+      11: [17,14,12,10,9,8,7,6,4,3,2,'N','N','N','N','N','N','N','N','N'],
+      12: [19,15,13,11,10,9,8,7,6,5,4,2,'N','N','N','N','N','N','N','N'],
+      13: [21,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N','N'],
+      14: [22,18,16,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N','N'],
+      15: [24,19,17,15,14,13,11,10,9,8,7,6,5,4,3,'N','N','N','N','N']
+    };
+    
+    window.showARMode = function(mode) {
+      var offset = mode === 'persist' ? 2 : (mode === 'perm' ? 5 : 0);
+      var desc = document.getElementById('ar-mode-desc');
+      if (!desc) return;
+      
+      desc.innerHTML = mode === 'temp' 
+        ? 'Para efeitos temporários que não persistem após a cena.' 
+        : (mode === 'persist' 
+            ? 'Para efeitos persistentes. <strong>Some +2 ao seu EV</strong> antes de consultar a tabela.' 
+            : 'Para efeitos permanentes e transformações. <strong>Some +5 ao seu EV</strong> antes de consultar a tabela.');
+      
+      var table = document.getElementById('evrv-table');
+      if (!table) return;
+      
+      table.innerHTML = '<tr><th>EV/RV</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th></tr>';
+      
+      for (var i = 1; i <= 15; i++) {
+        var ev = i + offset;
+        var row = evrvData[ev] || evrvData[15];
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<th>' + i + '</th>' + row.map(function(v) { return '<td>' + v + '</td>'; }).join('');
+        table.appendChild(tr);
+      }
+      
+      document.querySelectorAll('.ar-mode-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      var activeBtn = document.querySelector('.ar-mode-btn[data-mode="' + mode + '"]');
+      if (activeBtn) activeBtn.classList.add('active');
+    };
+    
+    window.initARTable = function() {
+      showARMode('temp');
+    };
+    
+    function loadPage(page) {
+      const content = pages[page] || pages.index;
+      wikiContent.innerHTML = content;
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === page || (page === 'index' && !link.dataset.page)) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialPage = urlParams.get('p') || 'index';
+    loadPage(initialPage);
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.dataset.page;
+        window.history.pushState({}, '', `wiki.html?p=${page}`);
+        loadPage(page);
+      });
+    });
+    
+    initTheme();
+    renderThemeDots();
+    
+    // Initialize music player on wiki load
+    if (window.initMusicPlayer) {
+      initMusicPlayer();
+    }
+  </script>
+</body>
+</html>

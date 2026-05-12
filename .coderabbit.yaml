@@ -1,0 +1,10 @@
+# CodeRabbit config for X-Men TTRPG project
+reviews:
+  profile: chill
+  auto_review:
+    enabled: true
+    ignore_draft_pr: true
+
+path_filters:
+  - "!**/supabase/crawler/**"
+  - "!node_modules/**"

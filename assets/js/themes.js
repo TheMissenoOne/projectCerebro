@@ -3,7 +3,9 @@
  * Tom Muller / House of X aesthetic
  */
 
-const THEME_KEY = 'xmen_theme';
+if (typeof THEME_KEY === 'undefined') {
+  var THEME_KEY = 'cerebro_tema';
+}
 
 const THEMES = {
   yellow: { name: 'AMARELO', color: '#FFD600' },
@@ -17,21 +19,27 @@ function getCurrentTheme() {
   return localStorage.getItem(THEME_KEY) || 'yellow';
 }
 
-function setTheme(theme) {
+function setTheme(theme, skipStorage) {
   if (!THEMES[theme]) return;
   
-  document.body.className = '';
+  // Remove all theme classes
+  document.body.classList.remove('theme-yellow', 'theme-red', 'theme-green', 'theme-purple', 'theme-blue');
+  
+  // Add new theme class (except default yellow)
   if (theme !== 'yellow') {
     document.body.classList.add('theme-' + theme);
   }
-  localStorage.setItem(THEME_KEY, theme);
+  
+  if (!skipStorage) {
+    localStorage.setItem(THEME_KEY, theme);
+  }
   
   document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
 }
 
 function initTheme() {
   const savedTheme = getCurrentTheme();
-  setTheme(savedTheme);
+  setTheme(savedTheme, true);
   return savedTheme;
 }
 
@@ -91,6 +99,7 @@ function getPanelSettingsHTML() {
 window.THEMES = THEMES;
 window.getCurrentTheme = getCurrentTheme;
 window.setTheme = setTheme;
+window.setTema = setTheme;
 window.initTheme = initTheme;
 window.getThemeSwitcherHTML = getThemeSwitcherHTML;
 window.getXLogoSVG = getXLogoSVG;

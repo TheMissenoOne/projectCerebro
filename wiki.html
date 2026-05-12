@@ -3,16 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <title>X-MEN TTRPG // WIKI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/cache-module.js"></script>
+  <script src="assets/js/themes.js"></script>
+  <script src="assets/js/auth-module.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/globals.js"></script>
+  <script src="assets/js/wiki.js"></script>
+  <script src="assets/js/wiki-pages.js"></script>
   <style>
     .wiki-layout {
       display: flex;
       min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
     }
 
+    /* ── Sidebar ── */
     .wiki-sidebar {
       width: 220px;
       background: var(--dark);
@@ -23,41 +38,45 @@
     }
 
     .wiki-nav-section {
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .wiki-nav-title {
       font-family: var(--mono);
-      font-size: .4rem;
+      font-size: .55rem;
       color: var(--muted2);
-      letter-spacing: .15em;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      padding: 6px 16px;
+      padding: 10px 16px 4px;
     }
 
     .wiki-nav-link {
       display: block;
-      padding: 8px 16px;
+      padding: 7px 16px;
       font-family: var(--body);
       font-size: .72rem;
       color: var(--text);
       text-decoration: none;
-      transition: all .12s;
+      transition: background .1s, color .1s;
+      border-left: 2px solid transparent;
     }
     .wiki-nav-link:hover {
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.04);
       color: var(--white);
     }
     .wiki-nav-link.active {
-      background: rgba(232,0,28,.1);
-      color: var(--red);
-      border-left: 2px solid var(--red);
+      background: rgba(var(--accent-rgb, 232,0,28), .1);
+      color: var(--accent);
+      border-left-color: var(--accent);
     }
 
+    /* ── Content area ── */
     .wiki-content {
       flex: 1;
       padding: clamp(16px, 3vw, 32px);
+      padding-bottom: 180px; /* room for #ar-display */
       overflow-y: auto;
+      max-height: calc(100vh - var(--hdr-h) - var(--bar-h));
     }
 
     .wiki-content h1 {
@@ -66,7 +85,7 @@
       color: var(--white);
       letter-spacing: .1em;
       margin-bottom: 20px;
-      border-bottom: 2px solid var(--red);
+      border-bottom: 2px solid var(--accent);
       padding-bottom: 8px;
     }
 
@@ -78,7 +97,7 @@
       letter-spacing: .15em;
       text-transform: uppercase;
       margin: 24px 0 12px;
-      border-left: 3px solid var(--red);
+      border-left: 3px solid var(--accent);
       padding-left: 10px;
     }
 
@@ -110,12 +129,14 @@
       margin-bottom: 6px;
     }
 
+    .wiki-content strong { color: var(--white); }
+
     .wiki-content code {
       font-family: var(--mono);
       font-size: .68rem;
       background: var(--p2);
       padding: 2px 6px;
-      color: var(--red);
+      color: var(--accent);
     }
 
     .wiki-content pre {
@@ -131,38 +152,271 @@
       padding: 0;
     }
 
+    /* ── Fade-in on page load ── */
+    .wiki-content.page-fade {
+      animation: wikiPageIn .18s ease-out;
+    }
+    @keyframes wikiPageIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Tables ── */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+      border: 1px solid var(--b1);
+      -webkit-overflow-scrolling: touch;
+    }
+
     .wiki-content table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0;
+      font-size: 0.7rem;
     }
 
-    .wiki-content th, .wiki-content td {
-      padding: 8px 10px;
+    .wiki-content th,
+    .wiki-content td {
+      padding: 10px 12px;
       border: 1px solid var(--b1);
+      text-align: center;
+      vertical-align: middle;
       font-family: var(--mono);
-      font-size: .58rem;
+      white-space: nowrap;
     }
 
     .wiki-content th {
       background: var(--p2);
       color: var(--white);
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .1em;
+      letter-spacing: 0.05em;
+      font-size: 0.65rem;
+      position: sticky;
+      top: 0;
+      z-index: 2;
     }
 
-    .wiki-content td {
+    .wiki-content table td:first-child {
+      background: var(--p1);
+      font-weight: 600;
+    }
+
+    /* Row/column highlight override */
+    .wiki-content table td[style*="background"] {
+      color: #111 !important;
+    }
+
+    /* ── AR button group ── */
+    .ar-modes, .ar-table-type {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ar-type-btn, .ar-mode-btn {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 8px 16px;
+      background: var(--p1);
+      border: 1px solid var(--b2);
+      color: var(--muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.15s;
+    }
+
+    .ar-type-btn:hover, .ar-mode-btn:hover {
+      border-color: var(--accent);
       color: var(--text);
     }
 
-    @media(max-width: 768px) {
+    .ar-type-btn.active, .ar-mode-btn.active {
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* ── AR display panel ── */
+    #ar-display {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--p1); border-top: 2px solid var(--accent);
+      z-index: 1000; box-shadow: 0 -4px 20px rgba(0,0,0,.55);
+      font-family: var(--mono); padding: 0;
+    }
+    .ard-section {
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ard-section:last-child { border-bottom: none; }
+    .ard-section-label {
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-size: .45rem; font-weight: 900; letter-spacing: .2em;
+      text-transform: uppercase; padding: 6px 5px;
+      color: #111; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      min-width: 18px; flex-shrink: 0;
+    }
+    .ard-cards {
+      display: flex; flex: 1; overflow-x: auto; gap: 0;
+    }
+    .ard-card {
+      flex: 1; min-width: 130px; padding: 5px 10px;
+      border-right: 1px solid var(--b1);
+    }
+    .ard-card:last-child { border-right: none; }
+    .ard-card-header {
+      display: flex; align-items: baseline; gap: 5px; margin-bottom: 3px;
+    }
+    .ard-card-tag {
+      font-size: .42rem; font-weight: 900; letter-spacing: .15em;
+      color: #111; background: var(--accent);
+      padding: 1px 3px; text-transform: uppercase; flex-shrink: 0;
+    }
+    .ard-card-val {
+      font-size: .78rem; font-weight: 700; color: var(--white);
+    }
+    .ard-refs { display: flex; flex-direction: column; gap: 1px; }
+    .ard-ref-row {
+      display: flex; gap: 5px; font-size: .58rem; line-height: 1.3;
+    }
+    .ard-ref-k {
+      color: var(--muted2); text-transform: uppercase;
+      letter-spacing: .05em; flex-shrink: 0; min-width: 34px;
+    }
+    .ard-ref-v { color: var(--text); }
+    .ard-ref-ex {
+      display: block; color: var(--muted2); font-size: .5rem;
+      font-style: italic; margin-top: 1px; line-height: 1.2;
+    }
+    .ard-card.ard-raps .ard-card-tag { background: var(--red); color: #fff; }
+    .ard-card.ard-raps .ard-card-val { color: var(--accent); }
+    .ard-tab-strip {
+      display: flex; border-bottom: 1px solid var(--b1);
+    }
+    .ard-tab {
+      flex: 1; padding: 4px 12px;
+      font-family: var(--mono); font-size: .5rem; font-weight: 900;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted2); background: var(--p2);
+      border: none; cursor: pointer;
+      border-right: 1px solid var(--b1);
+      transition: background .1s, color .1s;
+    }
+    .ard-tab:last-child { border-right: none; }
+    .ard-tab.active { background: var(--accent); color: #111; }
+    .ard-tab:not(.active):hover { background: var(--p1); color: var(--text); }
+
+    /* ── Mobile nav ── */
+    .wiki-nav-toggle {
+      display: none;
+      position: sticky; top: 0; z-index: 100;
+      width: 100%; padding: 0 12px;
+      background: var(--dark); border-bottom: 1px solid var(--b1);
+      align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: .65rem;
+      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+      cursor: pointer; user-select: none;
+      min-height: 38px;
+    }
+    .wiki-nav-toggle svg { flex-shrink: 0; }
+    .wiki-nav-toggle .nav-current {
+      flex: 1; color: var(--accent); font-weight: 700;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .wiki-nav-toggle .nav-chevron {
+      transition: transform .2s; flex-shrink: 0;
+    }
+    .wiki-nav-toggle.open .nav-chevron { transform: rotate(180deg); }
+    .wiki-sidebar-drawer {
+      overflow: hidden;
+      transition: max-height .25s ease;
+    }
+    /* Closed on mobile by default; open class overrides */
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
       .wiki-layout { flex-direction: column; }
-      .wiki-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--b1); }
+
+      /* sidebar becomes collapsible drawer */
+      .wiki-sidebar {
+        width: 100%; border-right: none;
+        border-bottom: 1px solid var(--b1);
+        padding: 0; overflow: visible;
+      }
+      .wiki-nav-toggle { display: flex; }
+      .wiki-sidebar-drawer {
+        display: block; background: var(--dark);
+        max-height: 0;   /* collapsed by default on mobile */
+      }
+      .wiki-sidebar-drawer.open { max-height: 600px; }
+
+      /* nav links in a 2-col grid on mobile */
+      .wiki-nav-section { margin: 0; }
+      .wiki-nav-title { padding: 8px 12px 3px; font-size: .5rem; }
+      .wiki-nav-links-grid {
+        display: grid; grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--b1);
+      }
+      .wiki-nav-link {
+        padding: 9px 12px; font-size: .68rem;
+        border-right: 1px solid var(--b1);
+        border-bottom: 1px solid var(--b1);
+      }
+      .wiki-nav-link:nth-child(even) { border-right: none; }
+
+      .wiki-content table th,
+      .wiki-content table td { padding: 6px 8px; font-size: 0.6rem; }
+
+      /* ar-display: ultra compact on mobile */
+      .ard-section-label {
+        writing-mode: horizontal-tb;
+        font-size: .45rem; padding: 0 5px;
+        min-width: unset; min-height: 18px;
+        letter-spacing: .1em;
+      }
+      .ard-section { flex-direction: column; }
+      .ard-section-label {
+        writing-mode: horizontal-tb;
+        width: 100%; min-width: unset; min-height: unset;
+        padding: 2px 8px; justify-content: flex-start;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .ard-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: visible;
+      }
+      .ard-card {
+        min-width: unset; padding: 4px 6px;
+        border-right: 1px solid var(--b1);
+      }
+      .ard-card-header { margin-bottom: 2px; gap: 4px; flex-wrap: wrap; }
+      .ard-card-val { font-size: .7rem; }
+      /* refs: hide example, inline as compact pills */
+      .ard-ref-ex { display: none; }
+      .ard-refs { flex-direction: row; flex-wrap: wrap; gap: 2px 5px; }
+      .ard-ref-row { font-size: .5rem; gap: 2px; }
+      .ard-ref-k { min-width: unset; font-size: .45rem; }
+    }
+    @media (max-width: 400px) {
+      .ard-card-tag { font-size: .38rem; }
+      .ard-card-val { font-size: .65rem; }
     }
   </style>
 </head>
 <body>
-  <header class="header">
+<script>
+(function(){
+  var t = localStorage.getItem('cerebro_tema');
+  if (t) document.body.className = 'theme-' + t;
+})();
+</script>
+<header class="header">
     <div class="header-logo">
       <a href="dashboard.html" class="x-logo">
         <svg class="x-logo-svg" viewBox="0 0 64 64" fill="none">
@@ -182,41 +436,61 @@
       </div>
     </div>
     <div class="hdr-spacer"></div>
-    <div class="hdr-settings">
-      <button class="hdr-settings-btn" onclick="toggleSettings()" title="Configuracoes">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-      <div class="settings-dropdown" id="settings-dropdown">
-        <div class="settings-label">TEMA</div>
-        <div class="theme-dots-row" id="theme-dots-row"></div>
-        <div class="settings-dropdown-divider"></div>
-        <div class="settings-dropdown-item" onclick="logout()">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          SAIR
-        </div>
-      </div>
-    </div>
   </header>
 
   <div class="toolbar">
     <a href="dashboard.html" class="tbtn">Dashboard</a>
+    <a href="ficha.html" class="tbtn">Ficha</a>
+    <a href="cerebro.html" class="tbtn">Cérebro</a>
+    <div class="toolbar-spacer"></div>
+    <div class="theme-switcher" style="border-left:none;padding:0;">
+      <div class="theme-dots-row" id="theme-dots-row"></div>
+    </div>
   </div>
 
   <div class="wiki-layout">
     <nav class="wiki-sidebar">
-      <div class="wiki-nav-section">
-        <div class="wiki-nav-title">Regras</div>
-        <a href="wiki.html" class="wiki-nav-link" data-page="index">Introdução</a>
-        <a href="wiki.html?p=movimentos" class="wiki-nav-link" data-page="movimentos">Movimentos</a>
-        <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas">Temas</a>
-        <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
-        <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
-        <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
-      </div>
-      <div class="wiki-nav-section">
-        <div class="wiki-nav-title">Personagens</div>
-        <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera">Tema de Galera</a>
-        <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs">NPCs & Cérebro</a>
+      <button class="wiki-nav-toggle" id="wiki-nav-toggle" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect y="2" width="14" height="1.5" rx=".75" fill="currentColor"/>
+          <rect y="6.25" width="14" height="1.5" rx=".75" fill="currentColor"/>
+          <rect y="10.5" width="14" height="1.5" rx=".75" fill="currentColor"/>
+        </svg>
+        <span>Navegação</span>
+        <span class="nav-current" id="nav-current-label">Introdução</span>
+        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="wiki-sidebar-drawer" id="wiki-sidebar-drawer">
+        <div class="wiki-nav-section">
+          <div class="wiki-nav-title">Regras</div>
+          <div class="wiki-nav-links-grid">
+            <a href="wiki.html" class="wiki-nav-link" data-page="index">Introdução</a>
+            <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido">Sistema Híbrido</a>
+            <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas">Temas</a>
+            <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
+            <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
+            <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
+            <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Sistema de Ações</a>
+            <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
+            <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Tabela AV/OV·EV/RV</a>
+            <a href="wiki.html?p=aps_referencia" class="wiki-nav-link" data-page="aps_referencia">APs Referência</a>
+          </div>
+        </div>
+        <div class="wiki-nav-section">
+          <div class="wiki-nav-title">Personagens</div>
+          <div class="wiki-nav-links-grid">
+            <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera">Tema de Galera</a>
+            <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs">NPCs & Cérebro</a>
+          </div>
+        </div>
+        <div class="wiki-nav-section">
+          <div class="wiki-nav-title">Operações</div>
+          <div class="wiki-nav-links-grid">
+            <a href="wiki.html?p=relatorios" class="wiki-nav-link" data-page="relatorios">Relatórios</a>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -244,238 +518,553 @@
     </main>
   </div>
 
-  <script src="assets/js/themes.js"></script>
-  <script src="assets/js/wiki.js"></script>
   <script>
     const wikiContent = document.getElementById('wiki-content');
     const navLinks = document.querySelectorAll('.wiki-nav-link');
-    
-    const pages = {
-      index: `
-        <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
-        <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado.</p>
-        <h2>Sobre o Sistema</h2>
-        <p>X-Men TTRPG usa uma versão adaptada do sistema City of Mist para o universo X-Men.</p>
-        <h2>Navegação</h2>
-        <p>Use a barra lateral para navegar pelas diferentes seções do sistema.</p>
-      `,
-      movimentos: `
-        <h1>Movimentos</h1>
-        <p>Os movimentos são as ações básicas que seu personagem pode realizar. Cada movimento tem um atributo associado e um resultado determinado por rolagem de dados.</p>
-        
-        <h2>Virar o Jogo</h2>
-        <p>Quando você tenta mudar completamente o rumo de uma situação através de uma ação drástica,uba Virar o Jogo.</p>
-        <ul>
-          <li><strong>Atributo:</strong> depends on the action</li>
-          <li><strong>Sucesso:</strong> Take +1 forward</li>
-          <li><strong>Parcial:</strong> A escolha: take a condition or the GM says how you succeed but not as cleanly as you'd like</li>
-          <li><strong>Falha:</strong> Things go wrong. The GM says how, and you take a condition</li>
-        </ul>
-        
-        <h2>Convencer</h2>
-        <p>Quando você tenta influenciar alguém através de palavras, faça um movimento de Convencer.</p>
-        
-        <h2>Rir na Cara do Perigo</h2>
-        <p>Quando você enfrenta o perigo com desprezo ou humor, faça este movimento.</p>
-        
-        <h2>Partir pro Abraço</h2>
-        <p>Quando você se aproxima para um combate físico direto, faça este movimento.</p>
-        
-        <h2>Investigar</h2>
-        <p>Quando você busca informações, faça um movimento de Investigar.</p>
-        
-        <h2>Agir na Sombra</h2>
-        <p>Quando você tenta algo furtivo ou discreto, faça este movimento.</p>
-        
-        <h2>Correr o Risco</h2>
-        <p>Quando você tenta algo perigoso sem saber o resultado, faça este movimento.</p>
-      `,
-      temas: `
-        <h1>Temas</h1>
-        <p>Temas são a estrutura central de criação de personagens em City of Mist. Cada personagem tem dois tipos de Temas: um de Mist (poder místico/sobrenatural) e um de Histórias (humanidade/ Background).</p>
-        
-        <h2>Tipos de Temas</h2>
-        
-        <h3>Temas de Mist</h3>
-        <p>Estes representam os poderes e a natureza sobrenatural do personagem:</p>
-        <ul>
-          <li><strong>Mutação:</strong> O poder mutante em si</li>
-          <li><strong>Artefato:</strong> Um objeto com poderes</li>
-          <li><strong>Pacto:</strong> Um acordo com alguma entidade</li>
-          <li><strong>Influência:</strong> Uma conexão com o mundo místico</li>
-        </ul>
-        
-        <h3>Temas de História</h3>
-        <p>Estes representam a humanidade e o Background do personagem:</p>
-        <ul>
-          <li><strong>Passado:</strong> De onde você veio</li>
-          <li><strong>Relacionamento:</strong> Conexões com outros</li>
-          <li><strong>Ideologia:</strong> O que você acredita</li>
-          <li><strong>Obrigação:</strong> Um dever ou responsabilidade</li>
-        </ul>
-        
-        <h2>Criando Temas</h2>
-        <p>Cada Tema tem um nome, um Status (número de Tags ativas), e um Flavor (descrição narrativa).</p>
-        <p>Tags são poder concretizado - frases que descrevem o que seu Tema permite fazer.</p>
-      `,
-      tags: `
-        <h1>Tags</h1>
-        <p>Tags são a representação mecânica dos poderes, habilidades e fraquezas do seu personagem.</p>
-        
-        <h2>Estrutura das Tags</h2>
-        <p>Uma Tag segue o formato: <code>[Descrição] [Grau]</code></p>
-        <ul>
-          <li><strong>Descrição:</strong> O que a Tag permite fazer</li>
-          <li><strongGrau (1-6):</strong> O nível de poder (6 é Ômega)</li>
-        </ul>
-        
-        <h2>Tags Positivas vs Negativas</h2>
-        
-        <h3>Tags Positivas</h3>
-        <p>Representam poderes e habilidades:</p>
-        <ul>
-          <li><code>Telepatia 5</code> - Capacidade de ler mentes</li>
-          <li><code>Força Sobre-Humana 4</code> - Capacidade de levantar carros</li>
-        </ul>
-        
-        <h3>Tags Negativas (Fraquezas)</h3>
-        <p>Representam vulnerabilidades:</p>
-        <ul>
-          <li><code>Prata Mortal -2</code> - Vulnerabilidade a prata</li>
-          <li><code>Intoxicado pela Luz -3</code> - Não pode ficar sob luz solar</li>
-        </ul>
-        
-        <h2>Usando Tags</h2>
-        <p>Para usar uma Tag em um movimento, você deve ter o Status alto o suficiente para suportar o grau da Tag.</p>
-        <p>O GM pode determinar que Tags específicas são relevantes para certain ações.</p>
-      `,
-      progressao: `
-        <h1>Progressão</h1>
-        <p>A progressão em City of Mist é driven por dois conceitos: Atenção e Dissipação.</p>
-        
-        <h2>Atenção</h2>
-        <p>Quando você usa um Tema de Mist de forma dramática ou significativa, você ganha Atenção. Isso representa o mundo místico notando você.</p>
-        <p>Quando a Atenção atinge 5, você pode "Virar Avatar" - um momento de poder máximo que pode mudar o jogo.</p>
-        
-        <h2>Dissipação</h2>
-        <p>Quando você ignora sua natureza mística ou age de forma completamente humana, você ganha Dissipação.</p>
-        <p>Quando a Dissipação atinge 5, você pode "Cair no Sono" - um momento de humanidade total que também pode ser poderoso.</p>
-        
-        <h2>Evolução de Temas</h2>
-        <p>Between sessions, players can:</p>
-        <ul>
-          <li>Adicionar novas Tags aos Temas existentes</li>
-          <li>Alterar a natureza de um Tema</li>
-          <li>Criar novos Temas</li>
-          <li>Remover Tags velhas</li>
-        </ul>
-        
-        <h2>Condições e Recuperação</h2>
-        <p>Condições são markers de trauma físico e emocional. Para se recuperar, você deve enfrentar o origen da condição através de roleplay significativo.</p>
-      `,
-      combate: `
-        <h1>Combate</h1>
-        <p>O combate em X-Men TTRPG é fluido e narrativo, focado em cinema e drama.</p>
-        
-        <h2>Iniciativa</h2>
-        <p>O GM determina a ordem de iniciativa baseado na situação narrativa. Personagens com alta velocidade ou habilidades de combate podem ter vantagem.</p>
-        
-        <h2>Condições em Combate</h2>
-        <p>Durante o combate, personagens podem receber condições:</p>
-        <ul>
-          <li><strong>Ferido:</strong> Dano físico</li>
-          <li><strong>Exausto:</strong> Exaustão física</li>
-          <li><strong>Assustado:</strong> Medo intenso</li>
-          <li><strong>Confuso:</strong> Desorientação mental</li>
-          <li><strong>Enfangado:</strong> Preso ou imobilizado</li>
-        </ul>
-        
-        <h2>Dano</h2>
-        <p>Dano é abstracto em City of Mist. Em vez de pontos de vida, usamos condições que representam o estado do personagem.</p>
-        
-        <h2>Recuperação</h2>
-        <p>Between scenes, personagens podem tentar recuperação através de descanso, медикаменты, ou outros meios narrativos.</p>
-      `,
-      galera: `
-        <h1>Tema de Galera</h1>
-        <p>O Tema de Galera representa os relacionamentos e conexões entre personagens jogadores.</p>
-        
-        <h2>Estrutura</h2>
-        <p>O Tema de Galera tem 6 slots que podem ser filled com diferentes tipos de conexão:</p>
-        
-        <h3>Conexões de Equipe</h3>
-        <ul>
-          <li>Companheiro de quarto</li>
-          <li>Rival amigável</li>
-          <li>Mentor/aprendiz</li>
-        </ul>
-        
-        <h3>Conexões de História</h3>
-        <ul>
-          <li>Antigo aliado</li>
-          <li>Segredo compartilhado</li>
-          <li>Inimigo comum</li>
-        </ul>
-        
-        <h2>Usando a Galera</h2>
-        <p>As conexões do Tema de Galera podem ser usadas para:</p>
-        <ul>
-          <li>Obter ajuda em movimentos</li>
-          <li>Justificar Tags de suporte</li>
-          <li>Criar oportunidades narrativas</li>
-        </ul>
-      `,
-      npcs: `
-        <h1>NPCs & Cérebro</h1>
-        <p>O Cérebro é o banco de dados de NPCs do jogo, contains 134 personagens pré-definidos do universo X-Men.</p>
-        
-        <h2>Níveis de Perigo</h2>
-        <p>NPCs são categorizados por nível de perigo:</p>
-        <ul>
-          <li><strong>Baixo:</strong> Civis, NPCs secundários</li>
-          <li><strong>Médio:</strong> Capangas, operativos de nível baixo</li>
-          <li><strong>Alto:</strong> Vilões de categoria, heroes secundários</li>
-          <li><strong>Extremo:</strong> Villains principais, Omega-level mutants</li>
-        </ul>
-        
-        <h2>Frações</h2>
-        <p>NPCs são associados a frações:</p>
-        <ul>
-          <li>X-Men</li>
-          <li>Novatos/X-Men Iniciados</li>
-          <li>Geração X</li>
-          <li>Morlocks</li>
-          <li>Irmandade</li>
-          <li>Vilões</li>
-          <li>Criminosos</li>
-          <li>Neutros</li>
-          <li>Humanos</li>
-        </ul>
-        
-        <h2>Usando o Cérebro</h2>
-        <p>O Cérebro é tool para GMs criarem encounters rapidamente. Cada NPC tem:</p>
-        <ul>
-          <li>Atributos (Destreza, Força, Corpo, etc.)</li>
-          <li>Iniciativa</li>
-          <li>Tags de poder</li>
-          <li>Descrição narrativa</li>
-        </ul>
-        
-        <p>Apenas o GM tem acesso completo ao Cérebro. Jogadores podem apenas ver NPCs que o GM permitir.</p>
-      `
-    };
-    
+    const pages = window.wikiPages;
+    const navToggle = document.getElementById('wiki-nav-toggle');
+    const navDrawer = document.getElementById('wiki-sidebar-drawer');
+    const navCurrentLabel = document.getElementById('nav-current-label');
+
+    // Mobile nav toggle
+    navToggle.addEventListener('click', () => {
+      const open = navDrawer.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+
     function loadPage(page) {
       const content = pages[page] || pages.index;
       wikiContent.innerHTML = content;
-      
+      wikiContent.classList.remove('page-fade');
+      void wikiContent.offsetWidth; // reflow to restart animation
+      wikiContent.classList.add('page-fade');
+      wikiContent.scrollTop = 0;
+
       navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.page === page || (page === 'index' && !link.dataset.page)) {
-          link.classList.add('active');
+        const active = link.dataset.page === page;
+        link.classList.toggle('active', active);
+        if (active && navCurrentLabel) navCurrentLabel.textContent = link.textContent;
+      });
+
+      // Close drawer on navigation
+      navDrawer.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', false);
+
+      // Clear display when leaving the AR table page
+      if (page !== 'acao_resultado') {
+        avSelection = null;
+        rvSelection = null;
+        const d = document.getElementById('ar-display');
+        if (d) d.remove();
+      }
+    }
+    
+    // Armazena seleção de cada tabela
+    let avSelection = null;
+    let rvSelection = null;
+    
+    // Lookup table for APs reference values
+    const apsReference = {
+      distancia: {
+        '-9': '5 mm', '-8': '~1 cm', '-7': '~2 cm', '-6': '~4 cm',
+        '-5': '7,6 cm', '-4': '15 cm', '-3': '30 cm', '-2': '76 cm', '-1': '1,5 m', '0': '3 m', '1': '6 m', '2': '12 m', '3': '24 m',
+        '4': '45 m', '5': '91 m', '6': '183 m', '7': '380 m', '8': '760 m', '9': '1,5 km', '10': '3 km', '11': '5 km', '12': '11 km', '13': '24 km',
+        '14': '45 km', '15': '90 km', '16': '180 km', '17': '360 km', '18': '700 km', '19': '1.400 km', '20': '2.800 km', '21': '5.600 km', '22': '11.000 km',
+        '23': '22.000 km', '24': '44.000 km', '25': '88.000 km', '26': '176.000 km', '27': '350.000 km', '28': '700.000 km', '29': '1,4 mi km', '30': '3 mi km',
+        '31': '6 mi km', '32': '12 mi km', '33': '25 mi km', '34': '50 mi km', '35': '100 mi km', '36': '200 mi km', '37': '400 mi km', '38': '800 mi km',
+        '39': '1,6 bi km', '40': '3 bi km', '41': '6 bi km', '42': '12 bi km', '43': '25 bi km', '44': '50 bi km', '45': '100 bi km',
+        '46': '200 bi km', '47': '400 bi km', '48': '800 bi km', '49': '1,6 tri km', '50': '3 tri km'
+      },
+      energia: {
+        '-10': '~1 J', '-9': '~2 J', '-8': '~4 J', '-7': '~8 J', '-6': '~16 J', '-5': '~32 J', '-4': '~64 J', '-3': '~125 J', '-2': '~250 J', '-1': '~500 J',
+        '0': '~1.000 J', '1': '~2.000 J', '2': '~4.000 J', '3': '~8.000 J', '4': '~16.000 J', '5': '~32.000 J', '6': '~64.000 J', '7': '~125.000 J', '8': '~250.000 J', '9': '~500.000 J',
+        '10': '~1 MJ', '11': '~2 MJ', '12': '~4 MJ', '13': '~8 MJ', '14': '~16 MJ', '15': '~32 MJ', '16': '~64 MJ', '17': '~125 MJ', '18': '~250 MJ', '19': '~500 MJ',
+        '20': '~1 GJ', '21': '~2 GJ', '22': '~4 GJ', '23': '~8 GJ', '24': '~16 GJ', '25': '~32 GJ', '26': '~64 GJ', '27': '~125 GJ', '28': '~250 GJ', '29': '~500 GJ',
+        '30': '~1 TJ', '31': '~2 TJ', '32': '~4 TJ', '33': '~8 TJ', '34': '~16 TJ', '35': '~32 TJ', '36': '~64 TJ', '37': '~125 TJ', '38': '~250 TJ', '39': '~500 TJ',
+        '40': '~1 PJ', '41': '~2 PJ', '42': '~4 PJ', '43': '~8 PJ', '44': '~16 PJ', '45': '~32 PJ', '46': '~64 PJ', '47': '~125 PJ', '48': '~250 PJ', '49': '~500 PJ',
+        '50': '~1 EJ', '51': '~2 EJ', '52': '~4 EJ', '53': '~8 EJ', '54': '~16 EJ', '55': '~32 EJ', '56': '~64 EJ', '57': '~125 EJ', '58': '~250 EJ', '59': '~500 EJ',
+        '60': '~1 ZJ', '61': '~2 ZJ', '62': '~4 ZJ', '63': '~8 ZJ', '64': '~16 ZJ', '65': '~32 ZJ', '66': '~64 ZJ', '67': '~125 ZJ', '68': '~250 ZJ', '69': '~500 ZJ',
+        '70': '~1 YJ'
+      },
+      tempo: {
+        '-2': '1 segundo', '-1': '2 segundos', '0': '4 segundos', '1': '8 segundos', '2': '15 segundos', '3': '30 segundos', '4': '1 minuto', '5': '2 minutos', '6': '4 minutos', '7': '8 minutos',
+        '8': '15 minutos', '9': '30 minutos', '10': '1 hora', '11': '2 horas', '12': '4 horas', '13': '8 horas', '14': '15 horas', '15': '1 dia', '16': '2 dias', '17': '4 dias',
+        '18': '1 semana', '19': '2 semanas', '20': '1 mês', '21': '2 meses', '22': '4 meses', '23': '8 meses', '24': '1 ano', '25': '2 anos', '26': '4 anos', '27': '8 anos',
+        '28': '15 anos', '29': '30 anos', '30': '60 anos', '31': '120 anos', '32': '250 anos', '33': '500 anos', '34': '1.000 anos', '35': '2.000 anos', '36': '4.000 anos', '37': '8.000 anos',
+        '38': '16.000 anos', '39': '32.000 anos', '40': '64.000 anos', '41': '128.000 anos', '42': '256.000 anos', '43': '500.000 anos', '44': '1 milhão anos', '45': '2 milhões anos', '46': '4 milhões anos', '47': '8 milhões anos',
+        '48': '16 milhões anos', '49': '32 milhões anos', '50': '64 milhões anos', '51': '128 milhões anos', '52': '256 milhões anos', '53': '500 milhões anos', '54': '1 bilhão anos', '55': '2 bilhões anos', '56': '4 bilhões anos', '57': '8 bilhões anos', '58': '16 bilhões anos'
+      },
+      massa: {
+        '-13': '~2 g', '-12': '~4 g', '-11': '~8 g', '-10': '~15 g', '-9': '~30 g', '-8': '~60 g', '-7': '~125 g', '-6': '~250 g',
+        '-5': '~450 g', '-4': '1 kg', '-3': '~2 kg', '-2': '~4,5 kg', '-1': '~8 kg', '0': '~22 kg', '1': '~45 kg', '2': '~90 kg',
+        '3': '~180 kg', '4': '~340 kg', '5': '~680 kg', '6': '~1,5 t', '7': '~3 t', '8': '~6 t', '9': '~13 t', '10': '~25 t', '11': '~50 t', '12': '~100 t',
+        '13': '~200 t', '14': '~400 t', '15': '~800 t', '16': '~1.500 t', '17': '~3.000 t', '18': '~6.000 t', '19': '~12.000 t', '20': '~25.000 t', '21': '~50.000 t', '22': '~100.000 t',
+        '23': '~200.000 t', '24': '~400.000 t', '25': '~800.000 t', '26': '~1,5 milhão t', '27': '~3 milhões t', '28': '~6 milhões t', '29': '~10 milhões t', '30': '~13 milhões t', '31': '~26 milhões t', '32': '~52 milhões t',
+        '33': '~100 milhões t', '34': '~200 milhões t', '35': '~400 milhões t', '36': '~800 milhões t', '37': '~1,6 bilhões t', '38': '~3 bilhões t', '39': '~6 bilhões t', '40': '~12 bilhões t', '41': '~25 bilhões t', '42': '~50 bilhões t',
+        '43': '~100 bilhões t', '44': '~200 bilhões t', '45': '~400 bilhões t', '46': '~800 bilhões t', '47': '~1,6 trilhões t', '48': '~3 trilhões t', '49': '~6 trilhões t', '50': '~12 trilhões t'
+      },
+      informacao: {
+        '-9': '1 B',     '-8': '2 B',     '-7': '4 B',     '-6': '8 B',
+        '-5': '16 B',    '-4': '32 B',    '-3': '64 B',    '-2': '128 B',   '-1': '256 B',
+        '0':  '512 B',   '1':  '1 KB',    '2':  '2 KB',    '3':  '4 KB',    '4':  '8 KB',
+        '5':  '16 KB',   '6':  '32 KB',   '7':  '64 KB',   '8':  '128 KB',  '9':  '256 KB',
+        '10': '512 KB',  '11': '1 MB',    '12': '2 MB',    '13': '4 MB',    '14': '8 MB',
+        '15': '16 MB',   '16': '32 MB',   '17': '64 MB',   '18': '128 MB',  '19': '256 MB',
+        '20': '512 MB',  '21': '1 GB',    '22': '2 GB',    '23': '4 GB',    '24': '8 GB',
+        '25': '16 GB',   '26': '32 GB',   '27': '64 GB',   '28': '128 GB',  '29': '256 GB',
+        '30': '512 GB',  '31': '1 TB',    '32': '2 TB',    '33': '4 TB',    '34': '8 TB',
+        '35': '16 TB',   '36': '32 TB',   '37': '64 TB',   '38': '128 TB',  '39': '256 TB',
+        '40': '512 TB',  '41': '1 PB',    '42': '2 PB',    '43': '4 PB',    '44': '8 PB',
+        '45': '16 PB',   '46': '32 PB',   '47': '64 PB',   '48': '128 PB',  '49': '256 PB',
+        '50': '512 PB',  '51': '1 EB',    '52': '2 EB',    '53': '4 EB',    '54': '8 EB',
+        '55': '16 EB',   '56': '32 EB',   '57': '64 EB',   '58': '128 EB'
+      }
+    };
+
+    const apsExamples = {
+      massa: {
+        '-13': 'semente de alface',
+        '-12': 'pétala de rosa',
+        '-11': 'grão de uva',
+        '-10': 'ovo de codorna',
+        '-9':  'bola de golfe',
+        '-8':  'ovo de galinha',
+        '-7':  'maçã média',
+        '-6':  'hamburguer artesanal',
+        '-5':  'garrafa d\'água (500 ml)',
+        '-4':  'abacaxi médio',
+        '-3':  'gato doméstico',
+        '-2':  'bebê recém-nascido',
+        '-1':  'filhote de labrador',
+        '0':   'criança de 7 anos',
+        '1':   'adulto leve',
+        '2':   'adulto médio',
+        '3':   'urso pardo',
+        '4':   'leão marinho',
+        '5':   'vaca',
+        '6':   'cavalo adulto',
+        '7':   'SUV grande',
+        '8':   'elefante africano (fêmea)',
+        '9':   'elefante africano (macho)',
+        '10':  'ônibus escolar',
+        '11':  'baleia-franca-do-pacífico',
+        '12':  'baleia-azul adulta',
+        '13':  'Boeing 747 (máx decolagem)',
+        '14':  'trem de passageiros (10 vagões)',
+        '15':  'fragata classe Niterói',
+        '16':  'submarino classe Tikuna',
+        '17':  'destroyer classe Arleigh Burke',
+        '18':  'cruzador classe Ticonderoga',
+        '19':  'porta-aviões classe Clemenceau',
+        '20':  'navio de cruzeiro médio',
+        '21':  'navio-escola Cisne Branco',
+        '22':  'superpetroleiro ULCC',
+        '23':  'barragem de Itaipu (concreto)',
+        '24':  'pirâmide de Quéops',
+        '25':  'asteroide Bennu',
+        '26':  'Monte Everest',
+        '27':  'Lua (×0,001)',
+        '28':  'Lua (×0,002)',
+        '29':  'Lua (×0,005)',
+        '30':  'Lua (×0,01)',
+        '35':  'Lua',
+        '40':  'Terra (×0,001)',
+        '45':  'Terra (×0,1)',
+        '50':  'Terra'
+      },
+      distancia: {
+        '-9':  'diâmetro de ervilha',
+        '-8':  'largura de dedo',
+        '-7':  'comprimento de besouro',
+        '-6':  'tecla de teclado',
+        '-5':  'comprimento de beija-flor',
+        '-4':  'régua escolar',
+        '-3':  'pé (medida inglesa)',
+        '-2':  'largura de porta',
+        '-1':  'altura de pessoa sentada',
+        '0':   'altura de teto padrão',
+        '1':   'comprimento de carro',
+        '2':   'ônibus articulado',
+        '3':   'quadra de tênis',
+        '4':   'campo de futebol (largura)',
+        '5':   'campo de futebol (comprimento)',
+        '6':   'pista de atletismo',
+        '7':   'altura do Empire State Building',
+        '8':   'corrida de 800 m',
+        '9':   'Central Park (comprimento)',
+        '10':  'travessia de bairro grande',
+        '11':  'corrida 5K',
+        '12':  'Fossa das Marianas (profundidade)',
+        '13':  'largura de cidade grande',
+        '14':  'maratona olímpica',
+        '15':  'RJ → Petrópolis',
+        '16':  'SP → Campinas',
+        '17':  'SP → Belo Horizonte',
+        '18':  'SP → Porto Alegre',
+        '19':  'SP → Belém do Pará',
+        '20':  'SP → Lima (Peru)',
+        '21':  'Brasil ponta-a-ponta',
+        '22':  'SP → Tóquio',
+        '23':  'meia-volta ao redor da Terra',
+        '24':  'volta completa ao redor da Terra',
+        '25':  'Terra → Lua (×0,25)',
+        '26':  'Terra → Lua (×0,5)',
+        '27':  'Terra → Lua',
+        '28':  'raio do Sol',
+        '29':  'Terra → Marte (próximo)',
+        '30':  'Terra → Marte (médio)',
+        '31':  'Terra → Marte (distante)',
+        '32':  'Terra → Júpiter (próximo)',
+        '33':  'Terra → Saturno',
+        '34':  'Terra → Netuno',
+        '35':  'Sistema Solar (diâmetro)',
+        '36':  'Nuvem de Oort (interna)',
+        '40':  '1/4 ano-luz',
+        '43':  'Proxima Centauri',
+        '44':  'Alpha Centauri',
+        '50':  'centro da galáxia'
+      },
+      energia: {
+        '-10': 'clique de mouse',
+        '-9':  'batida leve de dedo',
+        '-8':  'estalo de dedo',
+        '-7':  'arremesso de bola de tênis',
+        '-6':  'soco fraco',
+        '-5':  'chute de criança',
+        '-4':  'soco treinado',
+        '-3':  'chute de caratê',
+        '-2':  'impacto de bala de pistola',
+        '-1':  'martelo batendo prego',
+        '0':   'pessoa caindo de 1 m',
+        '1':   'flecha de arco composto',
+        '2':   'carro a 30 km/h (colisão)',
+        '3':   'rifle calibre .50',
+        '4':   'explosivo TATP (pequeno)',
+        '5':   'granada de mão M67',
+        '6':   'colisão de veículo a 100 km/h',
+        '7':   'carga de C4 (250 g)',
+        '8':   'raio médio',
+        '9':   'bomba de morteiro 120 mm',
+        '10':  'carro a 100 km/h (energia cinética)',
+        '11':  'explosão de cilindro de gás',
+        '12':  '1 kg de TNT',
+        '13':  '2 kg de TNT',
+        '14':  'propulsor de foguete (1 estágio)',
+        '15':  '7 kg de TNT',
+        '16':  'bomba de artilharia pesada',
+        '17':  'míssil ar-ar AIM-120',
+        '18':  'colisão de trens',
+        '19':  '100 kg de TNT',
+        '20':  'terremoto M3',
+        '21':  'explosão de navio-munição',
+        '22':  'Bomba GBU-43 MOAB',
+        '23':  'terremoto M4',
+        '24':  '1 tonelada de TNT',
+        '25':  'Bomba Davy Crockett (menor arma nuclear)',
+        '26':  'teste Trinity (1ª bomba atômica)',
+        '27':  'bomba nuclear tática (1 kt)',
+        '28':  'terremoto M5',
+        '29':  'bomba de Hiroshima (Little Boy ~15 kt)',
+        '30':  'bomba de Nagasaki (Fat Man ~21 kt)',
+        '31':  'terremoto M6',
+        '32':  'bomba nuclear estratégica (100 kt)',
+        '33':  'terremoto M7 (Haiti 2010)',
+        '34':  'megabomba W53 (9 Mt)',
+        '35':  'terremoto M8 (Chile 2010)',
+        '36':  'Tsar Bomba (50 Mt)',
+        '37':  'terremoto M9 (Japão 2011)',
+        '38':  'impacto de asteroide (Tunguska)',
+        '39':  'terremoto M9.5 (Chile 1960)',
+        '40':  'impacto de Chicxulub (extinção K-Pg)',
+        '45':  'erupção de supernova próxima',
+        '50':  'explosão de supernova'
+      },
+      tempo: {
+        '-2':  'piscar de olhos',
+        '-1':  'respiração normal',
+        '0':   'compasso musical (120 bpm)',
+        '1':   'recorde mundial dos 100 m rasos',
+        '2':   'comercial de TV',
+        '3':   'intervalo de comerciais',
+        '4':   'minuto de silêncio',
+        '5':   'round de boxe',
+        '6':   'música popular média',
+        '7':   'corrida de 1 mile',
+        '8':   'intervalo escolar',
+        '9':   'episódio de série',
+        '10':  'aula universitária',
+        '11':  'filme longa-metragem',
+        '12':  'voo SP → RJ',
+        '13':  'jornada de trabalho',
+        '14':  'dia com deslocamento',
+        '15':  'um dia',
+        '16':  'fim de semana',
+        '17':  'feriado prolongado',
+        '18':  'semana',
+        '19':  'quinzena',
+        '20':  'mês',
+        '21':  'bimestre',
+        '22':  'semestre',
+        '23':  'gestação humana',
+        '24':  'um ano',
+        '25':  'dois anos',
+        '26':  'mandato presidencial',
+        '27':  'dois mandatos presidenciais',
+        '28':  'meia geração',
+        '29':  'carreira profissional',
+        '30':  'vida ativa (20–80 anos)',
+        '31':  'expectativa máxima humana',
+        '32':  'Independência dos EUA',
+        '33':  'Descobrimento do Brasil',
+        '34':  'Império Romano (duração)',
+        '35':  'era cristã',
+        '36':  'pirâmides do Egito',
+        '37':  'início da agricultura',
+        '38':  'últimas pinturas rupestres',
+        '39':  'extinção dos Neandertais',
+        '40':  'migração humana p/ Austrália',
+        '41':  'Homo sapiens moderno',
+        '42':  'origem do Homo sapiens',
+        '43':  'Homo heidelbergensis',
+        '44':  'surgimento do gênero Homo',
+        '45':  'australopitecos',
+        '46':  'primeiros hominídeos',
+        '47':  'divergência humano/chimpanzé',
+        '48':  'primeiros primatas',
+        '49':  'primeiros macacos',
+        '50':  'extinção dos dinossauros',
+        '51':  'dinossauros no Jurássico',
+        '52':  'Grande Extinção Permiana',
+        '53':  'explosão cambriana',
+        '54':  'início da vida multicelular',
+        '55':  'fotossíntese oxigênica',
+        '56':  'origem da vida na Terra',
+        '57':  'formação do Sistema Solar',
+        '58':  'idade do universo'
+      },
+      informacao: {
+        '-9': 'um bit',
+        '-6': 'um caractere ASCII',
+        '-3': 'linha de texto',
+        '-2': 'tweet máximo',
+        '-1': 'SMS',
+        '0':  'cartão perfurado (80 chars)',
+        '1':  'página digitada',
+        '2':  '2 páginas digitadas',
+        '3':  '1.000 palavras',
+        '4':  'capítulo de livro',
+        '5':  'monografia curta',
+        '6':  'história curta / conto',
+        '7':  '64 KB (limite DOS/FAT)',
+        '8':  'imagem bitmap pequena',
+        '9':  'ebook simples',
+        '10': 'livro técnico completo',
+        '11': 'MP3 de 1 minuto',
+        '12': 'foto de câmera básica',
+        '13': 'foto de smartphone',
+        '14': 'minuto de vídeo SD',
+        '15': 'minuto de vídeo HD',
+        '16': 'jogo de NES completo',
+        '17': 'jogo de SNES completo',
+        '18': 'jogo PS1 completo',
+        '19': 'HD de MP3s (256 álbuns)',
+        '20': 'CD-ROM de dados',
+        '21': 'DVD de dados',
+        '22': 'Blu-ray de dados',
+        '23': 'Blu-ray 4K',
+        '24': 'pendrive básico (8 GB)',
+        '25': 'pendrive 16 GB',
+        '26': 'pendrive 32 GB',
+        '27': 'celular básico (64 GB)',
+        '28': 'SSD de notebook',
+        '29': 'SSD de workstation',
+        '30': 'HD de servidor',
+        '31': 'HD externo (1 TB)',
+        '32': 'NAS doméstico básico',
+        '33': 'NAS doméstico completo',
+        '34': 'servidor de arquivos pequeno',
+        '35': 'acervo de fotos profissional',
+        '36': 'acervo de vídeo broadcast',
+        '37': 'data center pequeno',
+        '38': 'Wikipedia (texto + mídia)',
+        '39': 'acervo da Library of Congress',
+        '40': 'dados do Google por hora',
+        '41': 'YouTube (1 hora de upload)',
+        '42': 'dados do Facebook por dia',
+        '43': 'dados do Google por dia',
+        '44': 'Internet Archive completo',
+        '45': 'tráfego global por hora',
+        '46': 'tráfego global por dia',
+        '47': 'tráfego global por semana',
+        '48': 'tráfego global por mês',
+        '49': 'tráfego global por ano',
+        '50': 'toda a informação digital gerada até 2010',
+        '51': 'toda a informação digital gerada até 2020',
+        '55': 'todo conteúdo digital previsto até 2025',
+        '58': 'datasphere global projetada 2030'
+      }
+    };
+
+    function getRefCard(apStr) {
+      const match = (apStr || '').toString().match(/-?\d+/);
+      if (!match) return '';
+      const num = parseInt(match[0]);
+      if (isNaN(num) || num < -13 || num > 70) return '';
+      const rows = [];
+      const dims = [
+        { key: 'distancia',   label: 'dist' },
+        { key: 'energia',     label: 'energia' },
+        { key: 'massa',       label: 'massa' },
+        { key: 'tempo',       label: 'tempo' },
+        { key: 'informacao',  label: 'info' }
+      ];
+      dims.forEach(({ key, label }) => {
+        const val = apsReference[key][num];
+        if (val === undefined) return;
+        const ex = apsExamples[key]?.[num];
+        const exHtml = ex ? `<span class="ard-ref-ex">${ex}</span>` : '';
+        rows.push(`<div class="ard-ref-row"><span class="ard-ref-k">${label}</span><span class="ard-ref-v">${val}${exHtml}</span></div>`);
+      });
+      return rows.join('');
+    }
+
+    function buildARCard(tag, val, extraClass = '') {
+      const refs = getRefCard(val);
+      return `
+        <div class="ard-card ${extraClass}">
+          <div class="ard-card-header">
+            <span class="ard-card-tag">${tag}</span>
+            <span class="ard-card-val">${val}</span>
+          </div>
+          <div class="ard-refs">${refs || '<span class="ard-ref-v" style="opacity:.4">—</span>'}</div>
+        </div>`;
+    }
+
+    let activeSection = 'av'; // 'av' or 'rv'
+
+    function updateARDisplay() {
+      const hasAV = !!avSelection;
+      const hasRV = !!rvSelection;
+
+      if (!hasAV && !hasRV) {
+        const d = document.getElementById('ar-display');
+        if (d) d.remove();
+        return;
+      }
+
+      // If only one exists, show it
+      if (hasAV && !hasRV) activeSection = 'av';
+      if (hasRV && !hasAV) activeSection = 'rv';
+
+      const sel = activeSection === 'av' ? avSelection : rvSelection;
+      const isAV = activeSection === 'av';
+
+      let tabStrip = '';
+      if (hasAV && hasRV) {
+        tabStrip = `
+          <div class="ard-tab-strip">
+            <button class="ard-tab ${isAV ? 'active' : ''}" onclick="activeSection='av';updateARDisplay()">Ação</button>
+            <button class="ard-tab ${!isAV ? 'active' : ''}" onclick="activeSection='rv';updateARDisplay()">Efeito</button>
+          </div>`;
+      }
+
+      const sectionHtml = isAV
+        ? `<div class="ard-section">
+            <div class="ard-section-label">Ação</div>
+            <div class="ard-cards">
+              ${buildARCard('AV', sel.valorLinha)}
+              ${buildARCard('OV', sel.valorCol)}
+              ${buildARCard('RAPs', sel.raps, 'ard-raps')}
+            </div>
+          </div>`
+        : `<div class="ard-section">
+            <div class="ard-section-label">Efeito</div>
+            <div class="ard-cards">
+              ${buildARCard('EV', sel.valorLinha)}
+              ${buildARCard('RV', sel.valorCol)}
+              ${buildARCard('RAPs', sel.raps, 'ard-raps')}
+            </div>
+          </div>`;
+
+      let display = document.getElementById('ar-display');
+      if (!display) {
+        display = document.createElement('div');
+        display.id = 'ar-display';
+        document.body.appendChild(display);
+      }
+      display.innerHTML = tabStrip + sectionHtml;
+    }
+    
+    // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
+    document.body.addEventListener('click', function(e) {
+      const cell = e.target.closest('td');
+      if (!cell) return;
+      
+      const table = cell.closest('table');
+      if (!table) return;
+      
+      // Verifica se a tabela é uma tabela de AV/OV (contém cabeçalhos com AV/OV ou EV/RV)
+      const headers = Array.from(table.querySelectorAll('th'));
+      const isAVTable = headers.some(h => h.textContent.includes('AV') || h.textContent.includes('OV'));
+      const isRVTable = headers.some(h => h.textContent.includes('EV') || h.textContent.includes('RV'));
+      
+      if (!isAVTable && !isRVTable) return;
+      
+      // Limpa highlighting APENAS desta tabela (mantém as outras)
+      const allCells = table.querySelectorAll('td, th');
+      allCells.forEach(td => {
+        td.style.background = '';
+        td.style.color = '';
+        td.style.fontWeight = '';
+      });
+      
+      // Obtém linha e coluna
+      const row = cell.parentElement;
+      const colIndex = cell.cellIndex;
+      
+      // Destaca toda a coluna
+      table.querySelectorAll('tr').forEach(tr => {
+        if (tr.cells[colIndex]) {
+          tr.cells[colIndex].style.background = 'var(--accent)';
+          tr.cells[colIndex].style.color = '#111';
+          tr.cells[colIndex].style.fontWeight = 'bold';
         }
       });
-    }
+      
+      // Destaca toda a linha
+      row.querySelectorAll('td').forEach(td => {
+        td.style.background = 'var(--accent)';
+        td.style.color = '#111';
+        td.style.fontWeight = 'bold';
+      });
+      
+      // Pega valores de linha e coluna
+      let firstColText = row.cells[0] ? row.cells[0].textContent.trim() : '?';
+      let headerText = table.querySelector('thead') ? 
+        table.querySelectorAll('th')[colIndex]?.textContent.trim() : 
+        table.rows[0].cells[colIndex]?.textContent.trim();
+      
+      // Armazena seleção
+      let selection = {
+        tipo: isAVTable ? 'AV' : 'EV',
+        oposto: isAVTable ? 'OV' : 'RV',
+        valorLinha: firstColText,
+        valorCol: headerText,
+        raps: cell.textContent.trim()
+      };
+      
+      if (isAVTable) {
+        avSelection = selection;
+        activeSection = 'av';
+      } else {
+        rvSelection = selection;
+        activeSection = 'rv';
+      }
+      
+      updateARDisplay();
+    });
     
     const urlParams = new URLSearchParams(window.location.search);
     const initialPage = urlParams.get('p') || 'index';
@@ -485,41 +1074,44 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.dataset.page;
-        window.history.pushState({}, '', `wiki.html?p=${page}`);
+        window.history.pushState({ page }, '', `wiki.html?p=${page}`);
         loadPage(page);
       });
     });
+
+    window.addEventListener('popstate', () => {
+      const p = new URLSearchParams(window.location.search).get('p') || 'index';
+      loadPage(p);
+    });
     
     initTheme();
-    renderThemeDots();
-    
-    function toggleSettings() {
-      document.getElementById('settings-dropdown').classList.toggle('open');
-    }
     
     function renderThemeDots() {
       var themes = [
         { id: 'yellow', color: '#FFD600' },
-        { id: 'red', color: '#E8001C' },
-        { id: 'green', color: '#00C853' },
+        { id: 'red',    color: '#E8001C' },
+        { id: 'green',  color: '#00C853' },
         { id: 'purple', color: '#b040ff' },
-        { id: 'blue', color: '#3a8fc0' }
+        { id: 'blue',   color: '#3a8fc0' }
       ];
       var current = getCurrentTheme();
       var container = document.getElementById('theme-dots-row');
       if (!container) return;
       container.innerHTML = themes.map(function(t) {
-        return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') + '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id + '\');renderThemeDots();" title="' + t.name + '"></div>';
+        return '<div class="theme-dot-sm ' + (t.id === current ? 'active' : '') +
+          '" style="background:' + t.color + '" onclick="setTheme(\'' + t.id +
+          '\');renderThemeDots();" title="' + t.id + '"></div>';
       }).join('');
     }
     
-    document.addEventListener('click', function(e) {
-      var dropdown = document.getElementById('settings-dropdown');
-      var btn = document.querySelector('.hdr-settings-btn');
-      if (dropdown && btn && !dropdown.contains(e.target) && !btn.contains(e.target)) {
-        dropdown.classList.remove('open');
-      }
-    });
+    renderThemeDots();
+    
+    // Save bar
+    var saveBar = document.createElement('div');
+    saveBar.id = 'save-bar';
+    saveBar.className = 'save-bar';
+    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
+    document.body.appendChild(saveBar);
   </script>
 </body>
 </html>

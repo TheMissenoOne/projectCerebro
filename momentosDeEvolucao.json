@@ -1,0 +1,42 @@
+{
+  "momentos_evolucao": {
+    "descricao": "Quando você completa o marcador de Progressão (marcando cinco quadrados), acontece um Momento de Evolução. Reinicie o marcador e escolha uma das opções abaixo. Depois de marcada, a opção não pode ser escolhida de novo (exceto quando indicado). Traduza o momento na história: ele representa um crescimento significativo, uma virada na vida do mutante, geralmente após a perda e substituição de um tema.",
+    "opcoes": [
+      {
+        "nome": "ESCOLHER OUTRA TAG DE PODER GENÉRICA",
+        "descricao": "Escolha uma nova tag de poder para qualquer um de seus temas (Mutação ou Humanidade). Você pode escolher uma tag genérica, mesmo que já tenha uma. Agora você pode ter até **duas tags genéricas** ao todo (em vez de uma). Se perder uma delas depois, poderá substituí-la no futuro.",
+        "uso": "Única"
+      },
+      {
+        "nome": "GANHAR UM TEMA ADICIONAL: ALIADO",
+        "descricao": "Você ganha um novo tema adicional representando um aliado — um parceiro, mentor, Familiar ou outro mutante que o auxilia. Esse tema começa como um **tema inicial** (com uma tag de poder). Siga o guia de tema adicional de Aliado para criá-lo.",
+        "uso": "Única"
+      },
+      {
+        "nome": "GANHAR UM TEMA ADICIONAL: BASE DE OPERAÇÕES",
+        "descricao": "Você ganha um novo tema adicional representando uma base de operações — um esconderijo, laboratório, território ou local seguro. O tema começa como **tema inicial** (uma tag de poder). Use o guia de tema adicional de Base de Operações.",
+        "uso": "Única"
+      },
+      {
+        "nome": "GANHAR UM TEMA ADICIONAL: TRANSPORTE",
+        "descricao": "Você ganha um novo tema adicional representando um transporte especial — um veículo, montaria ou equipamento de deslocamento. O tema começa como **tema inicial** (uma tag de poder). Use o guia de tema adicional de Transporte.",
+        "uso": "Única"
+      },
+      {
+        "nome": "MUTAÇÃO SECUNDÁRIA",
+        "descricao": "Você desbloqueia um **Card de Mutação Secundária** — uma extensão do seu tema de Mutação original. Esse card é um tema adicional com regras especiais: começa com 2 tags de poder, 1 tag de fraqueza e um Mistério próprio. Ele não substitui o tema original e segue regras próprias de Atenção, Dissipação e Melhorias (ver regras de Mutação Secundária). Você não pode escolher esta opção mais de uma vez por personagem.",
+        "uso": "Única"
+      },
+      {
+        "nome": "SEGUNDA CHANCE",
+        "descricao": "Uma vez por campanha, quando um tema de Mutação ou Humanidade teria suas três caixas de Dissipação ou Quebra preenchidas (e seria substituído), você pode cancelar essa substituição. Em vez disso: zere os marcadores de Dissipação ou Quebra do tema; reescreva o Mistério (Mutação) ou a Identidade (Humanidade) para refletir uma nova perspectiva. **Alternativamente, você pode usar esta opção para trazer de volta um tema que já foi perdido** (substituído). O tema retorna com seus rótulos, melhorias e marcadores restaurados, **mas você deve reescrever seu Mistério (se for Mutação) ou sua Identidade (se for Humanidade)** para algo novo, representando como o personagem ressignificou aquela parte de si. O tema recuperado substitui um tema atual à sua escolha (ou ocupa um espaço vazio). Não pode recuperar temas substituídos por Transformação ou Tema Ômega.",
+        "uso": "Única"
+      },
+      {
+        "nome": "IDENTIDADE MUTANTE",
+        "descricao": "Você para de tratar sua mutação como algo separado de quem você é. Escolha **um tema de Mutação** e **um tema de Humanidade** que estejam narrativamente conectados. **Ao adquirir este Momento de Evolução, você pode transferir permanentemente uma tag de poder de um desses temas para o outro** (a tag passa a pertencer ao novo tema). A transferência deve fazer sentido narrativo e ser aprovada pelo GM. Esta opção pode ser escolhida uma vez por par de temas.",
+        "uso": "Única por par"
+      }
+    ]
+  }
+}
