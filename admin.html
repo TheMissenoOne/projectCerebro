@@ -37,22 +37,22 @@
 
   <div class="admin-layout">
     <nav class="admin-sidebar">
-      <a href="admin.html?tab=party" class="admin-nav-link" data-tab="party">Party</a>
-      <a href="admin.html?tab=encounter" class="admin-nav-link" data-tab="encounter">Encontro</a>
-      <a href="admin.html?tab=notes" class="admin-nav-link" data-tab="notes">Notas de Sessão</a>
-      <a href="admin.html?tab=members" class="admin-nav-link" data-tab="members">Membros</a>
+      <a href="admin.html?tab=party" class="admin-nav-link" data-tab="party" data-i18n="admin.party">Party</a>
+      <a href="admin.html?tab=encounter" class="admin-nav-link" data-tab="encounter" data-i18n="admin.encounter">Encontro</a>
+      <a href="admin.html?tab=notes" class="admin-nav-link" data-tab="notes" data-i18n="admin.notes">Notas de Sessão</a>
+      <a href="admin.html?tab=members" class="admin-nav-link" data-tab="members" data-i18n="admin.members">Membros</a>
     </nav>
 
     <main class="admin-content">
-      <div id="no-party-msg" class="no-party" style="display: none;">
+      <div id="no-party-msg" class="no-party" style="display: none;" data-i18n="admin.noParty">
         Você não é GM de nenhuma party. Crie ou entre em uma party para acessar o painel.
       </div>
 
       <div id="party-admin-content">
         <div id="tab-party" class="admin-section">
           <div class="admin-section-header">
-            <span class="admin-section-title">Todos os Personagens</span>
-            <button class="btn" onclick="refreshCharacters()">⟳ Atualizar</button>
+            <span class="admin-section-title" data-i18n="admin.allChars">Todos os Personagens</span>
+            <button class="btn" onclick="refreshCharacters()" data-i18n="admin.refresh">⟳ Atualizar</button>
           </div>
           <div class="chars-grid" id="party-chars-grid"></div>
         </div>
@@ -62,38 +62,38 @@
           <div class="modal-overlay" onclick="closeCharModal()"></div>
           <div class="modal-content">
             <div class="modal-header">
-              <span class="modal-title" id="char-modal-title">Editar Personagem</span>
+              <span class="modal-title" id="char-modal-title" data-i18n="admin.editChar">Editar Personagem</span>
               <button class="modal-close" onclick="closeCharModal()">×</button>
             </div>
             <div class="modal-body" id="char-modal-body">
               <!-- Character data will be loaded here -->
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" onclick="closeCharModal()">Cancelar</button>
-              <button class="btn btn-primary" onclick="saveCharData()">Salvar</button>
+              <button class="btn btn-secondary" onclick="closeCharModal()" data-i18n="admin.cancel">Cancelar</button>
+              <button class="btn btn-primary" onclick="saveCharData()" data-i18n="admin.save">Salvar</button>
             </div>
           </div>
         </div>
 
         <div id="tab-encounter" class="admin-section">
           <div class="admin-section-header">
-            <span class="admin-section-title">Controle de Encontro</span>
+            <span class="admin-section-title" data-i18n="admin.encounterControl">Controle de Encontro</span>
           </div>
           <div class="encounter-controls">
             <div class="encounter-toggle">
-              <button class="btn" id="toggle-encounter-btn">Iniciar Encontro</button>
+              <button class="btn" id="toggle-encounter-btn" data-i18n="admin.startEncounter">Iniciar Encontro</button>
             </div>
           </div>
           <div class="quick-actions">
-            <a href="cerebro.html" class="btn">Selecionar NPCs</a>
+            <a href="cerebro.html" class="btn" data-i18n="admin.selectNpcs">Selecionar NPCs</a>
           </div>
         </div>
 
         <div id="tab-notes" class="admin-section">
           <div class="admin-section-header">
-            <span class="admin-section-title">Notas de Sessão</span>
+            <span class="admin-section-title" data-i18n="admin.notes">Notas de Sessão</span>
           </div>
-          <textarea class="session-notes" id="session-notes" placeholder="Anote aqui os eventos da sessão..."></textarea>
+          <textarea class="session-notes" id="session-notes" data-i18n-placeholder="admin.notesPlaceholder" placeholder="Anote aqui os eventos da sessão..."></textarea>
         </div>
       </div>
 </main>
@@ -105,6 +105,7 @@ let currentParty = null;
 
     async function init() {
       initLanguage();
+      applyTranslations();
       initTheme();
       renderNavBar({ page: 'admin' });
       
@@ -157,7 +158,7 @@ let currentParty = null;
         if (!append) grid.innerHTML = '';
         
         if (!chars || chars.length === 0) {
-          if (!append) grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum personagem encontrado</p>';
+          if (!append) grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;" data-i18n="admin.noChars">' + t('admin.noChars') + '</p>';
           return;
         }
         
@@ -172,7 +173,7 @@ let currentParty = null;
           card.innerHTML = foto 
             ? '<div class="char-card-img" style="background-image:url(' + foto + ')"></div>'
             : '<div class="char-card-avatar">' + initial + '</div>';
-          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.nome || 'Sem Nome') + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || 'Sem Party') + '</div>';
+          card.innerHTML += '<div class="char-card-info"><div class="char-card-name">' + (char.nome || t('admin.noName')) + '</div><div class="char-card-player">' + (char.player_name || char.player_id || '—') + '</div></div><div class="char-card-party">' + (char.party_name || t('admin.noPartyName')) + '</div>';
           grid.appendChild(card);
         });
         
@@ -184,7 +185,7 @@ let currentParty = null;
             const btn = document.createElement('button');
             btn.id = 'load-more-chars';
             btn.className = 'load-more-btn';
-            btn.textContent = 'Carregar mais...';
+            btn.textContent = t('admin.loadMore');
             btn.onclick = () => loadPartyCharacters(true);
             grid.parentNode.appendChild(btn);
           }
@@ -194,7 +195,7 @@ let currentParty = null;
         }
       } catch (e) {
         console.error('[loadPartyCharacters error]', e);
-        document.getElementById('party-chars-grid').innerHTML = '<p style="color:var(--red);text-align:center;padding:20px;">Erro: ' + e.message + '</p>';
+        document.getElementById('party-chars-grid').innerHTML = '<p style="color:var(--red);text-align:center;padding:20px;">' + t('admin.error') + ' ' + e.message + '</p>';
       }
     }
 
@@ -209,56 +210,56 @@ let currentParty = null;
       try {
         const char = await api.loadCharacter(charId);
         currentEditingChar = char;
-        document.getElementById('char-modal-title').textContent = 'Editar: ' + (char.nome || 'Sem Nome');
+        document.getElementById('char-modal-title').textContent = t('admin.editing') + ' ' + (char.nome || t('admin.noName'));
         
         const data = char.data || {};
         
         document.getElementById('char-modal-body').innerHTML = `
           <div class="char-edit-form">
             <div class="char-edit-section">
-              <h4>Informações Básicas</h4>
+              <h4>${t('admin.basicInfo')}</h4>
               <div class="char-edit-row">
-                <label>Nome</label>
+                ${t('common.name')}
                 <input type="text" id="edit-char-name" value="${char.nome || ''}">
               </div>
               <div class="char-edit-row">
-                <label>Codename</label>
+                ${t('common.codename')}
                 <input type="text" id="edit-char-codename" value="${char.codename || ''}">
               </div>
             </div>
             
             <div class="char-edit-section">
-              <h4>Atributos</h4>
+              <h4>${t('admin.attributes')}</h4>
               <div class="char-data-editor" id="atributos-editor">
                 ${renderCharDataFields(data.atributos || {}, 'atributos')}
               </div>
-              <button class="add-field-btn" onclick="addCharDataField('atributos')">+ Adicionar Atributo</button>
+              <button class="add-field-btn" onclick="addCharDataField('atributos')">${t('admin.addAttribute')}</button>
             </div>
             
             <div class="char-edit-section">
-              <h4>Tags</h4>
+              <h4>${t('admin.tags')}</h4>
               <div class="char-data-editor" id="tags-editor">
                 ${renderCharDataFields(data.tags || [], 'tags')}
               </div>
-              <button class="add-field-btn" onclick="addCharDataField('tags')">+ Adicionar Tag</button>
+              <button class="add-field-btn" onclick="addCharDataField('tags')">${t('admin.addTag')}</button>
             </div>
             
             <div class="char-edit-section">
-              <h4>Poderes</h4>
+              <h4>${t('admin.powers')}</h4>
               <div class="char-data-editor" id="poderes-editor">
                 ${renderCharDataFields(data.poderes || {}, 'poderes')}
               </div>
-              <button class="add-field-btn" onclick="addCharDataField('poderes')">+ Adicionar Poder</button>
+              <button class="add-field-btn" onclick="addCharDataField('poderes')">${t('admin.addPower')}</button>
             </div>
             
             <div class="char-edit-section">
-              <h4>Notas</h4>
+              <h4>${t('admin.notesSection')}</h4>
               <div class="char-edit-row">
-                <label>Descrição</label>
+                <label>${t('admin.description')}</label>
                 <textarea id="edit-char-desc" rows="3">${data.descricao || ''}</textarea>
               </div>
               <div class="char-edit-row">
-                <label>Background</label>
+                <label>${t('admin.background')}</label>
                 <textarea id="edit-char-background" rows="3">${data.background || ''}</textarea>
               </div>
             </div>
@@ -268,7 +269,7 @@ let currentParty = null;
         document.getElementById('char-edit-modal').style.display = 'flex';
       } catch (e) {
         console.error('[editCharacter error]', e);
-        alert('Erro ao carregar personagem: ' + e.message);
+        alert(t('admin.errorLoadChar') + ' ' + e.message);
       }
     };
 
@@ -283,8 +284,8 @@ let currentParty = null;
       } else if (typeof objOrArr === 'object') {
         return Object.entries(objOrArr).map(([key, val], i) => `
           <div class="char-data-field" data-index="${i}" data-keyname="${key}">
-            <input type="text" value="${key}" placeholder="chave" data-key="${key}">
-            <input type="text" value="${typeof val === 'object' ? JSON.stringify(val) : val}" placeholder="valor">
+            <input type="text" value="${key}" placeholder="${t('admin.keyPlaceholder')}" data-key="${key}">
+            <input type="text" value="${typeof val === 'object' ? JSON.stringify(val) : val}" placeholder="${t('admin.valuePlaceholder')}">
             <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', '${key}')">×</button>
           </div>
         `).join('');
@@ -299,13 +300,13 @@ let currentParty = null;
       field.className = 'char-data-field';
       if (isArray) {
         field.innerHTML = `
-          <input type="text" placeholder="nova tag" data-key="${container.children.length}">
+          <input type="text" placeholder="${t('admin.tagPlaceholder')}" data-key="${container.children.length}">
           <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', ${container.children.length})">×</button>
         `;
       } else {
         field.innerHTML = `
-          <input type="text" placeholder="chave" data-key="newkey">
-          <input type="text" placeholder="valor">
+          <input type="text" placeholder="${t('admin.keyPlaceholder')}" data-key="newkey">
+          <input type="text" placeholder="${t('admin.valuePlaceholder')}">
           <button class="remove-field" onclick="removeCharDataField(this, '${prefix}', 'newkey')">×</button>
         `;
       }
@@ -346,10 +347,10 @@ let currentParty = null;
         
         closeCharModal();
         await loadPartyCharacters();
-        alert('Personagem salvo com sucesso!');
+        alert(t('admin.savedChar'));
       } catch (e) {
         console.error('[saveCharData error]', e);
-        alert('Erro ao salvar: ' + e.message);
+        alert(t('admin.errorSaveChar') + ' ' + e.message);
       }
     };
 
@@ -376,15 +377,15 @@ let currentParty = null;
     };
 
     window.deleteCharacter = async function(charId) {
-      if (!confirm('Tem certeza que deseja excluir este personagem? Esta ação não pode ser desfeita.')) return;
+      if (!confirm(t('admin.confirmDelete'))) return;
       
       try {
         await api.deleteCharacter(charId);
         await loadPartyCharacters();
-        alert('Personagem excluído.');
+        alert(t('admin.deletedChar'));
       } catch (e) {
         console.error('[deleteCharacter error]', e);
-        alert('Erro ao excluir: ' + e.message);
+        alert(t('admin.errorDeleteChar') + ' ' + e.message);
       }
     };
 
@@ -392,15 +393,22 @@ let currentParty = null;
       const session = await api.getSession(currentParty.id);
       if (session) {
         document.getElementById('session-notes').value = session.notes || '';
+        const encActive = Array.isArray(session.encounter) && session.encounter.includes('active');
+        const btn = document.getElementById('toggle-encounter-btn');
+        btn.dataset.active = String(encActive);
+        btn.textContent = encActive ? t('admin.endEncounter') : t('admin.startEncounter');
+        btn.classList.toggle('btn-primary', encActive);
       }
     }
 
     document.getElementById('toggle-encounter-btn').addEventListener('click', async () => {
       const btn = document.getElementById('toggle-encounter-btn');
-      const active = btn.textContent.includes('Encerrar');
-      btn.textContent = active ? 'Iniciar Encontro' : 'Encerrar Encontro';
-      btn.classList.toggle('btn-primary', !active);
-      await saveSessionState(!active);
+      const active = btn.dataset.active === 'true';
+      const next = !active;
+      btn.dataset.active = String(next);
+      btn.textContent = next ? t('admin.endEncounter') : t('admin.startEncounter');
+      btn.classList.toggle('btn-primary', next);
+      await saveSessionState(next);
     });
 
     async function saveSessionState(encounterActive) {
@@ -431,7 +439,7 @@ let currentParty = null;
     var saveBar = document.createElement('div');
     saveBar.id = 'save-bar';
     saveBar.className = 'save-bar';
-    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
+    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text" data-i18n="admin.waiting">' + t('admin.waiting') + '</span></div><span class="save-timestamp"></span>';
     document.body.appendChild(saveBar);
   </script>
 </body>

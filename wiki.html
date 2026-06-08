@@ -429,7 +429,7 @@
           <rect y="6.25" width="14" height="1.5" rx=".75" fill="currentColor"/>
           <rect y="10.5" width="14" height="1.5" rx=".75" fill="currentColor"/>
         </svg>
-        <span>Navegação</span>
+        <span data-i18n="wiki.nav">Navegação</span>
         <span class="nav-current" id="nav-current-label">Introdução</span>
         <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
           <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -437,38 +437,38 @@
       </button>
       <div class="wiki-sidebar-drawer" id="wiki-sidebar-drawer">
         <div class="wiki-nav-section">
-          <div class="wiki-nav-title">Regras</div>
+          <div class="wiki-nav-title" data-i18n="wiki.rules">Regras</div>
           <div class="wiki-nav-links-grid">
-            <a href="wiki.html" class="wiki-nav-link" data-page="index">Introdução</a>
-            <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido">Sistema Híbrido</a>
-            <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas">Temas</a>
-            <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags">Tags</a>
-            <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao">Progressão</a>
-            <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate">Combate</a>
-            <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao">Sistema de Ações</a>
-            <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores">Modificadores</a>
-            <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado">Tabela AV/OV·EV/RV</a>
-            <a href="wiki.html?p=aps_referencia" class="wiki-nav-link" data-page="aps_referencia">APs Referência</a>
+            <a href="wiki.html" class="wiki-nav-link" data-page="index" data-i18n="wiki.intro">Introdução</a>
+            <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido" data-i18n="wiki.hybrid">Sistema Híbrido</a>
+            <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas" data-i18n="wiki.themes">Temas</a>
+            <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags" data-i18n="wiki.tags">Tags</a>
+            <a href="wiki.html?p=progressao" class="wiki-nav-link" data-page="progressao" data-i18n="wiki.progression">Progressão</a>
+            <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate" data-i18n="wiki.combat">Combate</a>
+            <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao" data-i18n="wiki.actions">Sistema de Ações</a>
+            <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores" data-i18n="wiki.modifiers">Modificadores</a>
+            <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado" data-i18n="wiki.avov">Tabela AV/OV·EV/RV</a>
+            <a href="wiki.html?p=aps_referencia" class="wiki-nav-link" data-page="aps_referencia" data-i18n="wiki.aps">APs Referência</a>
           </div>
         </div>
         <div class="wiki-nav-section">
-          <div class="wiki-nav-title">Personagens</div>
+          <div class="wiki-nav-title" data-i18n="wiki.characters">Personagens</div>
           <div class="wiki-nav-links-grid">
-            <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera">Tema de Galera</a>
-            <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs">NPCs & Cérebro</a>
+            <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera" data-i18n="wiki.crewTheme">Tema de Galera</a>
+            <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs" data-i18n="wiki.npcs">NPCs & Cérebro</a>
           </div>
         </div>
         <div class="wiki-nav-section">
-          <div class="wiki-nav-title">Operações</div>
+          <div class="wiki-nav-title" data-i18n="wiki.ops">Operações</div>
           <div class="wiki-nav-links-grid">
-            <a href="wiki.html?p=relatorios" class="wiki-nav-link" data-page="relatorios">Relatórios</a>
+            <a href="wiki.html?p=relatorios" class="wiki-nav-link" data-page="relatorios" data-i18n="wiki.reports">Relatórios</a>
           </div>
         </div>
       </div>
     </nav>
 
     <main class="wiki-content" id="wiki-content">
-      <h1>Bem-vindo à Wiki X-MEN TTRPG</h1>
+      <h1 data-i18n="wiki.welcome">Bem-vindo à Wiki X-MEN TTRPG</h1>
       <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado. Aqui você encontrará todas as informações necessárias para criar seus personagens, entender os movimentos, e rodar suas sessões.</p>
       
       <h2>Sobre o Sistema</h2>
@@ -1058,6 +1058,7 @@
     });
     
     initLanguage();
+    applyTranslations();
     initTheme();
     renderNavBar({ page: 'wiki' });
     
@@ -1065,7 +1066,7 @@
     var saveBar = document.createElement('div');
     saveBar.id = 'save-bar';
     saveBar.className = 'save-bar';
-    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text">AGUARDANDO</span></div><span class="save-timestamp"></span>';
+    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text" data-i18n="admin.waiting">' + t('admin.waiting') + '</span></div><span class="save-timestamp"></span>';
     document.body.appendChild(saveBar);
   </script>
 </body>

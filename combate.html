@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>COMBATE // X-MEN TTRPG</title>
+  <title data-i18n="combat.pageTitle">COMBATE // X-MEN TTRPG</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,15 +107,14 @@
   <div class="combate-container">
     
     <div class="info-box">
-      <p><strong>Sistema MEGS:</strong> AV = Action Value (atributo do atacante), OV = Opposing Value (defesa). 
-      RV = Resistance Value (resistência do alvo). RAPs = Result Action Points (dano aplicado).</p>
+      <p data-i18n="combat.info"><strong>Sistema MEGS:</strong> AV = Action Value (atributo do atacante), OV = Opposing Value (defesa). RV = Resistance Value (resistência do alvo). RAPs = Result Action Points (dano aplicado).</p>
     </div>
     
     <div class="tabs-container">
       <div class="tabs">
-        <button class="tab active" data-tab="avov">AV/OV</button>
-        <button class="tab" data-tab="evrv">EV/RV</button>
-        <button class="tab" data-tab="tabelas">TABELAS</button>
+        <button class="tab active" data-tab="avov" data-i18n="combat.tabAvOv">AV/OV</button>
+        <button class="tab" data-tab="evrv" data-i18n="combat.tabEvRv">EV/RV</button>
+        <button class="tab" data-tab="tabelas" data-i18n="combat.tabTables">TABELAS</button>
       </div>
     </div>
     
@@ -123,16 +122,16 @@
     <div class="tab-content active" id="tab-avov">
       <div class="calc-grid">
         <div class="calc-panel">
-          <div class="calc-panel-title">VALORES DE AÇÃO</div>
+          <div class="calc-panel-title" data-i18n="combat.actionValues">VALORES DE AÇÃO</div>
           
           <div class="personaje-selector">
             <div class="selector-row">
-              <span class="selector-label">ATACANTE:</span>
+              <span class="selector-label" data-i18n="combat.attacker">ATACANTE:</span>
               <select class="selector-select" id="av-char-select">
-                <option value="">Selecionar personagem...</option>
+                <option value="" data-i18n="combat.selectChar">Selecionar personagem...</option>
               </select>
               <select class="selector-select" id="av-stat-select" style="max-width: 120px;">
-                <option value="">Atributo</option>
+                <option value="" data-i18n="combat.attribute">Atributo</option>
                 <option value="destreza">Destreza</option>
                 <option value="forca">Força</option>
                 <option value="corpo">Corpo</option>
@@ -145,9 +144,9 @@
               </select>
             </div>
             <div class="selector-row" style="margin-top:8px">
-              <span class="selector-label">DEFENSOR:</span>
+              <span class="selector-label" data-i18n="combat.defender">DEFENSOR:</span>
               <select class="selector-select" id="ov-char-select">
-                <option value="">Selecionar NPC...</option>
+                <option value="" data-i18n="combat.selectNpc">Selecionar NPC...</option>
               </select>
               <select class="selector-select" id="ov-stat-select" style="max-width: 120px;">
                 <option value="">Atributo</option>
@@ -165,23 +164,23 @@
           </div>
           
           <div class="calc-row">
-            <span class="calc-label">AV<span class="field-help">?<span class="tooltip">Action Value - atributo/equivalente do atacante</span></span></span>
-            <input type="number" class="calc-input" id="av-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.av">AV<span class="field-help">?<span class="tooltip" data-i18n="combat.avHelp">Action Value - atributo/equivalente do atacante</span></span></span>
+            <input type="number" class="calc-input" id="av-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           <div class="calc-row">
-            <span class="calc-label">OV<span class="field-help">?<span class="tooltip">Opposing Value - valor de oposição/defesa do alvo</span></span></span>
-            <input type="number" class="calc-input" id="ov-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.ov">OV<span class="field-help">?<span class="tooltip" data-i18n="combat.ovHelp">Opposing Value - valor de oposição/defesa do alvo</span></span></span>
+            <input type="number" class="calc-input" id="ov-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           
           <div class="result-box">
-            <div class="result-label">ALVO NOS DADOS (2d10)</div>
+            <div class="result-label" data-i18n="combat.targetRoll">ALVO NOS DADOS (2d10)</div>
             <div class="result-value" id="avov-result">—</div>
             <div class="result-sub" id="avov-sub">Insira AV e OV para calcular</div>
           </div>
         </div>
         
         <div class="calc-panel">
-          <div class="calc-panel-title">ROLAR DADOS</div>
+          <div class="calc-panel-title" data-i18n="combat.rollTitle">ROLAR DADOS</div>
           
           <div class="roll-section">
             <div class="roll-title">2d10</div>
@@ -190,27 +189,27 @@
           </div>
           
           <div class="quick-roll">
-            <button class="quick-roll-btn" onclick="rollDice()">🎲 ROLAR</button>
-            <button class="quick-roll-btn" onclick="rollDice(true)">🔄 RE-ROLAR</button>
+            <button class="quick-roll-btn" onclick="rollDice()" data-i18n="combat.rollDice">🎲 ROLAR</button>
+            <button class="quick-roll-btn" onclick="rollDice(true)" data-i18n="combat.reroll">🔄 RE-ROLAR</button>
           </div>
           
           <div class="mode-selector">
-            <button class="mode-btn active" data-mode="temp">Temporário</button>
-            <button class="mode-btn" data-mode="pers">Persistente</button>
-            <button class="mode-btn" data-mode="perm">Permanente</button>
+            <button class="mode-btn active" data-mode="temp" data-i18n="combat.temporary">Temporário</button>
+            <button class="mode-btn" data-mode="pers" data-i18n="combat.persistent">Persistente</button>
+            <button class="mode-btn" data-mode="perm" data-i18n="combat.permanent">Permanente</button>
           </div>
           
           <div class="calc-row" style="margin-top:12px">
-            <span class="calc-label">EV<span class="field-help">?<span class="tooltip">Effect Value - poder do efeito/ataque</span></span></span>
-            <input type="number" class="calc-input" id="ev-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.ev">EV<span class="field-help">?<span class="tooltip" data-i18n="combat.evHelp">Effect Value - poder do efeito/ataque</span></span></span>
+            <input type="number" class="calc-input" id="ev-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           <div class="calc-row">
-            <span class="calc-label">RV<span class="field-help">?<span class="tooltip">Resistance Value - resistência do alvo ao efeito</span></span></span>
-            <input type="number" class="calc-input" id="rv-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.rv">RV<span class="field-help">?<span class="tooltip" data-i18n="combat.rvHelp">Resistance Value - resistência do alvo ao efeito</span></span></span>
+            <input type="number" class="calc-input" id="rv-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           
           <div class="result-box" id="raps-box" style="display:none;">
-            <div class="result-label">RAPs DE DANO</div>
+            <div class="result-label" data-i18n="combat.rapsDamage">RAPs DE DANO</div>
             <div class="result-value" id="raps-result">0</div>
             <div class="result-sub" id="raps-sub">—</div>
           </div>
@@ -222,43 +221,43 @@
     <div class="tab-content" id="tab-evrv">
       <div class="calc-grid">
         <div class="calc-panel">
-          <div class="calc-panel-title">VALORES DE EFEITO</div>
+          <div class="calc-panel-title" data-i18n="combat.effectValues">VALORES DE EFEITO</div>
           
           <div class="calc-row">
-            <span class="calc-label">EV</span>
-            <input type="number" class="calc-input" id="evrv-ev-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.ev">EV</span>
+            <input type="number" class="calc-input" id="evrv-ev-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           <div class="calc-row">
-            <span class="calc-label">RV</span>
-            <input type="number" class="calc-input" id="evrv-rv-input" min="1" max="52" placeholder="1-52">
+            <span class="calc-label" data-i18n="combat.rv">RV</span>
+            <input type="number" class="calc-input" id="evrv-rv-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
           </div>
           
           <div class="mode-selector">
-            <button class="mode-btn active" data-mode="temp" onclick="setMode('temp', 'evrv')">Temporário</button>
-            <button class="mode-btn" data-mode="pers" onclick="setMode('pers', 'evrv')">Persistente</button>
-            <button class="mode-btn" data-mode="perm" onclick="setMode('perm', 'evrv')">Permanente</button>
+            <button class="mode-btn active" data-mode="temp" onclick="setMode('temp', 'evrv')" data-i18n="combat.temporary">Temporário</button>
+            <button class="mode-btn" data-mode="pers" onclick="setMode('pers', 'evrv')" data-i18n="combat.persistent">Persistente</button>
+            <button class="mode-btn" data-mode="perm" onclick="setMode('perm', 'evrv')" data-i18n="combat.permanent">Permanente</button>
           </div>
           
-          <button class="action-btn" onclick="calcularEV()">CALCULAR RAPs</button>
+          <button class="action-btn" onclick="calcularEV()" data-i18n="combat.calcRaps">CALCULAR RAPs</button>
           
           <div class="result-box">
-            <div class="result-label">RAPs APLICADOS</div>
+            <div class="result-label" data-i18n="combat.rapsApplied">RAPs APLICADOS</div>
             <div class="result-value" id="evrv-result">—</div>
             <div class="result-sub" id="evrv-sub">Selecione modo e insira valores</div>
           </div>
         </div>
         
         <div class="calc-panel">
-          <div class="calc-panel-title">MODOS DE DANO</div>
+          <div class="calc-panel-title" data-i18n="combat.damageModes">MODOS DE DANO</div>
           
           <div class="info-box" style="margin-bottom:12px">
-            <p><strong>Temporário:</strong> Dano que desaparece após a cena (atordoamento, medo, etc.)</p>
+            <p data-i18n="combat.tempInfo"><strong>Temporário:</strong> Dano que desaparece após a cena (atordoamento, medo, etc.)</p>
           </div>
           <div class="info-box" style="margin-bottom:12px">
-            <p><strong>Persistente:</strong> Dano que persiste até o fim do combate (ferimentos, condições)</p>
+            <p data-i18n="combat.persistInfo"><strong>Persistente:</strong> Dano que persiste até o fim do combate (ferimentos, condições)</p>
           </div>
           <div class="info-box">
-            <p><strong>Permanente:</strong> Dano que não desaparece (ferimentos sérios, perda de capacidades)</p>
+            <p data-i18n="combat.permInfo"><strong>Permanente:</strong> Dano que não desaparece (ferimentos sérios, perda de capacidades)</p>
           </div>
         </div>
       </div>
@@ -266,22 +265,22 @@
     
     <!-- TABELAS TAB -->
     <div class="tab-content" id="tab-tabelas">
-      <div class="table-title">TABELA AV/OV (Alvo nos dados)</div>
+      <div class="table-title" data-i18n="combat.tableAvOv">TABELA AV/OV (Alvo nos dados)</div>
       <div class="tables-section">
         <table id="avov-table"></table>
       </div>
       
-      <div class="table-title">TABELA EV/RV — TEMPORÁRIO</div>
+      <div class="table-title" data-i18n="combat.tableEvRvTemp">TABELA EV/RV — TEMPORÁRIO</div>
       <div class="tables-section">
         <table id="evrv-temp-table"></table>
       </div>
       
-      <div class="table-title">TABELA EV/RV — PERSISTENTE</div>
+      <div class="table-title" data-i18n="combat.tableEvRvPers">TABELA EV/RV — PERSISTENTE</div>
       <div class="tables-section">
         <table id="evrv-pers-table"></table>
       </div>
       
-      <div class="table-title">TABELA EV/RV — PERMANENTE</div>
+      <div class="table-title" data-i18n="combat.tableEvRvPerm">TABELA EV/RV — PERMANENTE</div>
       <div class="tables-section">
         <table id="evrv-perm-table"></table>
       </div>
@@ -407,16 +406,16 @@ function updateAVOV() {
     if (alvo === 'N') {
       resultEl.textContent = 'N';
       resultEl.className = 'result-value impossible';
-      subEl.textContent = 'Ação impossível sem ajuda';
+      subEl.textContent = t('combat.impossible');
     } else {
       resultEl.textContent = alvo;
       resultEl.className = 'result-value';
-      subEl.textContent = `Tire ${alvo}+ em 2d10 para sucesso`;
+      subEl.textContent = t('combat.targetMsg').replace('{0}', alvo);
     }
   } else {
     resultEl.textContent = '—';
     resultEl.className = 'result-value';
-    subEl.textContent = 'Insira AV e OV para calcular';
+    subEl.textContent = t('combat.enterAvOv');
   }
 }
 
@@ -438,7 +437,7 @@ function updateRoll() {
   const diceEl = document.getElementById('roll-dice');
   const rapsBox = document.getElementById('raps-box');
   
-  diceEl.textContent = `2d10 = ${lastRoll}`;
+  diceEl.textContent = t('combat.rollResult').replace('{0}', lastRoll);
   
   if (av > 0 && ov > 0) {
     const alvo = calcularAlvo(av, ov);
@@ -449,17 +448,17 @@ function updateRoll() {
       resultEl.className = 'roll-result fail';
       document.getElementById('raps-box').style.display = 'none';
     } else if (sucesso) {
-      resultEl.textContent = `${lastRoll} ✓`;
+      resultEl.textContent = t('combat.success').replace('{0}', lastRoll);
       resultEl.className = 'roll-result success';
       
       if (ev > 0 && rv > 0) {
         const raps = calcularRAPs(ev, rv, currentMode);
         document.getElementById('raps-result').textContent = raps;
-        document.getElementById('raps-sub').textContent = `${currentMode === 'temp' ? 'Temporário' : currentMode === 'pers' ? 'Persistente' : 'Permanente'}`;
+        document.getElementById('raps-sub').textContent = currentMode === 'temp' ? t('combat.temporary') : currentMode === 'pers' ? t('combat.persistent') : t('combat.permanent');
         rapsBox.style.display = 'block';
       }
     } else {
-      resultEl.textContent = `${lastRoll} ✗`;
+      resultEl.textContent = t('combat.fail').replace('{0}', lastRoll);
       resultEl.className = 'roll-result fail';
       rapsBox.style.display = 'none';
     }
@@ -479,11 +478,11 @@ function calcularEV() {
   if (ev > 0 && rv > 0) {
     const raps = calcularRAPs(ev, rv, currentMode);
     resultEl.textContent = raps;
-    const modoLabel = currentMode === 'temp' ? 'Temporário' : currentMode === 'pers' ? 'Persistente' : 'Permanente';
-    subEl.textContent = `${modoLabel} • EV: ${ev} - RV: ${rv}`;
+    const modoLabel = currentMode === 'temp' ? t('combat.temporary') : currentMode === 'pers' ? t('combat.persistent') : t('combat.permanent');
+    subEl.textContent = t('combat.resultSub').replace('{0}', modoLabel).replace('{1}', ev).replace('{2}', rv);
   } else {
     resultEl.textContent = '—';
-    subEl.textContent = 'Insira EV e RV para calcular';
+    subEl.textContent = t('combat.enterEvRv');
   }
 }
 
@@ -611,6 +610,7 @@ async function loadNPCs() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
+  applyTranslations();
   initTheme();
   renderNavBar({ page: 'combate' });
   

@@ -517,14 +517,14 @@
   <!-- Encounter banner -->
   <div id="encounter-banner" class="encounter-banner">
     <svg viewBox="0 0 24 24" width="14" height="14" stroke="#c07040" fill="none" stroke-width="2" style="flex-shrink:0"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 9H17v1.5c0 .83-.67 1.5-1.5 1.5S14 11.33 14 10.5 14.67 9 15.5 9z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 15H7v-1.5c0-.83.67-1.5 1.5-1.5S10 12.67 10 13.5 9.33 15 8.5 15z"/></svg>
-    <span class="enc-banner-title">Encontro Ativo!</span>
+    <span class="enc-banner-title" data-i18n="dash.encounter">Encontro Ativo!</span>
   </div>
 
   <!-- Identity row -->
   <div class="dash-identity dash-animate">
     <div class="dash-avatar" id="user-avatar">?</div>
     <div class="dash-identity-info">
-      <div class="dash-greeting">Bem-vindo, <span id="user-name">...</span></div>
+      <div class="dash-greeting" data-i18n="dash.welcome">Bem-vindo, <span id="user-name">...</span></div>
       <div class="dash-meta">
         <span class="dash-role-badge" id="user-role">JOGADOR</span>
         <span class="dash-username" id="user-display">...</span>
@@ -542,13 +542,13 @@
   <div class="dash-section dash-animate">
     <div class="dash-section-header">
       <div class="section-bar"></div>
-      <span class="dash-section-title">Personagens</span>
+      <span class="dash-section-title" data-i18n="dash.characters">Personagens</span>
       <div class="section-line"></div>
     </div>
     <div class="chars-grid" id="chars-grid">
       <div class="char-card char-card-new" id="new-char-btn">
         <svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span>NOVA FICHA</span>
+        <span data-i18n="dash.newSheet">NOVA FICHA</span>
       </div>
     </div>
   </div>
@@ -557,7 +557,7 @@
   <div class="dash-section dash-animate">
     <div class="dash-section-header">
       <div class="section-bar"></div>
-      <span class="dash-section-title">Party</span>
+      <span class="dash-section-title" data-i18n="dash.party">Party</span>
       <div class="section-line"></div>
     </div>
 
@@ -566,10 +566,11 @@
       <!-- Empty state -->
       <div class="party-empty" id="party-empty">
         <div class="party-empty-icon">⊞</div>
-        <p>Você ainda não faz parte de uma party.<br>Crie uma ou entre com o código fornecido pelo GM.</p>
+        <p data-i18n="dash.noParty">Você ainda não faz parte de uma party.</p>
+        <p data-i18n="dash.noParty2">Crie uma ou entre com o código fornecido pelo GM.</p>
         <div class="party-actions">
-          <button class="btn" id="create-party-btn">Criar Party</button>
-          <button class="btn" id="join-party-btn">Entrar com Código</button>
+          <button class="btn" id="create-party-btn" data-i18n="dash.createParty">Criar Party</button>
+          <button class="btn" id="join-party-btn" data-i18n="dash.joinCode">Entrar com Código</button>
         </div>
       </div>
 
@@ -578,16 +579,16 @@
         <div class="party-info-header">
           <div class="party-name-display">
             <span class="party-name" id="party-name">...</span>
-            <span class="party-code">Código de acesso: <strong id="party-code">...</strong></span>
+            <span class="party-code" data-i18n="dash.accessCode">Código de acesso: <strong id="party-code">...</strong></span>
           </div>
           <a href="admin.html" class="party-admin-link" id="admin-party-link" style="display:none;">
             <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Painel GM
+            <span data-i18n="dash.gmPanel">Painel GM</span>
           </a>
         </div>
         <div class="party-body">
           <div style="flex:1;min-width:0;">
-            <div class="party-members-label">Membros</div>
+            <div class="party-members-label" data-i18n="dash.members">Membros</div>
             <div class="party-members" id="party-members"></div>
           </div>
         </div>
@@ -601,14 +602,14 @@
 <!-- Modal: Criar Party -->
 <div class="modal" id="create-party-modal">
   <div class="modal-card">
-    <h3 class="modal-title">Criar Party</h3>
+    <h3 class="modal-title" data-i18n="dash.createTitle">Criar Party</h3>
     <div class="form-group">
-      <label class="form-label">Nome da Party</label>
-      <input type="text" class="form-input" id="party-name-input" placeholder="X-Men Squad" autocomplete="off">
+      <label class="form-label" data-i18n="dash.partyName">Nome da Party</label>
+      <input type="text" class="form-input" id="party-name-input" data-i18n-placeholder="dash.partyPlaceholder" placeholder="X-Men Squad" autocomplete="off">
     </div>
     <div class="modal-actions">
-      <button class="btn" id="cancel-create-party">Cancelar</button>
-      <button class="btn btn-primary" id="confirm-create-party">Criar</button>
+      <button class="btn" id="cancel-create-party" data-i18n="common.cancel">Cancelar</button>
+      <button class="btn btn-primary" id="confirm-create-party" data-i18n="dash.create">Criar</button>
     </div>
   </div>
 </div>
@@ -616,14 +617,14 @@
 <!-- Modal: Entrar na Party -->
 <div class="modal" id="join-party-modal">
   <div class="modal-card">
-    <h3 class="modal-title">Entrar na Party</h3>
+    <h3 class="modal-title" data-i18n="dash.joinTitle">Entrar na Party</h3>
     <div class="form-group">
-      <label class="form-label">Código de Acesso</label>
-      <input type="text" class="form-input" id="party-code-input" placeholder="ABC123" maxlength="6" style="text-transform:uppercase;letter-spacing:.2em;" autocomplete="off">
+      <label class="form-label" data-i18n="dash.codeLabel">Código de Acesso</label>
+      <input type="text" class="form-input" id="party-code-input" data-i18n-placeholder="dash.codePlaceholder" placeholder="ABC123" maxlength="6" style="text-transform:uppercase;letter-spacing:.2em;" autocomplete="off">
     </div>
     <div class="modal-actions">
-      <button class="btn" id="cancel-join-party">Cancelar</button>
-      <button class="btn btn-primary" id="confirm-join-party">Entrar</button>
+      <button class="btn" id="cancel-join-party" data-i18n="common.cancel">Cancelar</button>
+      <button class="btn btn-primary" id="confirm-join-party" data-i18n="dash.join">Entrar</button>
     </div>
   </div>
 </div>
@@ -675,10 +676,10 @@ function populateUserInfo(user, profile) {
   var userDisplayEl = document.getElementById('user-display');
   var userCodeEl = document.getElementById('hdr-user-code');
   
-  var displayName = profile?.display_name || profile?.username || user?.email || 'Player';
+  var displayName = profile?.display_name || profile?.username || user?.email || t('dash.fallbackName');
   var initial = displayName.charAt(0).toUpperCase();
-  var role = profile?.role === 'gm' ? 'MESTRE' : 'JOGADOR';
-  var username = profile?.username || user?.email?.split('@')[0] || 'user';
+  var role = profile?.role === 'gm' ? t('dash.gm') : t('dash.player');
+  var username = profile?.username || user?.email?.split('@')[0] || t('dash.fallbackUser');
   
   if (userNameEl) userNameEl.textContent = displayName;
   if (userAvatarEl) userAvatarEl.textContent = initial;
@@ -690,6 +691,7 @@ function populateUserInfo(user, profile) {
 // Dashboard initialization
 window.addEventListener('DOMContentLoaded', function() {
   initLanguage();
+  applyTranslations();
   initTheme();
   
   requireAuth().then(function(auth) {
@@ -747,7 +749,7 @@ function populateCharacterGrid(chars) {
       var foto = char.foto_base64 || '';
       var topNome = char.name && char.name.trim();
       var dataNome = char.data && char.data.nome && char.data.nome.trim();
-      var charName = topNome || dataNome || 'Novo Personagem';
+      var charName = topNome || dataNome || t('dash.newChar');
       var topCodinome = char.codename && char.codename.trim();
       var dataCodinome = char.data && char.data.codinome && char.data.codinome.trim();
       var charCodinome = topCodinome || dataCodinome || '—';
@@ -775,7 +777,7 @@ function populatePartyInfo(party, playerId) {
   // Set party name and code
   var nameEl = document.getElementById('party-name');
   var codeEl = document.getElementById('party-code');
-  if (nameEl) nameEl.textContent = party.name || 'Party';
+  if (nameEl) nameEl.textContent = party.name || t('dash.party');
   if (codeEl) codeEl.textContent = party.code || '—';
 
   // Show admin link if current user is GM
@@ -793,7 +795,7 @@ function populatePartyInfo(party, playerId) {
         members.forEach(function(member) {
           var memberEl = document.createElement('div');
           memberEl.className = 'party-member';
-          memberEl.textContent = member.name || 'Membro';
+          memberEl.textContent = member.name || t('dash.member');
           membersContainer.appendChild(memberEl);
         });
       }
@@ -839,7 +841,7 @@ function bindDashboardEvents() {
           if (!auth) return;
           var userId = auth.session.user.id;
            window.createParty(input.value.trim(), userId).then(function() {
-             toast('PARTY CRIADA COM SUCESSO');
+             toast(t('dash.partyCreated'));
              var modal = document.getElementById('create-party-modal');
              if (modal) modal.style.display = 'none';
              input.value = '';
@@ -851,11 +853,11 @@ function bindDashboardEvents() {
              window.getPlayerParty(userId).then(function(party) {
                if (party) populatePartyInfo(party, userId);
              }).catch(function(err) {
-               toast('ERRO AO CARREGAR PARTY');
+               toast(t('dash.errorLoadParty'));
                console.error('Error loading party:', err);
              });
            }).catch(function(err) {
-             toast('ERRO AO CRIAR PARTY');
+             toast(t('dash.errorCreateParty'));
              console.error('Error creating party:', err);
            });
          });
@@ -893,7 +895,7 @@ function bindDashboardEvents() {
           window.getPartyByCode(input.value.trim()).then(function(party) {
             if (party) {
               return window.joinParty(party.id, userId).then(function() {
-                toast('ENTROU NA PARTY: ' + party.name);
+                toast(t('dash.joinedParty') + ' ' + party.name);
                 var modal = document.getElementById('join-party-modal');
                 if (modal) modal.style.display = 'none';
                 input.value = '';
@@ -903,14 +905,14 @@ function bindDashboardEvents() {
                 }
                 populatePartyInfo(party, userId);
               }).catch(function(err) {
-                toast('ERRO AO ENTRAR NA PARTY');
+                toast(t('dash.errorJoinParty'));
                 console.error('Error joining party:', err);
               });
             } else {
-              toast('PARTY NÃO ENCONTRADA');
+              toast(t('dash.partyNotFound'));
             }
           }).catch(function(err) {
-            toast('ERRO AO BUSCAR PARTY');
+            toast(t('dash.errorFindParty'));
             console.error('Error finding party:', err);
           });
         });
