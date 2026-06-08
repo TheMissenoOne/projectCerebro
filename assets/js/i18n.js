@@ -772,19 +772,21 @@ const I18N = {
   }
 };
 
+let _cachedLang = localStorage.getItem(LANG_KEY) || 'pt-BR';
 function getCurrentLanguage() {
-  return localStorage.getItem(LANG_KEY) || 'pt-BR';
+  return _cachedLang;
 }
 
 function setLanguage(locale) {
   if (!I18N[locale]) return;
+  _cachedLang = locale;
   localStorage.setItem(LANG_KEY, locale);
   document.documentElement.lang = locale;
   window.location.reload();
 }
 
 function t(key) {
-  const lang = getCurrentLanguage();
+  const lang = _cachedLang;
   const dict = I18N[lang];
   if (dict && dict[key] !== undefined) return dict[key];
   const fallback = I18N['pt-BR'];

@@ -534,6 +534,7 @@ let condTargetId=null;
 let currentPartyId=null;
 let ENCONTRO={rodada:1,participantes:[]};
 let compareList=[];
+const EMPTY_DETAIL_HTML='<div class="empty-state"><div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="empty-title">NENHUM NPC</div><div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU CRIE UM NOVO</div></div>';
 
 /* ═══ DATA MODEL CONVERSION ═══ */
 function apiToInternal(npc){
@@ -732,8 +733,8 @@ function renderizarLista(){
   const encIds=ENCONTRO.participantes.map(p=>p.id);
   container.innerHTML=lista.map(n=>{
     const fc=FRACOES[n.fracao]||FRACOES['neutro'];const pr=PERIGOS[n.perigo]||PERIGOS['baixo'];
-    const inEnc=encIds.includes(n.id);
-    return`<div class="npc-item${currentId===n.id?' active':''}${inEnc?' in-enc':''}${compareList.includes(n.id)?' pinned':''}" onclick="exibirNPC('${escJs(n.id)}');fecharPainel()">
+    const inEnc=encIds.includes(n.id);const pinned=compareList.includes(n.id);
+    return`<div class="npc-item${currentId===n.id?' active':''}${inEnc?' in-enc':''}${pinned?' pinned':''}" onclick="exibirNPC('${escJs(n.id)}');fecharPainel()">
       <div class="npc-item-dot" style="background:${fc.cor}"></div>
       <div class="npc-item-info">
         <div class="npc-item-name">${esc(n.nome)}</div>
@@ -741,7 +742,7 @@ function renderizarLista(){
       </div>
       ${inEnc?'<span class="npc-item-enc" title="No encontro"></span>':''}
       <div class="npc-item-pr" style="border-color:${pr.cor};color:${pr.cor}">${pr.l}</div>
-      <button class="npc-pin-btn${compareList.includes(n.id)?' pinned':''}" onclick="event.stopPropagation();togglePin('${escJs(n.id)}')" title="Comparar NPCs">⊕</button>
+      <button class="npc-pin-btn${pinned?' pinned':''}" onclick="event.stopPropagation();togglePin('${escJs(n.id)}')" title="Comparar NPCs">⊕</button>
     </div>`;
   }).join('');
 }
@@ -754,15 +755,15 @@ function togglePin(id){
   renderizarLista();
   if(compareList.length>=2)mostrarComparacao();
   else if(compareList.length===1)exibirNPC(compareList[0]);
-  else{currentId=null;document.getElementById('npc-detail').innerHTML='<div class="empty-state"><div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="empty-title">NENHUM NPC</div><div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU CRIE UM NOVO</div></div>';}
+  else{currentId=null;document.getElementById('npc-detail').innerHTML=EMPTY_DETAIL_HTML;}
 }
 function limparComparacao(){
   compareList=[];currentId=null;renderizarLista();
-  document.getElementById('npc-detail').innerHTML='<div class="empty-state"><div class="empty-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="empty-title">NENHUM NPC</div><div class="empty-sub">SELECIONE UM NPC NO PAINEL ESQUERDO<br>OU CRIE UM NOVO</div></div>';
+  document.getElementById('npc-detail').innerHTML=EMPTY_DETAIL_HTML;
 }
 function mostrarComparacao(){
-  var npcs=compareList.map(function(id){return NPC_DB.find(function(n){return n.id===id;});}).filter(Boolean);
-  var cols=Math.min(npcs.length,3);
+  var npcs=compareList.map(id=>NPC_DB.find(n=>n.id===id)).filter(Boolean);
+  var cols=npcs.length;
   var html='<div class="compare-header"><span class="compare-label">⊞ COMPARAÇÃO — '+npcs.length+' NPCs</span>';
   html+='<button class="tbtn tbtn-red" onclick="limparComparacao()" style="font-size:.46rem;padding:3px 8px">✕ LIMPAR</button></div>';
   html+='<div class="compare-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
@@ -776,7 +777,7 @@ function renderCompactNPC(npc){
   var a=npc.atributos||{};
   var ini=(a['Destreza']||0)+(a['Inteligência']||0)+(a['Influência']||0);
   var attrs=[['DEZ','Destreza'],['FOR','Força'],['COR','Corpo'],['INT','Inteligência'],['VON','Vontade'],['MEN','Mente'],['INF','Influência'],['AUR','Aura'],['ESP','Espírito']];
-  var editBtn=npc.isGlobal?'':"<button class='tbtn' style='font-size:.4rem;padding:2px 6px' onclick="abrirEditModal('"+escJs(npc.id)+"')">EDITAR</button>";
+  var editBtn=npc.isGlobal?'':`<button class='tbtn' style='font-size:.4rem;padding:2px 6px' onclick="abrirEditModal('${escJs(npc.id)}')">EDITAR</button>`;
   var html='<div class="npc-card-compact"><div class="npc-card-compact-hdr">';
   html+='<div class="npc-card-hdr-info"><div class="npc-card-name" style="border-left:3px solid '+fc.cor+';padding-left:8px">'+esc(npc.nome)+'</div>';
   html+=npc.codinome?'<div style="font-family:var(--mono);font-size:.42rem;color:var(--muted);padding-left:12px;margin-top:2px">'+esc(npc.codinome)+'</div>':'';

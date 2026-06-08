@@ -361,6 +361,7 @@ function calcularAlvo(av, ov) {
   return val === undefined || val === 0 ? 'N' : val;
 }
 
+function modeLabel(){return currentMode==='temp'?t('combat.temporary'):currentMode==='pers'?t('combat.persistent'):t('combat.permanent');}
 function calcularRAPs(ev, rv, modo) {
   let table;
   if (modo === 'temp') table = EVRV_TEMP;
@@ -454,7 +455,7 @@ function updateRoll() {
       if (ev > 0 && rv > 0) {
         const raps = calcularRAPs(ev, rv, currentMode);
         document.getElementById('raps-result').textContent = raps;
-        document.getElementById('raps-sub').textContent = currentMode === 'temp' ? t('combat.temporary') : currentMode === 'pers' ? t('combat.persistent') : t('combat.permanent');
+        document.getElementById('raps-sub').textContent = modeLabel();
         rapsBox.style.display = 'block';
       }
     } else {
@@ -478,7 +479,7 @@ function calcularEV() {
   if (ev > 0 && rv > 0) {
     const raps = calcularRAPs(ev, rv, currentMode);
     resultEl.textContent = raps;
-    const modoLabel = currentMode === 'temp' ? t('combat.temporary') : currentMode === 'pers' ? t('combat.persistent') : t('combat.permanent');
+    const modoLabel = modeLabel();
     subEl.textContent = t('combat.resultSub').replace('{0}', modoLabel).replace('{1}', ev).replace('{2}', rv);
   } else {
     resultEl.textContent = '—';
