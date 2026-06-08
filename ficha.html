@@ -231,6 +231,13 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tag-inp{width:100%;background:transparent;border:1px solid var(--b1);border-left:2px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.75rem;padding:3px 7px;outline:none;transition:border-color .15s;}
 .tag-inp:focus{border-color:var(--red);}
 .tag-inp::placeholder{color:var(--b3);}
+.tag-inp.burned{text-decoration:line-through;color:var(--b3);opacity:.55;}
+.tag-row{display:flex;align-items:center;gap:2px;}
+.tag-row .tag-inp{flex:1;}
+.tag-burn-btn{background:none;border:none;color:var(--b2);cursor:pointer;padding:2px 3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .12s;-webkit-tap-highlight-color:transparent;line-height:1;}
+.tag-burn-btn:hover{color:#ff8c42;}
+.tag-burn-btn.active{color:#ff5500;}
+.tag-burn-btn.active svg{filter:drop-shadow(0 0 3px rgba(255,85,0,.6));}
 .mel-inp{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.78rem;padding:5px 7px;resize:vertical;outline:none;min-height:44px;transition:border-color .15s;}
 .mel-inp:focus{border-color:var(--red);}
 .mel-inp::placeholder{color:var(--b3);}
@@ -488,7 +495,7 @@ const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const found=TODOS.find(x=>x.v===v);return found?found.l:(v||t('ficha.noType'));};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
-const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
+const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],poder_burned:Array(7).fill(false),fraqueza_burned:Array(3).fill(false),melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
 const MELHORIAS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
@@ -729,6 +736,31 @@ function buildMembros(){
     tdAnt.appendChild(inpAnt);tr.appendChild(tdAnt);tb.appendChild(tr);
   }
 }
+const FLAME_SVG='<svg viewBox="0 0 24 24" width="10" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C10 5 7 8 7 12a5 5 0 0 0 10 0c0-4-3-7-5-10z M10 14c0-1.5 1-3 2-4 1 1 2 2.5 2 4a2 2 0 0 1-4 0z" fill="currentColor"/></svg>';
+function makeTagRow(card,isPower,i,placeholder){
+  const row=document.createElement('div');row.className='tag-row';
+  const burned=((isPower?card.poder_burned:card.fraqueza_burned)?.[i])===true;
+  const inp=document.createElement('input');inp.type='text';inp.className='tag-inp'+(burned?' burned':'');
+  inp.placeholder=placeholder||`tag ${i+1}`;
+  inp.value=((isPower?card.poder:card.fraqueza)?.[i])||'';
+  inp.addEventListener('input',e=>{
+    if(isPower){if(!card.poder)card.poder=[];card.poder[i]=e.target.value;}
+    else{if(!card.fraqueza)card.fraqueza=[];card.fraqueza[i]=e.target.value;}
+    salvarAuto();
+  });
+  const btn=document.createElement('button');btn.type='button';btn.className='tag-burn-btn'+(burned?' active':'');btn.title=t('ficha.burnTag');
+  btn.innerHTML=FLAME_SVG;
+  btn.addEventListener('click',()=>{
+    const barr=isPower?'poder_burned':'fraqueza_burned';
+    if(!card[barr])card[barr]=[];
+    card[barr][i]=!card[barr][i];
+    inp.classList.toggle('burned',!!card[barr][i]);
+    btn.classList.toggle('active',!!card[barr][i]);
+    salvarAuto();
+  });
+  row.appendChild(inp);row.appendChild(btn);
+  return row;
+}
 function buildGrid(cid,lista){
    const c=document.getElementById(cid);c.innerHTML='';
    lista.forEach(card=>c.appendChild(buildCard(card,lista,cid)));
@@ -784,12 +816,12 @@ badge.textContent = nc==='mutacao'?t('ficha.mutationType'):nc==='humanidade'?t('
           const newPwrLbl=document.createElement('div');newPwrLbl.className='c-label poder poder-lbl';newPwrLbl.innerHTML=t('ficha.powerTags');body.appendChild(newPwrLbl);
           const newPwrList=document.createElement('div');newPwrList.className='tags-list poder-tags';
           const pCount=(PERGUNTAS[normalizeKey(newTipo)]?.p||[]).length;
-          for(let i=0;i<pCount;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(newTipo,i,true)||`tag ${i+1}`;inp.value=(card.poder&&card.poder[i])||'';inp.addEventListener('input',e=>{if(!card.poder)card.poder=[];card.poder[i]=e.target.value;salvarAuto();});newPwrList.appendChild(inp);}
+          for(let i=0;i<pCount;i++){newPwrList.appendChild(makeTagRow(card,true,i,getPlaceholder(newTipo,i,true)));}
           body.appendChild(newPwrList);
           const newFraqLbl=document.createElement('div');newFraqLbl.className='c-label fraq fraq-lbl';newFraqLbl.innerHTML=t('ficha.weaknessTags');body.appendChild(newFraqLbl);
           const newFraqList=document.createElement('div');newFraqList.className='tags-list fraq-tags';
           const fCount=(PERGUNTAS[normalizeKey(newTipo)]?.f||[]).length;
-          for(let i=0;i<fCount;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(newTipo,i,false)||`fraqueza ${i+1}`;inp.value=(card.fraqueza&&card.fraqueza[i])||'';inp.addEventListener('input',e=>{if(!card.fraqueza)card.fraqueza=[];card.fraqueza[i]=e.target.value;salvarAuto();});newFraqList.appendChild(inp);}
+          for(let i=0;i<fCount;i++){newFraqList.appendChild(makeTagRow(card,false,i,getPlaceholder(newTipo,i,false)));}
           body.appendChild(newFraqList);
         }
         const oldMelLbl=body.querySelector('.mel-lbl');const oldMel=body.querySelector('.mel-check-list');
@@ -842,11 +874,11 @@ const trow=document.createElement('div');trow.className='trackers-row';
   mi.addEventListener('input',e=>{card.misterio=e.target.value;mi.classList.toggle('valid',!!e.target.value);salvarAuto();});body.appendChild(mi);
   const pl=document.createElement('div');pl.className='c-label poder poder-lbl';pl.innerHTML=t('ficha.powerTags');body.appendChild(pl);
   const plist=document.createElement('div');plist.className='tags-list poder-tags';
-  for(let i=0;i<7;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(card.tipo,i,true)||`tag ${i+1}`;inp.value=(card.poder&&card.poder[i])||'';inp.addEventListener('input',e=>{card.poder[i]=e.target.value;salvarAuto();});plist.appendChild(inp);}
+  for(let i=0;i<7;i++){plist.appendChild(makeTagRow(card,true,i,getPlaceholder(card.tipo,i,true)));}
   body.appendChild(plist);
   const fl=document.createElement('div');fl.className='c-label fraq fraq-lbl';fl.innerHTML=t('ficha.weaknessTags');body.appendChild(fl);
   const flist=document.createElement('div');flist.className='tags-list fraq-tags';
-  for(let i=0;i<3;i++){const inp=document.createElement('input');inp.type='text';inp.className='tag-inp';inp.placeholder=getPlaceholder(card.tipo,i,false)||`fraqueza ${i+1}`;inp.value=(card.fraqueza&&card.fraqueza[i])||'';inp.addEventListener('input',e=>{card.fraqueza[i]=e.target.value;salvarAuto();});flist.appendChild(inp);}
+  for(let i=0;i<3;i++){flist.appendChild(makeTagRow(card,false,i,getPlaceholder(card.tipo,i,false)));}
   body.appendChild(flist);
   const melList=getMelhorias(card.tipo);
   if(melList.length){
