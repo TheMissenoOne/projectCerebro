@@ -488,7 +488,7 @@ const T_HUM=[
 const T_ADICIONAL=[];
 const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
-const lbl=v=>{const t=TODOS.find(t=>t.v===v);return t?t.l:(v||t('ficha.noType'));};
+const lbl=v=>{const found=TODOS.find(x=>x.v===v);return found?found.l:(v||t('ficha.noType'));};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
 const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
