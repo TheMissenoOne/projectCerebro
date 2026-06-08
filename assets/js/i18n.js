@@ -166,6 +166,8 @@ const I18N = {
     'admin.waiting': 'AGUARDANDO',
     'admin.noName': 'Sem Nome',
     'admin.noPartyName': 'Sem Party',
+    'admin.editSheet': 'Editar Ficha',
+    'admin.charCount': 'personagens',
 
     /* combate */
     'combat.pageTitle': 'COMBATE // X-MEN TTRPG',
@@ -545,6 +547,8 @@ const I18N = {
     'admin.waiting': 'WAITING',
     'admin.noName': 'Unnamed',
     'admin.noPartyName': 'No Party',
+    'admin.editSheet': 'Edit Sheet',
+    'admin.charCount': 'characters',
 
     /* combate */
     'combat.pageTitle': 'COMBAT // X-MEN TTRPG',

@@ -95,6 +95,14 @@
           </div>
           <textarea class="session-notes" id="session-notes" data-i18n-placeholder="admin.notesPlaceholder" placeholder="Anote aqui os eventos da sessão..."></textarea>
         </div>
+
+        <div id="tab-members" class="admin-section">
+          <div class="admin-section-header">
+            <span class="admin-section-title" data-i18n="admin.members">Membros</span>
+            <button class="btn" onclick="loadMembers(true)" data-i18n="admin.refresh">⟳ Atualizar</button>
+          </div>
+          <div id="members-list"></div>
+        </div>
       </div>
 </main>
   </div>
@@ -135,6 +143,8 @@ let currentParty = null;
       document.getElementById('tab-party').style.display = tabId === 'party' ? 'block' : 'none';
       document.getElementById('tab-encounter').style.display = tabId === 'encounter' ? 'block' : 'none';
       document.getElementById('tab-notes').style.display = tabId === 'notes' ? 'block' : 'none';
+      document.getElementById('tab-members').style.display = tabId === 'members' ? 'block' : 'none';
+      if (tabId === 'members' && currentParty) loadMembers();
     }
 
     window.showTab = showTab;
@@ -388,6 +398,73 @@ let currentParty = null;
         alert(t('admin.errorDeleteChar') + ' ' + e.message);
       }
     };
+
+    let membersLoaded = false;
+    async function loadMembers(force) {
+      if (membersLoaded && !force) return;
+      membersLoaded = true;
+      const el = document.getElementById('members-list');
+      el.innerHTML = '<p style="color:var(--muted);font-family:var(--mono);font-size:.52rem;padding:20px 0">' + t('common.loading') + '</p>';
+      try {
+        const gmId = currentAuth.session.user.id;
+        const chars = await api.listAllGMCharacters(gmId, !!force);
+        if (!chars || chars.length === 0) {
+          el.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;font-family:var(--mono);font-size:.52rem">' + t('admin.noChars') + '</p>';
+          return;
+        }
+        // group by player_id
+        const byPlayer = {};
+        chars.forEach(c => {
+          const pid = c.player_id || '?';
+          if (!byPlayer[pid]) byPlayer[pid] = [];
+          byPlayer[pid].push(c);
+        });
+        el.innerHTML = '';
+        Object.entries(byPlayer).forEach(([pid, pChars]) => {
+          const block = document.createElement('div');
+          block.style.cssText = 'margin-bottom:18px;border:1px solid var(--b1);background:var(--p1);';
+          const hdr = document.createElement('div');
+          hdr.className = 'member-card';
+          hdr.style.cssText = 'background:var(--p2);border-bottom:1px solid var(--b2);';
+          const av = document.createElement('div');
+          av.className = 'member-avatar';
+          av.textContent = pid.charAt(0).toUpperCase();
+          const info = document.createElement('div');
+          info.className = 'member-info';
+          info.innerHTML = '<div class="member-name">' + (pid.length > 36 ? pid.slice(0,8)+'…' : pid) + '</div><div class="member-username">' + pChars.length + ' ' + t('admin.charCount') + '</div>';
+          hdr.appendChild(av);
+          hdr.appendChild(info);
+          block.appendChild(hdr);
+          pChars.forEach(c => {
+            const row = document.createElement('div');
+            row.style.cssText = 'display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--b1);';
+            const foto = c.foto_base64 || '';
+            const initial = c.codinome ? c.codinome.charAt(0).toUpperCase() : (c.nome ? c.nome.charAt(0).toUpperCase() : '?');
+            const thumb = document.createElement('div');
+            thumb.style.cssText = 'width:36px;height:36px;flex-shrink:0;background:var(--p2);border:1px solid var(--b2);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.7rem;color:var(--muted);';
+            if (foto) { thumb.style.backgroundImage='url('+foto+')'; thumb.style.backgroundSize='cover'; thumb.style.backgroundPosition='center'; }
+            else thumb.textContent = initial;
+            const cinfo = document.createElement('div');
+            cinfo.style.cssText = 'flex:1;min-width:0;';
+            cinfo.innerHTML = '<div style="font-family:var(--body);font-size:.78rem;color:var(--white);font-weight:600">' + (c.nome || t('admin.noName')) + '</div>'
+              + (c.codename ? '<div style="font-family:var(--mono);font-size:.44rem;color:var(--muted)">' + c.codename + '</div>' : '');
+            const editBtn = document.createElement('a');
+            editBtn.href = 'ficha.html?id=' + c.id;
+            editBtn.target = '_blank';
+            editBtn.className = 'btn btn-primary';
+            editBtn.style.cssText = 'font-size:.46rem;padding:4px 10px;white-space:nowrap;';
+            editBtn.textContent = t('admin.editSheet');
+            row.appendChild(thumb);
+            row.appendChild(cinfo);
+            row.appendChild(editBtn);
+            block.appendChild(row);
+          });
+          el.appendChild(block);
+        });
+      } catch(e) {
+        el.innerHTML = '<p style="color:var(--red);padding:20px;font-family:var(--mono);font-size:.52rem">' + t('admin.error') + ' ' + e.message + '</p>';
+      }
+    }
 
     async function loadSessionNotes() {
       const session = await api.getSession(currentParty.id);
