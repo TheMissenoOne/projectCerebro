@@ -423,8 +423,6 @@ function showToast(msg){
     </div>
     <div class="sec"><div class="sec-bar"></div><span class="sec-label">Cards de Tema</span><div class="sec-line"></div></div>
     <div class="cards-grid" id="temas-grid"></div>
-    <div class="sec"><div class="sec-bar"></div><span class="sec-label" data-i18n="ficha.emergingThemes">Temas Emergentes</span><div class="sec-line"></div></div>
-    <div class="cards-grid" id="temas-emergentes-container"></div>
   </section>
 
   <section class="page" id="page-esquadrao">
@@ -618,8 +616,7 @@ const newUrl = 'ficha.html?id=' + char.id;
   buildEvo();
   buildGrid('temas-grid', D.temas);
   buildGrid('esq-grid', D.extras);
-  buildTemasEmergentesCard();
-  buildMembros();
+    buildMembros();
   preencherCampos();
   if (D.foto) mostrarFoto(D.foto);
 }
@@ -732,18 +729,15 @@ function buildMembros(){
     tdAnt.appendChild(inpAnt);tr.appendChild(tdAnt);tb.appendChild(tr);
   }
 }
-function buildTemasEmergentesCard(){
-  const container=document.getElementById('temas-emergentes-container');
-  if(!container)return;
-  container.innerHTML='';
-  container.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],'temas-emergentes-container',{fixed:true}));
-}
 function buildGrid(cid,lista){
    const c=document.getElementById(cid);c.innerHTML='';
    lista.forEach(card=>c.appendChild(buildCard(card,lista,cid)));
-   if(cid==='temas-grid'&&lista.length<5){
-     const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title=t('ficha.addTheme');
-     addBtn.addEventListener('click',()=>{lista.push(novoCard());buildGrid(cid,lista);salvarAuto();});c.appendChild(addBtn);
+   if(cid==='temas-grid'){
+     c.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],cid,{fixed:true}));
+     if(lista.length<5){
+       const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title=t('ficha.addTheme');
+       addBtn.addEventListener('click',()=>{lista.push(novoCard());buildGrid(cid,lista);salvarAuto();});c.appendChild(addBtn);
+     }
    }
 }
 function buildCard(card,lista,cid,opts={}){
@@ -910,8 +904,7 @@ function resetarFicha(){
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
   D=clone(PADRAO);
   preencherCampos();buildDots();buildEvo();
-  buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildTemasEmergentesCard();
-  buildMembros();removerFoto();
+  buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);  buildMembros();removerFoto();
   salvarAuto();
   toast(t('ficha.resetDone'));
 }
@@ -996,7 +989,7 @@ function importarMD(){
     }
     D=novo;
     preencherCampos();buildDots();buildEvo();
-    buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildTemasEmergentesCard();buildMembros();
+    buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildMembros();
     if(D.foto)mostrarFoto(D.foto);else{document.getElementById('portrait-img').style.display='none';document.getElementById('portrait-ph').style.display='flex';document.getElementById('remove-foto-btn').style.display='none';}
     document.getElementById('import-text').value='';fecharImport();
     salvarAuto();
