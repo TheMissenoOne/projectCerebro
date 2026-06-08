@@ -1,24 +1,43 @@
 # projectCerebro Agent Guidelines
 
+## Mode
+**Always caveman ultra** — brief, direct, 1-4 lines. No fluff. Answer only what asked.
+
 ## Memory
-memory_recall() @ start | NEVER memory_remember auto | ask user before forget+remember
-End session: ask "remember [specific thing]?"
+- `memory_recall()` @ session start
+- NEVER auto-remember — ask user first
+- Session end: ask "remember [specific thing]?"
 
 ## Kanban
-kanban/INDEX.md @ start | check kanban/done/fase-*.md | update when task done
+- Read `kanban/INDEX.md` @ session start
+- Check `kanban/done/fase-*.md` for context
+- Update when task done
 
-## Patterns
-JS load order: config.js → i18n.js → supabase-client.js → cache-module.js → auth-module.js → api.js → globals.js → themes.js → header.js → page-specific
-Theme colors: --accent, --accent2, --accent3 | themes: yellow/red/green/purple/blue
+## Project
+X-Men TTRPG companion. Vanilla JS + Supabase. No frameworks.
 
-## Known Blockers
-duplicate pages (xmen-ficha.html, npcs.html) | foto_base64 added to DB (2025)
+Pages: `index` login | `dashboard` player hub | `ficha` char sheet | `admin` GM panel | `cerebro` NPCs | `combate` AV/OV calc | `wiki` campaign wiki
 
-## Commands
-cd server && npm start | cat kanban/INDEX.md
+## JS Load Order (strict)
+`config.js` → `i18n.js` → `supabase-client.js` → `cache-module.js` → `auth-module.js` → `api.js` → `globals.js` → `themes.js` → `header.js` → page-specific
 
-## Communication
-**Always caveman mode** - brief, direct, 1-4 lines. No fluff. Answer question only. /caveman lite|full|ultra
+## Theme System
+CSS vars: `--accent`, `--accent2`, `--accent3`
+Themes: `yellow` | `red` | `green` | `purple` | `blue`
+
+## i18n
+Keys in `assets/js/i18n.js`. Use `t('key')` in JS, `data-i18n="key"` in HTML.
+Lang swap reloads page so all `t()` calls rerun.
+
+## Known Issues
+- Duplicate pages: `xmen-ficha.html`, `npcs.html` (legacy, ignore)
+- `foto_base64` column added to DB (2025)
+
+## Dev
+```
+npm run serve   # http-server :3000
+npx playwright test
+```
 
 ## Session End
-memory_recall() | update kanban | ask remember learnings | ensure changes in kanban
+`memory_recall()` | update kanban | ask remember learnings | confirm changes logged

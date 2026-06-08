@@ -282,6 +282,11 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .add-card-btn{background:var(--p1);border:2px dashed var(--b2);color:var(--muted);font-family:var(--disp);font-size:2rem;width:100%;min-height:120px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .add-card-btn:hover{border-color:var(--red);color:var(--red);background:rgba(232,0,28,.05);}
 .cat-badge .theme-icon svg{stroke:currentColor;fill:currentColor;}
+.status-textarea{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.82rem;padding:8px 10px;resize:vertical;outline:none;transition:border-color .15s;min-height:80px;}
+.status-textarea:focus{border-color:var(--red);}
+.status-textarea::placeholder{color:var(--b3);}
+.right-panel-section{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
+.progressao-area{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 </style>
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
@@ -400,10 +405,7 @@ function showToast(msg){
             <div class="dots-row" id="dots-prog"></div>
           </div>
         <div class="evolucao-grid" id="evolucao-grid"></div>
-        </div>
-        </div>
       </div>
-
     </div>
   </section>
 
