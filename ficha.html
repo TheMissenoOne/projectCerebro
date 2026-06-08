@@ -220,6 +220,9 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .card-inp.valid{border-color:var(--green);}
 .card-inp.invalid{border-color:var(--red);background:rgba(232,0,28,.1);}
 .card-inp::placeholder{color:var(--b3);}
+.card-title-inp{width:100%;background:transparent;border:none;border-bottom:2px solid var(--b2);color:var(--text);font-family:var(--mono);font-size:.85rem;font-weight:700;padding:4px 2px;outline:none;letter-spacing:.05em;transition:border-color .15s;text-transform:uppercase;}
+.card-title-inp:focus{border-bottom-color:var(--accent);}
+.card-title-inp::placeholder{color:var(--b3);font-weight:400;text-transform:none;}
 .attr-val.valid{border-color:var(--green);}
 .attr-val.invalid{border-color:var(--red);}
 .tags-list{display:flex;flex-direction:column;gap:3px;}
@@ -420,6 +423,8 @@ function showToast(msg){
     </div>
     <div class="sec"><div class="sec-bar"></div><span class="sec-label">Cards de Tema</span><div class="sec-line"></div></div>
     <div class="cards-grid" id="temas-grid"></div>
+    <div class="sec"><div class="sec-bar"></div><span class="sec-label" data-i18n="ficha.emergingThemes">Temas Emergentes</span><div class="sec-line"></div></div>
+    <div class="cards-grid" id="temas-emergentes-container"></div>
   </section>
 
   <section class="page" id="page-esquadrao">
@@ -485,7 +490,7 @@ const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const t=TODOS.find(t=>t.v===v);return t?t.l:(v||t('ficha.noType'));};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
-const novoCard=()=>({tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
+const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
 const MELHORIAS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
@@ -535,6 +540,7 @@ const PADRAO={
   esq_nome:'',
   membros:Array.from({length:7},()=>({nome:'',apoio:0,antagonismo:0})),
   extras:Array.from({length:4},novoCard),
+  temas_emergentes:{...novoCard(),fixed:true},
 };
 let D=clone(PADRAO);
 let saveTimer=null;
@@ -612,6 +618,7 @@ const newUrl = 'ficha.html?id=' + char.id;
   buildEvo();
   buildGrid('temas-grid', D.temas);
   buildGrid('esq-grid', D.extras);
+  buildTemasEmergentesCard();
   buildMembros();
   preencherCampos();
   if (D.foto) mostrarFoto(D.foto);
@@ -725,6 +732,13 @@ function buildMembros(){
     tdAnt.appendChild(inpAnt);tr.appendChild(tdAnt);tb.appendChild(tr);
   }
 }
+function buildTemasEmergentesCard(){
+  const container=document.getElementById('temas-emergentes-container');
+  if(!container)return;
+  if(!D.temas_emergentes.fixed)D.temas_emergentes.fixed=true;
+  container.innerHTML='';
+  container.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],'temas-emergentes-container'));
+}
 function buildGrid(cid,lista){
    const c=document.getElementById(cid);c.innerHTML='';
    lista.forEach(card=>c.appendChild(buildCard(card,lista,cid)));
@@ -745,8 +759,9 @@ const div=document.createElement('div');
    const main=document.createElement('div');main.className='card-hdr-main';
    const badge=document.createElement('span');badge.className='cat-badge';
 const tipoLabel=c==='mutacao'?t('ficha.mutationType'):c==='humanidade'?t('ficha.humanity'):c==='adicional'?t('ficha.additional'):'';
-    badge.textContent = tipoLabel;
+    badge.textContent = card.fixed ? t('ficha.emergingThemes') : tipoLabel;
     main.appendChild(badge);
+if(!card.fixed){
 const sel=document.createElement('select');sel.className='tipo-sel';
     const o0=document.createElement('option');o0.value='';o0.textContent=t('ficha.choose');sel.appendChild(o0);
     const gM=document.createElement('optgroup');gM.label=t('ficha.mutationType');
@@ -803,13 +818,21 @@ const melL=document.createElement('div');melL.className='c-label mel-lbl';melL.t
        }
        salvarAuto();
      });
-   main.appendChild(sel);hdr.appendChild(main);
+   main.appendChild(sel);
+}
+hdr.appendChild(main);
+if(!card.fixed){
    const delBtn=document.createElement('button');delBtn.className='del-card-btn';delBtn.title=t('ficha.removeCard');
    delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
    delBtn.addEventListener('click',()=>{if(confirm(t('ficha.removeCardConfirm'))){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
-hdr.appendChild(delBtn);div.appendChild(hdr);
+   hdr.appendChild(delBtn);
+}
+div.appendChild(hdr);
   const body=document.createElement('div');body.className='card-body';
 if (iconUrl){body.setAttribute('data-icon',iconMap);body.style.setProperty('--card-bg',`url(${iconUrl})`);}
+const titleInp=document.createElement('input');titleInp.type='text';titleInp.className='card-title-inp';titleInp.placeholder=t('ficha.cardTitle');titleInp.value=card.titulo||'';
+titleInp.addEventListener('input',e=>{card.titulo=e.target.value;salvarAuto();});
+body.appendChild(titleInp);
 const trow=document.createElement('div');trow.className='trackers-row';
   const btnM=document.createElement('button');btnM.className='q-btn';btnM.textContent='−';btnM.title='Quebrar';btnM.onclick=()=>{if(card.valor>-3){card.valor--;buildGrid(cid,lista);salvarAuto();}};
   const triCont=document.createElement('div');triCont.className='q-row';
@@ -887,7 +910,7 @@ function resetarFicha(){
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
   D=clone(PADRAO);
   preencherCampos();buildDots();buildEvo();
-  buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);
+  buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildTemasEmergentesCard();
   buildMembros();removerFoto();
   salvarAuto();
   toast(t('ficha.resetDone'));
@@ -973,7 +996,7 @@ function importarMD(){
     }
     D=novo;
     preencherCampos();buildDots();buildEvo();
-    buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildMembros();
+    buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildTemasEmergentesCard();buildMembros();
     if(D.foto)mostrarFoto(D.foto);else{document.getElementById('portrait-img').style.display='none';document.getElementById('portrait-ph').style.display='flex';document.getElementById('remove-foto-btn').style.display='none';}
     document.getElementById('import-text').value='';fecharImport();
     salvarAuto();
