@@ -795,11 +795,15 @@ const div=document.createElement('div');
     div.style.setProperty('--card-icon', `url(${iconUrl})`);
    const hdr=document.createElement('div');hdr.className='card-hdr';
    const main=document.createElement('div');main.className='card-hdr-main';
+if(opts.fixed){
+   const lbl=document.createElement('span');lbl.className='tipo-sel';lbl.style.cursor='default';lbl.textContent=t('ficha.emergingThemes');main.appendChild(lbl);
+}else{
    const badge=document.createElement('span');badge.className='cat-badge';
-const codePrefix=cid==='temas-grid'?'TEMA':'EXTRA';
-const codeNum=opts.idx!=null?String(opts.idx+1).padStart(2,'0'):'';
-    badge.textContent = opts.fixed ? t('ficha.emergingThemes') : `${codePrefix} // ${codeNum}`;
-    main.appendChild(badge);
+   const codePrefix=cid==='temas-grid'?'TEMA':'EXTRA';
+   const codeNum=opts.idx!=null?String(opts.idx+1).padStart(2,'0'):'';
+   badge.textContent = `${codePrefix} // ${codeNum}`;
+   main.appendChild(badge);
+}
 if(editable){
 const sel=document.createElement('select');sel.className='tipo-sel';
     const o0=document.createElement('option');o0.value='';o0.textContent=t('ficha.choose');sel.appendChild(o0);
