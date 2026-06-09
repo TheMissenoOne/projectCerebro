@@ -1186,3 +1186,114 @@
 .enc-body > *, .pf-settings > *, .collapsible > * {
   min-height: 0;
 }
+
+/* ============================================================
+   TOM MULLER HUD PRIMITIVES — shared design language
+   flat data-readout blocks · coded labels · notch + brackets
+   ============================================================ */
+
+/* coded data label — renders "POWER // 03" style annotations */
+.dwl {
+  font-family: var(--mono);
+  font-size: .46rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: baseline;
+  gap: .4em;
+  line-height: 1;
+}
+.dwl::before { content: "// "; color: var(--accent); opacity: .8; }
+.dwl[data-idx]::after {
+  content: attr(data-idx);
+  font-size: .9em;
+  color: var(--accent);
+  letter-spacing: .1em;
+}
+.dwl.nopre::before { content: none; }
+
+/* flat readout header band — accent fill, black text, sharp */
+.flatbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--accent);
+  color: var(--flat-fg);
+  font-family: var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.flatbar.w { background: var(--flat-w); }
+.flatbar .flatbar-id {
+  font-size: .5rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+.flatbar .flatbar-meta {
+  font-size: .42rem;
+  opacity: .72;
+  letter-spacing: .14em;
+}
+
+/* diagonal corner-cut — the Muller notch (top-right) */
+.notch {
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+}
+.notch-bl {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--notch) 100%, 0 calc(100% - var(--notch)));
+}
+
+/* corner bracket ticks — L-shaped accent marks on a relative box */
+.bracket { position: relative; }
+.bracket::before, .bracket::after {
+  content: "";
+  position: absolute;
+  width: var(--tick);
+  height: var(--tick);
+  pointer-events: none;
+  z-index: 2;
+}
+.bracket::before {
+  top: 0; left: 0;
+  border-top: var(--rule) solid var(--accent);
+  border-left: var(--rule) solid var(--accent);
+}
+.bracket::after {
+  bottom: 0; right: 0;
+  border-bottom: var(--rule) solid var(--accent);
+  border-right: var(--rule) solid var(--accent);
+}
+
+/* thin technical rule with a notched end */
+.trule {
+  height: var(--rule);
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+/* ── apply primitives to shared chrome ── */
+
+/* theme-card → data-readout header + bracket geometry */
+.theme-card { position: relative; }
+.theme-card-header {
+  background: var(--accent);
+  border-bottom: var(--rule) solid var(--flat-fg);
+}
+.theme-card-header:hover { background: var(--accent2); }
+.theme-card-name { color: var(--flat-fg); }
+.theme-card-type { color: var(--flat-fg); opacity: .7; }
+
+/* squad-card → matching readout header */
+.squad-card-header {
+  background: var(--flat-w);
+  border-bottom: var(--rule) solid var(--flat-fg);
+}
+.squad-card-name { color: var(--flat-fg); }
+
+/* category pills + priority badges → coded flat-block tags */
+.cat-pill.active { background: var(--accent); border-color: var(--accent); color: var(--flat-fg); }
+.npc-item-pr { letter-spacing: .08em; }

@@ -32,6 +32,13 @@
   --hdr-h: 56px;
   --bar-h: 38px;
   --top-h: 94px;
+
+  /* Tom Muller HUD geometry language */
+  --flat-fg: #080808;   /* text on flat accent / white blocks */
+  --flat-w:  #f0f0f0;   /* stark white block fill */
+  --notch: 10px;        /* diagonal corner-cut size */
+  --tick: 7px;          /* corner-bracket arm length */
+  --rule: 2px;          /* technical rule weight */
   
   --fc-xmen: #FFD600;
   --fc-novatos: #66aaff;
@@ -113,6 +120,19 @@ body::after {
   background: var(--red);
   clip-path: polygon(30px 0, 100% 0, 70px 100%, 0 100%);
   opacity: .12;
+}
+
+/* Muller notched accent tick on the header base, bottom-left */
+.header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: var(--rule);
+  background: var(--flat-fg);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  z-index: 2;
 }
 
 .header-logo {
@@ -433,9 +453,9 @@ body::after {
   background: var(--red);
   transition: left .2s ease, right .2s ease;
 }
-.tab.active { color: var(--white); }
-.tab.active::after { left: 0; right: 0; }
-.tab:hover { color: var(--text); }
+.tab.active { color: var(--flat-fg); background: var(--accent); }
+.tab.active::after { left: 0; right: 0; background: var(--flat-fg); }
+.tab:hover:not(.active) { color: var(--text); }
 
 .content {
   padding: clamp(14px, 2.5vw, 28px);
