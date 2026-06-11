@@ -319,11 +319,11 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 (function(){
   if(window.visualViewport){
     var update=function(){
+      var kb=window.innerHeight-window.visualViewport.height;
       var t=document.getElementById('toast');
-      if(t)t.style.setProperty('bottom',(window.innerHeight-window.visualViewport.height+24)+'px');
+      if(t)t.style.bottom=(kb+24)+'px';
     };
     window.visualViewport.addEventListener('resize',update);
-    window.visualViewport.addEventListener('scroll',update);
   }
 })();
 (function(){
