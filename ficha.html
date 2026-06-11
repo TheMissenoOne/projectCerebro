@@ -316,23 +316,24 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <body>
 <div id="toast" class="toast"></div>
 <script>
-(function(){
-  if(window.visualViewport){
-    var update=function(){
-      var kb=window.innerHeight-window.visualViewport.height;
-      var t=document.getElementById('toast');
-      if(t)t.style.bottom=(kb+24)+'px';
-    };
-    window.visualViewport.addEventListener('resize',update);
-  }
-})();
+function updateToastPos(){
+  var t=document.getElementById('toast');
+  if(!t)return;
+  var vh=window.visualViewport?window.visualViewport.height:window.innerHeight;
+  var th=t.offsetHeight;
+  t.style.top=(vh-th-24)+'px';t.style.bottom='auto';
+}
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',updateToastPos);
+  updateToastPos();
+}
 (function(){
   var t = localStorage.getItem('cerebro_tema');
   if (t) document.body.className = 'theme-' + t;
 })();
 function showToast(msg){
   var t=document.getElementById('toast');if(!t)return;
-  t.textContent=msg;t.classList.add('show');
+  t.textContent=msg;t.classList.add('show');updateToastPos();
   clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},4000);
 }
 </script>

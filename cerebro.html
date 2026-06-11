@@ -280,6 +280,19 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 <body class="theme-yellow">
 
 <div class="toast" id="toast"></div>
+<script>
+function updateToastPos(){
+  var t=document.getElementById('toast');
+  if(!t)return;
+  var vh=window.visualViewport?window.visualViewport.height:window.innerHeight;
+  var th=t.offsetHeight;
+  t.style.top=(vh-th-24)+'px';t.style.bottom='auto';
+}
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',updateToastPos);
+  updateToastPos();
+}
+</script>
 
 <div class="panel-overlay" id="panel-overlay" onclick="fecharPainel()"></div>
 
@@ -938,8 +951,8 @@ function fecharPainel(){
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
+  t.classList.add('show');updateToastPos();
+  setTimeout(()=>t.classList.remove('show'),4000);
 }
 
 function renderEncounterList(){
