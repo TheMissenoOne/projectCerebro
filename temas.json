@@ -28,9 +28,9 @@
         "(Criador) As formas que crio têm alguma experiência própria ou são apenas extensões minhas?"
       ],
       "melhorias": [
-        "Especialização Derivada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação, exceto Relíquia. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Exposição Calculada: Ao gastar uma ação se expondo deliberadamente a uma ameaça para estudá-la, crie uma condição temporária de adaptação contra ela com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Curva Acelerada: Quando atua em desvantagem (AV menor que OV), role os dados duas vezes e use o resultado mais favorável. [Especial]"
+        "Especialização Derivada: Responda a uma pergunta de tag de poder de Expressão ou Conjuração. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Exposição Calculada: Ao receber uma condição se expondo deliberadamente a uma ameaça para estudá-la em uma cena de intervalo, crie uma condição temporária de adaptação contra ela com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Curva Acelerada: Uma vez por partida, quando atua em desvantagem (AV menor que OV), role os dados duas vezes e use o resultado mais favorável. [Especial]"
       ]
     },
     {
@@ -61,9 +61,9 @@
         "(Escudo coletivo) Até onde posso expandir minha proteção sem me destruir no processo?"
       ],
       "melhorias": [
-        "Defesa Composta: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que envolva resistência, campo ou estrutura física. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Posição Fortificada: Ao gastar uma ação fortalecendo posição ou ancorando-se no terreno antes do confronto, crie uma condição temporária de proteção com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Muro Inabalável: Enquanto protege ativamente um aliado declarado no início da cena, condições físicas que você recebe têm grau reduzido em 2 (mínimo 1). [Especial]"
+        "Defesa Composta: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que envolva resistência, campo ou estrutura física. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Posição Fortificada: Ao gastar uma cena de intervalo fortalecendo posição ou ancorando-se no terreno antes do confronto, crie uma condição temporária de proteção com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, muro Inabalável: Enquanto protege ativamente um aliado declarado no início da cena, condições físicas que você recebe têm grau reduzido em 2 (mínimo 1). [Especial]"
       ]
     },
     {
@@ -94,9 +94,9 @@
         "(Criador de armas) Existe um limite para o que posso criar, ou o limite sou eu mesmo?"
       ],
       "melhorias": [
-        "Matéria Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a energia, forma ou controle. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Conjuração Reservada: Ao gastar uma ação moldando matéria com antecedência — uma conjuração preparada e reservada —, crie uma condição temporária no alvo ou ambiente com grau igual ao número de tags deste tema ao liberá-la. [Condição temporária]",
-        "Permanência Declarada: Uma vez por arco, declare que uma conjuração é permanente em vez de temporária ou duradoura, sem custo de modificador adicional. O GM define as consequências narrativas. [Especial]"
+        "Matéria Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a energia, forma ou controle. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Conjuração Reservada: Ao gastar uma cena de intervalo moldando matéria com antecedência — uma conjuração preparada e reservada —, crie uma condição temporária no alvo ou ambiente com grau igual ao número de tags deste tema ao liberá-la. [Condição temporária]",
+        "Permanência Declarada: Uma vez por partida, declare que uma conjuração é permanente em vez de temporária ou duradoura, sem custo de modificador adicional. O GM define as consequências narrativas. [Especial]"
       ]
     },
     {
@@ -127,9 +127,9 @@
         "(Vítima da profecia) Quem escreveu o que está escrito sobre mim — e posso encontrá-lo?"
       ],
       "melhorias": [
-        "Fio Convergente: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a percepção, previsão ou tempo. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Fio Convergente: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a percepção, previsão ou tempo. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Presságio Preparado: Ao gastar uma cena de intervalo lendo os fios do destino, declare um presságio reservado; ao invocá-lo depois, crie uma condição temporária com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Inevitável: Uma vez por arco, declare que um evento específico está destinado a acontecer. O GM deve integrá-lo à narrativa do arco; pode ajustar o contexto, mas não pode negar o evento. [Especial]"
+        "Inevitável: Uma vez por partida, declare que um evento específico está destinado a acontecer. O GM deve integrá-lo à narrativa do arco; pode ajustar o contexto, mas não pode negar o evento. [Especial]"
       ]
     },
     {
@@ -160,9 +160,9 @@
         "(Precog) O futuro que vejo é o único possível ou apenas o mais provável daquele momento?"
       ],
       "melhorias": [
-        "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento, percepção ou rastreamento. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Leitura Profunda: Ao gastar uma ação concentrando o dom para ler a fundo uma pessoa ou cena, crie uma condição temporária de sobrecarga informacional com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Varredura Ampla: Uma vez por sessão, expanda a percepção para cobrir um raio amplo (instalação, campo de batalha, quarteirão). Faça até 3 perguntas factuais sobre o que acontece nessa área agora. O GM responde todas com honestidade. [Especial]"
+        "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento, percepção ou rastreamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Leitura Profunda: Ao gastar uma cena de intervalo concentrando o dom para ler a fundo uma pessoa ou cena, crie uma condição temporária de sobrecarga informacional com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Varredura Ampla: Uma vez por partida, expanda a percepção para cobrir um raio amplo (instalação, campo de batalha, quarteirão). Faça até 3 perguntas factuais sobre o que acontece nessa área agora. O GM responde todas com honestidade. [Especial]"
       ]
     },
     {
@@ -193,9 +193,9 @@
         "(Fugitivo do enclave) O enclave ainda controla alguma parte de mim mesmo à distância?"
       ],
       "melhorias": [
-        "Poder Emprestado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente uma habilidade que outro membro do enclave possui. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Sincronia de Rede: Ao gastar uma ação sincronizando com os membros do enclave presentes, crie uma condição temporária compartilhada com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Força do Grupo: Quando dois ou mais membros do enclave atuam juntos na mesma ação, cada participante adicional contribui com +1 AP ao total (máximo +3 adicional). [Especial]"
+        "Poder Emprestado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente uma habilidade que outro membro do enclave possui. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Sincronia de Rede: Ao gastar uma cena de intervalo sincronizando com os membros do enclave presentes, crie uma condição temporária compartilhada com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, força do Grupo: Quando dois ou mais membros do enclave atuam juntos na mesma ação, cada participante adicional contribui com +1 AP ao total (máximo +3 adicional). [Especial]"
       ]
     },
     {
@@ -226,9 +226,9 @@
         "(Manipulação emocional) As emoções que inspiro são genuínas ou apenas eco do meu poder?"
       ],
       "melhorias": [
-        "Forma Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a alcance, área ou controle. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Carga Canalizada: Ao gastar uma ação carregando e canalizando a mutação antes de liberá-la, crie uma condição temporária de resíduo no alvo ou ambiente com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Descarga Total: Ao gastar três ou mais tags deste tema em uma única ação bem-sucedida, os RAPs são iguais ao EV total sem rolagem. Pode ser usado uma vez por cena. [Especial]"
+        "Forma Aprendida: Responda a uma pergunta de tag de poder de Adaptação ou Relíquia que represente uma forma de ampliar a capacidade da expressão do seu poder. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Carga Canalizada: Ao gastar uma cena de intervalo carregando e canalizando a mutação antes de usá-la, crie uma condição temporária de Carga Máxima com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Descarga Total: Uma vez por partida, o personagem pode queimar uma de suas tags sem exauri-la. [Especial]"
       ]
     },
     {
@@ -259,9 +259,9 @@
         "(Construto) Se este familiar for destruído, o próximo que criar será o mesmo ou algo diferente?"
       ],
       "melhorias": [
-        "Essência Transferida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita, canaliza ou transfere. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Posto Avançado: Ao gastar uma ação posicionando o familiar com antecedência, ele pode impor uma condição temporária a um alvo ou área com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente — mas não pode usar a mesma tag no mesmo turno que o personagem já a usou. [Especial]"
+        "Essência Transferida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita, canaliza ou transfere. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Posto Avançado: Ao gastar uma cena de intervalo posicionando o familiar com antecedência, ele pode impor uma condição temporária a um alvo ou área com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente — mas não pode usar a mesma tag no mesmo turno que o personagem já a usou. [Especial]"
       ]
     },
     {
@@ -292,9 +292,9 @@
         "(Voo) O que me sustenta no ar — e o que acontece se aquilo parar?"
       ],
       "melhorias": [
-        "Manobra Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Reconhecimento de Terreno: Ao gastar uma ação percorrendo e mapeando o espaço antes do confronto, crie uma condição temporária de perturbação no terreno com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros sem precisar declarar intenção. [Especial]"
+        "Manobra Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Reconhecimento de Terreno: Ao gastar uma cena de intervalo percorrendo e mapeando o espaço antes do confronto, crie uma condição temporária de perturbação no terreno com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros sem precisar declarar intenção. [Especial]"
       ]
     },
     {
@@ -325,9 +325,9 @@
         "(Relíquia corrompida) A relíquia está me usando ou sou eu que a uso — e essa distinção ainda muda alguma coisa?"
       ],
       "melhorias": [
-        "Eco do Legado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder armazenado, despertado ou revelado pela relíquia. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Sintonia Ritual: Ao gastar uma ação sintonizando a relíquia antes de usá-la, ela pode impor uma condição temporária a um alvo com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Amplificação: Quando usa a relíquia em conjunto com outra tag deste tema na mesma ação, o grau combinado das duas tags é aumentado em +2 além da soma normal. [Especial]"
+        "Eco do Legado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder armazenado, despertado ou revelado pela relíquia. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Sintonia Ritual: Ao gastar uma cena de intervalo sintonizando a relíquia antes de usá-la, ela pode impor uma condição temporária a um alvo com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, amplificação: Quando usa a relíquia em conjunto com outra tag deste tema na mesma ação, o grau combinado das duas tags é aumentado em +2 além da soma normal. [Especial]"
       ]
     },
     {
@@ -358,9 +358,9 @@
         "(Manipulador) Manipular os outros me tornou incapaz de me conectar de forma genuína?"
       ],
       "melhorias": [
-        "Disfarce Aprendido: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a furtividade, manipulação ou informação. Anote a resposta como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Armadilha Plantada: Ao gastar uma ação plantando uma falsa pista, disfarce ou armadilha de percepção, crie uma condição temporária ilusória em um alvo ou área com grau igual ao número de tags deste tema ao acioná-la. [Condição temporária]",
-        "Inversão: Uma vez por cena, converta uma condição negativa que você sofreu em vantagem declarada para uma única ação — o que tentaram usar contra você se torna a ferramenta. [Especial]"
+        "Disfarce Aprendido: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a furtividade, manipulação ou informação. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
+        "Armadilha Plantada: Ao gastar uma cena de intervalo plantando uma falsa pista, disfarce ou armadilha de percepção, crie uma condição temporária ilusória em um alvo ou área com grau igual ao número de tags deste tema ao acioná-la. [Condição temporária]",
+        "Inversão: Uma vez por partida, converta uma condição negativa que você sofreu em vantagem declarada para uma única ação — o que tentaram usar contra você se torna a ferramenta. [Especial]"
       ]
     },
     {
@@ -391,9 +391,9 @@
         "(Redenção) Preciso compensar o que fiz — e sei que talvez nunca seja suficiente."
       ],
       "melhorias": [
-        "Lição Internalizada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou conhecimento adquirido especificamente por causa do evento. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Lição Revivida: Ao gastar um momento revivendo conscientemente o evento para extrair sua lição, crie uma condição temporária baseada na emoção central com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Não de Novo: Em circunstância muito similar ao evento, você age em primeiro lugar dentro da cena — o corpo sabe o que fazer antes da mente processar. [Especial]"
+        "Lição Internalizada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou conhecimento adquirido especificamente por causa do evento. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Lição Revivida: Ao gastar uma cena de intervalo revivendo conscientemente o evento para extrair sua lição, crie uma condição temporária baseada na emoção central com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, não de Novo: Em circunstância muito similar ao evento, você age em primeiro lugar dentro da cena — o corpo sabe o que fazer antes da mente processar. [Especial]"
       ]
     },
     {
@@ -424,9 +424,9 @@
         "(Família difícil) Não importa o que façam. Sangue é mais espesso que qualquer coisa que já enfrentei."
       ],
       "melhorias": [
-        "Aprendizado Mútuo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente algo que você aprendeu especificamente por causa dessa relação. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Vínculo Invocado: Ao gastar uma ação contatando ou invocando ativamente a presença dessa pessoa, crie uma condição temporária de confiança ou motivação com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Parceria Profunda: Ao ajudar o personagem ligado a esta relação, as tags usadas não são marcadas como gastas — elas permanecem disponíveis para o turno seguinte. [Especial]"
+        "Aprendizado Mútuo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente algo que você aprendeu especificamente por causa dessa relação. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Vínculo Invocado: Ao gastar uma cena de intervalo contatando ou invocando ativamente a presença dessa pessoa, crie uma condição temporária de confiança ou motivação com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, parceria Profunda: Ao ajudar o personagem ligado a esta relação, as tags usadas não são marcadas como gastas — elas permanecem disponíveis para o turno seguinte. [Especial]"
       ]
     },
     {
@@ -457,9 +457,9 @@
         "(Redenção) Vou provar que não sou o monstro que eles me fizeram ser."
       ],
       "melhorias": [
-        "Preparação de Campo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade, recurso ou contato adquirido especificamente para cumprir a missão. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Plano de Campo: Ao gastar uma cena de intervalo planejando um passo concreto da missão, crie uma condição temporária de foco em si ou em aliado com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
-        "Propósito Claro: Quando suas ações estão diretamente alinhadas à missão, o modificador Foco Total se aplica automaticamente sem precisar ser declarado. [Especial]"
+        "Preparação de Campo: Responda a uma pergunta de tag de poder de Relacionamento Principal ou Posses, recurso ou contato adquirido especificamente para cumprir a missão. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Plano de Campo: Ao gastar uma cena de intervalo planejando um passo concreto da sua missão, crie uma condição temporária de foco em si ou em aliado com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
+        "Propósito Claro: Uma vez por partida, o personagem pode utilizar cada uma das suas tags de missão duas vezes em uma cena. [Especial]"
       ]
     },
     {
@@ -490,9 +490,9 @@
         "(Paranoico) Confiar é sempre a primeira armadilha. Sempre."
       ],
       "melhorias": [
-        "Traço como Poder: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente uma capacidade que nasce diretamente de como você é. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Afirmação de Caráter: Ao gastar uma ação afirmando abertamente seu traço dominante diante de um alvo, crie nele uma condição temporária baseada nesse traço com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Impossível de Ler: Ações que tentam prever, manipular ou condicionar seu comportamento têm OV aumentado em +1. [Especial]"
+        "Traço como Poder: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente uma capacidade que nasce diretamente de como você é. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Afirmação de Caráter: Ao gastar uma cena de intervalo afirmando abertamente seu traço dominante diante de um alvo, crie nele uma condição temporária baseada nesse traço com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, impossível de Ler: Ações que tentam prever, manipular ou condicionar seu comportamento têm OV aumentado em +1. [Especial]"
       ]
     },
     {
@@ -523,9 +523,9 @@
         "(Acumulador) Um dia isso vai ser útil. Sempre acaba sendo."
       ],
       "melhorias": [
-        "Função Inesperada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente uso não óbvio ou função inesperada de algo que você possui. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Equipamento Pronto: Ao gastar uma ação preparando ou ajustando uma posse importante para o que vem, crie uma condição temporária ligada a ela com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Ferramenta Certa: Escolha uma posse específica. Quando usada na situação para a qual foi feita ou adaptada, o rótulo contribui com +2 AP ao AV em vez de +1. [Especial]"
+        "Função Inesperada: Responda a uma pergunta de tag de poder de Missão ou Treinamento que represente a aplicação desta posse ou ferramenta na prática. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Equipamento Pronto: Ao gastar uma cena de intervalo preparando ou ajustando uma posse importante para o que vem, crie uma condição temporária ligada a ela com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Ferramenta Certa: Uma vez por partida, o personagem pode anunciar um uso ou funcionalidade novo para seu equipamento permitindo utilizar uma ação sem tags como se tivesse 1 tag. [Especial]"
       ]
     },
     {
@@ -556,9 +556,9 @@
         "(Desempregado) Um dia de cada vez. Isso não é desistência — é sobrevivência."
       ],
       "melhorias": [
-        "Hábito Produtivo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Treinamento que represente truque, atalho ou habilidade descoberta pela repetição. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Hábito Forjado: Ao executar um trecho da sua rotina em cena de intervalo, crie uma condição temporária forjada por esse hábito com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
-        "Preparo Constante: Uma vez por arco, declare antes de uma cena que se preparou para um tipo específico de situação. Essa preparação conta como tag adicional de grau 2 na primeira ação pertinente. [Especial]"
+        "Ossos do ofício: Responda a uma pergunta de tag de poder de Personalidade ou Treinamento que represente truque, atalho ou tendência trazida à tona pela repetição. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Força do Hábito: Ao executar um trecho da sua rotina em cena de intervalo, crie uma condição temporária forjada por esse hábito com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
+        "Apenas mais um dia: Uma vez por partida, o personagem pode utilizar uma tag deste card em uma ação de dados e assumir um resultado 11. [Especial]"
       ]
     },
     {
@@ -589,9 +589,9 @@
         "(Doença crônica) Meu corpo é um campo de batalha. Aprendi a lutar nele."
       ],
       "melhorias": [
-        "Forjado pela Dificuldade: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou perspectiva nascida especificamente do conflito. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Conflito Encarado: Ao gastar um momento encarando e nomeando seu conflito antes de agir, crie uma condição temporária de resistência forjada por ele com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Força de Adversidade: Ao agir sob condição negativa de grau 3 ou mais, some +1 AP ao AV de qualquer ação de oposição. [Especial]"
+        "Forjado pela Dificuldade: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou perspectiva nascida especificamente do conflito. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Conflito Encarado: Ao gastar uma cena de intervalo encarando e nomeando seu conflito antes de agir, crie uma condição temporária de resistência forjada por ele com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, força de Adversidade: Ao agir sob condição negativa de grau 3 ou mais, some +1 AP ao AV de qualquer ação de oposição. [Especial]"
       ]
     },
     {
@@ -622,9 +622,9 @@
         "(Sobrevivencialista) Você nunca sabe quando o mundo muda. Eu me preparei para quando mudar."
       ],
       "melhorias": [
-        "Aplicação Cruzada: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Rotina que represente aplicação inusitada ou transferência do treinamento para outro contexto. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Aquecimento Técnico: Ao gastar uma ação executando um drill ou aquecimento do seu treinamento antes do confronto, crie uma condição temporária de prontidão técnica com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Memória Muscular: Ações físicas dentro do campo de treinamento nunca recebem o modificador Usuário Instável, independente das circunstâncias externas. [Especial]"
+        "Preparação Exaustiva: Responda a uma pergunta de tag de poder de Rotina ou Treinamento que represente aplicação inusitada ou transferência do treinamento para outro contexto. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
+        "Aquecimento Técnico: Ao gastar uma cena de intervalo executando um drill ou aquecimento do seu treinamento antes do confronto, crie uma condição temporária de prontidão técnica com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Memória Muscular: Uma vez por partida, o personagem pode utilizar mais de uma tag deste tema simultaneamente em uma ação automática. [Especial]"
       ]
     },
     {
@@ -655,9 +655,9 @@
         "(Zona de conflito) Isso aqui não é lar — é posição. E posição não se abandona."
       ],
       "melhorias": [
-        "Recurso Local: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente aliado, contato ou recurso exclusivo do território. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Patrulha Preventiva: Ao gastar uma ação patrulhando ou assegurando o território antes de um confronto nele, crie uma condição temporária em invasores ou no ambiente com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Campo Próprio: Dentro do território, modificadores de posicionamento desfavoráveis têm valor reduzido em 1 (mínimo 0). [Especial]"
+        "Recurso Local: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente aliado, contato ou recurso exclusivo do território. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Patrulha Preventiva: Ao gastar uma cena de intervalo patrulhando ou assegurando o território antes de um confronto nele, crie uma condição temporária em invasores ou no ambiente com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Uma vez por partida, campo Próprio: Dentro do território, modificadores de posicionamento desfavoráveis têm valor reduzido em 1 (mínimo 0). [Especial]"
       ]
     },
     {
@@ -683,9 +683,9 @@
         "Quem ou o quê tem mais chance de prejudicar, sequestrar ou usar o aliado contra você?"
       ],
       "melhorias": [
-        "Aprendizado de Campo: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente algo que você aprendeu diretamente com esse aliado. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Plano Coordenado: Ao gastar uma ação coordenando um plano com seu aliado antes da cena, ele pode lhe conceder uma condição temporária de apoio com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Presença Garantida: Uma vez por arco, declare que o aliado aparece em uma cena onde há justificativa narrativa mínima para sua presença. Ele chega no início da cena. [Especial]"
+        "Aprendizado de Campo: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente algo que você aprendeu diretamente com esse aliado. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Plano Coordenado: Ao gastar uma cena de intervalo coordenando um plano com seu aliado antes da cena, ele pode lhe conceder uma condição temporária de apoio com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Presença Garantida: Uma vez por partida, declare que o aliado aparece em uma cena onde há justificativa narrativa mínima para sua presença. Ele chega no início da cena. [Especial]"
       ]
     },
     {
@@ -711,9 +711,9 @@
         "Que rastro, emissão ou consequência os aspectos mutantes da base deixam no ambiente?"
       ],
       "melhorias": [
-        "Recurso Instalado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente equipamento, sistema ou defesa presente na base. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Preparo na Base: Ao gastar tempo na base preparando-se com seus recursos para uma situação específica, crie uma condição temporária de vantagem com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
-        "Campo de Preparo: Uma vez por sessão, declare que passou tempo treinando ou se preparando na base para uma situação específica. A primeira ação relacionada a essa situação na cena seguinte recebe +2 AP. [Especial]"
+        "Recurso Instalado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente equipamento, sistema ou defesa presente na base. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Preparo na Base: Ao gastar uma cena de intervalo na base preparando-se com seus recursos para uma situação específica, crie uma condição temporária de vantagem com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
+        "Campo de Preparo: Uma vez por partida, declare que passou tempo treinando ou se preparando na base para uma situação específica. A primeira ação relacionada a essa situação na cena seguinte recebe +2 AP. [Especial]"
       ]
     },
     {
@@ -739,9 +739,9 @@
         "Como a história ou a origem do transporte te cria problemas — é roubado, vigiado ou marcado?"
       ],
       "melhorias": [
-        "Modificação Estratégica: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente modificação, capacidade ou adaptação que seu transporte adquiriu. Anote como nova tag de poder neste tema com grau 2. [Tag cruzada]",
-        "Posicionamento Tático: Ao gastar uma ação posicionando ou preparando o transporte antes do momento crítico, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Confiável: Uma vez por cena, ao fazer uma ação de deslocamento usando este tema, você pode tratar o resultado como sucesso parcial (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não elimina complicações, mas garante que você chega onde queria. [Especial]"
+        "Modificação Estratégica: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente modificação, capacidade ou adaptação que seu transporte adquiriu. Anote como nova tag de poder neste tema. [Tag cruzada]",
+        "Posicionamento Tático: Ao gastar uma cena de intervalo posicionando ou preparando o transporte antes do momento crítico, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Confiável: Uma vez por partida, ao fazer uma ação de deslocamento usando este tema, você pode tratar o resultado como sucesso parcial (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não elimina complicações, mas garante que você chega onde queria. [Especial]"
       ]
     }
   ],
@@ -770,8 +770,8 @@
       ],
       "melhorias": [
         "Treinamento Cruzado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade (exceto este tema). A resposta se torna uma nova tag de poder neste tema. [Tag cruzada]",
-        "Plano Coordenado: Ao gastar uma ação coordenando um plano com seu aliado antes da cena, ele pode lhe conceder uma condição temporária de apoio com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Presença Constante: Uma vez por arco, você pode fazer seu aliado aparecer em qualquer cena onde haja uma justificativa narrativa mínima. Ele chega no início da cena seguinte. [Especial]"
+        "Plano Coordenado: Ao gastar uma cena de intervalo coordenando um plano com seu aliado antes da cena, ele pode lhe conceder uma condição temporária de apoio com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Presença Constante: Uma vez por partida, você pode fazer seu aliado aparecer em qualquer cena onde haja uma justificativa narrativa mínima. Ele chega no início da cena seguinte. [Especial]"
       ]
     },
     {
@@ -798,8 +798,8 @@
       ],
       "melhorias": [
         "Tecnologia Adaptada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente um equipamento ou defesa que sua base possui. [Tag cruzada]",
-        "Preparo na Base: Ao gastar tempo na base preparando-se com seus recursos para uma situação específica, crie uma condição temporária de vantagem com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
-        "Campo de Treinamento: Uma vez por sessão, você pode declarar que passou tempo treinando para um tipo específico de desafio. Na primeira ação relacionada, recebe +2 AP. [Especial]"
+        "Preparo na Base: Ao gastar uma cena de intervalo na base preparando-se com seus recursos para uma situação específica, crie uma condição temporária de vantagem com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
+        "Campo de Treinamento: Uma vez por partida, você pode declarar que passou tempo treinando para um tipo específico de desafio. Na primeira ação relacionada, recebe +2 AP. [Especial]"
       ]
     },
     {
@@ -826,8 +826,8 @@
       ],
       "melhorias": [
         "Adaptação Veicular: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente uma modificação ou habilidade que seu transporte adquiriu. [Tag cruzada]",
-        "Posicionamento Tático: Ao gastar uma ação posicionando ou preparando o transporte antes do momento crítico, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
-        "Corcel Genético: Seu transporte é excepcionalmente confiável. Uma vez por cena, ao fazer um movimento que envolve deslocamento, você pode considerar o resultado como sucesso (7 a 9) mesmo que tenha rolado 6 ou menos. [Especial]"
+        "Posicionamento Tático: Ao gastar uma cena de intervalo posicionando ou preparando o transporte antes do momento crítico, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
+        "Corcel Genético: Seu transporte é excepcionalmente confiável. Uma vez por partida, ao fazer um movimento que envolve deslocamento, você pode considerar o resultado como sucesso (7 a 9) mesmo que tenha rolado 6 ou menos. [Especial]"
       ]
     }
   ]

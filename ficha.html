@@ -293,6 +293,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 .add-card-btn{background:var(--p1);border:2px dashed var(--b2);color:var(--muted);font-family:var(--disp);font-size:2rem;width:100%;min-height:120px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .add-card-btn:hover{border-color:var(--red);color:var(--red);background:rgba(232,0,28,.05);}
+.add-tag-btn{background:var(--p2);border:1px dashed var(--b3);color:var(--muted2);font-family:var(--disp);font-size:.9rem;width:100%;padding:4px 0;cursor:pointer;transition:all .2s;margin-top:4px;border-radius:0;}
+.add-tag-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,214,0,.06);}
 .cat-badge .theme-icon svg{stroke:currentColor;fill:currentColor;}
 .status-textarea{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.82rem;padding:8px 10px;resize:vertical;outline:none;transition:border-color .15s;min-height:80px;}
 .status-textarea:focus{border-color:var(--red);}
@@ -321,7 +323,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 function showToast(msg){
   var t=document.getElementById('toast');if(!t)return;
   t.textContent=msg;t.classList.add('show');
-  clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},2500);
+  clearTimeout(t._toastTimer);t._toastTimer=setTimeout(function(){t.classList.remove('show');},4000);
 }
 </script>
 <div id="header-container"></div>
@@ -497,7 +499,7 @@ const TODOS=[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const found=TODOS.find(x=>x.v===v);return found?found.l:(v||t('ficha.noType'));};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
-const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:['','','','','','',''],fraqueza:['','',''],poder_burned:Array(7).fill(false),fraqueza_burned:Array(3).fill(false),melhorias:'',melhorias_checked:[],collapsed:false});
+const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:Array(10).fill(''),fraqueza:Array(4).fill(''),poder_burned:Array(10).fill(false),fraqueza_burned:Array(4).fill(false),melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
 const MELHORIAS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
@@ -753,6 +755,17 @@ function makeTagRow(card,isPower,i,placeholder){
     else{if(!card.fraqueza)card.fraqueza=[];card.fraqueza[i]=e.target.value;}
     salvarAuto();
   });
+  if(placeholder){
+    inp.addEventListener('focus',()=>{
+      const t=document.getElementById('toast');if(!t)return;
+      t.textContent=placeholder;t.classList.add('show');
+      clearTimeout(t._toastTimer);
+    });
+    inp.addEventListener('blur',()=>{
+      const t=document.getElementById('toast');if(!t)return;
+      t._toastTimer=setTimeout(()=>t.classList.remove('show'),200);
+    });
+  }
   const btn=document.createElement('button');btn.type='button';btn.className='tag-burn-btn'+(burned?' active':'');btn.title=t('ficha.burnTag');
   btn.innerHTML=FLAME_SVG;
   btn.addEventListener('click',()=>{
@@ -824,22 +837,35 @@ sel.addEventListener('change',e=>{
        div.className='tcard'+(nc?' '+nc:'');
        const newIconUrl = newTipo ? `icons/${newIconMap}.svg` : '';
        if (newIconUrl) { div.setAttribute('data-icon', newIconMap); body.setAttribute('data-icon', newIconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
-        const oldPwr=body.querySelector('.poder-tags');const oldFraq=body.querySelector('.fraq-tags');
-        const pwrLbl=body.querySelector('.poder-lbl');const fraqLbl=body.querySelector('.fraq-lbl');
-        if(oldPwr)oldPwr.remove();if(oldFraq)oldFraq.remove();if(pwrLbl)pwrLbl.remove();if(fraqLbl)fraqLbl.remove();
-        const pergs=getPlaceholder(newTipo,0,true)?getPlaceholder(newTipo,0,true).split(' ')[0]:null;
-        if(pergs){
-          const newPwrLbl=document.createElement('div');newPwrLbl.className='c-label poder poder-lbl';newPwrLbl.innerHTML=t('ficha.powerTags');body.appendChild(newPwrLbl);
-          const newPwrList=document.createElement('div');newPwrList.className='tags-list poder-tags';
-          const pCount=(PERGUNTAS[normalizeKey(newTipo)]?.p||[]).length;
-          for(let i=0;i<pCount;i++){newPwrList.appendChild(makeTagRow(card,true,i,getPlaceholder(newTipo,i,true)));}
-          body.appendChild(newPwrList);
-          const newFraqLbl=document.createElement('div');newFraqLbl.className='c-label fraq fraq-lbl';newFraqLbl.innerHTML=t('ficha.weaknessTags');body.appendChild(newFraqLbl);
-          const newFraqList=document.createElement('div');newFraqList.className='tags-list fraq-tags';
-          const fCount=(PERGUNTAS[normalizeKey(newTipo)]?.f||[]).length;
-          for(let i=0;i<fCount;i++){newFraqList.appendChild(makeTagRow(card,false,i,getPlaceholder(newTipo,i,false)));}
-          body.appendChild(newFraqList);
-        }
+         body.querySelectorAll('.poder-tags,.fraq-tags,.poder-lbl,.fraq-lbl,.add-tag-btn').forEach(el=>el.remove());
+          const pCount=Math.max((PERGUNTAS[normalizeKey(newTipo)]?.p||[]).length,(card.poder||[]).length,10);
+          const fCount=Math.max((PERGUNTAS[normalizeKey(newTipo)]?.f||[]).length,(card.fraqueza||[]).length,4);
+           const newPwrLbl=document.createElement('div');newPwrLbl.className='c-label poder poder-lbl';newPwrLbl.innerHTML=t('ficha.powerTags');body.appendChild(newPwrLbl);
+           const newPwrList=document.createElement('div');newPwrList.className='tags-list poder-tags';
+           for(let i=0;i<pCount;i++){newPwrList.appendChild(makeTagRow(card,true,i,getPlaceholder(newTipo,i,true)));}
+           body.appendChild(newPwrList);
+           const addPowerBtn=document.createElement('button');addPowerBtn.className='add-tag-btn';addPowerBtn.innerHTML='+';
+           addPowerBtn.title='Adicionar tag de poder';
+           addPowerBtn.addEventListener('click',()=>{
+             if(!card.poder)card.poder=[];card.poder.push('');
+             const pList=body.querySelector('.poder-tags');
+             pList.appendChild(makeTagRow(card,true,card.poder.length-1,getPlaceholder(card.tipo,card.poder.length-1,true)));
+             salvarAuto();
+           });
+           body.appendChild(addPowerBtn);
+           const newFraqLbl=document.createElement('div');newFraqLbl.className='c-label fraq fraq-lbl';newFraqLbl.innerHTML=t('ficha.weaknessTags');body.appendChild(newFraqLbl);
+           const newFraqList=document.createElement('div');newFraqList.className='tags-list fraq-tags';
+           for(let i=0;i<fCount;i++){newFraqList.appendChild(makeTagRow(card,false,i,getPlaceholder(newTipo,i,false)));}
+           body.appendChild(newFraqList);
+           const addWeakBtn=document.createElement('button');addWeakBtn.className='add-tag-btn';addWeakBtn.innerHTML='+';
+           addWeakBtn.title='Adicionar tag de fraqueza';
+           addWeakBtn.addEventListener('click',()=>{
+             if(!card.fraqueza)card.fraqueza=[];card.fraqueza.push('');
+             const fList=body.querySelector('.fraq-tags');
+             fList.appendChild(makeTagRow(card,false,card.fraqueza.length-1,getPlaceholder(card.tipo,card.fraqueza.length-1,false)));
+             salvarAuto();
+           });
+           body.appendChild(addWeakBtn);
         const oldMelLbl=body.querySelector('.mel-lbl');const oldMel=body.querySelector('.mel-check-list');
         if(oldMelLbl)oldMelLbl.remove();if(oldMel)oldMel.remove();
         const melList=getMelhorias(newTipo);
@@ -892,13 +918,35 @@ const trow=document.createElement('div');trow.className='trackers-row';
 }
   const pl=document.createElement('div');pl.className='c-label poder poder-lbl';pl.innerHTML=t('ficha.powerTags');body.appendChild(pl);
   const plist=document.createElement('div');plist.className='tags-list poder-tags';
-  for(let i=0;i<7;i++){plist.appendChild(makeTagRow(card,true,i,getPlaceholder(card.tipo,i,true)));}
+  const pLen=Math.max(10,(card.poder||[]).length);
+  for(let i=0;i<pLen;i++){plist.appendChild(makeTagRow(card,true,i,getPlaceholder(card.tipo,i,true)));}
   body.appendChild(plist);
+if(editable){
+  const addPowerBtn=document.createElement('button');addPowerBtn.className='add-tag-btn';addPowerBtn.innerHTML='+';
+  addPowerBtn.title='Adicionar tag de poder';
+  addPowerBtn.addEventListener('click',()=>{
+    if(!card.poder)card.poder=[];card.poder.push('');
+    const pList=body.querySelector('.poder-tags');
+    pList.appendChild(makeTagRow(card,true,card.poder.length-1,getPlaceholder(card.tipo,card.poder.length-1,true)));
+    salvarAuto();
+  });
+  body.appendChild(addPowerBtn);
+}
 if(editable){
   const fl=document.createElement('div');fl.className='c-label fraq fraq-lbl';fl.innerHTML=t('ficha.weaknessTags');body.appendChild(fl);
   const flist=document.createElement('div');flist.className='tags-list fraq-tags';
-  for(let i=0;i<3;i++){flist.appendChild(makeTagRow(card,false,i,getPlaceholder(card.tipo,i,false)));}
+  const fLen=Math.max(4,(card.fraqueza||[]).length);
+  for(let i=0;i<fLen;i++){flist.appendChild(makeTagRow(card,false,i,getPlaceholder(card.tipo,i,false)));}
   body.appendChild(flist);
+  const addWeakBtn=document.createElement('button');addWeakBtn.className='add-tag-btn';addWeakBtn.innerHTML='+';
+  addWeakBtn.title='Adicionar tag de fraqueza';
+  addWeakBtn.addEventListener('click',()=>{
+    if(!card.fraqueza)card.fraqueza=[];card.fraqueza.push('');
+    const fList=body.querySelector('.fraq-tags');
+    fList.appendChild(makeTagRow(card,false,card.fraqueza.length-1,getPlaceholder(card.tipo,card.fraqueza.length-1,false)));
+    salvarAuto();
+  });
+  body.appendChild(addWeakBtn);
 }
   const melList=editable?getMelhorias(card.tipo):[];
   if(melList.length){
@@ -1029,8 +1077,8 @@ function importarMD(){
         while(j<linhas.length){const cl=linhas[j].trim();if(cl.startsWith('### Card ')||cl==='---')break;
           if(cl.startsWith('**Atenção:**')){const am=cl.match(/▲/g);const dm=cl.match(/▼/g);card.atencao=(am?am.length:0);card.dissipacao=(dm?dm.length:0);}
           if(cl.startsWith('**Mistério/Identidade:**'))card.misterio=cl.replace('**Mistério/Identidade:**','').trim();
-          if(cl.startsWith('**Tags de Poder:**')){let k=j+1,pi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▲')&&pi<7){card.poder[pi]=linhas[k].trim().replace(/^- ▲\s*/,'');pi++;k++;}}
-          if(cl.startsWith('**Tags de Fraqueza:**')){let k=j+1,fi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▼')&&fi<3){card.fraqueza[fi]=linhas[k].trim().replace(/^- ▼\s*/,'');fi++;k++;}}
+          if(cl.startsWith('**Tags de Poder:**')){let k=j+1,pi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▲')&&pi<10){card.poder[pi]=linhas[k].trim().replace(/^- ▲\s*/,'');pi++;k++;}}
+          if(cl.startsWith('**Tags de Fraqueza:**')){let k=j+1,fi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▼')&&fi<4){card.fraqueza[fi]=linhas[k].trim().replace(/^- ▼\s*/,'');fi++;k++;}}
           if(cl.startsWith('**Melhorias:**'))card.melhorias=cl.replace('**Melhorias:**','').trim();j++;
         }
         const isExtras=secaoAtual.includes('EXTRAS');
@@ -1052,7 +1100,7 @@ function importarMD(){
 /* ── TOAST ── */
 function toast(msg){
   const t=document.getElementById('toast');t.textContent='// '+msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2600);
+  setTimeout(()=>t.classList.remove('show'),4000);
 }
 
 function toggleSettings() {
