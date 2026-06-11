@@ -317,6 +317,16 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <div id="toast" class="toast"></div>
 <script>
 (function(){
+  if(window.visualViewport){
+    var update=function(){
+      var t=document.getElementById('toast');
+      if(t)t.style.setProperty('bottom',(window.innerHeight-window.visualViewport.height+24)+'px');
+    };
+    window.visualViewport.addEventListener('resize',update);
+    window.visualViewport.addEventListener('scroll',update);
+  }
+})();
+(function(){
   var t = localStorage.getItem('cerebro_tema');
   if (t) document.body.className = 'theme-' + t;
 })();
