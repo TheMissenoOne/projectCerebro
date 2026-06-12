@@ -755,6 +755,14 @@ function buildMembros(){
   }
 }
 const FLAME_SVG='<svg viewBox="0 0 24 24" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M12 2C10 5 7 8 7 12a5 5 0 0 0 10 0c0-4-3-7-5-10z M10 14c0-1.5 1-3 2-4 1 1 2 2.5 2 4a2 2 0 0 1-4 0z" fill="currentColor"/></svg>';
+function sortedTagIndices(arr,count){
+  const idx=Array.from({length:count},(_,i)=>i);
+  return idx.sort((a,b)=>{
+    const aF=!!(arr[a]&&arr[a].trim&&arr[a].trim());
+    const bF=!!(arr[b]&&arr[b].trim&&arr[b].trim());
+    return aF===bF?a-b:aF?-1:1;
+  });
+}
 function makeTagRow(card,isPower,i,placeholder){
   const row=document.createElement('div');row.className='tag-row';
   const burned=((isPower?card.poder_burned:card.fraqueza_burned)?.[i])===true;
@@ -853,7 +861,7 @@ sel.addEventListener('change',e=>{
           const fCount=Math.max((PERGUNTAS[normalizeKey(newTipo)]?.f||[]).length,(card.fraqueza||[]).length,4);
            const newPwrLbl=document.createElement('div');newPwrLbl.className='c-label poder poder-lbl';newPwrLbl.innerHTML=t('ficha.powerTags');body.appendChild(newPwrLbl);
            const newPwrList=document.createElement('div');newPwrList.className='tags-list poder-tags';
-           for(let i=0;i<pCount;i++){newPwrList.appendChild(makeTagRow(card,true,i,getPlaceholder(newTipo,i,true)));}
+           for(const i of sortedTagIndices(card.poder||[],pCount)){newPwrList.appendChild(makeTagRow(card,true,i,getPlaceholder(newTipo,i,true)));}
            body.appendChild(newPwrList);
            const addPowerBtn=document.createElement('button');addPowerBtn.className='add-tag-btn';addPowerBtn.innerHTML='+';
            addPowerBtn.title='Adicionar tag de poder';
@@ -866,7 +874,7 @@ sel.addEventListener('change',e=>{
            body.appendChild(addPowerBtn);
            const newFraqLbl=document.createElement('div');newFraqLbl.className='c-label fraq fraq-lbl';newFraqLbl.innerHTML=t('ficha.weaknessTags');body.appendChild(newFraqLbl);
            const newFraqList=document.createElement('div');newFraqList.className='tags-list fraq-tags';
-           for(let i=0;i<fCount;i++){newFraqList.appendChild(makeTagRow(card,false,i,getPlaceholder(newTipo,i,false)));}
+           for(const i of sortedTagIndices(card.fraqueza||[],fCount)){newFraqList.appendChild(makeTagRow(card,false,i,getPlaceholder(newTipo,i,false)));}
            body.appendChild(newFraqList);
            const addWeakBtn=document.createElement('button');addWeakBtn.className='add-tag-btn';addWeakBtn.innerHTML='+';
            addWeakBtn.title='Adicionar tag de fraqueza';
@@ -930,7 +938,7 @@ const trow=document.createElement('div');trow.className='trackers-row';
   const pl=document.createElement('div');pl.className='c-label poder poder-lbl';pl.innerHTML=t('ficha.powerTags');body.appendChild(pl);
   const plist=document.createElement('div');plist.className='tags-list poder-tags';
   const pLen=Math.max(10,(card.poder||[]).length);
-  for(let i=0;i<pLen;i++){plist.appendChild(makeTagRow(card,true,i,getPlaceholder(card.tipo,i,true)));}
+  for(const i of sortedTagIndices(card.poder||[],pLen)){plist.appendChild(makeTagRow(card,true,i,getPlaceholder(card.tipo,i,true)));}
   body.appendChild(plist);
 if(editable){
   const addPowerBtn=document.createElement('button');addPowerBtn.className='add-tag-btn';addPowerBtn.innerHTML='+';
@@ -947,7 +955,7 @@ if(editable){
   const fl=document.createElement('div');fl.className='c-label fraq fraq-lbl';fl.innerHTML=t('ficha.weaknessTags');body.appendChild(fl);
   const flist=document.createElement('div');flist.className='tags-list fraq-tags';
   const fLen=Math.max(4,(card.fraqueza||[]).length);
-  for(let i=0;i<fLen;i++){flist.appendChild(makeTagRow(card,false,i,getPlaceholder(card.tipo,i,false)));}
+  for(const i of sortedTagIndices(card.fraqueza||[],fLen)){flist.appendChild(makeTagRow(card,false,i,getPlaceholder(card.tipo,i,false)));}
   body.appendChild(flist);
   const addWeakBtn=document.createElement('button');addWeakBtn.className='add-tag-btn';addWeakBtn.innerHTML='+';
   addWeakBtn.title='Adicionar tag de fraqueza';

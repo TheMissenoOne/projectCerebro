@@ -33,63 +33,15 @@ window.wikiPages = {
         </div>
       `,
       temas: `
-        <h1>Temas</h1>
-        <p>Temas são a estrutura central de criação de personagens em City of Mist. Cada personagem tem dois tipos de Temas: um de Mist (poder místico/sobrenatural) e um de Histórias (humanidade/ Background).</p>
-        
-        <h2>Tipos de Temas</h2>
-        
-        <h3>Temas de Mist</h3>
-        <p>Estes representam os poderes e a natureza sobrenatural do personagem:</p>
+        <h1>Temas de Personagem</h1>
+        <p>Temas são a estrutura central dos personagens no X-MEN TTRPG. Cada personagem tem entre 2 e 5 temas ativos. As perguntas abaixo guiam a criação de tags de poder e fraqueza para cada tema.</p>
         <ul>
-          <li><strong>Mutação:</strong> O poder mutante em si</li>
-          <li><strong>Artefato:</strong> Um objeto com poderes</li>
-          <li><strong>Pacto:</strong> Um acordo com alguma entidade</li>
-          <li><strong>Influência:</strong> Uma conexão com o mundo místico</li>
+          <li><strong>Mutação</strong> — 11 tipos: poderes e natureza mutante</li>
+          <li><strong>Humanidade</strong> — 9 tipos: background, identidade e relações</li>
+          <li><strong>Adicional</strong> — 3 tipos: recursos, aliados e locais</li>
         </ul>
-        
-        <h3>Temas de História</h3>
-        <p>Estes representam a humanidade e o Background do personagem:</p>
-        <ul>
-          <li><strong>Passado:</strong> De onde você veio</li>
-          <li><strong>Relacionamento:</strong> Conexões com outros</li>
-          <li><strong>Ideologia:</strong> O que você acredita</li>
-          <li><strong>Obrigação:</strong> Um dever ou responsabilidade</li>
-        </ul>
-        
-        <h2>Criando Temas</h2>
-        <p>Cada Tema tem um nome, um Status (número de Tags ativas), e um Flavor (descrição narrativa).</p>
-        <p>Tags são poder concretizado - frases que descrevem o que seu Tema permite fazer.</p>
-      `,
-      tags: `
-        <h1>Tags</h1>
-        <p>Tags são a representação mecânica dos poderes, habilidades e fraquezas do seu personagem.</p>
-        
-        <h2>Estrutura das Tags</h2>
-        <p>Uma Tag segue o formato: <code>[Descrição] [Grau]</code></p>
-        <ul>
-          <li><strong>Descrição:</strong> O que a Tag permite fazer</li>
-          <li><strongGrau (1-6):</strong> O nível de poder (6 é Ômega)</li>
-        </ul>
-        
-        <h2>Tags Positivas vs Negativas</h2>
-        
-        <h3>Tags Positivas</h3>
-        <p>Representam poderes e habilidades:</p>
-        <ul>
-          <li><code>Telepatia 5</code> - Capacidade de ler mentes</li>
-          <li><code>Força Sobre-Humana 4</code> - Capacidade de levantar carros</li>
-        </ul>
-        
-        <h3>Tags Negativas (Fraquezas)</h3>
-        <p>Representam vulnerabilidades:</p>
-        <ul>
-          <li><code>Prata Mortal -2</code> - Vulnerabilidade a prata</li>
-          <li><code>Intoxicado pela Luz -3</code> - Não pode ficar sob luz solar</li>
-        </ul>
-        
-        <h2>Usando Tags</h2>
-        <p>Para usar uma Tag em um movimento, você deve ter o Status alto o suficiente para suportar o grau da Tag.</p>
-        <p>O GM pode determinar que Tags específicas são relevantes para certain ações.</p>
+        <p style="font-size:.7rem;color:var(--muted);font-family:var(--mono)">// Clique em um tema para expandir suas perguntas guia</p>
+        <div id="temas-dynamic"><div style="color:var(--muted);font-family:var(--mono);font-size:.65rem;padding:20px 0">// carregando temas...</div></div>
       `,
       progressao: `
         <h1>Progressão</h1>
@@ -463,13 +415,35 @@ aps_referencia: `
         </table>
       `,
       acao_resultado: `
-        <h1>Tabela de Ação e Resultado</h1>
-        <p>Use a tabela apropriada para determinar o resultado de ações. Selecione o <strong>valor de atuação</strong> (linha) e o <strong>valor de obstáculo</strong> (coluna):</p>
-        
-        <h2>Action Table</h2>
+        <h1>Tabela AV/OV · EV/RV</h1>
+        <p>Tabela completa de resolução de ações. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Clique numa célula para destacar linha/coluna e ver equivalências de APs.</p>
+        <div class="ar-table-type">
+          <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV / OV — Ação</button>
+          <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV / RV — Efeito</button>
+        </div>
+        <div class="ar-modes">
+          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">Temporária</button>
+          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (+1 col)</button>
+          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (+3 col)</button>
+        </div>
+        <p id="ar-mode-desc" style="font-size:.68rem;color:var(--muted);font-family:var(--mono);margin:-6px 0 12px;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
+        <div class="table-container" style="max-height:62vh;overflow:auto;">
+          <table id="action-table" class="ar-table" style="width:auto;min-width:100%"></table>
+        </div>
+        <h3>Legenda</h3>
+        <ul>
+          <li><strong>N</strong> = No Effect — sem efeito (AV menor que OV)</li>
+          <li><strong>Linha</strong> = AV (Valor de Atuação) ou EV (Valor de Efeito)</li>
+          <li><strong>Coluna</strong> = OV (Valor de Obstáculo) ou RV (Valor de Resultado)</li>
+          <li>O número na célula = RAPs obtidos</li>
+          <li>Modo <strong>Indefinida</strong>: aplica +1 à coluna (equivale a OV+1)</li>
+          <li>Modo <strong>Permanente</strong>: aplica +3 à coluna (equivale a OV+3)</li>
+        </ul>
+        <!-- LEGACY STATIC TABLE (hidden, kept for reference)
+        <h2>Action Table (estática)</h2>
         <p>Para ações de <strong>Ação de Atuação (AA)</strong> —iha dificuldade como <strong>Valor de Obstáculo (OV)</strong>.</p>
         <div class="table-container">
-        <table class="ar-table">
+        <table class="ar-table" style="display:none">
           <thead>
             <tr><th>AV\\OV</th><th>0</th><th>1–2</th><th>3–4</th><th>5–6</th><th>7–8</th><th>9–10</th><th>11–12</th><th>13–15</th><th>16–18</th><th>19–21</th><th>22–24</th><th>25–27</th><th>28–30</th><th>31–35</th><th>36–40</th><th>41–45</th><th>46–50</th><th>51–55</th><th>56–60</th><th>+5</th></tr>
           </thead>
@@ -536,7 +510,7 @@ aps_referencia: `
           <li><strong>+5</strong> = deslocamento de uma coluna por cada +5</li>
         </ul>
         
-        <p style="font-size: 0.7rem; color: var(--muted); margin-top: 10px;">Nota: Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Quanto MAIOR o número da coluna, MAIOR a dificuldade. Clique em uma célula para destacar linha e coluna.</p>
+        -->
       `,
       acoes: `
         <h1>Ações — Tipos e Resolução</h1>

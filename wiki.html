@@ -506,6 +506,51 @@
       navToggle.setAttribute('aria-expanded', open);
     });
 
+    function wrapTables() {
+      wikiContent.querySelectorAll('table').forEach(table => {
+        if (!table.closest('.table-container')) {
+          const wrap = document.createElement('div');
+          wrap.className = 'table-container';
+          table.parentNode.insertBefore(wrap, table);
+          wrap.appendChild(table);
+        }
+      });
+    }
+
+    function renderTemasHTML(temas) {
+      const byType = {'Mutação':[],'Humanidade':[],'Adicional':[]};
+      temas.forEach(t => { if (byType[t.tipo]) byType[t.tipo].push(t); });
+      const typeLabels = {'Mutação':'Temas de Mutação','Humanidade':'Temas de Humanidade','Adicional':'Temas Adicionais'};
+      const typeDesc = {
+        'Mutação':'Representam os poderes e a natureza mutante. As perguntas guiam a criação das tags de poder e fraqueza.',
+        'Humanidade':'Representam background humano, identidade e relações do personagem.',
+        'Adicional':'Recursos, aliados e locais como temas de suporte.'
+      };
+      const css = `<style>.tema-details{border:1px solid var(--b1);margin-bottom:6px;background:var(--p1)}.tema-summary{cursor:pointer;padding:9px 14px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;list-style:none;user-select:none}.tema-summary::-webkit-details-marker{display:none}.tema-summary::before{content:"▶";font-size:.52rem;color:var(--accent);transition:transform .15s;flex-shrink:0}.tema-details[open]>.tema-summary::before{transform:rotate(90deg)}.tema-tipo{font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;padding:2px 6px;background:var(--accent);color:#111;font-weight:700;flex-shrink:0}.tema-nome{color:var(--white);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.tema-body{padding:12px 14px;border-top:1px solid var(--b1)}.tema-desc{font-family:var(--body);font-size:.75rem;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic}.tema-q-label{font-family:var(--mono);font-size:.5rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin:10px 0 5px}.tema-q-label.fraq{color:var(--muted2)}.tema-questions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}.tema-questions li{font-family:var(--body);font-size:.72rem;color:var(--text);padding:4px 8px;background:var(--p2);border-left:2px solid var(--b2);line-height:1.4;counter-increment:tq}.tema-questions.poder-q li{border-left-color:rgba(232,0,28,.35)}.tema-questions.fraq-q li{border-left-color:rgba(100,150,200,.35)}.tema-questions li:first-child{font-weight:700;color:var(--white);border-left-width:3px}</style>`;
+      let html = css;
+      for (const [tipo, themes] of Object.entries(byType)) {
+        if (!themes.length) continue;
+        html += `<h2>${typeLabels[tipo]}</h2><p>${typeDesc[tipo]}</p>`;
+        for (const th of themes) {
+          const pqs = th.perguntas_poder || [];
+          const fqs = th.perguntas_fraqueza || [];
+          html += `<details class="tema-details"><summary class="tema-summary"><span class="tema-tipo">${tipo}</span><span class="tema-nome">${th.nome}</span></summary><div class="tema-body">${th.descricao ? `<p class="tema-desc">${th.descricao}</p>` : ''}<div class="tema-q-label">Tags de Poder (${pqs.length})</div><ol class="tema-questions poder-q">${pqs.map(q=>`<li>${q}</li>`).join('')}</ol><div class="tema-q-label fraq">Tags de Fraqueza (${fqs.length})</div><ol class="tema-questions fraq-q">${fqs.map(q=>`<li>${q}</li>`).join('')}</ol></div></details>`;
+        }
+      }
+      return html;
+    }
+
+    async function renderTemasPage() {
+      const container = document.getElementById('temas-dynamic');
+      if (!container) return;
+      try {
+        const d = await fetch('temas.json').then(r => r.json());
+        container.innerHTML = renderTemasHTML(d.temas || []);
+      } catch(e) {
+        container.innerHTML = '<p style="color:var(--muted);font-family:var(--mono);font-size:.65rem;">Erro ao carregar temas.json</p>';
+      }
+    }
+
     function loadPage(page) {
       const content = pages[page] || pages.index;
       wikiContent.innerHTML = content;
@@ -517,6 +562,7 @@
       navLinks.forEach(link => {
         const active = link.dataset.page === page;
         link.classList.toggle('active', active);
+        link.setAttribute('aria-current', active ? 'page' : 'false');
         if (active && navCurrentLabel) navCurrentLabel.textContent = link.textContent;
       });
 
@@ -532,6 +578,11 @@
         const d = document.getElementById('ar-display');
         if (d) d.remove();
       }
+
+      // Page-specific post-processing
+      if (page === 'temas') renderTemasPage();
+      if (page === 'acao_resultado') requestAnimationFrame(renderActionTable);
+      wrapTables();
     }
     
     // Armazena seleção de cada tabela
@@ -1047,7 +1098,8 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.dataset.page;
-        window.history.pushState({ page }, '', `wiki.html?p=${page}`);
+        const url = page === 'index' ? 'wiki.html' : `wiki.html?p=${page}`;
+        window.history.pushState({ page }, '', url);
         loadPage(page);
       });
     });
