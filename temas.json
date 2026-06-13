@@ -170,22 +170,22 @@
       "nome": "Enclave",
       "descricao": "Seu X-Gene não foi feito para operar sozinho. O poder que você carrega só faz sentido completo dentro de uma rede — e essa rede, ao mesmo tempo que te fortalece, define onde você termina e onde os outros começam.",
       "perguntas_poder": [
-        "QUAL É A FORMA DE MOVIMENTO MAIS ÚTIL DO SEU X-GENE?",
-        "Como você entra em 'sobrecarga'?",
-        "O que permite que você evite restrições ou confinamento?",
-        "Qual modo secundário de movimento você aprendeu a usar?",
-        "Qual estilo ou técnica de movimento você domina?",
-        "Quais efeitos nocivos específicos sua mobilidade permite evitar?",
-        "Como você usa sua mobilidade para ganhar vantagem em uma luta?",
-        "O que permite que você mova os outros?",
-        "Como você pode usar seus poderes para restringir o movimento de outros?",
-        "A qual recurso especial sua mobilidade lhe dá acesso?"
+        "COMO A CONEXÃO COM O ENCLAVE AUMENTA SEU PODER INDIVIDUAL?",
+        "Que habilidade ou recurso específico você acessa por pertencer ao enclave?",
+        "Qual é a manifestação mais reconhecível do poder coletivo do enclave?",
+        "Que condições ou rituais fortalecem o vínculo entre os membros?",
+        "Em que situações o enclave age como um organismo único e coordenado?",
+        "O enclave oferece proteção contra ameaças que você não poderia enfrentar sozinho?",
+        "Que valor ou propósito central une o enclave além da sobrevivência?",
+        "Que tipo de ser, espírito ou construto coletivo o enclave produz ou convoca?",
+        "Que estratégia ou formação o enclave emprega em batalha?",
+        "Como o enclave pode fortalecer ou neutralizar membros específicos quando necessário?"
       ],
       "perguntas_fraqueza": [
-        "O QUE IMPEDE VOCÊ OU ATRASA SEU MOVIMENTO?",
-        "O que acontece quando você vai rápido demais, longe demais, etc.?",
-        "O que acontece quando você é capturado?",
-        "Que evidência residual seu movimento deixa em você, nos outros ou no ambiente?"
+        "DO QUE O ENCLAVE DEPENDE PARA SE MANTER COESO E FUNCIONAL?",
+        "Que tipo de conflito interno é mais difícil de superar sem fraturar o grupo?",
+        "O que perturba ou impossibilita a ação coordenada do enclave?",
+        "Que dinâmica tóxica o enclave desenvolveu que ninguém quer nomear?"
       ],
       "misterio_exemplos": [
         "(Líder de enclave) O enclave me serve — ou eu sirvo ao enclave? E consigo distinguir os dois?",
@@ -203,22 +203,22 @@
       "nome": "Expressão",
       "descricao": "Seu X-Gene não ficou guardado — saiu. Cada uso é uma declaração do que você é, do que pode fazer, de quanto isso custa ao mundo ao seu redor. Controle não é segurar o poder. É escolher onde ele vai.",
       "perguntas_poder": [
-        "QUAL É A CARACTERÍSTICA OU PARTE MAIS ÚTIL DA SUA RELÍQUIA?",
-        "Nomeie outra maneira pela qual você usa a mesma característica.",
-        "Qual qualidade útil essencial reside no cerne de sua relíquia?",
-        "Quais atributos cosméticos sua relíquia possui?",
-        "Que outra característica, parte ou item sua relíquia inclui?",
-        "O que é revelado a você através do uso de sua relíquia?",
-        "O que ou quem sua relíquia foi projetada para afetar mais?",
-        "O que você aprendeu com sua relíquia?",
-        "O que acontece quando sua relíquia entra em 'sobrecarga'?",
-        "Qual aspecto ou elemento de sua relíquia você está apenas começando a desbloquear?"
+        "QUAL É A FORMA MAIS COMUM E RECONHECÍVEL DE SEU PODER SE MANIFESTAR?",
+        "Que efeito reverso ou contrário você pode exercer com o mesmo poder?",
+        "Qual característica da sua expressão é mais útil em confronto direto?",
+        "Que condições ou estado emocional amplificam a intensidade da manifestação?",
+        "Contra que tipo de alvo ou estrutura seu poder é naturalmente mais eficaz?",
+        "Que variantes ou aplicações específicas da forma principal você domina?",
+        "Que outra forma de expressão, não relacionada à principal, você desenvolveu?",
+        "Que manobras ou usos não óbvios do poder você descobriu com experiência?",
+        "Que atitude você adota ao usar o poder — precisão clínica, arte ou fúria?",
+        "Como você usa a expressão para se proteger de efeitos de natureza semelhante?"
       ],
       "perguntas_fraqueza": [
-        "QUAL É A DEFICIÊNCIA MAIS PROBLEMÁTICA DA SUA RELÍQUIA?",
-        "O que pode interferir nos poderes da sua relíquia?",
-        "O que pode danificar ou destruir sua relíquia?",
-        "O que mudou em você para pior por causa da sua relíquia?"
+        "QUE CONDIÇÕES OU CIRCUNSTÂNCIAS SUPRIMEM OU ENFRAQUECEM SUA EXPRESSÃO?",
+        "Que alvos ou estruturas são imunes ou resistentes ao seu poder?",
+        "O que acontece quando você perde o controle — o que vaza ou explode?",
+        "Que rastro, marca ou dano colateral a manifestação inevitavelmente deixa?"
       ],
       "misterio_exemplos": [
         "(Controle de fogo) O fogo que crio tem alguma vontade própria quando fico inconsciente?",
@@ -236,22 +236,22 @@
       "nome": "Familiar",
       "descricao": "Uma parte de você existe fora de você. Não é ferramenta — é extensão. O que acontece com o familiar acontece com a relação entre vocês, e essa relação é tão real quanto qualquer poder que você carrega.",
       "perguntas_poder": [
-        "QUAL É A HABILIDADE PRINCIPAL QUE VOCÊ USA PARA MASCARAR OU ESCONDER SUAS AÇÕES?",
-        "Como você usa seu poder para distrair os outros?",
-        "Qual qualidade útil seu efeito principal possui?",
-        "O que você faz de melhor sob o manto do segredo?",
-        "Quem é mais propenso a cair vítima de sua atividade subversiva?",
-        "Como operar secretamente permite que você aprenda novas informações?",
-        "Com quem você está aliado?",
-        "O que é improvável que afete você graças aos seus poderes?",
-        "Quais circunstâncias ou condições melhoram sua capacidade de agir sem ser detectado?",
-        "Que outro poder subversivo tangencial você desenvolveu?"
+        "QUE TIPO DE SER É SEU FAMILIAR — ANIMAL, CONSTRUTO, ESPECTRO OU OUTRA COISA?",
+        "Qual a principal habilidade útil que o familiar possui além de simplesmente existir?",
+        "Que característica específica torna esse familiar diferente de qualquer outro de seu tipo?",
+        "Em que circunstâncias ou ambientes o familiar opera com mais eficiência?",
+        "Como você usa o familiar para soluções rápidas em situações cotidianas ou urgentes?",
+        "Seu familiar oferece proteção contra algum tipo específico de perigo?",
+        "Que atitude ou emoção define a relação entre vocês no cotidiano?",
+        "Que outras criaturas, entidades ou espíritos o familiar pode invocar ou atrair?",
+        "Que estratégia você emprega em campo usando o familiar?",
+        "Como o familiar ajuda a fortalecer aliados ou fragilizar adversários?"
       ],
       "perguntas_fraqueza": [
-        "O QUE PODERIA EXPOR VOCÊ?",
-        "O que é revelado quando você é exposto?",
-        "De quem ou do que você está se escondendo?",
-        "Quais tendências psicológicas desvantajosas você desenvolveu nas sombras ou atrás de sua máscara?"
+        "DO QUE O FAMILIAR DEPENDE PARA AGIR COM PLENA CAPACIDADE?",
+        "Que tipos de missão ou situação são mais difíceis para o familiar executar?",
+        "O que perturba, paralisa ou corrompe as ações do familiar?",
+        "Que hábito, impulso ou traço do familiar te coloca em situações inconvenientes?"
       ],
       "misterio_exemplos": [
         "(Familiar animal) O familiar é genuinamente um animal ou um espírito que escolheu essa forma?",
@@ -566,22 +566,22 @@
       "nome": "Conflito / Dificuldade",
       "descricao": "Existe algo em você que não está resolvido. Não como fraqueza que você esconde — como pressão que você aprendeu a carregar. Às vezes ela te destrói. Às vezes é o único motor que sobrou.",
       "perguntas_poder": [
-        "O QUE VOCÊ FAZ OU CONHECE MELHOR?",
-        "Dentro do seu campo de especialização, em qual habilidade ou assunto específico você se destaca?",
-        "Em qual outro campo tangente você se aventurou indiretamente?",
-        "Que movimento, método, manobra, hábito ou truque você aprendeu durante seu treinamento?",
-        "Qual qualidade ou traço seu treinamento estimulou?",
-        "Nomeie um professor, instrutor ou colega de treinamento em quem você possa confiar neste campo.",
-        "A qual equipamento relacionado ao seu treinamento você normalmente tem acesso?",
-        "Contra quem ou o quê seu treinamento oferece os melhores resultados?",
-        "Sob quais condições sua técnica funciona melhor?",
-        "Que nova aplicação incomum do seu treinamento você está explorando?"
+        "QUE CONFLITO INTERNO OU EXTERNO DEFINE SUA LUTA DIÁRIA?",
+        "Que habilidade, recurso ou perspectiva você desenvolveu para compensar essa dificuldade?",
+        "Em que situação o conflito se inverte e vira vantagem inesperada?",
+        "Que pessoa, lugar ou objeto está no núcleo desse conflito?",
+        "Como você aprendeu a ocultar, normalizar ou conviver com essa dificuldade?",
+        "Que conhecimento, empatia ou acesso o conflito abriu que nenhuma formação abre?",
+        "Que postura ou atitude você adotou como estratégia de sobrevivência?",
+        "Quem ou o que te apoia nesse conflito — e por que esse apoio existe?",
+        "Que manobra, rotina ou estratégia você criou especificamente para lidar com isso?",
+        "O que você ganhou — ou perdeu — que agora funciona como ferramenta?"
       ],
       "perguntas_fraqueza": [
-        "QUAL É A FALHA MAIS PROBLEMÁTICA EM SUA TÉCNICA?",
-        "Como seu treinamento afetou negativamente seu corpo ou mente?",
-        "Quem está atrás de você devido à sua proeminência no campo?",
-        "Nomeie uma falha única para um movimento ou método específico descrito em seus logotipos de poder."
+        "COMO O CONFLITO TE EXPÕE A PERIGOS QUE OUTROS NÃO TÊM?",
+        "Que hábito autodestrutivo o conflito gerou que você ainda não conseguiu eliminar?",
+        "Quem ou o que explora ativamente essa dificuldade contra você?",
+        "O que você não consegue fazer por causa do conflito — o que ele fechou?"
       ],
       "identidade_exemplos": [
         "(Dependência) Eu posso parar quando quiser. Só decido não querer agora.",
@@ -599,22 +599,22 @@
       "nome": "Treinamento",
       "descricao": "Você construiu isso. Não veio com o X-Gene, não foi dado por ninguém. Cada hora de repetição, cada falha corrigida, cada limite empurrado. Quando o poder falha, isso fica. Quando tudo falha, isso ainda fica.",
       "perguntas_poder": [
-        "QUAL É A CARACTERÍSTICA MAIS ÚTIL DA SUA BASE?",
-        "Quais defesas ou dispositivos protegem sua base de intrusos?",
-        "Que vantagem você ganha ao trabalhar em sua base?",
-        "Que tipo de instalações especiais sua base inclui?",
-        "Que equipamento especial você armazena em sua base?",
-        "Quem trabalha ou vive em sua base?",
-        "Que tipo de poderes sobrenaturais sua base possui?",
-        "O que há de útil na aparência da sua base?",
-        "O que há sob sua base ou além dela?",
-        "Que meios especiais de transporte ou acesso sua base oferece?"
+        "QUAL É SEU CAMPO DE EXPERTISE — ONDE VOCÊ É INEGAVELMENTE COMPETENTE?",
+        "Dentro da área, em que habilidade ou conhecimento específico você é excepcional?",
+        "Em que campo paralelo você se aventurou indiretamente e ganhou competência útil?",
+        "Que movimento, técnica ou método você aprendeu que poucos sabem que existe?",
+        "Que qualidade física ou mental foi diretamente moldada pelo treinamento?",
+        "Quem te ensinou, treinou ou forma seu círculo de competência — e por que conta com eles?",
+        "A que equipamento, instalação ou recurso você tem acesso por causa do treinamento?",
+        "Contra que tipo de oposição, estrutura ou situação seu treinamento é mais eficaz?",
+        "Em que condições específicas sua técnica funciona melhor?",
+        "Que aplicação incomum do seu treinamento você está explorando e ainda refinando?"
       ],
       "perguntas_fraqueza": [
-        "QUAL CONDIÇÃO OU ASPECTO NEGATIVO DA SUA BASE TORNA MAIS DIFÍCIL USÁ-LA?",
-        "Qual é a fraqueza mais substancial na segurança da sua base?",
-        "O que acontece quando você passa tempo demais em sua base?",
-        "Quais são os efeitos colaterais dos aspectos de Mythos da sua base?"
+        "QUAL É A FALHA MAIS PROBLEMÁTICA DA SUA TÉCNICA?",
+        "Como o treinamento afetou negativamente seu corpo, sua mente ou suas relações?",
+        "Quem ou o quê te persegue, desafia ou ameaça por causa do nível em que você opera?",
+        "Que falha exclusiva de um movimento ou método específico pode ser explorada contra você?"
       ],
       "identidade_exemplos": [
         "(Artes marciais) A disciplina vence o caos. Sempre. Isso não é crença — é experiência.",
@@ -632,22 +632,22 @@
       "nome": "Território",
       "descricao": "Este lugar existe porque você existe. Não é propriedade — é responsabilidade. Você não defende território porque é seu. Você defende porque, sem você, este lugar e as pessoas nele não teriam nenhuma defesa.",
       "perguntas_poder": [
-        "COMO SEU VEÍCULO/MONTARIA PERMITE QUE VOCÊ VIAJE?",
-        "O que torna seu veículo rápido ou permite que ele vá ainda mais rápido?",
-        "O que permite que seu veículo carregue mais?",
-        "Quais manobras você pode fazer com seu veículo?",
-        "Que impressão seu veículo causa nos observadores?",
-        "Quais armas estão guardadas, montadas ou fazem parte do seu veículo?",
-        "Que característica especial seu veículo tem graças ao seu X-Gene?",
-        "O que ajuda seu veículo a evitar ou sobreviver a punições?",
-        "Quais habilidades de vigilância ou reconhecimento seu veículo possui?",
-        "Como seu veículo evita a detecção?"
+        "QUE LOCAL VOCÊ RECLAMA COMO SEU TERRITÓRIO — FISICAMENTE E POR RESPONSABILIDADE?",
+        "Que recurso específico seu território oferece que nenhum outro lugar oferece?",
+        "Quem vive, habita ou frequenta o território regularmente e depende de você?",
+        "Que vantagem tática lutar no seu território te dá sobre qualquer intruso?",
+        "Que sistema de alerta, defesa ou monitoramento você instalou ou desenvolveu?",
+        "O que você guarda, esconde ou armazena no território que não poderia guardar em outro lugar?",
+        "Que influência, reputação ou autoridade você construiu dentro deste espaço?",
+        "Como o território se protege de intrusos — por meios físicos, sociais ou por você?",
+        "Que rotina ou ritual você mantém para preservar o território como seu?",
+        "O que você faz para expandir, fortalecer ou tornar o território mais resiliente?"
       ],
       "perguntas_fraqueza": [
-        "O QUE PODERIA ATRASAR OU IMPEDIR SEU VEÍCULO?",
-        "Qual é a vulnerabilidade mais proeminente do seu veículo?",
-        "Sob quais condições seu veículo se torna sem resposta?",
-        "Como o X-Gene ou a história de fundo do seu veículo coloca você em problemas?"
+        "QUAL É A AMEAÇA MAIS CONSTANTE AO TERRITÓRIO — O QUE NUNCA PARA DE TENTAR?",
+        "Que ponto fraco, brecha ou vulnerabilidade existe que você ainda não resolveu?",
+        "O que acontece com o território quando você fica fora por tempo demais?",
+        "Que responsabilidade, dívida ou obrigação vem com o território que você não escolheu?"
       ],
       "identidade_exemplos": [
         "(Líder comunitário) Ninguém toca no meu bairro. Ninguém.",
