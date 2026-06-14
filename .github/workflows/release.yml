@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog excerpt
+        id: changelog
+        run: |
+          # Pull the most recent changelog section (between two ## headers)
+          NOTES=$(awk '/^## /{if(p)exit; p=1; next} p' CHANGELOG.md | head -40)
+          echo "NOTES<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$NOTES" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: '${{ steps.version.outputs.VERSION }}',
+              name: 'X-MEN TTRPG ${{ steps.version.outputs.VERSION }}',
+              body: `## What's Changed\n\n${{ steps.changelog.outputs.NOTES }}\n\n---\n_Deployed automatically to GitHub Pages._`,
+              draft: false,
+              prerelease: false
+            });
+            console.log('Release created:', data.html_url);

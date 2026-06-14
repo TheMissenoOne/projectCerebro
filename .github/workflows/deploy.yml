@@ -3,8 +3,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
+      - main
       - feature/gh-pages
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: false
+        default: 'production'
+        type: choice
+        options: [production]
 
 permissions:
   contents: read
@@ -16,10 +24,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  # ── 1. VALIDATE ──────────────────────────────────────────────────────
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,20 +36,62 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Inject env vars
+      - name: Install dependencies
+        run: npm ci --prefer-offline || npm install
+
+      - name: Check for syntax errors in JS
         run: |
-          # Inject GitHub env vars into JS files for client-side
-          find . -name "*.js" -type f -exec sed -i \
-            "s/{{VITE_GM_WHITELIST}}/${{ vars.VITE_GM_WHITELIST }}/g" \
-            {} \;
+          echo "Checking JS files for syntax errors…"
+          find assets/js -name "*.js" -type f | while read f; do
+            node --check "$f" && echo "✓ $f" || echo "✗ $f"
+          done
+
+  # ── 2. BUILD ─────────────────────────────────────────────────────────
+  build:
+    name: Build
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject environment variables
+        env:
+          VITE_GM_WHITELIST: ${{ vars.VITE_GM_WHITELIST }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          echo "Injecting runtime config…"
+          # Replace GM whitelist placeholder in all JS files
+          if [ -n "$VITE_GM_WHITELIST" ]; then
+            find . -name "*.js" -not -path "*/node_modules/*" -type f \
+              -exec sed -i "s|{{VITE_GM_WHITELIST}}|${VITE_GM_WHITELIST}|g" {} \;
+            echo "✓ GM_WHITELIST injected"
+          fi
+          # Inject Supabase URL if provided (overrides config.js defaults)
+          if [ -n "$VITE_SUPABASE_URL" ]; then
+            find . -name "config.js" -type f \
+              -exec sed -i "s|{{VITE_SUPABASE_URL}}|${VITE_SUPABASE_URL}|g" {} \;
+            echo "✓ SUPABASE_URL injected"
+          fi
+          if [ -n "$VITE_SUPABASE_ANON_KEY" ]; then
+            find . -name "config.js" -type f \
+              -exec sed -i "s|{{VITE_SUPABASE_ANON_KEY}}|${VITE_SUPABASE_ANON_KEY}|g" {} \;
+            echo "✓ SUPABASE_ANON_KEY injected"
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
+  # ── 3. DEPLOY ────────────────────────────────────────────────────────
   deploy:
+    name: Deploy
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -51,3 +101,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Print deploy URL
+        run: echo "🚀 Deployed to ${{ steps.deployment.outputs.page_url }}"

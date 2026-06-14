@@ -1,0 +1,289 @@
+/*
+ * X-MEN TTRPG — Mobile-First Overrides
+ * Applied on top of all other CSS for screens ≤ 767px.
+ */
+
+/* ── BOTTOM NAV ──────────────────────────────────────────────────── */
+
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--dark);
+  border-top: 2px solid var(--accent);
+  z-index: 400;
+  align-items: stretch;
+}
+
+.mbn-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: .38rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .15s, background .15s;
+  padding: 0 4px;
+  position: relative;
+}
+
+.mbn-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+.mbn-item.active,
+.mbn-item:active {
+  color: var(--accent);
+  background: rgba(var(--accentRGB), .06);
+}
+
+.mbn-item.active::after { opacity: 1; }
+
+.mbn-item:hover { color: var(--text); }
+
+.mbn-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+
+/* ── MOBILE DRAWER (overflow toolbar) ───────────────────────────── */
+
+.mobile-toolbar-drawer {
+  display: none;
+  position: fixed;
+  bottom: 56px; left: 0; right: 0;
+  background: var(--dark);
+  border-top: 1px solid var(--b1);
+  border-bottom: 1px solid var(--b1);
+  padding: 10px 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 398;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.4);
+  animation: slideUp .2s ease;
+}
+
+.mobile-toolbar-drawer.open { display: flex; }
+
+@keyframes slideUp {
+  from { transform: translateY(8px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.mobile-drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 397;
+}
+.mobile-drawer-overlay.open { display: block; }
+
+/* ── RESPONSIVE BREAKPOINTS ──────────────────────────────────────── */
+
+@media (max-width: 767px) {
+
+  /* Show bottom nav */
+  .mobile-bottom-nav { display: flex; }
+
+  /* Body padding for bottom nav */
+  body { padding-bottom: 56px; }
+
+  /* ── HEADER ───────────────────────── */
+  .header { padding: 0 12px; }
+  .hdr-codes { display: none; }
+  .hdr-sub { display: none; }
+  .hdr-title h1 { font-size: 1.2rem; }
+  .header-logo { padding-right: 10px; gap: 8px; }
+  .x-logo { width: 30px; height: 30px; }
+
+  /* ── TOOLBAR ──────────────────────── */
+  .toolbar {
+    padding: 0 10px;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .toolbar .tbtn { font-size: .48rem; padding: 4px 8px; }
+  .toolbar .tbtn span { display: none; }
+
+  /* ── APP LAYOUT (panel + content) ─── */
+  .app-layout { flex-direction: column; }
+
+  .left-panel {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    border-right: none;
+    border-bottom: 1px solid var(--b1);
+    transition: max-height .35s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .left-panel.mobile-open {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .right-content {
+    overflow-y: visible;
+    padding: clamp(10px, 3vw, 16px);
+  }
+
+  /* Panel overlay (backdrop) */
+  .panel-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 290;
+    display: none;
+  }
+  .panel-overlay.open { display: block; }
+
+  /* Slide-over panel on cerebro / admin */
+  .left-panel.slide-over {
+    position: fixed;
+    top: var(--top-h);
+    left: 0;
+    bottom: 56px;
+    width: 85vw;
+    max-width: 320px;
+    max-height: none;
+    z-index: 295;
+    transform: translateX(-100%);
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+    overflow-y: auto;
+  }
+
+  .left-panel.slide-over.mobile-open {
+    transform: translateX(0);
+    max-height: none;
+  }
+
+  /* ── FICHA TOP ────────────────────── */
+  .ficha-top {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── ADMIN LAYOUT ─────────────────── */
+  .admin-layout { flex-direction: column; }
+  .admin-sidebar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 8px;
+    border-right: none;
+    border-bottom: 1px solid var(--b1);
+  }
+  .admin-nav-link {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding: 7px 12px;
+    font-size: .44rem;
+  }
+  .admin-nav-link.active {
+    border-left: none;
+    border-bottom-color: var(--red);
+    background: rgba(232, 0, 28, .08);
+  }
+
+  /* ── DASHBOARD ────────────────────── */
+  .dash-body { padding: clamp(12px, 3vw, 20px) clamp(10px, 3vw, 16px) 80px; }
+  .dash-identity { padding: 12px 14px; gap: 10px; }
+  .dash-identity-actions { gap: 5px; }
+  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+  /* ── TABS ─────────────────────────── */
+  .tab { padding: 8px 12px; font-size: .62rem; }
+
+  /* ── MODALS ───────────────────────── */
+  .modal { padding: 12px; align-items: flex-end; }
+  .modal-card { max-width: 100%; border-radius: 0; animation: slideUp .25s ease both; }
+
+  /* ── TOAST POSITION ───────────────── */
+  .toast { bottom: 66px; }
+
+  /* ── COMBAT CALCULATOR ────────────── */
+  .combate-container { padding: 0 2px; }
+  .calc-grid { grid-template-columns: 1fr !important; }
+
+  /* ── TABLES SECTION ───────────────── */
+  .tables-section { margin: 0 -10px; }
+
+  /* ── NPC HEADER ───────────────────── */
+  .npc-header-top { flex-direction: column; gap: 8px; }
+  .npc-actions { width: 100%; }
+  .npc-actions .tbtn { flex: 1; justify-content: center; }
+
+  /* ── ATTR GRID (NPC) ──────────────── */
+  .attr-grid { grid-template-columns: 1fr !important; }
+
+  /* ── SAVE BAR ─────────────────────── */
+  .save-bar { bottom: 56px; }
+
+  /* ── MUSIC BUTTON ─────────────────── */
+  .music-toggle-btn { bottom: 70px; right: 12px; width: 40px; height: 40px; }
+
+  /* ── SECTION BAR SPACING ──────────── */
+  .sec { margin-top: 2px; }
+
+  /* ── HAMBURGER BUTTON (panel toggle) ─ */
+  .hdr-ham {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--b2);
+    color: var(--muted);
+    padding: 6px 8px;
+    cursor: pointer;
+    transition: all .15s;
+    -webkit-tap-highlight-color: transparent;
+    margin-left: 8px;
+  }
+  .hdr-ham svg {
+    width: 18px; height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: square;
+  }
+  .hdr-ham:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+/* ── TABLET ──────────────────────────────────────────────────────── */
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .left-panel.slide-over { width: 72vw; }
+}
+
+/* ── DESKTOP: hide mobile elements ───────────────────────────────── */
+
+@media (min-width: 768px) {
+  .mobile-bottom-nav { display: none !important; }
+  .mobile-toolbar-drawer { display: none !important; }
+  .mobile-drawer-overlay { display: none !important; }
+  .hdr-ham { display: none !important; }
+}
