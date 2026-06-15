@@ -15,13 +15,13 @@ const NAV_CONFIG = {
     title: 'X-MEN',
     sub: 'FICHA DE PERSONAGEM',
     codes: 'AG\u201417.19349.583 \u00B7 LS\u201416.23435.161 \u00B7 XAVIER INSTITUTE',
-    toolbar: ['back', 'cerebro', 'wiki', 'import', 'export', 'reset', 'theme', 'logout']
+    toolbar: ['back', 'cerebro', 'wiki', 'fichimport', 'fichexport', 'reset', 'theme', 'logout']
   },
   admin: {
     title: 'X-MEN',
     sub: 'PAINEL DO GM',
     codes: '',
-    toolbar: ['dashboard', 'ficha', 'wiki', 'theme']
+    toolbar: ['dashboard', 'newCharacter', 'wiki', 'theme']
   },
   cerebro: {
     title: 'C\u00c9REBRO DATABASE',
@@ -29,12 +29,6 @@ const NAV_CONFIG = {
     codes: '',
     toolbar: ['back', 'newNpc', 'import', 'export', 'reload', 'theme', 'config', 'logout'],
     hamburger: true
-  },
-  ficha: {
-    title: 'X-MEN',
-    sub: 'FICHA DE PERSONAGEM',
-    codes: 'AG\u201417.19349.583 \u00B7 LS\u201416.23435.161 \u00B7 XAVIER INSTITUTE',
-    toolbar: ['back', 'cerebro', 'wiki', 'fichimport', 'fichexport', 'reset', 'theme']
   },
   combate: {
     title: 'COMBATE',
@@ -46,7 +40,7 @@ const NAV_CONFIG = {
     title: 'X-MEN',
     sub: 'TTRPG // WIKI',
     codes: '',
-    toolbar: ['dashboard', 'ficha', 'cerebro', 'theme']
+    toolbar: ['dashboard', 'newCharacter', 'cerebro', 'theme']
   }
 };
 
@@ -84,20 +78,6 @@ const NAV_ICONS = {
   'trash': '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/>',
   'log-out': '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>'
 };
-
-function renderNavBar(opts) {
-  const cfg = NAV_CONFIG[opts.page] || NAV_CONFIG.dashboard;
-  const title = opts.title || cfg.title;
-  const sub = opts.sub || cfg.sub;
-  const codes = opts.codes !== undefined ? opts.codes : cfg.codes;
-  const hamburger = opts.hamburger !== undefined ? opts.hamburger : cfg.hamburger;
-  const items = opts.toolbar || cfg.toolbar;
-  const gmRole = window._isGM === true;
-  const userCode = opts.userCode || '';
-
-  renderHeader(title, sub, codes, hamburger, userCode);
-  renderToolbar(items, gmRole);
-}
 
 function renderHeader(title, sub, codes, hamburger, userCode) {
   const el = document.getElementById('header-container');
@@ -192,8 +172,63 @@ function setGMFlag(isGM) {
   window._isGM = isGM;
 }
 
+/* ── MOBILE BOTTOM NAV ─────────────────────────────────────────── */
 
+const MOBILE_NAV = [
+  { href: 'dashboard.html', icon: 'home',    label: 'HUB',     page: 'dashboard' },
+  { href: 'cerebro.html',   icon: 'box',     label: 'CÉREBRO', page: 'cerebro' },
+  { href: 'wiki.html',      icon: 'book',    label: 'WIKI',    page: 'wiki' },
+  { href: 'combate.html',   icon: 'zap',     label: 'COMBATE', page: 'combate' },
+  { href: 'ficha.html',     icon: 'user',    label: 'FICHA',   page: 'ficha' }
+];
 
-window.renderNavBar = renderNavBar;
+const MOBILE_ICONS = {
+  home:   '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  box:    '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>',
+  book:   '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  zap:    '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/>',
+  user:   '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'
+};
+
+function renderMobileNav(currentPage) {
+  var el = document.getElementById('mobile-bottom-nav');
+  if (!el) return;
+  var gmRole = window._isGM === true;
+  var html = '';
+  MOBILE_NAV.forEach(function(item) {
+    var active = item.page === currentPage ? ' active' : '';
+    var icon = '<svg class="mbn-icon" viewBox="0 0 24 24">' + MOBILE_ICONS[item.icon] + '</svg>';
+    html += '<a href="' + item.href + '" class="mbn-item' + active + '">' + icon + item.label + '</a>';
+  });
+  el.innerHTML = html;
+}
+
+function injectMobileNav() {
+  if (document.getElementById('mobile-bottom-nav')) return;
+  var nav = document.createElement('nav');
+  nav.id = 'mobile-bottom-nav';
+  nav.className = 'mobile-bottom-nav';
+  nav.setAttribute('aria-label', 'Mobile navigation');
+  document.body.appendChild(nav);
+}
+
+window.renderNavBar = function(opts) {
+  var cfg = NAV_CONFIG[opts.page] || NAV_CONFIG.dashboard;
+  var title = opts.title || cfg.title;
+  var sub = opts.sub || cfg.sub;
+  var codes = opts.codes !== undefined ? opts.codes : cfg.codes;
+  var hamburger = opts.hamburger !== undefined ? opts.hamburger : cfg.hamburger;
+  var items = opts.toolbar || cfg.toolbar;
+  var gmRole = window._isGM === true;
+  var userCode = opts.userCode || '';
+
+  renderHeader(title, sub, codes, hamburger, userCode);
+  renderToolbar(items, gmRole);
+
+  injectMobileNav();
+  renderMobileNav(opts.page);
+};
+
 window.setGMFlag = setGMFlag;
 window.NAV_ITEMS = NAV_ITEMS;
+window.renderMobileNav = renderMobileNav;
