@@ -1049,7 +1049,7 @@ if(editable){
 /* ── WIZARD DE TEMAS ── */
 let WZ=null;
 function abrirWizardGeral(){
-  WZ={mode:'geral',slots:[{},{},{},{}],currentSlot:0};
+  WZ={mode:'geral',slots:[{},{},{},{}],currentSlot:0,picks:[]};
   document.getElementById('modal-wizard').classList.add('open');
   wizardRenderPick();
 }
@@ -1066,7 +1066,7 @@ function wizardPularTudo(){
   D.temas_wizard_dismissed=true;salvarAuto();fecharWizard();
 }
 function wizardProgressPrefix(){
-  if(!WZ||WZ.mode!=='geral')return '';
+  if(!WZ||WZ.mode!=='geral'||WZ._phase!=='questions')return '';
   return t('ficha.wizard.progressPrefix')+' '+(WZ.currentSlot+1)+' '+t('ficha.wizard.progressOf')+' 4 — ';
 }
 function wizardSetChrome(title,sub){
@@ -1081,7 +1081,6 @@ function wizardBtn(label,cls,onClick){
   return b;
 }
 function wizardPickCount(){
-  if(WZ.mode==='geral')return WZ.picks?WZ.picks.length:0;
   return WZ.picks?WZ.picks.length:0;
 }
 function wizardRenderPick(){
@@ -1089,12 +1088,12 @@ function wizardRenderPick(){
   const sub=(WZ.mode==='geral'&&pickCount===0)?t('ficha.wizard.emptyStatePrompt'):pickCount+' '+t('ficha.wizard.pickSelected')+' — '+t('ficha.wizard.pickSelectHint');
   wizardSetChrome(t('ficha.wizard.pickTitle'),sub);
   const body=wizardBody();body.innerHTML='';
-  const picks=WZ.picks||[];
+  if(!WZ.picks)WZ.picks=[];
   const togglePick=(tm)=>{
-    const idx=picks.indexOf(tm.v);
-    if(idx!==-1)picks.splice(idx,1);
-    else if(WZ.mode==='geral'&&picks.length>=4)return;
-    else picks.push(tm.v);
+    const idx=WZ.picks.indexOf(tm.v);
+    if(idx!==-1)WZ.picks.splice(idx,1);
+    else if(WZ.mode==='geral'&&WZ.picks.length>=4)return;
+    else WZ.picks.push(tm.v);
     wizardRenderPick();
   };
   const buildGroup=(list,groupLabel,catClass)=>{
@@ -1102,7 +1101,7 @@ function wizardRenderPick(){
     const h=document.createElement('div');h.className='c-label';h.textContent=groupLabel;body.appendChild(h);
     const grid=document.createElement('div');grid.className='cards-grid wizard-pick-grid';
     list.forEach(tm=>{
-      const selected=picks.includes(tm.v);
+      const selected=WZ.picks.includes(tm.v);
       const pcard=document.createElement('div');pcard.className='tcard '+catClass+' wizard-pick-card'+(selected?' selected':'');
       const hdr=document.createElement('div');hdr.className='card-hdr';
       const main=document.createElement('div');main.className='card-hdr-main';
@@ -1121,22 +1120,24 @@ function wizardRenderPick(){
   buildGroup(T_HUM,t('ficha.humanity'),'humanidade');
   const acts=wizardActs();acts.innerHTML='';
   if(WZ.mode==='geral'){
-    const canConfirm=picks.length===4;
-    const confBtn=wizardBtn(t('ficha.wizard.pickConfirm')+' ('+picks.length+'/4)','tbtn-red'+(canConfirm?'':' wizard-btn-disabled'),()=>{
+    const canConfirm=WZ.picks.length===4;
+    const confBtn=wizardBtn(t('ficha.wizard.pickConfirm')+' ('+WZ.picks.length+'/4)','tbtn-red'+(canConfirm?'':' wizard-btn-disabled'),()=>{
       if(!canConfirm)return;
       WZ.currentSlot=0;
-      WZ.slots=picks.map(v=>({...novoCard(),tipo:v}));
+      WZ.slots=WZ.picks.map(v=>({...novoCard(),tipo:v}));
+      WZ._phase='questions';
       wizardRenderQuestionsForSlot(0);
     });
     if(!canConfirm)confBtn.disabled=true;
     acts.appendChild(confBtn);
     acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
   }else{
-    const canConfirm=picks.length===1;
+    const canConfirm=WZ.picks.length===1;
     const confBtn=wizardBtn(t('ficha.wizard.pickConfirm'),'tbtn-red'+(canConfirm?'':' wizard-btn-disabled'),()=>{
       if(!canConfirm)return;
       WZ.currentSlot=0;
-      WZ.slots=[{...novoCard(),tipo:picks[0]}];
+      WZ.slots=[{...novoCard(),tipo:WZ.picks[0]}];
+      WZ._phase='questions';
       wizardRenderQuestionsForSlot(0);
     });
     if(!canConfirm)confBtn.disabled=true;
@@ -1209,6 +1210,7 @@ function wizardRenderQuestionsForSlot(slotIdx){
   }
   const acts=wizardActs();acts.innerHTML='';
   acts.appendChild(wizardBtn(t('ficha.wizard.backToPick'),'',()=>{
+    delete WZ._phase;
     if(WZ.mode==='geral'){WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
     else{WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
   }));
