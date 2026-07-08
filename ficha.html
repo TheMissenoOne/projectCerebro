@@ -263,11 +263,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:600;align-items:center;justify-content:center;padding:14px;box-sizing:border-box;}
 .modal-bg.open{display:flex;animation:fadeUp .2s ease;}
-.modal{background:var(--dark);border:1px solid var(--b2);border-top:3px solid var(--red);padding:18px;max-width:660px;width:100%;max-height:calc(100vh - 28px);overflow-y:auto;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;}
+.modal{background:var(--dark);border:1px solid var(--b2);border-top:3px solid var(--red);padding:18px;max-width:660px;width:100%;max-height:calc(100vh - 28px);overflow-y:auto;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;position:relative;}
+.modal-chrome{flex-shrink:0;}
 .modal::-webkit-scrollbar{width:3px;}
 .modal::-webkit-scrollbar-thumb{background:var(--b2);}
-.modal-title{font-family:var(--disp);font-size:1.4rem;color:var(--white);letter-spacing:.2em;}
-.modal-sub{font-family:var(--mono);font-size:.54rem;color:var(--muted);letter-spacing:.08em;border-left:2px solid var(--red2);padding-left:8px;line-height:1.8;}
+.modal-title{font-family:var(--disp);font-size:1.4rem;color:var(--white);letter-spacing:.2em;flex-shrink:0;}
+.modal-sub{font-family:var(--mono);font-size:.54rem;color:var(--muted);letter-spacing:.08em;border-left:2px solid var(--red2);padding-left:8px;line-height:1.8;flex-shrink:0;}
 .modal-ta{width:100%;height:220px;background:var(--p2);border:1px solid var(--b2);color:var(--text);font-family:var(--mono);font-size:.58rem;padding:10px;resize:vertical;outline:none;transition:border-color .15s;}
 .modal-ta:focus{border-color:var(--red);}
 .modal-acts{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px;}
@@ -533,8 +534,10 @@ function showToast(msg){
 
 <div class="modal-bg" id="modal-wizard">
   <div class="modal">
-    <div class="modal-title" id="wizard-title">TEMA</div>
-    <div class="modal-sub" id="wizard-sub"></div>
+    <div class="modal-chrome">
+      <div class="modal-title" id="wizard-title">TEMA</div>
+      <div class="modal-sub" id="wizard-sub"></div>
+    </div>
     <div id="wizard-body"></div>
     <div class="modal-acts" id="wizard-acts"></div>
   </div>
@@ -1111,7 +1114,10 @@ function wizardRenderPick(){
     else if(WZ.mode==='geral'&&WZ.picks.length>=4)return;
     else WZ.picks.push(tm.v);
     if(WZ.mode==='geral'&&WZ.picks.length===4){
-      wizardRenderPick();
+      WZ.currentSlot=0;
+      WZ.slots=WZ.picks.map(v=>({...novoCard(),tipo:v}));
+      WZ._phase='questions';
+      wizardRenderQuestionsForSlot(0);
     }else wizardRenderPick();
   };
   const buildGroup=(list,catClass)=>{
