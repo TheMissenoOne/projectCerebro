@@ -271,6 +271,14 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .modal-ta{width:100%;height:220px;background:var(--p2);border:1px solid var(--b2);color:var(--text);font-family:var(--mono);font-size:.58rem;padding:10px;resize:vertical;outline:none;transition:border-color .15s;}
 .modal-ta:focus{border-color:var(--red);}
 .modal-acts{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px;}
+.wizard-pick-grid{margin-bottom:12px;}
+.wizard-pick-card{cursor:pointer;}
+.wizard-blurb{font-size:.72rem;color:var(--text);line-height:1.4;padding:8px 10px 2px;}
+.wizard-pick-full{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px;}
+.wizard-desc-full{font-size:.7rem;color:var(--muted);line-height:1.5;}
+.wizard-mystery-hints{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:6px;}
+.wizard-mystery-hints li{font-family:var(--mono);font-size:.55rem;color:var(--muted);line-height:1.4;padding:4px 8px;background:var(--p2);border-left:2px solid var(--red2);}
+#wizard-body .card-inp{margin-bottom:4px;}
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--red);color:var(--flat-fg);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:8px 16px;z-index:1000;opacity:0;pointer-events:none;transition:all .2s;white-space:normal;word-wrap:break-word;max-width:min(90vw,480px);width:auto;line-height:1.4;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -491,6 +499,15 @@ function showToast(msg){
   </div>
 </div>
 
+<div class="modal-bg" id="modal-wizard">
+  <div class="modal">
+    <div class="modal-title" id="wizard-title">TEMA</div>
+    <div class="modal-sub" id="wizard-sub"></div>
+    <div id="wizard-body"></div>
+    <div class="modal-acts" id="wizard-acts"></div>
+  </div>
+</div>
+
 <!-- Inline scripts -->
 <script>
 function clone(o){return JSON.parse(JSON.stringify(o));}
@@ -514,6 +531,8 @@ const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influe
 const novoCard=()=>({titulo:'',tipo:'',misterio:'',valor:0,poder:Array(10).fill(''),fraqueza:Array(4).fill(''),poder_burned:Array(10).fill(false),fraqueza_burned:Array(4).fill(false),melhorias:'',melhorias_checked:[],collapsed:false});
 const PERGUNTAS={};
 const MELHORIAS={};
+const DESCRICOES={};
+const MISTERIOS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
 const loadTemaData=async()=>{
   const [temasRes,momentosRes]=await Promise.allSettled([fetch('temas.json'),fetch('momentosDeEvolucao.json')]);
@@ -525,6 +544,8 @@ const loadTemaData=async()=>{
         const k=normalizeKey(t.nome);
         PERGUNTAS[k]={p:t.perguntas_poder||[],f:t.perguntas_fraqueza||[]};
         MELHORIAS[k]=t.melhorias||[];
+        DESCRICOES[k]=t.descricao||'';
+        MISTERIOS[k]=t.misterio_exemplos||[];
       });
       T_MUTACAO.length=0;T_HUM.length=0;
       d.temas.forEach(t=>{
@@ -555,12 +576,23 @@ const loadTemaData=async()=>{
 };
 const getPlaceholder=(tipo,i,isPoder)=>{const k=normalizeKey(tipo);const arr=isPoder?(PERGUNTAS[k]?.p||[]):(PERGUNTAS[k]?.f||[]);return arr[i]||'';};
 const getMelhorias=(tipo)=>{const k=normalizeKey(tipo);return MELHORIAS[k]||[];};
+/* first sentence of a description, capped ~90 chars — used as the theme-picker blurb */
+function deriveBlurb(descricao){
+  if(!descricao)return '';
+  const dot=descricao.indexOf('. ');
+  const end=dot!==-1?dot+1:(descricao.indexOf('.')!==-1?descricao.indexOf('.')+1:descricao.length);
+  let s=descricao.slice(0,end).trim();
+  if(s.length>90)s=s.slice(0,90).trim()+'…';
+  return s;
+}
+function shouldAutoLaunchWizard(d){return d.temas.every(c=>!c.tipo)&&!d.temas_wizard_dismissed;}
 const MOMENTOS_EVOLUCAO={};
 const PADRAO={
   nome:'',codinome:'',jogador:'',mutacao_ficha:'',mutacao_temas:'',foto:'',
   stats:Object.fromEntries(STATS.map(s=>[s,''])),
   status:'',progressao:0,evolucao:['','','','',''],
   temas:Array.from({length:4},novoCard),
+  temas_wizard_dismissed:false,
   esq_nome:'',
   membros:Array.from({length:7},()=>({nome:'',apoio:0,antagonismo:0})),
   extras:Array.from({length:4},novoCard),
@@ -641,6 +673,7 @@ const newUrl = 'ficha.html?id=' + char.id;
   buildDots();
   buildEvo();
   buildGrid('temas-grid', D.temas);
+  if (shouldAutoLaunchWizard(D)) abrirWizardGeral();
   buildGrid('esq-grid', D.extras);
     buildMembros();
   preencherCampos();
@@ -813,7 +846,7 @@ function buildGrid(cid,lista){
      c.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],cid,{fixed:true}));
      if(lista.length<5){
        const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title=t('ficha.addTheme');
-       addBtn.addEventListener('click',()=>{lista.push(novoCard());buildGrid(cid,lista);salvarAuto();});c.appendChild(addBtn);
+       addBtn.addEventListener('click',()=>{abrirWizardTema('single',cid,lista);});c.appendChild(addBtn);
      }
    }
 }
@@ -987,6 +1020,140 @@ if(editable){
   div.appendChild(body);return div;
 }
 
+/* ── WIZARD DE TEMAS ── */
+let WZ=null;
+function abrirWizardGeral(){
+  WZ={mode:'geral',slotIndex:0,total:4};
+  wizardNovoCard();
+}
+function abrirWizardTema(mode,cid,lista){
+  WZ={mode,cid,lista};
+  wizardNovoCard();
+}
+function wizardNovoCard(){
+  WZ.card=novoCard();WZ.tipo='';WZ.qPhase='poder';WZ.qIndex=0;
+  document.getElementById('modal-wizard').classList.add('open');
+  wizardRenderPick();
+}
+function fecharWizard(){
+  const m=document.getElementById('modal-wizard');if(m)m.classList.remove('open');
+  WZ=null;
+}
+function wizardPularTudo(){
+  D.temas_wizard_dismissed=true;salvarAuto();fecharWizard();
+}
+function wizardProgressPrefix(){
+  if(!WZ||WZ.mode!=='geral')return '';
+  return t('ficha.wizard.progressPrefix')+' '+(WZ.slotIndex+1)+' '+t('ficha.wizard.progressOf')+' '+WZ.total+' — ';
+}
+function wizardSetChrome(title,sub){
+  document.getElementById('wizard-title').textContent=wizardProgressPrefix()+title;
+  document.getElementById('wizard-sub').textContent=sub||'';
+}
+function wizardBody(){return document.getElementById('wizard-body');}
+function wizardActs(){return document.getElementById('wizard-acts');}
+function wizardBtn(label,cls,onClick){
+  const b=document.createElement('button');b.type='button';b.className='tbtn'+(cls?' '+cls:'');b.textContent=label;
+  b.addEventListener('click',onClick);
+  return b;
+}
+function wizardRenderPick(){
+  wizardSetChrome(t('ficha.wizard.pickTitle'),(WZ.mode==='geral'&&WZ.slotIndex===0)?t('ficha.wizard.emptyStatePrompt'):t('ficha.wizard.pickSub'));
+  const body=wizardBody();body.innerHTML='';
+  const buildGroup=(list,groupLabel,catClass)=>{
+    if(!list.length)return;
+    const h=document.createElement('div');h.className='c-label';h.textContent=groupLabel;body.appendChild(h);
+    const grid=document.createElement('div');grid.className='cards-grid wizard-pick-grid';
+    list.forEach(tm=>{
+      const pcard=document.createElement('div');pcard.className='tcard '+catClass+' wizard-pick-card';
+      const hdr=document.createElement('div');hdr.className='card-hdr';
+      const main=document.createElement('div');main.className='card-hdr-main';
+      const badge=document.createElement('span');badge.className='cat-badge';badge.textContent=tm.l;
+      main.appendChild(badge);hdr.appendChild(main);pcard.appendChild(hdr);
+      const cbody=document.createElement('div');cbody.className='card-body';
+      const blurb=document.createElement('p');blurb.className='wizard-blurb';blurb.textContent=deriveBlurb(DESCRICOES[tm.v]);cbody.appendChild(blurb);
+      const full=document.createElement('div');full.className='wizard-pick-full';full.style.display='none';
+      const descP=document.createElement('p');descP.className='wizard-desc-full';descP.textContent=DESCRICOES[tm.v]||'';full.appendChild(descP);
+      const useBtn=wizardBtn(t('ficha.wizard.useTheme'),'tbtn-red',(e)=>{e.stopPropagation();wizardEscolherTema(tm.v);});
+      full.appendChild(useBtn);cbody.appendChild(full);pcard.appendChild(cbody);
+      pcard.addEventListener('click',()=>{
+        const wasOpen=full.style.display!=='none';
+        grid.querySelectorAll('.wizard-pick-full').forEach(f=>f.style.display='none');
+        full.style.display=wasOpen?'none':'block';
+      });
+      grid.appendChild(pcard);
+    });
+    body.appendChild(grid);
+  };
+  buildGroup(T_MUTACAO,t('ficha.mutationType'),'mutacao');
+  buildGroup(T_HUM,t('ficha.humanity'),'humanidade');
+  const acts=wizardActs();acts.innerHTML='';
+  if(WZ.mode==='geral')acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
+  else acts.appendChild(wizardBtn(t('common.cancel'),'',fecharWizard));
+}
+function wizardEscolherTema(v){
+  WZ.tipo=v;WZ.card.tipo=v;
+  wizardRenderQuestion();
+}
+function wizardRenderQuestion(){
+  const k=normalizeKey(WZ.tipo);
+  const arrP=PERGUNTAS[k]?.p||[];
+  const arrF=PERGUNTAS[k]?.f||[];
+  if(WZ.qPhase==='poder'&&WZ.qIndex>=arrP.length){WZ.qPhase='fraqueza';WZ.qIndex=0;}
+  if(WZ.qPhase==='fraqueza'&&WZ.qIndex>=arrF.length){wizardRenderMystery();return;}
+  const arr=WZ.qPhase==='poder'?arrP:arrF;
+  const q=arr[WZ.qIndex];
+  const title=(WZ.qPhase==='poder'?t('ficha.wizard.powerQTitle'):t('ficha.wizard.weakQTitle'))+' '+(WZ.qIndex+1)+' '+t('ficha.wizard.progressOf')+' '+arr.length;
+  wizardSetChrome(title,q||'');
+  const body=wizardBody();body.innerHTML='';
+  const target=WZ.qPhase==='poder'?WZ.card.poder:WZ.card.fraqueza;
+  const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=q||'';inp.value=target[WZ.qIndex]||'';
+  body.appendChild(inp);
+  const acts=wizardActs();acts.innerHTML='';
+  acts.appendChild(wizardBtn(t('ficha.wizard.skip'),'',()=>{WZ.qIndex++;wizardRenderQuestion();}));
+  acts.appendChild(wizardBtn(t('ficha.wizard.next'),'tbtn-red',()=>{target[WZ.qIndex]=inp.value;WZ.qIndex++;wizardRenderQuestion();}));
+}
+function wizardRenderMystery(){
+  const k=normalizeKey(WZ.tipo);
+  const exemplos=(MISTERIOS[k]||[]).slice(0,2);
+  wizardSetChrome(t('ficha.mystery'),t('ficha.wizard.mysterySub'));
+  const body=wizardBody();body.innerHTML='';
+  const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=t('ficha.placeholderMystery');inp.value=WZ.card.misterio||'';
+  body.appendChild(inp);
+  if(exemplos.length){
+    const hintLbl=document.createElement('div');hintLbl.className='c-label';hintLbl.textContent=t('ficha.wizard.mysteryInspiration');body.appendChild(hintLbl);
+    const ul=document.createElement('ul');ul.className='wizard-mystery-hints';
+    exemplos.forEach(ex=>{const li=document.createElement('li');li.textContent=ex;ul.appendChild(li);});
+    body.appendChild(ul);
+  }
+  const acts=wizardActs();acts.innerHTML='';
+  acts.appendChild(wizardBtn(t('ficha.wizard.skip'),'',wizardRenderRecap));
+  acts.appendChild(wizardBtn(t('ficha.wizard.next'),'tbtn-red',()=>{WZ.card.misterio=inp.value;wizardRenderRecap();}));
+}
+function wizardRenderRecap(){
+  wizardSetChrome(t('ficha.wizard.recapTitle'),t('ficha.wizard.recapSub'));
+  const body=wizardBody();body.innerHTML='';
+  const cid=WZ.mode==='geral'?'temas-grid':WZ.cid;
+  const idx=WZ.mode==='geral'?WZ.slotIndex:(WZ.lista?WZ.lista.length:0);
+  body.appendChild(buildCard(WZ.card,[WZ.card],cid,{idx}));
+  const acts=wizardActs();acts.innerHTML='';
+  acts.appendChild(wizardBtn(t('ficha.wizard.finish'),'tbtn-red',wizardConcluir));
+}
+function wizardConcluir(){
+  if(WZ.mode==='geral'){
+    D.temas[WZ.slotIndex]=WZ.card;
+    buildGrid('temas-grid',D.temas);
+    salvarAuto();
+    WZ.slotIndex++;
+    if(WZ.slotIndex<WZ.total)wizardNovoCard();else fecharWizard();
+  }else{
+    WZ.lista.push(WZ.card);
+    buildGrid(WZ.cid,WZ.lista);
+    salvarAuto();
+    fecharWizard();
+  }
+}
+
 /* ── FIELDS ── */
 function preencherCampos(){
   sv('nome',D.nome);sv('codinome',D.codinome);sv('jogador',D.jogador);
@@ -1064,6 +1231,7 @@ function abrirImport(){document.getElementById('modal-import').classList.add('op
 function fecharImport(){document.getElementById('modal-import').classList.remove('open');}
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('modal-import').addEventListener('click',function(e){if(e.target===this)fecharImport();});
+  document.getElementById('modal-wizard').addEventListener('click',function(e){if(e.target===this)fecharWizard();});
 });
 function importarMD(){
   const txt=document.getElementById('import-text').value.trim();
@@ -1135,6 +1303,11 @@ document.addEventListener('click',function(e){
     e.stopPropagation();
   }
 });
+
+// ponytail: node-requireable export for tests/theme-wizard.test.js; no-op in the browser
+if(typeof module!=='undefined'&&module.exports){
+  module.exports={deriveBlurb,shouldAutoLaunchWizard};
+}
 </script>
 </body>
 </html>
