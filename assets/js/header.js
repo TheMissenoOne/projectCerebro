@@ -203,14 +203,7 @@ function renderMobileNav(currentPage) {
   el.innerHTML = html;
 }
 
-function injectMobileNav() {
-  if (document.getElementById('mobile-bottom-nav')) return;
-  var nav = document.createElement('nav');
-  nav.id = 'mobile-bottom-nav';
-  nav.className = 'mobile-bottom-nav';
-  nav.setAttribute('aria-label', 'Mobile navigation');
-  document.body.appendChild(nav);
-}
+function injectMobileNav() {}
 
 window.renderNavBar = function(opts) {
   var cfg = NAV_CONFIG[opts.page] || NAV_CONFIG.dashboard;
@@ -225,8 +218,8 @@ window.renderNavBar = function(opts) {
   renderHeader(title, sub, codes, hamburger, userCode);
   renderToolbar(items, gmRole);
 
+  /* mobile bottom nav removed per user request */
   injectMobileNav();
-  renderMobileNav(opts.page);
 };
 
 window.setGMFlag = setGMFlag;

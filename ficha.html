@@ -297,7 +297,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 @media(max-width:520px){
   .modal-bg{padding:4px;align-items:flex-end;}
   .modal{padding:8px;max-height:96vh;border-top-width:2px;}
-  .modal-title{font-size:.95rem;letter-spacing:.1em;}
+  .modal-title{font-size:.95rem;letter-spacing:.1em;flex-shrink:0;}
   .modal-sub{font-size:.42rem;}
   .wizard-pick-card .card-hdr .cat-badge{font-size:.52rem;}
   .wizard-desc-full{font-size:.52rem;}
@@ -1161,6 +1161,11 @@ function wizardRenderPick(){
   const acts=wizardActs();acts.innerHTML='';
   if(WZ.mode==='geral'){
     const cLbl=document.createElement('span');cLbl.className='wizard-pick-counter';cLbl.textContent=pickCount+'/4 '+t('ficha.wizard.pickSelected');acts.appendChild(cLbl);
+    if(pickCount===4){
+      acts.appendChild(wizardBtn(t('ficha.wizard.pickConfirm'),'tbtn-red',()=>{
+        WZ.currentSlot=0;WZ.slots=WZ.picks.map(v=>({...novoCard(),tipo:v}));WZ._phase='questions';wizardRenderQuestionsForSlot(0);
+      }));
+    }
     acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
   }else{
     acts.appendChild(wizardBtn(t('common.cancel'),'',fecharWizard));
@@ -1202,7 +1207,7 @@ function wizardRenderQuestionsForSlot(slotIdx){
       row.style.cursor='default';
       const inpWrap=document.createElement('div');inpWrap.className='wizard-q-inp-wrap';inpWrap.style.display='block';
       const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=qText;inp.value=target[i]||'';
-      inpWrap.appendChild(inp);
+      inpWrap.appendChild(inp);row.appendChild(inpWrap);
       const paint=()=>{
         const v=(target[i]||'').trim();
         row.classList.toggle('answered',!!v);
@@ -1213,7 +1218,7 @@ function wizardRenderQuestionsForSlot(slotIdx){
         paint();updateSub();
       });
       paint();
-      list.appendChild(inpWrap);
+      list.appendChild(row);
     });
     body.appendChild(list);
   };
