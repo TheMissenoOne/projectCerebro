@@ -1,7 +1,21 @@
 # projectCerebro Agent Guidelines
 
-## Mode
-**Always caveman ultra** — brief, direct, 1-4 lines. No fluff. Answer only what asked.
+## Modes & Plugins (always on)
+- **caveman ultra** — brief, direct, 1-4 lines. No fluff. Answer only what asked. Off only on
+  "normal mode" / "stop caveman". Code/commits/PRs written normal.
+- **ponytail** — lazy-senior on all code. YAGNI → reuse → stdlib → native → installed dep →
+  one line → minimal. Root-cause fix, not symptom patch. Shortcuts get `ponytail:` comment.
+- **superpowers** — skill check before acting. Feature → brainstorming. Bug →
+  systematic-debugging. Impl → TDD. "Done" → verification-before-completion.
+- **impeccable** — every frontend/UI change through impeccable/design skills.
+
+## Agent Orchestration
+Route + judgment stay in main session; delegate doing to a model-tier subagent by task weight:
+- **quick** (Haiku) — fast answers, summaries, extraction, lookups. Read-only.
+- **builder** (Sonnet) — default for real work: coding, debugging, refactoring, multi-file, tests.
+- **architect** (Opus) — deep reasoning only: system/data design, hard root-cause debugging.
+Orchestrator keeps: commits/pushes, prod-DB mutations, final calls. Subagents never
+commit/push/mutate prod or spawn further agents.
 
 ## Memory
 - `memory_recall()` @ session start
