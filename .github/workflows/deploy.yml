@@ -84,6 +84,16 @@ jobs:
             echo "✓ SUPABASE_ANON_KEY injected"
           fi
 
+      - name: Cache-bust local assets
+        run: |
+          # ponytail: source HTML carries a static "?v=dev" placeholder on every local
+          # assets/js|css include; each deploy rewrites it to the commit SHA so GitHub
+          # Pages / browser caches never serve a stale JS/CSS file next to a new HTML page.
+          SHA_SHORT="${GITHUB_SHA::8}"
+          find . -name "*.html" -not -path "*/node_modules/*" -type f \
+            -exec sed -i "s|?v=dev|?v=${SHA_SHORT}|g" {} \;
+          echo "✓ cache-busted local assets with ?v=${SHA_SHORT}"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
