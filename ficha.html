@@ -608,17 +608,12 @@ const loadTemaData=async()=>{
 };
 const getPlaceholder=(tipo,i,isPoder)=>{const k=normalizeKey(tipo);const arr=isPoder?(PERGUNTAS[k]?.p||[]):(PERGUNTAS[k]?.f||[]);return arr[i]||'';};
 const getMelhorias=(tipo)=>{const k=normalizeKey(tipo);return MELHORIAS[k]||[];};
-/* collapsed description hint under a card header — tap to expand full descricao */
+/* full description shown under a card header */
 function renderDescHint(body,tipo){
   const old=body.querySelector('.card-desc-hint');if(old)old.remove();
   const desc=DESCRICOES[normalizeKey(tipo)];
   if(!desc)return;
-  const hint=document.createElement('div');hint.className='card-desc-hint';hint.title=desc;
-  hint.textContent=deriveBlurb(desc);
-  hint.addEventListener('click',()=>{
-    const expanded=hint.classList.toggle('expanded');
-    hint.textContent=expanded?desc:deriveBlurb(desc);
-  });
+  const hint=document.createElement('div');hint.className='card-desc-hint expanded';hint.textContent=desc;
   body.insertBefore(hint,body.firstChild);
 }
 /* first sentence of a description, capped ~90 chars — used as the theme-picker blurb */
