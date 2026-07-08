@@ -272,17 +272,22 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .modal-ta:focus{border-color:var(--red);}
 .modal-acts{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px;}
 .wizard-pick-grid{margin-bottom:12px;}
+.wizard-pick-card{cursor:pointer;transition:box-shadow .15s,border-color .15s,transform .15s;}
+.wizard-pick-card:hover{border-color:var(--b3);transform:translateY(-1px);}
+.wizard-pick-card.selected{box-shadow:0 0 0 2px var(--accent),0 0 12px rgba(255,214,0,.15);border-color:var(--accent);}
+.wizard-pick-card.selected .card-hdr{opacity:1;}
+.wizard-pick-card.selected .cat-badge{color:var(--flat-fg);}
+.wizard-btn-disabled{opacity:.35;pointer-events:none;cursor:default;}
 .wizard-pick-full{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px;}
 .wizard-desc-full{font-size:.7rem;color:var(--muted);line-height:1.5;}
 .wizard-mystery-hints{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:6px;}
 .wizard-mystery-hints li{font-family:var(--mono);font-size:.55rem;color:var(--muted);line-height:1.4;padding:4px 8px;background:var(--p2);border-left:2px solid var(--red2);}
 #wizard-body .card-inp{margin-bottom:4px;}
-.wizard-q-list{list-style:none;display:flex;flex-direction:column;gap:4px;margin:6px 0 14px;}
-.wizard-q-row{font-family:var(--mono);font-size:.6rem;color:var(--text);line-height:1.4;padding:8px 10px;background:var(--p2);border-left:2px solid var(--b2);cursor:pointer;transition:border-color .15s;-webkit-tap-highlight-color:transparent;}
-.wizard-q-row:hover{border-left-color:var(--b3);}
+.wizard-q-list{list-style:none;display:flex;flex-direction:column;gap:3px;margin:6px 0 10px;}
+.wizard-q-row{font-family:var(--mono);font-size:.6rem;color:var(--text);line-height:1.4;padding:8px 10px;background:var(--p2);border-left:2px solid var(--b2);}
 .wizard-q-row.answered{border-left-color:var(--red);}
-.wizard-q-ans{font-family:var(--body);font-size:.62rem;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.wizard-q-inp-wrap{margin:2px 0 8px;}
+.wizard-q-inp-wrap{margin:0 0 6px;}
+.wizard-q-inp-wrap .card-inp{border-left:2px solid var(--b2);background:var(--black);}
 .card-desc-hint{font-family:var(--body);font-size:.68rem;color:var(--muted);line-height:1.4;padding:2px 0 8px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .card-desc-hint.expanded{white-space:normal;color:var(--text);}
 
@@ -1044,15 +1049,12 @@ if(editable){
 /* ── WIZARD DE TEMAS ── */
 let WZ=null;
 function abrirWizardGeral(){
-  WZ={mode:'geral',slotIndex:0,total:4};
-  wizardNovoCard();
+  WZ={mode:'geral',slots:[{},{},{},{}],currentSlot:0};
+  document.getElementById('modal-wizard').classList.add('open');
+  wizardRenderPick();
 }
 function abrirWizardTema(mode,cid,lista){
-  WZ={mode,cid,lista};
-  wizardNovoCard();
-}
-function wizardNovoCard(){
-  WZ.card=novoCard();WZ.tipo='';
+  WZ={mode,cid,lista,picks:[]};
   document.getElementById('modal-wizard').classList.add('open');
   wizardRenderPick();
 }
@@ -1065,7 +1067,7 @@ function wizardPularTudo(){
 }
 function wizardProgressPrefix(){
   if(!WZ||WZ.mode!=='geral')return '';
-  return t('ficha.wizard.progressPrefix')+' '+(WZ.slotIndex+1)+' '+t('ficha.wizard.progressOf')+' '+WZ.total+' — ';
+  return t('ficha.wizard.progressPrefix')+' '+(WZ.currentSlot+1)+' '+t('ficha.wizard.progressOf')+' 4 — ';
 }
 function wizardSetChrome(title,sub){
   document.getElementById('wizard-title').textContent=wizardProgressPrefix()+title;
@@ -1078,24 +1080,39 @@ function wizardBtn(label,cls,onClick){
   b.addEventListener('click',onClick);
   return b;
 }
+function wizardPickCount(){
+  if(WZ.mode==='geral')return WZ.picks?WZ.picks.length:0;
+  return WZ.picks?WZ.picks.length:0;
+}
 function wizardRenderPick(){
-  wizardSetChrome(t('ficha.wizard.pickTitle'),(WZ.mode==='geral'&&WZ.slotIndex===0)?t('ficha.wizard.emptyStatePrompt'):t('ficha.wizard.pickSub'));
+  const pickCount=wizardPickCount();
+  const sub=(WZ.mode==='geral'&&pickCount===0)?t('ficha.wizard.emptyStatePrompt'):pickCount+' '+t('ficha.wizard.pickSelected')+' — '+t('ficha.wizard.pickSelectHint');
+  wizardSetChrome(t('ficha.wizard.pickTitle'),sub);
   const body=wizardBody();body.innerHTML='';
+  const picks=WZ.picks||[];
+  const togglePick=(tm)=>{
+    const idx=picks.indexOf(tm.v);
+    if(idx!==-1)picks.splice(idx,1);
+    else if(WZ.mode==='geral'&&picks.length>=4)return;
+    else picks.push(tm.v);
+    wizardRenderPick();
+  };
   const buildGroup=(list,groupLabel,catClass)=>{
     if(!list.length)return;
     const h=document.createElement('div');h.className='c-label';h.textContent=groupLabel;body.appendChild(h);
     const grid=document.createElement('div');grid.className='cards-grid wizard-pick-grid';
     list.forEach(tm=>{
-      const pcard=document.createElement('div');pcard.className='tcard '+catClass+' wizard-pick-card';
+      const selected=picks.includes(tm.v);
+      const pcard=document.createElement('div');pcard.className='tcard '+catClass+' wizard-pick-card'+(selected?' selected':'');
       const hdr=document.createElement('div');hdr.className='card-hdr';
       const main=document.createElement('div');main.className='card-hdr-main';
-      const badge=document.createElement('span');badge.className='cat-badge';badge.textContent=tm.l;
+      const badge=document.createElement('span');badge.className='cat-badge';badge.textContent=tm.l+(selected?' ✓':'');
       main.appendChild(badge);hdr.appendChild(main);pcard.appendChild(hdr);
       const cbody=document.createElement('div');cbody.className='card-body';
       const full=document.createElement('div');full.className='wizard-pick-full';
       const descP=document.createElement('p');descP.className='wizard-desc-full';descP.textContent=DESCRICOES[tm.v]||'';full.appendChild(descP);
-      const useBtn=wizardBtn(t('ficha.wizard.useTheme'),'tbtn-red',()=>{wizardEscolherTema(tm.v);});
-      full.appendChild(useBtn);cbody.appendChild(full);pcard.appendChild(cbody);
+      cbody.appendChild(full);pcard.appendChild(cbody);
+      pcard.addEventListener('click',()=>togglePick(tm));
       grid.appendChild(pcard);
     });
     body.appendChild(grid);
@@ -1103,101 +1120,112 @@ function wizardRenderPick(){
   buildGroup(T_MUTACAO,t('ficha.mutationType'),'mutacao');
   buildGroup(T_HUM,t('ficha.humanity'),'humanidade');
   const acts=wizardActs();acts.innerHTML='';
-  if(WZ.mode==='geral')acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
-  else acts.appendChild(wizardBtn(t('common.cancel'),'',fecharWizard));
+  if(WZ.mode==='geral'){
+    const canConfirm=picks.length===4;
+    const confBtn=wizardBtn(t('ficha.wizard.pickConfirm')+' ('+picks.length+'/4)','tbtn-red'+(canConfirm?'':' wizard-btn-disabled'),()=>{
+      if(!canConfirm)return;
+      WZ.currentSlot=0;
+      WZ.slots=picks.map(v=>({...novoCard(),tipo:v}));
+      wizardRenderQuestionsForSlot(0);
+    });
+    if(!canConfirm)confBtn.disabled=true;
+    acts.appendChild(confBtn);
+    acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
+  }else{
+    const canConfirm=picks.length===1;
+    const confBtn=wizardBtn(t('ficha.wizard.pickConfirm'),'tbtn-red'+(canConfirm?'':' wizard-btn-disabled'),()=>{
+      if(!canConfirm)return;
+      WZ.currentSlot=0;
+      WZ.slots=[{...novoCard(),tipo:picks[0]}];
+      wizardRenderQuestionsForSlot(0);
+    });
+    if(!canConfirm)confBtn.disabled=true;
+    acts.appendChild(confBtn);
+    acts.appendChild(wizardBtn(t('common.cancel'),'',fecharWizard));
+  }
 }
-function wizardEscolherTema(v){
-  if(WZ.tipo&&WZ.tipo!==v)WZ.card=novoCard(); /* answers belong to the old theme's questions */
-  WZ.tipo=v;WZ.card.tipo=v;
-  wizardRenderQuestions();
+function wizardQuestionsForTheme(tipo){
+  const k=normalizeKey(tipo);
+  return {p:PERGUNTAS[k]?.p||[],f:PERGUNTAS[k]?.f||[],misterios:MISTERIOS[k]||[]};
 }
-/* count of poder/fraqueza answers filled in, out of the questions available for this theme */
-function wizardQuestionsAnswered(arrP,arrF){
+function wizardQuestionsAnsweredForSlot(slotIdx){
+  const card=WZ.slots[slotIdx];
+  const q=wizardQuestionsForTheme(card.tipo);
   const filled=arr=>arr.filter(v=>v&&v.trim()).length;
-  return filled((WZ.card.poder||[]).slice(0,arrP.length))+filled((WZ.card.fraqueza||[]).slice(0,arrF.length));
+  return filled((card.poder||[]).slice(0,q.p.length))+filled((card.fraqueza||[]).slice(0,q.f.length));
 }
-function wizardQuestionsSub(arrP,arrF){
-  const total=arrP.length+arrF.length;
-  return wizardQuestionsAnswered(arrP,arrF)+' '+t('ficha.wizard.progressOf')+' '+total+' '+t('ficha.wizard.answered');
+function wizardQuestionsSubForSlot(slotIdx){
+  const q=wizardQuestionsForTheme(WZ.slots[slotIdx].tipo);
+  const total=q.p.length+q.f.length;
+  return wizardQuestionsAnsweredForSlot(slotIdx)+' '+t('ficha.wizard.progressOf')+' '+total+' '+t('ficha.wizard.answered');
 }
-function wizardRenderQuestions(){
-  const k=normalizeKey(WZ.tipo);
-  const arrP=PERGUNTAS[k]?.p||[];
-  const arrF=PERGUNTAS[k]?.f||[];
-  wizardSetChrome(t('ficha.wizard.questionsTitle'),wizardQuestionsSub(arrP,arrF));
+function wizardRenderQuestionsForSlot(slotIdx){
+  const slot=WZ.slots[slotIdx];
+  const tipo=slot.tipo;
+  const q=wizardQuestionsForTheme(tipo);
+  const titulo=lbl(tipo);
+  wizardSetChrome(titulo,wizardQuestionsSubForSlot(slotIdx));
   const body=wizardBody();body.innerHTML='';
-  const updateSub=()=>{document.getElementById('wizard-sub').textContent=wizardQuestionsSub(arrP,arrF);};
+  const updateSub=()=>{document.getElementById('wizard-sub').textContent=wizardQuestionsSubForSlot(slotIdx);};
+  const targetP=slot.poder||[];
+  const targetF=slot.fraqueza||[];
   const buildSection=(arr,isPower,label)=>{
     if(!arr.length)return;
-    const lbl=document.createElement('div');lbl.className='c-label '+(isPower?'poder':'fraq');lbl.innerHTML=label;body.appendChild(lbl);
+    const l=document.createElement('div');l.className='c-label '+(isPower?'poder':'fraq');l.innerHTML=label;body.appendChild(l);
     const list=document.createElement('div');list.className='wizard-q-list';
-    const target=isPower?WZ.card.poder:WZ.card.fraqueza;
-    arr.forEach((q,i)=>{
-      const row=document.createElement('div');row.className='wizard-q-row';
-      const qText=document.createElement('div');qText.textContent=q;
-      const ans=document.createElement('div');ans.className='wizard-q-ans';
-      row.appendChild(qText);row.appendChild(ans);
-      const inpWrap=document.createElement('div');inpWrap.className='wizard-q-inp-wrap';inpWrap.style.display='none';
-      const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=q||'';inp.value=target[i]||'';
+    const target=isPower?targetP:targetF;
+    arr.forEach((qText,i)=>{
+      const row=document.createElement('div');row.className='wizard-q-row answered';
+      row.style.cursor='default';
+      const inpWrap=document.createElement('div');inpWrap.className='wizard-q-inp-wrap';inpWrap.style.display='block';
+      const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=qText;inp.value=target[i]||'';
       inpWrap.appendChild(inp);
       const paint=()=>{
         const v=(target[i]||'').trim();
         row.classList.toggle('answered',!!v);
-        ans.textContent=v;
       };
-      inp.addEventListener('input',e=>{target[i]=e.target.value;paint();updateSub();});
-      row.addEventListener('click',()=>{
-        const wasOpen=inpWrap.style.display!=='none';
-        list.querySelectorAll('.wizard-q-inp-wrap').forEach(w=>w.style.display='none');
-        inpWrap.style.display=wasOpen?'none':'block';
-        if(!wasOpen)inp.focus();
+      inp.addEventListener('input',e=>{
+        if(isPower){if(!slot.poder)slot.poder=[];slot.poder[i]=e.target.value;}
+        else{if(!slot.fraqueza)slot.fraqueza=[];slot.fraqueza[i]=e.target.value;}
+        paint();updateSub();
       });
       paint();
-      list.appendChild(row);list.appendChild(inpWrap);
+      list.appendChild(inpWrap);
     });
     body.appendChild(list);
   };
-  buildSection(arrP,true,t('ficha.powerTags'));
-  buildSection(arrF,false,t('ficha.weaknessTags'));
-  const acts=wizardActs();acts.innerHTML='';
-  acts.appendChild(wizardBtn(t('ficha.wizard.back'),'',wizardRenderPick));
-  acts.appendChild(wizardBtn(t('ficha.wizard.continue'),'tbtn-red',wizardRenderMystery));
-}
-function wizardRenderMystery(){
-  const k=normalizeKey(WZ.tipo);
-  const exemplos=(MISTERIOS[k]||[]).slice(0,2);
-  wizardSetChrome(t('ficha.mystery'),t('ficha.wizard.mysterySub'));
-  const body=wizardBody();body.innerHTML='';
-  const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=t('ficha.placeholderMystery');inp.value=WZ.card.misterio||'';
-  body.appendChild(inp);
-  if(exemplos.length){
+  buildSection(q.p,true,t('ficha.powerTags'));
+  buildSection(q.f,false,t('ficha.weaknessTags'));
+  const sep=document.createElement('div');sep.style.cssText='border-top:1px solid var(--b2);margin:10px 0;';body.appendChild(sep);
+  const mysteryLbl=document.createElement('div');mysteryLbl.className='c-label';mysteryLbl.textContent=t('ficha.wizard.mysteryLabel');body.appendChild(mysteryLbl);
+  const mysteryInp=document.createElement('input');mysteryInp.type='text';mysteryInp.className='card-inp';mysteryInp.placeholder=t('ficha.placeholderMystery');mysteryInp.value=slot.misterio||'';
+  mysteryInp.addEventListener('input',e=>{slot.misterio=e.target.value;});
+  body.appendChild(mysteryInp);
+  if(q.misterios.length){
     const hintLbl=document.createElement('div');hintLbl.className='c-label';hintLbl.textContent=t('ficha.wizard.mysteryInspiration');body.appendChild(hintLbl);
     const ul=document.createElement('ul');ul.className='wizard-mystery-hints';
-    exemplos.forEach(ex=>{const li=document.createElement('li');li.textContent=ex;ul.appendChild(li);});
+    q.misterios.slice(0,3).forEach(ex=>{const li=document.createElement('li');li.textContent=ex;ul.appendChild(li);});
     body.appendChild(ul);
   }
   const acts=wizardActs();acts.innerHTML='';
-  acts.appendChild(wizardBtn(t('ficha.wizard.skip'),'',wizardRenderRecap));
-  acts.appendChild(wizardBtn(t('ficha.wizard.next'),'tbtn-red',()=>{WZ.card.misterio=inp.value;wizardRenderRecap();}));
+  acts.appendChild(wizardBtn(t('ficha.wizard.backToPick'),'',()=>{
+    if(WZ.mode==='geral'){WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
+    else{WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
+  }));
+  const isLast=slotIdx===WZ.slots.length-1;
+  acts.appendChild(wizardBtn(isLast?t('ficha.wizard.finish'):t('ficha.wizard.nextTheme'),'tbtn-red',()=>{
+    if(isLast)wizardSalvarTemas();
+    else wizardRenderQuestionsForSlot(slotIdx+1);
+  }));
 }
-function wizardRenderRecap(){
-  wizardSetChrome(t('ficha.wizard.recapTitle'),t('ficha.wizard.recapSub'));
-  const body=wizardBody();body.innerHTML='';
-  const cid=WZ.mode==='geral'?'temas-grid':WZ.cid;
-  const idx=WZ.mode==='geral'?WZ.slotIndex:(WZ.lista?WZ.lista.length:0);
-  body.appendChild(buildCard(WZ.card,[WZ.card],cid,{idx}));
-  const acts=wizardActs();acts.innerHTML='';
-  acts.appendChild(wizardBtn(t('ficha.wizard.finish'),'tbtn-red',wizardConcluir));
-}
-function wizardConcluir(){
+function wizardSalvarTemas(){
   if(WZ.mode==='geral'){
-    D.temas[WZ.slotIndex]=WZ.card;
+    WZ.slots.forEach((card,i)=>{D.temas[i]=card;});
     buildGrid('temas-grid',D.temas);
     salvarAuto();
-    WZ.slotIndex++;
-    if(WZ.slotIndex<WZ.total)wizardNovoCard();else fecharWizard();
+    fecharWizard();
   }else{
-    WZ.lista.push(WZ.card);
+    WZ.slots.forEach(card=>{WZ.lista.push(card);});
     buildGrid(WZ.cid,WZ.lista);
     salvarAuto();
     fecharWizard();
