@@ -530,8 +530,8 @@ body::after {
 
 @media(min-width: 769px) {
   html, body { height: 100%; overflow: hidden; }
-  .app-layout { height: calc(100vh - var(--top-h)); overflow: hidden; }
-  .right-content { height: 100%; overflow-y: auto; }
+  .app-layout { height: calc(100vh - var(--top-h)); height: calc(100dvh - var(--top-h)); overflow: hidden; }
+  .right-content { height: 100%; overflow-y: auto; overscroll-behavior: contain; }
 }
 
 .app-layout { display: flex; overflow: hidden; }

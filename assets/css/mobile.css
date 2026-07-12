@@ -110,6 +110,19 @@
   /* Body padding for bottom nav */
   body { padding-bottom: 56px; }
 
+  /* ── SCROLL HARDENING ─────────────────
+     Kill scroll-chaining/rubber-band bleed and keep momentum scrolling.
+     The nested scrollers (NPC list, right content) must not chain to the page. */
+  html, body { overscroll-behavior-y: none; }
+  .right-content, .left-panel, .npc-list-wrap, .enc-npc-list,
+  .dash-body, .content, .admin-content, .wiki-content {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  /* Lock the page behind an open slide-over panel so touch scrolls the panel,
+     not the content underneath it. */
+  body.panel-open { overflow: hidden; }
+
   /* ── HEADER ───────────────────────── */
   .header { padding: 0 12px; }
   .hdr-codes { display: none; }
