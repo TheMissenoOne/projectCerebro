@@ -180,6 +180,14 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .attr-bar-fill{height:100%;background:var(--accent);opacity:.55;transition:width .4s ease;}
 .attr-val{color:var(--accent);font-size:.92rem;font-weight:bold;min-width:24px;text-align:right;}
 .tags-wrap{background:var(--p1);border:1px solid var(--b1);padding:10px 12px;margin-bottom:14px;}
+.npc-temas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:14px;}
+.npc-tema-card{background:var(--p1);border:1px solid var(--b1);border-top:2px solid var(--accent);padding:10px 12px;}
+.npc-tema-hd{font-family:var(--disp);font-size:.98rem;letter-spacing:.08em;color:var(--white);text-transform:uppercase;line-height:1.1;margin-bottom:8px;}
+.npc-tema-grp{margin-top:8px;}
+.npc-tema-lbl{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;margin-bottom:5px;}
+.npc-tema-lbl.pod{color:var(--accent);}
+.npc-tema-lbl.frq{color:#c86;}
+.npc-card-tema{border-left-color:var(--accent);background:rgba(var(--accentRGB),.1);color:var(--text);letter-spacing:.04em;}
 .tags-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
 .tag-item{display:flex;align-items:center;gap:5px;background:rgba(var(--accentRGB),.08);border-left:2px solid var(--accent);padding:4px 8px;font-family:var(--mono);font-size:.6rem;}
 .tag-item.neg{border-left-color:#aa3333;background:rgba(255,50,50,.06);}
@@ -229,6 +237,12 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 .stat-num::-webkit-inner-spin-button,.stat-num::-webkit-outer-spin-button{-webkit-appearance:none;}
 .stat-num:focus{border-color:var(--accent);}
 .tags-edit-wrap{background:var(--p1);border:1px solid var(--b1);padding:9px 11px;}
+.tema-edit-card{background:var(--p1);border:1px solid var(--b1);border-left:2px solid var(--accent);padding:9px 11px;margin-bottom:9px;}
+.tema-edit-hd{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.tema-edit-grp{margin-top:8px;}
+.tema-edit-lbl{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;margin-bottom:4px;}
+.tema-edit-lbl.pod{color:var(--accent);}
+.tema-edit-lbl.frq{color:#c86;}
 .tags-edit-list{display:flex;flex-wrap:wrap;gap:5px;min-height:24px;margin-bottom:7px;}
 .tag-chip{display:flex;align-items:center;gap:4px;border-left:2px solid var(--accent);padding:3px 7px;font-family:var(--mono);font-size:.58rem;background:rgba(var(--accentRGB),.08);}
 .tag-chip.neg{border-left-color:#aa3333;background:rgba(180,30,30,.1);}
@@ -453,15 +467,9 @@ if(window.visualViewport){
       </div>
     </div>
     <div>
-      <div class="form-lbl" style="margin-bottom:6px" data-i18n="cerebro.tagsHelp">TAGS // CITY OF MIST (grau 1-6, negativo = fraqueza)</div>
-      <div class="tags-edit-wrap">
-        <div class="tags-edit-list" id="tags-edit-list"></div>
-        <div class="tag-add-row">
-          <input type="text" class="f-inp" id="tag-new-inp" placeholder="Nome da tag..." style="flex:1" onkeydown="if(event.key==='Enter'){adicionarTag();event.preventDefault();}">
-          <input type="number" class="tag-grau-sel" id="tag-new-grau" value="3" min="-6" max="6" title="Grau (-=fraqueza)">
-          <button class="tbtn tbtn-acc" onclick="adicionarTag()" style="padding:4px 8px">+TAG</button>
-        </div>
-      </div>
+      <div class="form-lbl" style="margin-bottom:6px">TEMAS (agrupe poderes e fraquezas em cartões, grau 1-6)</div>
+      <div id="temas-edit-list"></div>
+      <button class="tbtn tbtn-acc" onclick="addTema()" style="padding:5px 10px;margin-top:6px">+ CARTÃO DE TEMA</button>
     </div>
     <div class="form-grp">
       <label class="form-lbl" data-i18n="common.description">DESCRIÇÃO</label>
@@ -543,6 +551,7 @@ let searchTerm='';
 let encSectionOpen=true;
 let pfOpen=false;
 let tagsEdit=[];
+let temasEdit=[];
 let editingId=null;
 let condTargetId=null;
 let currentPartyId=null;
@@ -569,18 +578,25 @@ function apiToInternal(npc){
     for(const k in d.stats){const cap=LCmap[k];if(cap)atributos[cap]=d.stats[k];}
   }
   if(!atributos||typeof atributos!=='object')atributos={};
-  const rawTags=npc.tags||d.tags||[];
-  const tags=rawTags.map(t=>{
+  const tagToStr=t=>{
     if(typeof t==='string')return t;
     if(t&&typeof t==='object'&&t.texto){return t.grau&&t.grau!==0?`${t.texto} ${t.grau}`:t.texto;}
     return String(t);
-  }).filter(Boolean);
+  };
+  const rawTags=npc.tags||d.tags||[];
+  const tags=rawTags.map(tagToStr).filter(Boolean);
+  const rawTemas=d.temas||npc.temas||[];
+  const temas=(Array.isArray(rawTemas)?rawTemas:[]).map(tm=>({
+    nome:tm.nome||tm.titulo||'',
+    poder:(tm.poder||[]).map(tagToStr).filter(Boolean),
+    fraqueza:(tm.fraqueza||[]).map(tagToStr).filter(Boolean)
+  })).filter(tm=>tm.nome||tm.poder.length||tm.fraqueza.length);
   var inic = npc.iniciativa || d.iniciativa || 0;
   if (!inic) inic = (atributos['Destreza']||0) + (atributos['Inteligência']||0) + (atributos['Influência']||0);
   return {
     id:npc.id,nome:npc.name||'',codinome:npc.codename||'',
     fracao:npc.faction||'neutro',perigo:npc.danger||'medio',
-    iniciativa:inic,atributos,tags,
+    iniciativa:inic,atributos,tags,temas,
     descricao:npc.descricao||d.descricao||'',isGlobal:npc.is_global||false,
   };
 }
@@ -596,7 +612,15 @@ function internalToApi(n){
     for(const k in n.atributos){const en=PT_TO_EN[k];if(en)attrs[en]=n.atributos[k];else attrs[k]=n.atributos[k];}
   }
   const data={};
+  const strToTag=s=>{const{texto,grau}=parseTag(s);return grau?{texto,grau}:{texto};};
   if(n.tags)data.tags=n.tags;
+  if(n.temas&&n.temas.length){
+    data.temas=n.temas.map(tm=>({
+      nome:tm.nome||'',
+      poder:(tm.poder||[]).map(strToTag),
+      fraqueza:(tm.fraqueza||[]).map(strToTag)
+    })).filter(tm=>tm.nome||tm.poder.length||tm.fraqueza.length);
+  }
   if(n.descricao)data.descricao=n.descricao;
   return {
     name:n.nome,codename:n.codinome||'',
@@ -803,7 +827,13 @@ function renderCompactNPC(npc){
   html+='<div class="npc-attrs-compact">';
   attrs.forEach(function(at){html+='<div class="npc-attr-row"><span class="npc-attr-k">'+at[0]+'</span><span class="npc-attr-v">'+(a[at[1]]||'—')+'</span></div>';});
   html+='</div>';
-  if(npc.tags&&npc.tags.length){
+  if(npc.temas&&npc.temas.length){
+    html+='<div class="npc-card-tags">';
+    npc.temas.forEach(function(tm){
+      if(tm.nome)html+='<span class="npc-card-tag npc-card-tema">◈ '+esc(tm.nome)+'</span>';
+    });
+    html+='</div>';
+  }else if(npc.tags&&npc.tags.length){
     html+='<div class="npc-card-tags">';
     npc.tags.slice(0,6).forEach(function(t){
       var txt=t.texto||t;var neg=t.negativo?'border-left-color:#aa3333;background:rgba(180,30,30,.08)':'';
@@ -864,8 +894,8 @@ function exibirNPC(id){
       <div class="attr-group"><div class="attr-group-hdr">MENTAL</div>${mentais.map(k=>attrRow(k,npc.atributos[k])).join('')}</div>
       <div class="attr-group"><div class="attr-group-hdr">SOCIAL / MÍSTICO</div>${sociais.map(k=>attrRow(k,npc.atributos[k])).join('')}</div>
     </div>
-    <div class="sec"><div class="sec-bar"></div><span class="sec-label">TAGS // CITY OF MIST</span><div class="sec-line"></div><span class="sec-code">COM-001</span></div>
-    <div class="tags-wrap"><div class="tags-list">${renderTagsHTML(npc.tags)}</div></div>
+    <div class="sec"><div class="sec-bar"></div><span class="sec-label">${npc.temas&&npc.temas.length?'TEMAS':'TAGS // CITY OF MIST'}</span><div class="sec-line"></div><span class="sec-code">COM-001</span></div>
+    ${renderTemasHTML(npc)}
     <div class="sec"><div class="sec-bar"></div><span class="sec-label">DESCRIÇÃO // DOSSIÊ</span><div class="sec-line"></div></div>
     <div class="desc-box"><div class="desc-text">${npc.descricao?esc(npc.descricao).replace(/\n/g,'<br>'):'<span style="color:var(--muted)">— Sem descrição —</span>'}</div></div>`;
   document.title=`${npc.nome} // CÉREBRO DB`;
@@ -904,18 +934,32 @@ function tagGrauClass(g){
   if(g<0)return'grau-neg';
   return'grau-'+Math.min(g,6);
 }
-function renderTagsHTML(tags){
+function renderTagsHTML(tags,forceNeg){
   if(!tags?.length)return'<span class="no-tags">'+t('cerebro.noTags')+'</span>';
   return tags.map(t=>{
     const{texto,grau}=parseTag(t);
-    const neg=grau<0;
-    const cls=tagGrauClass(grau);
-    const badgeLabel=grau!==0?(grau>0?grau:grau):'';
+    const neg=forceNeg||grau<0;
+    const cls=forceNeg?'grau-neg':tagGrauClass(grau);
+    const badgeLabel=grau!==0?Math.abs(grau):'';
     return`<span class="tag-item${neg?' neg':''}">
-      <span class="tag-txt">${texto}</span>
+      <span class="tag-txt">${esc(texto)}</span>
       <span class="tag-grau ${cls}">${badgeLabel}</span>
     </span>`;
   }).join('');
+}
+
+/* renders an NPC's theme cards; falls back to a flat tag list for legacy NPCs */
+function renderTemasHTML(npc){
+  if(npc.temas&&npc.temas.length){
+    return'<div class="npc-temas">'+npc.temas.map(tm=>{
+      const pod=tm.poder||[],frq=tm.fraqueza||[];
+      let h='<div class="npc-tema-card"><div class="npc-tema-hd">'+esc(tm.nome||'TEMA')+'</div>';
+      if(pod.length)h+='<div class="npc-tema-grp"><div class="npc-tema-lbl pod">▲ PODER</div><div class="tags-list">'+renderTagsHTML(pod)+'</div></div>';
+      if(frq.length)h+='<div class="npc-tema-grp"><div class="npc-tema-lbl frq">▼ FRAQUEZA</div><div class="tags-list">'+renderTagsHTML(frq,true)+'</div></div>';
+      return h+'</div>';
+    }).join('')+'</div>';
+  }
+  return'<div class="tags-wrap"><div class="tags-list">'+renderTagsHTML(npc.tags)+'</div></div>';
 }
 
 function filtrar(){
@@ -1012,20 +1056,25 @@ function mudaRodada(delta){
 }
 
 function abrirAddModal(){
-  editingId=null;tagsEdit=[];
+  editingId=null;tagsEdit=[];temasEdit=[{nome:'',poder:[],fraqueza:[]}];
   document.getElementById('modal-npc-title').textContent=t('cerebro.newNpcTitle');
   document.getElementById('btn-salvar-npc').textContent=t('cerebro.create');
   ['nome','codinome','iniciativa','descricao'].forEach(id=>{const el=document.getElementById('f-'+id);if(el)el.value='';});
   document.getElementById('f-fracao').value='neutro';
   document.getElementById('f-perigo').value='medio';
   SK_IDS.forEach(k=>{const el=document.getElementById('f-'+k);if(el)el.value='';});
-  renderTagsEditList();
+  renderTemasEdit();
   document.getElementById('modal-npc').classList.add('open');
 }
 
 function abrirEditModal(id){
   const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast(t('cerebro.cantEditGlobal'));return;}
   editingId=id;tagsEdit=[...(npc.tags||[])];
+  if(npc.temas&&npc.temas.length){
+    temasEdit=npc.temas.map(tm=>({nome:tm.nome||'',poder:[...(tm.poder||[])],fraqueza:[...(tm.fraqueza||[])]}));
+  }else{
+    temasEdit=[{nome:'Poderes',poder:[...(npc.tags||[])],fraqueza:[]}];
+  }
   document.getElementById('modal-npc-title').textContent=t('cerebro.editNpcTitle');
   document.getElementById('btn-salvar-npc').textContent=t('cerebro.save');
   document.getElementById('f-nome').value=npc.nome||'';
@@ -1035,7 +1084,7 @@ function abrirEditModal(id){
   document.getElementById('f-iniciativa').value=npc.iniciativa||'';
   document.getElementById('f-descricao').value=npc.descricao||'';
   SK.forEach((k,i)=>{const el=document.getElementById('f-'+SK_IDS[i]);if(el)el.value=npc.atributos?.[k]||'';});
-  renderTagsEditList();
+  renderTemasEdit();
   document.getElementById('modal-npc').classList.add('open');
 }
 
@@ -1046,10 +1095,13 @@ async function salvarNPC(){
   if(!nome){toast(t('cerebro.nameRequired'));return;}
   const atributos={};
   SK.forEach((k,i)=>{atributos[k]=parseInt(document.getElementById('f-'+SK_IDS[i]).value)||0;});
+  const temas=temasEdit.map(tm=>({nome:(tm.nome||'').trim(),poder:(tm.poder||[]).slice(),fraqueza:(tm.fraqueza||[]).slice()}))
+    .filter(tm=>tm.nome||tm.poder.length||tm.fraqueza.length);
+  const flatTags=[];temas.forEach(tm=>{tm.poder.forEach(x=>flatTags.push(x));tm.fraqueza.forEach(x=>flatTags.push(x));});
   const npcData={nome,codinome:document.getElementById('f-codinome').value.trim(),
     fracao:document.getElementById('f-fracao').value,perigo:document.getElementById('f-perigo').value,
     iniciativa:parseInt(document.getElementById('f-iniciativa').value)||0,
-    atributos,tags:[...tagsEdit],descricao:document.getElementById('f-descricao').value.trim()};
+    atributos,tags:flatTags,temas,descricao:document.getElementById('f-descricao').value.trim()};
   const apiData=internalToApi(npcData);
   try{
     if(editingId){
@@ -1064,21 +1116,52 @@ async function salvarNPC(){
   }catch(e){console.error(e);toast(t('cerebro.saveError'));}
 }
 
-/* ═══ TAGS EDIT ═══ */
-function renderTagsEditList(){
-  document.getElementById('tags-edit-list').innerHTML=tagsEdit.map((t,i)=>{
-    const{texto,grau}=parseTag(t);const neg=grau<0;const cls=tagGrauClass(grau);
-    return`<span class="tag-chip${neg?' neg':''}"><span class="tag-txt" style="font-size:.56rem">${esc(texto)}</span><span class="tag-chip-grau ${cls}">${grau!==0?grau:'?'}</span><button class="tag-chip-del" onclick="removerTag(${i})">✕</button></span>`;
+/* ═══ TEMAS EDIT ═══ */
+function chipsEditHTML(arr,ti,tipo){
+  return arr.map((tg,j)=>{
+    const{texto,grau}=parseTag(tg);const cls=tipo==='fraqueza'?'grau-neg':tagGrauClass(grau);
+    return`<span class="tag-chip${tipo==='fraqueza'?' neg':''}"><span class="tag-txt" style="font-size:.56rem">${esc(texto)}</span><span class="tag-chip-grau ${cls}">${grau!==0?Math.abs(grau):'?'}</span><button class="tag-chip-del" onclick="removeTemaTag(${ti},'${tipo}',${j})">✕</button></span>`;
   }).join('');
 }
-function adicionarTag(){
-  const inp=document.getElementById('tag-new-inp');const grauInp=document.getElementById('tag-new-grau');
+function renderTemasEdit(){
+  const c=document.getElementById('temas-edit-list');if(!c)return;
+  c.innerHTML=temasEdit.map((tm,i)=>`
+    <div class="tema-edit-card">
+      <div class="tema-edit-hd">
+        <input type="text" class="f-inp" style="flex:1" placeholder="Nome do tema (ex.: Vampiro Vivo)" value="${esc(tm.nome||'')}" oninput="temasEdit[${i}].nome=this.value">
+        <button class="tag-chip-del" title="Remover tema" onclick="removeTema(${i})" style="font-size:1rem">✕</button>
+      </div>
+      <div class="tema-edit-grp">
+        <div class="tema-edit-lbl pod">▲ PODER</div>
+        <div class="tags-edit-list">${chipsEditHTML(tm.poder,i,'poder')}</div>
+        <div class="tag-add-row">
+          <input type="text" class="f-inp" id="tema-${i}-poder-inp" placeholder="Nome do poder..." style="flex:1" onkeydown="if(event.key==='Enter'){addTemaTag(${i},'poder');event.preventDefault();}">
+          <input type="number" class="tag-grau-sel" id="tema-${i}-poder-grau" value="3" min="1" max="6">
+          <button class="tbtn tbtn-acc" onclick="addTemaTag(${i},'poder')" style="padding:4px 8px">+</button>
+        </div>
+      </div>
+      <div class="tema-edit-grp">
+        <div class="tema-edit-lbl frq">▼ FRAQUEZA</div>
+        <div class="tags-edit-list">${chipsEditHTML(tm.fraqueza,i,'fraqueza')}</div>
+        <div class="tag-add-row">
+          <input type="text" class="f-inp" id="tema-${i}-fraqueza-inp" placeholder="Nome da fraqueza..." style="flex:1" onkeydown="if(event.key==='Enter'){addTemaTag(${i},'fraqueza');event.preventDefault();}">
+          <input type="number" class="tag-grau-sel" id="tema-${i}-fraqueza-grau" value="3" min="1" max="6">
+          <button class="tbtn" onclick="addTemaTag(${i},'fraqueza')" style="padding:4px 8px">+</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function addTema(){temasEdit.push({nome:'',poder:[],fraqueza:[]});renderTemasEdit();}
+function removeTema(i){temasEdit.splice(i,1);if(!temasEdit.length)temasEdit.push({nome:'',poder:[],fraqueza:[]});renderTemasEdit();}
+function addTemaTag(i,tipo){
+  const inp=document.getElementById(`tema-${i}-${tipo}-inp`);const grauInp=document.getElementById(`tema-${i}-${tipo}-grau`);
   const texto=inp.value.trim();if(!texto)return;
   const grau=parseInt(grauInp.value)||0;
-  tagsEdit.push(grau!==0?`${texto} ${grau}`:texto);
-  inp.value='';grauInp.value='3';renderTagsEditList();
+  temasEdit[i][tipo].push(grau!==0?`${texto} ${grau}`:texto);
+  renderTemasEdit();
+  const nxt=document.getElementById(`tema-${i}-${tipo}-inp`);if(nxt)nxt.focus();
 }
-function removerTag(i){tagsEdit.splice(i,1);renderTagsEditList();}
+function removeTemaTag(i,tipo,j){temasEdit[i][tipo].splice(j,1);renderTemasEdit();}
 
 /* ═══ ENCONTRO ═══ */
 function adicionarAoEncontro(id){

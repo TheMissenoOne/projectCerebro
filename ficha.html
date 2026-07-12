@@ -342,6 +342,13 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .status-textarea{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.82rem;padding:8px 10px;resize:vertical;outline:none;transition:border-color .15s;min-height:80px;}
 .status-textarea:focus{border-color:var(--red);}
 .status-textarea::placeholder{color:var(--b3);}
+.notas-panel{margin-top:18px;}
+.notas-textarea{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.86rem;line-height:1.5;padding:12px 14px;resize:vertical;outline:none;transition:border-color .15s;min-height:220px;}
+.notas-textarea:focus{border-color:var(--red);}
+.notas-textarea::placeholder{color:var(--b3);}
+.attr-section-temas{margin-bottom:20px;}
+.attr-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:640px){.attr-cols{grid-template-columns:1fr;gap:8px;}}
 .right-panel-section{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
 .progressao-area{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 </style>
@@ -434,32 +441,6 @@ function showToast(msg){
           </div>
 </div>
       </div>
-
-      <div class="ficha-middle">
-        <div class="attr-section">
-          <div class="sec"><div class="sec-bar"></div><span class="sec-label" data-i18n="ficha.attributes">Atributos</span><div class="sec-line"></div><span class="sec-code">ATTR-001</span></div>
-          <div class="fisico-section">
-            <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.physical">Físico</span><div class="attr-group-line"></div></div>
-            <div class="attr-row"><span class="attr-num">01</span><span class="attr-name" data-i18n="ficha.dexterity">Destreza<button class="field-help" type="button" title="Agilidade, reflexos, coordenação motora">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-destreza" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">02</span><span class="attr-name" data-i18n="ficha.strength">Força<button class="field-help" type="button" title="Potência física, capacidade de levantamento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-forca" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">03</span><span class="attr-name" data-i18n="ficha.body">Corpo<button class="field-help" type="button" title="Resistência, vitalidade, saúde">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-corpo" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          </div>
-          <div class="mental-section">
-            <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.mental">Mental</span><div class="attr-group-line"></div></div>
-            <div class="attr-row"><span class="attr-num">04</span><span class="attr-name" data-i18n="ficha.intelligence">Inteligência<button class="field-help" type="button" title="Raciocínio, memória, conhecimento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-inteligencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">05</span><span class="attr-name" data-i18n="ficha.willpower">Vontade<button class="field-help" type="button" title="Determinação, autocontrole, fé">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-vontade" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">06</span><span class="attr-name" data-i18n="ficha.mind">Mente<button class="field-help" type="button" title="Percepção extrasensorial, telepatia">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-mente" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          </div>
-          <div class="social-section">
-            <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.social">Social</span><div class="attr-group-line"></div></div>
-            <div class="attr-row"><span class="attr-num">07</span><span class="attr-name" data-i18n="ficha.influence">Influência<button class="field-help" type="button" title="Carisma, persuasão, liderança">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-influencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">08</span><span class="attr-name" data-i18n="ficha.aura">Aura<button class="field-help" type="button" title="Magnetismo pessoal, presença">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-aura" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-            <div class="attr-row"><span class="attr-num">09</span><span class="attr-name" data-i18n="ficha.spirit">Espírito<button class="field-help" type="button" title="Sorte, conexão com o mundo espiritual">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-espirito" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
-          </div>
-        </div>
-        </div>
-
-        
     </div>
 
     <div class="ficha-bottom">
@@ -476,6 +457,11 @@ function showToast(msg){
         <div class="evolucao-grid" id="evolucao-grid"></div>
       </div>
     </div>
+
+    <div class="notas-panel">
+      <div class="sec"><div class="sec-bar"></div><span class="sec-label" data-i18n="ficha.notes">Notas</span><div class="sec-line"></div><span class="sec-code">NOTES-001</span></div>
+      <textarea class="notas-textarea" id="notas" data-i18n-placeholder="ficha.placeholderNotes" placeholder="Anotações livres — história, contatos, objetivos, ganchos de trama, itens, lembretes de sessão…" oninput="salvarAuto()"></textarea>
+    </div>
   </section>
 
   <section class="page" id="page-temas">
@@ -483,6 +469,31 @@ function showToast(msg){
       <span class="dh-left">[16.23435.161] [LSSP-78445] [TEMAS-004]</span>
       <span class="dh-right" data-i18n="ficha.themesHeader">▌ TEMAS DE PERSONAGEM ▐</span>
     </div>
+
+    <div class="attr-section attr-section-temas">
+      <div class="sec"><div class="sec-bar"></div><span class="sec-label" data-i18n="ficha.attributes">Atributos</span><div class="sec-line"></div><span class="sec-code">ATTR-001</span></div>
+      <div class="attr-cols">
+        <div class="fisico-section">
+          <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.physical">Físico</span><div class="attr-group-line"></div></div>
+          <div class="attr-row"><span class="attr-num">01</span><span class="attr-name" data-i18n="ficha.dexterity">Destreza<button class="field-help" type="button" title="Agilidade, reflexos, coordenação motora">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-destreza" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">02</span><span class="attr-name" data-i18n="ficha.strength">Força<button class="field-help" type="button" title="Potência física, capacidade de levantamento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-forca" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">03</span><span class="attr-name" data-i18n="ficha.body">Corpo<button class="field-help" type="button" title="Resistência, vitalidade, saúde">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-corpo" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+        </div>
+        <div class="mental-section">
+          <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.mental">Mental</span><div class="attr-group-line"></div></div>
+          <div class="attr-row"><span class="attr-num">04</span><span class="attr-name" data-i18n="ficha.intelligence">Inteligência<button class="field-help" type="button" title="Raciocínio, memória, conhecimento">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-inteligencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">05</span><span class="attr-name" data-i18n="ficha.willpower">Vontade<button class="field-help" type="button" title="Determinação, autocontrole, fé">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-vontade" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">06</span><span class="attr-name" data-i18n="ficha.mind">Mente<button class="field-help" type="button" title="Percepção extrasensorial, telepatia">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-mente" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+        </div>
+        <div class="social-section">
+          <div class="attr-group-header"><span class="attr-group-name" data-i18n="ficha.social">Social</span><div class="attr-group-line"></div></div>
+          <div class="attr-row"><span class="attr-num">07</span><span class="attr-name" data-i18n="ficha.influence">Influência<button class="field-help" type="button" title="Carisma, persuasão, liderança">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-influencia" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">08</span><span class="attr-name" data-i18n="ficha.aura">Aura<button class="field-help" type="button" title="Magnetismo pessoal, presença">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-aura" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+          <div class="attr-row"><span class="attr-num">09</span><span class="attr-name" data-i18n="ficha.spirit">Espírito<button class="field-help" type="button" title="Sorte, conexão com o mundo espiritual">?</button></span><div class="attr-dots"></div><input type="number" class="attr-val" id="stat-espirito" placeholder="—" min="0" max="99" oninput="salvarAuto()"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="mut-central">
       <div class="mut-central-label" data-i18n="ficha.centralTheme">MUTAÇÃO // TEMA CENTRAL</div>
       <input type="text" class="mut-inp" id="mutacao-temas" placeholder="Descreva a mutação e o tema central do personagem..." oninput="salvarAuto()">
@@ -521,18 +532,6 @@ function showToast(msg){
   </section>
 
 </main>
-
-<div class="modal-bg" id="modal-import">
-  <div class="modal">
-    <div class="modal-title" data-i18n="ficha.importTitle">IMPORTAR FICHA</div>
-    <div class="modal-sub" data-i18n="ficha.importDesc">Cole o conteúdo do arquivo .md exportado anteriormente. Os dados atuais serão substituídos após confirmação.</div>
-    <textarea class="modal-ta" id="import-text" placeholder="Cole o markdown aqui..."></textarea>
-    <div class="modal-acts">
-      <button class="tbtn" onclick="fecharImport()" data-i18n="common.cancel">CANCELAR</button>
-      <button class="tbtn tbtn-red" onclick="importarMD()" data-i18n="ficha.confirmImport">CONFIRMAR IMPORTAÇÃO</button>
-    </div>
-  </div>
-</div>
 
 <div class="modal-bg" id="modal-wizard">
   <div class="modal">
@@ -635,7 +634,7 @@ const MOMENTOS_EVOLUCAO={};
 const PADRAO={
   nome:'',codinome:'',jogador:'',mutacao_ficha:'',mutacao_temas:'',foto:'',
   stats:Object.fromEntries(STATS.map(s=>[s,''])),
-  status:'',progressao:0,evolucao:['','','','',''],
+  status:'',notas:'',progressao:0,evolucao:['','','','',''],
   temas:Array.from({length:4},novoCard),
   temas_wizard_dismissed:false,
   esq_nome:'',
@@ -1270,13 +1269,13 @@ function wizardSalvarTemas(){
 function preencherCampos(){
   sv('nome',D.nome);sv('codinome',D.codinome);sv('jogador',D.jogador);
   sv('mutacao-ficha',D.mutacao_ficha);sv('mutacao-temas',D.mutacao_temas);
-  sv('status',D.status);sv('esq-nome',D.esq_nome);
+  sv('status',D.status);sv('notas',D.notas);sv('esq-nome',D.esq_nome);
   STATS.forEach(s=>sv('stat-'+s,D.stats[s]));
 }
 function coletarCampos(){
   D.nome=gv('nome');D.codinome=gv('codinome');D.jogador=gv('jogador');
   D.mutacao_ficha=gv('mutacao-ficha');D.mutacao_temas=gv('mutacao-temas');
-  D.status=gv('status');D.esq_nome=gv('esq-nome');
+  D.status=gv('status');D.notas=gv('notas');D.esq_nome=gv('esq-nome');
   STATS.forEach(s=>{D.stats[s]=gv('stat-'+s);});
 }
 function sv(id,val){const e=document.getElementById(id);if(e)e.value=val||'';}
@@ -1308,94 +1307,120 @@ function resetarFicha(){
   toast(t('ficha.resetDone'));
 }
 
-/* ── EXPORT MD ── */
-function exportarMD(){
+/* ── EXPORT PDF ── */
+function pdfEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function pdfNl(s){return pdfEsc(s).replace(/\n/g,'<br>');}
+function pdfCard(card){
+  const pod=(card.poder||[]).filter(x=>x&&x.trim());
+  const frq=(card.fraqueza||[]).filter(x=>x&&x.trim());
+  if(!card.tipo&&!pod.length&&!frq.length&&!card.misterio&&!card.melhorias)return '';
+  let h=`<div class="pdf-card"><div class="pdf-card-hd">${pdfEsc(lbl(card.tipo)||'TEMA')}</div>`;
+  if(card.misterio)h+=`<div class="pdf-myst"><span>MISTÉRIO/IDENTIDADE</span> ${pdfEsc(card.misterio)}</div>`;
+  if(pod.length)h+=`<div class="pdf-taglist"><div class="pdf-tl-lbl pod">PODER</div>${pod.map(x=>`<div class="pdf-tag pod">▲ ${pdfEsc(x)}</div>`).join('')}</div>`;
+  if(frq.length)h+=`<div class="pdf-taglist"><div class="pdf-tl-lbl frq">FRAQUEZA</div>${frq.map(x=>`<div class="pdf-tag frq">▼ ${pdfEsc(x)}</div>`).join('')}</div>`;
+  if(card.melhorias)h+=`<div class="pdf-melh"><span>MELHORIAS</span> ${pdfNl(card.melhorias)}</div>`;
+  h+='</div>';
+  return h;
+}
+function exportarPDF(){
   coletarCampos();
   const d=D,nome=d.nome||'SEM NOME';
   const agora=new Date().toLocaleString('pt-BR');
-  let md=`# FICHA DE PERSONAGEM — ${nome.toUpperCase()}\n> X-MEN TTRPG // CITY OF MIST SYSTEM\n> Exportado em: ${agora}\n\n---\n\n## IDENTIFICAÇÃO\n\n| Campo | Valor |\n|---|---|\n| **Nome** | ${d.nome||'—'} |\n| **Codinome** | ${d.codinome||'—'} |\n| **Jogador** | ${d.jogador||'—'} |\n| **Mutação** | ${d.mutacao_ficha||'—'} |\n\n---\n\n## ATRIBUTOS\n\n| | Destreza | Força | Corpo |\n|---|---|---|---|\n| **Físico** | ${d.stats.destreza||'—'} | ${d.stats.forca||'—'} | ${d.stats.corpo||'—'} |\n\n| | Inteligência | Vontade | Mente |\n|---|---|---|---|\n| **Mental** | ${d.stats.inteligencia||'—'} | ${d.stats.vontade||'—'} | ${d.stats.mente||'—'} |\n\n| | Influência | Aura | Espírito |\n|---|---|---|---|\n| **Social** | ${d.stats.influencia||'—'} | ${d.stats.aura||'—'} | ${d.stats.espirito||'—'} |\n\n---\n\n## STATUS\n\n${d.status||'*Sem status registrado.*'}\n\n---\n\n## PROGRESSÃO\n\nProgresso: ${'●'.repeat(d.progressao)}${'○'.repeat(Math.max(0,6-d.progressao))} (${d.progressao}/6)\n\n### Momentos de Evolução\n\n${d.evolucao.map((e,i)=>`${i+1}. ${e||'—'}`).join('\n')}\n\n---\n\n## MUTAÇÃO — TEMA CENTRAL\n\n${d.mutacao_temas||'*Não definida.*'}\n\n---\n\n## CARDS DE TEMAS\n\n`;
-  d.temas.forEach((c,i)=>{md+=cardMD(c,i+1);});
-  md+=`---\n\n## ESQUADRÃO\n\n**Nome:** ${d.esq_nome||'—'}\n\n### Membros\n\n`;
-  d.membros.forEach((m,i)=>{md+=`${i+1}. **${m.nome||'—'}** | Apoio: ${m.apoio||0} | Antagonismo: ${m.antagonismo||0}\n`;});
-  md+=`\n---\n\n## CARDS EXTRAS — ESQUADRÃO\n\n`;
-  d.extras.forEach((c,i)=>{md+=cardMD(c,i+1);});
-  md+=`---\n*AG—17.19349.583 · LS—16.23435.161 · XAVIER INSTITUTE*\n`;
-  const blob=new Blob([md],{type:'text/markdown'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download=`ficha-${nome.replace(/\s+/g,'_').toLowerCase()}.md`;a.click();URL.revokeObjectURL(url);
+  const st=d.stats||{};
+  const attr=(lb,v)=>`<div class="pdf-attr"><span class="pdf-attr-k">${lb}</span><span class="pdf-attr-v">${(v||v===0)&&v!==''?pdfEsc(v):'—'}</span></div>`;
+  const dots='●'.repeat(d.progressao||0)+'○'.repeat(Math.max(0,6-(d.progressao||0)));
+  const evo=(d.evolucao||[]).map((e,i)=>e&&e.trim()?`<li>${pdfEsc(e)}</li>`:'').join('')||'<li class="muted">—</li>';
+  const membros=(d.membros||[]).filter(m=>m.nome&&m.nome.trim());
+  const temas=(d.temas||[]).map(pdfCard).join('');
+  const extras=(d.extras||[]).map(pdfCard).join('');
+  const foto=d.foto?`<img class="pdf-portrait" src="${d.foto}" alt="">`:'';
+  const html=`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Ficha — ${pdfEsc(nome)}</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+@page{size:A4;margin:14mm;}
+body{font-family:'Barlow Condensed','Segoe UI',Arial,sans-serif;color:#12100c;background:#fff;font-size:12px;line-height:1.4;}
+.pdf-head{display:flex;gap:16px;align-items:flex-start;border-bottom:3px solid #E8001C;padding-bottom:10px;margin-bottom:14px;}
+.pdf-portrait{width:96px;height:120px;object-fit:cover;border:1px solid #333;flex-shrink:0;}
+.pdf-title{font-family:'Oswald','Arial Narrow',sans-serif;font-weight:700;font-size:30px;letter-spacing:.02em;text-transform:uppercase;line-height:1;}
+.pdf-code{font-size:15px;color:#E8001C;font-weight:600;text-transform:uppercase;margin-top:2px;}
+.pdf-idrow{font-size:12px;color:#444;margin-top:6px;}
+.pdf-idrow b{color:#000;}
+.pdf-meta{margin-left:auto;text-align:right;font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.08em;}
+.pdf-sec{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#E8001C;border-bottom:1px solid #ccc;padding-bottom:3px;margin:16px 0 8px;}
+.pdf-attrs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 20px;}
+.pdf-attr{display:flex;justify-content:space-between;border-bottom:1px dotted #bbb;padding:2px 0;}
+.pdf-attr-k{text-transform:uppercase;font-size:11px;letter-spacing:.06em;}
+.pdf-attr-v{font-weight:700;font-family:'Oswald',sans-serif;}
+.pdf-block{white-space:pre-wrap;font-size:12px;padding:4px 0;}
+.pdf-prog{font-size:16px;letter-spacing:3px;color:#E8001C;}
+ol,ul{padding-left:18px;}
+li{margin:2px 0;}
+li.muted{color:#999;list-style:none;margin-left:-14px;}
+.pdf-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pdf-card{border:1px solid #ccc;border-left:4px solid #E8001C;padding:8px 10px;break-inside:avoid;}
+.pdf-card-hd{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.pdf-myst{font-size:11px;font-style:italic;color:#333;margin-bottom:5px;}
+.pdf-myst span,.pdf-melh span{display:block;font-style:normal;font-weight:700;font-size:8px;letter-spacing:.1em;color:#888;}
+.pdf-taglist{margin-bottom:5px;}
+.pdf-tl-lbl{font-size:8px;font-weight:700;letter-spacing:.1em;color:#888;margin-bottom:2px;}
+.pdf-tl-lbl.pod{color:#127a2e;} .pdf-tl-lbl.frq{color:#a8000f;}
+.pdf-tag{font-size:11px;padding:1px 0;}
+.pdf-tag.pod{color:#0d5c22;} .pdf-tag.frq{color:#8a000c;}
+.pdf-melh{font-size:11px;color:#333;margin-top:4px;}
+.pdf-membros{width:100%;border-collapse:collapse;font-size:11px;}
+.pdf-membros th,.pdf-membros td{border:1px solid #ccc;padding:3px 8px;text-align:left;}
+.pdf-membros th{background:#f2f2f2;text-transform:uppercase;font-size:9px;letter-spacing:.06em;}
+.pdf-foot{margin-top:18px;border-top:1px solid #ccc;padding-top:6px;font-size:8px;color:#aaa;letter-spacing:.08em;text-transform:uppercase;}
+.muted{color:#999;}
+@media print{a{display:none;}}
+</style></head><body>
+<div class="pdf-head">
+  ${foto}
+  <div>
+    <div class="pdf-title">${pdfEsc(d.codinome||nome)}</div>
+    ${d.codinome?`<div class="pdf-code">${pdfEsc(nome)}</div>`:''}
+    <div class="pdf-idrow"><b>Jogador:</b> ${pdfEsc(d.jogador||'—')} &nbsp;·&nbsp; <b>Mutação:</b> ${pdfEsc(d.mutacao_ficha||'—')}</div>
+  </div>
+  <div class="pdf-meta">X-MEN TTRPG<br>CITY OF MIST<br>${pdfEsc(agora)}</div>
+</div>
+
+<div class="pdf-sec">Atributos</div>
+<div class="pdf-attrs">
+  ${attr('Destreza',st.destreza)}${attr('Inteligência',st.inteligencia)}${attr('Influência',st.influencia)}
+  ${attr('Força',st.forca)}${attr('Vontade',st.vontade)}${attr('Aura',st.aura)}
+  ${attr('Corpo',st.corpo)}${attr('Mente',st.mente)}${attr('Espírito',st.espirito)}
+</div>
+
+${d.mutacao_temas?`<div class="pdf-sec">Mutação — Tema Central</div><div class="pdf-block">${pdfNl(d.mutacao_temas)}</div>`:''}
+
+<div class="pdf-sec">Cards de Tema</div>
+<div class="pdf-cards">${temas||'<div class="muted">Nenhum tema definido.</div>'}</div>
+
+<div class="pdf-sec">Progressão</div>
+<div class="pdf-prog">${dots} <span style="font-size:11px;color:#666">(${d.progressao||0}/6)</span></div>
+<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:8px 0 2px">MOMENTOS DE EVOLUÇÃO</div>
+<ol>${evo}</ol>
+
+${(d.status&&d.status.trim())?`<div class="pdf-sec">Status</div><div class="pdf-block">${pdfNl(d.status)}</div>`:''}
+${(d.notas&&d.notas.trim())?`<div class="pdf-sec">Notas</div><div class="pdf-block">${pdfNl(d.notas)}</div>`:''}
+
+${(d.esq_nome||membros.length||extras)?`<div class="pdf-sec">Esquadrão${d.esq_nome?' — '+pdfEsc(d.esq_nome):''}</div>`:''}
+${membros.length?`<table class="pdf-membros"><thead><tr><th>Membro</th><th>Apoio</th><th>Antagonismo</th></tr></thead><tbody>${membros.map(m=>`<tr><td>${pdfEsc(m.nome)}</td><td>${m.apoio||0}</td><td>${m.antagonismo||0}</td></tr>`).join('')}</tbody></table>`:''}
+${extras?`<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:10px 0 6px">CARDS EXTRAS</div><div class="pdf-cards">${extras}</div>`:''}
+
+<div class="pdf-foot">AG—17.19349.583 · LS—16.23435.161 · XAVIER INSTITUTE</div>
+<script>window.onload=function(){setTimeout(function(){window.print();},250);};<\/script>
+</body></html>`;
+  const w=window.open('','_blank');
+  if(!w){toast(t('ficha.errorExport')||'Permita pop-ups para exportar o PDF');return;}
+  w.document.open();w.document.write(html);w.document.close();
   toast(t('ficha.exported'));
 }
-function cardMD(card,num){
-  const at='▲'.repeat(card.atencao||0)+'△'.repeat(3-(card.atencao||0));
-  const ds='▼'.repeat(card.dissipacao||0)+'▽'.repeat(3-(card.dissipacao||0));
-  let md=`### Card ${num} — ${lbl(card.tipo).toUpperCase()}\n\n**Atenção:** ${at} | **Dissipação/Quebra:** ${ds}\n\n`;
-  if(card.misterio)md+=`**Mistério/Identidade:** ${card.misterio}\n\n`;
-  const pod=(card.poder||[]).filter(t=>t.trim());
-  if(pod.length){md+=`**Tags de Poder:**\n`;pod.forEach(t=>{md+=`- ▲ ${t}\n`;});md+='\n';}
-  const frq=(card.fraqueza||[]).filter(t=>t.trim());
-  if(frq.length){md+=`**Tags de Fraqueza:**\n`;frq.forEach(t=>{md+=`- ▼ ${t}\n`;});md+='\n';}
-  if(card.melhorias)md+=`**Melhorias:** ${card.melhorias}\n\n`;
-  return md;
-}
 
-/* ── IMPORT MD ── */
-function abrirImport(){document.getElementById('modal-import').classList.add('open');}
-function fecharImport(){document.getElementById('modal-import').classList.remove('open');}
 document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('modal-import').addEventListener('click',function(e){if(e.target===this)fecharImport();});
-  document.getElementById('modal-wizard').addEventListener('click',function(e){if(e.target===this)fecharWizard();});
+  const mw=document.getElementById('modal-wizard');
+  if(mw)mw.addEventListener('click',function(e){if(e.target===this)fecharWizard();});
 });
-function importarMD(){
-  const txt=document.getElementById('import-text').value.trim();
-  if(!txt){toast(t('common.noContent'));return;}
-  try{
-    const novo=clone(PADRAO);const linhas=txt.split('\n');
-    function parseTabela(linhasArr,start){
-      const rows=[];
-      for(let i=start;i<linhasArr.length;i++){
-        const l=linhasArr[i].trim();if(!l.startsWith('|'))break;if(l.includes('---'))continue;
-        const cells=l.split('|').filter((_,j)=>j>0&&j<l.split('|').length-1).map(c=>c.trim().replace(/\*\*/g,''));rows.push(cells);
-      }return rows;
-    }
-    let secaoAtual='';
-    for(let i=0;i<linhas.length;i++){
-      const l=linhas[i].trim();
-      if(l.startsWith('## '))secaoAtual=l;
-      if(l==='## IDENTIFICAÇÃO'){const rows=parseTabela(linhas,i+2);rows.forEach(r=>{if(r[0]==='Nome')novo.nome=r[1]||'';else if(r[0]==='Codinome')novo.codinome=r[1]||'';else if(r[0]==='Jogador')novo.jogador=r[1]||'';else if(r[0]==='Mutação')novo.mutacao_ficha=r[1]||'';});}
-      if(l.startsWith('| **Físico**')){const c=l.split('|').map(x=>x.trim().replace(/\*\*/g,''));novo.stats.destreza=c[2]||'';novo.stats.forca=c[3]||'';novo.stats.corpo=c[4]||'';}
-      if(l.startsWith('| **Mental**')){const c=l.split('|').map(x=>x.trim().replace(/\*\*/g,''));novo.stats.inteligencia=c[2]||'';novo.stats.vontade=c[3]||'';novo.stats.mente=c[4]||'';}
-      if(l.startsWith('| **Social**')){const c=l.split('|').map(x=>x.trim().replace(/\*\*/g,''));novo.stats.influencia=c[2]||'';novo.stats.aura=c[3]||'';novo.stats.espirito=c[4]||'';}
-      if(l==='## STATUS'){const blk=[];let j=i+1;while(j<linhas.length&&linhas[j].trim()!=='---'){blk.push(linhas[j]);j++;}novo.status=blk.join('\n').trim().replace(/^\*|\*$/g,'');}
-      if(l.startsWith('Progresso:')){const m=l.match(/\((\d+)\/6\)/);if(m)novo.progressao=parseInt(m[1])||0;}
-      if(l==='### Momentos de Evolução'){let j=i+1,ei=0;while(j<linhas.length&&linhas[j].trim()&&linhas[j].trim()!=='---'&&ei<5){const mv=linhas[j].trim().replace(/^\d+\.\s*/,'');if(mv&&mv!=='—')novo.evolucao[ei]=mv;ei++;j++;}}
-      if(l==='## MUTAÇÃO — TEMA CENTRAL'){const blk=[];let j=i+1;while(j<linhas.length&&linhas[j].trim()!=='---'){blk.push(linhas[j]);j++;}novo.mutacao_temas=blk.join('\n').trim().replace(/^\*|\*$/g,'');}
-      if(l.startsWith('### Card ')){
-        const numM=l.match(/Card (\d+)/);const num=numM?parseInt(numM[1])-1:null;
-        const tipoRaw=l.replace(/### Card \d+ — /,'').trim();
-        const tipoV=TODOS().find(t=>t.l.toUpperCase()===tipoRaw.toUpperCase());
-        const card={...novoCard(),tipo:tipoV?tipoV.v:''};let j=i+1;
-        while(j<linhas.length){const cl=linhas[j].trim();if(cl.startsWith('### Card ')||cl==='---')break;
-          if(cl.startsWith('**Atenção:**')){const am=cl.match(/▲/g);const dm=cl.match(/▼/g);card.atencao=(am?am.length:0);card.dissipacao=(dm?dm.length:0);}
-          if(cl.startsWith('**Mistério/Identidade:**'))card.misterio=cl.replace('**Mistério/Identidade:**','').trim();
-          if(cl.startsWith('**Tags de Poder:**')){let k=j+1,pi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▲')&&pi<10){card.poder[pi]=linhas[k].trim().replace(/^- ▲\s*/,'');pi++;k++;}}
-          if(cl.startsWith('**Tags de Fraqueza:**')){let k=j+1,fi=0;while(k<linhas.length&&linhas[k].trim().startsWith('- ▼')&&fi<4){card.fraqueza[fi]=linhas[k].trim().replace(/^- ▼\s*/,'');fi++;k++;}}
-          if(cl.startsWith('**Melhorias:**'))card.melhorias=cl.replace('**Melhorias:**','').trim();j++;
-        }
-        const isExtras=secaoAtual.includes('EXTRAS');
-        if(num!==null&&num<4){if(isExtras)novo.extras[num]=card;else novo.temas[num]=card;}
-      }
-      if(l.startsWith('**Nome:**')){novo.esq_nome=l.replace('**Nome:**','').trim().replace(/^—$/,'');}
-      if(l==='### Membros'){let j=i+1,mi=0;while(j<linhas.length&&mi<7){const mv=linhas[j].trim();if(!mv||mv==='---')break;const nomeMatch=mv.match(/\*\*(.+?)\*\*/);const apMatch=mv.match(/Apoio:\s*(\d+)/);const antMatch=mv.match(/Antagonismo:\s*(\d+)/);novo.membros[mi]={nome:nomeMatch?nomeMatch[1]:'',apoio:apMatch?+apMatch[1]:0,antagonismo:antMatch?+antMatch[1]:0};mi++;j++;}}
-    }
-    D=novo;
-    preencherCampos();buildDots();buildEvo();
-    buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);buildMembros();
-    if(D.foto)mostrarFoto(D.foto);else{document.getElementById('portrait-img').style.display='none';document.getElementById('portrait-ph').style.display='flex';document.getElementById('remove-foto-btn').style.display='none';}
-    document.getElementById('import-text').value='';fecharImport();
-    salvarAuto();
-    toast(t('ficha.imported'));
-  }catch(err){console.error(err);toast(t('ficha.errorImport'));}
-}
 
 /* ── TOAST ── */
 function toast(msg){

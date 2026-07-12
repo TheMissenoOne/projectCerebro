@@ -15,7 +15,7 @@ const NAV_CONFIG = {
     title: 'X-MEN',
     sub: 'FICHA DE PERSONAGEM',
     codes: 'AG\u201417.19349.583 \u00B7 LS\u201416.23435.161 \u00B7 XAVIER INSTITUTE',
-    toolbar: ['back', 'cerebro', 'wiki', 'fichimport', 'fichexport', 'reset', 'theme', 'logout']
+    toolbar: ['back', 'cerebro', 'wiki', 'fichexport', 'reset', 'theme', 'logout']
   },
   admin: {
     title: 'X-MEN',
@@ -56,8 +56,7 @@ const NAV_ITEMS = {
   newNpc: { action: 'abrirAddModal()', icon: 'plus', i18n: 'cerebro.newNpc', label: 'NOVO NPC', accented: true },
   import: { action: 'abrirImportModal()', icon: 'download', i18n: 'common.import', label: 'IMPORTAR' },
   export: { action: 'exportarTodos()', icon: 'upload', i18n: 'common.export', label: 'EXPORTAR' },
-  fichimport: { action: 'abrirImport()', icon: 'download', i18n: 'common.import', label: 'IMPORTAR .MD' },
-  fichexport: { action: 'exportarMD()', icon: 'upload', i18n: 'common.export', label: 'EXPORTAR .MD' },
+  fichexport: { action: 'exportarPDF()', icon: 'upload', i18n: 'common.exportPdf', label: 'EXPORTAR PDF' },
   reload: { action: 'recarregarDB()', icon: 'refresh', i18n: 'common.reload', label: 'RECARREGAR' },
   config: { action: "window.open('dashboard.html','_self')", icon: 'settings', i18n: 'common.config', label: 'CONFIG' },
   reset: { action: 'resetarFicha()', icon: 'trash', i18n: 'nav.reset', label: 'RESETAR', red: true },

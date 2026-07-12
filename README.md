@@ -25,20 +25,22 @@ Built with vanilla JS + Supabase. No frameworks.
 - Melhorias + Momentos de Evolução checkboxes
 - Progressão tracker (6-dot system)
 - Squad members table with Apoio / Antagonismo
+- Full-width notes section
+- Attributes live on the Themes tab for quick access alongside theme cards
 - Auto-save with visual indicator
-- Export / import as `.md`
+- Export as a print-ready **PDF**
 
 ## NPC Database (Cerebro)
 
 - 9 faction categories (X-Men, Novatos, Morlock, Irmandade, Vilão, Criminoso, Neutro, Humano)
 - 4 danger levels (Baixo, Médio, Alto, Extremo)
-- Attribute bars, tag system, encounter conditions (10 presets + custom)
+- Attribute bars, **theme cards** (powers/weaknesses grouped), encounter conditions (10 presets + custom)
 - Markdown import / export
 
 ## Combat Calculator
 
 - Action Value (AV) vs Opposition Value (OV)
-- 50×50 EV/RV reference table
+- MEGS **Action Table** & **Result Table** with value ranges (rulebook layout)
 - Push / Edge mechanics
 - Condition application
 

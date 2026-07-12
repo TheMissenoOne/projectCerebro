@@ -77,6 +77,12 @@
     .tables-section td { background: var(--p1); }
     .tables-section tr:hover td { background: var(--p2); }
     .tables-section td.impossible { color: var(--muted2); }
+    .tables-section td.na { color: var(--muted2); background: rgba(255,255,255,.015); }
+    .tables-section td.diag { color: #E8001C; font-weight: 700; }
+    .tables-section td.aux { color: var(--muted2); font-size: .42rem; }
+    .tables-section th.rng { font-size: .44rem; }
+    .table-legend { font-family: var(--mono); font-size: .5rem; color: var(--muted2); line-height: 1.5; margin: 8px 0 22px; }
+    .table-legend b { color: var(--accent); }
     
     .table-title { font-family: var(--cond); font-size: .7rem; font-weight: 700; color: var(--white); letter-spacing: .12em; text-transform: uppercase; margin: 16px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--b1); }
     
@@ -166,11 +172,11 @@
           
           <div class="calc-row">
             <span class="calc-label" data-i18n="combat.av">AV<span class="field-help">?<span class="tooltip" data-i18n="combat.avHelp">Action Value - atributo/equivalente do atacante</span></span></span>
-            <input type="number" class="calc-input" id="av-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="av-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           <div class="calc-row">
             <span class="calc-label" data-i18n="combat.ov">OV<span class="field-help">?<span class="tooltip" data-i18n="combat.ovHelp">Opposing Value - valor de oposição/defesa do alvo</span></span></span>
-            <input type="number" class="calc-input" id="ov-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="ov-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           
           <div class="result-box">
@@ -202,11 +208,11 @@
           
           <div class="calc-row" style="margin-top:12px">
             <span class="calc-label" data-i18n="combat.ev">EV<span class="field-help">?<span class="tooltip" data-i18n="combat.evHelp">Effect Value - poder do efeito/ataque</span></span></span>
-            <input type="number" class="calc-input" id="ev-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="ev-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           <div class="calc-row">
             <span class="calc-label" data-i18n="combat.rv">RV<span class="field-help">?<span class="tooltip" data-i18n="combat.rvHelp">Resistance Value - resistência do alvo ao efeito</span></span></span>
-            <input type="number" class="calc-input" id="rv-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="rv-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           
           <div class="result-box" id="raps-box" style="display:none;">
@@ -226,11 +232,11 @@
           
           <div class="calc-row">
             <span class="calc-label" data-i18n="combat.ev">EV</span>
-            <input type="number" class="calc-input" id="evrv-ev-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="evrv-ev-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           <div class="calc-row">
             <span class="calc-label" data-i18n="combat.rv">RV</span>
-            <input type="number" class="calc-input" id="evrv-rv-input" min="1" max="52" data-i18n-placeholder="combat.range" placeholder="1-52">
+            <input type="number" class="calc-input" id="evrv-rv-input" min="1" max="99" data-i18n-placeholder="combat.range" placeholder="1-60+">
           </div>
           
           <div class="mode-selector">
@@ -266,24 +272,20 @@
     
     <!-- TABELAS TAB -->
     <div class="tab-content" id="tab-tabelas">
-      <div class="table-title" data-i18n="combat.tableAvOv">TABELA AV/OV (Alvo nos dados)</div>
+      <div class="table-title" data-i18n="combat.tableAction">ACTION TABLE — Colunas de Valor de Oposição (OV)</div>
       <div class="tables-section">
-        <table id="avov-table"></table>
+        <table id="action-table"></table>
       </div>
-      
-      <div class="table-title" data-i18n="combat.tableEvRvTemp">TABELA EV/RV — TEMPORÁRIO</div>
-      <div class="tables-section">
-        <table id="evrv-temp-table"></table>
+      <div class="table-legend">
+        <b>+5:</b> uma mudança de coluna para cada +5. &nbsp; <b>C:</b> Cancelar — uma linha +5 cancela uma coluna +5. &nbsp; O valor <b style="color:#E8001C">11</b> na diagonal marca AV = OV.
       </div>
-      
-      <div class="table-title" data-i18n="combat.tableEvRvPers">TABELA EV/RV — PERSISTENTE</div>
+
+      <div class="table-title" data-i18n="combat.tableResult">RESULT TABLE — Colunas de Valor de Resistência (RV)</div>
       <div class="tables-section">
-        <table id="evrv-pers-table"></table>
+        <table id="result-table"></table>
       </div>
-      
-      <div class="table-title" data-i18n="combat.tableEvRvPerm">TABELA EV/RV — PERMANENTE</div>
-      <div class="tables-section">
-        <table id="evrv-perm-table"></table>
+      <div class="table-legend">
+        <b>×:</b> para cada 5 APs de Effect Value acima de 60, aumente os RAPs em 5. &nbsp; <b>A:</b> All — RAPs iguais ao Effect Value. &nbsp; <b>N:</b> No Effect. &nbsp; <b>C:</b> Cancelar.
       </div>
     </div>
     
@@ -296,54 +298,59 @@
 // TABELAS MEGS (extraídas do sistema)
 // ═══════════════════════════════════════════
 
-// Tabela AV/OV: AVOV_TABLE[av-1][ov-1] = alvo nos dados
-// 0 = impossível (N na tabela original)
-const AVOV_TABLE = [
-  [11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334],
-  [10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348],
-  [9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362],
-  [8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377],
-  [7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393],
-  [5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409],
-  [3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426],
-  [0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444],
-  [0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462],
-  [0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481],
-  [0,0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481,500],
-  [0,0,0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481,500,520],
-  [0,0,0,0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481,500,520,541],
-  [0,0,0,0,0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481,500,520,541,562],
-  [0,0,0,0,0,0,0,0,3,5,7,8,9,10,11,12,13,14,15,17,19,21,23,26,29,32,35,39,43,47,51,56,61,66,71,77,83,89,95,101,108,115,122,129,137,145,153,161,170,179,188,197,207,217,227,238,249,260,271,283,295,308,321,334,348,362,377,393,409,426,444,462,481,500,520,541,562,584]
-];
+// ─────────────────────────────────────────────
+// TABELAS MEGS POR FAIXAS (Action Table / Result Table)
+// Colunas e linhas usam faixas de valor, como no livro de regras.
+// ─────────────────────────────────────────────
 
-// Tabela EV/RV Temporário: RAPs baseados na diferença EV-RV
-function generateEVRVTable() {
-  const table = [];
-  for (let ev = 1; ev <= 50; ev++) {
-    const row = [];
-    for (let rv = 1; rv <= 50; rv++) {
-      const diff = ev - rv;
-      if (diff <= -10) row.push(0);
-      else if (diff <= -5) row.push(1);
-      else if (diff <= -2) row.push(2);
-      else if (diff <= -1) row.push(3);
-      else if (diff <= 0) row.push(4);
-      else if (diff <= 1) row.push(5);
-      else if (diff <= 2) row.push(6);
-      else if (diff <= 3) row.push(7);
-      else if (diff <= 5) row.push(8);
-      else if (diff <= 7) row.push(9);
-      else if (diff <= 10) row.push(10);
-      else row.push(Math.min(15, 10 + Math.floor((diff - 10) / 3)));
-    }
-    table.push(row);
-  }
-  return table;
+// Faixas compartilhadas (18 faixas) usadas em linhas e colunas.
+const RANGES = ['1-2','3-4','5-6','7-8','9-10','11-12','13-15','16-18','19-21','22-24','25-27','28-30','31-35','36-40','41-45','46-50','51-55','56-60'];
+// Limites superiores de cada faixa (para mapear um valor à sua faixa).
+const RANGE_MAX = [2,4,6,8,10,12,15,18,21,24,27,30,35,40,45,50,55,60];
+
+// Mapeia um valor ao índice da sua faixa. Acima de 60, cada +5 avança uma faixa.
+function rangeIdx(v){
+  if (v <= 0) return -1;                       // -1 = coluna "0"
+  for (let i = 0; i < RANGE_MAX.length; i++) if (v <= RANGE_MAX[i]) return i;
+  return RANGE_MAX.length - 1 + Math.ceil((v - 60) / 5);
 }
 
-const EVRV_TEMP = generateEVRVTable();
-const EVRV_PERS = generateEVRVTable().map(row => row.map(v => v > 0 ? Math.floor(v * 0.75) : 0));
-const EVRV_PERM = generateEVRVTable().map(row => row.map(v => v > 0 ? Math.floor(v * 0.5) : 0));
+// ACTION TABLE — alvo nos dados. Diferença de faixa d = ovIdx - avIdx.
+const ACTION_POS = [11,13,15,18,21,24,28,32,36,40,45,50,55,60,65,70,75,80];
+const ACTION_NEG = {'-1':9,'-2':7,'-3':5,'-4':4};
+const ACTION_OV0 = [6,5,4,4,3];                // coluna OV "0" (não-oposto), por avIdx
+function actionTarget(avIdx, ovIdx){
+  const d = ovIdx - avIdx;
+  if (d <= -5) return 3;
+  if (d < 0) return ACTION_NEG[d];
+  if (d < ACTION_POS.length) return ACTION_POS[d];
+  return 80 + (d - (ACTION_POS.length - 1)) * 5;
+}
+function actionOV0(avIdx){ return avIdx < ACTION_OV0.length ? ACTION_OV0[avIdx] : 3; }
+
+// RESULT TABLE — RAPs. Linhas = Effect Value, colunas = Resistance Value (faixas).
+// 'N' = sem efeito. Coluna "0" = A (todos). Transcrito da Result Table do livro.
+const N = 'N';
+const RESULT_TABLE = [
+  [ 1, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N],
+  [ 2, 1, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N],
+  [ 3, 2, 1, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N],
+  [ 4, 3, 2, 1, N, N, N, N, N, N, N, N, N, N, N, N, N, N],
+  [ 8, 6, 4, 3, 2, 1, N, N, N, N, N, N, N, N, N, N, N, N],
+  [10, 9, 7, 6, 5, 3, 1, N, N, N, N, N, N, N, N, N, N, N],
+  [12,11, 9, 8, 7, 5, 3, 1, N, N, N, N, N, N, N, N, N, N],
+  [14,13,11,10, 9, 8, 6, 4, N, N, N, N, N, N, N, N, N, N],
+  [18,17,16,14,12,11, 9, 8, 6, 4, N, N, N, N, N, N, N, N],
+  [21,20,19,17,15,13,11, 9, 7, 5, N, N, N, N, N, N, N, N],
+  [24,23,22,20,18,16,14,12,10, 8, 6, N, N, N, N, N, N, N],
+  [27,26,25,23,21,19,17,15,13,11, 8, N, N, N, N, N, N, N],
+  [30,29,28,26,24,22,20,18,16,14,12,10, 8, N, N, N, N, N],
+  [35,34,33,31,29,27,25,23,21,19,17,14,12, 9, N, N, N, N],
+  [40,38,36,34,32,30,28,26,24,22,20,18,16,13,10, N, N, N],
+  [45,43,41,40,38,36,34,31,28,25,22,20,17,14,11, N, N, N],
+  [50,48,46,44,42,40,38,35,32,29,26,24,21,18,15,12, N, N],
+  [55,53,51,49,47,45,43,41,39,36,33,30,27,24,21,18,15,13]
+];
 
 // ═══════════════════════════════════════════
 // ESTADO
@@ -357,22 +364,24 @@ let lastRoll = null;
 // ═══════════════════════════════════════════
 
 function calcularAlvo(av, ov) {
-  if (av < 1 || av > 50 || ov < 1 || ov > 50) return null;
-  const val = AVOV_TABLE[av - 1]?.[ov - 1];
-  return val === undefined || val === 0 ? 'N' : val;
+  if (av < 1) return null;
+  const avIdx = Math.min(rangeIdx(av), RANGES.length - 1);
+  if (ov < 1) return actionOV0(avIdx);              // não-oposto (coluna 0)
+  const ovIdx = Math.min(rangeIdx(ov), RANGES.length - 1);
+  return actionTarget(avIdx, ovIdx);
 }
 
 function modeLabel(){return currentMode==='temp'?t('combat.temporary'):currentMode==='pers'?t('combat.persistent'):t('combat.permanent');}
 function calcularRAPs(ev, rv, modo) {
-  let table;
-  if (modo === 'temp') table = EVRV_TEMP;
-  else if (modo === 'pers') table = EVRV_PERS;
-  else table = EVRV_PERM;
-  
-  if (ev < 1 || rv < 1) return null;
-  const ev_idx = Math.min(ev - 1, table.length - 1);
-  const rv_idx = Math.min(rv - 1, table[0].length - 1);
-  return table[ev_idx]?.[rv_idx] || 0;
+  if (ev < 1) return 0;
+  const evIdx = Math.min(rangeIdx(ev), RESULT_TABLE.length - 1);
+  if (rv < 1) return ev;                             // coluna "0" = A (todos)
+  const rvIdx = Math.min(rangeIdx(rv), RANGES.length - 1);
+  const cell = RESULT_TABLE[evIdx]?.[rvIdx];
+  let base = (cell === 'N' || cell == null) ? 0 : cell;
+  if (modo === 'pers') base = Math.floor(base * 0.75);
+  else if (modo === 'perm') base = Math.floor(base * 0.5);
+  return base;
 }
 
 function rollDice(keepResult = false) {
@@ -489,40 +498,33 @@ function calcularEV() {
 }
 
 function renderTables() {
-  const size = 20;
-  
-  // AV/OV Table
-  let avovHtml = '<tr><th>AV\\OV</th>';
-  for (let j = 1; j <= size; j++) avovHtml += `<th>${j}</th>`;
-  avovHtml += '</tr>';
-  for (let i = 1; i <= size; i++) {
-    avovHtml += `<tr><th>${i}</th>`;
-    for (let j = 1; j <= size; j++) {
-      const val = AVOV_TABLE[i - 1]?.[j - 1];
-      if (val === 0 || val === undefined) avovHtml += '<td class="impossible">N</td>';
-      else avovHtml += `<td>${val}</td>`;
-    }
-    avovHtml += '</tr>';
-  }
-  document.getElementById('avov-table').innerHTML = avovHtml;
-  
-  // EV/RV Tables
-  ['temp', 'pers', 'perm'].forEach((mode, idx) => {
-    const tableId = mode === 'temp' ? 'evrv-temp-table' : mode === 'pers' ? 'evrv-pers-table' : 'evrv-perm-table';
-    const table = mode === 'temp' ? EVRV_TEMP : mode === 'pers' ? EVRV_PERS : EVRV_PERM;
-    let html = '<tr><th>EV\\RV</th>';
-    for (let j = 1; j <= size; j++) html += `<th>${j}</th>`;
-    html += '</tr>';
-    for (let i = 1; i <= size; i++) {
-      html += `<tr><th>${i}</th>`;
-      for (let j = 1; j <= size; j++) {
-        const val = table[i - 1]?.[j - 1];
-        html += `<td>${val || 0}</td>`;
-      }
-      html += '</tr>';
-    }
-    document.getElementById(tableId).innerHTML = html;
+  // ACTION TABLE — linhas AV, colunas OV (0 + faixas + coluna +5)
+  let a = '<tr><th>AV\\OV</th><th>0</th>';
+  RANGES.forEach(r => { a += `<th class="rng">${r}</th>`; });
+  a += '<th>+5</th></tr>';
+  RANGES.forEach((rowLbl, avIdx) => {
+    a += `<tr><th class="rng">${rowLbl}</th><td class="aux">${actionOV0(avIdx)}</td>`;
+    RANGES.forEach((_, ovIdx) => {
+      const val = actionTarget(avIdx, ovIdx);
+      a += `<td class="${ovIdx === avIdx ? 'diag' : ''}">${val}</td>`;
+    });
+    a += '<td class="aux">C</td></tr>';
   });
+  document.getElementById('action-table').innerHTML = a;
+
+  // RESULT TABLE — linhas EV, colunas RV (× + 0 + faixas + coluna +5)
+  let r = '<tr><th>EV\\RV</th><th>×</th><th>0</th>';
+  RANGES.forEach(rg => { r += `<th class="rng">${rg}</th>`; });
+  r += '<th>+5</th></tr>';
+  RESULT_TABLE.forEach((row, evIdx) => {
+    r += `<tr><th class="rng">${RANGES[evIdx]}</th><td class="aux">+1</td><td class="diag">A</td>`;
+    row.forEach((val, rvIdx) => {
+      if (val === 'N') r += '<td class="na">N</td>';
+      else r += `<td class="${rvIdx === evIdx ? 'diag' : ''}">${val}</td>`;
+    });
+    r += '<td class="aux">*</td></tr>';
+  });
+  document.getElementById('result-table').innerHTML = r;
 }
 
 // ═══════════════════════════════════════════
