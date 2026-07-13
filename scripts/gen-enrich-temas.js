@@ -53,7 +53,7 @@ function parseTag(line) {
   return { texto: s, grau };
 }
 
-const clean = o => { const r = { texto: o.texto }; if (o.grau) r.grau = o.grau; return r; };
+const clean = o => ({ texto: o.texto });
 
 function resolveTags(refs, tagMap) {
   return (refs || []).map(i => clean(typeof i === 'string' ? { texto: i, grau: 0 } : tagMap[i] || { texto: i.texto || String(i), grau: i.grau || 0 }));
@@ -110,7 +110,7 @@ const SPEC = {
       { nome: 'Telepatia Ômega', pod: [0, 1, 4], frq: [] },
       { nome: 'Sonho de Coexistência', pod: [2, 3, 5], frq: [] },
       { nome: 'Manipulador Visionário', pod: [{ texto: 'Mestre em Xadrez Psíquico', grau: 4 }, { texto: 'Sacrifica a Ética pelo Bem Maior', grau: 4 }, { texto: 'Rede de Contatos Global', grau: 3 }], frq: [] },
-      { nome: 'Pai Ausente', pod: [], frq: [{ texto: 'Paraplégico', grau: 3 }, { texto: 'Manipula Alunos como Soldados', grau: 3 }, { texto: 'Apaga Mentes sem Consentimento', grau: 3 }, { texto: 'Fisicamente Frágil e Doente', grau: 2 }, { texto: 'Segredos que Pesam na Consciência', grau: 2 }] }
+      { nome: 'Pai Ausente', pod: [{ texto: 'Criou Gerações de Mutantes', grau: 4 }, { texto: 'Legado Vive nos Alunos', grau: 3 }], frq: [{ texto: 'Paraplégico', grau: 3 }, { texto: 'Manipula Alunos como Soldados', grau: 3 }, { texto: 'Apaga Mentes sem Consentimento', grau: 3 }, { texto: 'Fisicamente Frágil e Doente', grau: 2 }, { texto: 'Segredos que Pesam na Consciência', grau: 2 }] }
     ]
   },
   'Jean Grey': {
@@ -127,7 +127,7 @@ const SPEC = {
       { nome: 'Telepatia Ofensiva', pod: [0, 2], frq: [] },
       { nome: 'Diamante', pod: [1], frq: [{ texto: 'Sem Telepatia em Forma de Diamante', grau: 3 }] },
       { nome: 'Professora dos Perdidos', pod: [{ texto: 'Lealdade Feroz aos Alunos', grau: 4 }, { texto: 'Mentora Brutal e Exigente', grau: 3 }], frq: [{ texto: 'Luto pelos Hellions Assassinados', grau: 3 }, { texto: 'Passado Villão Assombra', grau: 2 }] },
-      { nome: 'Frieza Calculista', pod: [], frq: [{ texto: 'Arrogância como Escudo', grau: 3 }, { texto: 'Pragmatismo Moralmente Cinzento', grau: 2 }, { texto: 'Dificuldade de Confiar', grau: 2 }] }
+      { nome: 'Frieza Calculista', pod: [{ texto: 'Manipulação Psíquica Sutil', grau: 4 }, { texto: 'Mente Tática e Inescrupulosa', grau: 3 }], frq: [{ texto: 'Arrogância como Escudo', grau: 3 }, { texto: 'Pragmatismo Moralmente Cinzento', grau: 2 }, { texto: 'Dificuldade de Confiar', grau: 2 }] }
     ]
   },
   'Rachel Summers': {
@@ -176,7 +176,7 @@ const SPEC = {
       { nome: 'Intelecto Genial', pod: [1, 4], frq: [] },
       { nome: 'Fera Azul', pod: [0, 2, 3], frq: [{ texto: 'Aparência Desfavorece Socialmente', grau: 2 }] },
       { nome: 'Cientista sem Escrúpulos', pod: [{ texto: 'Ex-Diretor da X-Force CIA', grau: 4 }], frq: [{ texto: 'Escorregou Moralmente', grau: 3 }, { texto: 'Clonou e Matou Wolverine', grau: 3 }, { texto: 'Prisões Secretas e Experimentos', grau: 3 }] },
-      { nome: 'Jekyll & Hyde', pod: [], frq: [{ texto: 'Duas Versões de Si em Guerra', grau: 3 }, { texto: 'Vaidade Intelectual', grau: 2 }] }
+      { nome: 'Jekyll & Hyde', pod: [{ texto: 'Intelecto Genial', grau: 4 }, { texto: 'Capacidade de Adaptação Moral', grau: 3 }], frq: [{ texto: 'Duas Versões de Si em Guerra', grau: 3 }, { texto: 'Vaidade Intelectual', grau: 2 }] }
     ]
   },
   'Ícone': {
@@ -191,7 +191,7 @@ const SPEC = {
       { nome: 'Asas de Anjo', pod: [0, 3], frq: [] },
       { nome: 'Bilionário Filantropo', pod: [2, 4], frq: [] },
       { nome: 'Sangue de Cura', pod: [1], frq: [] },
-      { nome: 'Anjo da Morte', pod: [], frq: [{ texto: 'Trauma de Apocalipse', grau: 3 }, { texto: 'Lado Sombrio Arcangel', grau: 3 }] }
+      { nome: 'Anjo da Morte', pod: [{ texto: 'Asas Metálicas Cortantes', grau: 4 }, { texto: 'Voo Sônico e Precisão Aérea', grau: 3 }], frq: [{ texto: 'Trauma de Apocalipse', grau: 3 }, { texto: 'Lado Sombrio Arcangel', grau: 3 }] }
     ]
   },
   'Colossus': {
@@ -199,7 +199,7 @@ const SPEC = {
       { nome: 'Aço Orgânico', pod: [0, 1, 2], frq: [] },
       { nome: 'Artista e Guerreiro', pod: [3], frq: [] },
       { nome: 'Protetor da Família', pod: [{ texto: 'Lealdade à Irmã Magik', grau: 4 }, { texto: 'Força Interior', grau: 3 }], frq: [] },
-      { nome: 'Gigante Gentil', pod: [], frq: [{ texto: 'Pesa a Perda de Seus Amigos', grau: 2 }, { texto: 'Manso Demais para Ser Cruel', grau: 1 }] }
+      { nome: 'Gigante Gentil', pod: [{ texto: 'Força Sobre-humana', grau: 5 }, { texto: 'Pele de Aço Orgânico', grau: 4 }], frq: [{ texto: 'Pesa a Perda de Seus Amigos', grau: 2 }, { texto: 'Manso Demais para Ser Cruel', grau: 1 }] }
     ]
   },
   'Noturno': {
@@ -221,7 +221,7 @@ const SPEC = {
   'Rogue': {
     cards: [
       { nome: 'Absorção de Poderes', pod: [0, 1, 2], frq: [] },
-      { nome: 'Toque Letal', pod: [], frq: [{ texto: 'Não Pode Tocar Ninguém sem Absorver', grau: 4 }, { texto: 'Isolamento Emocional Permanente', grau: 3 }, { texto: 'Múltiplas Personalidades Absorvidas', grau: 3 }] },
+      { nome: 'Toque Letal', pod: [{ texto: 'Absorve Poderes, Memórias e Personalidade', grau: 5 }], frq: [{ texto: 'Não Pode Tocar Ninguém sem Absorver', grau: 4 }, { texto: 'Isolamento Emocional Permanente', grau: 3 }, { texto: 'Múltiplas Personalidades Absorvidas', grau: 3 }] },
       { nome: 'Villã Redimida', pod: [{ texto: 'Força e Voo (Miss Marvel)', grau: 4 }, { texto: 'Liderança de Equipe', grau: 3 }, { texto: 'Força de Vontade Inabalável', grau: 3 }], frq: [{ texto: 'Passado na Irmandade Assombra', grau: 2 }] },
       { nome: 'Amor à Prova de Toque', pod: [{ texto: 'Casada com Gambit', grau: 3 }], frq: [{ texto: 'Mystique a Manipulou por Anos', grau: 2 }] }
     ]
@@ -635,7 +635,7 @@ const SPEC = {
       { nome: 'Primeiro Mutante', pod: [0, 1, 2], frq: [] },
       { nome: 'Sobrevivência do Mais Forte', pod: [3, 4], frq: [] },
       { nome: 'Pai dos Cavaleiros', pod: [5], frq: [{ texto: 'Visão Distorcida de Evolução', grau: 3 }] },
-      { nome: 'Armadura Cósmica', pod: [], frq: [{ texto: 'Depende da Armadura Celestial', grau: 2 }] }
+      { nome: 'Armadura Cósmica', pod: [{ texto: 'Armadura de Tecnologia Celestial', grau: 5 }, { texto: 'Adaptador Molecular', grau: 4 }], frq: [{ texto: 'Depende da Armadura Celestial', grau: 2 }] }
     ]
   },
   'Sentinela Mk I': {
@@ -944,6 +944,208 @@ const SPEC = {
     cards: [
       { nome: 'Portal Temporal', pod: [0], frq: [] },
       { nome: 'Assassino do Tempo', pod: [1], frq: [{ texto: 'Ambicioso e Cruel', grau: 2 }] }
+    ]
+  },
+
+  // ── alto (DB-only, no markdown) ──
+  'Estrela Polar': {
+    cards: [
+      { nome: 'Velocista Supersónico', pod: [{ texto: 'Velocidade Supersónica', grau: 5 }, { texto: 'Voo e Reflexos Sobre-Humanos', grau: 4 }], frq: [] },
+      { nome: 'Herança da Alfa Flight', pod: [{ texto: 'Gêmeo de Aurora', grau: 3 }, { texto: 'Ex-membro da Alfa Flight', grau: 3 }], frq: [{ texto: 'Orgulho Francês-Canadense', grau: 2 }] }
+    ]
+  },
+  'Foxx': {
+    cards: [
+      { nome: 'Mística Infiltrada', pod: [{ texto: 'Metamorfismo Perfeito (Mística)', grau: 6 }, { texto: 'Imita Voz, Rosto e Impressões Digitais', grau: 5 }, { texto: 'Disfarce Indetectável', grau: 4 }, { texto: 'Mímica de Aparência e Gênero', grau: 4 }, { texto: 'Regeneração Lenta', grau: 3 }], frq: [] },
+      { nome: 'Espiã Sedutora', pod: [{ texto: 'Espionagem e Sedução de Elite', grau: 5 }, { texto: 'Provocação e Manipulação Constantes', grau: 4 }, { texto: 'Leitura Fria de Pessoas', grau: 3 }, { texto: 'Rede de Contatos no Submundo', grau: 3 }], frq: [] },
+      { nome: 'Veterana da Irmandade', pod: [{ texto: 'Séculos de Experiência em Combate', grau: 4 }, { texto: 'Marcialista e Assassina Letal', grau: 4 }, { texto: 'Sabotagem e Infiltração', grau: 3 }, { texto: 'Nervos de Aço', grau: 2 }], frq: [] },
+      { nome: 'Agente Duplo', pod: [{ texto: 'Testa os Limites de Gambit', grau: 3 }, { texto: 'Infiltrada entre os Alunos', grau: 3 }], frq: [{ texto: 'Identidade Oculta', grau: 3 }] },
+      { nome: 'Lealdade Incerta', pod: [], frq: [{ texto: 'Agenda Secreta Própria', grau: 4 }, { texto: 'Lealdade Questionável', grau: 4 }, { texto: 'Frieza que Afasta Vínculos', grau: 3 }, { texto: 'Manipuladora por Instinto', grau: 2 }] }
+    ]
+  },
+  'Loa': {
+    cards: [
+      { nome: 'Toque Dissipador', pod: [{ texto: 'Fase Através da Matéria Sólida', grau: 5 }, { texto: 'Desintegração por Contato', grau: 5 }, { texto: 'Rastros de Decomposição', grau: 4 }, { texto: 'Intangibilidade Defensiva', grau: 4 }, { texto: 'Ataque que Ignora Armaduras', grau: 3 }], frq: [] },
+      { nome: 'Alma Havaiana', pod: [{ texto: 'Espírito Livre e Praiano', grau: 4 }, { texto: 'Misticismo das Ilhas', grau: 3 }, { texto: 'Otimismo Contagiante', grau: 3 }], frq: [] },
+      { nome: 'Provação Vampírica', pod: [{ texto: 'Sobreviveu à Mordida de um Vampiro', grau: 3 }, { texto: 'Amizade com Anole e Match', grau: 3 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Deslize Perigoso', pod: [], frq: [{ texto: 'Poder Destrutivo que a Assusta', grau: 3 }, { texto: 'Medo de Machucar Quem Ama', grau: 3 }, { texto: 'Controle Instável sob Emoção', grau: 2 }, { texto: 'Inexperiente em Batalha', grau: 2 }] },
+      { nome: 'Sonhadora', pod: [{ texto: 'Curiosidade Insaciável', grau: 3 }, { texto: 'Lealdade aos Corsários', grau: 2 }], frq: [{ texto: 'Distrai-se Facilmente', grau: 2 }, { texto: 'Adolescente Impulsiva', grau: 2 }] }
+    ]
+  },
+  'Morbius': {
+    cards: [
+      { nome: 'Vampiro Genial', pod: [{ texto: 'Gênio em Bioquímica e Hematologia', grau: 5 }, { texto: 'Voo Sobre-Humano', grau: 4 }, { texto: 'Fator de Cura Acelerado', grau: 4 }], frq: [{ texto: 'Sede Incontrolável por Sangue', grau: 4 }, { texto: 'Aversão à Luz Solar', grau: 3 }] },
+      { nome: 'Médico Monstruoso', pod: [{ texto: 'Hipnose e Controle Mental', grau: 4 }, { texto: 'Garras e Presas Retráteis', grau: 4 }, { texto: 'Mordida Transforma Vítimas em Vampiros', grau: 5 }], frq: [{ texto: 'Ausência de Alma (confirmada por Doutor Estranho)', grau: 5 }] },
+      { nome: 'Morgan Michaels', pod: [{ texto: 'Soro de Sangue Irradiado (transformação temporária em humano)', grau: 3 }, { texto: 'Identidade Falsa (Morgan Michaels)', grau: 3 }], frq: [{ texto: 'Sangue Lilin Corruptor (pode perder o controle)', grau: 3 }] }
+    ]
+  },
+  'Três-em-Uma (Stepford Cuckoos)': {
+    cards: [
+      { nome: 'Mente de Colmeia', pod: [{ texto: 'Mente de Colmeia Telepática', grau: 6 }, { texto: 'Telepatia de Nível Ômega em Conjunto', grau: 5 }, { texto: 'Ilusões e Ataques Psíquicos', grau: 4 }, { texto: 'Controle Mental Coordenado', grau: 4 }, { texto: 'Leitura Simultânea de Muitas Mentes', grau: 3 }], frq: [] },
+      { nome: 'Diamante Herdado', pod: [{ texto: 'Forma de Diamante (como Emma)', grau: 4 }, { texto: 'Elegância Fria e Calculista', grau: 3 }, { texto: 'Filhas/Clones de Emma Frost', grau: 3 }], frq: [] },
+      { nome: 'Trio Inseparável', pod: [{ texto: 'Completam as Frases umas das Outras', grau: 3 }, { texto: 'Falam como uma Só Voz', grau: 3 }, { texto: 'Alunas de Elite do Instituto', grau: 2 }], frq: [] },
+      { nome: 'Luto e Fragmentos', pod: [], frq: [{ texto: 'Luto pelas Irmãs Perdidas (Sophie e Esme)', grau: 4 }, { texto: 'Arrogância que Afasta', grau: 3 }, { texto: 'Elo Enfraquece se Separadas', grau: 3 }, { texto: 'Frieza Emocional', grau: 2 }] }
+    ]
+  },
+
+  // ── medio (DB-only, no markdown) ──
+  'Anole': {
+    cards: [
+      { nome: 'Lagarto Adaptável', pod: [{ texto: 'Camuflagem Cromática', grau: 4 }, { texto: 'Língua Preênsil Extensível', grau: 4 }, { texto: 'Garras e Aderência a Superfícies', grau: 4 }, { texto: 'Regeneração de Membros', grau: 3 }, { texto: 'Agilidade Réptil', grau: 3 }], frq: [] },
+      { nome: 'Orgulho de Victor', pod: [{ texto: 'Assumidamente Gay e Confiante', grau: 3 }, { texto: 'Sarcasmo como Escudo', grau: 3 }, { texto: 'Ídolo dos Alunos Marginalizados', grau: 2 }], frq: [] },
+      { nome: 'Irmão de Armas', pod: [{ texto: 'Melhor Amigo de Rockslide', grau: 3 }, { texto: 'Lealdade Feroz à Equipe', grau: 3 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Peso do Sobrevivente', pod: [], frq: [{ texto: 'Culpa de Sobrevivente (Genosha)', grau: 3 }, { texto: 'Aparência Monstruosa Julgada', grau: 2 }, { texto: 'Impulsividade Adolescente', grau: 2 }, { texto: 'Inexperiente em Combate Real', grau: 2 }] }
+    ]
+  },
+  'Bling!': {
+    cards: [
+      { nome: 'Pele de Diamante', pod: [{ texto: 'Esqueleto de Diamante Semi-Orgânico', grau: 5 }, { texto: 'Arremessa Projéteis de Diamante', grau: 4 }, { texto: 'Resistência Excepcional a Dano', grau: 4 }, { texto: 'Corte Afiado no Combate', grau: 3 }], frq: [] },
+      { nome: 'Brilho Próprio', pod: [{ texto: 'Autoconfiança Deslumbrante', grau: 4 }, { texto: 'Assumidamente Lésbica e Estilosa', grau: 3 }, { texto: 'Presença de Estrela', grau: 2 }], frq: [] },
+      { nome: 'Filha de Astros', pod: [{ texto: 'Herança de Família Musical', grau: 2 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Fachada Reluzente', pod: [], frq: [{ texto: 'Vaidade Exagerada', grau: 3 }, { texto: 'Esconde Medos sob o Estilo', grau: 2 }, { texto: 'Provoca Rivalidades', grau: 2 }, { texto: 'Novata em Missões Reais', grau: 2 }] }
+    ]
+  },
+  'Boggart': {
+    cards: [
+      { nome: 'Pesadelo Vivo', pod: [{ texto: 'Metamorfose Aterrorizante', grau: 4 }, { texto: 'Assume a Forma do Medo do Alvo', grau: 4 }, { texto: 'Intimidação Psicológica', grau: 3 }, { texto: 'Aparência Naturalmente Sinistra', grau: 2 }], frq: [] },
+      { nome: 'Comediante Sombrio', pod: [{ texto: 'Humor Negro e Brincalhão', grau: 3 }, { texto: 'Leal aos Amigos Ferozmente', grau: 3 }, { texto: 'Alívio Cômico da Equipe', grau: 2 }], frq: [] },
+      { nome: 'Incompreendido', pod: [{ texto: 'Coração Gentil sob a Máscara', grau: 3 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Rosto que Assusta', pod: [], frq: [{ texto: 'Aspecto Assustador Permanente', grau: 3 }, { texto: 'Rejeitado por Estranhos', grau: 3 }, { texto: 'Insegurança com a Aparência', grau: 2 }, { texto: 'Inexperiente em Combate', grau: 2 }] }
+    ]
+  },
+  'Dríade': {
+    cards: [
+      { nome: 'Voz da Floresta', pod: [{ texto: 'Comunhão e Manipulação da Flora', grau: 5 }, { texto: 'Fala com as Plantas', grau: 4 }, { texto: 'Cresce Vegetação Instantânea', grau: 3 }, { texto: 'Enredamento por Raízes e Cipós', grau: 3 }], frq: [] },
+      { nome: 'Raiz Profunda', pod: [{ texto: 'Serenidade de Floresta Antiga', grau: 3 }, { texto: 'Ligação Espiritual com a Natureza', grau: 3 }], frq: [] },
+      { nome: 'Guardiã Verde', pod: [{ texto: 'Cuidado com os Vulneráveis', grau: 2 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Teimosia de Carvalho', pod: [], frq: [{ texto: 'Teimosa e Imóvel quando Provocada', grau: 3 }, { texto: 'Torna-se Espinhosa sob Estresse', grau: 2 }, { texto: 'Depende de Ambiente com Vida', grau: 2 }, { texto: 'Novata em Combate', grau: 2 }] }
+    ]
+  },
+  'Dust (Poeira)': {
+    cards: [
+      { nome: 'Tempestade de Areia', pod: [{ texto: 'Transforma-se em Nuvem de Areia Abrasiva', grau: 5 }, { texto: 'Controle de Partículas Finas', grau: 4 }, { texto: 'Esfola Inimigos como Lixa', grau: 4 }, { texto: 'Forma Intangível Evasiva', grau: 3 }], frq: [] },
+      { nome: 'Fé Inabalável', pod: [{ texto: 'Muçulmana Devota (usa niqab)', grau: 4 }, { texto: 'Determinação Silenciosa', grau: 4 }, { texto: 'Modéstia de Princípio', grau: 3 }], frq: [] },
+      { nome: 'Longe de Casa', pod: [{ texto: 'Refugiada do Afeganistão', grau: 3 }, { texto: 'Amizade Leal com Mercúrio', grau: 2 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Reserva', pod: [], frq: [{ texto: 'Timidez e Reserva', grau: 3 }, { texto: 'Trauma de Cativeiro no Passado', grau: 2 }, { texto: 'Estranheza Cultural a Isola', grau: 2 }, { texto: 'Inexperiente em Combate', grau: 2 }] }
+    ]
+  },
+  'Espectro': {
+    cards: [
+      { nome: 'Fantasma Andante', pod: [{ texto: 'Intangibilidade', grau: 5 }, { texto: 'Invisibilidade Parcial', grau: 4 }, { texto: 'Atravessa Paredes', grau: 4 }, { texto: 'Evasão e Fuga', grau: 3 }], frq: [] },
+      { nome: 'Alma Distante', pod: [{ texto: 'Humor Seco e Sussurrado', grau: 3 }, { texto: 'Observador Perspicaz', grau: 2 }], frq: [] },
+      { nome: 'Aparece na Hora Certa', pod: [{ texto: 'Surge do Nada quando a Equipe Precisa', grau: 3 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Fuga Constante', pod: [], frq: [{ texto: 'Foge dos Conflitos', grau: 3 }, { texto: 'Introversão e Melancolia', grau: 3 }, { texto: 'Distante e Esquivo', grau: 2 }, { texto: 'Evita Compromisso', grau: 2 }] }
+    ]
+  },
+  'Espinho': {
+    cards: [
+      { nome: 'Chuva de Espinhos', pod: [{ texto: 'Projeta Espinhos pelo Corpo', grau: 5 }, { texto: 'Defesa e Ataque à Distância', grau: 4 }, { texto: 'Manto Perfurante', grau: 3 }, { texto: 'Cobertura de Supressão', grau: 3 }], frq: [] },
+      { nome: 'Casca Defensiva', pod: [{ texto: 'Lealdade Extrema aos Próximos', grau: 2 }, { texto: 'Coragem Silenciosa', grau: 2 }], frq: [{ texto: 'Personalidade Eriçada e Reclusa', grau: 3 }] },
+      { nome: 'Desejo de Pertencer', pod: [{ texto: 'Anseia por Aceitação', grau: 2 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Muros Internos', pod: [], frq: [{ texto: 'Fecha-se num Casulo de Desconfiança', grau: 3 }, { texto: 'Dificuldade de Fazer Amigos', grau: 2 }, { texto: 'Autoimagem Negativa', grau: 2 }] }
+    ]
+  },
+  'Garoto Chuva': {
+    cards: [
+      { nome: 'Corpo de Água', pod: [{ texto: 'Fisiologia Aquática', grau: 4 }, { texto: 'Provoca Chuva Localizada', grau: 4 }, { texto: 'Fluidez que Absorve Golpes', grau: 3 }, { texto: 'Controle da Umidade', grau: 3 }], frq: [] },
+      { nome: 'Céu Nublado', pod: [{ texto: 'Sensibilidade Emocional Profunda', grau: 3 }, { texto: 'Doçura Melancólica', grau: 2 }], frq: [] },
+      { nome: 'Alma Sensível', pod: [{ texto: 'Aluno do Instituto Xavier', grau: 2 }, { texto: 'Bondade Genuína', grau: 2 }], frq: [] },
+      { nome: 'Tempestade Interior', pod: [], frq: [{ texto: 'Chove Quando Fica Triste', grau: 3 }, { texto: 'Melancolia que Afasta', grau: 3 }, { texto: 'Frágil a Rejeições', grau: 2 }, { texto: 'Novato Inseguro', grau: 2 }] }
+    ]
+  },
+  'Indra': {
+    cards: [
+      { nome: 'Escudo Vivo', pod: [{ texto: 'Armadura Retrátil de Placas', grau: 4 }, { texto: 'Escudos Corporais Defensivos', grau: 4 }, { texto: 'Resistência a Impactos', grau: 3 }, { texto: 'Ancoragem Inabalável', grau: 2 }], frq: [] },
+      { nome: 'Herança Jainista', pod: [{ texto: 'Fé Hindu-Jainista Devota', grau: 4 }, { texto: 'Pacifismo de Princípio', grau: 4 }, { texto: 'Educação Rígida da Família', grau: 3 }], frq: [] },
+      { nome: 'Jovem entre Dois Mundos', pod: [{ texto: 'Senso de Dever', grau: 3 }, { texto: 'Cortesia e Diplomacia', grau: 3 }, { texto: 'Adolescente Mutante (14-16)', grau: 1 }], frq: [] },
+      { nome: 'Relutância do Guerreiro', pod: [], frq: [{ texto: 'Hesita em Usar Força Ofensiva', grau: 3 }, { texto: 'Medo de Desonrar a Família', grau: 3 }, { texto: 'Casamento Arranjado o Pressiona', grau: 2 }, { texto: 'Novato sob Pressão', grau: 2 }] }
+    ]
+  },
+  'Kidogo': {
+    cards: [
+      { nome: 'Gigante e Formiga', pod: [{ texto: 'Alteração de Tamanho (formiga a gigante)', grau: 5 }, { texto: 'Força Proporcional ao Tamanho', grau: 4 }, { texto: 'Resistência Colossal quando Grande', grau: 4 }, { texto: 'Furtividade quando Minúsculo', grau: 3 }], frq: [] },
+      { nome: 'Coração Humilde', pod: [{ texto: 'Humildade Genuína', grau: 3 }, { texto: 'Humor Contagiante', grau: 3 }, { texto: 'Faz Todos se Sentirem Bem', grau: 2 }], frq: [] },
+      { nome: 'Raízes Africanas', pod: [{ texto: 'Orgulho da Origem Suaíli', grau: 3 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Sombra da Própria Grandeza', pod: [], frq: [{ texto: 'Subestima o Próprio Poder', grau: 3 }, { texto: 'Autodepreciação Constante', grau: 2 }, { texto: 'Timidez em Assumir Liderança', grau: 2 }, { texto: 'Adolescente Inseguro', grau: 2 }] }
+    ]
+  },
+  'Mira (Pinpoint)': {
+    cards: [
+      { nome: 'Precisão Absoluta', pod: [{ texto: 'Localiza Assinaturas Energéticas', grau: 5 }, { texto: 'Identifica Pontos Fracos', grau: 4 }, { texto: 'Nunca se Perde (literalmente)', grau: 3 }, { texto: 'Percepção Tática Aguçada', grau: 3 }], frq: [] },
+      { nome: 'Mente Metódica', pod: [{ texto: 'Raciocínio Analítico e Frio', grau: 4 }, { texto: 'Memória Espacial Perfeita', grau: 3 }, { texto: 'Estrategista de Reconhecimento', grau: 3 }], frq: [] },
+      { nome: 'Valor de Batedora', pod: [{ texto: 'Indispensável em Missões', grau: 2 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Excesso de Confiança', pod: [], frq: [{ texto: 'Arrogância pela Precisão', grau: 3 }, { texto: 'Impaciência com os Menos Exatos', grau: 2 }, { texto: 'Frágil em Combate Corpo a Corpo', grau: 2 }, { texto: 'Inexperiente sob Fogo', grau: 2 }] }
+    ]
+  },
+  'Moça de Borracha': {
+    cards: [
+      { nome: 'Corpo Elástico', pod: [{ texto: 'Elasticidade e Maleabilidade Total', grau: 5 }, { texto: 'Amortece Impactos', grau: 4 }, { texto: 'Estica-se a Grandes Distâncias', grau: 4 }, { texto: 'Molda-se a Qualquer Forma', grau: 3 }], frq: [] },
+      { nome: 'Otimismo Blindado', pod: [{ texto: 'Humor Físico e Palhaçadas', grau: 4 }, { texto: 'Otimismo Inabalável', grau: 3 }, { texto: 'Usa o Riso como Armadura', grau: 3 }], frq: [] },
+      { nome: 'Espírito de Equipe', pod: [{ texto: 'Adapta-se a Qualquer Situação', grau: 3 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Distração', pod: [], frq: [{ texto: 'Desajeitada e Distraída', grau: 3 }, { texto: 'Esconde Inseguranças no Humor', grau: 2 }, { texto: 'Leva Combate Pouco a Sério', grau: 2 }, { texto: 'Novata em Missões', grau: 2 }] }
+    ]
+  },
+  'Náiade': {
+    cards: [
+      { nome: 'Senhora das Águas', pod: [{ texto: 'Hidrocinese em Estado Líquido', grau: 5 }, { texto: 'Manipula Grandes Volumes de Água', grau: 4 }, { texto: 'Purifica ou Contamina Água', grau: 3 }, { texto: 'Chicotes e Escudos de Água', grau: 3 }], frq: [] },
+      { nome: 'Temperamento de Maré', pod: [{ texto: 'Personalidade Fluida e Serena', grau: 3 }, { texto: 'Adapta-se como a Corrente', grau: 3 }], frq: [] },
+      { nome: 'Serenidade Aprendida', pod: [{ texto: 'Calma que Acalma os Outros', grau: 3 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Águas Turvas', pod: [], frq: [{ texto: 'Torna-se Turbulenta sob Pressão', grau: 3 }, { texto: 'Depende de Fonte de Água', grau: 3 }, { texto: 'Emoção Descontrola o Poder', grau: 2 }, { texto: 'Novata em Batalha', grau: 2 }] }
+    ]
+  },
+  'Onyxx': {
+    cards: [
+      { nome: 'Tanque de Granito', pod: [{ texto: 'Corpo de Pedra Sólida', grau: 5 }, { texto: 'Superforça e Resistência', grau: 5 }, { texto: 'Muralha Viva em Combate', grau: 4 }, { texto: 'Investida Devastadora', grau: 3 }], frq: [] },
+      { nome: 'Coração de Ouro', pod: [{ texto: 'Jeito Rapper e Fanfarrão', grau: 3 }, { texto: 'Protetor Secreto dos Mais Fracos', grau: 3 }, { texto: 'Presença Divertida', grau: 2 }], frq: [] },
+      { nome: 'Grandalhão do Instituto', pod: [{ texto: 'Aluno do Instituto Xavier', grau: 2 }, { texto: 'Condicionamento Bruto', grau: 2 }], frq: [] },
+      { nome: 'Peso da Pedra', pod: [], frq: [{ texto: 'Movimentos Lentos', grau: 3 }, { texto: 'Esconde a Bondade por Vergonha', grau: 2 }, { texto: 'Alvo por Ser Grande', grau: 2 }, { texto: 'Inexperiente em Tática', grau: 2 }] }
+    ]
+  },
+  'Rede (Network)': {
+    cards: [
+      { nome: 'Rede Telepática', pod: [{ texto: 'Transmissão Telepática em Massa', grau: 5 }, { texto: 'Leitura de Pensamentos como Rede Social', grau: 4 }], frq: [] },
+      { nome: 'Fofoca Digital', pod: [{ texto: 'Irreverência e Fofoca', grau: 3 }], frq: [{ texto: 'Maturidade em Crescimento', grau: 2 }, { texto: 'Pode Invadir a Privacidade Alheia', grau: 3 }] }
+    ]
+  },
+  'Trovão': {
+    cards: [
+      { nome: 'Voz de Trovão', pod: [{ texto: 'Ondas de Choque Sônicas pela Voz', grau: 5 }, { texto: 'Gera Trovões e Vibrações', grau: 4 }, { texto: 'Ataque em Área Ensurdecedor', grau: 3 }], frq: [] },
+      { nome: 'Alma Incandescente', pod: [{ texto: 'Espírito Brasileiro Contagiante', grau: 3 }, { texto: 'Paixão pelo Futebol e Samba', grau: 2 }, { texto: 'Energia que Anima a Equipe', grau: 2 }], frq: [] },
+      { nome: 'Coração Grande', pod: [{ texto: 'Generosidade Calorosa', grau: 3 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Estouro', pod: [], frq: [{ texto: 'Temperamento Explosivo', grau: 3 }, { texto: 'Danos Acústicos Involuntários', grau: 3 }, { texto: 'Fala Mais Alto que Pensa', grau: 2 }, { texto: 'Novato Impulsivo', grau: 2 }] }
+    ]
+  },
+  'Umbra': {
+    cards: [
+      { nome: 'Andarilha das Sombras', pod: [{ texto: 'Viagem e Manipulação de Sombras', grau: 5 }, { texto: 'Furtividade e Infiltração Absolutas', grau: 4 }, { texto: 'Ataques a partir da Penumbra', grau: 3 }, { texto: 'Camuflagem nas Trevas', grau: 3 }], frq: [] },
+      { nome: 'Guardiã Silenciosa', pod: [{ texto: 'Protege em Silêncio', grau: 3 }, { texto: 'Observa Mais do que Age', grau: 3 }], frq: [] },
+      { nome: 'Enigma', pod: [{ texto: 'Mistério que Intriga a Equipe', grau: 2 }, { texto: 'Aluna do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Prisão de Trevas', pod: [], frq: [{ texto: 'Depende de Fontes de Sombra', grau: 3 }, { texto: 'Introversão Isolante', grau: 3 }, { texto: 'Dificuldade de Confiar', grau: 2 }, { texto: 'Pouca Prática de Combate', grau: 2 }] }
+    ]
+  },
+  'Vic Slaughter': {
+    cards: [
+      { nome: 'Cria Vampírica', pod: [{ texto: 'Força e Velocidade Vampíricas Aprimoradas', grau: 4 }, { texto: 'Fator de Cura Moderado', grau: 3 }, { texto: 'Garras e Presas', grau: 3 }], frq: [{ texto: 'Sede de Sangue (menos controlada que Morbius)', grau: 4 }] },
+      { nome: 'Corpo Distorcido', pod: [{ texto: 'Distorção Corporal (pode estender membros)', grau: 3 }], frq: [{ texto: 'Vulnerável a Luz Solar e Símbolos Sagrados', grau: 3 }] },
+      { nome: 'Ex-Hardcase', pod: [{ texto: 'Ex-líder dos Hardcases', grau: 3 }], frq: [{ texto: 'Lealdade Forçada a Morbius', grau: 3 }] },
+      { nome: 'Limitações Sombrias', pod: [], frq: [{ texto: 'Sem Habilidades Científicas', grau: 2 }] }
+    ]
+  },
+  'Xenônio': {
+    cards: [
+      { nome: 'Gás Nobre', pod: [{ texto: 'Emissão de Gases e Energias Espectrais', grau: 4 }, { texto: 'Cria Ilusões Gasosas', grau: 4 }, { texto: 'Brilho Luminoso Desorientador', grau: 3 }, { texto: 'Forma Gasosa Evasiva', grau: 3 }], frq: [] },
+      { nome: 'Inconstância Nobre', pod: [{ texto: 'Carisma Volátil e Cintilante', grau: 3 }, { texto: 'Criatividade Imprevisível', grau: 2 }], frq: [] },
+      { nome: 'Presença Efêmera', pod: [{ texto: 'Surge e Some sem Aviso', grau: 2 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Instabilidade', pod: [], frq: [{ texto: 'Humor Volátil (brilha e apaga)', grau: 3 }, { texto: 'Dificuldade de se Fixar Física e Mentalmente', grau: 3 }, { texto: 'Pouca Constância em Treino', grau: 2 }, { texto: 'Inexperiente', grau: 2 }] }
+    ]
+  },
+
+  // ── baixo (DB-only) ──
+  'Flubber': {
+    cards: [
+      { nome: 'Geleia Viva', pod: [{ texto: 'Massa Gelatinosa e Elástica', grau: 4 }, { texto: 'Maleabilidade Extrema', grau: 3 }, { texto: 'Espreme-se por Qualquer Fresta', grau: 3 }], frq: [] },
+      { nome: 'Alma Boba', pod: [{ texto: 'Entusiasmo Contagiante', grau: 4 }, { texto: 'Não Tem Um Osso Mau (literalmente)', grau: 2 }, { texto: 'Aluno do Instituto Xavier', grau: 2 }], frq: [] },
+      { nome: 'Trapalhão', pod: [], frq: [{ texto: 'Desastre Desajeitado', grau: 3 }, { texto: 'Alvo Fácil e Frágil', grau: 3 }, { texto: 'Leva Pouco a Sério', grau: 2 }] }
     ]
   }
 };
@@ -1337,7 +1539,43 @@ function totalTagsTarget(danger) {
   return 10;
 }
 
+// ── DB-only NPC meta (no markdown entry) ──
+const DB_ONLY_META = {
+  'Estrela Polar': { faction: 'x-men', danger: 'alto' },
+  'Foxx': { faction: 'vilao', danger: 'alto' },
+  'Loa': { faction: 'x-men', danger: 'alto' },
+  'Morbius': { faction: 'vilao', danger: 'alto' },
+  'Três-em-Uma (Stepford Cuckoos)': { faction: 'x-men', danger: 'alto' },
+  'Anole': { faction: 'x-men', danger: 'medio' },
+  'Bling!': { faction: 'x-men', danger: 'medio' },
+  'Boggart': { faction: 'x-men', danger: 'medio' },
+  'Dríade': { faction: 'x-men', danger: 'medio' },
+  'Dust (Poeira)': { faction: 'x-men', danger: 'medio' },
+  'Espectro': { faction: 'x-men', danger: 'medio' },
+  'Espinho': { faction: 'x-men', danger: 'medio' },
+  'Garoto Chuva': { faction: 'novatos', danger: 'medio' },
+  'Indra': { faction: 'x-men', danger: 'medio' },
+  'Kidogo': { faction: 'x-men', danger: 'medio' },
+  'Mira (Pinpoint)': { faction: 'x-men', danger: 'medio' },
+  'Moça de Borracha': { faction: 'x-men', danger: 'medio' },
+  'Náiade': { faction: 'x-men', danger: 'medio' },
+  'Onyxx': { faction: 'x-men', danger: 'medio' },
+  'Rede (Network)': { faction: 'x-men', danger: 'medio' },
+  'Trovão': { faction: 'x-men', danger: 'medio' },
+  'Umbra': { faction: 'x-men', danger: 'medio' },
+  'Vic Slaughter': { faction: 'vilao', danger: 'medio' },
+  'Xenônio': { faction: 'x-men', danger: 'medio' },
+  'Flubber': { faction: 'x-men', danger: 'baixo' },
+};
+
 // ── SQL GENERATION ──
+const MIN_PER_DANGER = {
+  baixo:   { cards: 2, tags:  8, fraquezas: 3 },
+  medio:   { cards: 4, tags: 15, fraquezas: 4 },
+  alto:    { cards: 4, tags: 20, fraquezas: 4 },
+  extremo: { cards: 5, tags: 25, fraquezas: 5 },
+};
+
 function generateSQL(npcs) {
   let sql = `-- ═══════════════════════════════════════════════════════════════\n`;
   sql += `-- Migração 004 — Theme cards enriquecidos para TODOS os NPCs originais\n`;
@@ -1346,7 +1584,7 @@ function generateSQL(npcs) {
   sql += `-- NÃO toca em characters. Idempotente.\n`;
   sql += `-- ═══════════════════════════════════════════════════════════════\n\nBEGIN;\n\n`;
 
-  let count = 0;
+  let count = 0, autoFilled = 0;
   for (const npc of npcs) {
     const spec = SPEC[npc.name];
     if (!spec) {
@@ -1355,65 +1593,168 @@ function generateSQL(npcs) {
     }
 
     const parsedTags = npc.tagLines.map(parseTag);
-    const allExistingTags = parsedTags.map(clean);
-    const tagMap = {}; // index → object
+    const tagMap = {};
     parsedTags.forEach((t, i) => { tagMap[i] = { texto: t.texto, grau: Math.abs(t.grau) }; });
 
-    // Helper: normalized text comparison
     const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
     const hasText = (arr, txt) => arr.some(ct => norm(ct.texto) === norm(txt));
 
-    // Build enriched tags: from cards + extra + generics
-    const cardTags = [];
-    for (const card of spec.cards) {
-      const podTags = resolveTags(card.pod || [], tagMap);
-      const frqTags = resolveTags(card.frq || [], tagMap);
-      podTags.forEach(t => {
-        if (!hasText(cardTags, t.texto)) cardTags.push(t);
-      });
-      frqTags.forEach(t => {
-        if (!hasText(cardTags, t.texto)) cardTags.push(t);
-      });
-    }
-
-    // Add extra tags
-    const extra = EXTRA_TAGS[npc.name] || [];
-    extra.forEach(t => {
-      if (!hasText(cardTags, t.texto)) cardTags.push(clean(t));
-    });
-
-    // Add faction generic
-    const facGen = FACTION_GENERICS[npc.faction];
-    if (facGen && !hasText(cardTags, facGen.texto)) {
-      cardTags.push({ ...facGen });
-    }
-
-    // Add danger generics (up to the count for this danger)
-    const dangerGenerics = GENERICS[npc.danger] || [];
-    let addedGen = 0;
-    const genTarget = npc.danger === 'extremo' ? 6 : npc.danger === 'alto' ? 4 : npc.danger === 'medio' ? 2 : 1;
-    for (const g of dangerGenerics) {
-      if (addedGen >= genTarget) break;
-      if (!hasText(cardTags, g.texto)) {
-        cardTags.push({ ...g });
-        addedGen++;
-      }
-    }
-
-    // Ensure existing positive-grau tags are included
-    for (const t of allExistingTags) {
-      if (t.grau <= 0) continue; // negative-grau = weakness already in card frq
-      if (!hasText(cardTags, t.texto)) {
-        cardTags.push({ ...t });
-      }
-    }
-
-    // Build the temas structure from SPEC
+    // ── 1. Build SPEC-defined cards ──
     const temas = spec.cards.map(card => ({
       nome: card.nome,
       poder: resolveTags(card.pod || [], tagMap),
       fraqueza: resolveTags(card.frq || [], tagMap)
     }));
+
+    const min = MIN_PER_DANGER[npc.danger] || MIN_PER_DANGER.medio;
+
+    // ── 2. Collect all tag texts used in cards ──
+    const usedTexts = new Set();
+    for (const tm of temas) {
+      for (const t of tm.poder) usedTexts.add(norm(t.texto));
+      for (const t of tm.fraqueza) usedTexts.add(norm(t.texto));
+    }
+
+    // ── 3. Collect unused source tags (positive = poder, negative = fraqueza) ──
+    const unusedPoder = [];
+    const unusedFraqueza = [];
+    for (const pt of parsedTags) {
+      if (usedTexts.has(norm(pt.texto))) continue;
+      if (pt.grau > 0) unusedPoder.push({ texto: pt.texto });
+      else unusedFraqueza.push({ texto: pt.texto });
+    }
+
+    // ── Generic pools for auto-fill (broadly applicable) ──
+    const genericPoder = [
+      { texto: 'Treinamento de Combate' },
+      { texto: 'Instinto de Sobrevivência' },
+      { texto: 'Resiliência Física e Mental' },
+      { texto: 'Perícia em Campo' },
+      { texto: 'Habilidade de Luta' },
+      { texto: 'Determinação Inabalável' },
+      { texto: 'Reflexos Aguçados' },
+      { texto: 'Tática e Estratégia' },
+      { texto: 'Intuição de Batalha' },
+      { texto: 'Resistência a Dano' },
+      { texto: 'Movimentação Tática' },
+      { texto: 'Vigilância Constante' },
+      { texto: 'Vontade de Ferro' },
+      { texto: 'Exploração de Ambiente' },
+      { texto: 'Liderança em Campo' },
+    ];
+    const genericFraqueza = [
+      { texto: 'Passado que Assombra' },
+      { texto: 'Conflitos Internos' },
+      { texto: 'Impulsividade' },
+      { texto: 'Dificuldade de Confiar nos Outros' },
+      { texto: 'Culpa e Arrependimento' },
+      { texto: 'Limitações Humanas' },
+      { texto: 'Fama que Atrapalha' },
+      { texto: 'Responsabilidade que Pesa' },
+      { texto: 'Trauma não Resolvido' },
+      { texto: 'Insegurança Constante' },
+      { texto: 'Dívida com o Passado' },
+      { texto: 'Lealdade Dividida' },
+    ];
+
+    // ── 4. Fill missing cards until min.cards is met ──
+    const FALLBACK_CARD_NAMES = [
+      'Classe Ômega', 'Potencial Oculto', 'Treinamento Avançado',
+      'Experiência de Combate', 'Resistência Mental', 'Instinto Selvagem',
+    ];
+    const MAX_AUTO_CARDS = 6;
+    const specCardCount = spec.cards.length;
+    let fillIdx = 1;
+    let fillStall = 0;
+    while (temas.length < min.cards && fillIdx <= MAX_AUTO_CARDS) {
+      if (fillStall > 3) break;
+      fillStall++;
+      const card = { nome: FALLBACK_CARD_NAMES[(fillIdx - 1) % FALLBACK_CARD_NAMES.length], poder: [], fraqueza: [] };
+      let added = 0;
+      for (let i = 0; i < 3; i++) {
+        const p = unusedPoder.shift() || genericPoder[(temas.length * 3 + i) % genericPoder.length];
+        if (usedTexts.has(norm(p.texto))) continue;
+        card.poder.push({ texto: p.texto });
+        usedTexts.add(norm(p.texto));
+        added++;
+      }
+      for (let i = 0; i < 2; i++) {
+        const f = unusedFraqueza.shift() || genericFraqueza[(temas.length * 2 + i) % genericFraqueza.length];
+        if (usedTexts.has(norm(f.texto))) continue;
+        card.fraqueza.push({ texto: f.texto });
+        usedTexts.add(norm(f.texto));
+        added++;
+      }
+      if (!added) break;
+      temas.push(card);
+      fillIdx++;
+      autoFilled++;
+    }
+
+    // ── 5. Ensure every card has pelo menos 1 poder ──
+    for (const tm of temas) {
+      if (tm.fraqueza.length && !tm.poder.length) {
+        const fallback = unusedPoder.shift() || genericPoder[tm.nome.length % genericPoder.length];
+        tm.poder.push({ texto: fallback.texto });
+        usedTexts.add(norm(fallback.texto));
+      }
+    }
+
+    // ── 6. Ensure minimum total fraquezas ──
+    let totalFrq = temas.reduce((s, tm) => s + tm.fraqueza.length, 0);
+    for (const tm of temas) {
+      if (totalFrq >= min.fraquezas) break;
+      let frqStall = 0;
+      while (tm.fraqueza.length < 2 && totalFrq < min.fraquezas) {
+        if (frqStall > 16) break;
+        frqStall++;
+        const f = unusedFraqueza.shift() || genericFraqueza[(tm.nome.length + totalFrq + frqStall) % genericFraqueza.length];
+        if (usedTexts.has(norm(f.texto))) continue;
+        tm.fraqueza.push({ texto: f.texto });
+        usedTexts.add(norm(f.texto));
+        totalFrq++;
+      }
+    }
+
+    // ── 7. Build flat cardTags ──
+    const cardTags = [];
+    for (const tm of temas) {
+      for (const t of tm.poder) if (!hasText(cardTags, t.texto)) cardTags.push(t);
+      for (const t of tm.fraqueza) if (!hasText(cardTags, t.texto)) cardTags.push(t);
+    }
+
+    // Extra tags
+    const extra = EXTRA_TAGS[npc.name] || [];
+    extra.forEach(t => { if (!hasText(cardTags, t.texto)) cardTags.push(clean(t)); });
+
+    // Faction generic
+    const facGen = FACTION_GENERICS[npc.faction];
+    if (facGen && !hasText(cardTags, facGen.texto)) cardTags.push({ texto: facGen.texto });
+
+    // Danger generics
+    const dangerGenerics = GENERICS[npc.danger] || [];
+    let addedGen = 0;
+    const genTarget = npc.danger === 'extremo' ? 6 : npc.danger === 'alto' ? 4 : npc.danger === 'medio' ? 2 : 1;
+    for (const g of dangerGenerics) {
+      if (addedGen >= genTarget) break;
+      if (!hasText(cardTags, g.texto)) { cardTags.push({ texto: g.texto }); addedGen++; }
+    }
+
+    // Unused markdown positive tags
+    for (const t of parsedTags) {
+      if (t.grau <= 0) continue;
+      if (!hasText(cardTags, t.texto)) cardTags.push({ texto: t.texto });
+    }
+    // ── 8. Ensure total tags >= minimum ──
+    let gidx = 0;
+    const tagPool = [].concat(dangerGenerics, genericPoder, genericFraqueza).filter(g => g && g.texto);
+    while (cardTags.length < min.tags) {
+      const g = tagPool[gidx % tagPool.length];
+      gidx++;
+      if (!g) break;
+      if (!hasText(cardTags, g.texto)) cardTags.push({ texto: g.texto });
+      if (gidx > tagPool.length * 10) break;
+    }
 
     sql += `UPDATE npcs SET data = jsonb_set(jsonb_set(COALESCE(data,'{}'::jsonb), '{temas}', ${jb(temas)}), '{tags}', ${jb(cardTags)}),\n`;
     sql += `  updated_at = NOW()\n`;
@@ -1421,8 +1762,155 @@ function generateSQL(npcs) {
     count++;
   }
 
+  // ── DB-only NPCs (no markdown, use SPEC inline + generic pools only) ──
+  for (const name of Object.keys(DB_ONLY_META)) {
+    const spec = SPEC[name];
+    if (!spec) continue;
+    const meta = DB_ONLY_META[name];
+    const min = MIN_PER_DANGER[meta.danger] || MIN_PER_DANGER.medio;
+
+    const tagMap = {};
+    const parsedTags = [];
+
+    const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
+    const hasText = (arr, txt) => arr.some(ct => norm(ct.texto) === norm(txt));
+
+    const temas = spec.cards.map(card => ({
+      nome: card.nome,
+      poder: resolveTags(card.pod || [], tagMap),
+      fraqueza: resolveTags(card.frq || [], tagMap)
+    }));
+
+    // ── 2. Collect used texts ──
+    const usedTexts = new Set();
+    for (const tm of temas) {
+      for (const t of tm.poder) usedTexts.add(norm(t.texto));
+      for (const t of tm.fraqueza) usedTexts.add(norm(t.texto));
+    }
+
+    // ── 3. Collect unused source tags ──
+    const unusedPoder = [];
+    const unusedFraqueza = [];
+    for (const pt of parsedTags) {
+      if (usedTexts.has(norm(pt.texto))) continue;
+      if (pt.grau > 0) unusedPoder.push({ texto: pt.texto });
+      else unusedFraqueza.push({ texto: pt.texto });
+    }
+
+    // ── Generic pools ──
+    const genericPoder = [
+      { texto: 'Treinamento de Combate' }, { texto: 'Instinto de Sobrevivência' },
+      { texto: 'Resiliência Física e Mental' }, { texto: 'Perícia em Campo' },
+      { texto: 'Habilidade de Luta' }, { texto: 'Determinação Inabalável' },
+      { texto: 'Reflexos Aguçados' }, { texto: 'Tática e Estratégia' },
+      { texto: 'Intuição de Batalha' }, { texto: 'Resistência a Dano' },
+      { texto: 'Movimentação Tática' }, { texto: 'Vigilância Constante' },
+      { texto: 'Vontade de Ferro' }, { texto: 'Exploração de Ambiente' },
+      { texto: 'Liderança em Campo' },
+    ];
+    const genericFraqueza = [
+      { texto: 'Passado que Assombra' }, { texto: 'Conflitos Internos' },
+      { texto: 'Impulsividade' }, { texto: 'Dificuldade de Confiar nos Outros' },
+      { texto: 'Culpa e Arrependimento' }, { texto: 'Limitações Humanas' },
+      { texto: 'Fama que Atrapalha' }, { texto: 'Responsabilidade que Pesa' },
+      { texto: 'Trauma não Resolvido' }, { texto: 'Insegurança Constante' },
+      { texto: 'Dívida com o Passado' }, { texto: 'Lealdade Dividida' },
+    ];
+
+    // ── 4. Fill missing cards ──
+    const FALLBACK_CARD_NAMES = [
+      'Classe Ômega', 'Potencial Oculto', 'Treinamento Avançado',
+      'Experiência de Combate', 'Resistência Mental', 'Instinto Selvagem',
+    ];
+    let fillIdx = 1;
+    let fillStall = 0;
+    while (temas.length < min.cards && fillIdx <= 6) {
+      if (fillStall > 3) break;
+      fillStall++;
+      const card = { nome: FALLBACK_CARD_NAMES[(fillIdx - 1) % FALLBACK_CARD_NAMES.length], poder: [], fraqueza: [] };
+      let added = 0;
+      for (let i = 0; i < 3; i++) {
+        const p = unusedPoder.shift() || genericPoder[(temas.length * 3 + i) % genericPoder.length];
+        if (usedTexts.has(norm(p.texto))) continue;
+        card.poder.push({ texto: p.texto });
+        usedTexts.add(norm(p.texto));
+        added++;
+      }
+      for (let i = 0; i < 2; i++) {
+        const f2 = unusedFraqueza.shift() || genericFraqueza[(temas.length * 2 + i) % genericFraqueza.length];
+        if (usedTexts.has(norm(f2.texto))) continue;
+        card.fraqueza.push({ texto: f2.texto });
+        usedTexts.add(norm(f2.texto));
+        added++;
+      }
+      if (!added) break;
+      temas.push(card);
+      fillIdx++;
+      autoFilled++;
+    }
+
+    // ── 5-6. Fill poder/fraqueza gaps ──
+    for (const tm of temas) {
+      if (tm.fraqueza.length && !tm.poder.length) {
+        const fallback = unusedPoder.shift() || genericPoder[tm.nome.length % genericPoder.length];
+        tm.poder.push({ texto: fallback.texto });
+        usedTexts.add(norm(fallback.texto));
+      }
+    }
+    let totalFrq = temas.reduce((s, tm) => s + tm.fraqueza.length, 0);
+    for (const tm of temas) {
+      if (totalFrq >= min.fraquezas) break;
+      let frqStall = 0;
+      while (tm.fraqueza.length < 2 && totalFrq < min.fraquezas) {
+        if (frqStall > 16) break;
+        frqStall++;
+        const f2 = unusedFraqueza.shift() || genericFraqueza[(tm.nome.length + totalFrq + frqStall) % genericFraqueza.length];
+        if (usedTexts.has(norm(f2.texto))) continue;
+        tm.fraqueza.push({ texto: f2.texto });
+        usedTexts.add(norm(f2.texto));
+        totalFrq++;
+      }
+    }
+
+    // ── 7. Build cardTags ──
+    const cardTags = [];
+    for (const tm of temas) {
+      for (const t of tm.poder) if (!hasText(cardTags, t.texto)) cardTags.push(t);
+      for (const t of tm.fraqueza) if (!hasText(cardTags, t.texto)) cardTags.push(t);
+    }
+
+    // Faction generic
+    const facGen = FACTION_GENERICS[meta.faction];
+    if (facGen && !hasText(cardTags, facGen.texto)) cardTags.push({ texto: facGen.texto });
+
+    // Danger generics
+    const dangerGenerics = GENERICS[meta.danger] || [];
+    let addedGen = 0;
+    const genTarget = meta.danger === 'extremo' ? 6 : meta.danger === 'alto' ? 4 : meta.danger === 'medio' ? 2 : 1;
+    for (const g of dangerGenerics) {
+      if (addedGen >= genTarget) break;
+      if (!hasText(cardTags, g.texto)) { cardTags.push({ texto: g.texto }); addedGen++; }
+    }
+
+    // ── 8. Fill tags to minimum ──
+    let gidx = 0;
+    const tagPool = [].concat(dangerGenerics, genericPoder, genericFraqueza).filter(g => g && g.texto);
+    while (cardTags.length < min.tags) {
+      const g = tagPool[gidx % tagPool.length];
+      gidx++;
+      if (!g) break;
+      if (!hasText(cardTags, g.texto)) cardTags.push({ texto: g.texto });
+      if (gidx > tagPool.length * 10) break;
+    }
+
+    sql += `UPDATE npcs SET data = jsonb_set(jsonb_set(COALESCE(data,'{}'::jsonb), '{temas}', ${jb(temas)}), '{tags}', ${jb(cardTags)}),\n`;
+    sql += `  updated_at = NOW()\n`;
+    sql += `  WHERE name = '${sq(name)}' AND is_global = TRUE;\n\n`;
+    count++;
+  }
+
   sql += `COMMIT;\n`;
-  sql += `\n-- Resumo: ${count} NPCs enriquecidos.\n`;
+  sql += `\n-- Resumo: ${count} NPCs enriquecidos (${autoFilled} cartas auto-geradas).\n`;
   return sql;
 }
 
