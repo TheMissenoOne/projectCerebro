@@ -30,11 +30,11 @@ UPDATE npcs SET
   danger = 'alto', updated_at = NOW()
   WHERE name = 'Loa' AND is_global = TRUE;
 
--- Rede [medio] — 4 cards, 13 tags
+-- Rede (Network) [medio] — 4 cards, 13 tags
 UPDATE npcs SET
   data = jsonb_set(jsonb_set(COALESCE(data,'{}'::jsonb), '{temas}', '[{"nome":"Rede Telepática","poder":[{"texto":"Transmissão de Pensamentos em Massa","grau":5},{"texto":"Leitura Telepática de Superfície","grau":4},{"texto":"Contato Mental à Distância","grau":3}],"fraqueza":[]},{"nome":"Geração Conectada","poder":[{"texto":"Trata Telepatia como Rede Social","grau":4},{"texto":"Antenada em Fofocas e Notícias","grau":3},{"texto":"Popular entre os Alunos","grau":2}],"fraqueza":[]},{"nome":"Voz do Grupo","poder":[{"texto":"Coordena a Equipe em Combate","grau":3},{"texto":"Empatia Crescente","grau":2},{"texto":"Aluna do Instituto Xavier","grau":2}],"fraqueza":[]},{"nome":"Imaturidade","poder":[],"fraqueza":[{"texto":"Invade a Privacidade Alheia","grau":3},{"texto":"Fala Demais na Hora Errada","grau":3},{"texto":"Ainda Amadurecendo","grau":2},{"texto":"Sem Preparo de Combate","grau":2}]}]'::jsonb), '{tags}', '[{"texto":"Transmissão de Pensamentos em Massa","grau":5},{"texto":"Leitura Telepática de Superfície","grau":4},{"texto":"Contato Mental à Distância","grau":3},{"texto":"Trata Telepatia como Rede Social","grau":4},{"texto":"Antenada em Fofocas e Notícias","grau":3},{"texto":"Popular entre os Alunos","grau":2},{"texto":"Coordena a Equipe em Combate","grau":3},{"texto":"Empatia Crescente","grau":2},{"texto":"Aluna do Instituto Xavier","grau":2},{"texto":"Invade a Privacidade Alheia","grau":3},{"texto":"Fala Demais na Hora Errada","grau":3},{"texto":"Ainda Amadurecendo","grau":2},{"texto":"Sem Preparo de Combate","grau":2}]'::jsonb),
   danger = 'medio', updated_at = NOW()
-  WHERE name = 'Rede' AND is_global = TRUE;
+  WHERE name = 'Rede (Network)' AND is_global = TRUE;
 
 -- Moça de Borracha [medio] — 4 cards, 13 tags
 UPDATE npcs SET

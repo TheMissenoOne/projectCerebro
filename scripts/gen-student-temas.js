@@ -62,7 +62,7 @@ D['Loa'] = ['alto', [
   card('Deslize Perigoso', [], ['Poder Destrutivo que a Assusta -3','Medo de Machucar Quem Ama -3','Controle Instável sob Emoção -2','Inexperiente em Batalha 2']),
   card('Sonhadora', ['Curiosidade Insaciável 3','Lealdade aos Corsários 2'], ['Distrai-se Facilmente -2','Adolescente Impulsiva -2']),
 ]];
-D['Rede'] = ['medio', [
+D['Rede (Network)'] = ['medio', [
   card('Rede Telepática', ['Transmissão de Pensamentos em Massa 5','Leitura Telepática de Superfície 4','Contato Mental à Distância 3']),
   card('Geração Conectada', ['Trata Telepatia como Rede Social 4','Antenada em Fofocas e Notícias 3','Popular entre os Alunos 2']),
   card('Voz do Grupo', ['Coordena a Equipe em Combate 3','Empatia Crescente 2','Aluna do Instituto Xavier 2']),
