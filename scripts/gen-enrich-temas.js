@@ -1755,7 +1755,7 @@ function generateSQL(npcs, applyReview = null) {
     }
 
     // ── 4.5. Fill card-level tags to minimum ──
-    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length + tm.fraqueza.length, 0);
+    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length, 0);
     let ctSafety = 0;
     while (totalCardTags < min.tags && ctSafety < 20) {
       ctSafety++;
@@ -1819,7 +1819,6 @@ function generateSQL(npcs, applyReview = null) {
     const cardTags = [];
     for (const tm of temas) {
       for (const t of tm.poder) if (!hasText(cardTags, t.texto)) cardTags.push(t);
-      for (const t of tm.fraqueza) if (!hasText(cardTags, t.texto)) cardTags.push(t);
     }
 
     // Extra tags
@@ -1846,7 +1845,7 @@ function generateSQL(npcs, applyReview = null) {
     }
     // ── 8. Ensure total tags >= minimum ──
     let gidx = 0;
-    const tagPool = [].concat(dangerGenerics, genericPoder, genericFraqueza).filter(g => g && g.texto);
+    const tagPool = [].concat(dangerGenerics, genericPoder).filter(g => g && g.texto);
     while (cardTags.length < min.tags) {
       const g = tagPool[gidx % tagPool.length];
       gidx++;
@@ -1953,7 +1952,7 @@ function generateSQL(npcs, applyReview = null) {
     }
 
     // ── 4.5. Fill card-level tags to minimum ──
-    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length + tm.fraqueza.length, 0);
+    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length, 0);
     let ctSafety = 0;
     while (totalCardTags < min.tags && ctSafety < 20) {
       ctSafety++;
@@ -2015,7 +2014,6 @@ function generateSQL(npcs, applyReview = null) {
     const cardTags = [];
     for (const tm of temas) {
       for (const t of tm.poder) if (!hasText(cardTags, t.texto)) cardTags.push(t);
-      for (const t of tm.fraqueza) if (!hasText(cardTags, t.texto)) cardTags.push(t);
     }
 
     // Faction generic
@@ -2033,7 +2031,7 @@ function generateSQL(npcs, applyReview = null) {
 
     // ── 8. Fill tags to minimum ──
     let gidx = 0;
-    const tagPool = [].concat(dangerGenerics, genericPoder, genericFraqueza).filter(g => g && g.texto);
+    const tagPool = [].concat(dangerGenerics, genericPoder).filter(g => g && g.texto);
     while (cardTags.length < min.tags) {
       const g = tagPool[gidx % tagPool.length];
       gidx++;
