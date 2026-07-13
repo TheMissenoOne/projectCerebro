@@ -26,7 +26,7 @@ const NPC_MAP = [
   ['Wolverine',            'Wolverine'],
   ['Tempestade',           'Storm'],
   ['Fera',                 'Beast'],
-  ['Ícone',                'Colossus'],           // Ícone = codinome br do Colossus
+  ['Ícone',                'Robert Drake (Earth-616)'], // Ícone = codinome br do Bobby Drake/Iceman (NÃO Colossus)
   ['Anjo',                 'Angel'],
   ['Colossus',             'Colossus'],
   ['Noturno',              'Nightcrawler'],
@@ -97,7 +97,7 @@ const NPC_MAP = [
   ['Timeslip',             'Timeslip'],
   ['Impulse',              'Impulse'],
   ['Mercury',              'Mercury'],
-  ['Dust',                 'Dust'],
+  ['Dust (Poeira)',        'Dust'],                // nome real na tabela é "Dust (Poeira)", não "Dust"
   ['Wither',               'Wither'],
   ['Match',                'Match'],
   ['Icarus',               'Icarus'],
@@ -105,6 +105,38 @@ const NPC_MAP = [
   ['Anole',                'Anole'],
   ['Gentle',               'Gentle'],
   ['Indra',                'Indra'],
+
+  /* ── Esquadrões (alunos DB-only, verificados individualmente contra a wiki — ── */
+  /* nomes curtos colidem com páginas de desambiguação, então usamos o título   ── */
+  /* preciso Earth-616 para evitar foto errada (caso Ícone/Colossus)            ── */
+  ['Estrela Polar',        'Jean-Paul Beaubier (Earth-616)'],
+  ['Mira (Pinpoint)',      'Gerard Cooper (Earth-616)'],
+  ['Náiade',               'Aurelie Sabayon (Earth-616)'],
+  ['Garoto Chuva',         'Carl Aalston (Earth-616)'],
+  ['Dríade',               'Callie Betto (Earth-616)'],
+  ['Espectro',             'Dallas Gibson (Earth-616)'],
+  ['Três‑em‑Uma (Stepford Cuckoos)', 'Stepford Cuckoos (Earth-616)'],
+  ['Onyxx',                'Sidney Green (Earth-616)'],
+  ['Bling!',               'Roxanne Washington (Earth-616)'],
+  ['Umbra',                'Patrick Nesbitt (Earth-616)'],
+  ['Espinho',              'Quill (Mutant) (Earth-616)'],
+  // Boggart, Xenônio, Flubber, Foxx, Kidogo, Moça de Borracha, Trovão, Rede (Network):
+  // sem imagem confiável na wiki (página inexistente, sem thumbnail, ou nome
+  // ambíguo demais para identificar com confiança) — deixados sem foto de propósito.
+
+  /* ── Esquadrões (NPCs novos, verificados individualmente) ── */
+  ['Tag',                  'Brian Cruz (Earth-616)'],
+  ['Wind Dancer',          'Sofia Mantega (Earth-616)'],
+  ['DJ',                   'Mark Sheppard (Earth-616)'],
+  ['Pixie',                'Megan Gwynn (Earth-616)'],
+  ['Trance',               'Hope Abbott (Earth-616)'],
+  ['Wolf Cub',             'Nicholas Gleason (Earth-616)'],
+  ['Blindfold',            'Ruth Aldine (Earth-616)'],
+  ['Glob Herman',          'Robert Herman (Earth-616)'],
+  ['Kid Omega',            'Quintavius Quire (Earth-616)'],
+  ['Radian',               'Christian Cord (Earth-616)'],
+  ['Tattoo',               'Christine Cord (Earth-616)'],
+  // Wing, Preview, Redneck: sem correspondência confiável na wiki — sem foto.
 
   /* ── Morlocks ── */
   ['Callisto',             'Callisto'],
