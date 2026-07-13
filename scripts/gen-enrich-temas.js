@@ -1415,8 +1415,7 @@ function generateSQL(npcs) {
       fraqueza: resolveTags(card.frq || [], tagMap)
     }));
 
-    sql += `UPDATE npcs SET data = jsonb_set(COALESCE(data,'{}'::jsonb), '{temas}', ${jb(temas)}),\n`;
-    sql += `  tags = ${jb(cardTags)},\n`;
+    sql += `UPDATE npcs SET data = jsonb_set(jsonb_set(COALESCE(data,'{}'::jsonb), '{temas}', ${jb(temas)}), '{tags}', ${jb(cardTags)}),\n`;
     sql += `  updated_at = NOW()\n`;
     sql += `  WHERE name = '${sq(npc.name)}' AND is_global = TRUE;\n\n`;
     count++;
