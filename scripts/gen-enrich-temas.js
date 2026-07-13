@@ -979,7 +979,7 @@ const SPEC = {
       { nome: 'Morgan Michaels', pod: [{ texto: 'Soro de Sangue Irradiado (transformação temporária em humano)', grau: 3 }, { texto: 'Identidade Falsa (Morgan Michaels)', grau: 3 }], frq: [{ texto: 'Sangue Lilin Corruptor (pode perder o controle)', grau: 3 }] }
     ]
   },
-  'Três-em-Uma (Stepford Cuckoos)': {
+  'Três‑em‑Uma (Stepford Cuckoos)': {
     cards: [
       { nome: 'Mente de Colmeia', pod: [{ texto: 'Mente de Colmeia Telepática', grau: 6 }, { texto: 'Telepatia de Nível Ômega em Conjunto', grau: 5 }, { texto: 'Ilusões e Ataques Psíquicos', grau: 4 }, { texto: 'Controle Mental Coordenado', grau: 4 }, { texto: 'Leitura Simultânea de Muitas Mentes', grau: 3 }], frq: [] },
       { nome: 'Diamante Herdado', pod: [{ texto: 'Forma de Diamante (como Emma)', grau: 4 }, { texto: 'Elegância Fria e Calculista', grau: 3 }, { texto: 'Filhas/Clones de Emma Frost', grau: 3 }], frq: [] },
@@ -1545,7 +1545,7 @@ const DB_ONLY_META = {
   'Foxx': { faction: 'vilao', danger: 'alto' },
   'Loa': { faction: 'x-men', danger: 'alto' },
   'Morbius': { faction: 'vilao', danger: 'alto' },
-  'Três-em-Uma (Stepford Cuckoos)': { faction: 'x-men', danger: 'alto' },
+  'Três‑em‑Uma (Stepford Cuckoos)': { faction: 'x-men', danger: 'alto' },
   'Anole': { faction: 'x-men', danger: 'medio' },
   'Bling!': { faction: 'x-men', danger: 'medio' },
   'Boggart': { faction: 'x-men', danger: 'medio' },
@@ -1568,21 +1568,27 @@ const DB_ONLY_META = {
   'Flubber': { faction: 'x-men', danger: 'baixo' },
 };
 
+// ── Review tracking for auto-generated tags ──
+// Populated by generateSQL; used by --dump-review and --apply-review
+const REVIEW_DATA = {};
+
 // ── SQL GENERATION ──
 const MIN_PER_DANGER = {
   baixo:   { cards: 2, tags:  8, fraquezas: 3 },
   medio:   { cards: 4, tags: 15, fraquezas: 4 },
-  alto:    { cards: 4, tags: 20, fraquezas: 4 },
-  extremo: { cards: 5, tags: 25, fraquezas: 5 },
+  alto:    { cards: 5, tags: 20, fraquezas: 4 },
+  extremo: { cards: 6, tags: 25, fraquezas: 5 },
 };
 
-function generateSQL(npcs) {
+function generateSQL(npcs, applyReview = null) {
+  if (applyReview) console.error(`[review] apply-review ativo para ${Object.keys(applyReview).length} NPC(s)`);
   let sql = `-- ═══════════════════════════════════════════════════════════════\n`;
   sql += `-- Migração 004 — Theme cards enriquecidos para TODOS os NPCs originais\n`;
   sql += `-- Gerado por scripts/gen-enrich-temas.js\n`;
   sql += `-- Substitui data.temas dos 133 NPCs do cerebro_rebalanceado.md\n`;
   sql += `-- NÃO toca em characters. Idempotente.\n`;
   sql += `-- ═══════════════════════════════════════════════════════════════\n\nBEGIN;\n\n`;
+  const review = {}; // tracks auto-generated tags per NPC for this run
 
   let count = 0, autoFilled = 0;
   for (const npc of npcs) {
@@ -1677,6 +1683,8 @@ function generateSQL(npcs) {
         card.poder.push({ texto: p.texto });
         usedTexts.add(norm(p.texto));
         added++;
+        if (!review[npc.name]) review[npc.name] = [];
+        review[npc.name].push({ card: card.nome, tipo: 'poder', texto: p.texto });
       }
       for (let i = 0; i < 2; i++) {
         const f = unusedFraqueza.shift() || genericFraqueza[(temas.length * 2 + i) % genericFraqueza.length];
@@ -1684,11 +1692,31 @@ function generateSQL(npcs) {
         card.fraqueza.push({ texto: f.texto });
         usedTexts.add(norm(f.texto));
         added++;
+        if (!review[npc.name]) review[npc.name] = [];
+        review[npc.name].push({ card: card.nome, tipo: 'fraqueza', texto: f.texto });
       }
       if (!added) break;
       temas.push(card);
       fillIdx++;
       autoFilled++;
+    }
+
+    // ── 4.5. Fill card-level tags to minimum ──
+    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length + tm.fraqueza.length, 0);
+    let ctSafety = 0;
+    while (totalCardTags < min.tags && ctSafety < 20) {
+      ctSafety++;
+      for (const tm of temas) {
+        if (totalCardTags >= min.tags) break;
+        if (tm.poder.length >= 3) continue;
+        const p = unusedPoder.shift() || genericPoder[(tm.nome.length + totalCardTags) % genericPoder.length];
+        if (usedTexts.has(norm(p.texto))) continue;
+        tm.poder.push({ texto: p.texto });
+        usedTexts.add(norm(p.texto));
+        totalCardTags++;
+        if (!review[npc.name]) review[npc.name] = [];
+        review[npc.name].push({ card: tm.nome, tipo: 'poder', texto: p.texto });
+      }
     }
 
     // ── 5. Ensure every card has pelo menos 1 poder ──
@@ -1713,6 +1741,24 @@ function generateSQL(npcs) {
         tm.fraqueza.push({ texto: f.texto });
         usedTexts.add(norm(f.texto));
         totalFrq++;
+        if (!review[npc.name]) review[npc.name] = [];
+        review[npc.name].push({ card: tm.nome, tipo: 'fraqueza', texto: f.texto });
+      }
+    }
+
+    // ── Apply review replacements ──
+    if (applyReview && applyReview[npc.name]) {
+      for (const entry of applyReview[npc.name]) {
+        if (!entry.novo_texto) continue;
+        for (const tm of temas) {
+          if (entry.card && entry.card !== tm.nome) continue;
+          const arr = entry.tipo === 'fraqueza' ? tm.fraqueza : tm.poder;
+          for (const t of arr) {
+            if (t.texto === entry.texto) {
+              t.texto = entry.novo_texto;
+            }
+          }
+        }
       }
     }
 
@@ -1835,6 +1881,8 @@ function generateSQL(npcs) {
         card.poder.push({ texto: p.texto });
         usedTexts.add(norm(p.texto));
         added++;
+        if (!review[name]) review[name] = [];
+        review[name].push({ card: card.nome, tipo: 'poder', texto: p.texto });
       }
       for (let i = 0; i < 2; i++) {
         const f2 = unusedFraqueza.shift() || genericFraqueza[(temas.length * 2 + i) % genericFraqueza.length];
@@ -1842,11 +1890,31 @@ function generateSQL(npcs) {
         card.fraqueza.push({ texto: f2.texto });
         usedTexts.add(norm(f2.texto));
         added++;
+        if (!review[name]) review[name] = [];
+        review[name].push({ card: card.nome, tipo: 'fraqueza', texto: f2.texto });
       }
       if (!added) break;
       temas.push(card);
       fillIdx++;
       autoFilled++;
+    }
+
+    // ── 4.5. Fill card-level tags to minimum ──
+    let totalCardTags = temas.reduce((s, tm) => s + tm.poder.length + tm.fraqueza.length, 0);
+    let ctSafety = 0;
+    while (totalCardTags < min.tags && ctSafety < 20) {
+      ctSafety++;
+      for (const tm of temas) {
+        if (totalCardTags >= min.tags) break;
+        if (tm.poder.length >= 3) continue;
+        const p = unusedPoder.shift() || genericPoder[(tm.nome.length + totalCardTags) % genericPoder.length];
+        if (usedTexts.has(norm(p.texto))) continue;
+        tm.poder.push({ texto: p.texto });
+        usedTexts.add(norm(p.texto));
+        totalCardTags++;
+        if (!review[name]) review[name] = [];
+        review[name].push({ card: tm.nome, tipo: 'poder', texto: p.texto });
+      }
     }
 
     // ── 5-6. Fill poder/fraqueza gaps ──
@@ -1869,6 +1937,24 @@ function generateSQL(npcs) {
         tm.fraqueza.push({ texto: f2.texto });
         usedTexts.add(norm(f2.texto));
         totalFrq++;
+        if (!review[name]) review[name] = [];
+        review[name].push({ card: tm.nome, tipo: 'fraqueza', texto: f2.texto });
+      }
+    }
+
+    // ── Apply review ──
+    if (applyReview && applyReview[name]) {
+      for (const entry of applyReview[name]) {
+        if (!entry.novo_texto) continue;
+        for (const tm of temas) {
+          if (entry.card && entry.card !== tm.nome) continue;
+          const arr = entry.tipo === 'fraqueza' ? tm.fraqueza : tm.poder;
+          for (const t of arr) {
+            if (t.texto === entry.texto) {
+              t.texto = entry.novo_texto;
+            }
+          }
+        }
       }
     }
 
@@ -1911,14 +1997,60 @@ function generateSQL(npcs) {
 
   sql += `COMMIT;\n`;
   sql += `\n-- Resumo: ${count} NPCs enriquecidos (${autoFilled} cartas auto-geradas).\n`;
+  Object.assign(REVIEW_DATA, review);
   return sql;
 }
 
+// ── Help ──
+function printHelp() {
+  console.log(`Uso: node scripts/gen-enrich-temas.js [opções]
+Opções:
+  --dump-review [arquivo]  Gera um review JSON com tags auto-geradas para curadoria
+                           (padrão: supabase/review/review.json)
+  --apply-review <arquivo> Aplica curadoria de review JSON e gera SQL final
+  --help                   Mostra esta ajuda
+`);
+}
+
 // ── MAIN ──
-const npcs = parseAll(fs.readFileSync(MD, 'utf8'));
-const sql = generateSQL(npcs);
-fs.mkdirSync(path.dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, sql);
-console.log(`OK → ${OUT}`);
-console.log(`  ${npcs.filter(n => SPEC[n.name]).length} NPCs com SPEC aplicados`);
-console.log(`  ${npcs.filter(n => !SPEC[n.name]).length} NPCs sem SPEC (ignorados)`);
+function main() {
+  const args = process.argv.slice(2);
+
+  if (args.includes('--help')) { printHelp(); return; }
+
+  const dumpIdx = args.indexOf('--dump-review');
+  const applyIdx = args.indexOf('--apply-review');
+
+  if (applyIdx >= 0) {
+    const reviewFile = args[applyIdx + 1];
+    if (!reviewFile) { console.error('ERRO: --apply-review precisa de um arquivo'); process.exit(1); }
+    if (!fs.existsSync(reviewFile)) { console.error(`ERRO: ${reviewFile} não encontrado`); process.exit(1); }
+    const applyReview = JSON.parse(fs.readFileSync(reviewFile, 'utf8'));
+
+    const npcs = parseAll(fs.readFileSync(MD, 'utf8'));
+    const sql = generateSQL(npcs, applyReview);
+    fs.mkdirSync(path.dirname(OUT), { recursive: true });
+    fs.writeFileSync(OUT, sql);
+    console.log(`OK → ${OUT} (com curadoria de ${reviewFile})`);
+    console.log(`  ${npcs.filter(n => SPEC[n.name]).length} NPCs com SPEC aplicados`);
+    console.log(`  ${Object.keys(applyReview).length} NPCs na curadoria`);
+    return;
+  }
+
+  const npcs = parseAll(fs.readFileSync(MD, 'utf8'));
+  const sql = generateSQL(npcs);
+  fs.mkdirSync(path.dirname(OUT), { recursive: true });
+  fs.writeFileSync(OUT, sql);
+  console.log(`OK → ${OUT}`);
+  console.log(`  ${npcs.filter(n => SPEC[n.name]).length} NPCs com SPEC aplicados`);
+  console.log(`  ${npcs.filter(n => !SPEC[n.name]).length} NPCs sem SPEC (ignorados)`);
+
+  if (dumpIdx >= 0) {
+    const reviewOut = args[dumpIdx + 1] || 'supabase/review/review.json';
+    fs.mkdirSync(path.dirname(reviewOut), { recursive: true });
+    fs.writeFileSync(reviewOut, JSON.stringify(REVIEW_DATA, null, 2));
+    console.log(`Review → ${reviewOut} (${Object.keys(REVIEW_DATA).length} NPCs)`);
+  }
+}
+
+main();

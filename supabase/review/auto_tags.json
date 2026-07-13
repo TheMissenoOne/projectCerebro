@@ -1,0 +1,8197 @@
+{
+  "Professor X": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Relutante em usar força total"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    }
+  ],
+  "Ciclope": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Disciplina de Aço"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem controle dos olhos sem o visor"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Peso da Responsabilidade"
+    },
+    {
+      "card": "Rajada Óptica",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Comandante de Campo",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Wolverine": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Sentidos de Predador Apex"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Fera Selvagem",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Passado Fragmentado",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Passado Fragmentado",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Tempestade": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança Carismática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Deusa do Trovão",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Rainha de Wakanda",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Espírito Livre",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Espírito Livre",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Jean Grey": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Potencial Ômega não totalmente desbloqueado"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Força Fênix pode consumir o self"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    },
+    {
+      "card": "Telepatia e Telecinese Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Força Cósmica",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Força Cósmica",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Fera": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Médico e Cirurgião de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Aparência desfavorece situações sociais"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Intelecto Genial",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Ícone": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Potencial Ômega raramente utilizado"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Príncipe de Serval",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Poder Gelado",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Príncipe de Serval",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Anjo": [
+    {
+      "card": "Asas de Anjo",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Bilionário Filantropo",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Sangue de Cura",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Sangue de Cura",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Asas de Anjo",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Asas de Anjo",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    }
+  ],
+  "Colossus": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Protetor da Família Rasputin"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Espírito Gentil"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Artista e Guerreiro",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Protetor da Família",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Gigante Gentil",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Artista e Guerreiro",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Noturno": [
+    {
+      "card": "Teletransporte Bamf",
+      "tipo": "poder",
+      "texto": "Cada Teleporte deixa rastro de enxofre"
+    },
+    {
+      "card": "Acrobata Sombrio",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Fé e Devoção",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Fé e Devoção",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Palhaço Triste",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Palhaço Triste",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Teletransporte Bamf",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Teletransporte Bamf",
+      "tipo": "fraqueza",
+      "texto": "Passado que Assombra"
+    }
+  ],
+  "Kitty Pryde": [
+    {
+      "card": "Fase",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Mestra da Tecnologia",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Knight de Solano",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Mestra da Tecnologia",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Fase",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Fase",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Rogue": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Toque Letal Involuntário"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Amor à Prova de Toque",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Toque Letal",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Gambit": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Passado Obscuro na Guilda dos Ladrões"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Rei dos Ladrões",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Busca por Redenção",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Carga Cinética",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Busca por Redenção",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Psylocke": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Ex-Ninja da Mão"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Espada Psiônica",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Guerreira Silenciosa",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Bishop": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Marcado com \"M\" no rosto"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Obsessão com Ameaças ao Futuro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Absorção de Energia",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Sobrevivente do Futuro",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "XSE",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "XSE",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Jubileu": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Potencial Ômega bloqueado por autoestima"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Plasmóides",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Filha de Wolverine",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Geração Perdida",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Filha de Wolverine",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Plasmóides",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    }
+  ],
+  "Polaris": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Voo por Levitação Magnética"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Identidade incerta como filha de Magneto"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Havok": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Controle Instável sob Estresse"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Emma Frost": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Arrogância como escudo emocional"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    },
+    {
+      "card": "Telepatia Ofensiva",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Diamante",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Frieza Calculista",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Rainha do Clube do Inferno",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Rachel Summers": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma do Futuro Distópico"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Marcada como Hound"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    },
+    {
+      "card": "Telepatia e Telecinese do Futuro",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Hound Arrependida",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Cable": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Fundador da X-Force"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Vírus Techno-Orgânico"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Obsessão com o Futuro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    }
+  ],
+  "X-23": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Gatilho de Berserk por Produto Químico"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Garras de Adamantium",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Mais que uma Arma",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Mais que uma Arma",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Domino": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sorte não funciona em situações imprevisíveis extremas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Sorte Improvável",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Mercenária Albina",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Forge": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Veterano do Vietnã"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Dazzler": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Precisa de Fonte Sonora para o poder máximo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Banshee": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Grito Sônico",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Veterano da Interpol",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Grito Sônico",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Grito Sônico",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    }
+  ],
+  "Cannonball": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem controle da direção em alta velocidade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Líder dos Novos Mutantes",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Líder dos Novos Mutantes",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Foguete Humano",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Filho da Mina de Carvão",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Sunspot": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsivo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Mirage": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perda de Poderes (pós-M-Day)"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Tecer Medos",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Valquíria Cheyenne",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Laço com Animais",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Tecer Medos",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    }
+  ],
+  "Wolfsbane": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fé Escocesa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Controle reduzido em forma animal plena"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Karma": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Múltipla Possessão Drena a Consciência"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Possessão Mental",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Sobrevivente Vietnamita",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Família Acima de Tudo",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Sobrevivente Vietnamita",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Magma": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Cypher": [
+    {
+      "card": "Poliglota Universal",
+      "tipo": "poder",
+      "texto": "Morreu em Batalha"
+    },
+    {
+      "card": "Chave de Krakoa",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Poliglota Universal",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Poliglota Universal",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes de Combate Físico"
+    },
+    {
+      "card": "Chave de Krakoa",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    }
+  ],
+  "Boomer": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Chamariz para Problemas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Shatterstar": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Espadas Dimensional",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Rictor": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Parceiro de Shatterstar"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perda dos Poderes no M-Day"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Passado Familiar Ligado a Tráfico de Armas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ondas Sísmicas",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Siryn": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Alcoolismo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Ligação com Deadpool"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Detetive Sobre-humana",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Madrox": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Detetive Particular"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Cada Duplicata Desenvolve Personalidade Própria"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Instabilidade de Identidade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Múltiplas Cópias",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Detetive Particular",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Strong Guy": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Humor Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Problemas Cardíacos"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Aparência Hipertrofiada"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Absorção Cinética",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Absorção Cinética",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Cecilia Reyes": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Médica de Trauma e Cirurgiã de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "O Campo Ativa em Cirurgias"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Rejeita Fortemente a Identidade de Heroína"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Campo de Força",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Lockheed": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Parceiro Leal de Kitty Pryde"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Agente Duplo da SWORD"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Parece Animal de Estimação"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Dragão Pequeno",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Companheiro Fiel",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Callisto": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tentáculos Preênseis (pós-Mojo)"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Eye Patch"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Caliban": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Mentalidade Ingênua"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Aparência Albina Grotesca"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Rastreador Mutante",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Rastreador Mutante",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Marrow": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Dois Corações"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Raiva Crônica"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ossos Lancinantes",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Masque": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Líder Ocasional dos Morlocks"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Físicamente Fraco"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Artista Macabro",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Artista Macabro",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Leech": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Presença Cativante Apesar da Aparência"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Não Controla o Raio do Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Criança Frágil"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Campo de Neutralização",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Criança dos Túneis",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Magneto": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Convicção Obsessiva"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    },
+    {
+      "card": "Nunca Mais",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Mystique": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Pistola Escondida na Coxa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Lealdade Real Além de Si Mesma"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Mãe de Segredos",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Blob": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Força Colossal"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Nenhuma Sensibilidade à Dor Física"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Inteligência Limitada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Imóvel",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Tanque da Irmandade",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Imóvel",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Toad": [
+    {
+      "card": "Sapo Mutante",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Sapo Mutante",
+      "tipo": "fraqueza",
+      "texto": "Autoestima Destruída"
+    },
+    {
+      "card": "Sapo Mutante",
+      "tipo": "fraqueza",
+      "texto": "Subserviência a Figuras de Autoridade"
+    }
+  ],
+  "Pyro": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Não Cria Fogo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Esclerose Múltipla Terminal"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Avalanche": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Ideologia Forte"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ondas Sísmicas",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    }
+  ],
+  "Unus": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Força Aumentada Dentro do Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Lutador de Circo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Vulnerável a Ataques de Energia Pura"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Lorelei": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Poder Afeta Somente Homens"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Canto Hipnótico",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Sereia",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Adepto (Magneto)": [
+    {
+      "card": "Acolyte",
+      "tipo": "poder",
+      "texto": "Disposto a Morrer pela Causa"
+    },
+    {
+      "card": "Fiel a Magneto",
+      "tipo": "poder",
+      "texto": "Treinamento Básico de Combate"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Fiel a Magneto",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "fraqueza",
+      "texto": "Sem Julgamento Individual"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Fiel a Magneto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    }
+  ],
+  "Sabretooth": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Rival de Logan"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Código Moral"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Lady Deathstrike": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Combate Corpo-a-Corpo de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Código de Honra Samurai"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Obsessão com Wolverine"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Ninja Ciborgue",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Mister Sinister": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    }
+  ],
+  "Apocalipse": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Subestima Oponentes por Arrogância Milenar"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Lealdade Dividida"
+    },
+    {
+      "card": "Pai dos Cavaleiros",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Armadura Cósmica",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Sobrevivência do Mais Forte",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Pai dos Cavaleiros",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    }
+  ],
+  "Sentinela Mk I": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Supressor de Poderes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Criatividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Robô"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Caçador de Mutantes",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Sentinela Mark I": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Supressores de Mutação"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Criatividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Emoção ou Adaptação"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Caçador de Mutantes",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Purificador": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Arma de Fogo e Faca"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Treinamento Paramilitar Básico"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Coragem Irracional por Fé"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Treinamento Contra Poderes Mutantes"
+    },
+    {
+      "card": "Humano Fanático",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Agente HYDRA": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Treinamento Paramilitar Sólido"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tecnologia de Supressão de Mutantes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Opera em Células Independentes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Obediência Hierárquica"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Agente HYDRA",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Mercenário Weapon X": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Inibidores de Telepatia Portáteis"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Modificações Cibernéticas Menores"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Motivado por Pagamento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Moira MacTaggert": [
+    {
+      "card": "Geneticista de Elite",
+      "tipo": "poder",
+      "texto": "Dirige a Ilha Muir"
+    },
+    {
+      "card": "Aliada dos X-Men",
+      "tipo": "poder",
+      "texto": "Mutante Secreta"
+    },
+    {
+      "card": "Geneticista de Elite",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Aliada dos X-Men",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Geneticista de Elite",
+      "tipo": "fraqueza",
+      "texto": "Mãe de Proteus"
+    },
+    {
+      "card": "Geneticista de Elite",
+      "tipo": "fraqueza",
+      "texto": "Passado que Assombra"
+    }
+  ],
+  "Sage": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Agente Dupla Infiltrada por Décadas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Combate de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Décadas de Isolamento Emocional como Agente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Computador Humano",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Chamber": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Boca ou Tórax"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Medo do Próprio Poder"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Fornalha Psíquica",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Husk": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ambição Excepcional"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Cada Forma tem Duração Limitada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Guthrie Determinada",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Guthrie Determinada",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "M (Monet St. Croix)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Herdeira Bilionária",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Trauma de Penance",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Armor": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Força Amplificada na Armadura"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Conectada aos Ancestrais"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Potencial Crescente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Armadura Psíquica",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Kami-Sama",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Surge": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Luvas Especiais para Controle"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Líder dos Novos X-Men",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Elixir": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Pele Dourada quando Ativo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma do Uso Destrutivo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Cura ou Morte",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Hellion": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Lealdade Profunda a Quem Chama de Amigo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Potencial Ômega bloqueado por arrogância"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Telecinesia",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Rockslide": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Cabeça como Projétil"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Sem Sistema Nervoso Convencional"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Personalidade Descontraída que Subestima o Risco"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Corpo de Rocha",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Comediante da Equipe",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Prodigy": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Artes Marciais e Combate de Vários Especialistas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Parceiro de Surge"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perdeu o Poder Mutante no M-Day"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Memória Absoluta",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Gênio",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Wallflower": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Introversão Severa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Filha de Persuasão (vilã)"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Poder Difícil de Controlar"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Invisível Social",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Invisível Social",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Scanner": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Agente do Governo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Desconfiança de Autoridades"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Varredura Psíquica",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Olhos que Tudo Veem",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Olhos que Tudo Veem",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Wild Child": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Sentidos Lupinos"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Parceiro de Sabretooth"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Instabilidade Mental Severa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Feral",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Weapon X",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Aurora": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Transtorno Dissociativo de Identidade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Vontade Reduzida pelo TDI"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Dupla Personalidade",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Diamond Lil": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Mercenária"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Diamante impede exames médicos normais"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Pele de Diamante",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Pele de Diamante",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Madison Jeffries": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Gênio em Engenharia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Irmão de Lionel (cérebro numa jarra)"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Persuasion": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tenta se Redimir"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Telepatas são Imunes ao Poder"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Recaídas sob Estresse"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Persuasão",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Voz de Controle",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Voz de Controle",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Tarot": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Precognição Limitada via Leitura de Cartas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Treinada por Emma Frost"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fisicamente Frágil"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Cartas Místicas",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Vidente do Caos",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Catseye": [
+    {
+      "card": "Gato",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Hellion Leal",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Gato",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Hellion Leal",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Gato",
+      "tipo": "fraqueza",
+      "texto": "Ingênua e Carente"
+    },
+    {
+      "card": "Gato",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    }
+  ],
+  "Empath": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Narcisismo e Sadismo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perdeu os Poderes no M-Day"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Manipulação Emocional",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Bruto do Clube",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Jetstream": [
+    {
+      "card": "Propulsão a Jato",
+      "tipo": "poder",
+      "texto": "Saudita"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Propulsão a Jato",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Propulsão a Jato",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Propulsão a Jato",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    }
+  ],
+  "Beef": [
+    {
+      "card": "Força Bruta",
+      "tipo": "poder",
+      "texto": "Lealdade Cega"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Força Bruta",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Força Bruta",
+      "tipo": "fraqueza",
+      "texto": "Passado que Assombra"
+    },
+    {
+      "card": "Força Bruta",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Hellion",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    }
+  ],
+  "Roulette": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Jogadora Compulsiva"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Roleta da Sorte",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Roleta da Sorte",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Timeshadow": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Pouco Treinada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Sombra do Tempo",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Sombra do Tempo",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Sombra do Tempo",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    }
+  ],
+  "Bevatron": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Personagem Menor"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Partículas",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Partículas",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Partículas",
+      "tipo": "fraqueza",
+      "texto": "Conflitos Internos"
+    }
+  ],
+  "Shinobi Shaw": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tentou Assassinar o Próprio Pai"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Instabilidade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Herdeiro do Clube",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Herdeiro do Clube",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Trevor Fitzroy": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sadismo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dependência de Energia Vital para o Poder"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Portal Temporal",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Portal Temporal",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Frenzy": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Acólita de Magneto"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Eventual Aliada dos X-Men"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Força Sobre-humana",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Pele Indestrutível",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Magma (Alliance of Evil)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Morto por Apocalipse"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Lava",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Alliance of Evil",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Lava",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Tower": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Força e Resistência Colossais em Tamanho Máximo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Inteligência Limitada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Stinger": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Personagem Menor"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Ferrão",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Ferrão",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Ferrão",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Cargill": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Membro da Aliança do Mal"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Acolyte",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    }
+  ],
+  "Timeslip": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Personagem Menor"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Salto Temporal",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Salto Temporal",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Impulse": [
+    {
+      "card": "Explosão Cinética",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Sem Freio",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Explosão Cinética",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Sem Freio",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Explosão Cinética",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Explosão Cinética",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Agent Zero": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Agente de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Caçador de Mutantes Profissional"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Fator de Cura",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Fator de Cura",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Silver Fox": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Amante de Wolverine"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Assassinada por Sabretooth"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Sedutora Letal",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Sedutora Letal",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Kestrel": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Código de Honra Próprio"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Voo",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Agente Governamental",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Voo",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Bolt": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Militar"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Omerta": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Família Mafiosa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perdeu os Poderes no M-Day"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Campo de Força Pessoal",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Lei do Silêncio",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Wraith (Hector Rendoza)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perdeu os Poderes no M-Day"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Fantasma",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Stacy X": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Presença Sexual Dominante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Perdeu os Poderes no M-Day"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Trabalhadora do Sexo",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Trabalhadora do Sexo",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Lifeguard": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Irmã de Slipstream"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Adaptação Reativa",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Protetora Instintiva",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Adaptação Reativa",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Slipstream": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Irmão de Lifeguard"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Portal Dimensional",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Irmão de Lifeguard",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    }
+  ],
+  "Red Lotus": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Agente Chinês"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes Mutantes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Lâminas Psíquicas",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Lâminas Psíquicas",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Fixer": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes Mutantes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    }
+  ],
+  "Graydon Creed (FOH)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Armamento Leve"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Fanatismo Anti-Mutante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Treinamento Formal Contra Mutantes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Amigos da Humanidade",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    }
+  ],
+  "Graydon Creed": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Líder dos Amigos da Humanidade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Orador e Manipulador Político"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Humano Sem Poderes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Político Anti-Mutante",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Cameron Hodge": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Líder da Falange"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Anti-Mutante Radical"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Ex-Parceiro de Warren Worthington"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Amigos da Humanidade",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Pescoço Robótico",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Donald Pierce": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Engenheiro de Elite"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Anti-Mutante Irracional"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ciborgue Reaver",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Líder dos Reavers",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Lady Mastermind": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Manipuladora Narcisista"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Vingança como Motivação Principal"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ilusões",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Mestre do Engano",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Mesmero": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Manipulação de Multidões"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Físicamente Fraco"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Hipnose",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Artista Hipnótico",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Vanisher": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Aliado Eventual dos X-Men"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Covarde Absoluto"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ladrão",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Ladrão",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Sauron": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Necessita Drenar Energia para se Manter na Forma"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Karl Lykos (médico) tenta resistir à forma"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Pterossauro",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    }
+  ],
+  "Vertigo": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fisicamente Frágil"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Maroto",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Maroto",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Desorientação",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    }
+  ],
+  "Scalphunter": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Poder Mutante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Implacável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Cicatrizes Faciais"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    },
+    {
+      "card": "Atirador de Elite",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Maroto Líder",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Arclight": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sádica"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Ondas de Choque",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Maroto",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Ondas de Choque",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Blockbuster": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Capanga Leal de Sinister"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Inteligência Muito Limitada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Experiência de Combate",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Experiência de Combate",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Experiência de Combate",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Experiência de Combate",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Experiência de Combate",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Prism": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Vulnerável a Impacto Físico"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Riptide": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Velocidade de Rotação Debilita Oponentes em Área"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Assassino Implacável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Tontura após Rotação Prolongada"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Harpoon": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Poder de Penetrar Qualquer Defesa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Assassino Calculista"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Impulsividade"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Scrambler": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Desativa Poderes Mutantes ao Toque"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fisicamente Fraco"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Agente S.H.I.E.L.D.": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Armamento de Alta Tecnologia S.H.I.E.L.D."
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Lealdade à Organização"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes Mutantes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Agente S.H.I.E.L.D.",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Agente S.H.I.E.L.D.",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Agente S.H.I.E.L.D.",
+      "tipo": "fraqueza",
+      "texto": "Dívida com o Passado"
+    }
+  ],
+  "Val Cooper": [
+    {
+      "card": "Ligação Governamental",
+      "tipo": "poder",
+      "texto": "Força de Vontade Acima da Média"
+    },
+    {
+      "card": "Aliada Relutante",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Ligação Governamental",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Aliada Relutante",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Ligação Governamental",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes"
+    },
+    {
+      "card": "Ligação Governamental",
+      "tipo": "fraqueza",
+      "texto": "Conflitos Internos"
+    }
+  ],
+  "Henry Gyrich": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Burocracia como Arma"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Anti-Mutante Pragmático"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Burocrata Anti-Mutante",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Bolivar Trask": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Arrependido no Final da Vida"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Criador das Sentinelas"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Filho Mutante"
+    },
+    {
+      "card": "Criador das Sentinelas",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    }
+  ],
+  "Larry Trask": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Herdeiro do Programa Sentinel"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Paranoia Alimentada por Visões"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Steven Lang": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Líder do Projeto Fênix"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Mente Transferida para Corpo Sentinel"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Obsessão com Jean Grey"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Reverend William Stryker": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Líder dos Purificadores"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Filho Mutante que Matou Esposa"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Sem Poderes"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Dificuldade de Confiar nos Outros"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Estrela Polar": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Treinamento Avançado",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Loa": [
+    {
+      "card": "Deslize Perigoso",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    }
+  ],
+  "Morbius": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Três‑em‑Uma (Stepford Cuckoos)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Trauma não Resolvido"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
+    }
+  ],
+  "Bling!": [
+    {
+      "card": "Filha de Astros",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Fachada Reluzente",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Boggart": [
+    {
+      "card": "Incompreendido",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Rosto que Assusta",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    }
+  ],
+  "Dríade": [
+    {
+      "card": "Raiz Profunda",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Guardiã Verde",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Teimosia de Carvalho",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Dust (Poeira)": [
+    {
+      "card": "Reserva",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Espectro": [
+    {
+      "card": "Alma Distante",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Aparece na Hora Certa",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Fuga Constante",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Espinho": [
+    {
+      "card": "Casca Defensiva",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    },
+    {
+      "card": "Desejo de Pertencer",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Muros Internos",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    }
+  ],
+  "Garoto Chuva": [
+    {
+      "card": "Céu Nublado",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Alma Sensível",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Tempestade Interior",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Indra": [
+    {
+      "card": "Relutância do Guerreiro",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Kidogo": [
+    {
+      "card": "Raízes Africanas",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Sombra da Própria Grandeza",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    }
+  ],
+  "Mira (Pinpoint)": [
+    {
+      "card": "Valor de Batedora",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Excesso de Confiança",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Moça de Borracha": [
+    {
+      "card": "Espírito de Equipe",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Distração",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    }
+  ],
+  "Náiade": [
+    {
+      "card": "Temperamento de Maré",
+      "tipo": "poder",
+      "texto": "Resiliência Física e Mental"
+    },
+    {
+      "card": "Serenidade Aprendida",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    },
+    {
+      "card": "Águas Turvas",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    }
+  ],
+  "Onyxx": [
+    {
+      "card": "Grandalhão do Instituto",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Peso da Pedra",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    }
+  ],
+  "Rede (Network)": [
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "poder",
+      "texto": "Intuição de Batalha"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Culpa e Arrependimento"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Limitações Humanas"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Fama que Atrapalha"
+    },
+    {
+      "card": "Potencial Oculto",
+      "tipo": "fraqueza",
+      "texto": "Responsabilidade que Pesa"
+    }
+  ],
+  "Trovão": [
+    {
+      "card": "Coração Grande",
+      "tipo": "poder",
+      "texto": "Vigilância Constante"
+    },
+    {
+      "card": "Estouro",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Estouro",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    }
+  ],
+  "Umbra": [
+    {
+      "card": "Guardiã Silenciosa",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Enigma",
+      "tipo": "poder",
+      "texto": "Habilidade de Luta"
+    }
+  ],
+  "Vic Slaughter": [
+    {
+      "card": "Corpo Distorcido",
+      "tipo": "poder",
+      "texto": "Movimentação Tática"
+    },
+    {
+      "card": "Ex-Hardcase",
+      "tipo": "poder",
+      "texto": "Reflexos Aguçados"
+    },
+    {
+      "card": "Limitações Sombrias",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Corpo Distorcido",
+      "tipo": "poder",
+      "texto": "Exploração de Ambiente"
+    },
+    {
+      "card": "Ex-Hardcase",
+      "tipo": "poder",
+      "texto": "Resistência a Dano"
+    },
+    {
+      "card": "Limitações Sombrias",
+      "tipo": "poder",
+      "texto": "Perícia em Campo"
+    }
+  ],
+  "Xenônio": [
+    {
+      "card": "Inconstância Nobre",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
+    },
+    {
+      "card": "Presença Efêmera",
+      "tipo": "poder",
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Instabilidade",
+      "tipo": "poder",
+      "texto": "Vontade de Ferro"
+    }
+  ]
+}
