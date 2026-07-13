@@ -1207,6 +1207,7 @@ const SPEC = {
 // Each entry: [tag objects] — added to the flat tags array
 const EXTRA_TAGS = {
   // X-MEN extremo
+  // grau negativo = fraqueza (não deve ser mesclado em data.tags, que é só poder)
   'Professor X': [
     { texto: 'Líder dos X-Men', grau: 5 },
     { texto: 'Intelecto Genial', grau: 4 },
@@ -1215,8 +1216,8 @@ const EXTRA_TAGS = {
     { texto: 'Diplomacia Mutante-Humano', grau: 3 },
     { texto: 'Idealismo Inabalável', grau: 4 },
     { texto: 'Rede de Contatos Global', grau: 3 },
-    { texto: 'Coração Vulnerável a Traições', grau: 2 },
-    { texto: 'Segredos que Pesam', grau: 2 }
+    { texto: 'Coração Vulnerável a Traições', grau: -2 },
+    { texto: 'Segredos que Pesam', grau: -2 }
   ],
   'Jean Grey': [
     { texto: 'Empatia Profunda', grau: 4 },
@@ -1224,31 +1225,31 @@ const EXTRA_TAGS = {
     { texto: 'Elo Psíquico com Scott', grau: 4 },
     { texto: 'Poder Latente Além da Compreensão', grau: 4 },
     { texto: 'Fênix Pode Consumir sua Consciência', grau: 4 },
-    { texto: 'Medo do Próprio Poder', grau: 3 },
-    { texto: 'Trauma de Morte e Renascimento', grau: 3 }
+    { texto: 'Medo do Próprio Poder', grau: -3 },
+    { texto: 'Trauma de Morte e Renascimento', grau: -3 }
   ],
   'Emma Frost': [
     { texto: 'Professora Exigente e Eficaz', grau: 4 },
     { texto: 'Lealdade aos Alunos', grau: 3 },
     { texto: 'Ex-Rainha do Clube do Inferno', grau: 4 },
-    { texto: 'Arrogância como Escudo', grau: 3 },
-    { texto: 'Passado Villão Assombra', grau: 2 },
-    { texto: 'Dificuldade de Confiar', grau: 2 }
+    { texto: 'Arrogância como Escudo', grau: -3 },
+    { texto: 'Passado Villão Assombra', grau: -2 },
+    { texto: 'Dificuldade de Confiar', grau: -2 }
   ],
   'Rachel Summers': [
     { texto: 'Rastreadora do Futuro', grau: 4 },
     { texto: 'Determinação Inabalável', grau: 3 },
-    { texto: 'Trauma de Escrava', grau: 3 },
+    { texto: 'Trauma de Escrava', grau: -3 },
     { texto: 'Laço Familiar com Cable', grau: 3 },
-    { texto: 'Poder Instável sob Estresse', grau: 2 },
-    { texto: 'Isolamento por Ser do Futuro', grau: 2 }
+    { texto: 'Poder Instável sob Estresse', grau: -2 },
+    { texto: 'Isolamento por Ser do Futuro', grau: -2 }
   ],
   'Cable': [
     { texto: 'Liderança da X-Force', grau: 4 },
     { texto: 'Estrategista Pós-Apocalíptico', grau: 4 },
     { texto: 'Armamento Pesado', grau: 3 },
     { texto: 'Vírus Techno-Orgânico', grau: 4 },
-    { texto: 'Obsessão com o Futuro', grau: 2 }
+    { texto: 'Obsessão com o Futuro', grau: -2 }
   ],
 
   // X-MEN alto
@@ -1257,8 +1258,8 @@ const EXTRA_TAGS = {
     { texto: 'Disciplina de Aço', grau: 4 },
     { texto: 'Estrategista Nato', grau: 3 },
     { texto: 'Amor por Jean Grey', grau: 3 },
-    { texto: 'Peso da Responsabilidade', grau: 2 },
-    { texto: 'Rigidez Emocional', grau: 2 }
+    { texto: 'Peso da Responsabilidade', grau: -2 },
+    { texto: 'Rigidez Emocional', grau: -2 }
   ],
   'Wolverine': [
     { texto: 'Samurai Interior', grau: 4 },
@@ -1266,20 +1267,20 @@ const EXTRA_TAGS = {
     { texto: 'Mestre em Artes Marciais', grau: 3 },
     { texto: 'Lealdade Feroz aos Amigos', grau: 3 },
     { texto: 'Décadas de Experiência', grau: 3 },
-    { texto: 'Raiva Incontrolável', grau: 2 }
+    { texto: 'Raiva Incontrolável', grau: -2 }
   ],
   'Tempestade': [
     { texto: 'Liderança e Realeza', grau: 4 },
     { texto: 'Orgulho Africano', grau: 3 },
     { texto: 'Compaixão e Sabedoria', grau: 3 },
-    { texto: 'Claustrofobia Severa', grau: 3 },
+    { texto: 'Claustrofobia Severa', grau: -3 },
     { texto: 'Responsabilidade de Líder', grau: 2 }
   ],
   'Fera': [
     { texto: 'Médico dos X-Men', grau: 3 },
     { texto: 'Consciência da Equipe', grau: 3 },
     { texto: 'Moralidade Flexível', grau: 3 },
-    { texto: 'Aparência Desfavorece Socialmente', grau: 2 },
+    { texto: 'Aparência Desfavorece Socialmente', grau: -2 },
     { texto: 'Faz o que Precisa', grau: 2 }
   ],
   'Ícone': [
@@ -1290,28 +1291,28 @@ const EXTRA_TAGS = {
   'Anjo': [
     { texto: 'Bilionário Worthington', grau: 4 },
     { texto: 'Sangue Curativo', grau: 4 },
-    { texto: 'Trauma de Apocalipse', grau: 3 },
-    { texto: 'Lado Sombrio Arcangel', grau: 3 }
+    { texto: 'Trauma de Apocalipse', grau: -3 },
+    { texto: 'Lado Sombrio Arcangel', grau: -3 }
   ],
   'Colossus': [
     { texto: 'Artista e Pintor', grau: 3 },
     { texto: 'Protetor da Família Rasputin', grau: 4 },
     { texto: 'Lealdade à Irmã Magik', grau: 4 },
     { texto: 'Força Interior', grau: 3 },
-    { texto: 'Perda de Amigos Pesa', grau: 2 }
+    { texto: 'Perda de Amigos Pesa', grau: -2 }
   ],
   'Noturno': [
     { texto: 'Acrobata Consumado', grau: 4 },
     { texto: 'Fé Católica Profunda', grau: 4 },
     { texto: 'Humor como Defesa', grau: 3 },
-    { texto: 'Autoestima Frágil', grau: 2 }
+    { texto: 'Autoestima Frágil', grau: -2 }
   ],
   'Kitty Pryde': [
     { texto: 'Mestra em Hacking', grau: 4 },
     { texto: 'Knight de Solano', grau: 4 },
     { texto: 'Liderança Natural', grau: 3 },
-    { texto: 'Fisicamente Frágil', grau: 2 },
-    { texto: 'Coração Partido por Colossus', grau: 2 }
+    { texto: 'Fisicamente Frágil', grau: -2 },
+    { texto: 'Coração Partido por Colossus', grau: -2 }
   ],
   'Rogue': [
     { texto: 'Liderança de Equipe', grau: 3 },
@@ -1324,7 +1325,7 @@ const EXTRA_TAGS = {
     { texto: 'Charme Mutante', grau: 4 },
     { texto: 'Cajado Bo', grau: 3 },
     { texto: 'Passado Obscuro na Guilda', grau: 3 },
-    { texto: 'Desconfiança dos Outros', grau: 2 }
+    { texto: 'Desconfiança dos Outros', grau: -2 }
   ],
   'Psylocke': [
     { texto: 'Ninjitsu e Artes Marciais', grau: 4 },
@@ -1335,30 +1336,30 @@ const EXTRA_TAGS = {
   'Bishop': [
     { texto: 'Instinto de Sobrevivência', grau: 4 },
     { texto: 'Marcado com M no Rosto', grau: 3 },
-    { texto: 'Obsessão com Ameaças', grau: 2 }
+    { texto: 'Obsessão com Ameaças', grau: -2 }
   ],
   'Jubileu': [
     { texto: 'Potencial Ômega Latente', grau: 5 },
     { texto: 'Protegida de Wolverine', grau: 3 },
     { texto: 'Vampira pós M-Day', grau: 3 },
-    { texto: 'Potencial Ômega Bloqueado', grau: 2 }
+    { texto: 'Potencial Ômega Bloqueado', grau: -2 }
   ],
   'Polaris': [
     { texto: 'Campo de Força Magnético', grau: 4 },
     { texto: 'Voo Magnético', grau: 3 },
-    { texto: 'Instabilidade Mental', grau: 3 },
-    { texto: 'Identidade Incerta', grau: 2 }
+    { texto: 'Instabilidade Mental', grau: -3 },
+    { texto: 'Identidade Incerta', grau: -2 }
   ],
   'Havok': [
     { texto: 'Imunidade a Ciclope', grau: 3 },
     { texto: 'Liderança', grau: 3 },
-    { texto: 'Síndrome do Irmão Famoso', grau: 2 }
+    { texto: 'Síndrome do Irmão Famoso', grau: -2 }
   ],
   'X-23': [
     { texto: 'Fator de Cura Acelerado', grau: 5 },
     { texto: 'Garras de Adamantium', grau: 5 },
-    { texto: 'Identidade em Construção', grau: 3 },
-    { texto: 'Gatilho de Berserk', grau: 4 }
+    { texto: 'Identidade em Construção', grau: -3 },
+    { texto: 'Gatilho de Berserk', grau: -4 }
   ],
   'Forge': [
     { texto: 'Inventor Oficial dos X-Men', grau: 4 },
@@ -1369,7 +1370,7 @@ const EXTRA_TAGS = {
     { texto: 'Laser de Luz Concentrado', grau: 3 },
     { texto: 'Cantora e Performer', grau: 4 },
     { texto: 'Força Sonora como Disco', grau: 3 },
-    { texto: 'Precisa de Fonte Sonora', grau: 2 }
+    { texto: 'Precisa de Fonte Sonora', grau: -2 }
   ],
   'Banshee': [
     { texto: 'Frequência Hipnótica', grau: 3 },
@@ -1382,7 +1383,7 @@ const EXTRA_TAGS = {
   'M (Monet St. Croix)': [
     { texto: 'Força Sobre-humana', grau: 4 },
     { texto: 'Telepatia', grau: 3 },
-    { texto: 'Arrogância Refinada', grau: 3 },
+    { texto: 'Arrogância Refinada', grau: -3 },
     { texto: 'Herdeira Bilionária', grau: 4 },
     { texto: 'Voo', grau: 3 }
   ],
@@ -1396,7 +1397,7 @@ const EXTRA_TAGS = {
     { texto: 'Telecinesia Poderosa', grau: 5 },
     { texto: 'Mãos Protéticas', grau: 3 },
     { texto: 'Líder dos Hellions', grau: 3 },
-    { texto: 'Arrogância', grau: 2 }
+    { texto: 'Arrogância', grau: -2 }
   ],
   'Cannonball': [
     { texto: 'Invulnerabilidade em Voo', grau: 4 },
@@ -1407,29 +1408,29 @@ const EXTRA_TAGS = {
   'Sunspot': [
     { texto: 'Força Sobre-humana', grau: 4 },
     { texto: 'Bilionário DaCosta', grau: 4 },
-    { texto: 'Impulsivo', grau: 2 },
+    { texto: 'Impulsivo', grau: -2 },
     { texto: 'Membro dos X-Men', grau: 2 }
   ],
   'Wolfsbane': [
     { texto: 'Sentidos Lupinos', grau: 4 },
     { texto: 'Ligação com Mirage', grau: 3 },
     { texto: 'Fé Escocesa', grau: 2 },
-    { texto: 'Controle Reduzido em Forma Animal', grau: 2 }
+    { texto: 'Controle Reduzido em Forma Animal', grau: -2 }
   ],
   'Karma': [
     { texto: 'Controle Múltiplo', grau: 3 },
     { texto: 'Refugiada Vietnamita', grau: 3 },
     { texto: 'Responsabilidade pelos Irmãos', grau: 3 },
-    { texto: 'Amputada', grau: 1 }
+    { texto: 'Amputada', grau: -1 }
   ],
   'Magma': [
     { texto: 'Forma de Rocha', grau: 4 },
     { texto: 'Nobre de Nova Roma', grau: 3 },
-    { texto: 'Ingênua ao Mundo Moderno', grau: 2 }
+    { texto: 'Ingênua ao Mundo Moderno', grau: -2 }
   ],
   'Boomer': [
     { texto: 'Atitude Rebelde', grau: 2 },
-    { texto: 'Chamariz de Problemas', grau: 2 }
+    { texto: 'Chamariz de Problemas', grau: -2 }
   ],
   'Rockslide': [
     { texto: 'Força Bruta', grau: 4 },
@@ -1439,17 +1440,17 @@ const EXTRA_TAGS = {
   'Surge': [
     { texto: 'Liderança dos Novos X-Men', grau: 3 },
     { texto: 'Eletricidade', grau: 4 },
-    { texto: 'Precisa de Luvas', grau: 2 }
+    { texto: 'Precisa de Luvas', grau: -2 }
   ],
   'Armor': [
     { texto: 'Armadura Psíquica', grau: 4 },
     { texto: 'Determinação', grau: 3 },
-    { texto: 'Insegurança', grau: 2 }
+    { texto: 'Insegurança', grau: -2 }
   ],
   'Chamber': [
     { texto: 'Explosão Psíquica', grau: 4 },
     { texto: 'Silêncio', grau: 3 },
-    { texto: 'Rosto Desfigurado', grau: 2 }
+    { texto: 'Rosto Desfigurado', grau: -2 }
   ],
   'Husk': [
     { texto: 'Descamação', grau: 3 },
@@ -1458,42 +1459,42 @@ const EXTRA_TAGS = {
   'Prodigy': [
     { texto: 'Memória Absoluta', grau: 4 },
     { texto: 'Gênio', grau: 3 },
-    { texto: 'Perde ao Dormir', grau: 2 }
+    { texto: 'Perde ao Dormir', grau: -2 }
   ],
   'Wallflower': [
     { texto: 'Feromônios', grau: 3 },
     { texto: 'Invisível', grau: 2 },
-    { texto: 'Baixa Autoestima', grau: 2 }
+    { texto: 'Baixa Autoestima', grau: -2 }
   ],
   'Timeslip': [
     { texto: 'Salto Temporal', grau: 3 },
-    { texto: 'Controle Imperfeito', grau: 2 }
+    { texto: 'Controle Imperfeito', grau: -2 }
   ],
   'Impulse': [
     { texto: 'Explosão Cinética', grau: 3 },
-    { texto: 'Impulsivo', grau: 2 }
+    { texto: 'Impulsivo', grau: -2 }
   ],
   'Mirage': [
     { texto: 'Arco e Flecha', grau: 3 },
     { texto: 'Ex-Valquíria', grau: 4 },
-    { texto: 'Perda de Poderes pós M-Day', grau: 2 }
+    { texto: 'Perda de Poderes pós M-Day', grau: -2 }
   ],
   'Cypher': [
     { texto: 'Leitura Corporal', grau: 4 },
     { texto: 'Amigo de Warlock', grau: 3 },
-    { texto: 'Morreu em Batalha', grau: 2 }
+    { texto: 'Morreu em Batalha', grau: -2 }
   ],
 
   // MORLOCK
   'Callisto': [
     { texto: 'Líder dos Túneis', grau: 3 },
     { texto: 'Caçadora', grau: 2 },
-    { texto: 'Desconfia da Superfície', grau: 2 }
+    { texto: 'Desconfia da Superfície', grau: -2 }
   ],
   'Marrow': [
     { texto: 'Ossos como Armas', grau: 4 },
-    { texto: 'Raiva', grau: 2 },
-    { texto: 'Instabilidade', grau: 2 }
+    { texto: 'Raiva', grau: -2 },
+    { texto: 'Instabilidade', grau: -2 }
   ],
 
   // IRMANDADE
@@ -1502,7 +1503,7 @@ const EXTRA_TAGS = {
     { texto: 'Voo Magnético', grau: 4 },
     { texto: 'Visão de Supremacia Mutante', grau: 4 },
     { texto: 'Carisma Revolucionário', grau: 4 },
-    { texto: 'Trauma do Holocausto', grau: 3 }
+    { texto: 'Trauma do Holocausto', grau: -3 }
   ],
   'Mystique': [
     { texto: 'Rede de Espionagem', grau: 4 },
@@ -1513,7 +1514,7 @@ const EXTRA_TAGS = {
   'Pyro': [
     { texto: 'Manipula Fogo', grau: 4 },
     { texto: 'Incendiário', grau: 3 },
-    { texto: 'Fogo Sem Controle', grau: 2 }
+    { texto: 'Fogo Sem Controle', grau: -2 }
   ],
   'Avalanche': [
     { texto: 'Ondas Sísmicas', grau: 4 },
@@ -1528,13 +1529,13 @@ const EXTRA_TAGS = {
   ],
   'Lady Deathstrike': [
     { texto: 'Ninja Ciborgue', grau: 3 },
-    { texto: 'Obsessão por Wolverine', grau: 2 }
+    { texto: 'Obsessão por Wolverine', grau: -2 }
   ],
   'Mister Sinister': [
     { texto: 'Manipulador Genético', grau: 5 },
     { texto: 'Clonagem', grau: 4 },
     { texto: 'Marotos', grau: 3 },
-    { texto: 'Obsessão Summers', grau: 3 }
+    { texto: 'Obsessão Summers', grau: -3 }
   ],
   'Apocalipse': [
     { texto: 'Primeiro Mutante', grau: 6 },
@@ -1545,17 +1546,17 @@ const EXTRA_TAGS = {
   'Sauron': [
     { texto: 'Pterossauro', grau: 4 },
     { texto: 'Doutor', grau: 3 },
-    { texto: 'Hipocrisia', grau: 2 }
+    { texto: 'Hipocrisia', grau: -2 }
   ],
   'Frenzy': [
     { texto: 'Força', grau: 4 },
     { texto: 'Pele Indestrutível', grau: 4 },
-    { texto: 'Raiva', grau: 2 }
+    { texto: 'Raiva', grau: -2 }
   ],
   'Agent Zero': [
     { texto: 'Fator de Cura', grau: 4 },
     { texto: 'Atirador', grau: 3 },
-    { texto: 'Lavagem Cerebral', grau: 2 }
+    { texto: 'Lavagem Cerebral', grau: -2 }
   ],
   'Trevor Fitzroy': [
     { texto: 'Portal Temporal', grau: 4 },
@@ -1566,14 +1567,14 @@ const EXTRA_TAGS = {
   'Moira MacTaggert': [
     { texto: 'Geneticista', grau: 3 },
     { texto: 'Aliada dos X-Men', grau: 3 },
-    { texto: 'Humana', grau: 1 }
+    { texto: 'Humana', grau: -1 }
   ],
 
   // CLUBE DO INFERNO
   'Shinobi Shaw': [
     { texto: 'Tecnopatia', grau: 3 },
     { texto: 'Herdeiro', grau: 2 },
-    { texto: 'Sombra do Pai', grau: 2 }
+    { texto: 'Sombra do Pai', grau: -2 }
   ]
 };
 
@@ -1669,9 +1670,10 @@ function generateSQL(npcs, applyReview = null) {
 
     // ── 2. Collect all tag texts used in cards ──
     const usedTexts = new Set();
+    const cardFrqTexts = new Set();
     for (const tm of temas) {
       for (const t of tm.poder) usedTexts.add(norm(t.texto));
-      for (const t of tm.fraqueza) usedTexts.add(norm(t.texto));
+      for (const t of tm.fraqueza) { usedTexts.add(norm(t.texto)); cardFrqTexts.add(norm(t.texto)); }
     }
 
     // ── 3. Collect unused source tags (positive = poder, negative = fraqueza) ──
@@ -1821,9 +1823,20 @@ function generateSQL(npcs, applyReview = null) {
       for (const t of tm.poder) if (!hasText(cardTags, t.texto)) cardTags.push(t);
     }
 
-    // Extra tags
+    // Recompute cardFrqTexts contra o `temas` final — passos 4-6 podem ter
+    // adicionado cartas/fraquezas novas depois do snapshot do passo 2
+    cardFrqTexts.clear();
+    for (const tm of temas) for (const t of tm.fraqueza) cardFrqTexts.add(norm(t.texto));
+
+    // Extra tags (poder only — grau negativo em EXTRA_TAGS marca fraqueza, e qualquer
+    // texto que já apareça como fraqueza numa carta é fraqueza, não importa o que
+    // EXTRA_TAGS diz — a carta é a fonte da verdade)
     const extra = EXTRA_TAGS[npc.name] || [];
-    extra.forEach(t => { if (!hasText(cardTags, t.texto)) cardTags.push(clean(t)); });
+    extra.forEach(t => {
+      if (t.grau < 0) return;
+      if (cardFrqTexts.has(norm(t.texto))) return;
+      if (!hasText(cardTags, t.texto)) cardTags.push(clean(t));
+    });
 
     // Faction generic
     const facGen = FACTION_GENERICS[npc.faction];
@@ -1841,6 +1854,7 @@ function generateSQL(npcs, applyReview = null) {
     // Unused markdown positive tags
     for (const t of parsedTags) {
       if (t.grau <= 0) continue;
+      if (cardFrqTexts.has(norm(t.texto))) continue;
       if (!hasText(cardTags, t.texto)) cardTags.push({ texto: t.texto });
     }
     // ── 8. Ensure total tags >= minimum ──
