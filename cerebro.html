@@ -362,6 +362,9 @@ if(window.visualViewport){
         <span class="npc-count" id="npc-count">0</span>
       </div>
       <input type="search" class="search-box" id="search-inp" data-i18n-placeholder="cerebro.filter" placeholder="FILTRAR..." oninput="filtrar()">
+      <select class="f-inp" id="esquadrao-filter" style="margin-top:6px" onchange="setEsquadrao(this.value)">
+        <option value="todos" data-i18n="cerebro.filterSquadAll">TODOS OS ESQUADRÕES</option>
+      </select>
     </div>
 
     <div class="cat-pills">
@@ -417,6 +420,9 @@ if(window.visualViewport){
     <div class="form-grid-2">
       <div class="form-grp"><label class="form-lbl" data-i18n="common.name">NOME *</label><input type="text" class="f-inp" id="f-nome" placeholder="Nome"></div>
       <div class="form-grp"><label class="form-lbl" data-i18n="common.codename">CODINOME</label><input type="text" class="f-inp" id="f-codinome" placeholder="Identidade / codinome"></div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-grp"><label class="form-lbl" data-i18n="cerebro.squadField">ESQUADRÃO</label><input type="text" class="f-inp" id="f-esquadrao" placeholder="Ex: Alpha Squadron"></div>
     </div>
     <div class="form-grid-2">
       <div class="form-grp">
@@ -556,6 +562,7 @@ function condCor(n){return COND_CORES[n]||{c:'#888',b:'rgba(136,136,136,.15)'};}
 let NPC_DB=[];
 let currentId=null;
 let categoriaAtual='todos';
+let esquadraoAtual='todos';
 let searchTerm='';
 let encSectionOpen=true;
 let pfOpen=false;
@@ -608,6 +615,7 @@ function apiToInternal(npc){
     iniciativa:inic,atributos,tags,temas,
     descricao:npc.descricao||d.descricao||'',isGlobal:npc.is_global||false,
     foto:npc.foto_url||d.foto_url||'',
+    esquadrao:npc.esquadrao||d.esquadrao||'',
   };
 }
 
@@ -633,6 +641,7 @@ function internalToApi(n){
   }
   if(n.descricao)data.descricao=n.descricao;
   if(n.foto)data.foto_url=n.foto;
+  if(n.esquadrao)data.esquadrao=n.esquadrao;
   return {
     name:n.nome,codename:n.codinome||'',
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
@@ -689,6 +698,7 @@ async function recarregarNPCs() {
   try {
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId, true);
     NPC_DB = raw.map(apiToInternal);
+    popularEsquadroesFiltro();
     renderizarLista();
     renderizarEncontro();
     setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs', 'saved');
@@ -744,6 +754,7 @@ async function recarregarDB(){
   try{
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
+    popularEsquadroesFiltro();
     renderizarLista();
     renderizarEncontro();
     setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs','saved');
@@ -771,10 +782,21 @@ function setCat(btn){
   document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');categoriaAtual=btn.dataset.cat;renderizarLista();
 }
+function setEsquadrao(v){esquadraoAtual=v;renderizarLista();}
+function popularEsquadroesFiltro(){
+  const sel=document.getElementById('esquadrao-filter');if(!sel)return;
+  const squads=[...new Set(NPC_DB.map(n=>n.esquadrao).filter(Boolean))].sort();
+  const manterAtual=squads.includes(esquadraoAtual)?esquadraoAtual:'todos';
+  sel.innerHTML=`<option value="todos" data-i18n="cerebro.filterSquadAll">${t('cerebro.filterSquadAll')}</option>`+
+    squads.map(s=>`<option value="${escAttr(s)}">${esc(s)}</option>`).join('');
+  sel.value=manterAtual;esquadraoAtual=manterAtual;
+}
 function renderizarLista(){
   const lista=NPC_DB.filter(n=>{
     const ms=n.nome.toLowerCase().includes(searchTerm.toLowerCase())||(n.codinome||'').toLowerCase().includes(searchTerm.toLowerCase());
-    const mc=categoriaAtual==='todos'||n.fracao===categoriaAtual;return ms&&mc;
+    const mc=categoriaAtual==='todos'||n.fracao===categoriaAtual;
+    const me=esquadraoAtual==='todos'||n.esquadrao===esquadraoAtual;
+    return ms&&mc&&me;
   });
   document.getElementById('npc-count').textContent=`${lista.length}/${NPC_DB.length}`;
   const container=document.getElementById('npc-list');
@@ -899,6 +921,7 @@ function exibirNPC(id){
         <div class="npc-initiative" style="border-color:${fc.cor}">INICIATIVA <strong>${(npc.atributos?.['Destreza']||0)+(npc.atributos?.['Inteligência']||0)+(npc.atributos?.['Influência']||0)}</strong></div>
         <div class="npc-frac-badge" style="color:${fc.cor};border-color:${fc.cor};background:rgba(0,0,0,.4)">${fc.l}</div>
         <div class="npc-pr-badge" style="color:${pr.cor};border-color:${pr.cor};background:rgba(0,0,0,.4)">⬥ ${pr.l}</div>
+        ${npc.esquadrao?`<div class="npc-frac-badge" style="background:rgba(0,0,0,.4)">${esc(npc.esquadrao)}</div>`:''}
       </div>
     </div>
     <div class="sec"><div class="sec-bar"></div><span class="sec-label">ATRIBUTOS MEGS</span><div class="sec-line"></div><span class="sec-code">MEGS-001</span></div>
@@ -1074,7 +1097,7 @@ function abrirAddModal(){
   editingId=null;tagsEdit=[];temasEdit=[{nome:'',poder:[],fraqueza:[]}];
   document.getElementById('modal-npc-title').textContent=t('cerebro.newNpcTitle');
   document.getElementById('btn-salvar-npc').textContent=t('cerebro.create');
-  ['nome','codinome','iniciativa','descricao'].forEach(id=>{const el=document.getElementById('f-'+id);if(el)el.value='';});
+  ['nome','codinome','esquadrao','iniciativa','descricao'].forEach(id=>{const el=document.getElementById('f-'+id);if(el)el.value='';});
   document.getElementById('f-fracao').value='neutro';
   document.getElementById('f-perigo').value='medio';
   SK_IDS.forEach(k=>{const el=document.getElementById('f-'+k);if(el)el.value='';});
@@ -1094,6 +1117,7 @@ function abrirEditModal(id){
   document.getElementById('btn-salvar-npc').textContent=t('cerebro.save');
   document.getElementById('f-nome').value=npc.nome||'';
   document.getElementById('f-codinome').value=npc.codinome||'';
+  document.getElementById('f-esquadrao').value=npc.esquadrao||'';
   document.getElementById('f-fracao').value=npc.fracao||'neutro';
   document.getElementById('f-perigo').value=npc.perigo||'medio';
   document.getElementById('f-iniciativa').value=npc.iniciativa||'';
@@ -1115,6 +1139,7 @@ async function salvarNPC(){
     .filter(tm=>tm.nome||tm.poder.length||tm.fraqueza.length);
   const flatTags=[];temas.forEach(tm=>{tm.poder.forEach(x=>flatTags.push(x));tm.fraqueza.forEach(x=>flatTags.push(x));});
   const npcData={nome,codinome:document.getElementById('f-codinome').value.trim(),
+    esquadrao:document.getElementById('f-esquadrao').value.trim(),
     fracao:document.getElementById('f-fracao').value,perigo:document.getElementById('f-perigo').value,
     iniciativa:parseInt(document.getElementById('f-iniciativa').value)||0,
     atributos,tags:flatTags,temas,descricao:document.getElementById('f-descricao').value.trim(),
