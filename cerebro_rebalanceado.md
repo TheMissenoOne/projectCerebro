@@ -52,27 +52,31 @@ Charles Francis Xavier, o mutante telepático mais poderoso do mundo. Mente 15 s
 
 | Atributo | Valor |
 |----------|-------|
-| Destreza | 9 |
+| Destreza | 10 |
 | Força | 5 |
-| Corpo | 6 |
-| Inteligência | 8 |
-| Vontade | 10 |
-| Mente | 8 |
-| Influência | 8 |
-| Aura | 7 |
-| Espírito | 9 |
+| Corpo | 7 |
+| Inteligência | 9 |
+| Vontade | 11 |
+| Mente | 9 |
+| Influência | 9 |
+| Aura | 8 |
+| Espírito | 10 |
 
 ## Tags
-- Rajada Óptica de Força Cinética 5
-- Liderança Tática de Elite — pensa mais rápido em batalha 4
-- Precisão Cirúrgica de Tiro 4
-- Disciplina de Aço — nunca hesita 4
-- Estrategista de Campo 3
-- Sem controle dos olhos sem o visor -4
-- Peso da Responsabilidade — toma decisões impopulares -2
+- Rajada Óptica Concussiva Pura (Sem Calor, Velocidade da Luz, Solar) 5
+- Mestre do Ricochete (8+ Quicadas, Geometria Instantânea, Acerta Alvos Ocultos) 5
+- Precisão Cirúrgica (Feixe Fino como Agulha, Desarma Múltiplos, Acerta Miçanga) 5
+- Táticas Ópticas (Cone Área, Pulso Propulsão, Perfura Adamantium, Stun) 4
+- Comandante de Campo (Gênio Tático 42+ Planos, Manobras Sincronizadas) 5
+- Condicionamento Pico Humano (Treino 6h/dia, Judo-Vira Colossus, Sobrevive Soco/ Raio) 4
+- Fortaleza Mental (Caixa Preta Intransponível, Prendeu Vazio, Resistiu Apocalipse/Brood) 5
+- Visor de Quartzo-Rubi (Micro-Interruptores, Visor Batalha > Óculos, Blackbird Amplifica) 4
+- Sem Controle Sem Visor (Trauma Craniano, Rajada Incontrolável) -5
+- Peso da Responsabilidade / Rigidez Emocional / Dificuldade Delegar -3
+- Fadiga Mental Combate Prolongado / Visor Destruível -2
 
 ## Descrição
-O primeiro estudante de Xavier e líder de campo dos X-Men. DEX 9 e STR/BOD no pico humano — fisicamente é a elite do humano possível. Vontade 10 supera o limite humano, forjada em anos de responsabilidade. A rajada óptica (grau 5) é devastadora. Sem o visor é uma ameaça incontrolável.
+O primeiro estudante de Xavier e líder de campo dos X-Men. DEX 10 reflete reflexos de nível olímpico+ e precisão cirúrgica. Vontade 11 e Espírito 10 superam limites humanos — forjada em décadas de comando e trauma. A rajada óptica (grau 5) é força concussiva pura à velocidade da luz, alimentada por energia solar; sem o visor de quartzo-rubi (trauma craniano), é ameaça incontrolável. Gênio tático com 42+ planos de contingência (ex: Kuurth-Juggernaut), domina ricochete preciso (8+ quicadas), feixes finos como agulha e pulsos de propulsão. Treina 6h/dia — físico no pico humano, sobrevive soco do Colossus e raio da Tempestade. Caixa Preta psíquica intransponível (Jean/Emma), prendeu o Vazio, resistiu Apocalipse/Brood/Cassandra Nova. Visor de batalha com micro-interruptores tácteis; para-brisa do Blackbird amplifica rajada.
 
 ---
 
