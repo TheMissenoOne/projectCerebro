@@ -110,7 +110,9 @@ const SPEC = {
       { nome: 'Telepatia Ômega', pod: [0, 1, 4], frq: [] },
       { nome: 'Sonho de Coexistência', pod: [2, 3, 5], frq: [] },
       { nome: 'Manipulador Visionário', pod: [{ texto: 'Mestre em Xadrez Psíquico', grau: 4 }, { texto: 'Sacrifica a Ética pelo Bem Maior', grau: 4 }, { texto: 'Rede de Contatos Global', grau: 3 }], frq: [] },
-      { nome: 'Pai Ausente', pod: [{ texto: 'Criou Gerações de Mutantes', grau: 4 }, { texto: 'Legado Vive nos Alunos', grau: 3 }], frq: [{ texto: 'Paraplégico', grau: 3 }, { texto: 'Manipula Alunos como Soldados', grau: 3 }, { texto: 'Apaga Mentes sem Consentimento', grau: 3 }, { texto: 'Fisicamente Frágil e Doente', grau: 2 }, { texto: 'Segredos que Pesam na Consciência', grau: 2 }] }
+      { nome: 'Pai Ausente', pod: [{ texto: 'Criou Gerações de Mutantes', grau: 4 }, { texto: 'Legado Vive nos Alunos', grau: 3 }], frq: [{ texto: 'Paraplégico', grau: 3 }, { texto: 'Manipula Alunos como Soldados', grau: 3 }, { texto: 'Apaga Mentes sem Consentimento', grau: 3 }, { texto: 'Fisicamente Frágil e Doente', grau: 2 }, { texto: 'Segredos que Pesam na Consciência', grau: 2 }] },
+      { nome: 'Cérebro Vivo', pod: [{ texto: 'Telepatia de Alcance Global', grau: 5 }, { texto: 'Acesso Simultâneo a Bilhões de Mentes', grau: 5 }, { texto: 'Rastreamento Mutante Planetário', grau: 4 }, { texto: 'Bloqueio Mental Absoluto', grau: 5 }, { texto: 'Projeção Astral Corpórea', grau: 4 }, { texto: 'Reescrita de Personalidade', grau: 5 }, { texto: 'Comunicação Instantânea com X-Men', grau: 4 }, { texto: 'Arquivo Mental da História Mutante', grau: 4 }], frq: [{ texto: 'Corpo Físico Vulnerável', grau: 3 }] },
+      { nome: 'Fundador dos X-Men', pod: [{ texto: 'Arquiteto do Sonho Mutante', grau: 4 }, { texto: 'Recrutador da Primeira Geração', grau: 4 }, { texto: 'Criador do Instituto Xavier', grau: 4 }, { texto: 'Mentor de Líderes Mutantes', grau: 4 }, { texto: 'Diplomata da Coexistência', grau: 3 }], frq: [{ texto: 'Idealismo Perigoso', grau: 3 }, { texto: 'Culpa por Falhas Passadas', grau: 3 }] }
     ]
   },
   'Jean Grey': {
@@ -118,17 +120,20 @@ const SPEC = {
       { nome: 'Anfitriã da Fênix', pod: [0, 2, 5], frq: [{ texto: 'Fênix Pode Consumir sua Consciência', grau: 4 }] },
       { nome: 'Telepatia e Telecinese Ômega', pod: [1, 3], frq: [] },
       { nome: 'Coração dos X-Men', pod: [{ texto: 'Empatia Profunda', grau: 4 }, { texto: 'Elo Psíquico com Ciclope', grau: 4 }, { texto: 'Mentora de Jovens Mutantes', grau: 3 }], frq: [] },
-      { nome: 'Força Cósmica', pod: [{ texto: 'Poder Latente Além da Compreensão', grau: 4 }], frq: [{ texto: 'Medo do Próprio Poder', grau: 3 }, { texto: 'Morte e Renascimento Constantes', grau: 3 }] }
+      { nome: 'Força Cósmica', pod: [{ texto: 'Poder Latente Além da Compreensão', grau: 4 }], frq: [{ texto: 'Medo do Próprio Poder', grau: 3 }, { texto: 'Morte e Renascimento Constantes', grau: 3 }] },
+      { nome: 'Fênix Renascida', pod: [{ texto: 'Telepatia Ômega Absoluta', grau: 5 }, { texto: 'Telecinese Molecular', grau: 5 }, { texto: 'Pirocinese Cósmica', grau: 5 }, { texto: 'Manipulação de Matéria em Nível Atômico', grau: 5 }, { texto: 'Viagem Interestelar pelo Pensamento', grau: 4 }, { texto: 'Ressurreição Auto-Induzida', grau: 5 }, { texto: 'Conexão com a Força Fênix', grau: 5 }, { texto: 'Criação de Vida do Nada', grau: 5 }], frq: [{ texto: 'Fênix Pode Consumir a Alma', grau: 4 }, { texto: 'Instabilidade Emocional Cósmica', grau: 3 }] },
+      { nome: 'Avatar da Fênix', pod: [{ texto: 'Chamas da Ressurreição', grau: 5 }, { texto: 'Purificação de Mentes Corrompidas', grau: 4 }, { texto: 'Cura Planetária', grau: 4 }, { texto: 'Juízo Cósmico', grau: 5 }, { texto: 'Transmutação de Energia Infinita', grau: 5 }], frq: [{ texto: 'Perda de Humanidade', grau: 4 }, { texto: 'Atrai Entidades Cósmicas Hostis', grau: 3 }] }
     ]
   },
-  'Emma Frost': {
+'Emma Frost': {
     cards: [
       { nome: 'Rainha do Clube do Inferno', pod: [3, 4], frq: [] },
       { nome: 'Telepatia Ofensiva', pod: [0, 2], frq: [] },
       { nome: 'Diamante', pod: [1], frq: [{ texto: 'Sem Telepatia em Forma de Diamante', grau: 3 }] },
       { nome: 'Professora dos Perdidos', pod: [{ texto: 'Lealdade Feroz aos Alunos', grau: 4 }, { texto: 'Mentora Brutal e Exigente', grau: 3 }], frq: [{ texto: 'Luto pelos Hellions Assassinados', grau: 3 }, { texto: 'Passado Villão Assombra', grau: 2 }] },
       { nome: 'Frieza Calculista', pod: [{ texto: 'Manipulação Psíquica Sutil', grau: 4 }, { texto: 'Mente Tática e Inescrupulosa', grau: 3 }], frq: [{ texto: 'Arrogância como Escudo', grau: 3 }, { texto: 'Pragmatismo Moralmente Cinzento', grau: 2 }, { texto: 'Dificuldade de Confiar', grau: 2 }] },
-      { nome: 'Ex-Rainha Branca', pod: [{ texto: 'Recursos do Clube do Inferno', grau: 3 }, { texto: 'Contatos Corporativos Globais', grau: 3 }, { texto: 'Experiência como Villã', grau: 3 }], frq: [{ texto: 'Inimigos no Mundo Corporativo', grau: 2 }, { texto: 'Reputação Manchada', grau: 2 }] }
+      { nome: 'Telepatia Ômega', pod: [{ texto: 'Leitura Mental Global', grau: 5 }, { texto: 'Controle Mental de Multidões', grau: 5 }, { texto: 'Escudos Psíquicos Intransponíveis', grau: 5 }, { texto: 'Cirurgia Mental Precisa', grau: 4 }, { texto: 'Transferência de Consciência', grau: 5 }, { texto: 'Bloqueio de Poderes Mutantes', grau: 4 }, { texto: 'Ilusões Perfeitas', grau: 4 }], frq: [{ texto: 'Forma Diamante Bloqueia Telepatia', grau: 3 }] },
+      { nome: 'Rainha Branca', pod: [{ texto: 'Recursos do Clube do Inferno', grau: 4 }, { texto: 'Influência Corporativa Mundial', grau: 4 }, { texto: 'Rede de Espiões Telepatas', grau: 4 }, { texto: 'Diplomacia Ruthless', grau: 3 }, { texto: 'Acesso a Tecnologia Proibida', grau: 3 }], frq: [{ texto: 'Inimigos Poderosos', grau: 3 }, { texto: 'Reputação de Traidora', grau: 3 }] }
     ]
   },
   'Rachel Summers': {
@@ -143,7 +148,10 @@ const SPEC = {
     cards: [
       { nome: 'Messias do Futuro', pod: [2, 3], frq: [{ texto: 'Obsessão em Salvar o Amanhã', grau: 2 }] },
       { nome: 'Vírus Techno-Orgânico', pod: [0, 1], frq: [{ texto: 'Vírus Techno-Orgânico o Consome', grau: 4 }] },
-      { nome: 'Soldado de Dois Mundos', pod: [{ texto: 'Liderança da X-Force', grau: 4 }, { texto: 'Pai Adotivo de Hope Summers', grau: 4 }, { texto: 'Estrategista Pós-Apocalíptico', grau: 3 }], frq: [{ texto: 'Poder Psíquico Dividido com o Vírus', grau: 2 }] }
+      { nome: 'Soldado de Dois Mundos', pod: [{ texto: 'Liderança da X-Force', grau: 4 }, { texto: 'Pai Adotivo de Hope Summers', grau: 4 }, { texto: 'Estrategista Pós-Apocalíptico', grau: 3 }], frq: [{ texto: 'Poder Psíquico Dividido com o Vírus', grau: 2 }] },
+      { nome: 'Telepatia e Telecinese Suprimidas', pod: [{ texto: 'Telepatia de Nível Ômega (Suprimida)', grau: 5 }, { texto: 'Telecinese Massiva (Suprimida)', grau: 5 }, { texto: 'Precognição Tática', grau: 4 }, { texto: 'Link Psíquico com Hope', grau: 4 }, { texto: 'Escudos Mentais Impenetráveis', grau: 4 }], frq: [{ texto: 'Vírus Consome Poder Psíquico', grau: 4 }, { texto: 'Dores Crônicas Constantes', grau: 3 }] },
+      { nome: 'Arsenal do Futuro', pod: [{ texto: 'Armas de Energia Avançada', grau: 4 }, { texto: 'Teletransporte Temporal', grau: 4 }, { texto: 'Escudos de Força Pessoais', grau: 3 }, { texto: 'Interface Neural com Tecnologia', grau: 4 }, { texto: 'Braço Cibernético Multifuncional', grau: 3 }], frq: [{ texto: 'Dependência de Tecnologia', grau: 2 }] },
+      { nome: 'Pai de Hope', pod: [{ texto: 'Protetor da Messias Mutante', grau: 5 }, { texto: 'Treinamento de Sobrevivência Extremo', grau: 4 }, { texto: 'Conexão Genética Única', grau: 4 }, { texto: 'Sacrifício Pelo Futuro', grau: 5 }], frq: [{ texto: 'Obsessão Protetora', grau: 3 }, { texto: 'Medo de Falhar com Ela', grau: 3 }] }
     ]
   },
 
@@ -154,16 +162,18 @@ const SPEC = {
       { nome: 'Comandante de Campo', pod: [1, 4], frq: [] },
       { nome: 'Revolucionário Relutante', pod: [{ texto: 'Matou Xavier para Salvar os Mutantes', grau: 4 }, { texto: 'Líder dos X-Men', grau: 4 }, { texto: 'Estrategista Nato', grau: 3 }], frq: [{ texto: 'Peso de Matar o Mentor', grau: 3 }] },
       { nome: 'Repressão de Aço', pod: [{ texto: 'Amor por Jean Grey', grau: 3 }, { texto: 'Relação Conturbada com o Pai', grau: 2 }], frq: [{ texto: 'Rigidez Emocional', grau: 3 }, { texto: 'Não Consegue Parar de Liderar', grau: 2 }] },
-      { nome: 'Mestre do Visor', pod: [{ texto: 'Rajada de Amplo Alcance', grau: 4 }, { texto: 'Rajada de Precisão Cirúrgica', grau: 4 }, { texto: 'Rajada Ricocheteante', grau: 3 }, { texto: 'Rajada de Pulso Rápido', grau: 3 }, { texto: 'Modulação de Frequência', grau: 3 }], frq: [{ texto: 'Visor Pode Ser Destruído', grau: 2 }, { texto: 'Fadiga Mental em Combate Prolongado', grau: 2 }] }
+      { nome: 'Mestre do Visor', pod: [{ texto: 'Rajada de Amplo Alcance', grau: 4 }, { texto: 'Rajada de Precisão Cirúrgica', grau: 4 }, { texto: 'Rajada Ricocheteante', grau: 3 }, { texto: 'Rajada de Pulso Rápido', grau: 3 }, { texto: 'Modulação de Frequência', grau: 3 }], frq: [{ texto: 'Visor Pode Ser Destruído', grau: 2 }, { texto: 'Fadiga Mental em Combate Prolongado', grau: 2 }] },
+      { nome: 'Táticas Ópticas Avançadas', pod: [{ texto: 'Rajada Perfurante de Adamantium', grau: 5 }, { texto: 'Rajada de Cone para Multialvos', grau: 4 }, { texto: 'Rajada Ricochete Precisa', grau: 4 }, { texto: 'Feixe Contínuo de Alto Dano', grau: 4 }, { texto: 'Modulação para Efeito Stun', grau: 3 }], frq: [{ texto: 'Risco de Overload do Visor', grau: 3 }] }
     ]
   },
-  'Wolverine': {
+'Wolverine': {
     cards: [
       { nome: 'Fator de Cura e Adamantium', pod: [0, 1, 2], frq: [] },
       { nome: 'Fera Selvagem', pod: [4, 5], frq: [{ texto: 'Instinto Berserker', grau: 3 }] },
       { nome: 'Samurai Interior', pod: [{ texto: 'Código de Honra Pessoal', grau: 4 }, { texto: 'Mestre em Artes Marciais', grau: 3 }, { texto: 'Lealdade Feroz aos Amigos', grau: 3 }], frq: [] },
       { nome: 'Passado Fragmentado', pod: [{ texto: 'Décadas de Experiência', grau: 3 }], frq: [{ texto: 'Memórias Fragmentadas', grau: 3 }, { texto: 'Raiva Incontrolável', grau: 2 }] },
-      { nome: 'Arma X', pod: [{ texto: 'Séculos de Combate', grau: 4 }, { texto: 'Rastreador Implacável', grau: 4 }, { texto: 'Resistência a Telepatia', grau: 3 }, { texto: 'Conhecimento de Operações Negras', grau: 3 }], frq: [{ texto: 'Gatilhos de Condicionamento', grau: 3 }, { texto: 'Culpa por Vítimas Inocentes', grau: 2 }] }
+      { nome: 'Arma X', pod: [{ texto: 'Séculos de Combate', grau: 4 }, { texto: 'Rastreador Implacável', grau: 4 }, { texto: 'Resistência a Telepatia', grau: 3 }, { texto: 'Conhecimento de Operações Negras', grau: 3 }], frq: [{ texto: 'Gatilhos de Condicionamento', grau: 3 }, { texto: 'Culpa por Vítimas Inocentes', grau: 2 }] },
+      { nome: 'Mestre de Armas Brancas', pod: [{ texto: 'Mestre de Armas Brancas', grau: 5 }, { texto: 'Disciplina Ronin', grau: 4 }, { texto: 'O Melhor no que Eu Faço', grau: 5 }, { texto: 'Investida Afiada', grau: 4 }, { texto: 'Bloqueio com Garras', grau: 4 }, { texto: 'Esgrima de Garras Letal', grau: 5 }, { texto: 'Técnicas de Assassino Silencioso', grau: 4 }], frq: [{ texto: 'Honra Impede Golpes Sujos', grau: 2 }] }
     ]
   },
   'Tempestade': {
@@ -173,7 +183,9 @@ const SPEC = {
       { nome: 'Rainha de Wakanda', pod: [{ texto: 'Liderança e Realeza', grau: 4 }, { texto: 'Orgulho Africano', grau: 3 }], frq: [] },
       { nome: 'Espírito Livre', pod: [{ texto: 'Compaixão e Sabedoria', grau: 3 }], frq: [{ texto: 'Responsabilidade de Líder', grau: 2 }] },
       { nome: 'Ladra do Cairo', pod: [{ texto: 'Furtividade Urbana', grau: 3 }, { texto: 'Mestre do Disfarce', grau: 3 }, { texto: 'Contatos no Submundo', grau: 2 }], frq: [{ texto: 'Passado de Rua', grau: 2 }, { texto: 'Desconfiança de Autoridades', grau: 2 }] },
-      { nome: 'Mãe dos Mutantes', pod: [{ texto: 'Mentora da Nova Geração', grau: 4 }, { texto: 'Defensora dos Órfãos Mutantes', grau: 3 }, { texto: 'Voz Moral dos X-Men', grau: 3 }], frq: [{ texto: 'Culpa por Não Salvar Todos', grau: 3 }, { texto: 'Peso da Coroa', grau: 2 }] }
+      { nome: 'Mãe dos Mutantes', pod: [{ texto: 'Mentora da Nova Geração', grau: 4 }, { texto: 'Defensora dos Órfãos Mutantes', grau: 3 }, { texto: 'Voz Moral dos X-Men', grau: 3 }], frq: [{ texto: 'Culpa por Não Salvar Todos', grau: 3 }, { texto: 'Peso da Coroa', grau: 2 }] },
+      { nome: 'Mestra do Clima Global', pod: [{ texto: 'Manipulação Atmosférica Planetária', grau: 5 }, { texto: 'Cria Furacões e Tornados em Escala Global', grau: 5 }, { texto: 'Controla Temperatura Global', grau: 4 }, { texto: 'Invoca Raios Cósmicos', grau: 5 }, { texto: 'Altera Padrões Climáticos Mundiais', grau: 4 }, { texto: 'Voo Atmosférico Supersônico', grau: 4 }, { texto: 'Imunidade a Extremos de Temperatura', grau: 4 }], frq: [{ texto: 'Emoções Afetam o Clima', grau: 3 }, { texto: 'Exaustão Após Uso Massivo', grau: 3 }] },
+      { nome: 'Sacerdotisa Tribal', pod: [{ texto: 'Linhagem de Sacerdotisas Africanas', grau: 4 }, { texto: 'Comunicação Ancestral com Espíritos', grau: 4 }, { texto: 'Rituais de Invocação de Tempestades', grau: 3 }, { texto: 'Sabedoria Ancestral', grau: 3 }], frq: [{ texto: 'Dever para com o Povo', grau: 2 }, { texto: 'Tradições Restritivas', grau: 2 }] }
     ]
   },
   'Fera': {
@@ -181,7 +193,9 @@ const SPEC = {
       { nome: 'Intelecto Genial', pod: [1, 4], frq: [] },
       { nome: 'Fera Azul', pod: [0, 2, 3], frq: [{ texto: 'Aparência Desfavorece Socialmente', grau: 2 }] },
       { nome: 'Cientista sem Escrúpulos', pod: [{ texto: 'Ex-Diretor da X-Force CIA', grau: 4 }], frq: [{ texto: 'Escorregou Moralmente', grau: 3 }, { texto: 'Clonou e Matou Wolverine', grau: 3 }, { texto: 'Prisões Secretas e Experimentos', grau: 3 }] },
-      { nome: 'Jekyll & Hyde', pod: [{ texto: 'Intelecto Genial', grau: 4 }, { texto: 'Capacidade de Adaptação Moral', grau: 3 }], frq: [{ texto: 'Duas Versões de Si em Guerra', grau: 3 }, { texto: 'Vaidade Intelectual', grau: 2 }] }
+      { nome: 'Jekyll & Hyde', pod: [{ texto: 'Intelecto Genial', grau: 4 }, { texto: 'Capacidade de Adaptação Moral', grau: 3 }], frq: [{ texto: 'Duas Versões de Si em Guerra', grau: 3 }, { texto: 'Vaidade Intelectual', grau: 2 }] },
+      { nome: 'Fisiologia Mutante Avançada', pod: [{ texto: 'Força Sobre-Humana (10 ton)', grau: 4 }, { texto: 'Agilidade e Reflexos Felinos', grau: 4 }, { texto: 'Sentidos Aguçados (Olfato/Audição)', grau: 4 }, { texto: 'Durabilidade Aprimorada', grau: 3 }, { texto: 'Garras Retráteis', grau: 3 }, { texto: 'Regeneração Acelerada', grau: 3 }, { texto: 'Intelecto Nível Gênio (QI 200+)', grau: 5 }], frq: [{ texto: 'Aparência Monstruosa', grau: 3 }, { texto: 'Luta Contra Instintos Animais', grau: 2 }] },
+      { nome: 'Cientista Chefe dos X-Men', pod: [{ texto: 'Inventor de Tecnologia X-Men', grau: 4 }, { texto: 'Especialista em Genética Mutante', grau: 5 }, { texto: 'Criador de Cerebro Atualizado', grau: 4 }, { texto: 'Médico de Combate', grau: 3 }], frq: [{ texto: 'Obsessão Científica', grau: 2 }] }
     ]
   },
   'Ícone': {
@@ -205,7 +219,8 @@ const SPEC = {
       { nome: 'Artista e Guerreiro', pod: [3], frq: [] },
       { nome: 'Protetor da Família', pod: [{ texto: 'Lealdade à Irmã Magik', grau: 4 }, { texto: 'Força Interior', grau: 3 }], frq: [] },
       { nome: 'Gigante Gentil', pod: [{ texto: 'Força Sobre-humana', grau: 5 }, { texto: 'Pele de Aço Orgânico', grau: 4 }], frq: [{ texto: 'Pesa a Perda de Seus Amigos', grau: 2 }, { texto: 'Manso Demais para Ser Cruel', grau: 1 }] },
-      { nome: 'Legado Rasputin', pod: [{ texto: 'Irmão de Magik (Illyana)', grau: 3 }, { texto: 'Sangue de Feiticeiros', grau: 3 }, { texto: 'Conexão com Limbo', grau: 3 }, { texto: 'Protege Inocentes', grau: 3 }], frq: [{ texto: 'Magik o Manipula', grau: 2 }, { texto: 'Fardo da Família', grau: 2 }] }
+      { nome: 'Legado Rasputin', pod: [{ texto: 'Irmão de Magik (Illyana)', grau: 3 }, { texto: 'Sangue de Feiticeiros', grau: 3 }, { texto: 'Conexão com Limbo', grau: 3 }, { texto: 'Protege Inocentes', grau: 3 }], frq: [{ texto: 'Magik o Manipula', grau: 2 }, { texto: 'Fardo da Família', grau: 2 }] },
+      { nome: 'Forma Metálica Perfeita', pod: [{ texto: 'Invulnerabilidade Física Total', grau: 5 }, { texto: 'Força Ilimitada em Forma Metálica', grau: 5 }, { texto: 'Não Precisa Respirar/Comer', grau: 4 }, { texto: 'Imune a Venenos/Doenças', grau: 4 }, { texto: 'Projeção de Energia Metálica', grau: 3 }], frq: [{ texto: 'Não Pode Voltar à Forma Humana Facilmente', grau: 2 }, { texto: 'Peso Extremo em Forma Metálica', grau: 2 }] }
     ]
   },
   'Noturno': {
@@ -216,7 +231,8 @@ const SPEC = {
       { nome: 'Palhaço Triste', pod: [{ texto: 'Humor como Defesa', grau: 3 }], frq: [{ texto: 'Autoestima Frágil', grau: 2 }] },
       { nome: 'Filho de Mística', pod: [{ texto: 'Sombra da Mãe', grau: 3 }, { texto: 'Irmão de Rogue', grau: 2 }, { texto: 'Herança Mutante Misteriosa', grau: 2 }], frq: [{ texto: 'Identidade Oculta', grau: 2 }, { texto: 'Medo de Rejeição', grau: 2 }] },
       { nome: 'Mestre da Espada', pod: [{ texto: 'Esgrima de Nível Olímpico', grau: 4 }, { texto: 'Teletransporte em Combate', grau: 4 }, { texto: 'Ataque e Fuga Instantâneo', grau: 4 }, { texto: 'Lutas em Três Dimensões', grau: 3 }], frq: [{ texto: 'Cansaço por Teleportes Seguidos', grau: 2 }] },
-      { nome: 'Sombra Viva', pod: [{ texto: 'Invisibilidade em Sombras', grau: 4 }, { texto: 'Teletransporte Silencioso', grau: 3 }, { texto: 'Sentidos Noturnos Aguçados', grau: 3 }], frq: [{ texto: 'Luz Intensa o Enfraquece', grau: 2 }] }
+      { nome: 'Sombra Viva', pod: [{ texto: 'Invisibilidade em Sombras', grau: 4 }, { texto: 'Teletransporte Silencioso', grau: 3 }, { texto: 'Sentidos Noturnos Aguçados', grau: 3 }], frq: [{ texto: 'Luz Intensa o Enfraquece', grau: 2 }] },
+      { nome: 'Teletransporte Dimensional', pod: [{ texto: 'Acesso à Dimensão Bamf', grau: 5 }, { texto: 'Teletransporte Interdimensional', grau: 4 }, { texto: 'Portais para Múltiplos Alvos', grau: 4 }, { texto: 'Viagem no Tempo Limitada', grau: 3 }, { texto: 'Rastreamento Dimensional', grau: 3 }], frq: [{ texto: 'Risco de Perder-se no Vazio', grau: 3 }] }
     ]
   },
   'Kitty Pryde': {
@@ -228,13 +244,14 @@ const SPEC = {
       { nome: 'Dragão Lockheed', pod: [{ texto: 'Vínculo Telepático com Lockheed', grau: 3 }, { texto: 'Companheiro de Batalha', grau: 3 }, { texto: 'Fonte de Conforto', grau: 2 }], frq: [{ texto: 'Perda de Lockheed a Abala', grau: 2 }] }
     ]
   },
-  'Rogue': {
+'Rogue': {
     cards: [
       { nome: 'Absorção de Poderes', pod: [0, 1, 2], frq: [] },
       { nome: 'Toque Letal', pod: [{ texto: 'Absorve Poderes, Memórias e Personalidade', grau: 5 }], frq: [{ texto: 'Não Pode Tocar Ninguém sem Absorver', grau: 4 }, { texto: 'Isolamento Emocional Permanente', grau: 3 }, { texto: 'Múltiplas Personalidades Absorvidas', grau: 3 }] },
       { nome: 'Villã Redimida', pod: [{ texto: 'Força e Voo (Miss Marvel)', grau: 4 }, { texto: 'Liderança de Equipe', grau: 3 }, { texto: 'Força de Vontade Inabalável', grau: 3 }], frq: [{ texto: 'Passado na Irmandade Assombra', grau: 2 }] },
       { nome: 'Amor à Prova de Toque', pod: [{ texto: 'Casada com Gambit', grau: 3 }], frq: [{ texto: 'Mystique a Manipulou por Anos', grau: 2 }] },
-      { nome: 'Poderes Permanentes Absorvidos', pod: [{ texto: 'Vôo e Força Sobre-humana', grau: 4 }, { texto: 'Invulnerabilidade Parcial', grau: 3 }, { texto: 'Sentidos Aguçados', grau: 3 }], frq: [{ texto: 'Eco da Personalidade de Carol Danvers', grau: 3 }, { texto: 'Medo de Perder Controle', grau: 2 }] }
+      { nome: 'Poderes Permanentes Absorvidos', pod: [{ texto: 'Vôo e Força Sobre-Humana', grau: 4 }, { texto: 'Invulnerabilidade Parcial', grau: 3 }, { texto: 'Sentidos Aguçados', grau: 3 }], frq: [{ texto: 'Eco da Personalidade de Carol Danvers', grau: 3 }, { texto: 'Medo de Perder Controle', grau: 2 }] },
+      { nome: 'Absorção Tática em Combate', pod: [{ texto: 'Absorve Múltiplos Alvos Simultaneamente', grau: 4 }, { texto: 'Combina Poderes Absorvidos', grau: 5 }, { texto: 'Rouba Memórias Estratégicas', grau: 4 }, { texto: 'Adaptação Instantânea', grau: 4 }, { texto: 'Controle Parcial do Toque', grau: 3 }], frq: [{ texto: 'Sobrecarga Mental', grau: 3 }, { texto: 'Personalidades Conflitantes', grau: 3 }] }
     ]
   },
   'Gambit': {
@@ -243,7 +260,9 @@ const SPEC = {
       { nome: 'Rei dos Ladrões', pod: [1, 3], frq: [{ texto: 'Passado na Guilda dos Ladrões', grau: 3 }] },
       { nome: 'Charme Cajun', pod: [2], frq: [{ texto: 'Lealdade Questionável', grau: 2 }] },
       { nome: 'Busca por Redenção', pod: [{ texto: 'Casado com Rogue', grau: 3 }], frq: [{ texto: 'Culpa pelo Massacre dos Morlocks', grau: 3 }, { texto: 'Poder Limitado por Sinister', grau: 2 }] },
-      { nome: 'Mestre das Cartas', pod: [{ texto: 'Cartas Explosivas de Alcance', grau: 4 }, { texto: 'Carga em Objetos Grandes', grau: 3 }, { texto: 'Carga Adiada (Timer)', grau: 3 }, { texto: 'Desvio de Trajetória', grau: 2 }, { texto: 'Acrobacia de Nível Olímpico', grau: 3 }], frq: [{ texto: 'Olhos Sensíveis à Luz', grau: 2 }, { texto: 'Vício em Apostas', grau: 2 }] }
+      { nome: 'Mestre das Cartas', pod: [{ texto: 'Cartas Explosivas de Alcance', grau: 4 }, { texto: 'Carga em Objetos Grandes', grau: 3 }, { texto: 'Carga Adiada (Timer)', grau: 3 }, { texto: 'Desvio de Trajetória', grau: 2 }, { texto: 'Acrobacia de Nível Olímpico', grau: 3 }], frq: [{ texto: 'Olhos Sensíveis à Luz', grau: 2 }, { texto: 'Vício em Apostas', grau: 2 }] },
+      { nome: 'Carga Cinética Avançada', pod: [{ texto: 'Carga em Seres Vivos', grau: 5 }, { texto: 'Explosão de Área Massiva', grau: 5 }, { texto: 'Carga Perpétua (Não Gasta Energia)', grau: 4 }, { texto: 'Descarrega em Ondas de Choque', grau: 4 }, { texto: 'Carrega Armas de Fogo', grau: 3 }], frq: [{ texto: 'Fadiga Extrema Após Uso Máximo', grau: 3 }] },
+      { nome: 'Ladrão Lendário', pod: [{ texto: 'Infiltração Impossível', grau: 4 }, { texto: 'Falsificação Perfeita', grau: 3 }, { texto: 'Rede de Contatos Criminosos Global', grau: 4 }, { texto: 'Planejamento de Golpes Impossíveis', grau: 4 }], frq: [{ texto: 'Código de Honra de Ladrão', grau: 2 }, { texto: 'Inimigos em Toda Guilda', grau: 3 }] }
     ]
   },
   'Psylocke': {
@@ -252,7 +271,9 @@ const SPEC = {
       { nome: 'Ninja Psi', pod: [2, 3], frq: [{ texto: 'Corpo Trocado com Kwannon', grau: 2 }] },
       { nome: 'Guerreira Silenciosa', pod: [{ texto: 'Determinação Fria', grau: 3 }], frq: [{ texto: 'Passado na Mão', grau: 2 }] },
       { nome: 'Aristocrata Britânica', pod: [{ texto: 'Herdeira da Família Braddock', grau: 3 }, { texto: 'Irmã do Capitão Britânia', grau: 3 }, { texto: 'Educação de Elite', grau: 2 }], frq: [{ texto: 'Fardo da Nobreza', grau: 2 }] },
-      { nome: 'Corpo de Kwannon', pod: [{ texto: 'Artes Marciais de Elite', grau: 5 }, { texto: 'Telepatia Focada em Combate', grau: 4 }, { texto: 'Lâmina Psiônica Manifesta', grau: 4 }, { texto: 'Sombras e Furtividade', grau: 3 }], frq: [{ texto: 'Identidade Fragmentada', grau: 3 }, { texto: 'Memórias de Duas Vidas', grau: 3 }] }
+      { nome: 'Corpo de Kwannon', pod: [{ texto: 'Artes Marciais de Elite', grau: 5 }, { texto: 'Telepatia Focada em Combate', grau: 4 }, { texto: 'Lâmina Psiônica Manifesta', grau: 4 }, { texto: 'Sombras e Furtividade', grau: 3 }], frq: [{ texto: 'Identidade Fragmentada', grau: 3 }, { texto: 'Memórias de Duas Vidas', grau: 3 }] },
+      { nome: 'Telepatia Ômega', pod: [{ texto: 'Facas Psiônicas Gêmeas', grau: 5 }, { texto: 'Ilusões Telepáticas Globais', grau: 4 }, { texto: 'Rastreamento Mental Planetário', grau: 4 }, { texto: 'Bloqueio Mental Absoluto', grau: 5 }, { texto: 'Cirurgia Psíquica', grau: 4 }], frq: [{ texto: 'Sobrecarga Psíquica', grau: 3 }] },
+      { nome: 'Capitã Britânia', pod: [{ texto: 'Amuleto do Direito', grau: 4 }, { texto: 'Conexão com Outromundo', grau: 4 }, { texto: 'Líder da Excalibur', grau: 3 }, { texto: 'Voo Supersônico', grau: 4 }], frq: [{ texto: 'Responsabilidade Multiversal', grau: 2 }] }
     ]
   },
   'Bishop': {
@@ -261,7 +282,9 @@ const SPEC = {
       { nome: 'XSE', pod: [2], frq: [] },
       { nome: 'Sobrevivente do Futuro', pod: [{ texto: 'Instinto de Sobrevivência', grau: 4 }], frq: [{ texto: 'Obsessão com a Segurança', grau: 2 }, { texto: 'Pesa o Futuro que Perdeu', grau: 2 }] },
       { nome: 'Redirecionamento de Energia', pod: [{ texto: 'Absorve e Dispara Rajadas', grau: 5 }, { texto: 'Imune a Projéteis de Energia', grau: 4 }, { texto: 'Carrega Armas com Energia Absorvida', grau: 3 }, { texto: 'Sobrecarga Causa Explosão', grau: 4 }], frq: [{ texto: 'Limite de Absorção', grau: 2 }] },
-      { nome: 'Caçador de Mutantes do Futuro', pod: [{ texto: 'Rastreamento Temporal', grau: 3 }, { texto: 'Conhecimento de Eventos Futuros', grau: 3 }, { texto: 'Táticas da XSE', grau: 3 }], frq: [{ texto: 'Paradoxo Temporal', grau: 2 }, { texto: 'Dificuldade de Confiar no Presente', grau: 2 }] }
+      { nome: 'Caçador de Mutantes do Futuro', pod: [{ texto: 'Rastreamento Temporal', grau: 3 }, { texto: 'Conhecimento de Eventos Futuros', grau: 3 }, { texto: 'Táticas da XSE', grau: 3 }], frq: [{ texto: 'Paradoxo Temporal', grau: 2 }, { texto: 'Dificuldade de Confiar no Presente', grau: 2 }] },
+      { nome: 'Absorção Cósmica', pod: [{ texto: 'Absorve Energia Estelar', grau: 5 }, { texto: 'Canaliza Explosões Solares', grau: 5 }, { texto: 'Imune a Radiação', grau: 4 }, { texto: 'Projeção de Energia Ilimitada', grau: 5 }], frq: [{ texto: 'Risco de Queima Interna', grau: 3 }] },
+      { nome: 'Líder da XSE', pod: [{ texto: 'Comando Tático Temporal', grau: 4 }, { texto: 'Prevenção de Futuros Ruins', grau: 4 }, { texto: 'Arsenal do Futuro', grau: 3 }], frq: [{ texto: 'Fardo do Conhecimento', grau: 3 }] }
     ]
   },
   'Jubileu': {
@@ -276,7 +299,9 @@ const SPEC = {
       { nome: 'Magnetismo', pod: [0, 1], frq: [] },
       { nome: 'Filha de Magneto', pod: [3], frq: [{ texto: 'Instabilidade Mental', grau: 3 }, { texto: 'Identidade Incerta', grau: 2 }] },
       { nome: 'Mestra do Magnetismo', pod: [{ texto: 'Controle Fino de Metais', grau: 5 }, { texto: 'Manipulação de Sangue Ferroso', grau: 4 }, { texto: 'Campo de Força Pessoal', grau: 4 }, { texto: 'Voo Magnético', grau: 3 }], frq: [{ texto: 'Poder Ligado ao Estado Emocional', grau: 3 }] },
-      { nome: 'Líder da X-Factor', pod: [{ texto: 'Tática de Campo', grau: 4 }, { texto: 'Lealdade à Equipe', grau: 3 }], frq: [{ texto: 'Sombra do Pai', grau: 3 }, { texto: 'Histórico de Colapso Mental', grau: 2 }] }
+      { nome: 'Líder da X-Factor', pod: [{ texto: 'Tática de Campo', grau: 4 }, { texto: 'Lealdade à Equipe', grau: 3 }], frq: [{ texto: 'Sombra do Pai', grau: 3 }, { texto: 'Histórico de Colapso Mental', grau: 2 }] },
+      { nome: 'Magnetismo Planetário', pod: [{ texto: 'Manipula Campo Magnético da Terra', grau: 5 }, { texto: 'Controla Minérios em Escala Global', grau: 4 }, { texto: 'Gera Aurora Boreal Artificial', grau: 4 }, { texto: 'Escudo Magnético Atmosférico', grau: 5 }, { texto: 'Voo Orbital', grau: 4 }], frq: [{ texto: 'Exaustão Mental Severa', grau: 3 }] },
+      { nome: 'Herdeira de Magneto', pod: [{ texto: 'Potencial Igual ao Pai', grau: 5 }, { texto: 'Controle de Ferro no Sangue', grau: 4 }, { texto: 'Liderança Mutante Natural', grau: 4 }], frq: [{ texto: 'Medo de Tornar-se o Pai', grau: 3 }] }
     ]
   },
   'Havok': {
@@ -284,7 +309,9 @@ const SPEC = {
       { nome: 'Anéis de Plasma', pod: [0, 1], frq: [{ texto: 'Controle Instável', grau: 2 }] },
       { nome: 'Liderança dos X-Men', pod: [2], frq: [{ texto: 'Síndrome do Irmão Famoso', grau: 2 }] },
       { nome: 'Plasma Cósmico', pod: [{ texto: 'Absorção de Energia Cósmica', grau: 5 }, { texto: 'Descarga de Plasma Concentrada', grau: 4 }, { texto: 'Imune a Poderes de Ciclope', grau: 4 }, { texto: 'Sobrecarga Destrutiva', grau: 3 }], frq: [{ texto: 'Dificuldade em Conter o Poder', grau: 3 }] },
-      { nome: 'Irmão do Líder', pod: [{ texto: 'Liderança Relutante', grau: 3 }, { texto: 'Lealdade Fraterna', grau: 3 }], frq: [{ texto: 'Sempre na Sombra de Scott', grau: 3 }, { texto: 'Identidade Própria em Construção', grau: 2 }] }
+      { nome: 'Irmão do Líder', pod: [{ texto: 'Liderança Relutante', grau: 3 }, { texto: 'Lealdade Fraterna', grau: 3 }], frq: [{ texto: 'Sempre na Sombra de Scott', grau: 3 }, { texto: 'Identidade Própria em Construção', grau: 2 }] },
+      { nome: 'Mestre do Plasma', pod: [{ texto: 'Geração de Plasma Solar', grau: 5 }, { texto: 'Projeção de Rajadas Orbitais', grau: 4 }, { texto: 'Absorção de Radiação Estelar', grau: 5 }, { texto: 'Criação de Estrelas Artificiais', grau: 4 }, { texto: 'Imunidade Total a Calor/Radiação', grau: 4 }, { texto: 'Voo por Propulsão de Plasma', grau: 3 }], frq: [{ texto: 'Risco de Supernova Interna', grau: 3 }] },
+      { nome: 'Herdeiro Summers', pod: [{ texto: 'Genética Ômega', grau: 5 }, { texto: 'Imune a Poderes dos Irmãos', grau: 4 }, { texto: 'Liderança Tática Nata', grau: 3 }], frq: [{ texto: 'Pressão do Legado Familiar', grau: 3 }] }
     ]
   },
   'X-23': {
@@ -293,7 +320,9 @@ const SPEC = {
       { nome: 'Assassina Condicionada', pod: [2], frq: [{ texto: 'Gatilho de Berserk', grau: 4 }, { texto: 'Trauma de Condicionamento', grau: 3 }] },
       { nome: 'Mais que uma Arma', pod: [{ texto: 'Identidade em Construção', grau: 3 }], frq: [] },
       { nome: 'Gatilho Químico', pod: [{ texto: 'Feromônio Desencadeia Fúria', grau: 5 }, { texto: 'Perde Controle Total', grau: 4 }, { texto: 'Cheiro Específico Ativa', grau: 4 }], frq: [{ texto: 'Inimigos Usam Gatilho', grau: 4 }, { texto: 'Medo de Machucar Amigos', grau: 3 }] },
-      { nome: 'Clone de Wolverine', pod: [{ texto: 'Fator de Cura Similar', grau: 4 }, { texto: 'Duas Garras por Mão', grau: 4 }, { texto: 'Garra no Pé', grau: 3 }, { texto: 'Sem Adamantium no Esqueleto', grau: 3 }], frq: [{ texto: 'Vista como Propriedade', grau: 3 }, { texto: 'Busca Humanidade', grau: 3 }] }
+      { nome: 'Clone de Wolverine', pod: [{ texto: 'Fator de Cura Similar', grau: 4 }, { texto: 'Duas Garras por Mão', grau: 4 }, { texto: 'Garra no Pé', grau: 3 }, { texto: 'Sem Adamantium no Esqueleto', grau: 3 }], frq: [{ texto: 'Vista como Propriedade', grau: 3 }, { texto: 'Busca Humanidade', grau: 3 }] },
+      { nome: 'Assassina Perfeita', pod: [{ texto: 'Treinamento de Arma X Completo', grau: 5 }, { texto: 'Especialista em Infiltração', grau: 4 }, { texto: 'Conhece Pontos Vitais de Mutantes', grau: 4 }, { texto: 'Resistência a Telepatia', grau: 3 }, { texto: 'Rastreamento por Cheiro', grau: 4 }], frq: [{ texto: 'Gatilho de Berserk Químico', grau: 4 }, { texto: 'Identidade Fragmentada', grau: 3 }] },
+      { nome: 'Herdeira de Logan', pod: [{ texto: 'Genética de Wolverine', grau: 4 }, { texto: 'Instinto de Sobrevivência', grau: 4 }, { texto: 'Código de Honra Pessoal', grau: 3 }], frq: [{ texto: 'Sombra do Original', grau: 3 }] }
     ]
   },
   'Forge': {
@@ -302,7 +331,9 @@ const SPEC = {
       { nome: 'Xamã Tecnológico', pod: [1, 3], frq: [{ texto: 'Criou o Neutralizador de Mutantes', grau: 2 }] },
       { nome: 'Neutralizador de Poderes', pod: [{ texto: 'Arma que Remove Mutação', grau: 5 }, { texto: 'Usado contra Tempestade', grau: 4 }, { texto: 'Arrependimento Profundo', grau: 4 }, { texto: 'Tecnologia Proibida', grau: 3 }], frq: [{ texto: 'Culpa por Desumanizar Mutantes', grau: 4 }, { texto: 'Destruiu os Planos', grau: 2 }] },
       { nome: 'Místico Cheyenne', pod: [{ texto: 'Visões Espirituais', grau: 3 }, { texto: 'Conexão com Adversário', grau: 3 }, { texto: 'Magia Tecnológica', grau: 3 }], frq: [{ texto: 'Conflito Ciência vs Fé', grau: 2 }, { texto: 'Perna e Mão Protéticas', grau: 2 }] },
-      { nome: 'Armas X-Men', pod: [{ texto: 'Criou Cerebro Atualizado', grau: 4 }, { texto: 'Jato Blackbird', grau: 3 }, { texto: 'Uniformes Tecnológicos', grau: 3 }, { texto: 'Próteses Avançadas', grau: 3 }], frq: [{ texto: 'Dependência de Tecnologia', grau: 2 }] }
+      { nome: 'Armas X-Men', pod: [{ texto: 'Criou Cerebro Atualizado', grau: 4 }, { texto: 'Jato Blackbird', grau: 3 }, { texto: 'Uniformes Tecnológicos', grau: 3 }, { texto: 'Próteses Avançadas', grau: 3 }], frq: [{ texto: 'Dependência de Tecnologia', grau: 2 }] },
+      { nome: 'Tecnologia Mística', pod: [{ texto: 'Dispositivos de Magia Tecnocientífica', grau: 4 }, { texto: 'Portal Dimensional Portátil', grau: 4 }, { texto: 'Armas Anti-Entidades Místicas', grau: 4 }, { texto: 'IA com Consciência Espiritual', grau: 5 }], frq: [{ texto: 'Instabilidade Mística', grau: 3 }] },
+      { nome: 'Arsenal Ômega', pod: [{ texto: 'Arma que Mata Deuses', grau: 5 }, { texto: 'Nanobots de Reconstrução', grau: 4 }, { texto: 'Gerador de Campo de Força Absoluto', grau: 5 }, { texto: 'Motor de Dobra Espacial', grau: 5 }], frq: [{ texto: 'Risco de Apocalipse Tecnológico', grau: 3 }] }
     ]
   },
   'Dazzler': {
@@ -318,7 +349,8 @@ const SPEC = {
       { nome: 'Veterano da Interpol', pod: [2, 3], frq: [] },
       { nome: 'Pai e Mentor', pod: [{ texto: 'Fundador da Geração X', grau: 3 }, { texto: 'Pai de Siryn', grau: 2 }], frq: [] },
       { nome: 'Mestre do Som', pod: [{ texto: 'Imita Qualquer Voz', grau: 3 }, { texto: 'Detecção Sísmica', grau: 3 }, { texto: 'Contrassonar Subaquático', grau: 2 }], frq: [{ texto: 'Perda Auditiva Progressiva', grau: 2 }, { texto: 'Idade Avançada', grau: 2 }] },
-      { nome: 'Grito Sônico Devastador', pod: [{ texto: 'Rajada Sônica de Nível 1', grau: 4 }, { texto: 'Rajada Sônica de Nível 2', grau: 4 }, { texto: 'Rajada Sônica de Nível 3', grau: 5 }, { texto: 'Onda de Choque Sônica', grau: 4 }], frq: [{ texto: 'Danos Permanentes à Voz', grau: 3 }] }
+      { nome: 'Grito Sônico Devastador', pod: [{ texto: 'Rajada Sônica de Nível 1', grau: 4 }, { texto: 'Rajada Sônica de Nível 2', grau: 4 }, { texto: 'Rajada Sônica de Nível 3', grau: 5 }, { texto: 'Onda de Choque Sônica', grau: 4 }], frq: [{ texto: 'Danos Permanentes à Voz', grau: 3 }] },
+      { nome: 'Sônico Supremo', pod: [{ texto: 'Grito que Destrói Montanhas', grau: 5 }, { texto: 'Cura por Ressonância', grau: 4 }, { texto: 'Telepatia Sônica', grau: 4 }, { texto: 'Criação de Matéria por Som', grau: 5 }, { texto: 'Voo Interdimensional', grau: 4 }], frq: [{ texto: 'Exaustão Total', grau: 3 }] }
     ]
   },
   'Cecilia Reyes': {
@@ -383,7 +415,8 @@ const SPEC = {
       { nome: 'Mercenária Albina', pod: [2, 3], frq: [{ texto: 'Trauma do Projeto Armageddon', grau: 2 }] },
       { nome: 'Aliada Incondicional', pod: [{ texto: 'Coração de Mercenária', grau: 3 }], frq: [{ texto: 'Poder é Subconsciente', grau: 3 }] },
       { nome: 'Campo de Probabilidade', pod: [{ texto: 'Causa Azar aos Inimigos', grau: 5 }, { texto: 'Garante Sucesso em Ações', grau: 4 }, { texto: 'Projéteis Desviam Sozinhos', grau: 4 }, { texto: 'Eventos Improváveis Acontecem', grau: 3 }, { texto: 'Funciona Melhor sem Planejamento', grau: 3 }], frq: [{ texto: 'Não Controla Conscientemente', grau: 3 }, { texto: 'Efeito Borboleta Imprevisível', grau: 2 }] },
-      { nome: 'Parceira de Cable', pod: [{ texto: 'Confiança Absoluta em Nathan', grau: 3 }, { texto: 'Ex-Membro X-Force', grau: 3 }], frq: [{ texto: 'Sorte Não Protege Amigos', grau: 2 }] }
+      { nome: 'Parceira de Cable', pod: [{ texto: 'Confiança Absoluta em Nathan', grau: 3 }, { texto: 'Ex-Membro X-Force', grau: 3 }], frq: [{ texto: 'Sorte Não Protege Amigos', grau: 2 }] },
+      { nome: 'Manipulação Probabilística Ômega', pod: [{ texto: 'Altera Probabilidade em Escala Global', grau: 5 }, { texto: 'Causa Eventos Impossíveis', grau: 5 }, { texto: 'Anula Poderes Adversários', grau: 4 }, { texto: 'Garante Vitória Certa', grau: 5 }, { texto: 'Manipula Sorte de Exércitos', grau: 4 }], frq: [{ texto: 'Retorno Cósmico', grau: 3 }, { texto: 'Perde Humanidade', grau: 3 }] }
     ]
   },
   'Shatterstar': {
@@ -603,7 +636,9 @@ const SPEC = {
       { nome: 'Nunca Mais', pod: [3, 4], frq: [{ texto: 'Trauma do Holocausto', grau: 4 }] },
       { nome: 'Poderes em Declínio', pod: [5], frq: [{ texto: 'Poderes se Apagando com a Idade', grau: 3 }] },
       { nome: 'Causa Mutante', pod: [{ texto: 'Visão de Supremacia Mutante', grau: 4 }, { texto: 'Carisma Revolucionário', grau: 4 }, { texto: 'Anti-Vilão a Anti-Herói', grau: 3 }], frq: [{ texto: 'Extremismo Cega', grau: 3 }, { texto: 'Família Estilhaçada', grau: 2 }] },
-      { nome: 'Pai de Polaris e Wanda', pod: [{ texto: 'Lorna Dane Herda Magnetismo', grau: 3 }, { texto: 'Wanda Maximoff Caos Mágico', grau: 3 }, { texto: 'Pietro Velocidade Herdada', grau: 2 }], frq: [{ texto: 'Filhos o Odiando', grau: 3 }, { texto: 'Nunca Foi Pai Presente', grau: 2 }] }
+      { nome: 'Pai de Polaris e Wanda', pod: [{ texto: 'Lorna Dane Herda Magnetismo', grau: 3 }, { texto: 'Wanda Maximoff Caos Mágico', grau: 3 }, { texto: 'Pietro Velocidade Herdada', grau: 2 }], frq: [{ texto: 'Filhos o Odiando', grau: 3 }, { texto: 'Nunca Foi Pai Presente', grau: 2 }] },
+      { nome: 'Mestre da Magnetismo Cósmico', pod: [{ texto: 'Manipula Campo Magnético Planetário', grau: 5 }, { texto: 'Controla Radiação Cósmica Magnética', grau: 5 }, { texto: 'Move Asteroides e Detritos Espaciais', grau: 4 }, { texto: 'Gera Pulso Eletromagnético Global', grau: 5 }, { texto: 'Voo Interestelar por Linhas Magnéticas', grau: 4 }], frq: [{ texto: 'Idade Limita Uso Contínuo', grau: 3 }] },
+      { nome: 'Arquiteto de Genosha', pod: [{ texto: 'Construiu Nação Mutante do Zero', grau: 4 }, { texto: 'Engenharia Magnética Avançada', grau: 4 }, { texto: 'Recursos Minerais Infinitos', grau: 3 }, { texto: 'Exército Mutante Leal', grau: 4 }], frq: [{ texto: 'Alvo Constante de Potências Mundiais', grau: 3 }, { texto: 'Culpa por Falhas Passadas', grau: 3 }] }
     ]
   },
   'Mystique': {
@@ -612,7 +647,9 @@ const SPEC = {
       { nome: 'Mãe de Segredos', pod: [2], frq: [{ texto: 'Abandonou Noturno ao Nascer', grau: 3 }] },
       { nome: 'Cúmplice do Destino', pod: [{ texto: 'Rede de Espionagem Global', grau: 4 }, { texto: 'Manipuladora Genial', grau: 3 }, { texto: 'Casada com Destiny (Irene Adler)', grau: 3 }], frq: [{ texto: 'Lealdade apenas a Si e Destiny', grau: 3 }] },
       { nome: 'Mestra do Disfarce', pod: [{ texto: 'Mimetiza Voz e Maneirismos', grau: 5 }, { texto: 'Altera Impressões Digitais', grau: 4 }, { texto: 'Engana Sensores Biométricos', grau: 4 }, { texto: 'Disfarça Cheiro e Feromônios', grau: 3 }], frq: [{ texto: 'Massa Corporal Constante', grau: 2 }, { texto: 'Não Copia Poderes Mutantes', grau: 3 }] },
-      { nome: 'Mãe de Rogue', pod: [{ texto: 'Criou Filha Adotiva', grau: 3 }, { texto: 'Manipulou Rogue por Anos', grau: 4 }], frq: [{ texto: 'Culpa Materna Recalcada', grau: 2 }, { texto: 'Destiny Previu Traição', grau: 2 }] }
+      { nome: 'Mãe de Rogue', pod: [{ texto: 'Criou Filha Adotiva', grau: 3 }, { texto: 'Manipulou Rogue por Anos', grau: 4 }], frq: [{ texto: 'Culpa Materna Recalcada', grau: 2 }, { texto: 'Destiny Previu Traição', grau: 2 }] },
+      { nome: 'Infiltração Perfeita', pod: [{ texto: 'Substitui Líderes Mundiais', grau: 5 }, { texto: 'Infilترا Organizações Secretas', grau: 4 }, { texto: 'Mimetiza Poderes Visualmente', grau: 4 }, { texto: 'Acesso a Qualquer Local', grau: 4 }, { texto: 'Identidade Líquida', grau: 5 }], frq: [{ texto: 'Perde Própria Identidade', grau: 3 }] },
+      { nome: 'Sobrevivente Imortal', pod: [{ texto: 'Envelhecimento Desacelerado', grau: 4 }, { texto: 'Regeneração por Metamorfose', grau: 4 }, { texto: 'Conhecimento de Séculos', grau: 4 }, { texto: 'Imune a Venenos/Doenças', grau: 3 }], frq: [{ texto: 'Memórias Fragmentadas', grau: 3 }] }
     ]
   },
   'Blob': {
@@ -661,7 +698,10 @@ const SPEC = {
   'Sabretooth': {
     cards: [
       { nome: 'Fera Selvagem', pod: [0, 1, 2], frq: [] },
-      { nome: 'Espelho Sombrio', pod: [3], frq: [{ texto: 'Obsessão por Wolverine', grau: 3 }, { texto: 'Instinto Assassino', grau: 3 }, { texto: 'Prazer em Tortura Psicológica', grau: 2 }] }
+      { nome: 'Espelho Sombrio', pod: [3], frq: [{ texto: 'Obsessão por Wolverine', grau: 3 }, { texto: 'Instinto Assassino', grau: 3 }, { texto: 'Prazer em Tortura Psicológica', grau: 2 }] },
+      { nome: 'Predador Supremo', pod: [{ texto: 'Sentidos Aguçados (Olfato/Audição)', grau: 5 }, { texto: 'Rastreamento Perfeito', grau: 4 }, { texto: 'Visão Noturna', grau: 4 }, { texto: 'Força Bruta Devastadora', grau: 5 }, { texto: 'Garras e Presas Retráteis', grau: 4 }, { texto: 'Fator de Cura Acelerado', grau: 4 }], frq: [{ texto: 'Fúria Incontrolável', grau: 3 }] },
+      { nome: 'Assassino de Aluguel', pod: [{ texto: 'Séculos de Experiência em Combate', grau: 4 }, { texto: 'Conhece Fraquezas de Mutantes', grau: 4 }, { texto: 'Imune a Dor', grau: 3 }, { texto: 'Táticas de Emboscada', grau: 4 }], frq: [{ texto: 'Sem Código Moral', grau: 2 }, { texto: 'Ódio por Wolverine', grau: 3 }] },
+      { nome: 'Arma X', pod: [{ texto: 'Condicionamento Mental', grau: 4 }, { texto: 'Memórias Implantadas', grau: 3 }, { texto: 'Gatilhos de Berserk', grau: 4 }, { texto: 'Resistência a Telepatia', grau: 3 }], frq: [{ texto: 'Programação Mental', grau: 3 }, { texto: 'Livre Arbítrio Limitado', grau: 3 }] }
     ]
   },
   'Lady Deathstrike': {
@@ -677,7 +717,9 @@ const SPEC = {
       { nome: 'Obsessão Summers-Grey', pod: [5], frq: [{ texto: 'Obsessão pela Linhagem Summers', grau: 4 }, { texto: 'Narcisismo e Dramalhão', grau: 2 }] },
       { nome: 'Diamante na Pele', pod: [{ texto: 'Corpo de Diamante Sintético', grau: 4 }, { texto: 'Imune a Telepatia', grau: 4 }, { texto: 'Força Sobre-humana', grau: 3 }], frq: [{ texto: 'Vulnerável a Frequências Sônicas', grau: 2 }] },
       { nome: 'Rede de Clones Marauders', pod: [{ texto: 'Clones de Si Mesmo', grau: 4 }, { texto: 'Clones de Mutantes Poderosos', grau: 4 }, { texto: 'Transferência de Consciência', grau: 5 }], frq: [{ texto: 'Cada Clone Tem Vontade Própria', grau: 3 }] },
-      { nome: 'Cronista Genético', pod: [{ texto: 'Arquivo Genético Completo', grau: 4 }, { texto: 'Previu Chegada de Mutantes Ômega', grau: 3 }, { texto: 'Manipulou Linhagem Summers por Gerações', grau: 4 }], frq: [{ texto: 'Arrogância Intelectual', grau: 2 }] }
+      { nome: 'Cronista Genético', pod: [{ texto: 'Arquivo Genético Completo', grau: 4 }, { texto: 'Previu Chegada de Mutantes Ômega', grau: 3 }, { texto: 'Manipulou Linhagem Summers por Gerações', grau: 4 }], frq: [{ texto: 'Arrogância Intelectual', grau: 2 }] },
+      { nome: 'Mestre da Genética', pod: [{ texto: 'Engenharia Genética Divina', grau: 5 }, { texto: 'Cria Mutantes Ômega Artificiais', grau: 5 }, { texto: 'Reescreve DNA em Tempo Real', grau: 5 }, { texto: 'Clonagem Instantânea', grau: 4 }, { texto: 'Arma Genética Vírus', grau: 5 }], frq: [{ texto: 'Ética Inexistente', grau: 2 }] },
+      { nome: 'Imortalidade por Clonagem', pod: [{ texto: 'Corpos de Reserva Infinitos', grau: 5 }, { texto: 'Memórias Transferidas', grau: 4 }, { texto: 'Sobreviveu a Séculos', grau: 4 }], frq: [{ texto: 'Degradação Genética Lenta', grau: 3 }] }
     ]
   },
   'Apocalipse': {
@@ -688,7 +730,9 @@ const SPEC = {
       { nome: 'Sobrevivência do Mais Forte', pod: [3, 4], frq: [] },
       { nome: 'Pai dos Cavaleiros', pod: [5], frq: [{ texto: 'Visão Distorcida de Evolução', grau: 3 }] },
       { nome: 'Os Quatro Cavaleiros', pod: [{ texto: 'Pestilência (Fome)', grau: 4 }, { texto: 'Guerra (Conflito)', grau: 4 }, { texto: 'Fome (Escassez)', grau: 4 }, { texto: 'Morte (Fim)', grau: 4 }, { texto: 'Apocalipse os Empodera', grau: 5 }], frq: [{ texto: 'Cavaleiros Podem Traí-lo', grau: 3 }] },
-      { nome: 'Imortalidade Real', pod: [{ texto: 'Viveu Milênios', grau: 5 }, { texto: 'Transfere Consciência', grau: 4 }, { texto: 'Hibernação por Séculos', grau: 3 }], frq: [{ texto: 'Acorda Apenas para Julgar', grau: 2 }] }
+      { nome: 'Imortalidade Real', pod: [{ texto: 'Viveu Milênios', grau: 5 }, { texto: 'Transfere Consciência', grau: 4 }, { texto: 'Hibernação por Séculos', grau: 3 }], frq: [{ texto: 'Acorda Apenas para Julgar', grau: 2 }] },
+      { nome: 'Mestre da Evolução', pod: [{ texto: 'Acelera Evolução Mutante', grau: 5 }, { texto: 'Cria Mutantes Artificiais', grau: 4 }, { texto: 'Manipula Genoma Global', grau: 5 }, { texto: 'Adaptação Instantânea a Ameaças', grau: 5 }, { texto: 'Absorve Poderes de Derrotados', grau: 4 }, { texto: 'Engenharia Genética Divina', grau: 5 }], frq: [{ texto: 'Arrogância Milenar', grau: 3 }] },
+      { nome: 'Conquistador de Mundos', pod: [{ texto: 'Exércitos Tecnorgânicos', grau: 4 }, { texto: 'Domínio de Civilizações', grau: 5 }, { texto: 'Terraformação Planetária', grau: 5 }, { texto: 'Subjugação de Deuses', grau: 5 }], frq: [{ texto: 'Atrai Resistência Cósmica', grau: 3 }] }
     ]
   },
   'Sentinela Mk I': {
