@@ -31,6 +31,8 @@ test('ficha adds the Estado tab and removes Progressão UI', function() {
   assert(ficha.includes('id="estado-condition-kind-toggle"'), 'Condition/effect toggle button missing');
   assert(ficha.includes('id="estado-pass-unit"'), 'Time unit selector missing');
   assert(!ficha.includes('id="estado-pass-turn"'), 'Duplicate turn pass button still present');
+  assert(ficha.includes('tabela de referência de APs'), 'Reference-based AP note missing');
+  assert(!ficha.includes('1 AP = 8 segundos'), 'Wrong fixed AP conversion still present');
   assert(!ficha.includes('id="estado-condition-kind"'), 'Old condition/effect select still present');
   assert(!ficha.includes('progressao-area'), 'Progressão UI still present');
   assert(!ficha.includes('buildDots('), 'Progressão dots wiring still present');
@@ -62,6 +64,7 @@ test('state module is isolated for future render logic', function() {
   assert(estado.includes('window.EstadoModule'), 'EstadoModule export missing');
   assert(estado.includes('function init(') || estado.includes('const init ='), 'init entrypoint missing');
   assert(estado.includes('function render(') || estado.includes('const render ='), 'render entrypoint missing');
+  assert(estado.includes('soma dos graus das condições'), 'Threshold legend not tied to condition sum');
 });
 
 console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');

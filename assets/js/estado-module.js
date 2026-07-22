@@ -10,6 +10,69 @@ window.EstadoModule = (function() {
   };
 
   const DEATH_THRESHOLD = 10;
+  const TIME_REFERENCE = [
+    { ap: -2, seconds: 1, label: '1 segundo' },
+    { ap: -1, seconds: 2, label: '2 segundos' },
+    { ap: 0, seconds: 4, label: '4 segundos' },
+    { ap: 1, seconds: 8, label: '8 segundos' },
+    { ap: 2, seconds: 15, label: '15 segundos' },
+    { ap: 3, seconds: 30, label: '30 segundos' },
+    { ap: 4, seconds: 60, label: '1 minuto' },
+    { ap: 5, seconds: 120, label: '2 minutos' },
+    { ap: 6, seconds: 240, label: '4 minutos' },
+    { ap: 7, seconds: 480, label: '8 minutos' },
+    { ap: 8, seconds: 900, label: '15 minutos' },
+    { ap: 9, seconds: 1800, label: '30 minutos' },
+    { ap: 10, seconds: 3600, label: '1 hora' },
+    { ap: 11, seconds: 7200, label: '2 horas' },
+    { ap: 12, seconds: 14400, label: '4 horas' },
+    { ap: 13, seconds: 28800, label: '8 horas' },
+    { ap: 14, seconds: 54000, label: '15 horas' },
+    { ap: 15, seconds: 86400, label: '1 dia' },
+    { ap: 16, seconds: 172800, label: '2 dias' },
+    { ap: 17, seconds: 345600, label: '4 dias' },
+    { ap: 18, seconds: 604800, label: '1 semana' },
+    { ap: 19, seconds: 1209600, label: '2 semanas' },
+    { ap: 20, seconds: 2592000, label: '1 mês' },
+    { ap: 21, seconds: 5184000, label: '2 meses' },
+    { ap: 22, seconds: 10368000, label: '4 meses' },
+    { ap: 23, seconds: 20736000, label: '8 meses' },
+    { ap: 24, seconds: 31536000, label: '1 ano' },
+    { ap: 25, seconds: 63072000, label: '2 anos' },
+    { ap: 26, seconds: 126144000, label: '4 anos' },
+    { ap: 27, seconds: 252288000, label: '8 anos' },
+    { ap: 28, seconds: 473040000, label: '15 anos' },
+    { ap: 29, seconds: 946080000, label: '30 anos' },
+    { ap: 30, seconds: 1892160000, label: '60 anos' },
+    { ap: 31, seconds: 3784320000, label: '120 anos' },
+    { ap: 32, seconds: 7884000000, label: '250 anos' },
+    { ap: 33, seconds: 15768000000, label: '500 anos' },
+    { ap: 34, seconds: 31536000000, label: '1.000 anos' },
+    { ap: 35, seconds: 63072000000, label: '2.000 anos' },
+    { ap: 36, seconds: 126144000000, label: '4.000 anos' },
+    { ap: 37, seconds: 252288000000, label: '8.000 anos' },
+    { ap: 38, seconds: 504576000000, label: '16.000 anos' },
+    { ap: 39, seconds: 1009152000000, label: '32.000 anos' },
+    { ap: 40, seconds: 2018304000000, label: '64.000 anos' },
+    { ap: 41, seconds: 4036608000000, label: '128.000 anos' },
+    { ap: 42, seconds: 8073216000000, label: '256.000 anos' },
+    { ap: 43, seconds: 15768000000000, label: '500.000 anos' },
+    { ap: 44, seconds: 31536000000000, label: '1 milhão anos' },
+    { ap: 45, seconds: 63072000000000, label: '2 milhões anos' },
+    { ap: 46, seconds: 126144000000000, label: '4 milhões anos' },
+    { ap: 47, seconds: 252288000000000, label: '8 milhões anos' },
+    { ap: 48, seconds: 504576000000000, label: '16 milhões anos' },
+    { ap: 49, seconds: 1009152000000000, label: '32 milhões anos' },
+    { ap: 50, seconds: 2018304000000000, label: '64 milhões anos' },
+    { ap: 51, seconds: 4036608000000000, label: '128 milhões anos' },
+    { ap: 52, seconds: 8073216000000000, label: '256 milhões anos' },
+    { ap: 53, seconds: 15768000000000000, label: '500 milhões anos' },
+    { ap: 54, seconds: 31536000000000000, label: '1 bilhão anos' },
+    { ap: 55, seconds: 63072000000000000, label: '2 bilhões anos' },
+    { ap: 56, seconds: 126144000000000000, label: '4 bilhões anos' },
+    { ap: 57, seconds: 252288000000000000, label: '8 bilhões anos' },
+    { ap: 58, seconds: 504576000000000000, label: '16 bilhões anos' },
+  ];
   const state = {
     data: null,
     selectedTags: [],
@@ -247,12 +310,6 @@ window.EstadoModule = (function() {
     });
   }
 
-  function sumAllDegrees() {
-    return Object.values(state.data.estado.conditions).flat().reduce((sum, item) => {
-      return sum + (Number(item && item.grau) || 0);
-    }, 0);
-  }
-
   function sumConditionDegrees() {
     return Object.values(state.data.estado.conditions).flat().reduce((sum, item) => {
       if (!item || item.tipo !== 'condicao') return sum;
@@ -261,7 +318,7 @@ window.EstadoModule = (function() {
   }
 
   function calcThreshold() {
-    return sumAllDegrees();
+    return sumConditionDegrees();
   }
 
   function renderConditionBucket(bucket, root) {
@@ -368,7 +425,7 @@ window.EstadoModule = (function() {
     const lethal = sumConditionDegrees();
 
     if (thresholdEl) {
-      thresholdEl.textContent = 'Limiar duradouras: ' + threshold + ' APs (~' + (threshold * 5) + ' min)';
+      thresholdEl.textContent = 'Limiar duradouras = soma dos graus das condições: ' + threshold + ' APs (' + referenceLabelForAp(threshold) + ')';
     }
     if (warningEl) {
       warningEl.textContent = lethal >= DEATH_THRESHOLD ? 'PERIGO: condição acumulada alta.' : '';
@@ -392,8 +449,22 @@ window.EstadoModule = (function() {
   }
 
   function timeToAps(value, unit) {
-    if (unit === 'horas') return Math.max(1, Math.ceil(value * 12));
-    return Math.max(1, Math.ceil(value / 5));
+    const seconds = unit === 'horas' ? value * 3600 : value * 60;
+    let best = TIME_REFERENCE[0];
+    let bestDiff = Math.abs(best.seconds - seconds);
+    for (const entry of TIME_REFERENCE) {
+      const diff = Math.abs(entry.seconds - seconds);
+      if (diff < bestDiff || (diff === bestDiff && entry.ap < best.ap)) {
+        best = entry;
+        bestDiff = diff;
+      }
+    }
+    return Math.max(1, best.ap);
+  }
+
+  function referenceLabelForAp(ap) {
+    const entry = TIME_REFERENCE.find(item => item.ap === ap);
+    return entry ? entry.label : ap + ' APs';
   }
 
   function passByAps(aps) {

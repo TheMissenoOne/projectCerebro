@@ -1341,6 +1341,7 @@
 .estado-warning,.estado-threshold{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 .estado-warning{min-height:16px;}
 .estado-warning.warn{color:var(--red);}
+.estado-time-note{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-top:-2px;}
 .estado-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
 .estado-column{border:1px solid var(--b1);background:rgba(255,255,255,.015);padding:10px;display:flex;flex-direction:column;gap:8px;}
 .estado-column-title{font-family:var(--cond);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--white);}

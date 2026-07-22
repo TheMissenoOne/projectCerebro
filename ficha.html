@@ -551,7 +551,7 @@ function showToast(msg){
         <div id="estado-moves-list" class="estado-list"></div>
       </section>
 
-      <section class="estado-panel estado-panel-wide">
+      <section class="estado-panel">
         <div class="panel-title">CONDIÇÕES & EFEITOS</div>
         <div class="estado-add-row">
           <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome">
@@ -564,6 +564,10 @@ function showToast(msg){
           </select>
           <button type="button" class="tbtn" id="estado-add-condition">ADICIONAR</button>
         </div>
+      </section>
+
+      <section class="estado-panel">
+        <div class="panel-title">PASSAR TEMPO</div>
         <div class="estado-time-row">
           <label class="estado-time-label">Tempo</label>
           <input type="number" id="estado-pass-value" class="estado-input estado-input-small" min="1" value="5">
@@ -575,7 +579,12 @@ function showToast(msg){
           <button type="button" class="tbtn" id="estado-reduce-temp">PASSAR 1 TURNO</button>
           <span id="estado-threshold" class="estado-threshold"></span>
         </div>
+        <div class="estado-time-note">Conversão pela tabela de referência de APs</div>
         <div id="estado-warning" class="estado-warning"></div>
+      </section>
+
+      <section class="estado-panel estado-panel-wide">
+        <div class="panel-title">CONDIÇÕES & EFEITOS</div>
         <div class="estado-columns">
           <div class="estado-column">
             <div class="estado-column-title">TEMPORÁRIAS</div>
