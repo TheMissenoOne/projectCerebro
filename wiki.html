@@ -930,10 +930,19 @@
       }
     };
 
+    function refApValue(apStr) {
+      const txt = (apStr || '').toString().trim();
+      if (!txt || txt === 'A' || txt === 'N' || txt === 'C' || txt === '—' || txt === '*') return null;
+      const range = txt.match(/(-?\d+)\s*[–-]\s*(-?\d+)/);
+      if (range) return parseInt(range[2], 10);
+      const match = txt.match(/-?\d+/);
+      if (!match) return null;
+      return parseInt(match[0], 10);
+    }
+
     function getRefCard(apStr) {
-      const match = (apStr || '').toString().match(/-?\d+/);
-      if (!match) return '';
-      const num = parseInt(match[0]);
+      const num = refApValue(apStr);
+      if (num == null || isNaN(num)) return '';
       if (isNaN(num) || num < -13 || num > 70) return '';
       const rows = [];
       const dims = [
@@ -999,8 +1008,8 @@
             <div class="ard-cards">
               ${buildARCard('AV', sel.valorLinha)}
               ${buildARCard('OV', sel.valorCol)}
-              ${buildARCard('RAPs', sel.raps, 'ard-raps')}
             </div>
+            <div class="ard-note">Sem RAPs nesta aba.</div>
           </div>`
         : `<div class="ard-section">
             <div class="ard-section-label">Efeito</div>

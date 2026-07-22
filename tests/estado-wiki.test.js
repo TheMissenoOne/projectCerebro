@@ -44,6 +44,11 @@ test('wiki removes Progressão and Manifestação pages', function() {
   assert(!wikiPages.includes('Ações de Manifestação'), 'Manifestação copy still present');
 });
 
+test('wiki action panel uses reference APs and hides RAPs in Ação', function() {
+  assert(wikiHtml.includes('refApValue('), 'reference AP helper missing');
+  assert(wikiHtml.includes('Sem RAPs nesta aba.'), 'Ação tab still shows RAPs');
+});
+
 test('wiki tables use range labels instead of step columns', function() {
   assert(wikiJs.includes("const RANGES = ['1-2'"), 'range labels missing');
   assert(wikiJs.includes("return `\\n        <thead><tr><th>${type === 'avov' ? 'AV\\\\OV' : 'EV\\\\RV'}</th>`") || wikiJs.includes("AV\\\\OV"), 'table renderer not using range-based headers');

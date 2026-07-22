@@ -391,7 +391,7 @@ aps_referencia: `
       `,
       acao_resultado: `
         <h1>Tabela AV/OV · EV/RV</h1>
-        <p>Tabela completa de resolução de ações. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Clique numa célula para destacar linha/coluna e ver equivalências de APs.</p>
+        <p>Tabela completa de resolução de ações. Linha = seu valor (AV/EV), Coluna = dificuldade (OV/RV). Na aba Ação, a célula mostra o alvo da rolagem; na aba Efeito, a célula mostra os RAPs. Clique numa célula para destacar linha/coluna e ver equivalências de APs.</p>
         <div class="ar-table-type">
           <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV / OV — Ação</button>
           <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV / RV — Efeito</button>
@@ -404,7 +404,7 @@ aps_referencia: `
           <li><strong>N</strong> = No Effect — sem efeito (AV menor que OV)</li>
           <li><strong>Linha</strong> = AV (Valor de Atuação) ou EV (Valor de Efeito)</li>
           <li><strong>Coluna</strong> = OV (Valor de Obstáculo) ou RV (Valor de Resultado)</li>
-          <li>O número na célula = RAPs obtidos</li>
+          <li>O número na célula = alvo (Ação) ou RAPs (Efeito)</li>
         </ul>
         <!-- LEGACY STATIC TABLE (hidden, kept for reference)
         <h2>Action Table (estática)</h2>
