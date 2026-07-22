@@ -28,6 +28,10 @@ function assert(condition, message) {
 test('ficha adds the Estado tab and removes Progressão UI', function() {
   assert(ficha.includes("data-i18n=\"ficha.tab4\""), 'Estado tab button missing');
   assert(ficha.includes('id="page-estado"'), 'Estado page missing');
+  assert(ficha.includes('id="estado-condition-kind-toggle"'), 'Condition/effect toggle button missing');
+  assert(ficha.includes('id="estado-pass-unit"'), 'Time unit selector missing');
+  assert(!ficha.includes('id="estado-pass-turn"'), 'Duplicate turn pass button still present');
+  assert(!ficha.includes('id="estado-condition-kind"'), 'Old condition/effect select still present');
   assert(!ficha.includes('progressao-area'), 'Progressão UI still present');
   assert(!ficha.includes('buildDots('), 'Progressão dots wiring still present');
   assert(!ficha.includes('evolucao-grid'), 'Progressão evolution grid still present');

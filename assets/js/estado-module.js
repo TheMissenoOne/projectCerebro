@@ -15,6 +15,8 @@ window.EstadoModule = (function() {
     selectedTags: [],
     filter: 'all',
     query: '',
+    insertType: 'condicao',
+    passUnit: 'minutos',
     bound: false,
   };
 
@@ -98,15 +100,54 @@ window.EstadoModule = (function() {
     }
 
     root.innerHTML = '';
+    const groups = [];
     tags.forEach(tag => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'estado-chip' + (isSelected(tag) ? ' active' : '');
-      btn.dataset.tipo = tag.tipo;
-      btn.textContent = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto;
-      btn.setAttribute('aria-pressed', isSelected(tag) ? 'true' : 'false');
-      btn.addEventListener('click', () => toggleTag(tag));
-      root.appendChild(btn);
+      const last = groups[groups.length - 1];
+      if (!last || last.name !== tag.temaNome) {
+        groups.push({ name: tag.temaNome, tags: [tag] });
+      } else {
+        last.tags.push(tag);
+      }
+    });
+
+    groups.forEach((group, idx) => {
+      const groupWrap = document.createElement('div');
+      groupWrap.className = 'estado-tag-group';
+
+      const groupHeader = document.createElement('div');
+      groupHeader.className = 'estado-tag-group-header';
+
+      const line = document.createElement('span');
+      line.className = 'estado-tag-group-line';
+
+      const label = document.createElement('span');
+      label.className = 'estado-tag-group-label';
+      label.textContent = group.name;
+
+      groupHeader.appendChild(line);
+      groupHeader.appendChild(label);
+      groupWrap.appendChild(groupHeader);
+
+      const cloud = document.createElement('div');
+      cloud.className = 'estado-chip-cloud';
+      group.tags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'estado-chip' + (isSelected(tag) ? ' active' : '');
+        btn.dataset.tipo = tag.tipo;
+        btn.textContent = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto;
+        btn.setAttribute('aria-pressed', isSelected(tag) ? 'true' : 'false');
+        btn.addEventListener('click', () => toggleTag(tag));
+        cloud.appendChild(btn);
+      });
+
+      groupWrap.appendChild(cloud);
+      root.appendChild(groupWrap);
+      if (idx < groups.length - 1) {
+        const sep = document.createElement('div');
+        sep.className = 'estado-tag-separator';
+        root.appendChild(sep);
+      }
     });
   }
 
@@ -117,7 +158,7 @@ window.EstadoModule = (function() {
 
     if (!state.selectedTags.length) {
       root.innerHTML = '<div class="estado-warning">Nenhuma tag selecionada.</div>';
-      if (moveInput && !moveInput.value) moveInput.placeholder = 'Nome do move';
+      if (moveInput && !moveInput.value) moveInput.placeholder = 'Nome da manobra';
       return;
     }
 
@@ -139,7 +180,7 @@ window.EstadoModule = (function() {
 
     const moves = state.data.estado.savedMoves || [];
     if (!moves.length) {
-      root.innerHTML = '<div class="estado-warning">Nenhum move salvo.</div>';
+      root.innerHTML = '<div class="estado-warning">Nenhuma manobra salva.</div>';
       return;
     }
 
@@ -189,7 +230,7 @@ window.EstadoModule = (function() {
       delBtn.className = 'estado-mini-btn';
       delBtn.textContent = 'APAGAR';
       delBtn.addEventListener('click', () => {
-        if (!confirm('Remover este move?')) return;
+        if (!confirm('Remover esta manobra?')) return;
         const idx = state.data.estado.savedMoves.findIndex(item => item.id === move.id);
         if (idx >= 0) state.data.estado.savedMoves.splice(idx, 1);
         save();
@@ -327,7 +368,7 @@ window.EstadoModule = (function() {
     const lethal = sumConditionDegrees();
 
     if (thresholdEl) {
-      thresholdEl.textContent = 'Limiar duradouras: ' + threshold + ' APs';
+      thresholdEl.textContent = 'Limiar duradouras: ' + threshold + ' APs (~' + (threshold * 5) + ' min)';
     }
     if (warningEl) {
       warningEl.textContent = lethal >= DEATH_THRESHOLD ? 'PERIGO: condição acumulada alta.' : '';
@@ -340,6 +381,37 @@ window.EstadoModule = (function() {
     if (temp) renderConditionBucket('temporarias', temp);
     if (dur) renderConditionBucket('duradouras', dur);
     if (perm) renderConditionBucket('permanentes', perm);
+  }
+
+  function renderInsertType() {
+    const btn = document.getElementById('estado-condition-kind-toggle');
+    if (!btn) return;
+    btn.className = 'estado-kind-btn ' + (state.insertType === 'efeito' ? 'efeito' : 'condicao');
+    btn.textContent = state.insertType === 'efeito' ? 'EFEITO' : 'CONDIÇÃO';
+    btn.setAttribute('aria-pressed', state.insertType === 'efeito' ? 'true' : 'false');
+  }
+
+  function timeToAps(value, unit) {
+    if (unit === 'horas') return Math.max(1, Math.ceil(value * 12));
+    return Math.max(1, Math.ceil(value / 5));
+  }
+
+  function passByAps(aps) {
+    state.data.estado.conditions.temporarias = state.data.estado.conditions.temporarias
+      .map(item => ({ ...item, grau: Math.max(0, (Number(item.grau) || 0) - aps) }))
+      .filter(item => item.grau > 0);
+
+    state.data.estado.tempoPassado += aps;
+    let threshold = calcThreshold();
+    while (threshold > 0 && state.data.estado.tempoPassado >= threshold) {
+      state.data.estado.conditions.duradouras = state.data.estado.conditions.duradouras
+        .map(item => ({ ...item, grau: Math.max(0, (Number(item.grau) || 0) - 1) }))
+        .filter(item => item.grau > 0);
+      state.data.estado.tempoPassado -= threshold;
+      threshold = calcThreshold();
+    }
+    save();
+    render();
   }
 
   function toggleTag(tag) {
@@ -372,11 +444,10 @@ window.EstadoModule = (function() {
   function addCondition() {
     const nomeEl = document.getElementById('estado-condition-name');
     const grauEl = document.getElementById('estado-condition-degree');
-    const kindEl = document.getElementById('estado-condition-kind');
     const durationEl = document.getElementById('estado-condition-duration');
     const nome = nomeEl ? nomeEl.value.trim() : '';
     const grau = Math.max(1, parseInt(grauEl && grauEl.value, 10) || 1);
-    const tipo = kindEl ? kindEl.value : 'condicao';
+    const tipo = state.insertType === 'efeito' ? 'efeito' : 'condicao';
     const bucket = durationEl ? durationEl.value : 'temporarias';
     if (!nome) return;
 
@@ -404,23 +475,15 @@ window.EstadoModule = (function() {
   }
 
   function passTime() {
-    const input = document.getElementById('estado-pass-ap');
-    const aps = Math.max(1, parseInt(input && input.value, 10) || 1);
-    state.data.estado.conditions.temporarias = state.data.estado.conditions.temporarias
-      .map(item => ({ ...item, grau: Math.max(0, (Number(item.grau) || 0) - aps) }))
-      .filter(item => item.grau > 0);
+    const input = document.getElementById('estado-pass-value');
+    const unit = document.getElementById('estado-pass-unit');
+    const raw = Math.max(1, parseInt(input && input.value, 10) || 1);
+    const aps = timeToAps(raw, unit ? unit.value : state.passUnit);
+    passByAps(aps);
+  }
 
-    state.data.estado.tempoPassado += aps;
-    let threshold = calcThreshold();
-    while (threshold > 0 && state.data.estado.tempoPassado >= threshold) {
-      state.data.estado.conditions.duradouras = state.data.estado.conditions.duradouras
-        .map(item => ({ ...item, grau: Math.max(0, (Number(item.grau) || 0) - 1) }))
-        .filter(item => item.grau > 0);
-      state.data.estado.tempoPassado -= threshold;
-      threshold = calcThreshold();
-    }
-    save();
-    render();
+  function passTurn() {
+    passByAps(1);
   }
 
   function bindStaticEvents() {
@@ -431,6 +494,8 @@ window.EstadoModule = (function() {
     const filter = document.getElementById('estado-tag-filter');
     const saveMoveBtn = document.getElementById('estado-save-move');
     const addConditionBtn = document.getElementById('estado-add-condition');
+    const kindToggleBtn = document.getElementById('estado-condition-kind-toggle');
+    const passUnit = document.getElementById('estado-pass-unit');
     const passTimeBtn = document.getElementById('estado-pass-time');
     const reduceTempBtn = document.getElementById('estado-reduce-temp');
 
@@ -447,9 +512,20 @@ window.EstadoModule = (function() {
       });
     }
     if (saveMoveBtn) saveMoveBtn.addEventListener('click', saveMove);
+    if (kindToggleBtn) {
+      kindToggleBtn.addEventListener('click', () => {
+        state.insertType = state.insertType === 'efeito' ? 'condicao' : 'efeito';
+        renderInsertType();
+      });
+    }
+    if (passUnit) {
+      passUnit.addEventListener('change', () => {
+        state.passUnit = passUnit.value || 'minutos';
+      });
+    }
     if (addConditionBtn) addConditionBtn.addEventListener('click', addCondition);
     if (passTimeBtn) passTimeBtn.addEventListener('click', passTime);
-    if (reduceTempBtn) reduceTempBtn.addEventListener('click', reduceAllTemporarias);
+    if (reduceTempBtn) reduceTempBtn.addEventListener('click', passTurn);
   }
 
   function init(data) {
@@ -457,6 +533,8 @@ window.EstadoModule = (function() {
     state.selectedTags = [];
     state.filter = 'all';
     state.query = '';
+    state.insertType = 'condicao';
+    state.passUnit = 'minutos';
     state.bound = false;
     ensure();
     bindStaticEvents();
@@ -469,6 +547,7 @@ window.EstadoModule = (function() {
     renderTags();
     renderSelected();
     renderMoves();
+    renderInsertType();
     renderConditions();
   }
 

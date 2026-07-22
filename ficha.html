@@ -542,11 +542,11 @@ function showToast(msg){
       </section>
 
       <section class="estado-panel">
-        <div class="panel-title">MOVE SELECIONADO</div>
+        <div class="panel-title">MANOBRA SELECIONADA</div>
         <div id="estado-selected-tags" class="estado-selected-tags"></div>
         <div class="estado-save-row">
-          <input type="text" id="estado-move-name" class="estado-input" placeholder="Nome do move">
-          <button type="button" class="tbtn" id="estado-save-move">SALVAR MOVE</button>
+          <input type="text" id="estado-move-name" class="estado-input" placeholder="Nome da manobra">
+          <button type="button" class="tbtn" id="estado-save-move">SALVAR MANOBRA</button>
         </div>
         <div id="estado-moves-list" class="estado-list"></div>
       </section>
@@ -556,10 +556,7 @@ function showToast(msg){
         <div class="estado-add-row">
           <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome">
           <input type="number" id="estado-condition-degree" class="estado-input estado-input-small" min="1" max="99" value="1" placeholder="Grau">
-          <select id="estado-condition-kind" class="estado-select">
-            <option value="condicao">Condição</option>
-            <option value="efeito">Efeito</option>
-          </select>
+          <button type="button" id="estado-condition-kind-toggle" class="estado-kind-btn condicao" aria-pressed="false">CONDIÇÃO</button>
           <select id="estado-condition-duration" class="estado-select">
             <option value="temporarias">Temporária</option>
             <option value="duradouras">Duradoura</option>
@@ -568,10 +565,14 @@ function showToast(msg){
           <button type="button" class="tbtn" id="estado-add-condition">ADICIONAR</button>
         </div>
         <div class="estado-time-row">
-          <label class="estado-time-label">APs</label>
-          <input type="number" id="estado-pass-ap" class="estado-input estado-input-small" min="1" value="1">
+          <label class="estado-time-label">Tempo</label>
+          <input type="number" id="estado-pass-value" class="estado-input estado-input-small" min="1" value="5">
+          <select id="estado-pass-unit" class="estado-select">
+            <option value="minutos">Minutos</option>
+            <option value="horas">Horas</option>
+          </select>
           <button type="button" class="tbtn" id="estado-pass-time">PASSAR TEMPO</button>
-          <button type="button" class="tbtn" id="estado-reduce-temp">-1 TODAS TEMP</button>
+          <button type="button" class="tbtn" id="estado-reduce-temp">PASSAR 1 TURNO</button>
           <span id="estado-threshold" class="estado-threshold"></span>
         </div>
         <div id="estado-warning" class="estado-warning"></div>
