@@ -289,7 +289,7 @@
     },
 
     createNPC: function(partyId, npcData) {
-      return getSupabase().from('npcs').insert({ party_id: partyId, name: npcData.name, codename: npcData.codename || '', faction: npcData.faction || 'neutro', danger: npcData.danger || 'medio', data: npcData.data || {}, is_global: npcData.is_global || false }).select().single()
+      return getSupabase().from('npcs').insert({ party_id: partyId, name: npcData.name, codename: npcData.codename || '', faction: npcData.faction || 'neutro', danger: npcData.danger || 'medio', data: npcData.data || {}, foto_url: npcData.foto_url || '', is_global: npcData.is_global || false }).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 
@@ -299,10 +299,9 @@
         codename: npcData.codename || '', 
         faction: npcData.faction || 'neutro', 
         danger: npcData.danger || 'medio', 
-        iniciativa: npcData.iniciativa || 0,
-        atributos: npcData.atributos || {},
-        tags: npcData.tags || [],
-        descricao: npcData.descricao || ''
+        data: npcData.data || {},
+        foto_url: npcData.foto_url || '',
+        updated_at: new Date().toISOString()
       }).eq('id', npcId).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },

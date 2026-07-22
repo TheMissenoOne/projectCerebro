@@ -631,17 +631,16 @@ function internalToApi(n){
   }
   const data={};
   const strToTag=s=>{const{texto,grau}=parseTag(s);return grau?{texto,grau}:{texto};};
-  if(n.tags)data.tags=n.tags;
-  if(n.temas&&n.temas.length){
-    data.temas=n.temas.map(tm=>({
+  data.iniciativa=n.iniciativa||0;
+  data.stats=attrs;
+  data.tags=n.tags;
+  data.temas=(n.temas||[]).map(tm=>({
       nome:tm.nome||'',
       poder:(tm.poder||[]).map(strToTag),
       fraqueza:(tm.fraqueza||[]).map(strToTag)
     })).filter(tm=>tm.nome||tm.poder.length||tm.fraqueza.length);
-  }
-  if(n.descricao)data.descricao=n.descricao;
-  if(n.foto)data.foto_url=n.foto;
-  if(n.esquadrao)data.esquadrao=n.esquadrao;
+  data.descricao=n.descricao;
+  data.esquadrao=n.esquadrao;
   return {
     name:n.nome,codename:n.codinome||'',
     faction:n.fracao||'neutro',danger:n.perigo||'medio',
@@ -848,7 +847,7 @@ function renderCompactNPC(npc){
   var a=npc.atributos||{};
   var ini=(a['Destreza']||0)+(a['Inteligência']||0)+(a['Influência']||0);
   var attrs=[['DEZ','Destreza'],['FOR','Força'],['COR','Corpo'],['INT','Inteligência'],['VON','Vontade'],['MEN','Mente'],['INF','Influência'],['AUR','Aura'],['ESP','Espírito']];
-  var editBtn=npc.isGlobal?'':`<button class='tbtn' style='font-size:.4rem;padding:2px 6px' onclick="abrirEditModal('${escJs(npc.id)}')">EDITAR</button>`;
+  var editBtn=`<button class='tbtn' style='font-size:.4rem;padding:2px 6px' onclick="abrirEditModal('${escJs(npc.id)}')">EDITAR</button>`;
   var fotoHtml=npc.foto?'<div class="npc-card-foto"><img src="'+escAttr(npc.foto)+'" alt="" loading="lazy"></div>':'';
   var html='<div class="npc-card-compact">'+fotoHtml+'<div class="npc-card-compact-hdr">';
   html+='<div class="npc-card-hdr-info"><div class="npc-card-name" style="border-left:3px solid '+fc.cor+';padding-left:8px">'+esc(npc.nome)+'</div>';
@@ -904,7 +903,7 @@ function exibirNPC(id){
          ADICIONAR AO ENCONTRO ATIVO
       </button>
     </div>`;
-  const editBtn=npc.isGlobal?'':`<button class="tbtn tbtn-acc" onclick="abrirEditModal('${escJs(id)}')"><svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>EDITAR</button>`;
+  const editBtn=`<button class="tbtn tbtn-acc" onclick="abrirEditModal('${escJs(id)}')"><svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>EDITAR</button>`;
   const delBtn=npc.isGlobal?`<span style="font-family:var(--mono);font-size:.42rem;color:var(--muted2);padding:4px 8px;border:1px solid var(--b1)">GLOBAL // SOMENTE LEITURA</span>`:`<button class="tbtn tbtn-red" onclick="deletarNPC('${escJs(id)}')"><svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>DELETAR</button>`;
   document.getElementById('npc-detail').innerHTML=`
     ${encBanner}
@@ -1106,7 +1105,7 @@ function abrirAddModal(){
 }
 
 function abrirEditModal(id){
-  const npc=NPC_DB.find(n=>n.id===id);if(!npc||npc.isGlobal){toast(t('cerebro.cantEditGlobal'));return;}
+  const npc=NPC_DB.find(n=>n.id===id);if(!npc)return;
   editingId=id;tagsEdit=[...(npc.tags||[])];
   if(npc.temas&&npc.temas.length){
     temasEdit=npc.temas.map(tm=>({nome:tm.nome||'',poder:[...(tm.poder||[])],fraqueza:[...(tm.fraqueza||[])]}));

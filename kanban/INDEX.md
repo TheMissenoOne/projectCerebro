@@ -14,6 +14,7 @@
 - [Fase M: Character Sheet Redesign + Theme Cards](done/fase-m-sheet-temas.md)
 - [Fase N: Student Enrichment (003)](done/fase-n-student-enrich.md)
 - [Fase O: Full NPC Enrichment (004)](done/fase-o-full-enrich.md)
+- [Cérebro: Edição compartilhada de NPCs](done/cerebro-edicao-npcs.md)
 
 ---
 

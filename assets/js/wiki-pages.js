@@ -14,7 +14,6 @@ window.wikiPages = {
             <li><a href="#tags" data-page="tags">Tags</a> — Uso e limites de tags</li>
             <li><a href="#condicoes" data-page="condicoes">Condições</a> — Aplicação, duração e remoção</li>
             <li><a href="#efeitos" data-page="efeitos">Efeitos</a> — Criação e gestão</li>
-            <li><a href="#manifestacao" data-page="manifestacao">Manifestação</a> — Promoções de escopo e por RAP</li>
             <li><a href="#acoesautomaticas" data-page="acoesautomaticas">Ações Automáticas e Reações</a></li>
             <li><a href="#exemplo" data-page="exemplo_resolucao">Exemplo de Resolução</a></li>
             <li><a href="#principios" data-page="principios">Princípios e Resumo</a></li>
@@ -24,7 +23,7 @@ window.wikiPages = {
           <h3>Referência</h3>
           <ul>
             <li><a href="#acao_resultado" data-page="acao_resultado">Tabela AV/OV e EV/RV</a></li>
-            <li><a href="#modificadores" data-page="modificadores">Modificadores de Manifestação</a></li>
+            <li><a href="#modificadores" data-page="modificadores">Modificadores de Criação</a></li>
             <li><a href="#aps_distancia" data-page="aps_distancia">APs de Distância</a></li>
             <li><a href="#aps_tempo" data-page="aps_tempo">APs de Tempo</a></li>
             <li><a href="#aps_massa" data-page="aps_massa">APs de Massa</a></li>
@@ -42,30 +41,6 @@ window.wikiPages = {
         </ul>
         <p style="font-size:.7rem;color:var(--muted);font-family:var(--mono)">// Clique em um tema para expandir suas perguntas guia</p>
         <div id="temas-dynamic"><div style="color:var(--muted);font-family:var(--mono);font-size:.65rem;padding:20px 0">// carregando temas...</div></div>
-      `,
-      progressao: `
-        <h1>Progressão</h1>
-        <p>A progressão em City of Mist é driven por dois conceitos: Atenção e Dissipação.</p>
-        
-        <h2>Atenção</h2>
-        <p>Quando você usa um Tema de Mist de forma dramática ou significativa, você ganha Atenção. Isso representa o mundo místico notando você.</p>
-        <p>Quando a Atenção atinge 5, você pode "Virar Avatar" - um momento de poder máximo que pode mudar o jogo.</p>
-        
-        <h2>Dissipação</h2>
-        <p>Quando você ignora sua natureza mística ou age de forma completamente humana, você ganha Dissipação.</p>
-        <p>Quando a Dissipação atinge 5, você pode "Cair no Sono" - um momento de humanidade total que também pode ser poderoso.</p>
-        
-        <h2>Evolução de Temas</h2>
-        <p>Between sessions, players can:</p>
-        <ul>
-          <li>Adicionar novas Tags aos Temas existentes</li>
-          <li>Alterar a natureza de um Tema</li>
-          <li>Criar novos Temas</li>
-          <li>Remover Tags velhas</li>
-        </ul>
-        
-        <h2>Condições e Recuperação</h2>
-        <p>Condições são markers de trauma físico e emocional. Para se recuperar, você deve enfrentar o origen da condição através de roleplay significativo.</p>
       `,
       combate: `
         <h1>Combate</h1>
@@ -166,7 +141,7 @@ window.wikiPages = {
           <li>O resultado gera <strong>RAPs</strong>, que determinam dano, criação de condições e intensidade do efeito</li>
         </ul>
 
-        <h2>2. Ações de Manifestação</h2>
+        <h2>2. Ações de Criação</h2>
         <p>Usadas quando não há resistência ativa — apenas dificuldade de execução. O obstáculo é o ambiente, a complexidade ou a natureza do efeito desejado.</p>
         <h3>Regra base</h3>
         <p><code>OV/RV = 1 + modificadores</code></p>
@@ -186,7 +161,7 @@ window.wikiPages = {
           <li><strong>AP do efeito = número de tags usadas</strong></li>
           <li><strong>Tags usadas não podem ser reutilizadas até o próximo turno</strong></li>
         </ul>
-        <p>Ações automáticas podem: <strong>criar novos efeitos</strong> ou <strong>reduzir efeitos existentes</strong> considerando a <em>trivialidade</em> da ação (dificuldade baseada no valor do efeito atual). Não podem transferir, mover ou potencializar efeitos sem uma ação de Oposição ou Manifestação.</p>
+        <p>Ações automáticas podem: <strong>criar novos efeitos</strong> ou <strong>reduzir efeitos existentes</strong> considerando a <em>trivialidade</em> da ação (dificuldade baseada no valor do efeito atual). Não podem transferir, mover ou potencializar efeitos sem uma ação de Oposição ou Criação.</p>
         <p><strong>Limite:</strong> só podem afetar valores <em>iguais ou menores</em> que o número de tags usadas. Redução parcial é permitida.</p>
 
         <h2>4. Ações Automáticas como Reação</h2>
@@ -212,7 +187,7 @@ window.wikiPages = {
         <p>Duração indefinida — só termina se algo intervir ativamente. Não deve ser criada por ação automática simples. Normalmente exige alta dificuldade, custo adicional ou justificativa narrativa forte.</p>
 
         <h2>Conversão de Resultado em Condição</h2>
-        <p>RAPs gerados numa ação de manifestação ou oposição são convertidos em condições da seguinte forma:</p>
+        <p>RAPs gerados numa ação de criação ou oposição são convertidos em condições da seguinte forma:</p>
         <ul>
           <li><strong>RAPs = grau da condição</strong></li>
           <li>A condição recebe nome ficcional, valor em APs e tipo de duração</li>
@@ -223,18 +198,18 @@ window.wikiPages = {
           <thead><tr><th>Tipo</th><th>Quando usar</th><th>Mecânica</th><th>Resultado</th></tr></thead>
           <tbody>
             <tr><td>Oposição</td><td>Resistência ativa</td><td>AV/EV vs OV/RV</td><td>RAPs → dano/condição</td></tr>
-            <tr><td>Manifestação</td><td>Sem oposição, com dificuldade</td><td>EV vs 1 + mods</td><td>RAPs → condição/tag</td></tr>
+            <tr><td>Criação</td><td>Sem oposição, com dificuldade</td><td>EV vs 1 + mods</td><td>RAPs → condição/tag</td></tr>
             <tr><td>Automática</td><td>Controle direto via tags</td><td>Tags = APs</td><td>Efeito imediato</td></tr>
             <tr><td>Reação</td><td>Automáticas fora do turno</td><td>Tags = APs</td><td>Efeito imediato</td></tr>
           </tbody>
         </table>
       `,
       modificadores: `
-        <h1>Modificadores de Manifestação</h1>
-        <p>Modificadores são aplicados exclusivamente a <strong>Ações de Manifestação</strong>. Todos afetam <strong>OV e RV simultaneamente</strong>, tornando a ação mais ou menos difícil conforme a ambição do efeito.</p>
-        <p><strong>Fórmula:</strong> <code>OV/RV = 1 + modificadores de manifestação + posicionamento + circunstância</code></p>
+        <h1>Modificadores de Criação</h1>
+        <p>Modificadores são aplicados exclusivamente a <strong>Ações de Criação</strong>. Todos afetam <strong>OV e RV simultaneamente</strong>, tornando a ação mais ou menos difícil conforme a ambição do efeito.</p>
+        <p><strong>Fórmula:</strong> <code>OV/RV = 1 + modificadores de criação + posicionamento + circunstância</code></p>
 
-        <h2>1. Modificadores de Manifestação</h2>
+        <h2>1. Modificadores de Criação</h2>
         <p>Refletem a natureza e ambição do efeito que o personagem tenta criar.</p>
         <table>
           <thead><tr><th>Categoria</th><th>Grau</th><th>A favor</th><th>Contra</th></tr></thead>
@@ -421,12 +396,6 @@ aps_referencia: `
           <button class="ar-type-btn active" data-type="avov" onclick="showARTableType('avov')">AV / OV — Ação</button>
           <button class="ar-type-btn" data-type="evrv" onclick="showARTableType('evrv')">EV / RV — Efeito</button>
         </div>
-        <div class="ar-modes">
-          <button class="ar-mode-btn active" data-mode="temp" onclick="showARMode('temp')">Temporária</button>
-          <button class="ar-mode-btn" data-mode="persist" onclick="showARMode('persist')">Indefinida (+1 col)</button>
-          <button class="ar-mode-btn" data-mode="perm" onclick="showARMode('perm')">Permanente (+3 col)</button>
-        </div>
-        <p id="ar-mode-desc" style="font-size:.68rem;color:var(--muted);font-family:var(--mono);margin:-6px 0 12px;">Modo Temporário: dificuldade normal (coluna = obstáculo)</p>
         <div class="table-container" style="max-height:62vh;overflow:auto;">
           <table id="action-table" class="ar-table" style="width:auto;min-width:100%"></table>
         </div>
@@ -436,8 +405,6 @@ aps_referencia: `
           <li><strong>Linha</strong> = AV (Valor de Atuação) ou EV (Valor de Efeito)</li>
           <li><strong>Coluna</strong> = OV (Valor de Obstáculo) ou RV (Valor de Resultado)</li>
           <li>O número na célula = RAPs obtidos</li>
-          <li>Modo <strong>Indefinida</strong>: aplica +1 à coluna (equivale a OV+1)</li>
-          <li>Modo <strong>Permanente</strong>: aplica +3 à coluna (equivale a OV+3)</li>
         </ul>
         <!-- LEGACY STATIC TABLE (hidden, kept for reference)
         <h2>Action Table (estática)</h2>
@@ -517,7 +484,7 @@ aps_referencia: `
         <p>O sistema é estruturado em quatro camadas de resolução:</p>
         <ul>
           <li><strong>Ações de Oposição:</strong> há resistência ativa de outro objeto de jogo.</li>
-          <li><strong>Ações de Manifestação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
+          <li><strong>Ações de Criação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
           <li><strong>Ações Automáticas:</strong> não exigem rolagem; servem para criar, reduzir ou remover efeitos e condições de forma simples.</li>
           <li><strong>Reações:</strong> ações automáticas executadas fora do turno do personagem, em resposta a um evento.</li>
         </ul>
@@ -547,7 +514,7 @@ aps_referencia: `
           <li>Geram primariamente <strong>condições</strong> no alvo.</li>
         </ul>
         
-        <h3>Ações de Manifestação</h3>
+        <h3>Ações de Criação</h3>
         <p>São ações sem oposição direta, nas quais o desafio está na execução, na complexidade e na materialização do resultado.</p>
         <ul>
           <li>Iniciam em <strong>OV/RV 1</strong>.</li>
@@ -582,7 +549,7 @@ aps_referencia: `
         <p><strong>OV/RV</strong> = atributo de resistência do alvo + modificadores situacionais + condições desfavoráveis ao agente</p>
         <p>O resultado gera <strong>RAPs</strong>. RAPs positivos indicam sucesso; RAPs negativos ou zero indicam falha.</p>
         
-        <h3>Ações de Manifestação</h3>
+        <h3>Ações de Criação</h3>
         <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas</p>
         <p><strong>OV/RV final</strong> = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</p>
         <p>Se a ação falhar (RAPs ≤ 0), o efeito não se estabelece ou apenas "pisca" sem se fixar.</p>
@@ -606,7 +573,7 @@ aps_referencia: `
         <p>As tags podem ser usadas para:</p>
         <ul>
           <li>aumentar <strong>AV/EV</strong> em ações de oposição</li>
-          <li>compor o <strong>grau total</strong> em manifestações e automáticas</li>
+          <li>compor o <strong>grau total</strong> em criações e automáticas</li>
           <li>criar, reduzir ou remover estados em ações automáticas</li>
         </ul>
         
@@ -634,7 +601,7 @@ aps_referencia: `
         <p><strong>Exemplo:</strong> se o alvo tem Corpo 5, o limiar de condições físicas é 5. RAPs acima de 5 geram promoções.</p>
         
         <h2>Aplicação</h2>
-        <p>Condições são normalmente geradas por <strong>ações de oposição</strong>, mas podem também ser criadas por manifestações (quando o alvo não oferece resistência ativa) ou por ações automáticas.</p>
+        <p>Condições são normalmente geradas por <strong>ações de oposição</strong>, mas podem também ser criadas por criações (quando o alvo não oferece resistência ativa) ou por ações automáticas.</p>
         <p>O <strong>grau máximo</strong> de uma condição criada em uma única ação é:</p>
         <p><strong>Grau máximo = EV + grau total das tags utilizadas</strong></p>
         <p>RAPs acima desse limite não aumentam o grau da condição — eles podem ser convertidos em promoções.</p>
@@ -670,7 +637,7 @@ aps_referencia: `
         <h2>Remoção de Condições</h2>
         <ul>
           <li><strong>Ação automática:</strong> remove ou reduz condições em APs igual ao grau das tags gastas</li>
-          <li><strong>Ação de manifestação:</strong> pode remover condições; OV/RV = grau atual da condição + modificadores de duração</li>
+          <li><strong>Ação de criação:</strong> pode remover condições; OV/RV = grau atual da condição + modificadores de duração</li>
           <li><strong>Tempo:</strong> condições temporárias expiram naturalmente</li>
           <li><strong>Recuperação narrativa:</strong> a mesa pode permitir redução por repouso, cuidado ou contexto ficcional</li>
         </ul>
@@ -682,7 +649,7 @@ aps_referencia: `
         <p><strong>Exemplo:</strong> criar um efeito com tags de grau 2 e 3 → limiar do efeito = 5.</p>
         
         <h2>Aplicação</h2>
-        <p>Efeitos são normalmente gerados por <strong>ações de manifestação</strong>. O grau do efeito é determinado pelos RAPs obtidos na ação.</p>
+        <p>Efeitos são normalmente gerados por <strong>ações de criação</strong>. O grau do efeito é determinado pelos RAPs obtidos na ação.</p>
         
         <h2>Duração</h2>
         <table>
@@ -697,18 +664,18 @@ aps_referencia: `
         <h2>Remoção de Efeitos</h2>
         <ul>
           <li><strong>Ação automática:</strong> remove ou reduz o efeito em APs igual ao grau das tags gastas</li>
-          <li><strong>Ação de manifestação:</strong> OV/RV = grau atual do efeito + modificadores de duração</li>
+          <li><strong>Ação de criação:</strong> OV/RV = grau atual do efeito + modificadores de duração</li>
           <li><strong>Ação de oposição:</strong> possível se o efeito tiver um "agente" que pode ser contrariado</li>
         </ul>
       `,
-      manifestacao: `
-        <h1>Manifestação — Promoções e Fórmula</h1>
-        <h2>Limiar de Manifestação e Promoções de Escopo</h2>
+      criacao: `
+        <h1>Criação — Promoções e Fórmula</h1>
+        <h2>Limiar de Criação e Promoções de Escopo</h2>
         <h3>Limiar Base de Manifestação</h3>
         <p><strong>Limiar base: 6</strong></p>
-        <p>Quando o RAP de uma manifestação atinge ou ultrapassa 6, o efeito recebe uma <strong>promoção de escopo</strong> — uma melhoria qualitativa no alcance, amplitude, controle ou complexidade do efeito.</p>
+        <p>Quando o RAP de uma criação atinge ou ultrapassa 6, o efeito recebe uma <strong>promoção de escopo</strong> — uma melhoria qualitativa no alcance, amplitude, controle ou complexidade do efeito.</p>
         
-        <h3>Progressão de Promoções de Escopo</h3>
+        <h3>Promoções de Escopo</h3>
         <table>
           <thead><tr><th>Promoção</th><th>Limiar de RAP</th></tr></thead>
           <tbody>
@@ -805,7 +772,7 @@ aps_referencia: `
         <p>Se dois personagens tentam reagir ao mesmo evento, a ordem é determinada pelo <strong>valor de iniciativa</strong> ou pelo acordo narrativo da mesa.</p>
         
         <h2>Reutilização de Tags</h2>
-        <p>Tags usadas em qualquer ação — de oposição, manifestação, automática ou reação — ficam <strong>indisponíveis</strong> até o início do próximo turno do personagem.</p>
+        <p>Tags usadas em qualquer ação — de oposição, criação, automática ou reação — ficam <strong>indisponíveis</strong> até o início do próximo turno do personagem.</p>
         <p>Esta regra se aplica sem exceção. Não existe "tag que retorna no mesmo turno".</p>
       `,
       exemplo_resolucao: `
@@ -830,7 +797,7 @@ aps_referencia: `
           <li>Grau do efeito = 9</li>
           <li>Limiar do efeito = 7 (grau total das tags)</li>
           <li>RAPs excedentes = 9 − 7 = <strong>2 RAPs excedentes</strong></li>
-          <li>Limiar de manifestação: 9 ≥ 6 → <strong>1ª promoção de escopo</strong> (Jean escolhe estender para duradoura)</li>
+          <li>Limiar de criação: 9 ≥ 6 → <strong>1ª promoção de escopo</strong> (Jean escolhe estender para duradoura)</li>
           <li>2 RAPs excedentes: não suficientes para promoção por RAP (mínimo 3)</li>
         </ul>
         <p><strong>Resultado final:</strong> campo de força psiônico de grau 9, cobrindo área pequena, com duração duradoura, precisamente controlado.</p>
@@ -843,7 +810,7 @@ aps_referencia: `
           <li>Condições são aplicadas a objetos de jogo e somam-se entre si.</li>
           <li>Efeitos existem de forma independente na cena.</li>
           <li>Ações de oposição resolvem <strong>conflito direto</strong>.</li>
-          <li>Ações de manifestação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
+          <li>Ações de criação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
           <li>Ações automáticas resolvem <strong>ajustes simples</strong> sem rolagem.</li>
           <li>Reações são automáticas, executadas fora do turno, apenas em resposta.</li>
           <li>RAPs excedentes compram duração e promoções.</li>
@@ -854,14 +821,14 @@ aps_referencia: `
         
         <h2>Resumo Operacional</h2>
         <ol>
-          <li>Identifique o tipo de ação (oposição / manifestação / automática / reação)</li>
+          <li>Identifique o tipo de ação (oposição / criação / automática / reação)</li>
           <li>Escolha as tags; some o grau total</li>
           <li>Calcule AV/EV: atributo base + grau total das tags</li>
-          <li>Determine OV/RV: resistência do alvo (oposição) ou 1 + modificadores (manifestação)</li>
+          <li>Determine OV/RV: resistência do alvo (oposição) ou 1 + modificadores (criação)</li>
           <li>Resolva pela tabela AV/OV ou EV/RV</li>
           <li>Converta RAPs em grau de condição ou efeito</li>
           <li>Verifique se RAPs excedem o limiar → aplique promoções</li>
-          <li>Verifique se RAPs ≥ 6 em manifestação → aplique promoção de escopo</li>
+          <li>Verifique se RAPs ≥ 6 em criação → aplique promoção de escopo</li>
           <li>Declare duração e gaste tags utilizadas até o próximo turno</li>
         </ol>
         
@@ -910,7 +877,7 @@ aps_referencia: `
         </table>
         
         <h2>Criação de Objetos</h2>
-        <p>Criar um objeto é uma <strong>ação de manifestação</strong> com:</p>
+        <p>Criar um objeto é uma <strong>ação de criação</strong> com:</p>
         <ul>
           <li><strong>OV/RV base = grau total desejado do objeto</strong></li>
           <li><strong>Modificadores:</strong> Complexidade (+0 a +3), Material (+0 a +3), Ferramentas (+0 a +2), Tempo (+0 a +3), Simplificações (−1)</li>
@@ -930,7 +897,7 @@ aps_referencia: `
         </ul>
         
         <h2>Reparo de Objetos</h2>
-        <p>Reparo é ação de manifestação: <code>OV/RV = grau atual da condição + modificadores</code>. RAPs do reparo reduzem o grau da condição.</p>
+        <p>Reparo é ação de criação: <code>OV/RV = grau atual da condição + modificadores</code>. RAPs do reparo reduzem o grau da condição.</p>
         
         <h2>Aprimoramento</h2>
         <ul>
@@ -1233,7 +1200,7 @@ aps_referencia: `
         <p>O sistema é estruturado em quatro camadas de resolução:</p>
         <ul>
           <li><strong>Ações de Oposição:</strong> há resistência ativa de outro objeto de jogo.</li>
-          <li><strong>Ações de Manifestação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
+          <li><strong>Ações de Criação:</strong> não há oposição direta, mas existe dificuldade de execução e de materialização do efeito.</li>
           <li><strong>Ações Automáticas:</strong> não exigem rolagem; servem para criar, reduzir ou remover efeitos e condições de forma simples.</li>
           <li><strong>Reações:</strong> ações automáticas executadas fora do turno do personagem, em resposta a um evento.</li>
         </ul>
@@ -1269,7 +1236,7 @@ aps_referencia: `
           <li>Geram primariamente <strong>condições</strong> no alvo.</li>
         </ul>
         
-        <h3>Ações de Manifestação</h3>
+        <h3>Ações de Criação</h3>
         <p>São ações sem oposição direta, nas quais o desafio está na execução, na complexidade e na materialização do resultado.</p>
         <ul>
           <li>Iniciam em <strong>OV/RV 1</strong>.</li>
@@ -1304,7 +1271,7 @@ aps_referencia: `
         <p><strong>OV/RV</strong> = atributo de resistência do alvo + modificadores situacionais + condições desfavoráveis ao agente</p>
         <p>O resultado gera <strong>RAPs</strong>. RAPs positivos indicam sucesso; RAPs negativos ou zero indicam falha.</p>
         
-        <h3>Ações de Manifestação</h3>
+        <h3>Ações de Criação</h3>
         <p><strong>AV/EV</strong> = atributo base + grau total das tags utilizadas</p>
         <p><strong>OV/RV final</strong> = 1 + modificadores da ação + modificadores de posicionamento + modificadores circunstanciais</p>
         <p>Se a ação falhar (RAPs ≤ 0), o efeito não se estabelece ou apenas "pisca" sem se fixar.</p>
@@ -1519,7 +1486,7 @@ aps_referencia: `
           <li>Condições são aplicadas a objetos de jogo e somam-se entre si.</li>
           <li>Efeitos existem de forma independente na cena.</li>
           <li>Ações de oposição resolvem <strong>conflito direto</strong>.</li>
-          <li>Ações de manifestação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
+          <li>Ações de criação resolvem <strong>criação de efeitos</strong> sem oposição ativa.</li>
           <li>Ações automáticas resolvem <strong>ajustes simples</strong> sem rolagem.</li>
           <li>Reações são automáticas, executadas fora do turno, apenas em resposta.</li>
           <li>RAPs excedentes compram duração e promoções.</li>

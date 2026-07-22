@@ -125,7 +125,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .attr-val:focus{border-color:var(--red);}
 .attr-val:-moz-ui-invalid{box-shadow:none;}
 
-.ficha-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.ficha-bottom{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;}
 .panel{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
 .panel-title{font-family:var(--mono);font-size:.5rem;color:var(--muted2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--b1);}
 .ftextarea{width:100%;background:var(--black);border:1px solid var(--b2);color:var(--text);font-family:var(--body);font-size:.82rem;padding:8px 10px;resize:vertical;outline:none;transition:border-color .15s;min-height:80px;}
@@ -144,8 +144,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .evo-n{font-family:var(--mono);font-size:.46rem;color:var(--red2);width:12px;flex-shrink:0;}
 .evo-inp{flex:1;background:transparent;border:none;color:var(--text);font-family:var(--body);font-size:.75rem;padding:2px 4px;outline:none;}
 .evo-inp::placeholder{color:var(--b3);}
-.evolucao-section{padding:12px 0 18px;}
-.evolucao-grid{display:flex;flex-direction:column;gap:4px;}
 .evo-check-row{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;background:var(--p1);border:1px solid var(--b1);border-left:2px solid var(--red);cursor:pointer;transition:border-color .15s;}
 .evo-check-row:hover{border-color:var(--red);}
 .evo-check-row.checked{border-left-color:var(--accent);}
@@ -349,8 +347,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .attr-section-temas{margin-bottom:20px;}
 .attr-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 @media(max-width:640px){.attr-cols{grid-template-columns:1fr;gap:8px;}}
-.right-panel-section{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
-.progressao-area{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 </style>
 <script src="assets/js/config.js?v=dev" defer></script>
 <script src="assets/js/i18n.js?v=dev" defer></script>
@@ -360,6 +356,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <script src="assets/js/auth-module.js?v=dev" defer></script>
 <script src="assets/js/api.js?v=dev" defer></script>
 <script src="assets/js/globals.js?v=dev" defer></script>
+<script src="assets/js/estado-module.js?v=dev" defer></script>
 <script src="assets/js/themes.js?v=dev" defer></script>
 <script src="assets/js/header.js?v=dev" defer></script>
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
@@ -395,6 +392,7 @@ function showToast(msg){
   <button class="tab active" onclick="trocarAba('ficha',this)" data-i18n="ficha.tab1">01 &nbsp;FICHA</button>
   <button class="tab" onclick="trocarAba('temas',this)" data-i18n="ficha.tab2">02 &nbsp;TEMAS</button>
   <button class="tab" onclick="trocarAba('esquadrao',this)" data-i18n="ficha.tab3">03 &nbsp;ESQUADRÃO</button>
+  <button class="tab" onclick="trocarAba('estado',this)" data-i18n="ficha.tab4">04 &nbsp;ESTADO</button>
 </nav>
 
 <main class="content">
@@ -447,14 +445,6 @@ function showToast(msg){
       <div class="panel">
         <div class="panel-title" data-i18n="ficha.status">Status</div>
         <textarea class="status-textarea" id="status" data-i18n-placeholder="ficha.placeholderStatus" placeholder="Estado atual, condições, efeitos ativos, notas de sessão..." oninput="salvarAuto()"></textarea>
-      </div>
-      <div class="right-panel-section">
-          <div class="panel-title" data-i18n="ficha.progression">Progressão</div>
-          <div class="progressao-area">
-            <span style="font-family:var(--mono);font-size:.55rem;color:var(--muted);flex-shrink:0" data-i18n="ficha.progress">PROGRESSO</span>
-            <div class="dots-row" id="dots-prog"></div>
-          </div>
-        <div class="evolucao-grid" id="evolucao-grid"></div>
       </div>
     </div>
 
@@ -531,6 +521,78 @@ function showToast(msg){
     <div class="cards-grid" id="esq-grid"></div>
   </section>
 
+  <section class="page" id="page-estado">
+    <div class="data-header">
+      <span class="dh-left">[16.23435.161] [EST-004]</span>
+      <span class="dh-right">▌ ESTADO // CONDIÇÕES E EFEITOS ▐</span>
+    </div>
+
+    <div class="estado-layout">
+      <section class="estado-panel">
+        <div class="panel-title">TAGS DISPONÍVEIS</div>
+        <div class="estado-tools">
+          <input type="text" id="estado-tag-search" class="estado-input" placeholder="Filtrar tags...">
+          <select id="estado-tag-filter" class="estado-select">
+            <option value="all">Todas</option>
+            <option value="poder">Só poderes</option>
+            <option value="fraqueza">Só fraquezas</option>
+          </select>
+        </div>
+        <div id="estado-tags-list" class="estado-chip-cloud"></div>
+      </section>
+
+      <section class="estado-panel">
+        <div class="panel-title">MOVE SELECIONADO</div>
+        <div id="estado-selected-tags" class="estado-selected-tags"></div>
+        <div class="estado-save-row">
+          <input type="text" id="estado-move-name" class="estado-input" placeholder="Nome do move">
+          <button type="button" class="tbtn" id="estado-save-move">SALVAR MOVE</button>
+        </div>
+        <div id="estado-moves-list" class="estado-list"></div>
+      </section>
+
+      <section class="estado-panel estado-panel-wide">
+        <div class="panel-title">CONDIÇÕES & EFEITOS</div>
+        <div class="estado-add-row">
+          <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome">
+          <input type="number" id="estado-condition-degree" class="estado-input estado-input-small" min="1" max="99" value="1" placeholder="Grau">
+          <select id="estado-condition-kind" class="estado-select">
+            <option value="condicao">Condição</option>
+            <option value="efeito">Efeito</option>
+          </select>
+          <select id="estado-condition-duration" class="estado-select">
+            <option value="temporarias">Temporária</option>
+            <option value="duradouras">Duradoura</option>
+            <option value="permanentes">Permanente</option>
+          </select>
+          <button type="button" class="tbtn" id="estado-add-condition">ADICIONAR</button>
+        </div>
+        <div class="estado-time-row">
+          <label class="estado-time-label">APs</label>
+          <input type="number" id="estado-pass-ap" class="estado-input estado-input-small" min="1" value="1">
+          <button type="button" class="tbtn" id="estado-pass-time">PASSAR TEMPO</button>
+          <button type="button" class="tbtn" id="estado-reduce-temp">-1 TODAS TEMP</button>
+          <span id="estado-threshold" class="estado-threshold"></span>
+        </div>
+        <div id="estado-warning" class="estado-warning"></div>
+        <div class="estado-columns">
+          <div class="estado-column">
+            <div class="estado-column-title">TEMPORÁRIAS</div>
+            <div id="estado-temporarias" class="estado-column-body"></div>
+          </div>
+          <div class="estado-column">
+            <div class="estado-column-title">DURADOURAS</div>
+            <div id="estado-duradouras" class="estado-column-body"></div>
+          </div>
+          <div class="estado-column">
+            <div class="estado-column-title">PERMANENTES</div>
+            <div id="estado-permanentes" class="estado-column-body"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
 </main>
 
 <div class="modal-bg" id="modal-wizard">
@@ -571,7 +633,7 @@ const DESCRICOES={};
 const MISTERIOS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
 const loadTemaData=async()=>{
-  const [temasRes,momentosRes]=await Promise.allSettled([fetch('temas.json'),fetch('momentosDeEvolucao.json')]);
+  const [temasRes]=await Promise.allSettled([fetch('temas.json')]);
   try{
     if(temasRes.status!=='fulfilled')throw temasRes.reason;
     const d=await temasRes.value.json();
@@ -600,15 +662,6 @@ const loadTemaData=async()=>{
       });
     }
   }catch(e){console.error('load temas err',e);}
-  try{
-    if(momentosRes.status!=='fulfilled')throw momentosRes.reason;
-    const d2=await momentosRes.value.json();
-    if(d2.momentos_evolucao?.opcoes){
-      d2.momentos_evolucao.opcoes.forEach(o=>{
-        MOMENTOS_EVOLUCAO[normalizeKey(o.nome)]=o;
-      });
-    }
-  }catch(e){console.error('load momentos err',e);}
 };
 const getPlaceholder=(tipo,i,isPoder)=>{const k=normalizeKey(tipo);const arr=isPoder?(PERGUNTAS[k]?.p||[]):(PERGUNTAS[k]?.f||[]);return arr[i]||'';};
 const getMelhorias=(tipo)=>{const k=normalizeKey(tipo);return MELHORIAS[k]||[];};
@@ -630,11 +683,16 @@ function deriveBlurb(descricao){
   return s;
 }
 function shouldAutoLaunchWizard(d){return d.temas.every(c=>!c.tipo)&&!d.temas_wizard_dismissed;}
-const MOMENTOS_EVOLUCAO={};
 const PADRAO={
   nome:'',codinome:'',jogador:'',mutacao_ficha:'',mutacao_temas:'',foto:'',
   stats:Object.fromEntries(STATS.map(s=>[s,''])),
-  status:'',notas:'',progressao:0,evolucao:['','','','',''],
+  status:'',notas:'',
+  estado:{
+    selectedTags:[],
+    savedMoves:[],
+    conditions:{temporarias:[],duradouras:[],permanentes:[]},
+    tempoPassado:0
+  },
   temas:Array.from({length:4},novoCard),
   temas_wizard_dismissed:false,
   esq_nome:'',
@@ -708,15 +766,20 @@ const newUrl = 'ficha.html?id=' + char.id;
     if (D.temas) D.temas.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (D.extras) D.extras.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (char && char.foto_base64) D.foto = char.foto_base64;
+    delete D.progressao;
+    delete D.evolucao;
+    delete D.evolucao_checked;
     setInd('',t('ficha.saved'));
   } catch(e) {
     console.error('Erro ao carregar personagem:', e);
     setInd('',t('ficha.newChar'));
   }
   
-  buildDots();
-  buildEvo();
   buildGrid('temas-grid', D.temas);
+  if (window.EstadoModule) {
+    EstadoModule.init(D);
+    EstadoModule.render();
+  }
   if (shouldAutoLaunchWizard(D)) abrirWizardGeral();
   buildGrid('esq-grid', D.extras);
     buildMembros();
@@ -740,6 +803,10 @@ function salvarAuto(){
      try{
        const fotoB64=D.foto||null;
        const dataParaSalvar=Object.assign({},D,{foto:''});
+       delete dataParaSalvar.progressao;
+       delete dataParaSalvar.evolucao;
+       delete dataParaSalvar.evolucao_checked;
+       if (dataParaSalvar.estado) delete dataParaSalvar.estado.selectedTags;
        await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
        setInd('salvo',t('ficha.savedOk'));
        setTimeout(()=>setInd('',t('ficha.saved')),1800);
@@ -779,34 +846,6 @@ function trocarAba(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   el.classList.add('active');
-}
-
-/* ── BUILD COMPONENTS ── */
-function buildDots(){
-  const c=document.getElementById('dots-prog');c.innerHTML='';
-  for(let i=0;i<6;i++){
-    const d=document.createElement('div');d.className='dot'+(i<D.progressao?' filled':'');
-    d.addEventListener('click',()=>{D.progressao=D.progressao===i+1?i:i+1;buildDots();salvarAuto();});
-    c.appendChild(d);
-  }
-}
-function buildEvo(){
-  const grid=document.getElementById('evolucao-grid');if(!grid)return;grid.innerHTML='';
-  const keys=Object.keys(MOMENTOS_EVOLUCAO);
-  if(keys.length===0){
-    grid.innerHTML='<p style="color:var(--muted);padding:8px;">'+t('ficha.loadingMoments')+'</p>';return;
-  }
-  keys.forEach(k=>{
-    const m=MOMENTOS_EVOLUCAO[k];
-    const row=document.createElement('label');row.className='evo-check-row';
-    row.innerHTML='<input type="checkbox" class="evo-chk" data-key="'+k+'"><span class="evo-chk-txt">'+m.nome+'</span>';
-    const chk=row.querySelector('.evo-chk');
-    const checked=D.evolucao_checked&&D.evolucao_checked[k];
-    chk.checked=checked||false;
-    chk.addEventListener('change',e=>{if(!D.evolucao_checked)D.evolucao_checked={};D.evolucao_checked[k]=e.target.checked;salvarAuto();row.classList.toggle('checked',e.target.checked);});
-    row.classList.toggle('checked',chk.checked);
-    grid.appendChild(row);
-  });
 }
 function buildMembros(){
   const tb=document.getElementById('mbr-tbody');tb.innerHTML='';
@@ -1301,8 +1340,15 @@ function resetarFicha(){
   if(!confirm('Resetar '+nome+'? Esta ação não pode ser desfeita.'))return;
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
   D=clone(PADRAO);
-  preencherCampos();buildDots();buildEvo();
-  buildGrid('temas-grid',D.temas);buildGrid('esq-grid',D.extras);  buildMembros();removerFoto();
+  preencherCampos();
+  buildGrid('temas-grid',D.temas);
+  buildGrid('esq-grid',D.extras);
+  buildMembros();
+  removerFoto();
+  if (window.EstadoModule) {
+    EstadoModule.init(D);
+    EstadoModule.render();
+  }
   salvarAuto();
   toast(t('ficha.resetDone'));
 }
@@ -1328,8 +1374,6 @@ function exportarPDF(){
   const agora=new Date().toLocaleString('pt-BR');
   const st=d.stats||{};
   const attr=(lb,v)=>`<div class="pdf-attr"><span class="pdf-attr-k">${lb}</span><span class="pdf-attr-v">${(v||v===0)&&v!==''?pdfEsc(v):'—'}</span></div>`;
-  const dots='●'.repeat(d.progressao||0)+'○'.repeat(Math.max(0,6-(d.progressao||0)));
-  const evo=(d.evolucao||[]).map((e,i)=>e&&e.trim()?`<li>${pdfEsc(e)}</li>`:'').join('')||'<li class="muted">—</li>';
   const membros=(d.membros||[]).filter(m=>m.nome&&m.nome.trim());
   const temas=(d.temas||[]).map(pdfCard).join('');
   const extras=(d.extras||[]).map(pdfCard).join('');
@@ -1352,7 +1396,6 @@ body{font-family:'Barlow Condensed','Segoe UI',Arial,sans-serif;color:#12100c;ba
 .pdf-attr-k{text-transform:uppercase;font-size:11px;letter-spacing:.06em;}
 .pdf-attr-v{font-weight:700;font-family:'Oswald',sans-serif;}
 .pdf-block{white-space:pre-wrap;font-size:12px;padding:4px 0;}
-.pdf-prog{font-size:16px;letter-spacing:3px;color:#E8001C;}
 ol,ul{padding-left:18px;}
 li{margin:2px 0;}
 li.muted{color:#999;list-style:none;margin-left:-14px;}
@@ -1395,11 +1438,6 @@ ${d.mutacao_temas?`<div class="pdf-sec">Mutação — Tema Central</div><div cla
 
 <div class="pdf-sec">Cards de Tema</div>
 <div class="pdf-cards">${temas||'<div class="muted">Nenhum tema definido.</div>'}</div>
-
-<div class="pdf-sec">Progressão</div>
-<div class="pdf-prog">${dots} <span style="font-size:11px;color:#666">(${d.progressao||0}/6)</span></div>
-<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:8px 0 2px">MOMENTOS DE EVOLUÇÃO</div>
-<ol>${evo}</ol>
 
 ${(d.status&&d.status.trim())?`<div class="pdf-sec">Status</div><div class="pdf-block">${pdfNl(d.status)}</div>`:''}
 ${(d.notas&&d.notas.trim())?`<div class="pdf-sec">Notas</div><div class="pdf-block">${pdfNl(d.notas)}</div>`:''}
