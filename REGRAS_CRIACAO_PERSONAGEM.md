@@ -57,7 +57,47 @@ Cada atributo mede a capacidade bruta do personagem em uma escala absoluta, comp
 | 46–50 | Kryptoniano Pré-Crise / topo cósmico | Clarividência absoluta | — | — |
 | 51–55 | Mongul / Golem Galáctico | — | — | — |
 
-*(Tabelas completas para Vontade, Mente, Influência, Aura, Espírito no apêndice)*
+| APs | Vontade (exemplos) | Mente (exemplos) | Influência (exemplos) |
+|-----|--------------------|------------------|-----------------------|
+| 0 | Sem consciência / vegetativo | Nenhuma percepção | Inexistente / irrelevante |
+| 1–2 | Humano facilmente influenciável | Percepção básica (perigo imediato) | Parente / civil comum |
+| 3–4 | Força de vontade mediana | Percepção situacional | Voz na comunidade / líder local |
+| 5–6 | Pico humano (soldado de elite) | Intuição treinada / detetive | Influencia bairro/cidade pequena |
+| 7–8 | Resistência mental moderada | Percepção extra-sensorial fraca | Líder de equipe / prefeito |
+| 9–10 | Dureza mental notável | Telepata parcial (alcance curto) | Influência nacional / celebridade |
+| 11–12 | Vontade de ferro (Wolverine) | Telepatia funcional (1 km) | Controla organização grande |
+| 13–15 | Quase inquebrantável (Ciclope) | Telepatia forte (10 km) | Influência hemisférica |
+| 16–18 | Resiste a ataques psíquicos poderosos | Telepatia avançada (continental) | Manipula governos |
+| 19–21 | Recupera-se de lavagem cerebral | Telepatia global com esforço | Influência planetária leve |
+| 22–24 | Vontade de nível cósmico | Telepatia planetária natural | Reconhecido globalmente |
+| 25–27 | Domínio mental absoluto (Xavier) | Telepatia interestelar | Voz de deuses/reis mundiais |
+| 28–30 | Vontade de entidade cósmica | Onipresença mental limitada | Manipula consciência coletiva |
+| 31–35 | — | — | Influência cósmica |
+| 36–40 | — | Consciência universal | — |
+| 41–45 | — | — | — |
+| 46–50 | — | Onisciência limitada | — |
+| 51–55 | — | — | — |
+
+| APs | Aura (exemplos) | Espírito (exemplos) |
+|-----|------------------|---------------------|
+| 0 | Presença nula / morto-vivo | Desconectado do sobrenatural |
+| 1–2 | Passa despercebido | Cético / sem fé |
+| 3–4 | Presença notada | Crença genérica / superstição leve |
+| 5–6 | Carisma profissional / palestrante | Espiritualidade mediana |
+| 7–8 | Presença magnética (atrai multidões) | Conexão mística básica |
+| 9–10 | Aura inspiradora / líder nato | Experiência mística autêntica |
+| 11–12 | Presença intimidadora / esmaga moral | Sensitivo espiritual |
+| 13–15 | Aura de comando inegável | Canaliza energia mística |
+| 16–18 | Presença que altera ambiente | Feiticeiro treinado (Dr. Estranho nível médio) |
+| 19–21 | Aura que sufoca/fortalece à distância | Mestre em misticismo (Manto, Anel) |
+| 22–24 | Presença cósmica (Guerreiros, Fênix) | Avatar de força sobrenatural |
+| 25–27 | Manipula emoções em escala global | Entidade mística manifesta |
+| 28–30 | Presença de divindade / altera realidade local | Deus / semi-deus |
+| 31–35 | Aura divina total | Domínio sobre plano astral |
+| 36–40 | — | Fusão com força cósmica |
+| 41–45 | — | — |
+| 46–50 | — | Espírito cósmico absoluto |
+| 51–55 | — | — |
 
 ### Distribuição por Nível de Perigo
 
@@ -85,12 +125,16 @@ Cada atributo mede a capacidade bruta do personagem em uma escala absoluta, comp
 
 ## 3. Nível de Perigo — Limites & Recursos
 
-| Perigo | Cartas Mín. | Tags Mín. | Fraquezas Mín. | XP Inicial | Recursos |
-|--------|-------------|-----------|----------------|------------|----------|
-| **Baixo** | 2 | 8 | 3 | 0 | Equipamento básico, sem base |
-| **Médio** | 4 | 15 | 4 | 15 | Jato Blackbird (compartilhado), quarters no Instituto |
-| **Alto** | 5 | 20 | 4 | 30 | Acesso a Cerebro, missões solo autorizadas |
-| **Extremo** | 6 | 25 | 5 | 50 | Autoridade de comando, recursos ilimitados, influência global |
+Nível de Perigo **não** define mais um número fixo de cartas ou tags — isso agora é decidido por
+carta (seção 4), a partir da lore real do personagem. Perigo continua definindo XP inicial e
+acesso a recursos:
+
+| Perigo | XP Inicial | Recursos |
+|--------|------------|----------|
+| **Baixo** | 0 | Equipamento básico, sem base |
+| **Médio** | 15 | Jato Blackbird (compartilhado), quarters no Instituto |
+| **Alto** | 30 | Acesso a Cerebro, missões solo autorizadas |
+| **Extremo** | 50 | Autoridade de comando, recursos ilimitados, influência global |
 
 > **Regra:** Personagens **Alto/Extremo** precisam de aprovação do Mestre (GM). Máx 1 por mesa.
 
@@ -98,17 +142,40 @@ Cada atributo mede a capacidade bruta do personagem em uma escala absoluta, comp
 
 ## 4. Cartas de Tema (Coração do Sistema)
 
-Cada carta = **um aspecto narrativo** do personagem. Contém:
+Cada carta = **um aspecto narrativo** do personagem, geralmente ancorada em um tipo de tema de
+`temas.json` (cada tipo tem exatamente 10 perguntas de poder — respondê-las gera as tags da
+carta). Contém:
 - **Nome da Carta** (ex: "Rajada Óptica", "Filho de Mística")
-- **Poderes** (1–5 tags positivas)
-- **Fraquezas** (0–3 tags negativas)
+- **Poderes** (tags positivas — quantidade definida pelo Nível da Carta, ver abaixo)
+- **Fraquezas** (mín. 1 tag negativa sempre que a carta tiver poder)
+
+### Nível da Carta (substitui o antigo mínimo por Nível de Perigo do personagem)
+Cada carta tem seu **próprio** nível de força, independente do Nível de Perigo geral do
+personagem — um Extremo pode ter cartas Nascentes (treino recente, ferramenta secundária) e um
+Baixo pode ter uma única carta Ômega (o golpe de sorte que definiu sua vida):
+
+| Nível da Carta | Tags de Poder | Quando usar |
+|----------------|----------------|-------------|
+| **Nascente** | 1 | Poder emergente, recém-descoberto, pouco explorado na lore |
+| **Médio** | 3 | Habilidade estabelecida, competência sólida mas não definidora |
+| **Ômega** | 10+ (todas as perguntas de poder do tema respondidas) | Capacidade assinatura do personagem, amplamente documentada na lore |
+
+Não há teto nem piso total de tags por personagem — o número de cartas e o nível de cada uma são
+definidos pela **lore real do personagem**, não por uma tabela fixa. Um personagem pode ter 2
+cartas ou 8; o que importa é que cada carta reflita um tema central de verdade, e que o nível de
+cada carta reflita o quanto aquele tema é documentado/central na história do personagem — não o
+Nível de Perigo do personagem como um todo.
+
+> **Cuidado com fontes de feats:** threads de "respeito" (respect threads) e listas de feats de
+> fórum costumam misturar esforço excepcional (limite absoluto, uma vez na história) com
+> capacidade padrão. Um feat de esforço excepcional não vira, sozinho, uma carta Ômega — avalie
+> se é o que o personagem faz rotineiramente ou o pico raro de uma crise específica.
 
 ### Regras de Construção
-1. **Mínimo por Perigo** (ver tabela acima)
-2. **Poderes por carta:** 1–5 (recomendado 2–3)
-3. **Fraquezas por carta:** 0–3 (pelo menos 1 fraqueza total no personagem)
-4. **Sem duplicatas** — textos idênticos não contam duas vezes
-5. **Tags narrativas** — não usam números; descrevem *o que* o personagem faz, não *quão bem*
+1. **Nível de cada carta define a quantidade de tags de poder** (tabela acima)
+2. **Fraquezas por carta:** mínimo 1 sempre que a carta tiver poder (sem teto rígido)
+3. **Sem duplicatas** — textos idênticos não contam duas vezes
+4. **Tags narrativas** — não usam números; descrevem *o que* o personagem faz, não *quão bem*
 
 ### Exemplos de Tags Bem-Formadas
 | Tipo | Ruim (genérico) | Bom (temático) |
@@ -191,8 +258,8 @@ Máx **3 vantagens** + **3 desvantagens** por personagem.
 2. **Perigo** — Escolha com aprovação do GM
 3. **Atributos (APs)** — Distribua **54 pontos base** (mín 1, máx 50 antes de bônus raciais/mutacionais)
    - Humanos normais: 1–6 | Heróis de rua: 7–15 | Ômega: 16–30 | Cósmico: 31–50
-4. **Cartas de Tema** — Crie o mínimo para seu perigo
-   - Comece pela **carta central** (poder principal)
+4. **Cartas de Tema** — Crie uma carta por tema real e central da sua lore (sem número fixo)
+   - Comece pela **carta central** (poder principal, geralmente nível Ômega)
    - Adicione cartas de **identidade** (família, passado, filosofia)
    - Complete com cartas de **recursos/treinamento** (Danger Room, X-Force, etc.)
 5. **Perícias** — Escolha 6 + bônus de INT (tabela acima)
@@ -232,13 +299,12 @@ Máx **3 vantagens** + **3 desvantagens** por personagem.
 
 | Etapa | Escolha |
 |-------|---------|
-| Perigo | Alto (5 cartas, 20 tags, 4 fraquezas) |
+| Perigo | Alto (30 XP inicial, acesso a Cerebro) |
 | Atributos | Des 7, For 4, Cor 5, Int 6, Von 7, Men 6, Inf 8, Aur 5, Esp 6 |
-| Carta 1 | **Mestre das Vibrações** — Controle Sísmico Preciso, Ondas de Choque Direcionadas, Detecção Sísmica, Desmorona Estruturas / Poder Ligado a Emoções |
-| Carta 2 | **Peso do Legado** — Filho de Villão (Cabo), Culpa por Ações Passadas / Identidade em Construção |
-| Carta 3 | **Ex-Membro X-Force** — Táticas de Guerrilha, Liderança de Campo / Medo de Falhar a Equipe |
-| Carta 4 | **Parceiro de Shatterstar** — Combate Sincronizado, Apoio Emocional Mútuo / Medo de Abandono |
-| Carta 5 | **Sísmica Ômega** — Gera Terremotos Artificiais, Manipula Placas Tectônicas / Exaustão Extrema, Risco de Destruição em Massa |
+| Carta 1 (Ômega) | **Sísmica Ômega** — 10 tags respondendo todas as perguntas de poder do tema (Gera Terremotos Artificiais, Manipula Placas Tectônicas, Controle Sísmico Preciso, Ondas de Choque Direcionadas, Detecção Sísmica, Desmorona Estruturas...) / Poder Ligado a Emoções, Exaustão Extrema, Risco de Destruição em Massa |
+| Carta 2 (Médio) | **Peso do Legado** — Filho de Vilão (Cabo), Culpa por Ações Passadas, Busca por Redenção / Identidade em Construção |
+| Carta 3 (Médio) | **Ex-Membro X-Force** — Táticas de Guerrilha, Liderança de Campo, Combate Sincronizado / Medo de Falhar a Equipe |
+| Carta 4 (Nascente) | **Parceiro de Shatterstar** — Apoio Emocional Mútuo / Medo de Abandono |
 | Perícias | Táticas de Esquadrão, Liderança, Geologia, Intimidação, Resistência a Poderes, Pilotagem |
 | Vantagem | Contatos X-Force |
 | Desvantagem | Procurado por Governo (ações passadas) |

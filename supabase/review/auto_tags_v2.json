@@ -263,24 +263,61 @@
   ],
   "Colossus": [
     {
-      "card": "Artista e Guerreiro",
+      "card": "Classe Ômega",
       "tipo": "poder",
       "texto": "Protetor da Família Rasputin"
     },
     {
-      "card": "Protetor da Família",
+      "card": "Classe Ômega",
       "tipo": "poder",
-      "texto": "Reflexos Aguçados"
+      "texto": "Exploração de Ambiente"
     },
     {
-      "card": "Gigante Gentil",
+      "card": "Classe Ômega",
       "tipo": "poder",
-      "texto": "Resiliência Física e Mental"
+      "texto": "Liderança em Campo"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Espírito Gentil"
+    },
+    {
+      "card": "Classe Ômega",
+      "tipo": "fraqueza",
+      "texto": "Insegurança Constante"
     },
     {
       "card": "Artista e Guerreiro",
       "tipo": "poder",
-      "texto": "Intuição de Batalha"
+      "texto": "Habilidade de Luta"
+    },
+    {
+      "card": "Protetor da Família",
+      "tipo": "poder",
+      "texto": "Determinação Inabalável"
+    },
+    {
+      "card": "Gigante Gentil",
+      "tipo": "poder",
+      "texto": "Instinto de Sobrevivência"
+    },
+    {
+      "card": "Artista e Guerreiro",
+      "tipo": "poder",
+      "texto": "Tática e Estratégia"
+    }
+  ],
+  "Noturno": [
+    {
+      "card": "Teletransporte Bamf",
+      "tipo": "poder",
+      "texto": "Cada Teleporte deixa rastro de enxofre"
+    },
+    {
+      "card": "Acrobata Sombrio",
+      "tipo": "poder",
+      "texto": "Treinamento de Combate"
     }
   ],
   "Kitty Pryde": [
