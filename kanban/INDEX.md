@@ -46,6 +46,7 @@
 | Contagem 198: 170+28, Collective Man=5, Black Box pendente | ✅ Done |
 | MOCs de resumo (Personagens, Locais, Equipes, Eventos, Mistérios, Instituto, LT) | ✅ Done |
 | 7 canvas Icebergs (City of Mist): Black Box, Terrígeno, Orchis, Genosha, Rei das Sombras, Vulcan, Xavier | ✅ Done |
+| 103 dossiês enriquecidos com personalidade canônica (Protocolos Marvel) | ✅ Done |
 
 ## SQL Migrations
 
