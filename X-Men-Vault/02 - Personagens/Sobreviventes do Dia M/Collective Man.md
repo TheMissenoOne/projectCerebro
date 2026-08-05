@@ -1,42 +1,33 @@
 ---
-type: personagem
+type: entidade
 nome: "Collective Man"
 aliases: ["Homem Coletivo"]
-nome_civil: "Collective Man (identidade coletiva)"
 mutante: true
 origem: canonico
 status_2010: ativo
 status_poder: ativo
-idade_2010: ~30
-idade_estimada: true
-primeira_aparicao_campanha: "Pré-2004"
-geracao: "Sobrevivente próximo ao Instituto"
 equipe_2010: []
-afiliacoes: ["Instituto Xavier (próximo)"]
+afiliacoes: ["Refugiados e acampamento"]
 local_2010: "Refugiado"
-mentor: ""
-alunos: []
-familia: []
-poderes: ["Entidade coletiva de vários corpos", "Consciência compartilhada"]
+poderes: ["Fusão coletiva em um único corpo", "Consciência compartilhada", "Projeção de energia"]
 nivel_ameaca: alto
-segredo: false
 fonte: estabelecido
-tags: ["sobreviventes","198","manteve-poderes-dia-m"]
+tags: ["198", "manteve-poderes-dia-m", "collective-man", "irmaos-tao-yu"]
 ---
 
 # Collective Man
 
 ## Resumo
 
-Mutante coletivo (muitos corpos, uma consciência) listado entre os sobreviventes próximos ao Instituto.
+Entidade coletiva formada pela fusão dos **cinco irmãos Tao-Yu**: [[Han Tao-Yu]], [[Chang Tao-Yu]], [[Lin Tao-Yu]], [[Sun Tao-Yu]] e [[Ho Tao-Yu]]. Na [[Contagem dos 198]], cada irmão conta individualmente (5 pessoas).
 
 ## Poderes
 
-- Consciência e poderes compartilhados entre corpos.
-
-> [!QUESTION]
-> Contagem nos 198: conta como 1 mutante? Pendente.
+- Fusão coletiva em um único corpo.
+- Consciência e poderes compartilhados entre os irmãos.
+- Projeção de energia.
 
 ## Ver também
 
-- [[Contagem dos 198]]
+- [[Contagem dos 198]] — conta como 5 mutantes.
+- [[Han Tao-Yu]] · [[Chang Tao-Yu]] · [[Lin Tao-Yu]] · [[Sun Tao-Yu]] · [[Ho Tao-Yu]]

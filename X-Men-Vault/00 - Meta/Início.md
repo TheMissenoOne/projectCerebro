@@ -67,6 +67,20 @@ Este vault serve simultaneamente como:
 - [[07 - Mistérios e Tramas/Influência do Rei das Sombras]]
 - [[07 - Mistérios e Tramas/Retorno de Vulcan]]
 
+### Mapas de conteúdo (MOC)
+- [[09 - Referência/MOC - Personagens]] — todos os dossiês de personagens
+- [[09 - Referência/MOC - Locais]]
+- [[09 - Referência/MOC - Equipes e Organizações]]
+- [[09 - Referência/MOC - Eventos e Sagas]]
+- [[09 - Referência/MOC - Mistérios e Tramas]]
+- [[09 - Referência/MOC - Instituto Xavier]]
+- [[09 - Referência/MOC - Linha do Tempo]]
+- [[09 - Referência/MOC - X-Men]] · [[09 - Referência/MOC - Time Vermelho]] · [[09 - Referência/MOC - Sobreviventes do Dia M]] · [[09 - Referência/MOC - Morlocks]] · [[09 - Referência/MOC - Academia X]] · [[09 - Referência/MOC - Personagens dos Jogadores]]
+
+### Icebergs (canvas — City of Mist)
+- [[09 - Referência/Icebergs/Iceberg - Black Box]] · [[09 - Referência/Icebergs/Iceberg - Terrígeno e Kitty]] · [[09 - Referência/Icebergs/Iceberg - Orchis]]
+- [[09 - Referência/Icebergs/Iceberg - Conspiração de Genosha]] · [[09 - Referência/Icebergs/Iceberg - Rei das Sombras]] · [[09 - Referência/Icebergs/Iceberg - Vulcan e Deadly Genesis]] · [[09 - Referência/Icebergs/Iceberg - Desaparecimento de Xavier]]
+
 ### Futuro planejado
 - [[01 - Linha do Tempo/Futuro Planejado]]
 - [[09 - Referência/Contagem dos 198]]

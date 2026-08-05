@@ -30,6 +30,18 @@ Mapa de conteúdo das tramas e mistérios ativos da campanha em 2010.
 - [[Carniceiro]] — identidade desconhecida
 - [[Purificadores]] — célula no sul da Ásia; base infiltrada
 
+## Icebergs (canvas — Método do Iceberg, City of Mist)
+
+Estruturas de mistério: **ponta visível (gancho) → camadas médias (pistas/lieutenants) → verdade profunda (o que realmente aconteceu)**.
+
+- [[Iceberg - Black Box]] — rede fantasma; clones; fundador presumido morto
+- [[Iceberg - Terrígeno e Kitty]] — o que o envenenamento de Kitty esconde
+- [[Iceberg - Orchis]] — ameaça emergente; estudo fundamental
+- [[Iceberg - Conspiração de Genosha]] — quem comandou o plano?
+- [[Iceberg - Rei das Sombras]] — Emma sob influência
+- [[Iceberg - Vulcan e Deadly Genesis]] — irmão de Ciclope; guerra cósmica
+- [[Iceberg - Desaparecimento de Xavier]] — líder sumido em 2004
+
 ## Perguntas centrais do arco
 
 > [!QUESTION]

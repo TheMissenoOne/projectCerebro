@@ -1,0 +1,152 @@
+{
+  "nodes": [
+    {
+      "id": "g-96c53a5c7afb",
+      "type": "group",
+      "x": -50,
+      "y": -50,
+      "width": 1460,
+      "height": 260,
+      "label": "PONTA — sinal visível (Depth 0)"
+    },
+    {
+      "id": "g-05fafa01086a",
+      "type": "group",
+      "x": -50,
+      "y": 230,
+      "width": 1460,
+      "height": 260,
+      "label": "CAMADAS MÉDIAS (Depth 1-2)"
+    },
+    {
+      "id": "g-33132efdd6f4",
+      "type": "group",
+      "x": -50,
+      "y": 790,
+      "width": 1460,
+      "height": 260,
+      "label": "VERDADE PROFUNDA (Depth 3)"
+    },
+    {
+      "id": "n-83c4c1187e17",
+      "type": "text",
+      "text": "Verdade sobre Deadly Genesis — a equipe secreta enviada a Krakoa antes do resgate — foi revelada",
+      "x": 60,
+      "y": 0,
+      "width": 300,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "n-57b22f12a364",
+      "type": "file",
+      "file": "02 - Personagens/X-Men/Vulcan.md",
+      "x": 60,
+      "y": 280,
+      "width": 300,
+      "height": 100,
+      "color": "4"
+    },
+    {
+      "id": "n-4c42017efe0a",
+      "type": "text",
+      "text": "Destino de [[Darwin]], [[Petra]] e [[Sway]] ainda aberto",
+      "x": 388,
+      "y": 280,
+      "width": 300,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "n-627e09177aa5",
+      "type": "text",
+      "text": "Consanguinidade Vulcan═[[Ciclope]]; responsabilidade de [[Xavier]] no crime",
+      "x": 60,
+      "y": 560,
+      "width": 300,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "n-3e45a1b93c76",
+      "type": "text",
+      "text": "Xavier escondeu o irmão de Ciclope e as memórias; cratera de Krakoa em aberto",
+      "x": 388,
+      "y": 560,
+      "width": 300,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "n-8667221d4e3e",
+      "type": "text",
+      "text": "Vulcan retorna do espaço/império Shi’ar e a verdade de Krakoa/Deadly Genesis é completada (Futuro Planejado §10.1)",
+      "x": 60,
+      "y": 840,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "n-ddb99f40ebaa",
+      "type": "text",
+      "text": "Pode abrir guerra cósmica — viagem espacial para PCs?",
+      "x": 388,
+      "y": 840,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-764ecd0cd6d5",
+      "fromNode": "n-83c4c1187e17",
+      "fromSide": "bottom",
+      "toNode": "n-57b22f12a364",
+      "toSide": "top"
+    },
+    {
+      "id": "e-9182a0b9b2ef",
+      "fromNode": "n-83c4c1187e17",
+      "fromSide": "bottom",
+      "toNode": "n-4c42017efe0a",
+      "toSide": "top"
+    },
+    {
+      "id": "e-3c69fc9bfd3a",
+      "fromNode": "n-57b22f12a364",
+      "fromSide": "bottom",
+      "toNode": "n-627e09177aa5",
+      "toSide": "top"
+    },
+    {
+      "id": "e-21ca0d898404",
+      "fromNode": "n-4c42017efe0a",
+      "fromSide": "bottom",
+      "toNode": "n-627e09177aa5",
+      "toSide": "top"
+    },
+    {
+      "id": "e-788e58a30693",
+      "fromNode": "n-627e09177aa5",
+      "fromSide": "bottom",
+      "toNode": "n-3e45a1b93c76",
+      "toSide": "top"
+    },
+    {
+      "id": "e-d8a0dd85b1b0",
+      "fromNode": "n-3e45a1b93c76",
+      "fromSide": "bottom",
+      "toNode": "n-8667221d4e3e",
+      "toSide": "top"
+    },
+    {
+      "id": "e-6079b3767ab6",
+      "fromNode": "n-8667221d4e3e",
+      "fromSide": "bottom",
+      "toNode": "n-ddb99f40ebaa",
+      "toSide": "top"
+    }
+  ]
+}

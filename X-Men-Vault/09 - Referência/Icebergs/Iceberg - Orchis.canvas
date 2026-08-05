@@ -1,0 +1,238 @@
+{
+  "nodes": [
+    {
+      "id": "g-48f46efe267d",
+      "type": "group",
+      "x": -50,
+      "y": -50,
+      "width": 1460,
+      "height": 260,
+      "label": "PONTA — sinal visível (Depth 0)"
+    },
+    {
+      "id": "g-1d56b6368498",
+      "type": "group",
+      "x": -50,
+      "y": 230,
+      "width": 1460,
+      "height": 260,
+      "label": "CAMADAS MÉDIAS (Depth 1-2)"
+    },
+    {
+      "id": "g-7856ff4c511c",
+      "type": "group",
+      "x": -50,
+      "y": 790,
+      "width": 1460,
+      "height": 260,
+      "label": "VERDADE PROFUNDA (Depth 3)"
+    },
+    {
+      "id": "n-65ed4820ae99",
+      "type": "file",
+      "file": "07 - Mistérios e Tramas/Mistério Orchis.md",
+      "x": 60,
+      "y": 0,
+      "width": 300,
+      "height": 100,
+      "color": "2"
+    },
+    {
+      "id": "n-df195ff07643",
+      "type": "text",
+      "text": "Estruturas de engenharia avançada na base indiana foram criadas a partir de estudos da Orchis",
+      "x": 388,
+      "y": 0,
+      "width": 300,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "n-669c8ddc4966",
+      "type": "file",
+      "file": "06 - Eventos e Sagas/Ataque à Base Militar Indiana.md",
+      "x": 60,
+      "y": 280,
+      "width": 300,
+      "height": 100,
+      "color": "4"
+    },
+    {
+      "id": "n-bce3e2ca37c3",
+      "type": "text",
+      "text": "[[Purificadores]] independentes da rede de [[Homens de Omar|Omar]]; procuram [[Dust|Soraya]] (\"Dusk\")",
+      "x": 388,
+      "y": 280,
+      "width": 300,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "n-cc861620bf83",
+      "type": "text",
+      "text": "Instalação estatal infiltrada/apropriada por extremistas",
+      "x": 716,
+      "y": 280,
+      "width": 300,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "n-c62afcb1ce6d",
+      "type": "text",
+      "text": "Orchis: quem são os pesquisadores? Escopo real da organização?",
+      "x": 60,
+      "y": 560,
+      "width": 300,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "n-a9c9a028d13a",
+      "type": "text",
+      "text": "Purificadores + Orchis convergem para a mesma jovem mutante",
+      "x": 388,
+      "y": 560,
+      "width": 300,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "n-55973af88bbc",
+      "type": "text",
+      "text": "Orchis coordenou a operação ou só forneceu pesquisa?",
+      "x": 60,
+      "y": 840,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "n-3940c181979e",
+      "type": "text",
+      "text": "Conexão Orchis ↔ mísseis de Terrígeno?",
+      "x": 388,
+      "y": 840,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "n-a4157d39c3cd",
+      "type": "text",
+      "text": "Papel do [[Carniceiro]] como guardião/arma do complexo",
+      "x": 716,
+      "y": 840,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-4db3f81b77fe",
+      "fromNode": "n-65ed4820ae99",
+      "fromSide": "bottom",
+      "toNode": "n-669c8ddc4966",
+      "toSide": "top"
+    },
+    {
+      "id": "e-f204582fe210",
+      "fromNode": "n-65ed4820ae99",
+      "fromSide": "bottom",
+      "toNode": "n-bce3e2ca37c3",
+      "toSide": "top"
+    },
+    {
+      "id": "e-5cbb90f64346",
+      "fromNode": "n-65ed4820ae99",
+      "fromSide": "bottom",
+      "toNode": "n-cc861620bf83",
+      "toSide": "top"
+    },
+    {
+      "id": "e-7a557d20eeed",
+      "fromNode": "n-df195ff07643",
+      "fromSide": "bottom",
+      "toNode": "n-669c8ddc4966",
+      "toSide": "top"
+    },
+    {
+      "id": "e-9c5efa793c59",
+      "fromNode": "n-df195ff07643",
+      "fromSide": "bottom",
+      "toNode": "n-bce3e2ca37c3",
+      "toSide": "top"
+    },
+    {
+      "id": "e-425a2aa79ba3",
+      "fromNode": "n-df195ff07643",
+      "fromSide": "bottom",
+      "toNode": "n-cc861620bf83",
+      "toSide": "top"
+    },
+    {
+      "id": "e-c431bca6621b",
+      "fromNode": "n-669c8ddc4966",
+      "fromSide": "bottom",
+      "toNode": "n-c62afcb1ce6d",
+      "toSide": "top"
+    },
+    {
+      "id": "e-b52618a71a06",
+      "fromNode": "n-669c8ddc4966",
+      "fromSide": "bottom",
+      "toNode": "n-a9c9a028d13a",
+      "toSide": "top"
+    },
+    {
+      "id": "e-2e88e75b4970",
+      "fromNode": "n-bce3e2ca37c3",
+      "fromSide": "bottom",
+      "toNode": "n-c62afcb1ce6d",
+      "toSide": "top"
+    },
+    {
+      "id": "e-fdff13d47648",
+      "fromNode": "n-bce3e2ca37c3",
+      "fromSide": "bottom",
+      "toNode": "n-a9c9a028d13a",
+      "toSide": "top"
+    },
+    {
+      "id": "e-6fa5a1d32763",
+      "fromNode": "n-cc861620bf83",
+      "fromSide": "bottom",
+      "toNode": "n-c62afcb1ce6d",
+      "toSide": "top"
+    },
+    {
+      "id": "e-fc955b29ad98",
+      "fromNode": "n-cc861620bf83",
+      "fromSide": "bottom",
+      "toNode": "n-a9c9a028d13a",
+      "toSide": "top"
+    },
+    {
+      "id": "e-9dd892e0b1ce",
+      "fromNode": "n-c62afcb1ce6d",
+      "fromSide": "bottom",
+      "toNode": "n-55973af88bbc",
+      "toSide": "top"
+    },
+    {
+      "id": "e-18a391e32795",
+      "fromNode": "n-a9c9a028d13a",
+      "fromSide": "bottom",
+      "toNode": "n-3940c181979e",
+      "toSide": "top"
+    },
+    {
+      "id": "e-fec64f506f00",
+      "fromNode": "n-c62afcb1ce6d",
+      "fromSide": "bottom",
+      "toNode": "n-a4157d39c3cd",
+      "toSide": "top"
+    }
+  ]
+}

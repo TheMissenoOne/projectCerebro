@@ -5,7 +5,7 @@ tipo: "Organização antagonista"
 localizacao: "Variável"
 status_2010: ativa (VIII)
 lider: ["Exodus (VIII)"]
-membros: ["Exodus", "Avalanche", "Black Tom", "Mítica", "Nocturna", "Dentes de Sabre", "Mammomax"]
+membros: ["Exodus", "Avalanche", "Black Tom", "Mística", "Nocturna", "Dentes de Sabre", "Mammomax"]
 tags: ["irmandade", "antagonista"]
 ---
 
