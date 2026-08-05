@@ -38,6 +38,15 @@
 | N - Student Enrichment | ✅ Done |
 | O - Full NPC Enrichment | ✅ Done |
 
+## Vault (Obsidian X-Men-Vault)
+
+| Tarefa | Status |
+|--------|--------|
+| 56 dossiês dos 198 (spec 170+28) | ✅ Done |
+| Contagem 198: 170+28, Collective Man=5, Black Box pendente | ✅ Done |
+| MOCs de resumo (Personagens, Locais, Equipes, Eventos, Mistérios, Instituto, LT) | ✅ Done |
+| 7 canvas Icebergs (City of Mist): Black Box, Terrígeno, Orchis, Genosha, Rei das Sombras, Vulcan, Xavier | ✅ Done |
+
 ## SQL Migrations
 
 | # | File | What |
