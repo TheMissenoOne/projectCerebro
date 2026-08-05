@@ -11,17 +11,14 @@
             "id": "d655df5183bf0976",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Sem título.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": "02 - Personagens/Aliados/Magia.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Sem título"
+              "icon": "lucide-file",
+              "title": "Magia"
             }
           }
         ]
@@ -193,6 +190,7 @@
   },
   "active": "d655df5183bf0976",
   "lastOpenFiles": [
+    "Sem título.canvas",
     "04 - Instituto Xavier/Subsolos.md",
     "04 - Instituto Xavier/Hangar do Blackbird.md",
     "04 - Instituto Xavier/Cérebro.md",
@@ -205,7 +203,6 @@
     "03 - Equipes e Organizações/Clube do Inferno.md",
     "03 - Equipes e Organizações/Morlocks.md",
     "02 - Personagens/Aliados/Magia.md",
-    "Sem título.canvas",
     "02 - Personagens/Aliados/Dominó.md",
     "02 - Personagens/Aliados/Dinamite.md",
     "02 - Personagens/Sobreviventes do Dia M/Johnny Dee.md",
@@ -218,7 +215,6 @@
     "02 - Personagens/Sobreviventes do Dia M/Lorelei.md",
     "02 - Personagens/Sobreviventes do Dia M/Jazz.md",
     "02 - Personagens/Sobreviventes do Dia M/Empath.md",
-    "02 - Personagens/Sobreviventes do Dia M/Diamond Lil.md",
-    "02 - Personagens/Sobreviventes do Dia M/Collective Man.md"
+    "02 - Personagens/Sobreviventes do Dia M/Diamond Lil.md"
   ]
 }

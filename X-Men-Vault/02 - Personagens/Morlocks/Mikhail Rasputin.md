@@ -21,7 +21,7 @@ poderes: ["Manipulação de realidade (quantum)", "Teleporte dimensional", "Cont
 nivel_ameaca: alto
 segredo: false
 fonte: estabelecido
-tags: [morlocks, rasputin, poderoso]
+tags: ["morlocks","rasputin","poderoso","manteve-poderes-dia-m"]
 ---
 
 # Mikhail Rasputin

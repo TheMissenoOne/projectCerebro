@@ -21,7 +21,7 @@ poderes: ["Duplicação de aparência", "Disfarce"]
 nivel_ameaca: baixo
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198]
+tags: ["sobreviventes","198","manteve-poderes-dia-m"]
 ---
 
 # Johnny Dee

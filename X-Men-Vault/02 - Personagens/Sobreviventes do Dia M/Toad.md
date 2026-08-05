@@ -21,7 +21,7 @@ poderes: ["Língua alongada", "Saltos sobre-humanos", "Agilidade anfíbia"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, toad]
+tags: ["sobreviventes","198","toad","manteve-poderes-dia-m"]
 ---
 
 # Toad (Mortimer Toynbee)

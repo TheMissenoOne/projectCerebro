@@ -22,7 +22,7 @@ poderes: ["Absorção e emissão de bio-eletricidade", "Descarga de energia plas
 nivel_ameaca: medio
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "energia", "eletricidade"]
+tags: ["morlocks","sobrevivente-dia-m","energia","eletricidade","manteve-poderes-dia-m"]
 ---
 
 # Erg

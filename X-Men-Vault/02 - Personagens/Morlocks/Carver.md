@@ -21,7 +21,7 @@ poderes: ["Dentes/presas alongadas", "Mordida perfurante"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [morlocks, carver]
+tags: ["morlocks","carver","manteve-poderes-dia-m"]
 ---
 
 # Carver

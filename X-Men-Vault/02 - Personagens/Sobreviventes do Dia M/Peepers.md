@@ -21,7 +21,7 @@ poderes: ["Visão de raios X", "Percepção de energia"]
 nivel_ameaca: baixo
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, peepers]
+tags: ["sobreviventes","198","peepers","manteve-poderes-dia-m"]
 ---
 
 # Peepers (Peter Quinn)

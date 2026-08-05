@@ -21,7 +21,7 @@ poderes: ["Percepção energética", "Resistência ao calor"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, scalphunter]
+tags: ["sobreviventes","198","scalphunter","manteve-poderes-dia-m"]
 ---
 
 # Scalphunter (John Greycrow)

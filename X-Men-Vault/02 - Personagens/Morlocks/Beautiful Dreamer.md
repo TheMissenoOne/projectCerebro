@@ -22,7 +22,7 @@ poderes: ["Indução ao sono", "Manipulação de sonhos e memórias"]
 nivel_ameaca: medio
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "sonhos", "memoria"]
+tags: ["morlocks","sobrevivente-dia-m","sonhos","memoria","manteve-poderes-dia-m"]
 ---
 
 # Beautiful Dreamer

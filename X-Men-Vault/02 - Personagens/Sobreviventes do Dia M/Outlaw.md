@@ -21,7 +21,7 @@ poderes: ["Empatia com animais (aves)", "Precisão balística"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, outlaw]
+tags: ["sobreviventes","198","outlaw","manteve-poderes-dia-m"]
 ---
 
 # Outlaw (Inez Temple)

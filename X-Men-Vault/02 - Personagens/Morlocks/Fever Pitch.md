@@ -22,7 +22,7 @@ poderes: ["Indução de febre/calor em outros", "Elevação da temperatura corpo
 nivel_ameaca: medio
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "calor", "febre"]
+tags: ["morlocks","sobrevivente-dia-m","calor","febre","manteve-poderes-dia-m"]
 ---
 
 # Fever Pitch

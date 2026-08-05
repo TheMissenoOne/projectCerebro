@@ -21,7 +21,7 @@ poderes: ["Entidade coletiva de vários corpos", "Consciência compartilhada"]
 nivel_ameaca: alto
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198]
+tags: ["sobreviventes","198","manteve-poderes-dia-m"]
 ---
 
 # Collective Man

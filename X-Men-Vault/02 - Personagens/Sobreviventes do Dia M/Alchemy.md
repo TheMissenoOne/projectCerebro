@@ -21,7 +21,7 @@ poderes: ["Absorção de conhecimento momentânea", "Registro de informações a
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, proximo-instituto]
+tags: ["sobreviventes","198","proximo-instituto","manteve-poderes-dia-m"]
 ---
 
 # Alchemy (David Alleyne)

@@ -22,7 +22,7 @@ poderes: ["Supressão de poderes (negador de mutação em proximidade)"]
 nivel_ameaca: baixo
 segredo: false
 fonte: estabelecido
-tags: ["morlocks", "sobrevivente", "turma-sobreviventes", "negação-de-poder"]
+tags: ["morlocks","sobrevivente","turma-sobreviventes","negação-de-poder","manteve-poderes-dia-m"]
 ---
 
 # Leech

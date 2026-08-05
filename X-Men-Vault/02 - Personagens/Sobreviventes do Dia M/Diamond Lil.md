@@ -21,7 +21,7 @@ poderes: ["Pele de diamante", "Durabilidade e força"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198]
+tags: ["sobreviventes","198","manteve-poderes-dia-m"]
 ---
 
 # Diamond Lil (Lourdes Reilly)

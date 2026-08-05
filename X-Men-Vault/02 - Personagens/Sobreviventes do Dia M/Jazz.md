@@ -21,7 +21,7 @@ poderes: ["Afinidade musical", "Manipulação de ondas sonoras"]
 nivel_ameaca: baixo
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198]
+tags: ["sobreviventes","198","manteve-poderes-dia-m"]
 ---
 
 # Jazz

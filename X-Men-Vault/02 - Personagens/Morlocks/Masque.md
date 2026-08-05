@@ -22,7 +22,7 @@ poderes: ["Moldagem carnal de rostos e corpos", "Cirurgia/escultura biológica"]
 nivel_ameaca: alto
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "moldagem", "perturbador"]
+tags: ["morlocks","sobrevivente-dia-m","moldagem","perturbador","manteve-poderes-dia-m"]
 ---
 
 # Masque

@@ -21,7 +21,7 @@ poderes: ["Geração de ondas de choque pelo contato", "Destruição de estrutur
 nivel_ameaca: alto
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198]
+tags: ["sobreviventes","198","manteve-poderes-dia-m"]
 ---
 
 # Arclight

@@ -21,7 +21,7 @@ poderes: ["Manipulação de matéria em escala quântica", "Nível ômega (poten
 nivel_ameaca: alto
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, omnipotente]
+tags: ["sobreviventes","198","omnipotente","manteve-poderes-dia-m"]
 ---
 
 # Mister M

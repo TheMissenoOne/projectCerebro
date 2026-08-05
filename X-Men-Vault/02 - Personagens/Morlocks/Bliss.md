@@ -22,7 +22,7 @@ poderes: ["Emissão de substância química que induz euforia", "Controle de efe
 nivel_ameaca: medio
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "quimicos", "euforia"]
+tags: ["morlocks","sobrevivente-dia-m","quimicos","euforia","manteve-poderes-dia-m"]
 ---
 
 # Bliss

@@ -21,7 +21,7 @@ poderes: ["Manipulação emocional", "Projeção de sentimentos"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, empatia]
+tags: ["sobreviventes","198","empatia","manteve-poderes-dia-m"]
 ---
 
 # Empath (Emmanuel da Costa)

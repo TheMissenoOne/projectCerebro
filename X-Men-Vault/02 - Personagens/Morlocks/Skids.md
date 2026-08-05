@@ -21,7 +21,7 @@ poderes: ["Campo de atrito zero", "Deslizamento sobre qualquer superfície"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [morlocks, skids]
+tags: ["morlocks","skids","manteve-poderes-dia-m"]
 ---
 
 # Skids (Sally Blewett)

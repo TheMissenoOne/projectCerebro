@@ -22,7 +22,7 @@ poderes: ["Manipulação de lixo e entulho", "Construção/arma de detritos"]
 nivel_ameaca: baixo
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "lixo", "manipulacao"]
+tags: ["morlocks","sobrevivente-dia-m","lixo","manipulacao","manteve-poderes-dia-m"]
 ---
 
 # Litterbug

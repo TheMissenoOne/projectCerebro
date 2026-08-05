@@ -22,7 +22,7 @@ poderes: ["Detecção e rastreamento de mutantes", "Localização remota de assi
 nivel_ameaca: medio
 segredo: false
 fonte: adaptado
-tags: ["morlocks", "sobrevivente-dia-m", "x-force", "rastreamento"]
+tags: ["morlocks","sobrevivente-dia-m","x-force","rastreamento","manteve-poderes-dia-m"]
 ---
 
 # Caliban

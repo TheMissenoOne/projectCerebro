@@ -21,7 +21,7 @@ poderes: ["Corpo gosmento contorcionista", "Molhabilidade extrema"]
 nivel_ameaca: baixo
 segredo: false
 fonte: estabelecido
-tags: [morlocks]
+tags: ["morlocks","manteve-poderes-dia-m"]
 ---
 
 # Sack

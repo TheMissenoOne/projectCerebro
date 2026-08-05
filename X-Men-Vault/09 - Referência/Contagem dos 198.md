@@ -31,6 +31,9 @@ Registro de auditoria dos **sobreviventes do [[Dia M]]** (evento **futuro planej
 9. manter 31 sobreviventes ainda não nomeados;
 10. sinalizar qualquer duplicidade ou mudança futura.
 
+> [!NOTE]
+> Todos os contabilizados abaixo são **mantenedores de poder** no Dia M: ver tag `manteve-poderes-dia-m` nos dossiês (convenção em [[Convenções do Vault]]).
+
 ## Grupos contabilizados
 
 ### X-Men — Time Azul (6)

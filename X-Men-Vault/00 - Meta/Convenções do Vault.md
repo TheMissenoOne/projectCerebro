@@ -442,6 +442,12 @@ Observações privadas.
 - Minúsculas, kebab-case: `x-men`, `time-vermelho`, `academia-x`
 - Categorias: `personagem`, `evento`, `equipe`, `local`, `organizacao`, `sessao`
 - Temas: `genosha`, `sentinelas`, `fenix`, `dia-m`, `krakoa`
+- Status pós-Dia M:
+  - `manteve-poderes-dia-m` — Manteve os poderes após o [[Dia M]] (integra a [[Contagem dos 198]])
+  - (dossiês de despoderados: marcar topicamente com `despoderado` no `status_poder`; sem tag própria)
+
+> [!NOTE]
+> A tag `manteve-poderes-dia-m` equivale a "já contado nos 198" — mutantes que **mantiveram** a mutação no Dia M. Usar apenas em personagens confirmados pelo seed (ver [[Contagem dos 198]] e seed §10.3 Morlocks).
 
 ---
 

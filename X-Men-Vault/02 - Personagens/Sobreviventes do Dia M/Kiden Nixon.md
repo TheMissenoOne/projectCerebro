@@ -22,7 +22,7 @@ poderes: ["Manipulação temporal (leve) — distorcer tempo"]
 nivel_ameaca: baixo
 segredo: false
 fonte: adaptado
-tags: ["sobrevivente", "turma-sobreviventes", "futuro", "tempo"]
+tags: ["sobrevivente","turma-sobreviventes","futuro","tempo","manteve-poderes-dia-m"]
 ---
 
 # Kiden Nixon

@@ -21,7 +21,7 @@ poderes: ["Canto hipnótico", "Indução de sono"]
 nivel_ameaca: medio
 segredo: false
 fonte: estabelecido
-tags: [sobreviventes, 198, canto]
+tags: ["sobreviventes","198","canto","manteve-poderes-dia-m"]
 ---
 
 # Lorelei (Lorelei Travis)
