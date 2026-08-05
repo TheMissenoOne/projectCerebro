@@ -35,6 +35,9 @@ Jovem de meia-idade prematura, cabelos pretos ondulados, olhos azuis (semelhante
 
 ## Personalidade
 Inicialmente promissor, leal a Xavier. A trapaça de Xavier (mentiras, fracasso, morte de Petra/Sway) e anos sozinhos no espaço o radicalizam. **Ressentimento profundo contra Xavier e, por extensão, os X-Men/sistema.** Busca poder e vingança — virou imperador Shi'ar (possível). Orgulhoso, vingativo, mas tem ética pessoal contraditória.
+- Temperamento infantil e impulsivo; age sem ouvir outros, arriscando tudo pela vitória sem compreender seu sentido
+- Megalomaníaco, impiedoso, sem caráter ou respeito por vidas alheias
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/04/02/vulcano/
 
 ## Poderes
 - **Manipulação de energia:** Absorve, canaliza, projeta energia em quantidade massiva (explosões, campos, destrutivas de níveis cósmicos).

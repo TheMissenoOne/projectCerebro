@@ -35,6 +35,16 @@ Membro da [[X-Force]]. Carrega projéteis (balas, moedas) com energia cinética 
 - Carga de energia cinética em objetos disparados.
 - Precisão de atiradora.
 
+## Personalidade
+
+- Fugitiva precoce: manifestou poderes aos 13 anos, viveu em parques flertando com homens mais velhos, meteu-se em encrencas constantes.
+- Pragmática amoral: aceitou trabalhar para Sledge (criminoso) em troca de fiança/proteção.
+- Manipuladora sedutora: usou beijo e charme para aproximar-se de Pássaro Trovejante (James Proudstar) visando capturá-lo.
+- Conflito genuíno: apaixonou-se pelo alvo, hesitou em entregá-lo; amor real misturou-se à missão.
+- Recurso furtivo: usa buracos no chão (poder) para fuga/emboscada; age por impulso e sobrevivência.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/12/27/risque/
+
 ## Relações
 
 - [[Cable]] — líder da X-Force

@@ -38,6 +38,10 @@ Loiras, penteado cortado em linha reta, colares de estilo Stepford.
 ## Personalidade
 
 Estratégica; tende a ser a voz diplomática do trio.
+Passou um período sem emoções (coração de diamante continha a Fênix).
+Gosta de tocar piano e de música clássica.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/13/irmas-stepford/
 
 ## Poderes
 

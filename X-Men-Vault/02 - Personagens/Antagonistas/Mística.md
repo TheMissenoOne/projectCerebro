@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "mística"]
 
 Metamorfa clássica, ex-integrante da [[Irmandade de Mutantes]] e mãe de [[Noturno]]. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Imprevisível, egoísta e indigna de confiança; sem lealdade a nada nem a ninguém.
+- Fria e séria; tornou-se sarcástica após a morte de Sina.
+- Muitas falhas como mãe: relação de amor e ódio com a filha (Vampira) — protege e quer o bem dela, mas já tentou assassiná-la inúmeras vezes.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/25/mistica/
+
 ## Poderes
 
 - Metamorfose completa.

@@ -34,7 +34,9 @@ Morlock veterano com o poder de **detectar e rastrear mutantes** pela assinatura
 Homem de pele muito clara (albinismo), olhos vermelhos, estatura média, corpo magro e marcado. Trajes utilitários dos túneis; aparelhos de rastreamento quando opera com a X-Force.
 
 ## Personalidade
-Sombrio, reservado, leal àqueles que o acolheram. Tímido por natureza, mas competente quando confiado. Carrega o peso do Massacre e da desconfiança de ser "usado como localizador".
+Sombrio, reservado, leal àqueles que o acolheram. Tímido por natureza, mas competente quando confiado. Carrega o peso do Massacre e da desconfiança de ser "usado como localizador". Ingênuo e inocente — aceitou de bom grado a promessa de Kitty Pryde; generoso, liberou-a da dívida por amor a ela. Temia os humanos e suas reações agressivas. Guarda desejo de vingança contra os Carrascos do Massacre.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/26/caliban/
 
 ## Poderes
 - **Detecção de mutantes:** percebe a presença e a localização aproximada de mutantes na área.

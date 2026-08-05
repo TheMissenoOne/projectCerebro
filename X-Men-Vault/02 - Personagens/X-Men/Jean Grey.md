@@ -36,6 +36,11 @@ Mulher ruiva, olhos verdes/azuis, esguia, bela. Traje X-Men clássico (azul/verd
 ## Personalidade
 Empática, calorosa, altruísta — mas com lado de poder descomunal que assustava a si mesma. Genial, protetora, racional. No arco Fênix, corrompida pela amplitude emocional quando manipulada. Amor genuíno por Scott.
 
+- Trauma precoce — a morte da melhor amiga na infância a deixou catatônica por anos; a vivência reforçou sua empatia com a dor alheia.
+- Carrega em silêncio fardos em favor dos outros: manteve o segredo do disfarce de Morro mesmo vendo os amigos sofrerem.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/09/grey-jean/
+
 ## Poderes
 - **Telepatia:** Leitura/escrita mental, percepção de memórias, projeção psíquica.
 - **Telecinese:** Dobra matéria à distância, voo, campos de força.

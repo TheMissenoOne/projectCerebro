@@ -21,6 +21,14 @@ tags: ["198", "manteve-poderes-dia-m", "collective-man", "irmaos-tao-yu"]
 
 Entidade coletiva formada pela fusão dos **cinco irmãos Tao-Yu**: [[Han Tao-Yu]], [[Chang Tao-Yu]], [[Lin Tao-Yu]], [[Sun Tao-Yu]] e [[Ho Tao-Yu]]. Na [[Contagem dos 198]], cada irmão conta individualmente (5 pessoas).
 
+## Personalidade
+
+- Forte lealdade familiar: os irmãos se revezavam para ficar ao lado da mãe no leito de morte, mesmo durante a fuga do governo.
+- Revoltado com a opressão estatal — não hesitou em enfrentar as próprias tropas quando a baixa foi negada.
+- Comunista.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/25/homem-coletivo/
+
 ## Poderes
 
 - Fusão coletiva em um único corpo.

@@ -38,6 +38,11 @@ Cabelos ruivos curtos, sardas; ar sugerindo deslocamento contínuo.
 ## Personalidade
 
 Tímida, curiosa; encara o próprio poder como algo que ainda domina com dificuldade.
+- Prefere ambientes abertos (sol, surfe, campo) a lugares fechados.
+- Relutante em usar poderes em seres vivos, a menos que seja absolutamente necessário.
+- Eleita "mais descontraída" pelos colegas do Esquadrão Alfa.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2013/01/18/loa/
 
 ## Poderes
 

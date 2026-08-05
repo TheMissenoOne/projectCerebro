@@ -37,7 +37,9 @@ Um casco/capacete contendo cérebro preservado em fluido, conectado a um suporte
 
 ## Personalidade
 
-Sábia, irônica e incisiva; compensa a limitação física com agudeza mental.
+Sábia, irônica e incisiva; compensa a limitação física com agudeza mental. Move-se por uma profunda vontade de experienciar o mundo através do corpo de suporte. Adora heavy metal. Independente e desconfiada: manteve lealdade apenas tênue com Xorn, prevendo o fracasso de seus planos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/08/28/nao-garota-martha-johansson/
 
 ## Poderes
 

@@ -36,6 +36,14 @@ Membro da [[X-Force]]. Gladiador de realidade de origem incerta, mestre das espa
 - Ressonância de espadas (explosões).
 - Força, velocidade e reflexos superiores.
 
+## Personalidade
+
+- Código de honra guerreiro peculiar, busca constante de aperfeiçoamento marcial
+- Inicialmente desconhece normas sociais/sexuais (criado só para combate), depois se revela bissexual
+- Não hesita em matar oponentes; violência extrema abranda com tempo e laços afetivos
+- Cinéfilo: aprecia faroestes e musicais
+- Apego profundo a parceiros (ex.: sente falta intensa de Rictor ausente)
+
 ## Relações
 
 - [[Rictor]] — parceiro próximo

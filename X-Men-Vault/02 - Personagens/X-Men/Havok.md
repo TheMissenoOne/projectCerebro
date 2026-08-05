@@ -39,6 +39,11 @@ Cabelos loiros ondulados; peitoral com auréola de energia quando absorve energi
 
 Calmo e cerebral, contraponto impulsivo do irmão Scott. Ligeira insegurança ao viver à sombra da família Summers.
 
+- Historicamente submisso a controles externos: foi manipulado e controlado por vilões em diversas ocasiões.
+- A antiga inferioridade perante Scott (não se via como líder à altura) ficou para trás — hoje mostra confiança plena, à altura do irmão.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/31/destrutor/
+
 ## História
 
 - **2001:** Retorna ao círculo dos X-Men durante as crises extratemporais.

@@ -30,6 +30,12 @@ tags: ["198", "manteve-poderes-dia-m", "madison-jeffries"]
 
 Tecnopata canadense. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Esquizofrênico e paranoico em relação à própria condição mutante.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2010/09/12/madison-jeffries/
+
 ## Poderes
 
 - Controle de máquinas.

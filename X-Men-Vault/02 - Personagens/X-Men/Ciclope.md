@@ -34,7 +34,9 @@ Líder histórico dos X-Men e codiretor do Instituto Xavier. Fundador (1989), ab
 Homem alto, atlético, moreno, olhos castanhos. Emite ondas concussivas oculares controladas por visor de rubi (cristal sintético). Traje de combate azul escuro e vermelho característico ao longo dos anos; em 2010 trajes táticos simples.
 
 ## Personalidade
-Disciplinado, estratégico, controlado — às vezes frio. Prioriza a missão e a sobrevivência mutante sobre a vida pessoal após as perdas de 1995-2003. Endurecido, desconfiado de governos, protetor ferrenho dos estudantes. Mantém relação "funcional, porém rompida" com Xavier.
+Disciplinado, estratégico, controlado — às vezes frio. Prioriza a missão e a sobrevivência mutante sobre a vida pessoal após as perdas de 1995-2003. Endurecido, desconfiado de governos, protetor ferrenho dos estudantes. Mantém relação "funcional, porém rompida" com Xavier. Frio em decisões de campo, mas inseguro em decisões pessoais/conjugais; tem dificuldade de compartilhar emoções e se remói calado. Tornou-se racional e metódico desde a infância, quando o medo de perder o controle dos próprios poderes o fez decidir nunca se descontrolar.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/27/ciclope/
 
 ## Poderes
 - **Ondas concussivas oculares:** Descargas devastadoras de energia concussiva dos olhos. Potência variável, controladas pelo visor. Pode fechar os olhos para parar (fraqueza), ajusta potência com o visor.

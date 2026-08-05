@@ -35,3 +35,13 @@ Ex-acólito com projeção de energia. Listado entre os sobreviventes do [[Dia M
 - Projeção de energia.
 - Blindagem orgânica.
 
+## Personalidade
+
+- Teme perder a coesão corporal; usa forma mais velha/forte para sentir-se confiante (nesse estado torna-se grosseiro e arrogante).
+- Odeia ser chamado pelo nome civil "Marshall".
+- Movido a dinheiro: gosta de carros e charutos caros; trabalha para quem pagar mais.
+- Mantém código de ética e respeito próprio mesmo atuando como vilão/mercenário.
+- Sempre usa óculos de sol (marca visual constante).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2011/03/15/random/
+

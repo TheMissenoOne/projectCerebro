@@ -36,6 +36,11 @@ Homem de meia-idade (nos arquivos), cabelos escuros, óculos, traje científico/
 ## Personalidade
 (Registro histórico) — cientista que, por medo/paranoia da "ameaça mutante", desenvolveu os Sentinelas; inicialmente nacionalista, depois assustado com o que criou (no cânone).
 
+- Conservador e preconceituoso, acreditava agir para o melhor de si e da sociedade.
+- Movido por vingança pela perda da filha; ao perceber que os X-Men protegiam os humanos, arrependeu-se e sacrificou-se para destruir os Sentinelas.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/10/28/bolivar-trask/
+
 ## Poderes
 Nenhum (humano).
 

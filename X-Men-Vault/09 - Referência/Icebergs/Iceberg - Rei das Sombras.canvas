@@ -1,135 +1,21 @@
 {
-  "nodes": [
-    {
-      "id": "g-477411650ff9",
-      "type": "group",
-      "x": -50,
-      "y": -50,
-      "width": 1460,
-      "height": 260,
-      "label": "PONTA — sinal visível (Depth 0)"
-    },
-    {
-      "id": "g-2bdd35a7e9bf",
-      "type": "group",
-      "x": -50,
-      "y": 230,
-      "width": 1460,
-      "height": 260,
-      "label": "CAMADAS MÉDIAS (Depth 1-2)"
-    },
-    {
-      "id": "g-c53d056cc8fc",
-      "type": "group",
-      "x": -50,
-      "y": 790,
-      "width": 1460,
-      "height": 260,
-      "label": "VERDADE PROFUNDA (Depth 3)"
-    },
-    {
-      "id": "n-b632963a8153",
-      "type": "text",
-      "text": "[[Emma Frost]] tomando decisões administrativas que não batem com o perfil (início pós-Genosha)",
-      "x": 60,
-      "y": 0,
-      "width": 300,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "n-b62b13833033",
-      "type": "text",
-      "text": "Efeitos: relação com [[Ciclope]], telepatia sobre alunos, memórias de Genosha, investigação de Xavier",
-      "x": 60,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-7b14ab949489",
-      "type": "text",
-      "text": "Conflitos entre equipes / decisões suspeitas no instituto",
-      "x": 388,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-e6ae7b46cae6",
-      "type": "text",
-      "text": "Começa a esconder memórias de Genosha; interferir nas investigações",
-      "x": 60,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-a0593afdf63b",
-      "type": "text",
-      "text": "Emma Frost está sob a influência do [[Rei das Sombras]] desde o pós-Genosha — ainda não descoberto",
-      "x": 60,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-362165fd84ff",
-      "type": "text",
-      "text": "Quem pode detectar? (Charles desapareceu)",
-      "x": 388,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-eaa72ecfaa4e",
-      "fromNode": "n-b632963a8153",
-      "fromSide": "bottom",
-      "toNode": "n-b62b13833033",
-      "toSide": "top"
-    },
-    {
-      "id": "e-0c3a4ab276aa",
-      "fromNode": "n-b632963a8153",
-      "fromSide": "bottom",
-      "toNode": "n-7b14ab949489",
-      "toSide": "top"
-    },
-    {
-      "id": "e-e132a306a288",
-      "fromNode": "n-b62b13833033",
-      "fromSide": "bottom",
-      "toNode": "n-e6ae7b46cae6",
-      "toSide": "top"
-    },
-    {
-      "id": "e-949cf0d88d3f",
-      "fromNode": "n-7b14ab949489",
-      "fromSide": "bottom",
-      "toNode": "n-e6ae7b46cae6",
-      "toSide": "top"
-    },
-    {
-      "id": "e-16e8fa37968e",
-      "fromNode": "n-e6ae7b46cae6",
-      "fromSide": "bottom",
-      "toNode": "n-a0593afdf63b",
-      "toSide": "top"
-    },
-    {
-      "id": "e-93214f4d4478",
-      "fromNode": "n-a0593afdf63b",
-      "fromSide": "bottom",
-      "toNode": "n-362165fd84ff",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"g-477411650ff9","type":"group","x":-50,"y":-50,"width":1460,"height":260,"label":"PONTA — sinal visível (Depth 0)"},
+		{"id":"g-2bdd35a7e9bf","type":"group","x":-50,"y":230,"width":1460,"height":260,"label":"CAMADAS MÉDIAS (Depth 1-2)"},
+		{"id":"g-c53d056cc8fc","type":"group","x":-50,"y":790,"width":1460,"height":260,"label":"VERDADE PROFUNDA (Depth 3)"},
+		{"id":"n-b632963a8153","type":"text","text":"[[Emma Frost]] tomando decisões administrativas que não batem com o perfil (início pós-Genosha)","x":60,"y":0,"width":300,"height":120,"color":"2"},
+		{"id":"n-b62b13833033","type":"text","text":"Efeitos: relação com [[Ciclope]], telepatia sobre alunos, memórias de Genosha, investigação de Xavier","x":60,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-7b14ab949489","type":"text","text":"Conflitos entre equipes / decisões suspeitas no instituto","x":388,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-e6ae7b46cae6","type":"text","text":"Começa a esconder memórias de Genosha; interferir nas investigações","x":60,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-a0593afdf63b","type":"text","text":"Emma Frost está sob a influência do [[Rei das Sombras]] desde o pós-Genosha — ainda não descoberto","x":60,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-362165fd84ff","type":"text","text":"Quem pode detectar? (Charles desapareceu)","x":388,"y":840,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-eaa72ecfaa4e","fromNode":"n-b632963a8153","fromSide":"bottom","toNode":"n-b62b13833033","toSide":"top"},
+		{"id":"e-0c3a4ab276aa","fromNode":"n-b632963a8153","fromSide":"bottom","toNode":"n-7b14ab949489","toSide":"top"},
+		{"id":"e-e132a306a288","fromNode":"n-b62b13833033","fromSide":"bottom","toNode":"n-e6ae7b46cae6","toSide":"top"},
+		{"id":"e-949cf0d88d3f","fromNode":"n-7b14ab949489","fromSide":"bottom","toNode":"n-e6ae7b46cae6","toSide":"top"},
+		{"id":"e-16e8fa37968e","fromNode":"n-e6ae7b46cae6","fromSide":"bottom","toNode":"n-a0593afdf63b","toSide":"top"},
+		{"id":"e-93214f4d4478","fromNode":"n-a0593afdf63b","fromSide":"bottom","toNode":"n-362165fd84ff","toSide":"top"}
+	]
 }

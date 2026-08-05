@@ -36,6 +36,12 @@ Homem de meia-idade (~40 anos), corpo marcado por cicatrizes de túnel, pele opa
 ## Personalidade
 Sério, combativo, protetor da comunidade. Respeitado como veterano e guardião dos túneis. Desconfiado de estranhos, mas leal aos seus.
 
+- Carregou no colo a amiga Belos Sonhos para salvá-la durante o Massacre de Mutantes — lealdade extrema aos seus.
+- Como líder, controla a comunidade com regras próprias (chegou a proibir que Masque alterasse a aparência das pessoas sem autorização).
+- Espírito de identidade e esperança mutante: teve a ideia da bandeira "Os 198" para os mutantes remanescentes.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2018/03/09/erg/
+
 ## Poderes
 - **Absorção de eletricidade:** consome descargas elétricas externas para se carregar.
 - **Descarrega bio-elétrica:** projeta raios/choques e cria lampejos cegantes.

@@ -38,6 +38,11 @@ Cabelo com mecha branca característica. Uniforme padrão X-Men com váriações
 ## Personalidade
 
 Reservada, protetora e direta. Leva a responsabilidade de liderança a sério. Tem histórico de isolamento pela natureza de seus poderes.
+- Aparenta ser extrovertida e sensual para mascarar depressão e solidão internas.
+- Sotaque sulista marcante.
+- Criada batista; fé presente.
+- Gosta de cinema.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/23/vampira/
 
 ## História
 

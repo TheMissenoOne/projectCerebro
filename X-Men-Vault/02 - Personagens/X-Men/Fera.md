@@ -39,6 +39,11 @@ Pele e pelos azuis, orelhas pontudas, físico atlético (aparência mutante).
 
 Intelectual, ético, cientista brilhante. Um dos membros mais confiáveis e estáveis do Instituto.
 
+- Intelectual, eloquente, verborrágico, gentil, educado, bem-humorado e carismático.
+- Desde a forma felina, carrega semblante triste e o temor de perder a humanidade, com instintos e emoções mais aguçados.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/04/fera/
+
 ## Poderes
 
 - Força e agilidade sobre-humanas (versão adaptada).

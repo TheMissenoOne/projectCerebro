@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "micromax"]
 
 Mutante britânico que altera o próprio tamanho. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Usa os próprios poderes para aparentar mais jovem e bonito, aumentando a própria confiança.
+- Atrapalhado e propenso a equívocos: confundiu a Fênix (Rachel Grey) com uma ladra e colecionou desempenhos medíocres perante seus superiores.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2023/02/24/micromax/
+
 ## Poderes
 
 - Aumento e redução de tamanho.

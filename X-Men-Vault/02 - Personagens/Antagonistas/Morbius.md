@@ -37,7 +37,12 @@ Não registrada em detalhe.
 
 ## Personalidade
 
-Não registrada.
+Terrivelmente torturado pelos próprios desejos — um homem verdadeiramente amaldiçoado.
+
+- Tenta ao máximo salvar e curar os outros, mas com frequência é possuído por instintos bestiais de matar e se alimentar.
+- Raiva e astúcia animalesca, condizentes com a violência extrema da captura na campanha.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2020/02/15/morbius/
 
 ## Poderes
 

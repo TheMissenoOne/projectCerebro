@@ -39,6 +39,12 @@ Cabelos escuros, traços cheyenne; postura serena de orientadora.
 
 Calma e empática; especialista em debriefings e apoio emocional de estudantes.
 
+- Recusa viver com medo: após fugir da Sala de Perigo, voltou sozinha e venceu o treino que os colegas haviam fracassado.
+- Vulnerável a crises de desespero: abalada por dúvidas sobre a própria sanidade, chegou a considerar o suicídio.
+- Relutante em abraçar o papel de mutante, aceitou o uniforme da escola com detalhes da origem cheyenne.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/08/07/miragem/
+
 ## História
 
 - **2004:** Integra a 1ª geração estudantil.

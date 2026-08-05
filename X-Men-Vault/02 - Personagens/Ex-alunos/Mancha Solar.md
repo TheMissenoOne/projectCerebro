@@ -38,6 +38,11 @@ Cabelos crespos, sorriso confiante; a pele escurece/irradia quando absorve luz.
 ## Personalidade
 
 Aventureiro, extrovertido e generoso; usa o dinheiro da família como vantagem tática e filantropia.
+- Sedutor, persuasivo, tagarela e encantador — traços que ajudam em negócios e casos amorosos.
+- "Sangue quente latino": conquistador, amigo e muito esquentado.
+- Ponto fraco: arrogância.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/06/04/mancha-solar/
 
 ## História
 

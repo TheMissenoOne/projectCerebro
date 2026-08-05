@@ -37,7 +37,9 @@ Tórax coberto; o poder destruiu parte do corpo, sendo substituído por uma boca
 
 ## Personalidade
 
-Feroz, direto e leal; usou o trauma do próprio poder para se forjar.
+Feroz, direto e leal; usou o trauma do próprio poder para se forjar. Taciturno e pessimista. Não gosta dos americanos e do estilo de vida e cultura deles (incluindo Norman Rockwell e o beisebol). A mutação deixou marcas de insegurança — chegou a se ver como um "monstro".
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/10/31/camara/
 
 ## História
 

@@ -39,6 +39,11 @@ Olho tampado característico (versão canônica adaptada). Não registrada em de
 
 Prático e oportunista. Aproveitou a vulnerabilidade política dos X-Men para obter uma unidade metahumana confiável — o acordo possui caráter de chantagem institucional.
 
+- Durão e sem meias-palavras; veterano que galgou postos com habilidade, motivação e integridade.
+- Enigmático: puxa os cordões nos bastidores e mantém contato apenas com quem confia — ou cuja obediência pode usar a seu favor.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/04/26/nick-fury/
+
 ## Poderes
 
 Nenhum (humano; veterano de combate).

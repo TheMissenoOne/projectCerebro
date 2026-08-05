@@ -39,6 +39,11 @@ Japonesa, cabelos pretos; a armadura psíquica forma uma silhueta maior avermelh
 
 Determinada e protetora; uma das mais confiáveis do paladins.
 
+- Mostra-se amedrontada em situações extremas, mas mesmo assim segue em frente e age como uma X-Man.
+- Tenta consolar colegas em sofrimento e se arrisca para ajudar os amigos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/02/06/armadura/
+
 ## Poderes
 
 - **Armadura psíquica:** Projeção de forma gigante de energia que replica movimento.

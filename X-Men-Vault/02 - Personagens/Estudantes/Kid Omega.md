@@ -39,6 +39,10 @@ Cabelos tingidos de rosa/vermelho, óculos, postura de provocador intelectual.
 
 Arrogante, sarcástico e inteligente; provoca a autoridade do Instituto com frequência.
 
+- Convicção messiânica: acha-se o salvador da raça mutante.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2013/06/15/quentinquire/
+
 ## Poderes
 
 - **Telepatia:** Leitura, projeção e ataque mental amplo.

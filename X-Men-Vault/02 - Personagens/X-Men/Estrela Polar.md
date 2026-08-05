@@ -39,6 +39,11 @@ Cabelos loiros com mechas coloridas; aura magnética própria.
 
 Exuberante e acelerado. Competitivo, mas leal ao trabalho em equipe.
 
+- Moral própria: abandonou os radicais separatistas ao se recusar a aceitar mortes inocentes.
+- Lealdade fraternal: permaneceu ao lado da irmã Aurora apesar das discordâncias.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/10/06/estrela-polar/
+
 ## História
 
 - **Anos 90:** Integra o Alfa Flight canadense.

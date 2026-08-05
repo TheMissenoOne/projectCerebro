@@ -1,338 +1,47 @@
 {
-  "nodes": [
-    {
-      "id": "g-8f01e956319c",
-      "type": "group",
-      "x": -50,
-      "y": -50,
-      "width": 1460,
-      "height": 260,
-      "label": "PONTA — sinal visível (Depth 0)"
-    },
-    {
-      "id": "g-43afbb5fdc54",
-      "type": "group",
-      "x": -50,
-      "y": 230,
-      "width": 1460,
-      "height": 260,
-      "label": "CAMADAS MÉDIAS (Depth 1-2)"
-    },
-    {
-      "id": "g-f7f07d4072fa",
-      "type": "group",
-      "x": -50,
-      "y": 790,
-      "width": 1460,
-      "height": 260,
-      "label": "VERDADE PROFUNDA (Depth 3)"
-    },
-    {
-      "id": "n-b0d89379ce78",
-      "type": "file",
-      "file": "06 - Eventos e Sagas/Operação Black Box.md",
-      "x": 60,
-      "y": 0,
-      "width": 300,
-      "height": 100,
-      "color": "2"
-    },
-    {
-      "id": "n-6206bfab3de6",
-      "type": "text",
-      "text": "Clones de [[Makeshift]] e [[Arrive]] agitam comunicações pelo mundo mesmo com o fundador supostamente morto",
-      "x": 388,
-      "y": 0,
-      "width": 300,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "n-8272dde6ef84",
-      "type": "file",
-      "file": "08 - Sessões/Sessões Jogadas/Eventos Recentes - Campanha X-Men, 2010.md",
-      "x": 716,
-      "y": 0,
-      "width": 300,
-      "height": 100,
-      "color": "2"
-    },
-    {
-      "id": "n-ea7814d10643",
-      "type": "file",
-      "file": "05 - Locais/Torres de Retransmissão.md",
-      "x": 60,
-      "y": 280,
-      "width": 300,
-      "height": 100,
-      "color": "4"
-    },
-    {
-      "id": "n-ec8c9377ed25",
-      "type": "text",
-      "text": "Destruir as torres ACIONA protocolo de contingência: clones ficam agressivas ([[Incidente das Clones no Cairo]])",
-      "x": 388,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-c4faf033028f",
-      "type": "file",
-      "file": "05 - Locais/Esconderijo de Black Box.md",
-      "x": 716,
-      "y": 280,
-      "width": 300,
-      "height": 100,
-      "color": "4"
-    },
-    {
-      "id": "n-19536a84868d",
-      "type": "text",
-      "text": "Guardas alegam a [[Elite Executivo]] — vínculo não confirmado (identidade falsa?)",
-      "x": 1044,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-04284840c394",
-      "type": "text",
-      "text": "Arquivos recuperados; clones antigas; uma clone morta demais provocou escalada coletiva",
-      "x": 60,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-746e6d684012",
-      "type": "text",
-      "text": "A morte do fundador não encerrou protocolos: organização fantasma segue operando",
-      "x": 388,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-6de0eedf3a96",
-      "type": "text",
-      "text": "Black Box: presumido morto — sem corpo nem confirmação (status_2010: presumido_morto) [[Black Box]]",
-      "x": 60,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-e5860fd0d99e",
-      "type": "text",
-      "text": "QUEM mantém a operação das clones hoje?",
-      "x": 388,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-51551819f290",
-      "type": "text",
-      "text": "As clones têm livre-arbítrio? A [[Elite Executivo]] existe?",
-      "x": 716,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-0de5849f1451",
-      "type": "text",
-      "text": "Pergunta central: qual o objetivo REAL da rede depois do fundador?",
-      "x": 1044,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-df6a2b519c43",
-      "fromNode": "n-b0d89379ce78",
-      "fromSide": "bottom",
-      "toNode": "n-ea7814d10643",
-      "toSide": "top"
-    },
-    {
-      "id": "e-e9c27a02da9c",
-      "fromNode": "n-b0d89379ce78",
-      "fromSide": "bottom",
-      "toNode": "n-ec8c9377ed25",
-      "toSide": "top"
-    },
-    {
-      "id": "e-e611592a5bf8",
-      "fromNode": "n-b0d89379ce78",
-      "fromSide": "bottom",
-      "toNode": "n-c4faf033028f",
-      "toSide": "top"
-    },
-    {
-      "id": "e-dd488118e2a4",
-      "fromNode": "n-b0d89379ce78",
-      "fromSide": "bottom",
-      "toNode": "n-19536a84868d",
-      "toSide": "top"
-    },
-    {
-      "id": "e-7bc92405923b",
-      "fromNode": "n-6206bfab3de6",
-      "fromSide": "bottom",
-      "toNode": "n-ea7814d10643",
-      "toSide": "top"
-    },
-    {
-      "id": "e-51d78a60fe79",
-      "fromNode": "n-6206bfab3de6",
-      "fromSide": "bottom",
-      "toNode": "n-ec8c9377ed25",
-      "toSide": "top"
-    },
-    {
-      "id": "e-39e7fa1cbfe8",
-      "fromNode": "n-6206bfab3de6",
-      "fromSide": "bottom",
-      "toNode": "n-c4faf033028f",
-      "toSide": "top"
-    },
-    {
-      "id": "e-55b0791c6874",
-      "fromNode": "n-6206bfab3de6",
-      "fromSide": "bottom",
-      "toNode": "n-19536a84868d",
-      "toSide": "top"
-    },
-    {
-      "id": "e-a38bfd806e35",
-      "fromNode": "n-8272dde6ef84",
-      "fromSide": "bottom",
-      "toNode": "n-ea7814d10643",
-      "toSide": "top"
-    },
-    {
-      "id": "e-cb2926d15dfd",
-      "fromNode": "n-8272dde6ef84",
-      "fromSide": "bottom",
-      "toNode": "n-ec8c9377ed25",
-      "toSide": "top"
-    },
-    {
-      "id": "e-f2f88ea1fb6b",
-      "fromNode": "n-8272dde6ef84",
-      "fromSide": "bottom",
-      "toNode": "n-c4faf033028f",
-      "toSide": "top"
-    },
-    {
-      "id": "e-ce57230cbacb",
-      "fromNode": "n-8272dde6ef84",
-      "fromSide": "bottom",
-      "toNode": "n-19536a84868d",
-      "toSide": "top"
-    },
-    {
-      "id": "e-109bd7968153",
-      "fromNode": "n-ea7814d10643",
-      "fromSide": "bottom",
-      "toNode": "n-04284840c394",
-      "toSide": "top"
-    },
-    {
-      "id": "e-d283dc9189cd",
-      "fromNode": "n-ea7814d10643",
-      "fromSide": "bottom",
-      "toNode": "n-746e6d684012",
-      "toSide": "top"
-    },
-    {
-      "id": "e-18017d14f3b3",
-      "fromNode": "n-ec8c9377ed25",
-      "fromSide": "bottom",
-      "toNode": "n-04284840c394",
-      "toSide": "top"
-    },
-    {
-      "id": "e-49ca32b9dad4",
-      "fromNode": "n-ec8c9377ed25",
-      "fromSide": "bottom",
-      "toNode": "n-746e6d684012",
-      "toSide": "top"
-    },
-    {
-      "id": "e-53ec823d9e9f",
-      "fromNode": "n-c4faf033028f",
-      "fromSide": "bottom",
-      "toNode": "n-04284840c394",
-      "toSide": "top"
-    },
-    {
-      "id": "e-1135cde335f3",
-      "fromNode": "n-c4faf033028f",
-      "fromSide": "bottom",
-      "toNode": "n-746e6d684012",
-      "toSide": "top"
-    },
-    {
-      "id": "e-eff2f7d898d0",
-      "fromNode": "n-19536a84868d",
-      "fromSide": "bottom",
-      "toNode": "n-04284840c394",
-      "toSide": "top"
-    },
-    {
-      "id": "e-1361e742addf",
-      "fromNode": "n-19536a84868d",
-      "fromSide": "bottom",
-      "toNode": "n-746e6d684012",
-      "toSide": "top"
-    },
-    {
-      "id": "e-c82a197ee560",
-      "fromNode": "n-04284840c394",
-      "fromSide": "bottom",
-      "toNode": "n-6de0eedf3a96",
-      "toSide": "top"
-    },
-    {
-      "id": "e-7a789ed9c1c0",
-      "fromNode": "n-746e6d684012",
-      "fromSide": "bottom",
-      "toNode": "n-6de0eedf3a96",
-      "toSide": "top"
-    },
-    {
-      "id": "e-53893db215cb",
-      "fromNode": "n-6de0eedf3a96",
-      "fromSide": "bottom",
-      "toNode": "n-e5860fd0d99e",
-      "toSide": "top"
-    },
-    {
-      "id": "e-31d7098c174e",
-      "fromNode": "n-6de0eedf3a96",
-      "fromSide": "bottom",
-      "toNode": "n-51551819f290",
-      "toSide": "top"
-    },
-    {
-      "id": "e-f5188e06cfe4",
-      "fromNode": "n-6de0eedf3a96",
-      "fromSide": "bottom",
-      "toNode": "n-0de5849f1451",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"g-8f01e956319c","type":"group","x":-50,"y":-50,"width":1460,"height":260,"label":"PONTA — sinal visível (Depth 0)"},
+		{"id":"g-43afbb5fdc54","type":"group","x":-50,"y":230,"width":1460,"height":260,"label":"CAMADAS MÉDIAS (Depth 1-2)"},
+		{"id":"g-f7f07d4072fa","type":"group","x":-50,"y":790,"width":1460,"height":260,"label":"VERDADE PROFUNDA (Depth 3)"},
+		{"id":"n-b0d89379ce78","type":"file","file":"06 - Eventos e Sagas/Operação Black Box.md","x":60,"y":0,"width":300,"height":100,"color":"2"},
+		{"id":"n-6206bfab3de6","type":"text","text":"Clones de [[Makeshift]] e [[Arrive]] agitam comunicações pelo mundo mesmo com o fundador supostamente morto","x":388,"y":0,"width":300,"height":120,"color":"2"},
+		{"id":"n-8272dde6ef84","type":"file","file":"08 - Sessões/Sessões Jogadas/Eventos Recentes - Campanha X-Men, 2010.md","x":716,"y":0,"width":300,"height":100,"color":"2"},
+		{"id":"n-ea7814d10643","type":"file","file":"05 - Locais/Torres de Retransmissão.md","x":60,"y":280,"width":300,"height":100,"color":"4"},
+		{"id":"n-ec8c9377ed25","type":"text","text":"Destruir as torres ACIONA protocolo de contingência: clones ficam agressivas ([[Incidente das Clones no Cairo]])","x":388,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-c4faf033028f","type":"file","file":"05 - Locais/Esconderijo de Black Box.md","x":716,"y":280,"width":300,"height":100,"color":"4"},
+		{"id":"n-19536a84868d","type":"text","text":"Guardas alegam a [[Elite Executivo]] — vínculo não confirmado (identidade falsa?)","x":1044,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-04284840c394","type":"text","text":"Arquivos recuperados; clones antigas; uma clone morta demais provocou escalada coletiva","x":60,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-746e6d684012","type":"text","text":"A morte do fundador não encerrou protocolos: organização fantasma segue operando","x":388,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-6de0eedf3a96","type":"text","text":"Black Box: presumido morto — sem corpo nem confirmação (status_2010: presumido_morto) [[Black Box]]","x":60,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-e5860fd0d99e","type":"text","text":"QUEM mantém a operação das clones hoje?","x":388,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-51551819f290","type":"text","text":"As clones têm livre-arbítrio? A [[Elite Executivo]] existe?","x":716,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-0de5849f1451","type":"text","text":"Pergunta central: qual o objetivo REAL da rede depois do fundador?","x":1044,"y":840,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-df6a2b519c43","fromNode":"n-b0d89379ce78","fromSide":"bottom","toNode":"n-ea7814d10643","toSide":"top"},
+		{"id":"e-e9c27a02da9c","fromNode":"n-b0d89379ce78","fromSide":"bottom","toNode":"n-ec8c9377ed25","toSide":"top"},
+		{"id":"e-e611592a5bf8","fromNode":"n-b0d89379ce78","fromSide":"bottom","toNode":"n-c4faf033028f","toSide":"top"},
+		{"id":"e-dd488118e2a4","fromNode":"n-b0d89379ce78","fromSide":"bottom","toNode":"n-19536a84868d","toSide":"top"},
+		{"id":"e-7bc92405923b","fromNode":"n-6206bfab3de6","fromSide":"bottom","toNode":"n-ea7814d10643","toSide":"top"},
+		{"id":"e-51d78a60fe79","fromNode":"n-6206bfab3de6","fromSide":"bottom","toNode":"n-ec8c9377ed25","toSide":"top"},
+		{"id":"e-39e7fa1cbfe8","fromNode":"n-6206bfab3de6","fromSide":"bottom","toNode":"n-c4faf033028f","toSide":"top"},
+		{"id":"e-55b0791c6874","fromNode":"n-6206bfab3de6","fromSide":"bottom","toNode":"n-19536a84868d","toSide":"top"},
+		{"id":"e-a38bfd806e35","fromNode":"n-8272dde6ef84","fromSide":"bottom","toNode":"n-ea7814d10643","toSide":"top"},
+		{"id":"e-cb2926d15dfd","fromNode":"n-8272dde6ef84","fromSide":"bottom","toNode":"n-ec8c9377ed25","toSide":"top"},
+		{"id":"e-f2f88ea1fb6b","fromNode":"n-8272dde6ef84","fromSide":"bottom","toNode":"n-c4faf033028f","toSide":"top"},
+		{"id":"e-ce57230cbacb","fromNode":"n-8272dde6ef84","fromSide":"bottom","toNode":"n-19536a84868d","toSide":"top"},
+		{"id":"e-109bd7968153","fromNode":"n-ea7814d10643","fromSide":"bottom","toNode":"n-04284840c394","toSide":"top"},
+		{"id":"e-d283dc9189cd","fromNode":"n-ea7814d10643","fromSide":"bottom","toNode":"n-746e6d684012","toSide":"top"},
+		{"id":"e-18017d14f3b3","fromNode":"n-ec8c9377ed25","fromSide":"bottom","toNode":"n-04284840c394","toSide":"top"},
+		{"id":"e-49ca32b9dad4","fromNode":"n-ec8c9377ed25","fromSide":"bottom","toNode":"n-746e6d684012","toSide":"top"},
+		{"id":"e-53ec823d9e9f","fromNode":"n-c4faf033028f","fromSide":"bottom","toNode":"n-04284840c394","toSide":"top"},
+		{"id":"e-1135cde335f3","fromNode":"n-c4faf033028f","fromSide":"bottom","toNode":"n-746e6d684012","toSide":"top"},
+		{"id":"e-eff2f7d898d0","fromNode":"n-19536a84868d","fromSide":"bottom","toNode":"n-04284840c394","toSide":"top"},
+		{"id":"e-1361e742addf","fromNode":"n-19536a84868d","fromSide":"bottom","toNode":"n-746e6d684012","toSide":"top"},
+		{"id":"e-c82a197ee560","fromNode":"n-04284840c394","fromSide":"bottom","toNode":"n-6de0eedf3a96","toSide":"top"},
+		{"id":"e-7a789ed9c1c0","fromNode":"n-746e6d684012","fromSide":"bottom","toNode":"n-6de0eedf3a96","toSide":"top"},
+		{"id":"e-53893db215cb","fromNode":"n-6de0eedf3a96","fromSide":"bottom","toNode":"n-e5860fd0d99e","toSide":"top"},
+		{"id":"e-31d7098c174e","fromNode":"n-6de0eedf3a96","fromSide":"bottom","toNode":"n-51551819f290","toSide":"top"},
+		{"id":"e-f5188e06cfe4","fromNode":"n-6de0eedf3a96","fromSide":"bottom","toNode":"n-0de5849f1451","toSide":"top"}
+	]
 }

@@ -39,6 +39,11 @@ Curtos cabelos roxos; olhar agudo.
 
 Estrategista de cabeça fria. Racional e controlada, com forte senso de justiça. Voz de liderança respeitada na escola inferior.
 
+- Aprendeu a ser responsável muito cedo, cuidando dos irmãos mais novos.
+- Luta ativamente para não se tornar uma pessoa controladora, dada a natureza de seu poder.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/09/10/karma/
+
 ## História
 
 - **2004:** Ingressa como umas dos alunos originais da primeira geração estudantil.

@@ -36,6 +36,10 @@ Mulher de aparência madura (~35 anos), rosto sereno e expressão tranquila, cab
 ## Personalidade
 Calma, sonhadora, protetora com os mais jovens dos túneis. Aprendeu a ser cautelosa após o Massacre. Valoriza o descanso e a paz — em contraste com a dureza da vida subterrânea.
 
+- Retraída; no fundo não é uma má pessoa, mas o desejo de companhia e comunidade pode fazê-la obedecer ordens que causem mal a outros.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2024/06/18/belos-sonhos/
+
 ## Poderes
 - **Indução ao sono:** pode fazer alvos próximos adormecerem.
 - **Manipulação de sonhos:** influencia o conteúdo dos sonhos dos adormecidos.

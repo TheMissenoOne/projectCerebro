@@ -39,6 +39,12 @@ Cabeça raspada, ocasionalmente coberta; braços mecânicos multifuncionais; rou
 
 Sóbrio, obcecado por engenharia, minimalista. Fala pouco, produz muito.
 
+- Carrega cicatriz psicológica da Guerra do Vietnã: culpa pela perda da própria tropa e uma tentativa de suicídio no passado.
+- Desconfiado de governos e padrões institucionalizados — recusou-se a construir armas em massa para o governo.
+- Prefere dedicar-se inteiramente ao seu lado tecnológico, abandonando o caminho das magias.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/04/forge/
+
 ## História
 
 - **2001:** Iniciado nos projetos do Instituto com [[Fera]] e [[Cable]].

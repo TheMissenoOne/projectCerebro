@@ -33,6 +33,15 @@ Herói do Reino Unido, integrante da [[Excalibur]]. Irmão de [[Psylocke]] e [[J
 > [!IMPORTANT]
 > **Não é mutante** — não entra na contagem dos 198 (regra do seed).
 
+## Personalidade
+
+- Elegante, discreto e educado; fibra moral e nobreza de um verdadeiro cavalheiro inglês.
+- Ciumento — já demonstrou crises de ciúmes até dos melhores amigos.
+- Ex-alcoólatra.
+- Criado solitário (família pobre demais para a aristocracia, orgulhosa demais para os pobres), tende a se fechar; a culpa pela morte dos pais o entregou ainda mais à solidão e aos estudos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/01/12/capitao-britania/
+
 ## Poderes
 
 - Força sobre-humana (pelo Amuleto de M'Kraan).

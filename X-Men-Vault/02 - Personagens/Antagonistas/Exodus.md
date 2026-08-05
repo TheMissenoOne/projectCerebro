@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "exodus"]
 
 Líder da [[Irmandade de Mutantes]] VIII. Mutante poderoso listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Prepotente e arrogante — tende a subestimar adversários, o que pode prejudicá-lo em batalhas.
+- Prefere ser o braço direito de um grande líder a liderar.
+- Fanático em suas devoções, interpretando de forma equivocada os ensinamentos de seus ídolos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/04/20/exodus/
+
 ## Poderes
 
 - Telecinese avançada.

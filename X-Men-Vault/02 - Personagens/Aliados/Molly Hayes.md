@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "molly-hayes"]
 
 Jovem mutante de força sobre-humana, ex-Runaways. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Alegre, descontraída e inocente; por vezes sarcástica.
+- Adaptável: foi uma das que mais rápido se acostumou à nova vida ao lado dos Fugitivos.
+- Determinada nos gostos: queria ser batizada "Princesa Poderosa" (acabou ganhando "Fortona" contra a vontade).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/05/hayes-molly/
+
 ## Poderes
 
 - Força sobre-humana.

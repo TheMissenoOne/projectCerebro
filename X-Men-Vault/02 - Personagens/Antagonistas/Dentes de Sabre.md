@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "dentes-de-sabre"]
 
 Mutante ferino e letal, inimigo histórico de [[Wolverine]]. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Violento desde a infância, com índole assassina — seus atos sempre foram os de um animal selvagem.
+- Frio e implacável, sem remorso pelos assassinatos que comete.
+- Cruel e vingativo: atormenta Logan de forma metódica e sádica, atacando as mulheres com quem ele se envolve.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/30/dentes-de-sabre/
+
 ## Poderes
 
 - Garras e presas.

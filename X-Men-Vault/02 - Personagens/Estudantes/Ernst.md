@@ -39,6 +39,11 @@ Menina pequena, cabelos castanhos, expressão pensativa.
 
 Calma, observadora; fala pouco, mas profundo.
 
+- Ingênua.
+- Forte elo de amizade com a Não-Garota (Martha Johansson).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2017/09/25/ernst/
+
 ## Poderes
 
 - **Absorção de conhecimento** (memória fotográfica ampliada).

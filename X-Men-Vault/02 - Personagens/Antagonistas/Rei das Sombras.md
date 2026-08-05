@@ -32,9 +32,15 @@ Poderoso entidade psíquica mutante (telepata imenso) que age nas sombras. **Des
 
 ## Aparência
 Quando manifestado, um homem de presença elegante/ameaçadora, sorriso constante, terno colorido; mas sua verdadeira face é uma tempestade de energia psíquica (formas de sombras, dentes, faces em névoa mental).
-
 ## Personalidade
+
 Narcisista, hedonista, colecionador de mentes. Adora manipular silenciosamente, fazer ruir heróis sem ser visto. Considera-se o "telepata supremo". Cruel, paciente, sarcástico. Seu objetivo: dominar mentes-chave, corromper instituições, criar caos e deleite psíquico.
+
+- Sádico declarado: deleita-se em ver pessoas se digladiarem (ex.: arena de batalha forçando Mancha Solar, Magma e Tempestade a lutarem).
+- Paciência milenar: planeja vingança contra Xavier há décadas no plano astral.
+- Possessivo: incorpora hospedeiras vulneráveis (Karma) e distorce suas vidas (aumentou apetite dela à obesidade) para satisfazer seus desejos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2015/11/19/amahl-farouk/
 
 ## Poderes
 - **Telepatia imensa:** Ler/escrever mentes em escala de massa; projetar percepções; criar ilusões complexas.

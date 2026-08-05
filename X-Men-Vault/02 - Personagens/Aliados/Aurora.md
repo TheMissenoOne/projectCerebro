@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "aurora"]
 
 Gêmea de [[Estrela Polar]]; heroína canadense. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Sofre de esquizofrenia/dissociação, com cerca de oito personalidades alternantes.
+- Personalidades de traços opostos: da reservada, tímida e religiosa à sensual e extrovertida; há também uma gótica e ocasionalmente sádica, uma que aprecia "ultraviolência casual" e uma masoquista.
+- Gostos divergentes entre as personalidades: vinhos caros, equitação, ópera, jardinagem, literatura, esportes, fotografia e paleontologia amadora.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/11/17/aurora/
+
 ## Poderes
 
 - Super-velocidade.

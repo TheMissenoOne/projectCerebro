@@ -39,6 +39,11 @@ Pele esverdeada, olhos amendoados, escamas e língua de lagarto. Braços longos/
 
 Empático e leal; um dos mais respeitosos da turma.
 
+- Durão e destemido quando ameaçado — aprendeu a se endurecer.
+- Gosta de frisbee, basquete e teatro; evita tradições e filmes de ação.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/01/25/anole/
+
 ## Poderes
 
 - **Regeneração:** Cura acelerada de ferimentos.

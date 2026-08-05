@@ -30,6 +30,15 @@ tags: ["198", "manteve-poderes-dia-m", "vanguard"]
 
 Mutante russo ligado ao governo. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Temperamento explosivo: age por impulso e "pensa com os punhos"
+- Deleita-se na glória do combate pela causa em que acredita
+- Protetor extremo da irmã gêmea (Estrela Negra), ajuda-a mesmo contra a vontade dela
+- Comunista convicto, mantém a ideologia mesmo após queda da URSS
+- Ouve a irmã e a melhor amiga acima de tudo
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2020/03/10/vanguard-nikolai-krylenko/
+
 ## Poderes
 
 - Emissão de radiação.

@@ -37,7 +37,9 @@ Homem alto e corpulento; transforma-se em aço orgânico com padrão caracterís
 
 ## Personalidade
 
-Calmo e idealista em geral, com forte vínculo emocional com Kitty. A crise de 2010 revelou seu lado instável quando pessoas próximas estão em perigo.
+Calmo e idealista em geral, com forte vínculo emocional com Kitty. A crise de 2010 revelou seu lado instável quando pessoas próximas estão em perigo. Pacífico por natureza, mas pode se descontrolar em casos extremos. Forte sensibilidade artística; tímido, teve adaptação difícil à vida em Nova York (sentia-se pequeno em meio a milhões). Devotado à família: espelhou-se no irmão mais velho para cuidar da irmã caçula.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/28/colossus/
 
 ## Poderes
 

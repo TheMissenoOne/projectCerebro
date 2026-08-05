@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "black-tom"]
 
 Primo de [[Banshee]]; manipula plantas e madeira. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Refere-se a si mesmo na terceira pessoa.
+- Guarda rivalidade amarga com o primo Sean ([[Banshee]]), mas foi capaz de aceitar a derrota amorosa com dignidade — foi padrinho do casamento de Sean e Maeve.
+- Protetor de Theresa (Siryn): criou-a como se fosse sua filha e a isolou em colégio interno para afastá-la de suas atividades criminosas.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2010/06/14/black-tom/
+
 ## Poderes
 
 - Controle de plantas e madeira.

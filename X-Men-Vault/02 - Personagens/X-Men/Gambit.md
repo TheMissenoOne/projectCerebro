@@ -39,6 +39,10 @@ Cabelo castanho comprido; marcação vermelha nos olhos. Visual de carteado com 
 
 Flamengo, carismático e provocador, mas profundamente leal. Carrega um passado de crime que tenta superar.
 
+- Galanteador e trapaceiro por natureza — usa o charme para enganar e jogar jogos, com gosto assumido por jogos de azar.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/09/gambit/
+
 ## História
 
 - **1992:** Integra a 2ª formação dos X-Men.

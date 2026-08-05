@@ -30,6 +30,13 @@ tags: [x-force, dinamite]
 
 Membro da [[X-Force]]. Mutante com força e projeção de energia explosiva (padrão canônico de "Dynamite"/Dinamite — detalhes da identidade civil pendentes).
 
+## Personalidade
+
+- Crítica e revoltada.
+- Se faz de durona para esconder o lado sensível e carente.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/24/dinamite/
+
 ## Poderes
 
 - Força super-humana.

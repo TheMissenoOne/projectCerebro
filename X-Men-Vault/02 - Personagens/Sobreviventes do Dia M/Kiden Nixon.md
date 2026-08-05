@@ -36,6 +36,10 @@ Jovem ~16-17 anos, cabelos louros/castanhos, aparência comum — facilmente pas
 ## Personalidade
 Adaptada (não se encaixava na sociedade por causa de poder estranho); resiliente, cética, com humor sombrio. Antes do Dia M, vivia em contexto familiar difícil (pai falecido, mãe abusiva?) — desenvolvendo autossuficiência.
 
+- Traumatizada pela morte do pai (assassinado diante dela), o que a tornou uma adolescente problemática que vivia arrumando encrencas na escola.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2014/10/17/nixon-kiden/
+
 ## Poderes
 - **Manipulação temporal leve:** capacidade de **distorcer/dilatar o tempo** em área pequena (congelar rápido, desacelerar) — mais utilitária que ofensiva.
 - Possível sensibilidade a anomalias temporais.

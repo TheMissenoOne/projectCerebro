@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "dark-beast"]
 
 Versão alternativa do [[Fera]]; cientista amoral. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Sádico intelectual — não possui ética alguma ao realizar experimentos com cobaias vivas.
+- Sem a orientação de Xavier (Terra-295), nunca desenvolveu o senso ético de sua contraparte; as torturas de suas pesquisas lhe valeram o nome de "O Fera".
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/12/07/fera-negro/
+
 ## Poderes
 
 - Inteligência sobre-humana.

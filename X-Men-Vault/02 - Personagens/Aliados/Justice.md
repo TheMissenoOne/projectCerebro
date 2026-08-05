@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "justice"]
 
 Telecineta heroico. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- A infância de abuso paterno lhe deu personalidade muito forte — manteve-se firme diante do Coisa aos 16 anos.
+- Fã devoto de Capitão América e dos Vingadores; colocou todo esse entusiasmo na aventura, sempre esperando que o bem maior progredisse.
+- Depois de cumprir pena na Vault, saiu mais maduro e com nova visão da vida.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2020/06/27/justica/
+
 ## Poderes
 
 - Telecinese.

@@ -39,6 +39,11 @@ Jaqueta de couro; óculos de sol; estilo explosivo e pop.
 
 Energética, sarcástica e leal. Ídolo dos estudantes mais novos da Academia.
 
+- Cínica, rebelde e orgulhosa, com humor sempre pronto.
+- A orfandade a fez decidir não confiar mais em ninguém — desconfiança crônica como escudo, amenizada por seu lado engraçado.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/10/13/jubileu/
+
 ## História
 
 - **1994:** Não entra no time de 1992 (jovem demais). Entra na [[Geração X]] sob [[Emma Frost]] e [[Banshee]] na Academia de Massachusetts.

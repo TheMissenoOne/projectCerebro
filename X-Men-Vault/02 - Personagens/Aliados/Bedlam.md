@@ -30,6 +30,14 @@ tags: [x-force, bedlam]
 
 Membro da [[X-Force]]. Interrompe sistemas elétricos e eletrônicos com a mente — "domina" a tecnologia como uma presença beligerante.
 
+## Personalidade
+
+- Forte jogador de equipe, embora menos heroico que os demais da X-Force.
+- Precisa de uma estrutura familiar — X-Force, MUSE ou o irmão Christopher — para funcionar normalmente.
+- Órfão cedo e emocionalmente instável após ser internado em uma instituição psiquiátrica.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2023/10/30/bedlam/
+
 ## Poderes
 
 - Desliga/sobrecarrega circuitos eletrônicos.

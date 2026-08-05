@@ -39,6 +39,10 @@ Cientista madura, traços escoceses. Bata de laboratório e postura profissional
 
 Empática, científica e pragmática. Mãe substituta de muitos mutantes; não esconde as cicatrizes de ver a crise de Genosha.
 
+- Independente e autossuficiente: preferia aprofundar a própria pesquisa a confiar em soluções prontas.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/04/13/mactaggert-moira/
+
 ## História
 
 - **1992:** Auxilia Xavier a montar a equipe secreta Deadly Genesis ([[Vulcan]], [[Darwin]], [[Petra]], [[Sway]]).

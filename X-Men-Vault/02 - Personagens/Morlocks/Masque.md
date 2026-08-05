@@ -35,6 +35,9 @@ Homem de meia-idade, rosto coberto/sem rosto distinto (sua própria face é obra
 
 ## Personalidade
 Artista sádico e obsessivo — vê a carne como tela. Manipulador, sedutor do grotesco, perigoso. Mas também produto do trauma dos túneis. Imprevisível; pode "ajudar" ou "deformar" por capricho.
+- Amargo, com inveja e ódio de pessoas belas — usa seus poderes para transformá-las em monstros deformados iguais a ele.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2015/05/04/masque/
 
 ## Poderes
 - **Escultura carnal:** remodela tecido ósseo e muscular de si mesmo e de terceiros com toque — pode criar rostos, restaurar ou mutilar.

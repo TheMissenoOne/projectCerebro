@@ -34,7 +34,9 @@ Uma **irmã psíquica de [[Xavier]]** (nanomolar espelho de sua mente), invisív
 Quando manifesta, aparece como réplica sombria/branca de Xavier — careca, olhos brancos, energia sombria — ou em corpos de outras pessoas (celular replicante). Sem corpo natural (refletida em "nano-máquina").
 
 ## Personalidade
-Genial e insana; considera a vida orgânica uma "doença". Escolheu destruir Xavier (o gêmeo que a superou) atacando seus sonhos — os X-Men, os mutantes, a esperança. Meticulosa, paciente, visualmente manipulatória. Compulsão: genocídio/manipulação de eventos-mundo (Genosha como exemplo).
+Genial e insana; considera a vida orgânica uma "doença". Escolheu destruir Xavier (o gêmeo que a superou) atacando seus sonhos — os X-Men, os mutantes, a esperança. Meticulosa, paciente, visualmente manipulatória. Compulsão: genocídio/manipulação de eventos-mundo (Genosha como exemplo). Não possui empatia e nutre completo desprezo pelos mutantes.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2015/04/05/cassandra-nova/
 
 ## Poderes
 - **Telepatia / telecinese** (nível Xavier, diferente).

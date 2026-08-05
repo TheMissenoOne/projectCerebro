@@ -1,111 +1,18 @@
 {
-  "nodes": [
-    {
-      "id": "g-354b3a953d31",
-      "type": "group",
-      "x": -50,
-      "y": -50,
-      "width": 1460,
-      "height": 260,
-      "label": "PONTA — sinal visível (Depth 0)"
-    },
-    {
-      "id": "g-9728a972569d",
-      "type": "group",
-      "x": -50,
-      "y": 230,
-      "width": 1460,
-      "height": 260,
-      "label": "CAMADAS MÉDIAS (Depth 1-2)"
-    },
-    {
-      "id": "g-6204f89dc031",
-      "type": "group",
-      "x": -50,
-      "y": 790,
-      "width": 1460,
-      "height": 260,
-      "label": "VERDADE PROFUNDA (Depth 3)"
-    },
-    {
-      "id": "n-f081a6919cac",
-      "type": "text",
-      "text": "Devastação de Genosha (2002) — tragédia massiva, ninguém assumiu a autoria",
-      "x": 60,
-      "y": 0,
-      "width": 300,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "n-3bd027562019",
-      "type": "text",
-      "text": "Suspeitos: [[Cassandra Nova]], herdeiros de [[Bolivar Trask]], [[Clube do Inferno]], empresas militares, [[Rei das Sombras]], agentes do governo, inteligências artificiais",
-      "x": 60,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-7d78b30547f4",
-      "type": "text",
-      "text": "Um ataque desses precisa de vetor + financiamento + cobertura governamental — quem coordenou tudo?",
-      "x": 60,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-eea248c00d87",
-      "type": "text",
-      "text": "PERGUNTA CENTRAL (seed §9.1): ninguém sabe quem REALMENTE comandou o plano de Genosha",
-      "x": 60,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-3b44e78cac9c",
-      "type": "text",
-      "text": "Genosha amarra a cadeia: [[Orchis]] foi aprendendo com Trask? O Rei das Sombras semeou ruínas?",
-      "x": 388,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-60a334333460",
-      "fromNode": "n-f081a6919cac",
-      "fromSide": "bottom",
-      "toNode": "n-3bd027562019",
-      "toSide": "top"
-    },
-    {
-      "id": "e-618cc166bd3d",
-      "fromNode": "n-3bd027562019",
-      "fromSide": "bottom",
-      "toNode": "n-7d78b30547f4",
-      "toSide": "top"
-    },
-    {
-      "id": "e-0420f5bf5035",
-      "fromNode": "n-7d78b30547f4",
-      "fromSide": "bottom",
-      "toNode": "n-eea248c00d87",
-      "toSide": "top"
-    },
-    {
-      "id": "e-d435e2eba3b9",
-      "fromNode": "n-7d78b30547f4",
-      "fromSide": "bottom",
-      "toNode": "n-3b44e78cac9c",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"g-354b3a953d31","type":"group","x":-50,"y":-50,"width":1460,"height":260,"label":"PONTA — sinal visível (Depth 0)"},
+		{"id":"g-9728a972569d","type":"group","x":-50,"y":230,"width":1460,"height":260,"label":"CAMADAS MÉDIAS (Depth 1-2)"},
+		{"id":"g-6204f89dc031","type":"group","x":-50,"y":790,"width":1460,"height":260,"label":"VERDADE PROFUNDA (Depth 3)"},
+		{"id":"n-f081a6919cac","type":"text","text":"Devastação de Genosha (2002) — tragédia massiva, ninguém assumiu a autoria","x":60,"y":0,"width":300,"height":120,"color":"2"},
+		{"id":"n-3bd027562019","type":"text","text":"Suspeitos: [[Cassandra Nova]], herdeiros de [[Bolivar Trask]], [[Clube do Inferno]], empresas militares, [[Rei das Sombras]], agentes do governo, inteligências artificiais","x":60,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-7d78b30547f4","type":"text","text":"Um ataque desses precisa de vetor + financiamento + cobertura governamental — quem coordenou tudo?","x":60,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-eea248c00d87","type":"text","text":"PERGUNTA CENTRAL (seed §9.1): ninguém sabe quem REALMENTE comandou o plano de Genosha","x":60,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-3b44e78cac9c","type":"text","text":"Genosha amarra a cadeia: [[Orchis]] foi aprendendo com Trask? O Rei das Sombras semeou ruínas?","x":388,"y":840,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-60a334333460","fromNode":"n-f081a6919cac","fromSide":"bottom","toNode":"n-3bd027562019","toSide":"top"},
+		{"id":"e-618cc166bd3d","fromNode":"n-3bd027562019","fromSide":"bottom","toNode":"n-7d78b30547f4","toSide":"top"},
+		{"id":"e-0420f5bf5035","fromNode":"n-7d78b30547f4","fromSide":"bottom","toNode":"n-eea248c00d87","toSide":"top"},
+		{"id":"e-d435e2eba3b9","fromNode":"n-7d78b30547f4","fromSide":"bottom","toNode":"n-3b44e78cac9c","toSide":"top"}
+	]
 }

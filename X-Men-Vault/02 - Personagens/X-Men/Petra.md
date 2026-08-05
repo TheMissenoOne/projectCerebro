@@ -37,6 +37,16 @@ Não registrados.
 > [!QUESTION]
 > Poder exato de Petra? O que realmente aconteceu em Krako?
 
+## Personalidade
+
+- Traumática: culpa persistente pela morte da família em deslizamento (sobreviveu ilesa).
+- Medo profundo de figuras paternas abusivas (pai adotivo tentou molestá-la).
+- Reclusa e desconfiada: viveu em cavernas alterando rochas para afastar pessoas.
+- Recurso prático: transformou pedras em pequenos diamantes para sobreviver sem roubar.
+- Determinação silenciosa: aceitou treino na Ilha Muir sob Moira MacTaggert.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/06/07/petra/
+
 ## Ver também
 
 - [[Vulcan]] · [[Darwin]] · [[Sway]] — colegas da Deadly Genesis

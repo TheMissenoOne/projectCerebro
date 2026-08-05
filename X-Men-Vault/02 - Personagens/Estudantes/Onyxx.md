@@ -39,6 +39,12 @@ Cabelos escuros, pele que escurece até textura rochosa quando ativa o poder.
 
 Manso e tímido; contrasta intensidade do corpo com fala calma.
 
+- Solitário e não aceita bem rejeições.
+- Apaixonou-se intensamente por Rapoza; a rejeição da garota o abalou a ponto de atacá-la.
+- A fonte canônica aponta um aparente desequilíbrio mental.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/05/23/onyxx/
+
 ## Poderes
 
 - **Armadura de obsidiana:** Pele negra mineral, resistente a calor e impacto.

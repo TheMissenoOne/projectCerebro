@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "jamie-braddock"]
 
 Irmão de [[Capitão Britânia]] e [[Psylocke]]; manipula a realidade. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Lunático, caótico e amoral — prazer em usar os próprios poderes para atormentar os outros.
+- Ainda assim, demonstra um vestígio de lealdade familiar: não teve coragem de sacrificar a própria irmã, preferindo enfrentar sozinho os *Foursaken*.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2024/01/20/jamie-braddock/
+
 ## Poderes
 
 - Manipulação de realidade.

@@ -38,6 +38,14 @@ Cabelos ruivos, olhos de âmbar; postura canina quando ativa o poder.
 ## Personalidade
 
 Reservada e leal; carrega tensão entre o treinamento religioso de origem e a vida mutante.
+- Reprimida, inocente, emotiva, tímida e melancólica.
+- Tende a paixões platônicas e ciúmes das parceiras dos objetos de seu afeto.
+- Sente-se mais à vontade na forma lupina, onde deixa inseguranças humanas e age por instinto.
+- Mostra lado cada vez mais violento na forma lupina.
+- Mantém tradição religiosa presbiteriana conservadora (sotaque escocês).
+- Medo de palhaços.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/16/lupina/
 
 ## História
 

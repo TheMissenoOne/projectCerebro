@@ -1,252 +1,36 @@
 {
-  "nodes": [
-    {
-      "id": "g-9c19c3fba537",
-      "type": "group",
-      "x": -50,
-      "y": -50,
-      "width": 1460,
-      "height": 260,
-      "label": "PONTA — sinal visível (Depth 0)"
-    },
-    {
-      "id": "g-61ecb3e5c839",
-      "type": "group",
-      "x": -50,
-      "y": 230,
-      "width": 1460,
-      "height": 260,
-      "label": "CAMADAS MÉDIAS (Depth 1-2)"
-    },
-    {
-      "id": "g-734dc9c236ae",
-      "type": "group",
-      "x": -50,
-      "y": 790,
-      "width": 1460,
-      "height": 260,
-      "label": "VERDADE PROFUNDA (Depth 3)"
-    },
-    {
-      "id": "n-d1bde8d94142",
-      "type": "file",
-      "file": "06 - Eventos e Sagas/Ataque do Míssil de Terrígeno.md",
-      "x": 60,
-      "y": 0,
-      "width": 300,
-      "height": 100,
-      "color": "2"
-    },
-    {
-      "id": "n-89b333d41426",
-      "type": "text",
-      "text": "[[Kitty Pryde]] intoxicada ao recuperar carcaça de míssil — mesmo estando intangível",
-      "x": 388,
-      "y": 0,
-      "width": 300,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "n-03d375619ab3",
-      "type": "file",
-      "file": "07 - Mistérios e Tramas/Envenenamento de Kitty Pryde por Terrígeno.md",
-      "x": 60,
-      "y": 280,
-      "width": 300,
-      "height": 100,
-      "color": "4"
-    },
-    {
-      "id": "n-505806d8573a",
-      "type": "text",
-      "text": "Terrígeno normal não explica: afeta intangível → alteração, contaminação não convencional ou tecnologia",
-      "x": 388,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-83834d2248ae",
-      "type": "file",
-      "file": "06 - Eventos e Sagas/Ataque à Base Militar Indiana.md",
-      "x": 716,
-      "y": 280,
-      "width": 300,
-      "height": 100,
-      "color": "4"
-    },
-    {
-      "id": "n-5d7df6f4a698",
-      "type": "text",
-      "text": "Quem disparou o MÍ que atingiu a X-Corp? Origem rastreada até a Índia",
-      "x": 60,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-20639fc62b12",
-      "type": "text",
-      "text": "[[Fera]] nos cuidados intensivos; Kitty fora de campo; vaga do [[The Wild]]",
-      "x": 388,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-e298faea5276",
-      "type": "text",
-      "text": "Terrígeno é sintético/reator? Feito na Índia/Orchis?",
-      "x": 60,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-cf51ad7697e7",
-      "type": "text",
-      "text": "Há cura? Efeitos duradouros?",
-      "x": 388,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-433c005383a2",
-      "type": "text",
-      "text": "O ataque era contra a X-Corp ou contra a carcaça/triangulação de [[Dust]] (Soraya)?",
-      "x": 716,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-ef95d50b784b",
-      "fromNode": "n-d1bde8d94142",
-      "fromSide": "bottom",
-      "toNode": "n-505806d8573a",
-      "toSide": "top"
-    },
-    {
-      "id": "e-20b8f60590d3",
-      "fromNode": "n-d1bde8d94142",
-      "fromSide": "bottom",
-      "toNode": "n-83834d2248ae",
-      "toSide": "top"
-    },
-    {
-      "id": "e-c487db4489f0",
-      "fromNode": "n-d1bde8d94142",
-      "fromSide": "bottom",
-      "toNode": "n-5d7df6f4a698",
-      "toSide": "top"
-    },
-    {
-      "id": "e-e4f20652cc86",
-      "fromNode": "n-89b333d41426",
-      "fromSide": "bottom",
-      "toNode": "n-505806d8573a",
-      "toSide": "top"
-    },
-    {
-      "id": "e-8c6288b4a82f",
-      "fromNode": "n-89b333d41426",
-      "fromSide": "bottom",
-      "toNode": "n-83834d2248ae",
-      "toSide": "top"
-    },
-    {
-      "id": "e-dc3030fae29e",
-      "fromNode": "n-89b333d41426",
-      "fromSide": "bottom",
-      "toNode": "n-5d7df6f4a698",
-      "toSide": "top"
-    },
-    {
-      "id": "e-f3c3e6d8990a",
-      "fromNode": "n-03d375619ab3",
-      "fromSide": "bottom",
-      "toNode": "n-505806d8573a",
-      "toSide": "top"
-    },
-    {
-      "id": "e-b8d2446090f6",
-      "fromNode": "n-03d375619ab3",
-      "fromSide": "bottom",
-      "toNode": "n-83834d2248ae",
-      "toSide": "top"
-    },
-    {
-      "id": "e-247a704c19e9",
-      "fromNode": "n-03d375619ab3",
-      "fromSide": "bottom",
-      "toNode": "n-5d7df6f4a698",
-      "toSide": "top"
-    },
-    {
-      "id": "e-054da64a3fd3",
-      "fromNode": "n-505806d8573a",
-      "fromSide": "bottom",
-      "toNode": "n-5d7df6f4a698",
-      "toSide": "top"
-    },
-    {
-      "id": "e-ef08d1d803bc",
-      "fromNode": "n-505806d8573a",
-      "fromSide": "bottom",
-      "toNode": "n-20639fc62b12",
-      "toSide": "top"
-    },
-    {
-      "id": "e-032526a58a59",
-      "fromNode": "n-83834d2248ae",
-      "fromSide": "bottom",
-      "toNode": "n-5d7df6f4a698",
-      "toSide": "top"
-    },
-    {
-      "id": "e-cd3d300d4368",
-      "fromNode": "n-83834d2248ae",
-      "fromSide": "bottom",
-      "toNode": "n-20639fc62b12",
-      "toSide": "top"
-    },
-    {
-      "id": "e-7da5b298990f",
-      "fromNode": "n-5d7df6f4a698",
-      "fromSide": "bottom",
-      "toNode": "n-e298faea5276",
-      "toSide": "top"
-    },
-    {
-      "id": "e-93c4f5ce61c0",
-      "fromNode": "n-20639fc62b12",
-      "fromSide": "bottom",
-      "toNode": "n-e298faea5276",
-      "toSide": "top"
-    },
-    {
-      "id": "e-b556d7ed870d",
-      "fromNode": "n-5d7df6f4a698",
-      "fromSide": "bottom",
-      "toNode": "n-433c005383a2",
-      "toSide": "top"
-    },
-    {
-      "id": "e-0f564228d9e6",
-      "fromNode": "n-20639fc62b12",
-      "fromSide": "bottom",
-      "toNode": "n-cf51ad7697e7",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"g-9c19c3fba537","type":"group","x":-50,"y":-50,"width":1460,"height":260,"label":"PONTA — sinal visível (Depth 0)"},
+		{"id":"g-61ecb3e5c839","type":"group","x":-50,"y":230,"width":1460,"height":260,"label":"CAMADAS MÉDIAS (Depth 1-2)"},
+		{"id":"g-734dc9c236ae","type":"group","x":-50,"y":790,"width":1460,"height":260,"label":"VERDADE PROFUNDA (Depth 3)"},
+		{"id":"n-d1bde8d94142","type":"file","file":"06 - Eventos e Sagas/Ataque do Míssil de Terrígeno.md","x":60,"y":0,"width":300,"height":100,"color":"2"},
+		{"id":"n-89b333d41426","type":"text","text":"[[Kitty Pryde]] intoxicada ao recuperar carcaça de míssil — mesmo estando intangível","x":388,"y":0,"width":300,"height":120,"color":"2"},
+		{"id":"n-03d375619ab3","type":"file","file":"07 - Mistérios e Tramas/Envenenamento de Kitty Pryde por Terrígeno.md","x":60,"y":280,"width":300,"height":100,"color":"4"},
+		{"id":"n-505806d8573a","type":"text","text":"Terrígeno normal não explica: afeta intangível → alteração, contaminação não convencional ou tecnologia","x":388,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-83834d2248ae","type":"file","file":"06 - Eventos e Sagas/Ataque à Base Militar Indiana.md","x":716,"y":280,"width":300,"height":100,"color":"4"},
+		{"id":"n-5d7df6f4a698","type":"text","text":"Quem disparou o MÍ que atingiu a X-Corp? Origem rastreada até a Índia","x":60,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-20639fc62b12","type":"text","text":"[[Fera]] nos cuidados intensivos; Kitty fora de campo; vaga do [[The Wild]]","x":388,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-e298faea5276","type":"text","text":"Terrígeno é sintético/reator? Feito na Índia/Orchis?","x":60,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-cf51ad7697e7","type":"text","text":"Há cura? Efeitos duradouros?","x":388,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-433c005383a2","type":"text","text":"O ataque era contra a X-Corp ou contra a carcaça/triangulação de [[Dust]] (Soraya)?","x":716,"y":840,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-ef95d50b784b","fromNode":"n-d1bde8d94142","fromSide":"bottom","toNode":"n-505806d8573a","toSide":"top"},
+		{"id":"e-20b8f60590d3","fromNode":"n-d1bde8d94142","fromSide":"bottom","toNode":"n-83834d2248ae","toSide":"top"},
+		{"id":"e-c487db4489f0","fromNode":"n-d1bde8d94142","fromSide":"bottom","toNode":"n-5d7df6f4a698","toSide":"top"},
+		{"id":"e-e4f20652cc86","fromNode":"n-89b333d41426","fromSide":"bottom","toNode":"n-505806d8573a","toSide":"top"},
+		{"id":"e-8c6288b4a82f","fromNode":"n-89b333d41426","fromSide":"bottom","toNode":"n-83834d2248ae","toSide":"top"},
+		{"id":"e-dc3030fae29e","fromNode":"n-89b333d41426","fromSide":"bottom","toNode":"n-5d7df6f4a698","toSide":"top"},
+		{"id":"e-f3c3e6d8990a","fromNode":"n-03d375619ab3","fromSide":"bottom","toNode":"n-505806d8573a","toSide":"top"},
+		{"id":"e-b8d2446090f6","fromNode":"n-03d375619ab3","fromSide":"bottom","toNode":"n-83834d2248ae","toSide":"top"},
+		{"id":"e-247a704c19e9","fromNode":"n-03d375619ab3","fromSide":"bottom","toNode":"n-5d7df6f4a698","toSide":"top"},
+		{"id":"e-054da64a3fd3","fromNode":"n-505806d8573a","fromSide":"bottom","toNode":"n-5d7df6f4a698","toSide":"top"},
+		{"id":"e-ef08d1d803bc","fromNode":"n-505806d8573a","fromSide":"bottom","toNode":"n-20639fc62b12","toSide":"top"},
+		{"id":"e-032526a58a59","fromNode":"n-83834d2248ae","fromSide":"bottom","toNode":"n-5d7df6f4a698","toSide":"top"},
+		{"id":"e-cd3d300d4368","fromNode":"n-83834d2248ae","fromSide":"bottom","toNode":"n-20639fc62b12","toSide":"top"},
+		{"id":"e-7da5b298990f","fromNode":"n-5d7df6f4a698","fromSide":"bottom","toNode":"n-e298faea5276","toSide":"top"},
+		{"id":"e-93c4f5ce61c0","fromNode":"n-20639fc62b12","fromSide":"bottom","toNode":"n-e298faea5276","toSide":"top"},
+		{"id":"e-b556d7ed870d","fromNode":"n-5d7df6f4a698","fromSide":"bottom","toNode":"n-433c005383a2","toSide":"top"},
+		{"id":"e-0f564228d9e6","fromNode":"n-20639fc62b12","fromSide":"bottom","toNode":"n-cf51ad7697e7","toSide":"top"}
+	]
 }

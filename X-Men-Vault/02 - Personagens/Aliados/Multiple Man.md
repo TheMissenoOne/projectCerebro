@@ -30,6 +30,13 @@ tags: [x-factor-investigations, multiple-man]
 
 Fundador da [[X-Factor Investigations]] em Nova York. Mutante que se duplica ao receber impacto.
 
+## Personalidade
+
+- Dificuldade de tomar decisões: avalia todos os ângulos, o que às vezes o deixa confuso e inseguro na hora de agir.
+- Gosto eclético: curtia "Quanto Mais Idiota Melhor" na juventude e hoje prefere o cinema noir.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/11/homem-multiplo/
+
 ## Poderes
 
 - Duplicação física por impacto (cada duplicata com perspectiva própria).

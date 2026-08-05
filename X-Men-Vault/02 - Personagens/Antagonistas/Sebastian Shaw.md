@@ -30,8 +30,18 @@ tags: ["198", "manteve-poderes-dia-m", "sebastian-shaw"]
 
 Lord Cardinal do [[Clube do Inferno]]; absorve impacto e o converte em força. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Ganancioso e ambicioso — ergueu Indústrias Shaw do nada, forneceu tech para Sentinelas
+- Paranoico com poder — maior temor é perder o cargo de Rei Negro como ele tomou (assassinou o anterior)
+- Manipulador e pragmático — usou Emma Frost, traiu Tessa/Sábia, aliou-se a Holocausto
+- Taras e perversões sexuais — histórico de relacionamentos exploratórios (Emma, Lourdes, Madelyne)
+- Vingativo contra traição — apagou memória de Shaw por Emma, tramou contra filho Shinobi
+
 ## Poderes
 
 - Absorção de energia cinética.
 - Força sobre-humana.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/06/02/shaw-sebastian/
 

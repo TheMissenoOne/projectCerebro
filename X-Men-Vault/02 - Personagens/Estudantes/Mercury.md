@@ -39,6 +39,11 @@ Pele prateada líquida, cabelos do mesmo metal; aparência andrógina fluida.
 
 Empática e emocional; encara com bons olhos a própria aparência única.
 
+- Acolhedora com os novos: foi uma das poucas a aceitar X-23 no Instituto, criando forte amizade.
+- Carente de aceitação familiar: chegou a desejar que os pais voltassem a aceitá-la.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/01/20/mercury/
+
 ## Poderes
 
 - **Metal líquido:** Corpo maleável e moldável.

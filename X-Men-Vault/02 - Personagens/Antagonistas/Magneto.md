@@ -35,6 +35,11 @@ Homem maduro de ~72 anos, magro, cabelos/cinza, porte altivo mesmo na cadeira us
 
 ## Personalidade
 Ideólogo, ferido, ferido — sobrevivente.	Acredita no poder dos mutantes como força que deve ser livre; métodos ao extremo. Quando assume X-Men, mostra liderança e honra a Xavier, mas acumula dor. Em Genosha, quer criar nação governada por mutantes — amargurado, mas funcional. Em 2010, enquanto desaparecido, alimenta esperança ou fúria em segredo.
+- Teme tornar-se o mesmo monstro responsável por ele ser o que é.
+- Líder nato, com discursos passionais e mobilizadores.
+- Enxaquecas crônicas, provavelmente causadas pela extensão de seu poder.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/18/magneto/
 
 ## Poderes
 - **Controle do magnetismo:** Redireciona campos eletromagnéticos de escala massiva (metal, eletricidade, loriga, até planetária em escala reduzida — ameaçou infraestrutura global em 2001).

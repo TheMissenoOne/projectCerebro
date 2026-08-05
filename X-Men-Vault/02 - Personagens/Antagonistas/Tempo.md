@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "tempo"]
 
 Mutante que manipula o tempo local. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Forte senso de justiça e moralidade, recusando missões imorais da FLM
+- Independente: rejeitou convite da X-Force para ter vida normal e concluir faculdade
+- Empática: avisou Dr. Tucker e salvou Henry Peter Gyrich, inimigo dos mutantes
+- Age pela consciência, não por lealdade cega a grupos radicais
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/04/22/tempo/
+
 ## Poderes
 
 - Desaceleração do fluxo de tempo.

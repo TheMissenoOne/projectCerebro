@@ -30,6 +30,13 @@ tags: [x-force, domino]
 
 Membro da [[X-Force]]. Mutante cujo poder altera a probabilidade a seu favor — como também excelente mercenária e atiradora.
 
+## Personalidade
+
+- Pragmática e mercenária: nas missões da Matilha, a meta muitas vezes era apenas o dinheiro.
+- Tem uma peculiaridade: medo de galinha.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/12/24/domino/
+
 ## Poderes
 
 - Manipulação de probabilidade ("sorte").

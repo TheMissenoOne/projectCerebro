@@ -46,6 +46,16 @@ Cabelos ruivos, marca de mão no rosto (scar mark histórico); visual punk de fu
 - [[Jean Grey]] — mãe (falecida)
 - [[Noturno]] · [[Psylocke]] — Excalibur
 
+## Personalidade
+
+- Marcada por infância distópica (Dias de um Futuro Esquecido): mãe morta, capturada aos 8 anos, transformada em "farejadora" psíquica forçada a caçar mutantes.
+- Depressão profunda e trauma contínuo ao chegar ao universo 616; carrega culpa de sobrevivente.
+- Vontade ferrenha: rompeu controle de Ahab, enviou mente de Kate Pryde ao passado para evitar futuro terrível.
+- Protetora ferrenha de aliados (Franklin Richards, Novos Mutantes); usa poder telepatia/telecinese com intensidade emocional.
+- Visual punk e atitude rebelde mascaram fragilidade interior.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/09/garota-marvel/
+
 ## Ver também
 
 - [[Excalibur]]

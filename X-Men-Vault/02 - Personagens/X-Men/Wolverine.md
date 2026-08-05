@@ -37,7 +37,10 @@ Baixo, corpulento, costeletas e garras de adamantium.
 
 ## Personalidade
 
-Rústico e direto; mentoria pragmática. Relação próxima com [[Kitty Pryde]] (levava-a a missões quando jovem) e com [[X-23]] (Academia X).
+- Rústico e direto; mentoria pragmática. Relação próxima com [[Kitty Pryde]] (levava-a a missões quando jovem) e com [[X-23]] (Academia X).
+- Agressivo e invocado, conflito constante com fúria interior
+- Recusa-se a deixar aliados tornarem-se assassinos como ele
+- Sotaque canadense marcado
 
 ## Poderes
 

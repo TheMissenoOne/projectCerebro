@@ -35,6 +35,9 @@ Homem de uns 58 anos, careca, bondoso/grave, em cadeira de rodas (com mobilidade
 
 ## Personalidade
 Idealista, metodista, pedagógico — quer reconciliar humanidade e mutantes. Mas se torna cada vez mais pragmático/sombrio ao longo dos anos (segredos, perdas). Acredita nos X-Men mas também os controla (memórias editadas). Arrependido, mas não totalmente transparente.
+- Obsessivo por seus ideais; pode usar subterfúgios pouco éticos para atingi-los, mas costuma respeitar a privacidade de pensamento, não invadindo mentes sem motivo.
+- Respeita a privacidade mental alheia como princípio, não invadindo mentes sem necessidade justificada.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/03/professor-x/
 
 ## Poderes
 - **Telepatia:** Leitura/escrita de mentes, projeção astral, ilusões, sugestão, uma das mentes mais fortes da Terra.

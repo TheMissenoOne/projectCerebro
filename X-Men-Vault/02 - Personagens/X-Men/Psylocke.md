@@ -39,6 +39,13 @@ Cabelos roxos; cicatriz característica sobre o olho. Treinada em combate corpo 
 
 Gélida no campo de batalha, protetora da família. Ladeira entre a frieza estratégica e a moral heroica.
 
+- Formação, hábitos e sotaque britânicos aristocráticos.
+- Pansexual (canônico).
+- Herdeira multi-milionária (família Braddock); concilia vida de modelo e agente secreta.
+- Resiliência extrema: cegada pelo Mestre dos Assassinos, recebeu olhos mecânicos de Mojo, voltou a combater.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/07/psylocke/
+
 ## História
 
 - **1992:** Integra a 2ª formação dos X-Men para o resgate da [[Krakoa]].

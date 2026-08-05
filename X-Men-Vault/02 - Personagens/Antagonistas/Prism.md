@@ -35,3 +35,12 @@ Mutante de corpo cristalino do Círculo de Mister Sinistro. Listado entre os sob
 - Corpo cristalino.
 - Absorção e reflexão de energia.
 
+## Personalidade
+
+- Implacável no massacre: chacinou Morlocks sem hesitação ao lado de Arrasa-Quarteirão e Dentes-de-Sabre.
+- Dominador: após Dia M, assumiu controle do Asilo Ravencroft, aterrorizando ex-mutantes lá confinados.
+- Persistente: clonado/regenerado repetidamente por Sr. Sinistro, retorna sempre aos Carrascos.
+- Lealdade inquestionável a Sinistro; executa ordens mesmo contra grávidas (Madelyne Pryor).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/02/17/prisma/
+

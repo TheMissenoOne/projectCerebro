@@ -35,6 +35,7 @@ Homem de meia-idade, cabelo grisalho, barba, olhos fervorosos, traje clerical/so
 
 ## Personalidade
 Fanático, manipulador, traumatizado (perda da esposa/filho). Como chefe religioso, usa a dor para justificar genocídio "por ordem divina". Carismático para seguidores, cruel com mutantes.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/05/15/stryker/
 
 ## Poderes
 Nenhum ( humano).

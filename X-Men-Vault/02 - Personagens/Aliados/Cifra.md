@@ -36,7 +36,9 @@ Jovem geek, visual casual.
 
 ## Personalidade
 
-Brilhante, gentil e analítico; valorizado como a "chave" de comunicação da equipe.
+Brilhante, gentil e analítico; valorizado como a "chave" de comunicação da equipe. Grande entusiasta de videogames, computadores e novas tecnologias. Viveu um forte sentimento de inadequação nos Novos Mutantes — achava-se inútil por seu poder não ser físico. Membro da Igreja de Jesus Cristo dos Santos dos Últimos Dias.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2011/06/22/cifra/
 
 ## Poderes
 

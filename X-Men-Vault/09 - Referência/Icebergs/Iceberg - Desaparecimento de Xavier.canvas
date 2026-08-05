@@ -1,111 +1,18 @@
 {
-  "nodes": [
-    {
-      "id": "g-f14f30da27c1",
-      "type": "group",
-      "x": -50,
-      "y": -50,
-      "width": 1460,
-      "height": 260,
-      "label": "PONTA — sinal visível (Depth 0)"
-    },
-    {
-      "id": "g-d9dfa7ca8fc3",
-      "type": "group",
-      "x": -50,
-      "y": 230,
-      "width": 1460,
-      "height": 260,
-      "label": "CAMADAS MÉDIAS (Depth 1-2)"
-    },
-    {
-      "id": "g-962f93f7f8ec",
-      "type": "group",
-      "x": -50,
-      "y": 790,
-      "width": 1460,
-      "height": 260,
-      "label": "VERDADE PROFUNDA (Depth 3)"
-    },
-    {
-      "id": "n-86457275de38",
-      "type": "text",
-      "text": "[[Xavier]] desaparecido desde 2004 — líder fundador ausente do Instituto",
-      "x": 60,
-      "y": 0,
-      "width": 300,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "n-98aa1a4b8aa6",
-      "type": "text",
-      "text": "O Instituto funciona sob [[Emma Frost]] (co-diretora) + [[Ciclope]]; o vazio de liderança cresce",
-      "x": 60,
-      "y": 280,
-      "width": 300,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "n-3c991825b656",
-      "type": "text",
-      "text": "[[Rei das Sombras]] pode interferir na busca; Emma supostamente sóbria?",
-      "x": 60,
-      "y": 560,
-      "width": 300,
-      "height": 120,
-      "color": "1"
-    },
-    {
-      "id": "n-411a4345680a",
-      "type": "text",
-      "text": "NÃO DEFINIR até decisão do mestre (seed §9.4)",
-      "x": 60,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    },
-    {
-      "id": "n-95236f9d9377",
-      "type": "text",
-      "text": "Gatilhos possíveis: confronto com Vulcan; resgate pelo Time Vermelho; telepatia residual",
-      "x": 388,
-      "y": 840,
-      "width": 300,
-      "height": 120,
-      "color": "6"
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-14ba72519976",
-      "fromNode": "n-86457275de38",
-      "fromSide": "bottom",
-      "toNode": "n-98aa1a4b8aa6",
-      "toSide": "top"
-    },
-    {
-      "id": "e-36884bb71ef6",
-      "fromNode": "n-98aa1a4b8aa6",
-      "fromSide": "bottom",
-      "toNode": "n-3c991825b656",
-      "toSide": "top"
-    },
-    {
-      "id": "e-c4bcd80678e3",
-      "fromNode": "n-3c991825b656",
-      "fromSide": "bottom",
-      "toNode": "n-411a4345680a",
-      "toSide": "top"
-    },
-    {
-      "id": "e-aa46d0db5011",
-      "fromNode": "n-411a4345680a",
-      "fromSide": "bottom",
-      "toNode": "n-95236f9d9377",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"g-f14f30da27c1","type":"group","x":-50,"y":-50,"width":1460,"height":260,"label":"PONTA — sinal visível (Depth 0)"},
+		{"id":"g-d9dfa7ca8fc3","type":"group","x":-50,"y":230,"width":1460,"height":260,"label":"CAMADAS MÉDIAS (Depth 1-2)"},
+		{"id":"g-962f93f7f8ec","type":"group","x":-50,"y":790,"width":1460,"height":260,"label":"VERDADE PROFUNDA (Depth 3)"},
+		{"id":"n-86457275de38","type":"text","text":"[[Xavier]] desaparecido desde 2004 — líder fundador ausente do Instituto","x":60,"y":0,"width":300,"height":120,"color":"2"},
+		{"id":"n-98aa1a4b8aa6","type":"text","text":"O Instituto funciona sob [[Emma Frost]] (co-diretora) + [[Ciclope]]; o vazio de liderança cresce","x":60,"y":280,"width":300,"height":120,"color":"4"},
+		{"id":"n-3c991825b656","type":"text","text":"[[Rei das Sombras]] pode interferir na busca; Emma supostamente sóbria?","x":60,"y":560,"width":300,"height":120,"color":"1"},
+		{"id":"n-411a4345680a","type":"text","text":"NÃO DEFINIR até decisão do mestre (seed §9.4)","x":60,"y":840,"width":300,"height":120,"color":"6"},
+		{"id":"n-95236f9d9377","type":"text","text":"Gatilhos possíveis: confronto com Vulcan; resgate pelo Time Vermelho; telepatia residual","x":388,"y":840,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-14ba72519976","fromNode":"n-86457275de38","fromSide":"bottom","toNode":"n-98aa1a4b8aa6","toSide":"top"},
+		{"id":"e-36884bb71ef6","fromNode":"n-98aa1a4b8aa6","fromSide":"bottom","toNode":"n-3c991825b656","toSide":"top"},
+		{"id":"e-c4bcd80678e3","fromNode":"n-3c991825b656","fromSide":"bottom","toNode":"n-411a4345680a","toSide":"top"},
+		{"id":"e-aa46d0db5011","fromNode":"n-411a4345680a","fromSide":"bottom","toNode":"n-95236f9d9377","toSide":"top"}
+	]
 }

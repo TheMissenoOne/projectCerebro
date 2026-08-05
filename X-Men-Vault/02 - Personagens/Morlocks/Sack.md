@@ -39,7 +39,15 @@ Morlock dos túneis de Nova York, corpo maleável e contorcionista.
 
 - [[Morlocks]] — comunidade
 
+## Personalidade
+
+- Vingativo e extremista — prometeu matar 100 humanos para cada mutante morto no Massacre
+- Implacável e ambicioso — tentou tomar controle de Utopia usando jovens X-Men como reféns
+- Leal à Nação Gene — membro fundador que seguiu Mikhail Rasputin à Colina
+
 ## Ver também
 
 - [[Morlocks]]
 - [[Contagem dos 198]]
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2021/01/30/sack/

@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "sabra"]
 
 Heroína mutante ligada ao governo de Israel. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+- Patriota dedicada, primeira agente sobre-humana do Mossad; coloca o dever a Israel acima de tudo.
+- Trauma profundo: perdeu o filho Jacob (6 anos) em atentado — motivação pessoal nos conflitos Israel-Palestina.
+- Empatia humana mesmo com inimigos: lamentou a morte de criança árabe ao confrontar Hulk, mostrando que valoriza vida inocente acima de política.
+- Disciplinada e policial (ex-forças israelenses de Tel Aviv) antes de heroína.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2022/09/17/sabra/
+
 ## Poderes
 
 - Força sobre-humana.

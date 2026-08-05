@@ -39,6 +39,10 @@ Pele translúcida e cerosa, estruturas de cera onduladas; sorriso meio "derretid
 
 Espirituoso e resiliente; mantém humor apesar da aparência incomum.
 
+- Jovem de espírito infantilizado que praticava *bullying* na escola, mas se arrependeu com o tempo e hoje se tornou defensor da causa mutante.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2014/11/14/glob-herman/
+
 ## Poderes
 
 - **Parafina viva:** Corpo moldável.

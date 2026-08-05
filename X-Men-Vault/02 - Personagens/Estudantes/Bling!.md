@@ -39,6 +39,11 @@ Pele recoberta de cristais que brilham; visual chamativo de teen fashion.
 
 Carismática, exibicionista e determinada; usa a aparência a favor.
 
+- Estoura fácil: estressa-se rapidamente.
+- Rebelde e independente: virou as costas à tradição familiar do hip-hop para seguir o próprio caminho no Instituto Xavier.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2019/10/21/bling/
+
 ## Poderes
 
 - **Endurecimento cristalino:** Cobre o corpo com carbono cristalino.

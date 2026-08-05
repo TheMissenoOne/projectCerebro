@@ -30,6 +30,14 @@ tags: ["morlocks","rasputin","poderoso","manteve-poderes-dia-m"]
 
 Morlock veterano dos túneis de Nova York, irmão mais velho de [[Colossus]] e [[Magia]]. Um dos mutantes mais poderosos entre os Morlocks.
 
+## Personalidade
+
+- Mentalmente instável devido à primeira experiência fora da Terra, à morte de seus companheiros de tripulação e, depois, à da população da dimensão em que viveu.
+- Tomado pela dor, exilou-se no deserto e passou a temer usar os próprios poderes.
+- Enquanto hospedeiro de uma criatura de outra dimensão, tornava-se mais violento que o normal.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2010/06/21/mikhail-rasputin/
+
 ## Poderes
 
 - Manipulação de realidade (quântica) limitada.

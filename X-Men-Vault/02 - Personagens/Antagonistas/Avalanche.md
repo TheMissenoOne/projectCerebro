@@ -30,6 +30,12 @@ tags: ["198", "manteve-poderes-dia-m", "avalanche"]
 
 Ex-membro de irmandades mutantes; gera terremotos e vibrações sísmicas. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Leal aos amigos: ao saber que Pyro estava infectado pelo Vírus Legado, deixou o Projeto Despertar para ajudá-lo a procurar uma cura.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2011/11/06/avalanche/
+
 ## Poderes
 
 - Geração de ondas sísmicas.

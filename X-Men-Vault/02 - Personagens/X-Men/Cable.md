@@ -31,6 +31,14 @@ tags: [x-force, cable, lider]
 
 Filho de [[Ciclope]] e [[Madelyne Pryor]], nascido em 2001 e levado quase imediatamente ao futuro após ser ameaçado/infectado por tecnologia ligada a [[Apocalipse]]. Cresce fora da sua época e retorna como líder da [[X-Force]].
 
+## Personalidade
+
+- Frio — não hesita ao tomar decisões difíceis.
+- Determinado, com forte senso de liderança amadurecido no futuro Askani.
+- Rebelde e cético das tradições Askani após a vitória sobre Apocalipse.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/10/25/cable/
+
 ## História
 
 - **2001:** Nascimento; levado ao futuro para sobreviver.

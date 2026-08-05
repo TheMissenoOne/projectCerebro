@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "garota-esquilo"]
 
 Heroína com poderes de esquilo. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Otimista e empática — enxerga sempre o melhor lado das pessoas.
+- Prefere resolver conflitos por diálogo e compreensão antes de recorrer à violência.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2011/11/18/garota-esquilo/
+
 ## Poderes
 
 - Comunicação com esquilos.

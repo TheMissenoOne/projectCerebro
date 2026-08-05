@@ -39,6 +39,11 @@ Forma física de gelo translúcido quando transformado.
 
 Descontraído e irônico, aliviam tensões. Confiável e criativo em combate.
 
+- Piadista e bem-humorado — o bom humor é sua marca registrada.
+- Certa infantilidade ainda o impede de explorar plenamente o próprio potencial.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/10/homem-de-gelo/
+
 ## História
 
 - **1989:** Cofundador dos X-Men originais.

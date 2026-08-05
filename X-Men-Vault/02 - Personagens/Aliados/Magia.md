@@ -37,6 +37,10 @@ Cabelos loiros, armadura do Limbo (Darkchild) quando ativa.
 ## Personalidade
 
 Bem-humorada, com aspereza; domina o Limbo com força de vontade.
+- Sarcástica.
+- Sente mal-estar diante de locais e imagens religiosas (por ter uma parte demoníaca dentro de si).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/12/31/magia-rasputin-illyana/
 
 ## Poderes
 

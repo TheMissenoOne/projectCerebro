@@ -33,6 +33,14 @@ Membro da [[X-Force]]. Mutante de natureza bestial com garras e sentidos caninos
 > [!WARNING]
 > Não confundir com [[Lupina]] (Rahne Sinclair) — são pessoas distintas na continuidade. A identidade civil exata (Maria Callisto) deve ser confirmada.
 
+## Personalidade
+
+- Comportamento contraditório, impulsivo e com tendências violentas (perfil psicológico felino, segundo [[Cable]]).
+- Gosta de caçar e se alimentar de pequenos roedores e aves, como um felino.
+- Falta de autocontrole em combate: já feriu colegas em treinamento ao perder o controle.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2012/03/19/feral/
+
 ## Poderes
 
 - Garras retráteis.

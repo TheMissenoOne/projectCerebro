@@ -39,6 +39,11 @@ Jovem grande e gentil, cabelos pretos; trança incorporada ao estilo.
 
 Manso, contemplativo; relutante em usar pleno poder por medo do dano colateral.
 
+- Calmo e espiritual; não gosta de violência e medita constantemente para conter o próprio poder.
+- Mantém-se distante dos outros alunos e não aprecia conversas vazias; tem profundo respeito pela diversidade cultural e a defende com conhecimento.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/04/gentil/
+
 ## Poderes
 
 - **Amplificação:** Aumento de força, resistência e velocidade conforme o esforço.

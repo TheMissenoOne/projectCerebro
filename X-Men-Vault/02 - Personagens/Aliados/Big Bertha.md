@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "big-bertha"]
 
 Modelo que expande a massa em combate. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Amigável e leal; adora ser super-heroína e vê os companheiros de equipe como sua família.
+- Recusou oportunidades de carreira de modelo no exterior para não deixar os amigos.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2019/04/07/grande-bertha/
+
 ## Poderes
 
 - Aumento de massa corporal.

@@ -30,6 +30,15 @@ tags: ["198", "manteve-poderes-dia-m", "nocturna"]
 
 Filha de [[Noturno]] de outra realidade; habita e manipula a dimensão de penumbra. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Adora ouvir música; tocou bateria em uma banda de rock.
+- Dedicada: treinou arduamente para se tornar uma X-Man.
+- Disposta ao sacrifício: ofereceu-se para pilotar uma nave com armas nucleares contra os Vi-Locks.
+- Inicialmente relutante com as missões perigosas dos Exilados, acabou apegando-se à nova equipe.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/01/30/nocturna/
+
 ## Poderes
 
 - Teleporte.

@@ -38,6 +38,7 @@ Cabelos bagunçados, orelhas levemente pontudas quando ativa o instinto; postura
 ## Personalidade
 
 Brincalhão e territorial; lealdade de matilha ao esquadrão.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/08/15/lobinho/
 
 ## Poderes
 

@@ -35,6 +35,11 @@ Mulher alta, esguia, negra, olhos azuis (brancos quando usa clima), cabelo branc
 
 ## Personalidade
 Calma, majestosa, compassiva — "mãe da equipe". Coragem estoica, moral inabalável, liderança serena. Uma das poucas que nunca questionou o propósito dos X-Men. Entre a fé em Xavier e a necessidade de sobreviver ao caos político, mantém equilíbrio.
+- Grande determinação e força de vontade.
+- Durante muito tempo conteve emoções para não perder o controle dos poderes.
+- Personalidade forte.
+- Claustrofóbica (pânico de lugares fechados); hoje controla, sentindo apenas desconforto em espaços apertados.
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/23/tempestade/
 
 ## Poderes
 - **Controle de clima:** Temperatura, vento, precipitação, pressão, umidade, relâmpagos, nuvens, raios — escala local a surpreendente.

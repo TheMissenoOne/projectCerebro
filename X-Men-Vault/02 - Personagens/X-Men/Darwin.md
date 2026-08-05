@@ -34,7 +34,9 @@ Mutante com poder de **adaptação reativa** quase ilimitada. Integrante da equi
 Jovem africano (em 1992), careca/raspado, atlético, olhos expressivos. Durante adaptações, forma se altera de acordo com a ameaça (aquática, flutuante, resistente, etc.).
 
 ## Personalidade
-Corajoso, leal, pragmático — vê o poder dele como "sempre sobrevover". Confia em Xavier até a trapaça de Deadly Genesis. Racional, estoico. Sobreviver (se reaparecer) em isolamento pode tê-lo endurecido/desconectado.
+Corajoso, leal, pragmático — vê o poder dele como "sempre sobreviver". Confia em Xavier até a trapaça de Deadly Genesis. Racional, estoico. Sobreviver (se reaparecer) em isolamento pode tê-lo endurecido/desconectado. Puro e inocente por natureza. Apesar da rejeição e do menosprezo da própria mãe, amava-a incondicionalmente e fazia de tudo para deixá-la feliz.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/10/21/darwin/
 
 ## Poderes
 - **Adaptação reativa:** Corpo reage automaticamente ao ambiente/ameaças — cresce escamas, brânquias, pele metálica, desvanece, se adapta a veneno/pressão/temperatura, resistência a fogo, etc.

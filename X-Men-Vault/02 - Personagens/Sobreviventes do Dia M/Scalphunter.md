@@ -35,6 +35,16 @@ Mutante com percepção energética e resistência ao calor, listado entre os so
 - Percepção de energia.
 - Resistência a altas temperaturas.
 
+## Personalidade
+
+- Cruel e sem compaixão — não tem pena de suas vítimas, colecionava escalpos na 2ª Guerra
+- Lealdade fanática a Sinistro — primeiro e mais fiel capanga, serviu por décadas
+- Psicopata funcional — executado por pelotão, sobreviveu e continuou matando (filhos de Annalee, Madelyne grávida)
+- Buscou redenção tardia — abriu trailer-restaurante, foi perdoado por Noturno
+- Reabilitado em Krakoa — integrou os Satânicos como parte do programa do Conselho
+
 ## Ver também
 
 - [[Contagem dos 198]]
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/30/cacador-de-escalpos/

@@ -30,6 +30,14 @@ tags: ["198", "manteve-poderes-dia-m", "living-monolith"]
 
 Mutante egípcio que cresce em forma de rocha. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Acadêmico convicto: professor de egiptologia que publicou a teoria de que faraós e deuses da antiguidade eram mutantes antigos — foi acusado de heresia por isso.
+- Avaliado por [[Apocalipse]] como um homem de grande potencial, porém derrotado e espancado, sem direção.
+- Férrea na defesa das próprias crenças: disparou energia sobre a multidão que não ajudou na morte de sua esposa.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2019/11/30/monolito-vivo/
+
 ## Poderes
 
 - Absorção de energia.

@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "selene"]
 
 Mutante milenar do [[Clube do Inferno]]; drena vida para sobreviver. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+- Tem e evita envelhecer — a imortalidade é sua obsessão central; drena vida para não envelhecer.
+- Manipuladora política milenar: usa casamentos e alianças (ex: Marcus Gallio) para poder, sacrifica inocentes em rituais.
+- Predatória e parasitária: vê outros como fontes de energia vital, seduz alvos poderosos (ex: Fanático) para drená-los.
+- Ambiciosa e arrogante: busca herdeiros poderosos (tentou cooptar Rachel Summers), vê-se como "anciã do mundo".
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/07/19/selene/
+
 ## Poderes
 
 - Absorção de energia vital.

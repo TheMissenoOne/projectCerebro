@@ -39,6 +39,12 @@ Pele azul, cauda, aparência demoníaca amável. Orelhas pontudas e sorriso cari
 
 Devoto, gentil e humorado. Um dos vínculos morais mais fortes da equipe.
 
+- Galanteador e simpático; usa o bom humor como forma de escapismo.
+- Fé religiosa forte: católico apostólico romano.
+- Cinéfilo: fã de Errol Flynn, filmes de piratas e Star Wars.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/25/noturno/
+
 ## História
 
 - **1992:** Junta-se à 2ª formação para o resgate da [[Krakoa]].

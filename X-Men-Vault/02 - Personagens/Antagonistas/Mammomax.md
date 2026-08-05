@@ -30,6 +30,15 @@ tags: ["198", "manteve-poderes-dia-m", "mammomax"]
 
 Mutante com forma de mamute e grito sônico. Listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Ingênuo e esperançoso: juntou-se à Irmandade achando que era um grupo de mutantes fortes e resistentes, e ficou desapontado ao ver como aquela versão era fraca de fato.
+- Afetuoso e leal: formou amizade com Erg, Fever Pitch e Sack.
+- Sensível à aparência: reagiu com violência a ser chamado de "Homem Elefante", quase atacando um menino por provocação.
+- Crente constante: tinha certeza de que a Irmandade o resgataria eventualmente.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2014/10/31/mammomax/
+
 ## Poderes
 
 - Corpo de mamute.

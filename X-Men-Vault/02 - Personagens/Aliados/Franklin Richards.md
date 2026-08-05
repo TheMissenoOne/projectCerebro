@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "franklin-richards"]
 
 Mutante de nível omega listado entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- Bastante imaginativo.
+- Alegre e agitado.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2015/03/13/franklinrichards/
+
 ## Poderes
 
 - Manipulação de realidade.

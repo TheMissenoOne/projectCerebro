@@ -35,6 +35,15 @@ Membro da [[X-Force]]. Mutante com poder de gerar vibrações sísmicas destruti
 - Gera ondas sísmicas pelo corpo.
 - Desestabiliza estruturas com o toque.
 
+## Personalidade
+
+- Adolescência revoltada alimentada por infância trágica e desejo de vingança pela morte do pai.
+- Amadurecimento gradual: aprendeu a lidar melhor com emoções explosivas com o tempo.
+- Lealdade intensa a poucos próximos (ex.: Shatterstar, Cable/X-Force).
+- Canaliza raiva em poder sísmico; controle emocional ainda em evolução.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/12/12/rictor/
+
 ## Relações
 
 - [[Shatterstar]] — parceiro próximo

@@ -42,6 +42,15 @@ Membro humano da [[X-Force]]. Agente britânico com passado na inteligência (MI
 - [[Cable]] — líder da X-Force
 - [[Excalibur]] — laços britânicos
 
+## Personalidade
+
+- Sarcástico e cínico, usa humor ácido como escudo.
+- Fuma em lugares inapropriados; métodos pouco ortodoxos irritam aliados.
+- Leal à missão, mas dificulta laços pessoais profundos (ex.: término com Kitty Pryde por "serem muito diferentes").
+- Abandonou a inteligência britânica (Black Air/MI-13) após massacres que o fizeram desertar por culpa.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/01/25/wisdom/
+
 ## Ver também
 
 - [[X-Force]]

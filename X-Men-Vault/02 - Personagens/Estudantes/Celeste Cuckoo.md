@@ -38,6 +38,10 @@ Loiras, penteado cortado em linha reta, colares de estilo Stepford.
 ## Personalidade
 
 Fria, precisa, trabalha sempre em trio.
+Inocente por natureza; passou um período sem emoções (coração de diamante continha a Fênix).
+Gosta de música clássica; assume papel de líder natural entre as irmãs.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2009/03/13/irmas-stepford/
 
 ## Poderes
 

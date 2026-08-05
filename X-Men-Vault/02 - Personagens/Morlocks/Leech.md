@@ -36,6 +36,11 @@ Jovem de ~12-14 anos, pequeno, pele esverdeada (tonalidade única), olhos grande
 ## Personalidade
 Doce, inocente, protetor — quer pertencer e ser útil. Aprendeu cedo que seu poder afasta/assusta mutantes (neutralização involuntária). Cauteloso com estranhos, leal aos que o acolhem.
 
+- **Tímido** (traço canônico de "Características Psicológicas").
+- **Comunicação restrita:** linguagem/expressão limitadas — fala pouco.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2013/12/11/sanguessuga/
+
 ## Poderes
 - **Supressão de mutações (aura):** Em proximidade (curto alcance), **neutraliza os poderes de outros mutantes** — automaticamente (involuntário; pode ser difícil de desligar).
 - Não afeta não-mutantes.

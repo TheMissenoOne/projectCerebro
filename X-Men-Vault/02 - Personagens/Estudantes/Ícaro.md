@@ -39,6 +39,11 @@ Asas emplumadas, cabelo castanho, construção esbelta.
 
 Idealista e sincero; quer provar algo por si mesmo, fora da sombra dos irmãos.
 
+- Carismático e popular pelo brilho natural e pela voz; carrega sempre um violão.
+- Costuma retrair sentimentos — guarda o que sente consigo, mesmo sendo sincero de modo geral.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2013/11/24/icaro/
+
 ## Poderes
 
 - **Voo:** Asas orgânicas funcionais.

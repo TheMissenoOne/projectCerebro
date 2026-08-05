@@ -33,6 +33,14 @@ Membro da [[X-Force]]. Mimetiza os poderes de outros mutantes ao alcance.
 > [!IMPORTANT]
 > **Mímica é contado como mutante** nesta continuidade (conta nos 198).
 
+## Personalidade
+
+- Romântica e apaixonada: acreditava que era feita para Wade Wilson e não via a hora de fugir com ele.
+- Fez-se à equipe: afeiçoou-se aos companheiros da X-Force e desobedeceu à ordem de bombardear a base deles.
+- Culpada e arrependida por envolver quem ama em seus problemas (como a amiga Tina).
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2016/02/15/vanessa-carlysle/
+
 ## Poderes
 
 - Copia poderes de mutantes próximos (padrão canônico de "one mimicking").

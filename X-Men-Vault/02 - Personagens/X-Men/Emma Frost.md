@@ -36,6 +36,11 @@ Loira platinada, olhos azuis/gelo, alta, porte calculado, elegante. Veste-se imp
 ## Personalidade
 Calculista, glamorosa, sarcástica, profundamente leal aos que escolhe. Máscara de fria, mas protetora dos estudantes. Racional até a crueldade em crises. Sob influência do Rei das Sombras, decisões administrativas e telepatia escapam ao seu controle — ela não sabe.
 
+- Arrogante e manipuladora.
+- Não limita o próprio poder por questões éticas ou respeito à privacidade alheia.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2008/11/07/frost-emma/
+
 ## Poderes
 - **Telepatia:** Leitura de mente, projeção psíquica, sugestionamento, barreiras psíquicas, controle limitado.
 - **Diamante orgânico:** Converte corpo em diamante vivo — força/britanidade sobre-humanas, imune a telepatia, resistência física. Custos: em forma diamante, **não** pode usar telepatia.

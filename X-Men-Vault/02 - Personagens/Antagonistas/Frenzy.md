@@ -30,6 +30,13 @@ tags: ["198", "manteve-poderes-dia-m", "frenzy"]
 
 Ex-acólita de [[Magneto]] com pele metálica. Listada entre os sobreviventes do [[Dia M]].
 
+## Personalidade
+
+- No passado, possuía grande desprezo pelos humanos.
+- Criação católica, mas aparentemente não segue mais a religião.
+
+> Fonte: Protocolos Marvel — https://protocolosmarvel.wordpress.com/2010/08/29/cargill/
+
 ## Poderes
 
 - Força sobre-humana.
