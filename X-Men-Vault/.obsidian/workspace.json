@@ -11,14 +11,17 @@
             "id": "d655df5183bf0976",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "02 - Personagens/Aliados/Dinamite.md",
-                "mode": "source",
-                "source": false
+                "file": "Sem título.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "Dinamite"
+              "icon": "lucide-layout-dashboard",
+              "title": "Sem título"
             }
           }
         ]
@@ -190,6 +193,21 @@
   },
   "active": "d655df5183bf0976",
   "lastOpenFiles": [
+    "04 - Instituto Xavier/Subsolos.md",
+    "04 - Instituto Xavier/Hangar do Blackbird.md",
+    "04 - Instituto Xavier/Cérebro.md",
+    "04 - Instituto Xavier/Política de Missões Estudantis.md",
+    "04 - Instituto Xavier/Esquadrões de Treinamento.md",
+    "04 - Instituto Xavier/Corpo Docente.md",
+    "05 - Locais/Túneis Morlocks.md",
+    "05 - Locais/Genosha.md",
+    "03 - Equipes e Organizações/Irmandade de Mutantes.md",
+    "03 - Equipes e Organizações/Clube do Inferno.md",
+    "03 - Equipes e Organizações/Morlocks.md",
+    "02 - Personagens/Aliados/Magia.md",
+    "Sem título.canvas",
+    "02 - Personagens/Aliados/Dominó.md",
+    "02 - Personagens/Aliados/Dinamite.md",
     "02 - Personagens/Sobreviventes do Dia M/Johnny Dee.md",
     "02 - Personagens/Aliados/Cifra.md",
     "02 - Personagens/Sobreviventes do Dia M/Toad.md",
@@ -201,20 +219,6 @@
     "02 - Personagens/Sobreviventes do Dia M/Jazz.md",
     "02 - Personagens/Sobreviventes do Dia M/Empath.md",
     "02 - Personagens/Sobreviventes do Dia M/Diamond Lil.md",
-    "02 - Personagens/Sobreviventes do Dia M/Collective Man.md",
-    "02 - Personagens/Sobreviventes do Dia M/Arclight.md",
-    "02 - Personagens/Sobreviventes do Dia M/Alchemy.md",
-    "02 - Personagens/Morlocks/Carver.md",
-    "02 - Personagens/Morlocks/Skids.md",
-    "02 - Personagens/Aliados/Capitão Britânia.md",
-    "06 - Eventos e Sagas/Recrutamento de Soraya Cadir.md",
-    "02 - Personagens/Morlocks/Sack.md",
-    "02 - Personagens/Morlocks/Mikhail Rasputin.md",
-    "06 - Eventos e Sagas/Recrutamento de The Wild.md",
-    "06 - Eventos e Sagas/Reativação do Time Dourado.md",
-    "06 - Eventos e Sagas/Operação Omar.md",
-    "06 - Eventos e Sagas/Operação Black Box.md",
-    "06 - Eventos e Sagas/Missão Líbano.md",
-    "06 - Eventos e Sagas/Investigação da Torre.md"
+    "02 - Personagens/Sobreviventes do Dia M/Collective Man.md"
   ]
 }

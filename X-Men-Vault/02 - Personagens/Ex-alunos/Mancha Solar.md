@@ -43,7 +43,7 @@ Aventureiro, extrovertido e generoso; usa o dinheiro da família como vantagem t
 
 - **2004:** Integra a 1ª geração estudantil.
 - **2007:** Permanência no círculo principal dos X-Men.
-- **2010:** X-Corp; envolvido no [[Cerco da X-Corp]] e no [[Ataque à Base da X-Corp na Índia]].
+- **2010:** X-Corp; envolvido no [[Cerco da X-Corp]] e no [[Ataque à Base Militar Indiana]].
 
 ## Poderes
 

@@ -29,7 +29,7 @@ tags: [ex-alunos, novos-mutantes-i, bola-de-canhao, x-corp]
 
 ## Resumo
 
-Uma das 6 alunas originais dos [[Novos Mutantes I]] (2004). Em 2010 integra a [[X-Corp]] com sede na Índia — alvo de ataque no [[Ataque à Base da X-Corp na Índia]].
+Uma das 6 alunas originais dos [[Novos Mutantes I]] (2004). Em 2010 integra a [[X-Corp]] com sede na Índia — alvo de ataque no [[Ataque à Base Militar Indiana]].
 
 ## Aparência
 
@@ -43,7 +43,7 @@ Honesto e protetor; instinto de liderança forjado na mineração da família.
 
 - **2004:** Integra a 1ª geração estudantil.
 - **2007:** Mantém-se nos X-Men principais.
-- **2010:** Integra a [[X-Corp]]; participa do [[Cerco da X-Corp]] e do [[Ataque à Base da X-Corp na Índia]] (operação coordenada com o [[X-Men - Time Vermelho]] e [[Ciclope]]).
+- **2010:** Integra a [[X-Corp]]; participa do [[Cerco da X-Corp]] e do [[Ataque à Base Militar Indiana]] (operação coordenada com o [[X-Men - Time Vermelho]] e [[Ciclope]]).
 
 ## Poderes
 
