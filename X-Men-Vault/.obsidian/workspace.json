@@ -1,0 +1,216 @@
+{
+  "main": {
+    "id": "835dce239762494d",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea2e1ec1a8ef7563",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d655df5183bf0976",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "26b1250d5d6b0940",
+    "type": "split",
+    "children": [
+      {
+        "id": "c34967aa69c14837",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c281c6844ee45d4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "3e90f3d39fe706f7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "03714b6eb040b0b1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "847475e38b362bb9",
+    "type": "split",
+    "children": [
+      {
+        "id": "7dc392a0471ff50b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "65cc1ccff145d982",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "00 - Meta/Início.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos"
+            }
+          },
+          {
+            "id": "80c427d7ec698a72",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "00 - Meta/Início.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída"
+            }
+          },
+          {
+            "id": "e90c785fd9d3a491",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "910d6eaf333443de",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "bfae28de394f5dd6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "00 - Meta/Início.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
+    }
+  },
+  "active": "d655df5183bf0976",
+  "lastOpenFiles": [
+    "09 - Referência/Correntes de Krakkan.md",
+    "09 - Referência/Bandas Rubras de Cyttorak.md",
+    "04 - Instituto Xavier/Pássaro Negro.md",
+    "03 - Equipes e Organizações/Academia X.md",
+    "03 - Equipes e Organizações/Novos Mutantes II.md",
+    "03 - Equipes e Organizações/Purificadores.md",
+    "08 - Sessões/Índice de Sessões.md",
+    "03 - Equipes e Organizações/Hellions - Academia X.md",
+    "03 - Equipes e Organizações/New Mutants - Academia X.md",
+    "04 - Instituto Xavier/Instituto Xavier.md",
+    "04 - Instituto Xavier/Mansão Xavier.md",
+    "04 - Instituto Xavier/Sala de Perigo.md",
+    "05 - Locais/Zona Rural Afegã (recrutamento de Soraya).md",
+    "05 - Locais/Base Militar Indiana.md",
+    "05 - Locais/Prédio do Cativeiro (Líbano).md",
+    "05 - Locais/Base da X-Corp na Índia.md",
+    "03 - Equipes e Organizações/X-Men - Time Vermelho.md",
+    "05 - Locais/Escola no Líbano.md",
+    "03 - Equipes e Organizações/X-Men - Time Azul.md",
+    "05 - Locais/Oficina de Morbius em Chicago.md",
+    "05 - Locais/Esconderijo de Black Box.md",
+    "03 - Equipes e Organizações/X-Corp.md",
+    "05 - Locais/Torres de Retransmissão.md",
+    "05 - Locais/Madripoor.md",
+    "07 - Mistérios e Tramas/Mistério Orchis.md",
+    "07 - Mistérios e Tramas/Mistério Black Box.md"
+  ]
+}
