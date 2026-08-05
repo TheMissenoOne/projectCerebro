@@ -21,7 +21,7 @@ Mapa de conteúdo das equipes X-Men em 2010.
 
 ## Membros principais
 
-- [[Ciclope]] · [[Emma Frost]] · [[Wolverine]] · [[Fera]] · [[Kitty Pryde]] · [[Colossus]] · [[Vampira]] · [[Gambit]] · [[Arcanjo]] · [[Homem de Gelo]] · [[Magma]] · [[Karma]] · [[Estrela Polar]] · [[Tempestade]] · [[Cable]]
+- [[Ciclope]] · [[Emma Frost]] · [[Wolverine]] · [[Fera]] · [[Kitty Pryde]] · [[Colossus]] · [[Vampira]] · [[Gambit]] · [[Arcanjo]] · [[Homem de Gelo]] · [[Magma]] · [[Karma]] · [[Estrela Polar]] · [[Tempestade]] · [[Cable]] · [[Noturno]] · [[Psylocke]] · [[Jubileu]] · [[Husk]] · [[Bishop]] · [[Havok]] · [[Forge]] · [[Moira MacTaggert]]
 
 ## História clave
 
