@@ -5,7 +5,7 @@ fundacao: ""
 dissolucao: ""
 status_2010: ativa
 lider: ""
-membros: ["Lupina", "Mancha Solar", "Bola de Canhão", Magia, Cifra, Banshee]
+membros: ["Lupina", "Mancha Solar", "Bola de Canhão", "Magia", "Cifra", "Banshee"]
 base: "Escritórios globais; base provisória na Índia (2010)"
 funcao: "Corporação mutante de suporte, logística, inteligência e reintegração"
 geracao: ""

@@ -11,10 +11,14 @@
             "id": "d655df5183bf0976",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "06 - Eventos e Sagas/Reativação do Time Dourado.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Reativação do Time Dourado"
             }
           }
         ]
@@ -186,31 +190,31 @@
   },
   "active": "d655df5183bf0976",
   "lastOpenFiles": [
-    "02 - Personagens/Estudantes/Ernst.md",
-    "02 - Personagens/Estudantes/Cerebella.md",
-    "02 - Personagens/Estudantes/Glob Herman.md",
-    "02 - Personagens/Estudantes/Kid Omega.md",
-    "02 - Personagens/Estudantes/Wolf Cub.md",
-    "02 - Personagens/Estudantes/Trance.md",
-    "02 - Personagens/Estudantes/Pixie.md",
-    "02 - Personagens/Estudantes/Match.md",
-    "02 - Personagens/Estudantes/Gentle.md",
-    "02 - Personagens/Estudantes/X-23.md",
-    "02 - Personagens/Estudantes/Venda.md",
-    "02 - Personagens/Estudantes/Armadura.md",
-    "02 - Personagens/Estudantes/Elixir.md",
-    "02 - Personagens/Estudantes/Surge.md",
-    "02 - Personagens/Estudantes/Wallflower.md",
-    "02 - Personagens/Estudantes/Ícaro.md",
-    "02 - Personagens/Estudantes/Wither.md",
-    "02 - Personagens/Estudantes/Rockslide.md",
-    "02 - Personagens/Estudantes/Mercury.md",
-    "02 - Personagens/Estudantes/Hellion.md",
-    "02 - Personagens/Estudantes/Phoebe Cuckoo.md",
-    "02 - Personagens/Estudantes/Irma Cuckoo.md",
-    "02 - Personagens/Estudantes/Celeste Cuckoo.md",
-    "02 - Personagens/Estudantes/Quill.md",
-    "02 - Personagens/Estudantes/Onyxx.md",
-    "02 - Personagens/Estudantes/Bling!.md"
+    "06 - Eventos e Sagas/Operação Omar.md",
+    "06 - Eventos e Sagas/Operação Black Box.md",
+    "06 - Eventos e Sagas/Missão Líbano.md",
+    "06 - Eventos e Sagas/Investigação da Torre.md",
+    "06 - Eventos e Sagas/Incidente das Clones no Cairo.md",
+    "02 - Personagens/Aliados/Cifra.md",
+    "06 - Eventos e Sagas/Fúria de Colossus.md",
+    "06 - Eventos e Sagas/Corrida Hellions versus New Mutants.md",
+    "02 - Personagens/Aliados/Magia.md",
+    "06 - Eventos e Sagas/Cerco da X-Corp.md",
+    "06 - Eventos e Sagas/Captura de Morbius.md",
+    "06 - Eventos e Sagas/Ataque do Míssil de Terrígeno.md",
+    "06 - Eventos e Sagas/Ataque à Base Militar Indiana.md",
+    "06 - Eventos e Sagas/Acordo Fury—Ciclope.md",
+    "00 - Meta/Convenções do Vault.md",
+    "00 - Meta/Fonte de Verdade.md",
+    "03 - Equipes e Organizações/Academia X.md",
+    "02 - Personagens/Estudantes/Anole.md",
+    "02 - Personagens/Sobreviventes do Dia M/Kiden Nixon.md",
+    "02 - Personagens/X-Men/Lupina.md",
+    "02 - Personagens/Aliados/Strong Guy.md",
+    "02 - Personagens/Aliados/Multiple Man.md",
+    "02 - Personagens/Aliados/Capitão Britânia.md",
+    "02 - Personagens/Civis e Independentes/Hamza.md",
+    "02 - Personagens/X-Men/Rachel Grey.md",
+    "02 - Personagens/X-Men/Banshee.md"
   ]
 }
