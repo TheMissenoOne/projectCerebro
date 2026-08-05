@@ -67,6 +67,7 @@ Liderança de campo de elite, planejamento tático militar, pilotagem (Blackbird
 - **2004:** Xavier desaparece; Ciclope sustenta o Instituto.
 - **2009:** Emma torna-se codiretora ao lado dele.
 - **2010:** Codiretor + líder Time Azul. Tem 3 times sob seu comando estratégico.
+- **2010 (jogado):** Supervisiona o [[X-Men - Time Vermelho]] recém-promovido; mobilizou o Time Azul para a Índia ([[Operação Black Box]]); liderou pessoalmente o [[Ataque à Base Militar Indiana]] (sem comunicar plenamente os demais); **fechou o acordo com [[Nick Fury]]/[[S.H.I.E.L.D.]]** (Time Vermelho como equipe metahumana externa — chantagem institucional); confrontou [[Colossus]] após a [[Fúria de Colossus|fúria]] deste (tensão não resolvida; Emma interrompeu com controle mental).
 
 ## Situação em 2010
 Codiretor do Instituto, líder do Time Azul, coordenador geral das missões X-Men. Mantém relação funcional com Xavier (desaparecido), parceria tensa/íntima com Emma (influenciada pelo Rei das Sombras — ele ainda não sabe). Prioridades: defender estudantes, investigar Genosha, preparação contra Puritanos/Sentinelas, lidar com possibilidade de retorno de Vulcan.

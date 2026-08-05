@@ -186,21 +186,64 @@ last_updated: 2026-08-04
 > [!NOTE]
 > Preencha após cada validação completa.
 
-**Data da auditoria:** YYYY-MM-DD  
-**Auditor:** Nome  
-**Versão do vault:** X.Y  
+**Data da auditoria:** 2026-08-05  
+**Auditor:** Agente (sessão de construção)  
+**Versão do vault:** 2.0 (arco jogado 2010 incorporado)
 
 ### Itens conformes
-- 
+- Seed validado (seções 1–16); primeiro arco jogado propagado (ver `7. Arco jogado 2010`).
+- Fichas de equipes: Times Azul/Dourado/Vermelho, X-Corp, S.H.I.E.L.D., Orchis, Homens de Omar, Elite Executivo, Purificadores, Academia X, Novos Mutantes II, Hellions/New Mutants (esquadrões).
+- Dossiês novos: Hamza, Dust/Soraya, Omar, Makeshift, Arrive, Black Box, Nick Fury, Morbius, Carniceiro, Colossus, Wolverine, Fera.
+- Jogadores atualizados com participação no arco 2010 (Atalho, Maestro, Nemesis, Signar, Texugo, Fusion, Calleb, Sangria, The Wild).
+- Locais, eventos e mistérios do arco criados; MOCs criados (10).
 
 ### Itens não conformes (ação requerida)
-- 
+- Dossiês pendentes do seed: equipes associadas (X-Factor, X-Force, Excalibur), Novos Mutantes I, Geração X, 30 estudantes da Academia X (só Dust criado), Morlocks restantes, sobreviventes do Dia M, Cósmicos.
+- Notas do Instituto pendentes: Administração, Corpo Docente, Currículo, Esquadrões de Treinamento, Política de Missões Estudantis, Processo de Graduação, Subsolos, Cérebro, Hangar do Blackbird, Academia de Massachusetts.
+- Eventos do seed pendentes (Krakoa, Deadly Genesis, Fênix, DOFP, Genosha, Inferno, Guerra Civil, Reinado Sombrio, Dia M, etc.).
 
 ### Questões em aberto descobertas
-- 
+- The Wild: continuidade 2005 vs 2010 (decidir).
+- Roster do Time Vermelho: 8 ou 9 (Sangria)?
+- "Sangria" vs "Signar" em Chicago.
+- Makeshift/Arrive: grafias finais; clones contam nos 198?
 
 ### Próxima auditoria agendada
-YYYY-MM-DD
+Após preencher dossiês pendentes do seed.
+
+---
+
+## 7. Arco jogado 2010 — Validações específicas
+
+### 7.1 Fatos jogados incorporados
+- [x] Registro cronológico integral: `[[Eventos Recentes - Campanha X-Men, 2010]]`
+- [x] Missão Líbano, resgate de Hamza, recrutamento de Soraya
+- [x] Operação Omar (célula afegã) — rede parcialmente desmantelada
+- [x] Torre afegã + guardas Makeshift/Arrive (grafias provisórias)
+- [x] Operação Black Box (torres, esconderijo, clones, Cairo)
+- [x] Cerco da X-Corp + escolta das peças
+- [x] Ataque do míssil de Terrígeno (portal de Atalho)
+- [x] Envenenamento de Kitty por Terrígeno (mesmo intangível) — mistério
+- [x] Ataque à Base Militar Indiana (Ciclope + Time Vermelho; Purificadores; Carniceiro; Orchis)
+- [x] Fúria de Colossus + tensões Ciclope/Emma/Kitty
+- [x] Acordo Fury—Ciclope (S.H.I.E.L.D. ↔ Time Vermelho)
+- [x] Recrutamento de The Wild em Madripoor (com conflito de continuidade sinalizado)
+- [x] Festa da Mansão + Corrida Hellions versus New Mutants (Hellion expulso)
+- [x] Reativação do Time Dourado (investigação Purificadores)
+- [x] Captura de Morbius em Chicago (1ª missão S.H.I.E.L.D.)
+
+### 7.2 Integridade (público)
+- [x] 2010.md atualizado (eventos, mudanças de status, questões)
+- [x] Dossiês participantes atualizados
+- [x] Relações/tensões registradas (Relações.md + fichas)
+- [x] Status médico de Kitty atualizado
+- [x] Composição/atribuições das equipes atualizadas
+- [x] Soraya registrada como recém-chegada (Academia X pós-missão)
+- [x] Purificadores atualizados (célula sul-asiática)
+- [x] Orchis criada como ameaça emergente
+- [x] Black Box como mistério central
+- [x] Acordo S.H.I.E.L.D. + consequências públicas registrados
+- [x] Ambiguidades explicitamente marcadas (`> [!WARNING]`, `> [!QUESTION]`)
 
 ---
 

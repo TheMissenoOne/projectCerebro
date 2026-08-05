@@ -59,6 +59,7 @@ Fora de campo, surpreendentemente versado: conhece geopolítica, fala várias l�
 - **2007:** Torna-se Novos Mutantes II (2ª geração); Kitty Pryde mentora de campo.
 - **2008:** Missões de suporte/reconhecimento.
 - **2010:** **Promovido ao Time Vermelho** (X-Men pleno).
+- **2010 (jogado):** Reconhecimento de terreno na [[Operação Omar]]; integrou a unidade de [[Wolverine]] na operação das torres e chegou com ela durante o ataque à escolta de peças no [[Cerco da X-Corp]] (neutralizou clones rapidamente com Wolverine); em Chicago recebeu de [[Maestro]] poderes concedidos e usou as [[Correntes de Krakkan]] na contenção de [[Morbius]] (ver [[Eventos Recentes - Campanha X-Men, 2010]]).
 
 ## Situação em 2010
 X-Men do Time Vermelho. Vive no Instituto, o ancoradouro físico da equipe em campo. Sua mentoria X-Men continua sendo a base de sua noção de lealdade.

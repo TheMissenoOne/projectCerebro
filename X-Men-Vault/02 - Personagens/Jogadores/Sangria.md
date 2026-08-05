@@ -59,6 +59,7 @@ Porta-voz natural da comunidade mutante: sempre por dentro do que acontece, cone
 - **2007:** Torna-se Novos Mutantes II (2ª geração); Kitty Pryde mentora de campo.
 - **2008:** Missões de suporte/reconhecimento.
 - **2010:** **Promovido ao Time Vermelho** (X-Men pleno). Atua como porta-voz da X-Corp.
+- **2010 (jogado):** Primeiro arco do Time Vermelho (Líbano, Afeganistão, Índia). ⚠ O relato da [[Captura de Morbius]] menciona que "Sangria quase morreu" em Chicago — provável erro de transcrição para [[Signar]], mas a grafia permanece em dúvida até confirmação (ver [[Eventos Recentes - Campanha X-Men, 2010]]).
 
 ## Situação em 2010
 X-Men do Time Vermelho, modelo nacional patrocinada (Toyota) e porta-voz da X-Corp na comunidade mutante. Equilibra os holofotes, a fuga deles e o heroísmo — e a pergunta do quanto sangue precisará ser derramado.

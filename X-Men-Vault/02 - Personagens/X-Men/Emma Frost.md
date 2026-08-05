@@ -57,6 +57,7 @@ Executiva e administração (Academia Massachusetts, Instituto), negociação, d
 - **2004:** Diretora da Academia de Massachusetts — Geração X treina lá.
 - **2009:** Deixa direção isolada; entra oficialmente nos X-Men; **codiretora** do Instituto com Ciclope.
 - **2010:** Codiretora, Time Azul, professora de Sociologia; influência Rei das Sombras ativa e oculta.
+- **2010 (jogado):** Indicou a investigação do despertar no Líbano; viajou à Índia na [[Operação Black Box]] e **conteve telepaticamente dezenas de clones capturadas** durante o [[Cerco da X-Corp]]; indicou [[The Wild]] como contato em [[Madripoor]]; após a [[Fúria de Colossus]], **controlou mentalmente Colossus** para interromper o confronto com [[Ciclope]] (ver [[Eventos Recentes - Campanha X-Men, 2010]]).
 
 ## Situação em 2010
 Codiretora do Instituto ao lado de [[Ciclope]]; X-Men Time Azul; professora de Sociologia. Ainda sob influência sutil e crescente do Rei das Sombras — decisões administrativas, relação com Ciclope, telepatia sobre alunos, memórias/evitamento de Genosha, investigação de Xavier e conflitos entre equipes podem ser manipulados.
