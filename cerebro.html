@@ -110,7 +110,28 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .search-box{width:100%;background:var(--p2);border:1px solid var(--b2);padding:6px 9px;color:var(--white);font-family:var(--mono);font-size:.6rem;outline:none;transition:border-color .15s;}
 .search-box:focus{border-color:var(--accent);}
 .search-box::placeholder{color:var(--b3);}
-.cat-pills{display:flex;flex-wrap:wrap;gap:3px;padding:7px 12px;border-bottom:1px solid var(--b1);flex-shrink:0;}
+.filter-panel{display:flex;flex-direction:column;flex-shrink:0;border-bottom:1px solid var(--b1);}
+.cat-pills{display:flex;flex-wrap:wrap;gap:3px;flex-shrink:0;}
+.cat-pills.tag-pills{max-height:92px;overflow-y:auto;}
+.sort-bar{display:flex;flex-shrink:0;}
+.sort-inp{font-family:var(--mono);font-size:.4rem;letter-spacing:.05em;padding:3px 6px;background:transparent;color:var(--muted);border:1px solid var(--b2);width:100%;}
+.sort-inp:focus{outline:none;border-color:var(--accent2);color:var(--text);}
+.cat-pill.tag-reset{opacity:.7;}
+.cat-pill.tag-reset.active{opacity:1;}
+.cat-pill.dp-pill.active{background:rgba(var(--accentRGB),.15);border-color:currentColor;color:inherit !important;}
+.filter-toggle{display:flex;align-items:center;gap:6px;width:100%;padding:6px 12px;background:transparent;border:none;border-bottom:1px solid var(--b1);font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;color:var(--text);cursor:pointer;text-transform:uppercase;-webkit-tap-highlight-color:transparent;}
+.filter-toggle:hover{color:var(--accent2);}
+.filter-toggle .filter-chev{transition:transform .15s;font-size:.4rem;color:var(--muted);}
+.filter-panel.open .filter-chev{transform:rotate(180deg);}
+#filter-badge{background:rgba(var(--accentRGB),.15);border:1px solid var(--accent2);color:var(--accent);font-size:.37rem;padding:1px 5px;border-radius:2px;display:none;}
+#filter-badge.on{display:inline-block;}
+.filter-body{max-height:0;overflow:hidden;transition:max-height .18s ease;}
+.filter-panel.open .filter-body{max-height:46vh;overflow-y:auto;}
+.filter-group{display:flex;flex-direction:column;gap:3px;padding:5px 12px;border-top:1px solid var(--b1);}
+.filter-label{font-family:var(--mono);font-size:.34rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
+.filter-group .cat-pills{border-bottom:none;padding:0;flex-shrink:0;}
+.filter-clear{width:calc(100% - 24px);margin:4px 12px 6px;padding:4px;font-family:var(--mono);font-size:.36rem;letter-spacing:.05em;border:1px dashed var(--b2);background:transparent;color:var(--muted);cursor:pointer;text-transform:uppercase;}
+.filter-clear:hover{color:var(--accent);border-color:var(--accent2);}
 .cat-pill{font-family:var(--mono);font-size:.4rem;letter-spacing:.05em;padding:3px 6px;border:1px solid var(--b2);background:transparent;color:var(--muted);cursor:pointer;text-transform:uppercase;transition:all .12s;-webkit-tap-highlight-color:transparent;}
 .cat-pill.active{background:rgba(var(--accentRGB),.15);border-color:var(--accent2);color:var(--accent);}
 .cat-pill:hover:not(.active){border-color:var(--b3);color:var(--text);}
@@ -362,20 +383,64 @@ if(window.visualViewport){
         <span class="npc-count" id="npc-count">0</span>
       </div>
       <input type="search" class="search-box" id="search-inp" data-i18n-placeholder="cerebro.filter" placeholder="FILTRAR..." oninput="filtrar()">
-      <select class="f-inp" id="esquadrao-filter" style="margin-top:6px" onchange="setEsquadrao(this.value)">
-        <option value="todos" data-i18n="cerebro.filterSquadAll">TODOS OS ESQUADRÕES</option>
-      </select>
     </div>
 
-    <div class="cat-pills">
-      <button class="cat-pill active" data-cat="todos" onclick="setCat(this)" data-i18n="common.all">TODOS</button>
-      <button class="cat-pill" data-cat="x-men" onclick="setCat(this)" data-i18n="faction.xmen">X-MEN</button>
-      <button class="cat-pill" data-cat="novatos" onclick="setCat(this)" data-i18n="faction.novatos">NOVATOS</button>
-      <button class="cat-pill" data-cat="morlock" onclick="setCat(this)" data-i18n="faction.morlock">MORLOCK</button>
-      <button class="cat-pill" data-cat="irmandade" onclick="setCat(this)" data-i18n="faction.irmandade">IRMANDADE</button>
-      <button class="cat-pill" data-cat="vilao" onclick="setCat(this)" data-i18n="faction.vilao">VILÃO</button>
-      <button class="cat-pill" data-cat="criminoso" onclick="setCat(this)" data-i18n="faction.criminoso">CRIME</button>
-      <button class="cat-pill" data-cat="neutro" onclick="setCat(this)" data-i18n="faction.neutro">NEUTRO</button>
+    <div class="filter-panel" id="filter-panel">
+      <button class="filter-toggle" id="filter-toggle" onclick="toggleFiltros()">
+        <span id="filter-badge"></span>
+        <span data-i18n="cerebro.filters">FILTROS</span>
+        <span class="filter-chev" id="filter-chev"></span>
+      </button>
+
+      <div class="filter-body" id="filter-body">
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="cerebro.filterFaction">FRAÇÃO</span>
+          <div class="cat-pills" id="fracao-pills">
+            <button class="cat-pill active" data-cat="todos" onclick="setCat(this)" data-i18n="common.all">TODOS</button>
+            <button class="cat-pill" data-cat="x-men" onclick="setCat(this)" data-i18n="faction.xmen">X-MEN</button>
+            <button class="cat-pill" data-cat="novatos" onclick="setCat(this)" data-i18n="faction.novatos">NOVATOS</button>
+            <button class="cat-pill" data-cat="morlock" onclick="setCat(this)" data-i18n="faction.morlock">MORLOCK</button>
+            <button class="cat-pill" data-cat="irmandade" onclick="setCat(this)" data-i18n="faction.irmandade">IRMANDADE</button>
+            <button class="cat-pill" data-cat="vilao" onclick="setCat(this)" data-i18n="faction.vilao">VILÃO</button>
+            <button class="cat-pill" data-cat="criminoso" onclick="setCat(this)" data-i18n="faction.criminoso">CRIME</button>
+            <button class="cat-pill" data-cat="neutro" onclick="setCat(this)" data-i18n="faction.neutro">NEUTRO</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="cerebro.squadField">ESQUADRÃO</span>
+          <div class="cat-pills squad-pills" id="squad-pills"></div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="cerebro.filtersDanger">PERIGO</span>
+          <div class="cat-pills perigo-pills" id="perigo-pills">
+            <button class="cat-pill dp-pill active" data-perigo="todos" onclick="setPerigo(this)" data-i18n="common.all">TODOS</button>
+            <button class="cat-pill dp-pill" data-perigo="baixo" onclick="setPerigo(this)" style="color:var(--pr-baixo)">BAIXO</button>
+            <button class="cat-pill dp-pill" data-perigo="medio" onclick="setPerigo(this)" style="color:var(--pr-medio)">MÉDIO</button>
+            <button class="cat-pill dp-pill" data-perigo="alto" onclick="setPerigo(this)" style="color:var(--pr-alto)">ALTO</button>
+            <button class="cat-pill dp-pill" data-perigo="extremo" onclick="setPerigo(this)" style="color:var(--pr-extremo)">EXTREMO</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="cerebro.filtersTags">TAGS</span>
+          <div class="cat-pills tag-pills" id="tag-pills" style="display:none"></div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="cerebro.filtersSort">ORDENAR</span>
+          <div class="sort-bar">
+            <select class="f-inp sort-inp" onchange="setOrdem(this.value)" title="Ordenar por">
+              <option value="nome" data-i18n="cerebro.sortName">NOME</option>
+              <option value="perigo" data-i18n="cerebro.sortDanger">PERIGO</option>
+              <option value="iniciativa" data-i18n="cerebro.sortInitiative">INICIATIVA</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="filter-clear" onclick="limparFiltros()" data-i18n="cerebro.filtersClear">LIMPAR FILTROS</button>
+      </div>
     </div>
 
     <div class="npc-list-wrap" id="npc-list"></div>
@@ -548,6 +613,7 @@ const PERIGOS={
   'baixo':{l:'BAIXO',cor:'var(--pr-baixo)'},'medio':{l:'MÉDIO',cor:'var(--pr-medio)'},
   'alto':{l:'ALTO',cor:'var(--pr-alto)'},'extremo':{l:'EXTREMO',cor:'var(--pr-extremo)'},
 };
+const ORDEM_PERIGO={'baixo':0,'medio':1,'alto':2,'extremo':3};
 const COND_CORES={
   'Ferido Leve':{c:'#c07040',b:'rgba(192,112,64,.15)'},'Ferido Grave':{c:'#E8001C',b:'rgba(232,0,28,.15)'},
   'Atordoado':{c:'#ffdd00',b:'rgba(255,220,0,.12)'},'Incapacitado':{c:'#b040ff',b:'rgba(176,64,255,.15)'},
@@ -563,6 +629,9 @@ let NPC_DB=[];
 let currentId=null;
 let categoriaAtual='todos';
 let esquadraoAtual='todos';
+let perigoAtual='todos';
+let tagAtual='';
+let ordemAtual='nome';
 let searchTerm='';
 let encSectionOpen=true;
 let pfOpen=false;
@@ -688,6 +757,7 @@ async function init(){
   }
   
   applyTranslations();
+  initFiltros();
   document.getElementById('enc-header').classList.add('open');
   document.getElementById('enc-body').classList.add('open');
 }
@@ -698,6 +768,7 @@ async function recarregarNPCs() {
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId, true);
     NPC_DB = raw.map(apiToInternal);
     popularEsquadroesFiltro();
+    popularTagsFiltro();
     renderizarLista();
     renderizarEncontro();
     setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs', 'saved');
@@ -754,6 +825,7 @@ async function recarregarDB(){
     const raw = isGM ? await api.listAllNPCs() : await api.listNPCs(currentPartyId,true);
     NPC_DB=raw.map(apiToInternal);
     popularEsquadroesFiltro();
+    popularTagsFiltro();
     renderizarLista();
     renderizarEncontro();
     setStatus(t('cerebro.dbLoaded')+' '+NPC_DB.length+' NPCs','saved');
@@ -778,24 +850,96 @@ function salvarEncontro(){
 /* ═══ RENDER LIST ═══ */
 function filtrar(){searchTerm=document.getElementById('search-inp').value;renderizarLista();}
 function setCat(btn){
-  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#fracao-pills .cat-pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');categoriaAtual=btn.dataset.cat;renderizarLista();
 }
-function setEsquadrao(v){esquadraoAtual=v;renderizarLista();}
+function setEsquadrao(btn){
+  document.querySelectorAll('.sq-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');esquadraoAtual=btn.dataset.squad;renderizarLista();
+}
 function popularEsquadroesFiltro(){
-  const sel=document.getElementById('esquadrao-filter');if(!sel)return;
+  const cont=document.getElementById('squad-pills');if(!cont)return;
   const squads=[...new Set(NPC_DB.map(n=>n.esquadrao).filter(Boolean))].sort();
-  const manterAtual=squads.includes(esquadraoAtual)?esquadraoAtual:'todos';
-  sel.innerHTML=`<option value="todos" data-i18n="cerebro.filterSquadAll">${t('cerebro.filterSquadAll')}</option>`+
-    squads.map(s=>`<option value="${escAttr(s)}">${esc(s)}</option>`).join('');
-  sel.value=manterAtual;esquadraoAtual=manterAtual;
+  if(!squads.includes(esquadraoAtual)&&esquadraoAtual!=='todos')esquadraoAtual='todos';
+  const pill=(s,l)=>`<button class="cat-pill sq-pill${esquadraoAtual===s?' active':''}" data-squad="${escAttr(s)}" onclick="setEsquadrao(this)">${esc(l)}</button>`;
+  cont.innerHTML=pill('todos',t('cerebro.filterSquadAll'))+squads.map(s=>pill(s,s)).join('');
+}
+function setPerigo(btn){
+  document.querySelectorAll('.dp-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');perigoAtual=btn.dataset.perigo;renderizarLista();
+}
+function popularTagsFiltro(){
+  const tagCount={};
+  NPC_DB.forEach(n=>(n.tags||[]).forEach(tag=>{if(tag&&tag!=='')tagCount[tag]=(tagCount[tag]||0)+1;}));
+  const tags=Object.keys(tagCount).sort((a,b)=>(tagCount[b]-tagCount[a])||a.localeCompare(b)).slice(0,40);
+  const cont=document.getElementById('tag-pills');
+  if(!cont)return;
+  if(!tags.length){cont.style.display='none';return;}
+  cont.style.display='flex';
+  cont.innerHTML=tagAtual
+    ? `<button class="cat-pill tag-pill active" data-tag="${escAttr(tagAtual)}" onclick="setTag(this)">${esc(tagAtual)} ×</button>
+       <button class="cat-pill tag-reset" onclick="setTag('')" data-i18n="common.all">TODOS</button>`
+    :`<button class="cat-pill tag-reset active" data-tag="" onclick="setTag('')" data-i18n="common.all">TODOS</button>`+
+     tags.slice(0,20).map(tt=>`<button class="cat-pill tag-pill" data-tag="${escAttr(tt)}" onclick="setTag(this.dataset.tag)">${esc(tt)}</button>`).join('');
+}
+function setTag(t){
+  tagAtual=t||'';
+  document.querySelectorAll('.tag-pill,.tag-reset').forEach(p=>p.classList.remove('active'));
+  popularTagsFiltro();
+  renderizarLista();
+}
+function setOrdem(v){ordemAtual=v;renderizarLista();}
+
+/* ═══ FILTROS: COLAPSAR / BADGE / LIMPAR ═══ */
+const CHAVE_FILTERS='cerebro_filters_on';
+function filtrosAtivos(){
+  return (categoriaAtual!=='todos'?1:0)+(esquadraoAtual!=='todos'?1:0)+(perigoAtual!=='todos'?1:0)+(tagAtual?1:0)+(searchTerm?1:0)+(ordemAtual!=='nome'?1:0);
+}
+function atualizarBadgeFiltros(){
+  const n=filtrosAtivos();
+  const b=document.getElementById('filter-badge');
+  if(!b)return;
+  b.textContent=n?`${n} ATIVO${n>1?'S':''}`:'';
+  b.classList.toggle('on',!!n);
+}
+function toggleFiltros(){
+  const panel=document.getElementById('filter-panel');
+  const wasOpen=panel.classList.contains('open');
+  panel.classList.toggle('open');
+  document.getElementById('filter-chev').textContent=panel.classList.contains('open')?'▲':'▼';
+  localStorage.setItem(CHAVE_FILTERS,panel.classList.contains('open')?'1':'0');
+}
+function initFiltros(){
+  const panel=document.getElementById('filter-panel');
+  const stored=localStorage.getItem(CHAVE_FILTERS);
+  const chev=document.getElementById('filter-chev');
+  if(stored==='1')panel.classList.add('open');
+  chev.textContent=panel.classList.contains('open')?'▲':'▼';
+  atualizarBadgeFiltros();
+}
+function limparFiltros(){
+  categoriaAtual='todos';esquadraoAtual='todos';perigoAtual='todos';tagAtual='';searchTerm='';ordemAtual='nome';
+  const si=document.getElementById('search-inp');if(si)si.value='';
+  const so=document.querySelector('.sort-inp');if(so)so.value='nome';
+  document.querySelectorAll('#fracao-pills .cat-pill').forEach(p=>p.classList.toggle('active',p.dataset.cat==='todos'));
+  document.querySelectorAll('.dp-pill').forEach(p=>p.classList.toggle('active',p.dataset.perigo==='todos'));
+  popularEsquadroesFiltro();popularTagsFiltro();renderizarLista();
 }
 function renderizarLista(){
+  const st=searchTerm.toLowerCase();
   const lista=NPC_DB.filter(n=>{
-    const ms=n.nome.toLowerCase().includes(searchTerm.toLowerCase())||(n.codinome||'').toLowerCase().includes(searchTerm.toLowerCase());
+    const ms=!st||n.nome.toLowerCase().includes(st)||(n.codinome||'').toLowerCase().includes(st)||(n.tags||[]).some(tt=>tt.toLowerCase().includes(st));
     const mc=categoriaAtual==='todos'||n.fracao===categoriaAtual;
     const me=esquadraoAtual==='todos'||n.esquadrao===esquadraoAtual;
-    return ms&&mc&&me;
+    const mp=perigoAtual==='todos'||n.perigo===perigoAtual;
+    const mt=!tagAtual||(n.tags||[]).includes(tagAtual);
+    return ms&&mc&&me&&mp&&mt;
+  }).sort((a,b)=>{
+    if(ordemAtual==='perigo')return ORDEM_PERIGO[a.perigo]-ORDEM_PERIGO[b.perigo];
+    if(ordemAtual==='iniciativa')return (b.iniciativa||0)-(a.iniciativa||0);
+    const na=(a.nome||'').toLowerCase(),nb=(b.nome||'').toLowerCase();
+    if(na===nb)return (a.codinome||'').localeCompare(b.codinome||'');
+    return na.localeCompare(nb);
   });
   document.getElementById('npc-count').textContent=`${lista.length}/${NPC_DB.length}`;
   const container=document.getElementById('npc-list');
@@ -815,6 +959,7 @@ function renderizarLista(){
       <button class="npc-pin-btn${pinned?' pinned':''}" onclick="event.stopPropagation();togglePin('${escJs(n.id)}')" title="Comparar NPCs">⊕</button>
     </div>`;
   }).join('');
+  atualizarBadgeFiltros();
 }
 
 /* ═══ MULTI-NPC COMPARE ═══ */
@@ -1003,7 +1148,7 @@ function filtrar(){
 }
 
 function setCat(btn){
-  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#fracao-pills .cat-pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   categoriaAtual=btn.dataset.cat;
   renderizarLista();
