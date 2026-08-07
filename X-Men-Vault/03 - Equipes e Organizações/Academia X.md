@@ -17,11 +17,12 @@ tags: [academia-x, 3a-geracao, treinamento, 2010]
 
 ## Resumo
 
-Terceira geração estudantil do Instituto (2009+). 30 estudantes em 7 esquadrões + Classe Especial. Esquadrões são grupos de **treinamento**, não equipes operacionais — alunos **não realizam missões reais de campo**.
+Terceira geração estudantil do Instituto (2009+). **34 estudantes**: 4 na [[Esquadrões de Treinamento#Lower School — ensino fundamental|Lower School]] + 30 no ensino médio em 8 esquadrões (7 + Classe Especial). Esquadrões são grupos de **treinamento**, não equipes operacionais — alunos **não realizam missões reais de campo**.
 
 ## História
 
-- **2009:** Instituto volta a receber alunos; Emma Frost torna-se codiretora; formação dos 30 estudantes.
+- **2009:** Instituto volta a receber alunos; Emma Frost torna-se codiretora; formação dos 30 estudantes do ensino médio.
+- **2009–2010:** Introdução da Lower School (ensino fundamental, alunos com 15 anos ou menos, orientados por [[Karma]], sem esquadrões).
 - **2010 (jogado):** [[Dust]] (Soraya) entra no roster pós-missão (esquadrão Paragons) — recrutada pelo Time Vermelho no Oriente Médio. Incidente [[Corrida Hellions versus New Mutants]] na Sala de Perigo (Hellion expulso da prova; revisão da comissão).
 
 ## Esquadrões em 2010
@@ -36,6 +37,19 @@ Terceira geração estudantil do Instituto (2009+). 30 estudantes em 7 esquadrõ
 | Paladins | [[Armadura]], [[Venda]], [[X-23]], [[Gentle]] |
 | Paragons | [[Match]], [[Pixie]], [[Trance]], [[Wolf Cub]], [[Dust]] |
 | Classe Especial | [[Ernst]], [[Cerebella]], [[Glob Herman]], [[Kid Omega]] |
+
+## Lower School (ensino fundamental)
+
+Alunos com **15 anos ou menos**, orientados por [[Karma]]. Sem codinomes, sem esquadrões, sem missões; recebem ensino regular e treinamento básico de segurança e controle dos poderes.
+
+| Aluno | Situação atual |
+|---|---|
+| [[Carter Ghazikhanian]] | Filho da [[Anne Ghazikhanian|enfermeira Anne]]; matriculado. |
+| [[Jeffrey Garrett]] | Vivo e matriculado; morte/fantasma são acontecimentos futuros possíveis. |
+| [[Leong Cao Mạnh]] | Irmão mais novo de [[Karma]]; residente. |
+| [[Nga Cao Mạnh]] | Irmã mais nova de [[Karma]]; residente. |
+
+> Estrutura estudantil completa e divisão por ano: [[Esquadrões de Treinamento]].
 
 ## Relações com outras equipes
 

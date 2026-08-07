@@ -16,9 +16,10 @@ tags: [referencia, glossario, termos]
 | **Dia M** | Evento futuro planejado que reduzirá os mutantes ativos a ~198 |
 | **Anos Vazios** | Período pós-Dia M sem nascimentos ou manifestações |
 | **198** | Os sobreviventes mutantes do Dia M (ver [[Contagem dos 198]]) |
-| **Academia X** | Terceira geração estudantil (2009+); esquadrões de treinamento, sem missões reais |
+| **Academia X** | Terceira geração estudantil (2009+); 34 alunos (4 Lower School + 30 ensino médio) em esquadrões de treinamento, sem missões reais |
 | **Time Vermelho** | Equipe dos X-Men formada pelos ex-Novos Mutantes II (2010) |
-| **Esquadrões** | Grupos de treinamento da Academia X (não operacionais) |
+| **Esquadrões** | Grupos de treinamento da Academia X (não operacionais); apenas alunos do ensino médio |
+| **Lower School** | Ensino fundamental da Academia X; alunos com 15 anos ou menos, sem codinomes/esquadrões, orientados por [[Karma]] |
 | **Sala de Perigo** | Estrutura subterrânea de simulação/treinamento |
 | **Pássaro Negro** | Jato de transporte dos X-Men (Blackbird) |
 | **Krakoa** | Ilha mutante (alias: Cracoa) |

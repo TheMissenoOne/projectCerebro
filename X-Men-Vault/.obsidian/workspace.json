@@ -11,10 +11,14 @@
             "id": "87b3346def696484",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "01 - Linha do Tempo/2007-2009.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2007-2009"
             }
           }
         ]
@@ -186,6 +190,11 @@
   },
   "active": "87b3346def696484",
   "lastOpenFiles": [
+    "01 - Linha do Tempo/2004.md",
+    "01 - Linha do Tempo/2003.md",
+    "01 - Linha do Tempo/2002.md",
+    "01 - Linha do Tempo/2005.md",
+    "02 - Personagens/Antagonistas/Cassandra Nova.md",
     "01 - Linha do Tempo/Anos Vazios.md",
     "02 - Personagens/Jogadores/Maestro.md",
     "02 - Personagens/Jogadores/Fusion.md",
@@ -214,12 +223,7 @@
     "02 - Personagens/X-Men/Hope Summers.md",
     "05 - Locais/Krakoa.md",
     "01 - Linha do Tempo/Dia M.md",
-    "02 - Personagens/X-Men/Sway.md",
-    "02 - Personagens/X-Men/Petra.md",
     "09 - Referência/Icebergs/Iceberg - Vulcan e Deadly Genesis.canvas",
-    "09 - Referência/Icebergs",
-    "09 - Referência/MOC - Mistérios e Tramas.md",
-    "09 - Referência/MOC - Eventos e Sagas.md",
-    "09 - Referência/MOC - Locais.md"
+    "09 - Referência/Icebergs"
   ]
 }

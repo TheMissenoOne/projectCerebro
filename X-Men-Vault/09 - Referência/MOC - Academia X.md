@@ -20,9 +20,13 @@ Mapa de conteúdo da terceira geração estudantil (2009+).
 
 - Alpha Squadron · Chevaliers · Corsairs · [[Hellions - Academia X|Hellions]] · [[New Mutants - Academia X|New Mutants]] · Paladins · Paragons · Classe Especial
 
-## Alunos (30)
+## Alunos (34)
 
-Anole, Indra, Loa, Bling!, Onyxx, Quill, Celeste/Irma/Phoebe Cuckoo, Hellion, Mercury, Rockslide, Wither, Elixir, Ícaro, Surge, Wallflower, Armadura, Venda, X-23, Gentle, Match, Pixie, Trance, Wolf Cub, Dust, Ernst, Cerebella, Glob Herman, Kid Omega
+**Lower School (4, sem esquadrão):** [[Carter Ghazikhanian|Carter]], [[Jeffrey Garrett|Jeffrey]], [[Leong Cao Mạnh|Leong]], [[Nga Cao Mạnh|Nga]]
+
+**Ensino médio (30):** Anole, Indra, Loa, Bling!, Onyxx, Quill, Celeste/Irma/Phoebe Cuckoo, Hellion, Mercury, Rockslide, Wither, Elixir, Ícaro, Surge, Wallflower, Armadura, Venda, X-23, Gentle, Match, Pixie, Trance, Wolf Cub, Dust, Ernst, Cerebella, Glob Herman, Kid Omega
+
+> Divisão por ano (1º/2º/3º) e esquadrões: [[Esquadrões de Treinamento]].
 
 ## Eventos (2010)
 

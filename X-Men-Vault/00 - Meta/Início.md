@@ -104,7 +104,7 @@ Este vault serve simultaneamente como:
 ## Status da campanha: 2010
 
 - **Três equipes X-Men** operando (Azul, Dourada, Vermelha)
-- **Academia X** — 30 estudantes em 7 esquadrões + classe especial
+- **Academia X** — 34 estudantes (4 na [[04 - Instituto Xavier/Esquadrões de Treinamento#Lower School — ensino fundamental|Lower School]] + 30 no ensino médio em 7 esquadrões + classe especial)
 - **Time Vermelho** = antigos jogadores (Novos Mutantes II), recém-promovidos
 - **Emma Frost** = codiretora, sob influência não descoberta do Rei das Sombras
 - **Xavier** = desaparecido desde 2004

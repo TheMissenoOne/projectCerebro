@@ -17,7 +17,7 @@ afiliacoes: ["X-Men", "Instituto Xavier"]
 local_2010: "Mansão Xavier"
 mentor: "Ciclope"
 alunos: []
-familia: []
+familia: ["[[Leong Cao Mạnh]] (irmão)","[[Nga Cao Mạnh]] (irmã)"]
 poderes: ["Controle mental por posse", "Possessão de corpos alheios", "Multi-posse pelo cérebro"]
 nivel_ameaca: alto
 segredo: false
@@ -29,7 +29,7 @@ tags: [x-men, time-dourado, karma, novos-mutantes-i]
 
 ## Resumo
 
-Membro do [[X-Men - Time Dourado]] e originária da primeira geração estudantil ([[Novos Mutantes I]], 2004). Professora de Filosofia, Ética e orientação da escola inferior no [[Instituto Xavier]].
+Membro do [[X-Men - Time Dourado]] e originária da primeira geração estudantil ([[Novos Mutantes I]], 2004). Professora de Filosofia, Ética e orientação da escola inferior no [[Instituto Xavier]]. Mentora da [[Esquadrões de Treinamento#Lower School — ensino fundamental|Lower School]] ([[Leong Cao Mạnh]] e [[Nga Cao Mạnh]] residem como alunos).
 
 ## Aparência
 

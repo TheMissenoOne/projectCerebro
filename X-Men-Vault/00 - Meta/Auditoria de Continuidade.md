@@ -40,7 +40,7 @@ last_updated: 2026-08-04
 - [ ] 2ª formação X-Men: 1992 (Tempestade, Wolverine, Colossus, Noturno, Gambit, Psylocke, Vampira)
 - [ ] 1ª geração estudantil: 2004 (Novos Mutantes I + Geração X = 17 total)
 - [ ] 2ª geração estudantil: 2005–2009 (Jogadores → Novos Mutantes II)
-- [ ] 3ª geração estudantil: 2009+ (Academia X = 30 estudantes)
+- [ ] 3ª geração estudantil: 2009+ (Academia X = 34 estudantes: 4 Lower School + 30 ensino médio)
 - [ ] Time Vermelho: 2010 (promoção dos jogadores)
 - [ ] Turma dos sobreviventes: Pós-Dia M (manifestados antes)
 - [ ] Anos Vazios: Pós-Dia M (zero nascimentos/manifestações)

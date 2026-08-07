@@ -41,7 +41,7 @@ tags: ["linha-do-tempo", "mestra", "indice"]
 | 2007–2009 | Reinado Sombrio | Osborn vigia; Instituto sob pressão |
 | 2008 | Suporte e Reconhecimento | Novos Mutantes II ganham responsabilidades maiores |
 | 2009 | Academia X + Emma Codiretora | 30 estudantes, 7 esquadrões; Emma entra nos X-Men |
-| **2010** | **ANO ATUAL — Time Vermelho** | **PCs promovidos a X-Men; 3 times operando** |
+| **2010** | **ANO ATUAL — Time Vermelho** | **PCs promovidos a X-Men; 3 times operando; Academia X: 34 alunos (Lower School + 30 ensino médio)** |
 | 2011+ | Futuro Planejado | Dia M → Anos Vazios → Hope → Geração Hope → Restauração |
 
 ---

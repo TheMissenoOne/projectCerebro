@@ -25,7 +25,7 @@ Ver [[Mansão Xavier]], [[Sala de Perigo]], [[Cérebro]], [[Subsolos]], [[Hangar
 | 2ª formação | 1992 | Equipe de resgate de Krakoa |
 | 1ª geração estudantil | 2004 | Novos Mutantes I + Geração X |
 | 2ª geração estudantil | 2005–2009 | Novos Mutantes II (jogadores) → Time Vermelho |
-| 3ª geração estudantil | 2009– | Academia X (30 estudantes + Dust) |
+| 3ª geração estudantil | 2009– | Academia X (34 estudantes: 4 Lower School + 30 ensino médio) |
 
 ## Situação em 2010
 

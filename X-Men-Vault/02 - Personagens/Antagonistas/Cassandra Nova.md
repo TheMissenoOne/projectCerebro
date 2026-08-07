@@ -28,7 +28,7 @@ tags: ["antagonista", "genosha", "psiquica", "xavier"]
 # Cassandra Nova
 
 ## Resumo
-Uma **irmã psíquica de [[Xavier]]** (nanomolar espelho de sua mente), invisível/implacável em hostilidade à humanidade-aprisionante. Suspeita central da **conspiração de Genosha (2002)** — mas os responsáveis nunca foram totalmente atribuídos. Em 2010, suspeita de envolvimento no desaparecimento de Xavier (2004). **Poder notável:** pode criar "hosts" (corpos) e viajar psiquicamente.
+Uma **irmã psíquica de [[Xavier]]** (Mummudrai espelho de sua mente), invisível/implacável em hostilidade à humanidade-aprisionante. Suspeita central da **conspiração de Genosha (2002)** — mas os responsáveis nunca foram totalmente atribuídos. Em 2010, suspeita de envolvimento no desaparecimento de Xavier (2004). **Poder notável:** pode criar "hosts" (corpos) e viajar psiquicamente.
 
 ## Aparência
 Quando manifesta, aparece como réplica sombria/branca de Xavier — careca, olhos brancos, energia sombria — ou em corpos de outras pessoas (celular replicante). Sem corpo natural (refletida em "nano-máquina").
