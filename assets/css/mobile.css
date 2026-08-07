@@ -163,6 +163,12 @@
     padding: clamp(10px, 3vw, 16px);
   }
 
+  /* Admin uses the page (body) as scroller on mobile; keeping overflow-y:auto
+     here would swallow the touch gesture (container grows, no internal overflow). */
+  .admin-content {
+    overflow-y: visible;
+  }
+
   /* Panel overlay (backdrop) */
   .panel-overlay {
     position: fixed;
