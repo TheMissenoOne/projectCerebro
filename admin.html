@@ -42,6 +42,7 @@
       <a href="admin.html?tab=encounter" class="admin-nav-link" data-tab="encounter" data-i18n="admin.encounter">Encontro</a>
       <a href="admin.html?tab=notes" class="admin-nav-link" data-tab="notes" data-i18n="admin.notes">Notas de Sessão</a>
       <a href="admin.html?tab=members" class="admin-nav-link" data-tab="members" data-i18n="admin.members">Membros</a>
+      <a href="admin.html?tab=points" class="admin-nav-link" data-tab="points" data-i18n="admin.points">Apoio×Antagonismo</a>
     </nav>
 
     <main class="admin-content">
@@ -104,6 +105,15 @@
           </div>
           <div id="members-list"></div>
         </div>
+
+        <div id="tab-points" class="admin-section">
+          <div class="admin-section-header">
+            <span class="admin-section-title" data-i18n="admin.points">Apoio × Antagonismo</span>
+            <button class="btn" onclick="loadPoints(true)" data-i18n="admin.refresh">⟳ Atualizar</button>
+          </div>
+          <div id="points-summary"></div>
+          <div id="points-list"></div>
+        </div>
       </div>
 </main>
   </div>
@@ -145,7 +155,9 @@ let currentParty = null;
       document.getElementById('tab-encounter').style.display = tabId === 'encounter' ? 'block' : 'none';
       document.getElementById('tab-notes').style.display = tabId === 'notes' ? 'block' : 'none';
       document.getElementById('tab-members').style.display = tabId === 'members' ? 'block' : 'none';
+      document.getElementById('tab-points').style.display = tabId === 'points' ? 'block' : 'none';
       if (tabId === 'members' && currentParty) loadMembers();
+      if (tabId === 'points' && currentParty) loadPoints();
     }
 
     window.showTab = showTab;
@@ -464,6 +476,85 @@ let currentParty = null;
         });
       } catch(e) {
         el.innerHTML = '<p style="color:var(--red);padding:20px;font-family:var(--mono);font-size:.52rem">' + t('admin.error') + ' ' + e.message + '</p>';
+      }
+    }
+
+    let pointsLoaded = false;
+    function safeNum(v){ v = parseFloat(v); return isFinite(v) && v > 0 ? v : 0; }
+    function membrosDe(c){
+      const d = (c && c.data) || {};
+      const raw = Array.isArray(d.membros) ? d.membros : [];
+      return raw.filter(m => m && m.nome && String(m.nome).trim())
+        .map(m => ({ nome: String(m.nome).trim(), apoio: safeNum(m.apoio), antagonismo: safeNum(m.antagonismo) }));
+    }
+    function barraHTML(v, total, cor){
+      const pct = total > 0 ? Math.min(100, Math.round((v / total) * 100)) : 0;
+      return '<div class="pts-bar"><div class="pts-bar-fill" style="width:' + pct + '%;background:' + cor + '"></div></div><span class="pts-val">' + v + '</span>';
+    }
+    function escH(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    async function loadPoints(force) {
+      if (pointsLoaded && !force) return;
+      pointsLoaded = true;
+      const listEl = document.getElementById('points-list');
+      const sumEl = document.getElementById('points-summary');
+      listEl.innerHTML = '<p style="color:var(--muted);font-family:var(--mono);font-size:.52rem;padding:20px 0">' + t('common.loading') + '</p>';
+      try {
+        const gmId = currentAuth.session.user.id;
+        const chars = await api.listAllGMCharacters(gmId, !!force);
+        if (!chars || chars.length === 0) {
+          listEl.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;font-family:var(--mono);font-size:.52rem">' + t('admin.noChars') + '</p>';
+          sumEl.innerHTML = '';
+          return;
+        }
+        const byPlayer = {};
+        chars.forEach(c => {
+          const pid = c.player_id || '?';
+          if (!byPlayer[pid]) byPlayer[pid] = [];
+          byPlayer[pid].push(c);
+        });
+
+        let gTotalApoio = 0, gTotalAnt = 0, gPlayers = 0;
+        const rows = [];
+        Object.entries(byPlayer).forEach(([pid, pChars]) => {
+          let pApoio = 0, pAnt = 0;
+          const charBlocks = pChars.map(c => {
+            const ms = membrosDe(c);
+            const ca = ms.reduce((s, m) => s + m.apoio, 0);
+            const cAnt = ms.reduce((s, m) => s + m.antagonismo, 0);
+            pApoio += ca; pAnt += cAnt;
+            const nome = c.codinome || c.nome || t('admin.noName');
+            const rowsHtml = ms.length ? ms.map(m =>
+              '<tr><td class="pts-m-nome">' + escH(m.nome) + '</td><td class="pts-cell-a">' + barraHTML(m.apoio, ca || m.apoio, 'var(--accent2)') + '</td><td class="pts-cell-ant">' + barraHTML(m.antagonismo, cAnt || m.antagonismo, 'var(--pr-alto)') + '</td></tr>').join('')
+              : '<tr><td colspan="3" class="pts-empty">' + t('admin.pointsNoMembers') + '</td></tr>';
+            return '<div class="pts-char">'
+              + '<div class="pts-char-head"><span class="pts-char-name">' + escH(nome) + '</span>'
+              + '<span class="pts-char-total" title="' + t('admin.pointsTotal') + '">A+' + ca + ' · ANT+' + cAnt + '</span></div>'
+              + '<table class="pts-table"><thead><tr><th>' + t('admin.pointsMember') + '</th><th>A</th><th>ANT</th></tr></thead><tbody>' + rowsHtml + '</tbody></table>'
+              + '</div>';
+          }).join('');
+          gTotalApoio += pApoio; gTotalAnt += pAnt; gPlayers++;
+          rows.push('<div class="pts-player"><div class="pts-player-head">'
+            + '<div class="member-avatar">' + escH((pid.charAt(0) || '?').toUpperCase()) + '</div>'
+            + '<div class="member-info"><div class="member-name">' + escH(pid.length > 36 ? pid.slice(0, 8) + '…' : pid) + '</div>'
+            + '<div class="member-username">' + pChars.length + ' ' + t('admin.charCount') + ' · A+' + pApoio + ' · ANT+' + pAnt + '</div></div>'
+            + '<div class="pts-player-bars">'
+            + '<div class="pts-pair"><span class="pts-pair-lbl">A</span>' + barraHTML(pApoio, pApoio + pAnt, 'var(--accent2)') + '</div>'
+            + '<div class="pts-pair"><span class="pts-pair-lbl">ANT</span>' + barraHTML(pAnt, pApoio + pAnt, 'var(--pr-alto)') + '</div>'
+            + '</div></div><div class="pts-chars">' + charBlocks + '</div></div>');
+        });
+
+        const grand = gTotalApoio + gTotalAnt;
+        sumEl.innerHTML = '<div class="pts-summary">'
+          + '<div class="pts-sum-item"><span class="pts-sum-lbl">' + t('admin.pointsPlayers') + '</span><span class="pts-sum-val">' + gPlayers + '</span></div>'
+          + '<div class="pts-sum-item"><span class="pts-sum-lbl">' + t('admin.pointsApoio') + '</span><span class="pts-sum-val">' + gTotalApoio + '</span></div>'
+          + '<div class="pts-sum-item"><span class="pts-sum-lbl">' + t('admin.pointsAnt') + '</span><span class="pts-sum-val">' + gTotalAnt + '</span></div>'
+          + '<div class="pts-sum-item pts-sum-wide"><span class="pts-sum-lbl">' + t('admin.pointsDist') + '</span>'
+          + '<div class="pts-pair"><span class="pts-pair-lbl">A</span>' + barraHTML(gTotalApoio, grand, 'var(--accent2)') + '</div>'
+          + '<div class="pts-pair"><span class="pts-pair-lbl">ANT</span>' + barraHTML(gTotalAnt, grand, 'var(--pr-alto)') + '</div>'
+          + '</div></div>';
+        listEl.innerHTML = rows.join('') || '<p class="pts-empty">' + t('admin.noChars') + '</p>';
+      } catch (e) {
+        listEl.innerHTML = '<p style="color:var(--red);padding:20px;font-family:var(--mono);font-size:.52rem">' + t('admin.error') + ' ' + e.message + '</p>';
       }
     }
 

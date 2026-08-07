@@ -192,6 +192,14 @@ const I18N = {
     'admin.noPartyName': 'Sem Party',
     'admin.editSheet': 'Editar Ficha',
     'admin.charCount': 'personagens',
+    'admin.points': 'Apoio×Antagonismo',
+    'admin.pointsNoMembers': 'Nenhum membro de esquadrão registrado.',
+    'admin.pointsTotal': 'Totais do personagem',
+    'admin.pointsMember': 'Membro',
+    'admin.pointsPlayers': 'Jogadores',
+    'admin.pointsApoio': 'Total Apoio',
+    'admin.pointsAnt': 'Total Antagonismo',
+    'admin.pointsDist': 'Distribuição global',
 
     /* combate */
     'combat.pageTitle': 'COMBATE // X-MEN TTRPG',
@@ -612,6 +620,14 @@ const I18N = {
     'admin.noPartyName': 'No Party',
     'admin.editSheet': 'Edit Sheet',
     'admin.charCount': 'characters',
+    'admin.points': 'Support×Antagonism',
+    'admin.pointsNoMembers': 'No squad members registered.',
+    'admin.pointsTotal': 'Character totals',
+    'admin.pointsMember': 'Member',
+    'admin.pointsPlayers': 'Players',
+    'admin.pointsApoio': 'Total Support',
+    'admin.pointsAnt': 'Total Antagonism',
+    'admin.pointsDist': 'Global distribution',
 
     /* combate */
     'combat.pageTitle': 'COMBAT // X-MEN TTRPG',
