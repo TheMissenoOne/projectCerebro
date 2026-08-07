@@ -227,7 +227,7 @@
 
     listAllGMCharacters: function(gmId, forceRefresh, offset, limit) {
       var cache = window.cache;
-      var key = 'gm_chars_' + gmId + '_' + (offset || 0) + '_' + (limit || 9999);
+      var key = 'gm_chars_v2_' + gmId + '_' + (offset || 0) + '_' + (limit || 9999);
       if (!forceRefresh && cache) {
         var cached = cache.get('gm_chars', key);
         if (cached) return Promise.resolve(cached);
@@ -253,6 +253,8 @@
           
           // Map player IDs to emails from auth - use session user data where possible
           var mapped = chars.map(function(c) {
+            c.nome = c.name || c.nome || null;
+            c.codinome = c.codename || c.codinome || null;
             c.player_name = c.player_id; // Use ID as fallback name
             c.party_name = partyNames[c.party_id] || null;
             return c;

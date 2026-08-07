@@ -8,6 +8,15 @@
   min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
 }
 
+@media (min-width: 769px) {
+  .admin-layout {
+    height: calc(100vh - var(--hdr-h) - var(--bar-h));
+    height: calc(100dvh - var(--hdr-h) - var(--bar-h));
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
 .admin-sidebar {
   width: 200px;
   background: var(--dark);
