@@ -123,8 +123,10 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
+          /* guarda sem a query: ficha.html?id=... não pode multiplicar entradas */
           const copy = response.clone();
-          caches.open(SHELL_CACHE).then((cache) => cache.put(request, copy));
+          const key = url.origin + url.pathname;
+          if (response.ok) caches.open(SHELL_CACHE).then((cache) => cache.put(key, copy));
           return response;
         })
         .catch(() =>
