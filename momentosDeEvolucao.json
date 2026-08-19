@@ -24,18 +24,8 @@
       },
       {
         "nome": "MUTAÇÃO SECUNDÁRIA",
-        "descricao": "Você desbloqueia um **Card de Mutação Secundária** — uma extensão do seu tema de Mutação original. Esse card é um tema adicional com regras especiais: começa com 2 tags de poder, 1 tag de fraqueza e um Mistério próprio. Ele não substitui o tema original e segue regras próprias de Atenção, Dissipação e Melhorias (ver regras de Mutação Secundária). Você não pode escolher esta opção mais de uma vez por personagem.",
+        "descricao": "Você desbloqueia um **Card de Mutação Secundária**. Ele entra como uma **carta Nascente normal**: começa com **uma única tag de poder** e segue as regras comuns de carta — não é derivado do seu tema de Mutação original nem tem regras próprias. Os poderes seguintes são revelados na tabela de perguntas do tema, do mesmo jeito que o primeiro poder foi rolado. Você não pode escolher esta opção mais de uma vez por personagem.",
         "uso": "Única"
-      },
-      {
-        "nome": "SEGUNDA CHANCE",
-        "descricao": "Uma vez por campanha, quando um tema de Mutação ou Humanidade teria suas três caixas de Dissipação ou Quebra preenchidas (e seria substituído), você pode cancelar essa substituição. Em vez disso: zere os marcadores de Dissipação ou Quebra do tema; reescreva o Mistério (Mutação) ou a Identidade (Humanidade) para refletir uma nova perspectiva. **Alternativamente, você pode usar esta opção para trazer de volta um tema que já foi perdido** (substituído). O tema retorna com seus rótulos, melhorias e marcadores restaurados, **mas você deve reescrever seu Mistério (se for Mutação) ou sua Identidade (se for Humanidade)** para algo novo, representando como o personagem ressignificou aquela parte de si. O tema recuperado substitui um tema atual à sua escolha (ou ocupa um espaço vazio). Não pode recuperar temas substituídos por Transformação ou Tema Ômega.",
-        "uso": "Única"
-      },
-      {
-        "nome": "IDENTIDADE MUTANTE",
-        "descricao": "Você para de tratar sua mutação como algo separado de quem você é. Escolha **um tema de Mutação** e **um tema de Humanidade** que estejam narrativamente conectados. **Ao adquirir este Momento de Evolução, você pode transferir permanentemente uma tag de poder de um desses temas para o outro** (a tag passa a pertencer ao novo tema). A transferência deve fazer sentido narrativo e ser aprovada pelo GM. Esta opção pode ser escolhida uma vez por par de temas.",
-        "uso": "Única por par"
       }
     ]
   }
