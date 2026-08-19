@@ -146,6 +146,50 @@ window.EstadoModule = (function() {
     }
   }
 
+  const PANELS_KEY = 'cerebro_estado_panels';
+
+  function setPanelCount(id, n, singular, plural) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = n ? n + ' ' + (n === 1 ? singular : plural) : '';
+  }
+
+  function readPanelPrefs() {
+    try {
+      return JSON.parse(localStorage.getItem(PANELS_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function setPanelOpen(panel, open) {
+    panel.classList.toggle('collapsed', !open);
+    const head = panel.querySelector('.estado-panel-head');
+    if (head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  /* Painéis colapsáveis: só têm efeito visual no mobile (ver components.css),
+     mas o estado é lembrado entre sessões. */
+  function bindPanels() {
+    const prefs = readPanelPrefs();
+    document.querySelectorAll('#page-estado .estado-panel').forEach(panel => {
+      const key = panel.dataset.panel;
+      const head = panel.querySelector('.estado-panel-head');
+      if (!head) return;
+      if (Object.prototype.hasOwnProperty.call(prefs, key)) setPanelOpen(panel, !!prefs[key]);
+      head.addEventListener('click', () => {
+        /* no desktop os painéis são sempre abertos (ver components.css) */
+        if (!window.matchMedia('(max-width:900px)').matches) return;
+        const open = panel.classList.contains('collapsed');
+        setPanelOpen(panel, open);
+        const next = readPanelPrefs();
+        next[key] = open;
+        try {
+          localStorage.setItem(PANELS_KEY, JSON.stringify(next));
+        } catch (e) {}
+      });
+    });
+  }
+
   function renderTags() {
     const root = document.getElementById('estado-tags-list');
     if (!root) return;
@@ -156,6 +200,8 @@ window.EstadoModule = (function() {
       const queryOk = !query || tag.texto.toLowerCase().includes(query) || tag.temaNome.toLowerCase().includes(query);
       return typeOk && queryOk;
     });
+
+    setPanelCount('estado-tags-count', tags.length, 'tag', 'tags');
 
     if (!tags.length) {
       root.innerHTML = '<div class="estado-warning">Nenhuma tag encontrada.</div>';
@@ -198,7 +244,12 @@ window.EstadoModule = (function() {
         btn.type = 'button';
         btn.className = 'estado-chip' + (isSelected(tag) ? ' active' : '');
         btn.dataset.tipo = tag.tipo;
-        btn.textContent = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto;
+        const kind = document.createElement('span');
+        kind.className = 'estado-chip-kind';
+        kind.textContent = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ';
+        btn.appendChild(kind);
+        btn.appendChild(document.createTextNode(tag.texto));
+        btn.setAttribute('aria-label', (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto);
         btn.setAttribute('aria-pressed', isSelected(tag) ? 'true' : 'false');
         btn.addEventListener('click', () => toggleTag(tag));
         cloud.appendChild(btn);
@@ -242,6 +293,7 @@ window.EstadoModule = (function() {
     if (!root) return;
 
     const moves = state.data.estado.savedMoves || [];
+    setPanelCount('estado-moves-count', moves.length, 'manobra', 'manobras');
     if (!moves.length) {
       root.innerHTML = '<div class="estado-warning">Nenhuma manobra salva.</div>';
       return;
@@ -323,6 +375,8 @@ window.EstadoModule = (function() {
 
   function renderConditionBucket(bucket, root) {
     const items = state.data.estado.conditions[bucket] || [];
+    const column = root.closest('.estado-column');
+    if (column) column.classList.toggle('is-empty', !items.length);
     if (!items.length) {
       root.innerHTML = '<div class="estado-warning">Nenhum item.</div>';
       return;
@@ -357,8 +411,9 @@ window.EstadoModule = (function() {
 
       const inc = document.createElement('button');
       inc.type = 'button';
-      inc.className = 'estado-mini-btn';
+      inc.className = 'estado-mini-btn estado-step';
       inc.textContent = '+1';
+      inc.setAttribute('aria-label', 'Aumentar grau de ' + item.nome);
       inc.addEventListener('click', () => {
         item.grau = (Number(item.grau) || 0) + 1;
         save();
@@ -367,8 +422,9 @@ window.EstadoModule = (function() {
 
       const dec = document.createElement('button');
       dec.type = 'button';
-      dec.className = 'estado-mini-btn';
-      dec.textContent = '-1';
+      dec.className = 'estado-mini-btn estado-step';
+      dec.textContent = '\u22121';
+      dec.setAttribute('aria-label', 'Reduzir grau de ' + item.nome);
       dec.addEventListener('click', () => {
         item.grau = Math.max(0, (Number(item.grau) || 0) - 1);
         if (item.grau <= 0) {
@@ -431,6 +487,9 @@ window.EstadoModule = (function() {
       warningEl.textContent = lethal >= DEATH_THRESHOLD ? 'PERIGO: condição acumulada alta.' : '';
       warningEl.className = 'estado-warning' + (lethal >= DEATH_THRESHOLD ? ' warn' : '');
     }
+
+    const total = Object.values(state.data.estado.conditions).flat().length;
+    setPanelCount('estado-count', total, 'item', 'itens');
 
     const temp = document.getElementById('estado-temporarias');
     const dur = document.getElementById('estado-duradouras');
@@ -597,6 +656,8 @@ window.EstadoModule = (function() {
     if (addConditionBtn) addConditionBtn.addEventListener('click', addCondition);
     if (passTimeBtn) passTimeBtn.addEventListener('click', passTime);
     if (reduceTempBtn) reduceTempBtn.addEventListener('click', passTurn);
+
+    bindPanels();
   }
 
   function init(data) {

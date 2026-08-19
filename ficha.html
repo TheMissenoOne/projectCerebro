@@ -504,76 +504,104 @@ function showToast(msg){
     </div>
 
     <div class="estado-layout">
-      <section class="estado-panel">
-        <div class="panel-title">TAGS DISPONÍVEIS</div>
-        <div class="estado-tools">
-          <input type="text" id="estado-tag-search" class="estado-input" placeholder="Filtrar tags...">
-          <select id="estado-tag-filter" class="estado-select">
-            <option value="all">Todas</option>
-            <option value="poder">Só poderes</option>
-            <option value="fraqueza">Só fraquezas</option>
-          </select>
-        </div>
-        <div id="estado-tags-list" class="estado-chip-cloud"></div>
-      </section>
-
-      <section class="estado-panel">
-        <div class="panel-title">MANOBRA SELECIONADA</div>
-        <div id="estado-selected-tags" class="estado-selected-tags"></div>
-        <div class="estado-save-row">
-          <input type="text" id="estado-move-name" class="estado-input" placeholder="Nome da manobra">
-          <button type="button" class="tbtn" id="estado-save-move">SALVAR MANOBRA</button>
-        </div>
-        <div id="estado-moves-list" class="estado-list"></div>
-      </section>
-
-      <section class="estado-panel">
-        <div class="panel-title">CONDIÇÕES & EFEITOS</div>
-        <div class="estado-add-row">
-          <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome">
-          <input type="number" id="estado-condition-degree" class="estado-input estado-input-small" min="1" max="99" value="1" placeholder="Grau">
-          <button type="button" id="estado-condition-kind-toggle" class="estado-kind-btn condicao" aria-pressed="false">CONDIÇÃO</button>
-          <select id="estado-condition-duration" class="estado-select">
-            <option value="temporarias">Temporária</option>
-            <option value="duradouras">Duradoura</option>
-            <option value="permanentes">Permanente</option>
-          </select>
-          <button type="button" class="tbtn" id="estado-add-condition">ADICIONAR</button>
+      <section class="estado-panel estado-panel-wide" data-panel="lista">
+        <button type="button" class="estado-panel-head" aria-expanded="true" aria-controls="estado-body-lista">
+          <span class="estado-panel-title">Condições &amp; Efeitos</span>
+          <span class="estado-panel-count" id="estado-count"></span>
+          <svg class="estado-panel-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="estado-panel-body" id="estado-body-lista">
+          <div class="estado-columns">
+            <div class="estado-column">
+              <div class="estado-column-title">Temporárias</div>
+              <div id="estado-temporarias" class="estado-column-body"></div>
+            </div>
+            <div class="estado-column">
+              <div class="estado-column-title">Duradouras</div>
+              <div id="estado-duradouras" class="estado-column-body"></div>
+            </div>
+            <div class="estado-column">
+              <div class="estado-column-title">Permanentes</div>
+              <div id="estado-permanentes" class="estado-column-body"></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="estado-panel">
-        <div class="panel-title">PASSAR TEMPO</div>
-        <div class="estado-time-row">
-          <label class="estado-time-label">Tempo</label>
-          <input type="number" id="estado-pass-value" class="estado-input estado-input-small" min="1" value="5">
-          <select id="estado-pass-unit" class="estado-select">
-            <option value="minutos">Minutos</option>
-            <option value="horas">Horas</option>
-          </select>
-          <button type="button" class="tbtn" id="estado-pass-time">PASSAR TEMPO</button>
-          <button type="button" class="tbtn" id="estado-reduce-temp">PASSAR 1 TURNO</button>
+      <section class="estado-panel" data-panel="tempo">
+        <button type="button" class="estado-panel-head" aria-expanded="true" aria-controls="estado-body-tempo">
+          <span class="estado-panel-title">Passar Tempo</span>
+          <svg class="estado-panel-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="estado-panel-body" id="estado-body-tempo">
+          <button type="button" class="tbtn estado-primary-btn" id="estado-reduce-temp">PASSAR 1 TURNO</button>
+          <div class="estado-time-row">
+            <label class="estado-time-label" for="estado-pass-value">Tempo</label>
+            <input type="number" id="estado-pass-value" class="estado-input estado-input-small" min="1" value="5" inputmode="numeric">
+            <select id="estado-pass-unit" class="estado-select" aria-label="Unidade de tempo">
+              <option value="minutos">Minutos</option>
+              <option value="horas">Horas</option>
+            </select>
+            <button type="button" class="tbtn" id="estado-pass-time">PASSAR TEMPO</button>
+          </div>
+          <div class="estado-time-note">Conversão pela tabela de referência de APs</div>
           <span id="estado-threshold" class="estado-threshold"></span>
+          <div id="estado-warning" class="estado-warning" role="status"></div>
         </div>
-        <div class="estado-time-note">Conversão pela tabela de referência de APs</div>
-        <div id="estado-warning" class="estado-warning"></div>
       </section>
 
-      <section class="estado-panel estado-panel-wide">
-        <div class="panel-title">CONDIÇÕES & EFEITOS</div>
-        <div class="estado-columns">
-          <div class="estado-column">
-            <div class="estado-column-title">TEMPORÁRIAS</div>
-            <div id="estado-temporarias" class="estado-column-body"></div>
+      <section class="estado-panel collapsed" data-panel="add">
+        <button type="button" class="estado-panel-head" aria-expanded="false" aria-controls="estado-body-add">
+          <span class="estado-panel-title">Adicionar Condição / Efeito</span>
+          <svg class="estado-panel-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="estado-panel-body" id="estado-body-add">
+          <div class="estado-add-row">
+            <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome" aria-label="Nome da condição ou efeito">
+            <input type="number" id="estado-condition-degree" class="estado-input estado-input-small" min="1" max="99" value="1" placeholder="Grau" inputmode="numeric" aria-label="Grau">
+            <button type="button" id="estado-condition-kind-toggle" class="estado-kind-btn condicao" aria-pressed="false">CONDIÇÃO</button>
+            <select id="estado-condition-duration" class="estado-select" aria-label="Duração">
+              <option value="temporarias">Temporária</option>
+              <option value="duradouras">Duradoura</option>
+              <option value="permanentes">Permanente</option>
+            </select>
+            <button type="button" class="tbtn estado-primary-btn" id="estado-add-condition">ADICIONAR</button>
           </div>
-          <div class="estado-column">
-            <div class="estado-column-title">DURADOURAS</div>
-            <div id="estado-duradouras" class="estado-column-body"></div>
+        </div>
+      </section>
+
+      <section class="estado-panel collapsed" data-panel="tags">
+        <button type="button" class="estado-panel-head" aria-expanded="false" aria-controls="estado-body-tags">
+          <span class="estado-panel-title">Tags Disponíveis</span>
+          <span class="estado-panel-count" id="estado-tags-count"></span>
+          <svg class="estado-panel-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="estado-panel-body" id="estado-body-tags">
+          <div class="estado-tools">
+            <input type="search" id="estado-tag-search" class="estado-input" placeholder="Filtrar tags..." aria-label="Filtrar tags">
+            <select id="estado-tag-filter" class="estado-select" aria-label="Tipo de tag">
+              <option value="all">Todas</option>
+              <option value="poder">Só poderes</option>
+              <option value="fraqueza">Só fraquezas</option>
+            </select>
           </div>
-          <div class="estado-column">
-            <div class="estado-column-title">PERMANENTES</div>
-            <div id="estado-permanentes" class="estado-column-body"></div>
+          <div id="estado-tags-list" class="estado-chip-cloud"></div>
+        </div>
+      </section>
+
+      <section class="estado-panel collapsed" data-panel="manobras">
+        <button type="button" class="estado-panel-head" aria-expanded="false" aria-controls="estado-body-manobras">
+          <span class="estado-panel-title">Manobras</span>
+          <span class="estado-panel-count" id="estado-moves-count"></span>
+          <svg class="estado-panel-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="estado-panel-body" id="estado-body-manobras">
+          <div id="estado-selected-tags" class="estado-selected-tags"></div>
+          <div class="estado-save-row">
+            <input type="text" id="estado-move-name" class="estado-input" placeholder="Nome da manobra" aria-label="Nome da manobra">
+            <button type="button" class="tbtn" id="estado-save-move">SALVAR MANOBRA</button>
           </div>
+          <div id="estado-moves-list" class="estado-list"></div>
         </div>
       </section>
     </div>

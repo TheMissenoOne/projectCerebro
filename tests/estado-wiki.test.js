@@ -47,6 +47,36 @@ test('ficha restores the Progressão tab', function() {
   assert(!ficha.includes('delete dataParaSalvar.progressao'), 'Progressão still stripped on save');
 });
 
+test('estado panels are collapsible and ordered for mobile', function() {
+  const css = fs.readFileSync(path.join(ROOT, 'assets/css/components.css'), 'utf8');
+  const estado = fs.readFileSync(path.join(ROOT, 'assets/js/estado-module.js'), 'utf8');
+
+  ['lista', 'tempo', 'add', 'tags', 'manobras'].forEach(function(key) {
+    assert(ficha.includes('data-panel="' + key + '"'), 'panel missing: ' + key);
+    assert(ficha.includes('id="estado-body-' + key + '"'), 'panel body missing: ' + key);
+  });
+  assert((ficha.match(/estado-panel-head/g) || []).length === 5, 'every estado panel needs a header button');
+
+  // em mesa: lista e tempo abertos, o resto colapsado
+  assert((ficha.match(/aria-expanded="false"/g) || []).length === 3, 'exactly three estado panels start collapsed');
+  assert(ficha.includes('class="estado-panel collapsed" data-panel="add"'), 'add panel should start collapsed');
+  assert(ficha.includes('class="estado-panel collapsed" data-panel="tags"'), 'tags panel should start collapsed');
+  assert(ficha.includes('class="estado-panel collapsed" data-panel="manobras"'), 'manobras panel should start collapsed');
+  assert(ficha.includes('class="estado-panel estado-panel-wide" data-panel="lista"'), 'conditions panel should start open');
+
+  // dois painéis não podem mais se chamar "CONDIÇÕES & EFEITOS"
+  assert(ficha.includes('Adicionar Condição / Efeito'), 'add panel was not renamed');
+
+  assert(css.includes('.estado-panel.collapsed .estado-panel-body{display:none;}'), 'collapse rule missing');
+  assert(/\.estado-panel\[data-panel="lista"\]\{order:1;\}/.test(css), 'mobile ordering missing');
+  assert(css.includes('.estado-input,.estado-select,.estado-kind-btn{min-height:44px'), '44px touch targets missing');
+  assert(css.includes('.estado-mini-btn{min-height:40px'), 'mini buttons still below the touch-target floor');
+
+  assert(estado.includes('function bindPanels('), 'panel toggle wiring missing');
+  assert(estado.includes("window.matchMedia('(max-width:900px)')"), 'toggle must be a no-op on desktop');
+  assert(estado.includes('cerebro_estado_panels'), 'panel state is not persisted');
+});
+
 test('wiki removes Progressão and Manifestação pages', function() {
   assert(!wikiHtml.includes('data-page="progressao"'), 'Progressão nav link still present');
   assert(!wikiPages.includes('progressao:'), 'Progressão wiki page still present');
