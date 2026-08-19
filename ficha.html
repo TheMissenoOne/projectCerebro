@@ -2,11 +2,21 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="assets/img/pwa-icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080808">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cérebro">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <title>X-MEN // FICHA DE PERSONAGEM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://wlpdfrqzbpwuxyqeayjt.supabase.co" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
@@ -148,7 +158,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .evo-check-row:hover{border-color:var(--red);}
 .evo-check-row.checked{border-left-color:var(--accent);}
 .evo-chk{width:14px;height:14px;margin-top:2px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;}
-.evo-chk-txt{font-size:.64rem;color:var(--text);line-height:1.3;}
+.evo-chk-txt{font-size:.64rem;color:var(--text);line-height:1.3;min-width:0;}
 
 .mut-central{background:var(--p1);border:1px solid var(--b2);border-left:3px solid var(--red);padding:12px 14px;margin-bottom:18px;}
 .mut-central-label{font-family:var(--mono);font-size:.46rem;color:var(--red2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;}
@@ -166,6 +176,8 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .card-hdr{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--accent);border-bottom:2px solid var(--flat-fg);}
 .tcard.mutacao .card-hdr{background:var(--red);}
 .tcard.humanidade .card-hdr{background:var(--green);}
+.tcard.adicional{border-top-color:var(--blue);}
+.tcard.adicional .card-hdr{background:var(--blue);}
 .card-hdr-main{display:flex;align-items:center;gap:7px;flex:1;min-width:0;}
 .cat-badge{font-family:var(--mono);font-size:.42rem;font-weight:700;letter-spacing:.14em;padding:2px 6px;color:var(--flat-fg);flex-shrink:0;display:flex;align-items:center;gap:5px;}
 .cat-badge .theme-icon {
@@ -181,7 +193,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   -webkit-mask-position: center;
   mask-position: center;
 }
-.tcard.mutacao .cat-badge,.tcard.humanidade .cat-badge{color:var(--flat-fg);}
+.tcard.mutacao .cat-badge,.tcard.humanidade .cat-badge,.tcard.adicional .cat-badge{color:var(--flat-fg);}
 .tipo-sel{flex:1;background:transparent;border:none;color:var(--flat-fg);font-family:var(--cond);font-weight:700;font-size:.74rem;outline:none;cursor:pointer;min-width:0;text-transform:uppercase;letter-spacing:.04em;}
 .tipo-sel option,.tipo-sel optgroup{background:var(--dark);color:var(--white);}
 .del-card-btn{background:none;border:none;color:var(--flat-fg);opacity:.7;cursor:pointer;padding:2px;margin-left:4px;transition:all .2s;-webkit-tap-highlight-color:transparent;}
@@ -259,57 +271,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .mbr-inp:focus{border-bottom-color:var(--red);}
 .mbr-inp::placeholder{color:var(--b3);}
 
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:600;align-items:center;justify-content:center;padding:14px;box-sizing:border-box;}
-.modal-bg.open{display:flex;animation:fadeUp .2s ease;}
-.modal{background:var(--dark);border:1px solid var(--b2);border-top:3px solid var(--red);padding:18px;max-width:660px;width:100%;max-height:calc(100dvh - 28px - 48px);display:flex;flex-direction:column;gap:12px;box-sizing:border-box;position:relative;overflow:hidden;}
-#wizard-body{overflow-y:auto;min-height:0;flex:1 1 auto;}
-.modal-acts{flex-shrink:0;}
-.modal-chrome{flex-shrink:0;}
-.modal::-webkit-scrollbar{width:3px;}
-.modal::-webkit-scrollbar-thumb{background:var(--b2);}
-.modal-title{font-family:var(--disp);font-size:1.4rem;color:var(--white);letter-spacing:.2em;flex-shrink:0;}
-.modal-sub{font-family:var(--mono);font-size:.54rem;color:var(--muted);letter-spacing:.08em;border-left:2px solid var(--red2);padding-left:8px;line-height:1.8;flex-shrink:0;}
-.modal-ta{width:100%;height:220px;background:var(--p2);border:1px solid var(--b2);color:var(--text);font-family:var(--mono);font-size:.58rem;padding:10px;resize:vertical;outline:none;transition:border-color .15s;}
-.modal-ta:focus{border-color:var(--red);}
-.modal-acts{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px;}
-.wizard-pick-grid{margin-bottom:12px;}
-.wizard-pick-card{cursor:pointer;transition:box-shadow .15s,border-color .15s,transform .15s;}
-.wizard-pick-card:hover{border-color:var(--b3);transform:translateY(-1px);}
-.wizard-pick-card.selected{box-shadow:0 0 0 2px var(--accent),0 0 12px rgba(255,214,0,.15);border-color:var(--accent);}
-.wizard-pick-card.selected .card-hdr{opacity:1;}
-.wizard-pick-card.selected .cat-badge{color:var(--flat-fg);}
-.wizard-btn-disabled{opacity:.35;pointer-events:none;cursor:default;}
-.wizard-pick-full{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px;}
-.wizard-desc-full{font-size:.7rem;color:var(--muted);line-height:1.5;}
-.wizard-mystery-hints{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:6px;}
-.wizard-mystery-hints li{font-family:var(--mono);font-size:.55rem;color:var(--muted);line-height:1.4;padding:4px 8px;background:var(--p2);border-left:2px solid var(--red2);}
-#wizard-body .card-inp{margin-bottom:4px;}
-.wizard-q-list{list-style:none;display:flex;flex-direction:column;gap:3px;margin:6px 0 10px;}
-.wizard-q-row{font-family:var(--mono);font-size:.6rem;color:var(--text);line-height:1.4;padding:8px 10px;background:var(--p2);border-left:2px solid var(--b2);}
-.wizard-q-row.answered{border-left-color:var(--red);}
-.wizard-q-inp-wrap{margin:0 0 6px;}
-.wizard-q-inp-wrap .card-inp{border-left:2px solid var(--b2);background:var(--black);}
-.wizard-tabs{display:flex;border-bottom:1px solid var(--b2);margin-bottom:8px;gap:0;}
-.wizard-tabs .tab{font-size:.62rem;padding:7px 14px;flex:1;text-align:center;}
-.wizard-pick-counter{font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.1em;margin-right:auto;}
-.wizard-selected-bar{display:flex;flex-wrap:wrap;gap:4px;padding:4px 0 6px;border-bottom:1px solid var(--b2);margin-bottom:5px;}
-.wizard-selected-pill{font-family:var(--cond);font-size:.55rem;font-weight:600;letter-spacing:.08em;padding:2px 8px;border-radius:10px;background:var(--accent);color:var(--flat-fg);cursor:pointer;transition:opacity .15s;}
-.wizard-selected-pill:hover{opacity:.7;}
-@media(max-width:520px){
-  .modal-bg{padding:4px;align-items:flex-end;}
-  .modal{padding:8px;max-height:calc(100dvh - 8px - 48px);border-top-width:2px;}
-  .modal-title{font-size:.95rem;letter-spacing:.1em;flex-shrink:0;}
-  .modal-sub{font-size:.42rem;}
-  .wizard-pick-card .card-hdr .cat-badge{font-size:.52rem;}
-  .wizard-desc-full{font-size:.52rem;}
-  .wizard-q-row{font-size:.48rem;padding:5px 6px;}
-  .wizard-q-inp-wrap .card-inp{font-size:.6rem;padding:3px 5px;}
-  .wizard-mystery-hints li{font-size:.45rem;padding:3px 5px;}
-  .modal-acts{justify-content:center;}
-  .modal-acts .tbtn{font-size:.48rem;padding:4px 8px;}
-  #wizard-body .card-inp{font-size:.65rem;padding:4px 5px;}
-  .wizard-tabs .tab{font-size:.55rem;padding:6px 8px;}
-}
 .card-desc-hint{font-family:var(--body);font-size:.68rem;color:var(--muted);line-height:1.4;padding:2px 0 8px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .card-desc-hint.expanded{white-space:normal;color:var(--text);}
 
@@ -346,6 +307,19 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .notas-textarea::placeholder{color:var(--b3);}
 .attr-section-temas{margin-bottom:20px;}
 .attr-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.prog-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+.prog-panel{background:var(--p1);border:1px solid var(--b1);padding:12px 14px;}
+.prog-panel-wide{grid-column:1 / -1;}
+.progressao-area{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.prog-lbl{font-family:var(--mono);font-size:.55rem;color:var(--muted);flex-shrink:0;letter-spacing:.1em;}
+.prog-count{font-family:var(--mono);font-size:.55rem;color:var(--accent);margin-left:auto;}
+.prog-help{font-family:var(--body);font-size:.72rem;color:var(--muted);line-height:1.45;margin-top:10px;}
+.evolucao-log{display:flex;flex-direction:column;}
+.evolucao-grid{display:grid;grid-template-columns:1fr;gap:6px;align-items:start;}
+@media(min-width:1100px){.evolucao-grid{grid-template-columns:1fr 1fr;}}
+.evo-chk-desc{display:block;font-family:var(--body);font-size:.76rem;color:var(--muted);line-height:1.45;margin-top:4px;max-width:78ch;}
+.evo-chk-uso{font-family:var(--mono);font-size:.42rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;}
+@media(max-width:760px){.prog-layout{grid-template-columns:1fr;}}
 @media(max-width:640px){.attr-cols{grid-template-columns:1fr;gap:8px;}}
 </style>
 <script src="assets/js/config.js?v=dev" defer></script>
@@ -359,6 +333,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 <script src="assets/js/estado-module.js?v=dev" defer></script>
 <script src="assets/js/themes.js?v=dev" defer></script>
 <script src="assets/js/header.js?v=dev" defer></script>
+<script src="assets/js/pwa.js?v=dev" defer></script>
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
 </head>
 <body>
@@ -393,6 +368,7 @@ function showToast(msg){
   <button class="tab" onclick="trocarAba('temas',this)" data-i18n="ficha.tab2">02 &nbsp;TEMAS</button>
   <button class="tab" onclick="trocarAba('esquadrao',this)" data-i18n="ficha.tab3">03 &nbsp;ESQUADRÃO</button>
   <button class="tab" onclick="trocarAba('estado',this)" data-i18n="ficha.tab4">04 &nbsp;ESTADO</button>
+  <button class="tab" onclick="trocarAba('progressao',this)" data-i18n="ficha.tab5">05 &nbsp;PROGRESSÃO</button>
 </nav>
 
 <main class="content">
@@ -603,18 +579,37 @@ function showToast(msg){
     </div>
   </section>
 
+  <section class="page" id="page-progressao">
+    <div class="data-header">
+      <span class="dh-left">[16.23435.161] [PRG-005]</span>
+      <span class="dh-right" data-i18n="ficha.progressionHeader">▌ PROGRESSÃO // MOMENTOS DE EVOLUÇÃO ▐</span>
+    </div>
+
+    <div class="prog-layout">
+      <section class="prog-panel">
+        <div class="panel-title" data-i18n="ficha.progression">Progressão</div>
+        <div class="progressao-area">
+          <span class="prog-lbl" data-i18n="ficha.progress">PROGRESSO</span>
+          <div class="dots-row" id="dots-prog"></div>
+          <span class="prog-count" id="prog-count">0/5</span>
+        </div>
+        <p class="prog-help" id="prog-help"></p>
+      </section>
+
+      <section class="prog-panel">
+        <div class="panel-title" data-i18n="ficha.evolutionLog">Registro de Evoluções</div>
+        <div class="evolucao-log" id="evolucao-log"></div>
+      </section>
+
+      <section class="prog-panel prog-panel-wide">
+        <div class="panel-title" data-i18n="ficha.evolutionMoments">Momentos de Evolução</div>
+        <div class="evolucao-grid" id="evolucao-grid"></div>
+      </section>
+    </div>
+  </section>
+
 </main>
 
-<div class="modal-bg" id="modal-wizard">
-  <div class="modal">
-    <div class="modal-chrome">
-      <div class="modal-title" id="wizard-title">TEMA</div>
-      <div class="modal-sub" id="wizard-sub"></div>
-    </div>
-    <div id="wizard-body"></div>
-    <div class="modal-acts" id="wizard-acts"></div>
-  </div>
-</div>
 
 <!-- Inline scripts -->
 <script>
@@ -633,6 +628,10 @@ const T_HUM=[
 ];
 const T_ADICIONAL=[];
 const TODOS=()=>[...T_MUTACAO,...T_HUM,...T_ADICIONAL];
+/* arquivos existentes em icons/ — chaves de tema sem arquivo proprio reusam um vizinho */
+const ICONES=['adaptacao','adivinhacao','bastiao','conflito','conjuracao','destino','eventomarcante','expressao','familiar','missao','mobilidade','personalidade','posses','relacao','reliquia','rotina','subversao','territorio','treinamento'];
+const ICON_ALIAS={adaptabilidade:'adaptacao',conflitodificuldade:'conflito',relacaomarcante:'relacao',enclave:'bastiao',aliado:'relacao',basedeoperacoes:'territorio',transporte:'mobilidade'};
+const iconFor=v=>{if(!v)return '';const n=ICON_ALIAS[v]||v;return ICONES.indexOf(n)!==-1?n:'';};
 const cat=v=>T_MUTACAO.some(t=>t.v===v)?'mutacao':T_HUM.some(t=>t.v===v)?'humanidade':T_ADICIONAL.some(t=>t.v===v)?'adicional':'';
 const lbl=v=>{const found=TODOS().find(x=>x.v===v);return found?found.l:(v||t('ficha.noType'));};
 const STATS=['destreza','forca','corpo','inteligencia','vontade','mente','influencia','aura','espirito'];
@@ -642,8 +641,10 @@ const MELHORIAS={};
 const DESCRICOES={};
 const MISTERIOS={};
 const normalizeKey=(s)=>s?s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\/ ]/g,''):'';
+const MOMENTOS_EVOLUCAO={};
+let MOMENTOS_INTRO='';
 const loadTemaData=async()=>{
-  const [temasRes]=await Promise.allSettled([fetch('temas.json')]);
+  const [temasRes,momentosRes]=await Promise.allSettled([fetch('temas.json'),fetch('momentosDeEvolucao.json')]);
   try{
     if(temasRes.status!=='fulfilled')throw temasRes.reason;
     const d=await temasRes.value.json();
@@ -655,23 +656,35 @@ const loadTemaData=async()=>{
         DESCRICOES[k]=t.descricao||'';
         MISTERIOS[k]=t.misterio_exemplos||[];
       });
-      T_MUTACAO.length=0;T_HUM.length=0;
+      T_MUTACAO.length=0;T_HUM.length=0;T_ADICIONAL.length=0;
       d.temas.forEach(t=>{
         const v=normalizeKey(t.nome);
         const l=t.nome;
         if(t.tipo==='Mutação')T_MUTACAO.push({v,l});
         else if(t.tipo==='Humanidade')T_HUM.push({v,l});
+        else if(t.tipo==='Adicional')T_ADICIONAL.push({v,l});
       });
     }
+    /* legacy shape: temas adicionais em uma chave própria */
     if(d.temas_adicionais){
       d.temas_adicionais.forEach(t=>{
         const k=normalizeKey(t.nome);
+        if(T_ADICIONAL.some(x=>x.v===k))return;
         PERGUNTAS[k]={p:t.perguntas_poder||[],f:t.perguntas_fraqueza||[]};
         MELHORIAS[k]=t.melhorias||[];
+        DESCRICOES[k]=t.descricao||'';
         T_ADICIONAL.push({v:k,l:t.nome});
       });
     }
   }catch(e){console.error('load temas err',e);}
+  try{
+    if(momentosRes.status!=='fulfilled')throw momentosRes.reason;
+    const d2=await momentosRes.value.json();
+    if(d2.momentos_evolucao){
+      MOMENTOS_INTRO=d2.momentos_evolucao.descricao||'';
+      (d2.momentos_evolucao.opcoes||[]).forEach(o=>{MOMENTOS_EVOLUCAO[normalizeKey(o.nome)]=o;});
+    }
+  }catch(e){console.error('load momentos err',e);}
 };
 const getPlaceholder=(tipo,i,isPoder)=>{const k=normalizeKey(tipo);const arr=isPoder?(PERGUNTAS[k]?.p||[]):(PERGUNTAS[k]?.f||[]);return arr[i]||'';};
 const getMelhorias=(tipo)=>{const k=normalizeKey(tipo);return MELHORIAS[k]||[];};
@@ -692,11 +705,11 @@ function deriveBlurb(descricao){
   if(s.length>90)s=s.slice(0,90).trim()+'…';
   return s;
 }
-function shouldAutoLaunchWizard(d){return d.temas.every(c=>!c.tipo)&&!d.temas_wizard_dismissed;}
 const PADRAO={
   nome:'',codinome:'',jogador:'',mutacao_ficha:'',mutacao_temas:'',foto:'',
   stats:Object.fromEntries(STATS.map(s=>[s,''])),
   status:'',notas:'',
+  progressao:0,evolucao:['','','','',''],evolucao_checked:{},
   estado:{
     selectedTags:[],
     savedMoves:[],
@@ -704,7 +717,6 @@ const PADRAO={
     tempoPassado:0
   },
   temas:Array.from({length:4},novoCard),
-  temas_wizard_dismissed:false,
   esq_nome:'',
   membros:Array.from({length:7},()=>({nome:'',apoio:0,antagonismo:0})),
   extras:Array.from({length:4},novoCard),
@@ -776,21 +788,18 @@ const newUrl = 'ficha.html?id=' + char.id;
     if (D.temas) D.temas.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (D.extras) D.extras.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (char && char.foto_base64) D.foto = char.foto_base64;
-    delete D.progressao;
-    delete D.evolucao;
-    delete D.evolucao_checked;
     setInd('',t('ficha.saved'));
   } catch(e) {
     console.error('Erro ao carregar personagem:', e);
     setInd('',t('ficha.newChar'));
   }
   
+  buildDots();buildEvo();buildEvoLog();
   buildGrid('temas-grid', D.temas);
   if (window.EstadoModule) {
     EstadoModule.init(D);
     EstadoModule.render();
   }
-  if (shouldAutoLaunchWizard(D)) abrirWizardGeral();
   buildGrid('esq-grid', D.extras);
     buildMembros();
   preencherCampos();
@@ -813,9 +822,6 @@ function salvarAuto(){
      try{
        const fotoB64=D.foto||null;
        const dataParaSalvar=Object.assign({},D,{foto:''});
-       delete dataParaSalvar.progressao;
-       delete dataParaSalvar.evolucao;
-       delete dataParaSalvar.evolucao_checked;
        if (dataParaSalvar.estado) delete dataParaSalvar.estado.selectedTags;
        await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
        setInd('salvo',t('ficha.savedOk'));
@@ -856,6 +862,60 @@ function trocarAba(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   el.classList.add('active');
+}
+/* ── PROGRESSÃO ── */
+const PROG_MAX=5;
+function buildDots(){
+  const c=document.getElementById('dots-prog');if(!c)return;
+  const frag=document.createDocumentFragment();
+  for(let i=0;i<PROG_MAX;i++){
+    const d=document.createElement('div');d.className='dot'+(i<D.progressao?' filled':'');
+    d.title=(i+1)+'/'+PROG_MAX;
+    d.addEventListener('click',()=>{D.progressao=D.progressao===i+1?i:i+1;buildDots();salvarAuto();});
+    frag.appendChild(d);
+  }
+  c.replaceChildren(frag);
+  const n=document.getElementById('prog-count');if(n)n.textContent=(D.progressao||0)+'/'+PROG_MAX;
+  const h=document.getElementById('prog-help');if(h&&MOMENTOS_INTRO)h.textContent=MOMENTOS_INTRO;
+}
+function buildEvo(){
+  const grid=document.getElementById('evolucao-grid');if(!grid)return;
+  const keys=Object.keys(MOMENTOS_EVOLUCAO);
+  if(!keys.length){grid.replaceChildren(Object.assign(document.createElement('p'),{className:'prog-help',textContent:t('ficha.loadingMoments')}));return;}
+  const frag=document.createDocumentFragment();
+  keys.forEach(k=>{
+    const m=MOMENTOS_EVOLUCAO[k];
+    const row=document.createElement('label');row.className='evo-check-row';
+    const chk=document.createElement('input');chk.type='checkbox';chk.className='evo-chk';
+    chk.checked=!!(D.evolucao_checked&&D.evolucao_checked[k]);
+    const txt=document.createElement('span');txt.className='evo-chk-txt';
+    txt.textContent=m.nome;
+    if(m.uso){const u=document.createElement('span');u.className='evo-chk-uso';u.textContent=' · '+m.uso;txt.appendChild(u);}
+    if(m.descricao){const dsc=document.createElement('span');dsc.className='evo-chk-desc';dsc.textContent=m.descricao.replace(/\*\*/g,'');txt.appendChild(dsc);}
+    chk.addEventListener('change',e=>{
+      if(!D.evolucao_checked)D.evolucao_checked={};
+      D.evolucao_checked[k]=e.target.checked;
+      row.classList.toggle('checked',e.target.checked);
+      salvarAuto();
+    });
+    row.classList.toggle('checked',chk.checked);
+    row.appendChild(chk);row.appendChild(txt);frag.appendChild(row);
+  });
+  grid.replaceChildren(frag);
+}
+function buildEvoLog(){
+  const box=document.getElementById('evolucao-log');if(!box)return;
+  if(!Array.isArray(D.evolucao))D.evolucao=['','','','',''];
+  const frag=document.createDocumentFragment();
+  for(let i=0;i<PROG_MAX;i++){
+    const row=document.createElement('div');row.className='evo-row';
+    const n=document.createElement('span');n.className='evo-n';n.textContent=String(i+1).padStart(2,'0');
+    const inp=document.createElement('input');inp.type='text';inp.className='evo-inp';
+    inp.placeholder=t('ficha.evolutionPlaceholder');inp.value=D.evolucao[i]||'';
+    inp.addEventListener('input',e=>{D.evolucao[i]=e.target.value;salvarAuto();});
+    row.appendChild(n);row.appendChild(inp);frag.appendChild(row);
+  }
+  box.replaceChildren(frag);
 }
 function buildMembros(){
   const tb=document.getElementById('mbr-tbody');tb.innerHTML='';
@@ -932,23 +992,25 @@ function paintTracker(triCont,v){
   ch[3].className='tri-wrap';
   for(let n=0;n<3;n++){ch[4+n].className='tri-wrap'+(v<=-(n+1)?' dissip':'');}
 }
+const MAX_CARDS={'temas-grid':5,'esq-grid':8};
 function buildGrid(cid,lista){
-   const c=document.getElementById(cid);c.innerHTML='';
-   lista.forEach((card,idx)=>c.appendChild(buildCard(card,lista,cid,{idx})));
-   if(cid==='temas-grid'){
-     c.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],cid,{fixed:true}));
-     if(lista.length<5){
-       const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title=t('ficha.addTheme');
-       addBtn.addEventListener('click',()=>{abrirWizardTema('single',cid,lista);});c.appendChild(addBtn);
-     }
+   const c=document.getElementById(cid);
+   const frag=document.createDocumentFragment();
+   lista.forEach((card,idx)=>frag.appendChild(buildCard(card,lista,cid,{idx})));
+   if(cid==='temas-grid')frag.appendChild(buildCard(D.temas_emergentes,[D.temas_emergentes],cid,{fixed:true}));
+   if(lista.length<(MAX_CARDS[cid]||8)){
+     const addBtn=document.createElement('button');addBtn.className='add-card-btn';addBtn.innerHTML='+';addBtn.title=t('ficha.addTheme');
+     addBtn.addEventListener('click',()=>{lista.push(novoCard());buildGrid(cid,lista);salvarAuto();});
+     frag.appendChild(addBtn);
    }
+   c.replaceChildren(frag);
 }
 function buildCard(card,lista,cid,opts={}){
 const editable=!opts.fixed;
 const div=document.createElement('div');
     const c=cat(card.tipo);
     div.className='tcard'+(c?' '+c:'');
-    const iconMap={eventomarcante:'eventomarcante',relacaomarcante:'relacao'}[card.tipo]||card.tipo;
+    const iconMap=iconFor(card.tipo);
     const iconUrl = iconMap ? `icons/${iconMap}.svg` : '';
     if (iconUrl) div.setAttribute('data-icon', iconMap);
     div.style.setProperty('--card-icon', `url(${iconUrl})`);
@@ -979,9 +1041,9 @@ sel.addEventListener('change',e=>{
        const newTipo=e.target.value;
        card.tipo=newTipo;
        const nc=cat(newTipo);
-       const newIconMap={eventomarcante:'eventomarcante',relacaomarcante:'relacao'}[newTipo]||newTipo;
+       const newIconMap=iconFor(newTipo);
        div.className='tcard'+(nc?' '+nc:'');
-       const newIconUrl = newTipo ? `icons/${newIconMap}.svg` : '';
+       const newIconUrl = newIconMap ? `icons/${newIconMap}.svg` : '';
        if (newIconUrl) { div.setAttribute('data-icon', newIconMap); body.setAttribute('data-icon', newIconMap); body.style.setProperty('--card-bg', `url(${newIconUrl})`); } else { div.removeAttribute('data-icon'); body.removeAttribute('data-icon'); body.style.setProperty('--card-bg', 'none'); }
          renderDescHint(body,newTipo);
          body.querySelectorAll('.poder-tags,.fraq-tags,.poder-lbl,.fraq-lbl,.add-tag-btn').forEach(el=>el.remove());
@@ -1115,204 +1177,6 @@ if(editable){
   div.appendChild(body);return div;
 }
 
-/* ── WIZARD DE TEMAS ── */
-let WZ=null;
-function abrirWizardGeral(){
-  WZ={mode:'geral',slots:[{},{},{},{}],currentSlot:0,picks:[]};
-  document.getElementById('modal-wizard').classList.add('open');
-  wizardRenderPick();
-}
-function abrirWizardTema(mode,cid,lista){
-  WZ={mode,cid,lista,picks:[]};
-  document.getElementById('modal-wizard').classList.add('open');
-  wizardRenderPick();
-}
-function fecharWizard(){
-  const m=document.getElementById('modal-wizard');if(m)m.classList.remove('open');
-  WZ=null;
-}
-function wizardPularTudo(){
-  D.temas_wizard_dismissed=true;salvarAuto();fecharWizard();
-}
-function wizardProgressPrefix(){
-  if(!WZ||WZ.mode!=='geral'||WZ._phase!=='questions')return '';
-  return t('ficha.wizard.progressPrefix')+' '+(WZ.currentSlot+1)+' '+t('ficha.wizard.progressOf')+' 4 — ';
-}
-function wizardSetChrome(title,sub){
-  document.getElementById('wizard-title').textContent=wizardProgressPrefix()+title;
-  document.getElementById('wizard-sub').textContent=sub||'';
-}
-function wizardBody(){return document.getElementById('wizard-body');}
-function wizardActs(){return document.getElementById('wizard-acts');}
-function wizardBtn(label,cls,onClick){
-  const b=document.createElement('button');b.type='button';b.className='tbtn'+(cls?' '+cls:'');b.textContent=label;
-  b.addEventListener('click',onClick);
-  return b;
-}
-function wizardPickCount(){
-  return WZ.picks?WZ.picks.length:0;
-}
-function wizardRenderPick(){
-  const pickCount=wizardPickCount();
-  const sub=(WZ.mode==='geral'&&pickCount===0)?t('ficha.wizard.emptyStatePrompt'):'';
-  wizardSetChrome(t('ficha.wizard.pickTitle'),sub);
-  const body=wizardBody();body.innerHTML='';
-  if(!WZ.picks)WZ.picks=[];
-  const togglePick=(tm)=>{
-    const idx=WZ.picks.indexOf(tm.v);
-    if(idx!==-1)WZ.picks.splice(idx,1);
-    else if(WZ.mode==='geral'&&WZ.picks.length>=4)return;
-    else WZ.picks.push(tm.v);
-    if(WZ.mode==='geral'&&WZ.picks.length===4){
-      WZ.currentSlot=0;
-      WZ.slots=WZ.picks.map(v=>({...novoCard(),tipo:v}));
-      WZ._phase='questions';
-      wizardRenderQuestionsForSlot(0);
-    }else wizardRenderPick();
-  };
-  const buildGroup=(list,catClass)=>{
-    if(!list.length)return;
-    const grid=document.createElement('div');grid.className='cards-grid wizard-pick-grid';
-    list.forEach(tm=>{
-      const selected=WZ.picks.includes(tm.v);
-      const pcard=document.createElement('div');pcard.className='tcard '+catClass+' wizard-pick-card'+(selected?' selected':'');
-      const hdr=document.createElement('div');hdr.className='card-hdr';
-      const main=document.createElement('div');main.className='card-hdr-main';
-      const badge=document.createElement('span');badge.className='cat-badge';badge.textContent=tm.l+(selected?' ✓':'');
-      main.appendChild(badge);hdr.appendChild(main);pcard.appendChild(hdr);
-      const cbody=document.createElement('div');cbody.className='card-body';
-      const full=document.createElement('div');full.className='wizard-pick-full';
-      const descP=document.createElement('p');descP.className='wizard-desc-full';descP.textContent=DESCRICOES[tm.v]||'';full.appendChild(descP);
-      cbody.appendChild(full);pcard.appendChild(cbody);
-      pcard.addEventListener('click',()=>togglePick(tm));
-      grid.appendChild(pcard);
-    });
-    body.appendChild(grid);
-  };
-  if(pickCount>0&&WZ.mode==='geral'){
-    const selBar=document.createElement('div');selBar.className='wizard-selected-bar';
-    WZ.picks.forEach(v=>{
-      const pill=document.createElement('span');pill.className='wizard-selected-pill';pill.textContent=lbl(v);
-      pill.addEventListener('click',()=>{const idx=WZ.picks.indexOf(v);if(idx!==-1){WZ.picks.splice(idx,1);wizardRenderPick();}});
-      selBar.appendChild(pill);
-    });
-    body.appendChild(selBar);
-  }
-  if(!WZ._tab)WZ._tab='mutacao';
-  const tabBar=document.createElement('div');tabBar.className='wizard-tabs';
-  const mkTab=(label,cat,v)=>{
-    const tb=document.createElement('button');tb.className='tab'+(v===WZ._tab?' active':'');
-    tb.textContent=label+' ('+(cat==='mutacao'?T_MUTACAO:T_HUM).length+')';
-    tb.addEventListener('click',()=>{WZ._tab=v;wizardRenderPick();});
-    tabBar.appendChild(tb);
-  };
-  mkTab(t('ficha.mutationType'),'mutacao','mutacao');
-  mkTab(t('ficha.humanity'),'humanidade','humanidade');
-  body.appendChild(tabBar);
-  if(WZ._tab==='mutacao')buildGroup(T_MUTACAO,'mutacao');
-  else buildGroup(T_HUM,'humanidade');
-  const acts=wizardActs();acts.innerHTML='';
-  if(WZ.mode==='geral'){
-    const cLbl=document.createElement('span');cLbl.className='wizard-pick-counter';cLbl.textContent=pickCount+'/4 '+t('ficha.wizard.pickSelected');acts.appendChild(cLbl);
-    if(pickCount===4){
-      acts.appendChild(wizardBtn(t('ficha.wizard.pickConfirm'),'tbtn-red',()=>{
-        WZ.currentSlot=0;WZ.slots=WZ.picks.map(v=>({...novoCard(),tipo:v}));WZ._phase='questions';wizardRenderQuestionsForSlot(0);
-      }));
-    }
-    acts.appendChild(wizardBtn(t('ficha.wizard.skipAll'),'',wizardPularTudo));
-  }else{
-    acts.appendChild(wizardBtn(t('common.cancel'),'',fecharWizard));
-    if(pickCount===1){WZ.currentSlot=0;WZ.slots=[{...novoCard(),tipo:WZ.picks[0]}];WZ._phase='questions';wizardRenderQuestionsForSlot(0);}
-  }
-}
-function wizardQuestionsForTheme(tipo){
-  const k=normalizeKey(tipo);
-  return {p:PERGUNTAS[k]?.p||[],f:PERGUNTAS[k]?.f||[],misterios:MISTERIOS[k]||[]};
-}
-function wizardQuestionsAnsweredForSlot(slotIdx){
-  const card=WZ.slots[slotIdx];
-  const q=wizardQuestionsForTheme(card.tipo);
-  const filled=arr=>arr.filter(v=>v&&v.trim()).length;
-  return filled((card.poder||[]).slice(0,q.p.length))+filled((card.fraqueza||[]).slice(0,q.f.length));
-}
-function wizardQuestionsSubForSlot(slotIdx){
-  const q=wizardQuestionsForTheme(WZ.slots[slotIdx].tipo);
-  const total=q.p.length+q.f.length;
-  return wizardQuestionsAnsweredForSlot(slotIdx)+' '+t('ficha.wizard.progressOf')+' '+total+' '+t('ficha.wizard.answered');
-}
-function wizardRenderQuestionsForSlot(slotIdx){
-  const slot=WZ.slots[slotIdx];
-  const tipo=slot.tipo;
-  const q=wizardQuestionsForTheme(tipo);
-  const titulo=lbl(tipo);
-  wizardSetChrome(titulo,wizardQuestionsSubForSlot(slotIdx));
-  const body=wizardBody();body.innerHTML='';
-  const updateSub=()=>{document.getElementById('wizard-sub').textContent=wizardQuestionsSubForSlot(slotIdx);};
-  const targetP=slot.poder||[];
-  const targetF=slot.fraqueza||[];
-  const buildSection=(arr,isPower,label)=>{
-    if(!arr.length)return;
-    const l=document.createElement('div');l.className='c-label '+(isPower?'poder':'fraq');l.innerHTML=label;body.appendChild(l);
-    const list=document.createElement('div');list.className='wizard-q-list';
-    const target=isPower?targetP:targetF;
-    arr.forEach((qText,i)=>{
-      const row=document.createElement('div');row.className='wizard-q-row answered';
-      row.style.cursor='default';
-      const inpWrap=document.createElement('div');inpWrap.className='wizard-q-inp-wrap';inpWrap.style.display='block';
-      const inp=document.createElement('input');inp.type='text';inp.className='card-inp';inp.placeholder=qText;inp.value=target[i]||'';
-      inpWrap.appendChild(inp);row.appendChild(inpWrap);
-      const paint=()=>{
-        const v=(target[i]||'').trim();
-        row.classList.toggle('answered',!!v);
-      };
-      inp.addEventListener('input',e=>{
-        if(isPower){if(!slot.poder)slot.poder=[];slot.poder[i]=e.target.value;}
-        else{if(!slot.fraqueza)slot.fraqueza=[];slot.fraqueza[i]=e.target.value;}
-        paint();updateSub();
-      });
-      paint();
-      list.appendChild(row);
-    });
-    body.appendChild(list);
-  };
-  buildSection(q.p,true,t('ficha.powerTags'));
-  buildSection(q.f,false,t('ficha.weaknessTags'));
-  const sep=document.createElement('div');sep.style.cssText='border-top:1px solid var(--b2);margin:10px 0;';body.appendChild(sep);
-  const mysteryLbl=document.createElement('div');mysteryLbl.className='c-label';mysteryLbl.textContent=t('ficha.wizard.mysteryLabel');body.appendChild(mysteryLbl);
-  const mysteryInp=document.createElement('input');mysteryInp.type='text';mysteryInp.className='card-inp';mysteryInp.placeholder=t('ficha.placeholderMystery');mysteryInp.value=slot.misterio||'';
-  mysteryInp.addEventListener('input',e=>{slot.misterio=e.target.value;});
-  body.appendChild(mysteryInp);
-  if(q.misterios.length){
-    const hintLbl=document.createElement('div');hintLbl.className='c-label';hintLbl.textContent=t('ficha.wizard.mysteryInspiration');body.appendChild(hintLbl);
-    const ul=document.createElement('ul');ul.className='wizard-mystery-hints';
-    q.misterios.slice(0,3).forEach(ex=>{const li=document.createElement('li');li.textContent=ex;ul.appendChild(li);});
-    body.appendChild(ul);
-  }
-  const acts=wizardActs();acts.innerHTML='';
-  acts.appendChild(wizardBtn(t('ficha.wizard.backToPick'),'',()=>{
-    delete WZ._phase;
-    if(WZ.mode==='geral'){WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
-    else{WZ.picks=WZ.slots.map(s=>s.tipo);wizardRenderPick();}
-  }));
-  const isLast=slotIdx===WZ.slots.length-1;
-  acts.appendChild(wizardBtn(isLast?t('ficha.wizard.finish'):t('ficha.wizard.nextTheme'),'tbtn-red',()=>{
-    if(isLast)wizardSalvarTemas();
-    else wizardRenderQuestionsForSlot(slotIdx+1);
-  }));
-}
-function wizardSalvarTemas(){
-  if(WZ.mode==='geral'){
-    WZ.slots.forEach((card,i)=>{D.temas[i]=card;});
-    buildGrid('temas-grid',D.temas);
-    salvarAuto();
-    fecharWizard();
-  }else{
-    WZ.slots.forEach(card=>{WZ.lista.push(card);});
-    buildGrid(WZ.cid,WZ.lista);
-    salvarAuto();
-    fecharWizard();
-  }
-}
 
 /* ── FIELDS ── */
 function preencherCampos(){
@@ -1351,6 +1215,7 @@ function resetarFicha(){
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
   D=clone(PADRAO);
   preencherCampos();
+  buildDots();buildEvo();buildEvoLog();
   buildGrid('temas-grid',D.temas);
   buildGrid('esq-grid',D.extras);
   buildMembros();
@@ -1385,6 +1250,10 @@ function exportarPDF(){
   const st=d.stats||{};
   const attr=(lb,v)=>`<div class="pdf-attr"><span class="pdf-attr-k">${lb}</span><span class="pdf-attr-v">${(v||v===0)&&v!==''?pdfEsc(v):'—'}</span></div>`;
   const membros=(d.membros||[]).filter(m=>m.nome&&m.nome.trim());
+  const dots='\u25cf'.repeat(d.progressao||0)+'\u25cb'.repeat(Math.max(0,PROG_MAX-(d.progressao||0)));
+  const evo=(d.evolucao||[]).filter(e=>e&&e.trim()).map(e=>`<li>${pdfEsc(e)}</li>`).join('')||'<li class="muted">\u2014</li>';
+  const momentos=Object.keys(MOMENTOS_EVOLUCAO).filter(k=>d.evolucao_checked&&d.evolucao_checked[k])
+    .map(k=>`<li>${pdfEsc(MOMENTOS_EVOLUCAO[k].nome)}</li>`).join('');
   const temas=(d.temas||[]).map(pdfCard).join('');
   const extras=(d.extras||[]).map(pdfCard).join('');
   const foto=d.foto?`<img class="pdf-portrait" src="${d.foto}" alt="">`:'';
@@ -1406,6 +1275,7 @@ body{font-family:'Barlow Condensed','Segoe UI',Arial,sans-serif;color:#12100c;ba
 .pdf-attr-k{text-transform:uppercase;font-size:11px;letter-spacing:.06em;}
 .pdf-attr-v{font-weight:700;font-family:'Oswald',sans-serif;}
 .pdf-block{white-space:pre-wrap;font-size:12px;padding:4px 0;}
+.pdf-prog{font-size:16px;letter-spacing:3px;color:#E8001C;}
 ol,ul{padding-left:18px;}
 li{margin:2px 0;}
 li.muted{color:#999;list-style:none;margin-left:-14px;}
@@ -1449,6 +1319,12 @@ ${d.mutacao_temas?`<div class="pdf-sec">Mutação — Tema Central</div><div cla
 <div class="pdf-sec">Cards de Tema</div>
 <div class="pdf-cards">${temas||'<div class="muted">Nenhum tema definido.</div>'}</div>
 
+<div class="pdf-sec">Progressão</div>
+<div class="pdf-prog">${dots} <span style="font-size:11px;color:#666">(${d.progressao||0}/${PROG_MAX})</span></div>
+<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:8px 0 2px">REGISTRO DE EVOLUÇÕES</div>
+<ol>${evo}</ol>
+${momentos?`<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:8px 0 2px">MOMENTOS DE EVOLUÇÃO MARCADOS</div><ul>${momentos}</ul>`:''}
+
 ${(d.status&&d.status.trim())?`<div class="pdf-sec">Status</div><div class="pdf-block">${pdfNl(d.status)}</div>`:''}
 ${(d.notas&&d.notas.trim())?`<div class="pdf-sec">Notas</div><div class="pdf-block">${pdfNl(d.notas)}</div>`:''}
 
@@ -1465,10 +1341,6 @@ ${extras?`<div style="font-size:9px;color:#888;letter-spacing:.1em;margin:10px 0
   toast(t('ficha.exported'));
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const mw=document.getElementById('modal-wizard');
-  if(mw)mw.addEventListener('click',function(e){if(e.target===this)fecharWizard();});
-});
 
 /* ── TOAST ── */
 function toast(msg){
@@ -1489,9 +1361,9 @@ document.addEventListener('click',function(e){
   }
 });
 
-// ponytail: node-requireable export for tests/theme-wizard.test.js; no-op in the browser
+// ponytail: node-requireable export for tests/theme-cards.test.js; no-op in the browser
 if(typeof module!=='undefined'&&module.exports){
-  module.exports={deriveBlurb,shouldAutoLaunchWizard};
+  module.exports={deriveBlurb};
 }
 </script>
 </body>

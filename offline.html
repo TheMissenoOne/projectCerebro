@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>X-MEN TTRPG // OFFLINE</title>
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" type="image/svg+xml" href="assets/img/pwa-icon.svg">
+  <link rel="stylesheet" href="assets/css/base.css?v=dev">
+  <style>
+    .off-wrap{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;}
+    .off-logo{width:72px;height:72px;opacity:.9;}
+    .off-title{font-family:var(--disp);font-size:1.8rem;letter-spacing:.22em;color:var(--white);}
+    .off-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);border-left:2px solid var(--accent2);padding-left:10px;max-width:420px;line-height:1.9;text-align:left;}
+    .off-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px;}
+    .off-btn{font-family:var(--cond);font-weight:700;font-size:.62rem;letter-spacing:.12em;padding:7px 14px;background:var(--p2);border:1px solid var(--b2);color:var(--text);cursor:pointer;}
+    .off-btn:hover{border-color:var(--accent);color:var(--white);text-decoration:none;}
+    .off-btn.acc{background:var(--accent);color:var(--flat-fg);border-color:var(--accent);}
+  </style>
+</head>
+<body>
+  <div class="off-wrap">
+    <img class="off-logo" src="assets/img/pwa-icon.svg" alt="">
+    <h1 class="off-title">SEM SINAL</h1>
+    <p class="off-sub">
+      O Cérebro perdeu contato com a rede. As páginas já visitadas continuam
+      disponíveis offline; dados de personagens e NPCs voltam assim que a conexão
+      for restabelecida.
+    </p>
+    <div class="off-links">
+      <button type="button" class="off-btn acc" onclick="location.reload()">TENTAR DE NOVO</button>
+      <a class="off-btn" href="dashboard.html">DASHBOARD</a>
+      <a class="off-btn" href="wiki.html">WIKI</a>
+      <a class="off-btn" href="combate.html">COMBATE</a>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('online', function () { location.reload(); });
+  </script>
+</body>
+</html>

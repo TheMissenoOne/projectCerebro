@@ -25,7 +25,7 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-test('ficha adds the Estado tab and removes Progressão UI', function() {
+test('ficha keeps the Estado tab', function() {
   assert(ficha.includes("data-i18n=\"ficha.tab4\""), 'Estado tab button missing');
   assert(ficha.includes('id="page-estado"'), 'Estado page missing');
   assert(ficha.includes('id="estado-condition-kind-toggle"'), 'Condition/effect toggle button missing');
@@ -34,9 +34,17 @@ test('ficha adds the Estado tab and removes Progressão UI', function() {
   assert(ficha.includes('tabela de referência de APs'), 'Reference-based AP note missing');
   assert(!ficha.includes('1 AP = 8 segundos'), 'Wrong fixed AP conversion still present');
   assert(!ficha.includes('id="estado-condition-kind"'), 'Old condition/effect select still present');
-  assert(!ficha.includes('progressao-area'), 'Progressão UI still present');
-  assert(!ficha.includes('buildDots('), 'Progressão dots wiring still present');
-  assert(!ficha.includes('evolucao-grid'), 'Progressão evolution grid still present');
+});
+
+test('ficha restores the Progressão tab', function() {
+  assert(ficha.includes('data-i18n="ficha.tab5"'), 'Progressão tab button missing');
+  assert(ficha.includes('id="page-progressao"'), 'Progressão page missing');
+  assert(ficha.includes('progressao-area'), 'Progressão marker missing');
+  assert(ficha.includes('function buildDots('), 'Progressão dots wiring missing');
+  assert(ficha.includes('id="evolucao-grid"'), 'Evolution moments grid missing');
+  assert(ficha.includes("fetch('momentosDeEvolucao.json')"), 'momentosDeEvolucao.json no longer loaded');
+  assert(!ficha.includes('delete D.progressao'), 'Progressão still stripped on load');
+  assert(!ficha.includes('delete dataParaSalvar.progressao'), 'Progressão still stripped on save');
 });
 
 test('wiki removes Progressão and Manifestação pages', function() {

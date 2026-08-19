@@ -92,6 +92,9 @@ jobs:
           SHA_SHORT="${GITHUB_SHA::8}"
           find . -name "*.html" -not -path "*/node_modules/*" -type f \
             -exec sed -i "s|?v=dev|?v=${SHA_SHORT}|g" {} \;
+          # sw.js carrega o mesmo placeholder: versiona os caches e alinha o
+          # precache às URLs que as páginas realmente pedem
+          sed -i "s|?v=dev|?v=${SHA_SHORT}|g" sw.js
           echo "✓ cache-busted local assets with ?v=${SHA_SHORT}"
 
       - name: Upload artifact

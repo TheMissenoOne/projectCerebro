@@ -579,3 +579,100 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* ══ PWA ════════════════════════════════════════════════════════════ */
+
+/* Em modo standalone não há barra do navegador: respeita o notch/gesture bar. */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  /* sem barra de URL para "puxar e recarregar" acidentalmente */
+  html { overscroll-behavior-y: none; }
+}
+
+/* Faixa de estado quando o app perde a rede. */
+html.is-offline body::before {
+  content: '// OFFLINE — ALTERAÇÕES SERÃO SINCRONIZADAS AO RECONECTAR';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: var(--red3);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: .5rem;
+  letter-spacing: .12em;
+  text-align: center;
+  padding: 4px 8px;
+  padding-top: calc(4px + env(safe-area-inset-top));
+  pointer-events: none;
+}
+
+/* Convite de instalação. */
+#pwa-install-bar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 140%);
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 24px);
+  padding: 9px 10px 9px 14px;
+  background: var(--dark);
+  border: 1px solid var(--b2);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .6);
+  transition: transform .25s ease;
+}
+#pwa-install-bar.show { transform: translate(-50%, 0); }
+.pwa-bar-txt {
+  font-family: var(--mono);
+  font-size: .55rem;
+  letter-spacing: .1em;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pwa-bar-btn {
+  flex-shrink: 0;
+  background: var(--accent);
+  border: none;
+  color: var(--flat-fg);
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: .58rem;
+  letter-spacing: .12em;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.pwa-bar-btn:hover { opacity: .85; }
+.pwa-bar-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+.pwa-bar-close:hover { color: var(--white); }
+
+@media (max-width: 480px) {
+  #pwa-install-bar { left: 12px; right: 12px; transform: translateY(140%); max-width: none; }
+  #pwa-install-bar.show { transform: translateY(0); }
+  .pwa-bar-txt { font-size: .48rem; white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #pwa-install-bar { transition: none; }
+}
