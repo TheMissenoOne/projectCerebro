@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-08-19] - Temas extras, Progressão, performance e PWA
+
+### Added
+- **PWA** - `manifest.webmanifest`, service worker (`sw.js`), ícones 192/512/maskable +
+  apple-touch, página `offline.html`, faixa de estado offline e barra "instalar como app".
+  O app abre em tela cheia (standalone), funciona offline e se atualiza sozinho.
+- **Progressão de volta** - aba `05 PROGRESSÃO` na ficha: marcador de 5 quadrados,
+  registro de evoluções e os 7 Momentos de Evolução (de `momentosDeEvolucao.json`),
+  com descrição completa. Volta também ao export em PDF.
+- **Botão + nos Cards Extras** - o grid de Esquadrão agora também cria cards.
+- `npm run icons` regenera os PNGs do PWA a partir dos SVGs.
+
+### Fixed
+- **Temas Adicionais sumiram** (Aliado, Base de Operações, Transporte): o parser só lia
+  `d.temas_adicionais`, chave inexistente em `temas.json` — os temas estão em `d.temas`
+  com `tipo: "Adicional"`. Passa a ler pelo tipo.
+- **404 de ícones de tema** - `adaptabilidade`, `enclave` e `conflitodificuldade` pediam
+  arquivos que não existem em `icons/`. Resolução centralizada em `iconFor()` com aliases.
+- **`listAllNPCs` sem cache** - o caminho do GM refazia a consulta inteira a cada load.
+  Agora usa o cache de 5 min, invalidado em toda escrita de NPC; o botão RECARREGAR
+  força a rede.
+- **`filtrar()` e `setCat()` duplicados** em `cerebro.html`.
+
+### Changed
+- **Wizard de criação de tema removido** - modal, CSS, estado e chaves i18n. O botão `+`
+  cria um card vazio direto, sem passo intermediário.
+- **Performance** - `wiki.html` e `admin.html` carregavam todo o JS de forma bloqueante no
+  `<head>` (incluindo os 124 KB de `wiki-pages.js`); os scripts foram para o fim do body.
+  Busca do Cérebro com debounce de 120 ms, `content-visibility` nas linhas da lista de NPCs
+  e `preconnect` para o Supabase e o jsDelivr.
+
+---
+
 ## [2026-04-08] - GitHub Pages Version (feature/gh-pages)
 
 ### Added

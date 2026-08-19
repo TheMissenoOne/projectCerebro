@@ -285,17 +285,28 @@
         return result.data; 
       });
     },
-    listAllNPCs: function() {
+    listAllNPCs: function(forceRefresh) {
+      var cache = window.cache;
+      if (!forceRefresh && cache) {
+        var cached = cache.get('npcs', 'all');
+        if (cached) return Promise.resolve(cached);
+      }
       return getSupabase().from('npcs').select('*')
-        .then(function(result) { if (result.error) throw result.error; return result.data; });
+        .then(function(result) {
+          if (result.error) throw result.error;
+          if (cache) cache.set('npcs', 'all', result.data, 300000);
+          return result.data;
+        });
     },
 
     createNPC: function(partyId, npcData) {
+      if (window.cache) window.cache.invalidatePattern('npcs');
       return getSupabase().from('npcs').insert({ party_id: partyId, name: npcData.name, codename: npcData.codename || '', faction: npcData.faction || 'neutro', danger: npcData.danger || 'medio', data: npcData.data || {}, foto_url: npcData.foto_url || '', is_global: npcData.is_global || false }).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 
     updateNPC: function(npcId, npcData) {
+      if (window.cache) window.cache.invalidatePattern('npcs');
       return getSupabase().from('npcs').update({ 
         name: npcData.name, 
         codename: npcData.codename || '', 
@@ -309,6 +320,7 @@
     },
 
     deleteNPC: function(npcId) {
+      if (window.cache) window.cache.invalidatePattern('npcs');
       return getSupabase().from('npcs').delete().eq('id', npcId)
         .then(function(result) { if (result.error) throw result.error; });
     },

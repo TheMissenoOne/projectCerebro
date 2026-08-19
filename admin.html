@@ -2,27 +2,27 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="assets/img/x-logo.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="icon" type="image/svg+xml" href="assets/img/pwa-icon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#080808">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Cérebro">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <title>X-MEN TTRPG // PAINEL DO GM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://wlpdfrqzbpwuxyqeayjt.supabase.co" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="assets/css/base.css?v=dev">
   <link rel="stylesheet" href="assets/css/components.css?v=dev">
   <link rel="stylesheet" href="assets/css/admin.css?v=dev">
-  <script src="assets/js/config.js?v=dev"></script>
-  <script src="assets/js/i18n.js?v=dev"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase-client.js?v=dev"></script>
-  <script src="assets/js/cache-module.js?v=dev"></script>
-  <script src="assets/js/auth-module.js?v=dev"></script>
-  <script src="assets/js/api.js?v=dev"></script>
-  <script src="assets/js/globals.js?v=dev"></script>
-  <script src="assets/js/themes.js?v=dev"></script>
-  <script src="assets/js/header.js?v=dev"></script>
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
 </head>
 <body>
@@ -118,6 +118,18 @@
 </main>
   </div>
 
+  <!-- scripts no fim do body: HTML e CSS renderizam antes do parse do JS -->
+  <script src="assets/js/config.js?v=dev"></script>
+  <script src="assets/js/i18n.js?v=dev"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-client.js?v=dev"></script>
+  <script src="assets/js/cache-module.js?v=dev"></script>
+  <script src="assets/js/auth-module.js?v=dev"></script>
+  <script src="assets/js/api.js?v=dev"></script>
+  <script src="assets/js/globals.js?v=dev"></script>
+  <script src="assets/js/themes.js?v=dev"></script>
+  <script src="assets/js/header.js?v=dev"></script>
+  <script src="assets/js/pwa.js?v=dev"></script>
   <!-- Scripts already loaded in <head> -->
   <script>
 let currentParty = null;

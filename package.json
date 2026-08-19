@@ -5,7 +5,11 @@
     "test:e2e": "node tests/spa-e2e.test.js",
     "test:unit": "node tests/unit.test.js",
     "test:ficha": "node tests/ficha.test.js",
-    "test:admin": "node tests/admin.test.js"
+    "test:admin": "node tests/admin.test.js",
+    "test:pwa": "node tests/pwa.test.js",
+    "test:themes": "node tests/theme-cards.test.js",
+    "test:estado": "node tests/estado-wiki.test.js",
+    "icons": "node scripts/gen-pwa-icons.js"
   },
   "dependencies": {
     "http-server": "^14.1.1",
