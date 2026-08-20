@@ -536,8 +536,10 @@ function showToast(msg){
         <div class="estado-panel-body" id="estado-body-tempo">
           <button type="button" class="tbtn estado-primary-btn" id="estado-reduce-temp">PASSAR 1 TURNO</button>
           <div class="estado-time-row">
-            <label class="estado-time-label" for="estado-pass-value">Tempo</label>
-            <input type="number" id="estado-pass-value" class="estado-input estado-input-small" min="1" value="5" inputmode="numeric">
+            <div class="estado-field">
+              <label class="estado-field-label" for="estado-pass-value">Tempo</label>
+              <input type="number" id="estado-pass-value" class="estado-field-inp" min="1" value="5" inputmode="numeric">
+            </div>
             <select id="estado-pass-unit" class="estado-select" aria-label="Unidade de tempo">
               <option value="minutos">Minutos</option>
               <option value="horas">Horas</option>
@@ -558,13 +560,16 @@ function showToast(msg){
         <div class="estado-panel-body" id="estado-body-add">
           <div class="estado-add-row">
             <input type="text" id="estado-condition-name" class="estado-input" placeholder="Nome" aria-label="Nome da condição ou efeito">
-            <input type="number" id="estado-condition-degree" class="estado-input estado-input-small" min="1" max="99" value="1" placeholder="Grau" inputmode="numeric" aria-label="Grau">
-            <button type="button" id="estado-condition-kind-toggle" class="estado-kind-btn condicao" aria-pressed="false">CONDIÇÃO</button>
+            <div class="estado-field">
+              <label class="estado-field-label" for="estado-condition-degree">Grau</label>
+              <input type="number" id="estado-condition-degree" class="estado-field-inp" min="1" max="99" value="1" inputmode="numeric">
+            </div>
             <select id="estado-condition-duration" class="estado-select" aria-label="Duração">
               <option value="temporarias">Temporária</option>
               <option value="duradouras">Duradoura</option>
               <option value="permanentes">Permanente</option>
             </select>
+            <button type="button" id="estado-condition-kind-toggle" class="estado-kind-btn condicao" aria-pressed="false"></button>
             <button type="button" class="tbtn estado-primary-btn" id="estado-add-condition">ADICIONAR</button>
           </div>
         </div>

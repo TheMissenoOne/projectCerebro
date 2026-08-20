@@ -499,12 +499,26 @@ window.EstadoModule = (function() {
     if (perm) renderConditionBucket('permanentes', perm);
   }
 
+  /* Controle segmentado: os dois estados ficam visíveis, o ativo em destaque. */
   function renderInsertType() {
     const btn = document.getElementById('estado-condition-kind-toggle');
     if (!btn) return;
-    btn.className = 'estado-kind-btn ' + (state.insertType === 'efeito' ? 'efeito' : 'condicao');
-    btn.textContent = state.insertType === 'efeito' ? 'EFEITO' : 'CONDIÇÃO';
-    btn.setAttribute('aria-pressed', state.insertType === 'efeito' ? 'true' : 'false');
+    const efeito = state.insertType === 'efeito';
+
+    if (!btn.firstChild) {
+      ['CONDIÇÃO', 'EFEITO'].forEach(label => {
+        const seg = document.createElement('span');
+        seg.className = 'estado-kind-opt';
+        seg.textContent = label;
+        btn.appendChild(seg);
+      });
+    }
+
+    btn.className = 'estado-kind-btn ' + (efeito ? 'efeito' : 'condicao');
+    btn.children[0].classList.toggle('on', !efeito);
+    btn.children[1].classList.toggle('on', efeito);
+    btn.setAttribute('aria-pressed', efeito ? 'true' : 'false');
+    btn.setAttribute('aria-label', 'Tipo: ' + (efeito ? 'efeito' : 'condição') + '. Tocar para alternar.');
   }
 
   function timeToAps(value, unit) {
@@ -676,10 +690,10 @@ window.EstadoModule = (function() {
     if (!state.data) return;
     ensure();
     bindStaticEvents();
+    renderInsertType();
     renderTags();
     renderSelected();
     renderMoves();
-    renderInsertType();
     renderConditions();
   }
 

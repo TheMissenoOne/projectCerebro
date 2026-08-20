@@ -1316,13 +1316,19 @@
 .estado-input:focus,.estado-select:focus{border-color:var(--accent);}
 .estado-input{flex:1;min-width:0;}
 .estado-input-small{flex:0 0 86px;max-width:86px;}
+.estado-field{display:flex;align-items:center;gap:8px;background:var(--black);border:1px solid var(--b2);padding:0 10px;min-height:34px;min-width:0;}
+.estado-field:focus-within{border-color:var(--accent);}
+.estado-field-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);flex-shrink:0;}
+.estado-field-inp{flex:1;min-width:2ch;width:100%;background:transparent;border:none;outline:none;color:var(--white);font-family:var(--mono);font-size:.62rem;padding:6px 0;text-align:right;}
+.estado-field-inp::-webkit-outer-spin-button,.estado-field-inp::-webkit-inner-spin-button{margin:0;}
 .estado-select{flex:0 0 auto;}
-.estado-kind-btn{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;line-height:1.2;text-transform:uppercase;padding:8px 12px;min-height:34px;border:1px solid var(--b2);background:var(--p2);color:var(--text);cursor:pointer;transition:background .15s,border-color .15s,color .15s,transform .15s;}
-.estado-kind-btn:hover{transform:translateY(-1px);border-color:var(--accent);}
-.estado-kind-btn.condicao{background:rgba(255,214,0,.12);color:var(--white);border-color:rgba(255,214,0,.35);}
-.estado-kind-btn.efeito{background:rgba(255,255,255,.05);color:var(--text);border-color:rgba(255,255,255,.18);}
-.estado-kind-btn.condicao[aria-pressed="true"]{background:rgba(255,214,0,.28);border-color:rgba(255,214,0,.8);color:var(--white);}
-.estado-kind-btn.efeito[aria-pressed="true"]{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45);color:var(--white);}
+/* controle segmentado: os dois estados visíveis, só o ativo em destaque */
+.estado-kind-btn{display:inline-flex;align-items:stretch;gap:0;padding:2px;min-height:34px;border:1px solid var(--b2);background:var(--black);cursor:pointer;overflow:hidden;}
+.estado-kind-btn:hover{border-color:var(--b3);}
+.estado-kind-opt{display:flex;align-items:center;justify-content:center;flex:1;font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;line-height:1;text-transform:uppercase;padding:6px 9px;color:var(--muted2);white-space:nowrap;transition:background .15s,color .15s;}
+.estado-kind-opt.on{color:var(--white);background:rgba(255,255,255,.1);}
+.estado-kind-btn.condicao .estado-kind-opt.on{background:rgba(255,214,0,.18);color:var(--accent);}
+.estado-kind-btn.efeito .estado-kind-opt.on{background:rgba(255,255,255,.12);color:var(--white);}
 .estado-tag-group{display:flex;flex-direction:column;gap:8px;width:100%;}
 .estado-tag-group-header{display:flex;align-items:center;gap:10px;}
 .estado-tag-group-line{flex:1;height:1px;background:rgba(255,255,255,.12);}
@@ -1375,14 +1381,10 @@
 
 @media(max-width:900px){
   .estado-layout{grid-template-columns:1fr;}
-  .estado-add-row,.estado-time-row{flex-direction:column;align-items:stretch;}
-  .estado-add-row > *, .estado-time-row > *{width:100%;}
-  .estado-add-row .estado-input-small,
-  .estado-time-row .estado-input-small{max-width:none;flex:1 1 auto;}
-  .estado-kind-btn,
-  .estado-select,
-  .estado-add-row .tbtn,
-  .estado-time-row .tbtn{width:100%;}
+  /* nome | grau  ·  duração | tipo  ·  adicionar */
+  .estado-add-row{display:grid;grid-template-columns:1fr minmax(0,132px);gap:8px;align-items:stretch;}
+  .estado-add-row > *{width:auto;min-width:0;}
+  .estado-add-row .tbtn{grid-column:1 / -1;}
 
   /* ── painéis colapsáveis: a aba inteira cabe em uma tela ── */
   .estado-panel{padding:0;gap:0;}
@@ -1404,7 +1406,9 @@
   .estado-panel[data-panel="manobras"]{order:5;}
 
   /* alvos de toque de 44px */
-  .estado-input,.estado-select,.estado-kind-btn{min-height:44px;font-size:.68rem;}
+  .estado-input,.estado-select,.estado-kind-btn,.estado-field{min-height:44px;font-size:.68rem;}
+  .estado-field-inp{font-size:.8rem;}
+  .estado-kind-opt{font-size:.44rem;letter-spacing:.06em;padding:6px 6px;}
   .estado-panel-body .tbtn{min-height:44px;font-size:.6rem;}
   .estado-chip,.estado-pill{min-height:40px;display:inline-flex;align-items:center;font-size:.62rem;padding:8px 12px;}
   .estado-mini-btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:.54rem;padding:8px 12px;}
@@ -1428,9 +1432,9 @@
   .estado-condition-actions .estado-mini-btn:nth-child(4){grid-column:1 / -1;}
   .estado-condition-meta .estado-badge{font-size:.44rem;}
 
-  .estado-time-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;}
-  .estado-time-row > *{width:auto;}
-  .estado-time-row .estado-time-label,
+  /* tempo | unidade  ·  passar tempo */
+  .estado-time-row{display:grid;grid-template-columns:1fr minmax(0,132px);gap:8px;align-items:stretch;}
+  .estado-time-row > *{width:auto;min-width:0;}
   .estado-time-row .tbtn{grid-column:1 / -1;}
 
   /* balde vazio não precisa de um bloco inteiro */

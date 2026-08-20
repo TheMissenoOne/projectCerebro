@@ -69,8 +69,18 @@ test('estado panels are collapsible and ordered for mobile', function() {
 
   assert(css.includes('.estado-panel.collapsed .estado-panel-body{display:none;}'), 'collapse rule missing');
   assert(/\.estado-panel\[data-panel="lista"\]\{order:1;\}/.test(css), 'mobile ordering missing');
-  assert(css.includes('.estado-input,.estado-select,.estado-kind-btn{min-height:44px'), '44px touch targets missing');
+  assert(css.includes('.estado-input,.estado-select,.estado-kind-btn,.estado-field{min-height:44px'), '44px touch targets missing');
   assert(css.includes('.estado-mini-btn{min-height:40px'), 'mini buttons still below the touch-target floor');
+
+  // formulários em duas colunas: nome|grau, duração|tipo, botão inteiro
+  assert(/\.estado-add-row\{display:grid;grid-template-columns:1fr minmax\(0,132px\)/.test(css), 'add row is not a two-column grid');
+  assert(/\.estado-time-row\{display:grid;grid-template-columns:1fr minmax\(0,132px\)/.test(css), 'time row is not a two-column grid');
+  assert(css.includes('.estado-add-row .tbtn{grid-column:1 / -1;}'), 'submit button should span both columns');
+  assert(ficha.indexOf('id="estado-condition-duration"') < ficha.indexOf('id="estado-condition-kind-toggle"'),
+    'duration select must come before the kind toggle');
+  assert(estado.includes('estado-kind-opt'), 'kind toggle is not a segmented control');
+  assert(ficha.includes('class="estado-field-label" for="estado-condition-degree"'), 'degree field lost its inline label');
+  assert(ficha.includes('class="estado-field-label" for="estado-pass-value"'), 'time field lost its inline label');
 
   assert(estado.includes('function bindPanels('), 'panel toggle wiring missing');
   assert(estado.includes("window.matchMedia('(max-width:900px)')"), 'toggle must be a no-op on desktop');
