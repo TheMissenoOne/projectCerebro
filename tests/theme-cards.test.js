@@ -30,9 +30,11 @@ const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1
 if (scripts.length === 0) throw new Error('No inline <script> blocks found in ficha.html');
 const mainScript = scripts.reduce((a, b) => (a.length >= b.length ? a : b));
 
+const noop = function () {};
 const sandbox = {
-  document: { addEventListener: function () {} },
-  window: {},
+  document: { addEventListener: noop },
+  window: { addEventListener: noop, matchMedia: function () { return { matches: false }; } },
+  localStorage: { getItem: noop, setItem: noop, removeItem: noop },
   module: { exports: {} },
   console,
 };

@@ -9,7 +9,8 @@
     "test:pwa": "node tests/pwa.test.js",
     "test:themes": "node tests/theme-cards.test.js",
     "test:estado": "node tests/estado-wiki.test.js",
-    "icons": "node scripts/gen-pwa-icons.js"
+    "icons": "node scripts/gen-pwa-icons.js",
+    "test:persistencia": "node tests/persistencia.test.js"
   },
   "dependencies": {
     "http-server": "^14.1.1",

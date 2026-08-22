@@ -69,6 +69,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .save-ind.salvo{color:#44bb44;}
 .save-ind.salvando{color:var(--red);animation:blinkPulse .8s infinite;}
 .save-ind.erro{color:#ff6644;}
+.save-ind.pendente{color:var(--accent);}
 .tbtn{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;padding:5px 11px;border:1px solid var(--b2);background:transparent;color:var(--text);cursor:pointer;transition:all .15s;text-transform:uppercase;white-space:nowrap;border-radius:1px;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:5px;text-decoration:none;}
 .tbtn:hover{border-color:var(--red);color:var(--white);background:rgba(232,0,28,.06);}
 .tbtn-red{border-color:var(--red2);color:var(--red);}
@@ -821,10 +822,15 @@ const newUrl = 'ficha.html?id=' + char.id;
     if (D.temas) D.temas.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (D.extras) D.extras.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (char && char.foto_base64) D.foto = char.foto_base64;
-    setInd('',t('ficha.saved'));
+    normalizarDados(D);
+    fichaCarregada=true;
+    setInd('',t('ficha.loaded'));
   } catch(e) {
     console.error('Erro ao carregar personagem:', e);
-    setInd('',t('ficha.newChar'));
+    normalizarDados(D);
+    setInd('erro',t('ficha.errorLoad'));
+    toast(t('ficha.errorLoadDetail'));
+    return; /* não deixa editar em cima de dados que não carregaram */
   }
   
   buildDots();buildEvo();buildEvoLog();
@@ -845,26 +851,88 @@ function validaCampo(el,v){
   if(!el.value)return;
   if(!isNaN(v)&&v>=min&&v<=max)el.classList.add('valid');else el.classList.add('invalid');
 }
-function salvarAuto(){
-   clearTimeout(saveTimer);
-   setInd('salvando',t('ficha.saving'));
-   saveTimer=setTimeout(async()=>{
-     coletarCampos();
-     document.querySelectorAll('.attr-val').forEach(function(el){validaCampo(el);});
-     if(!charId)return;
-     try{
-       const fotoB64=D.foto||null;
-       const dataParaSalvar=Object.assign({},D,{foto:''});
-       if (dataParaSalvar.estado) delete dataParaSalvar.estado.selectedTags;
-       await api.saveCharacter(charId,{data:dataParaSalvar,foto_base64:fotoB64,name:D.nome||null,codename:D.codinome||null});
-       setInd('salvo',t('ficha.savedOk'));
-       setTimeout(()=>setInd('',t('ficha.saved')),1800);
-     }catch(e){
-       console.error('Erro ao salvar:',e);
-       setInd('erro',t('ficha.errorSave'));
-    }
-  },1000);
+/* ── PERSISTÊNCIA ──────────────────────────────────────────────────
+   O indicador só diz SALVO quando um write no banco de fato voltou ok.
+   Enquanto houver alteração pendente ele diz PENDENTE, e um erro fica
+   visível até a próxima gravação bem-sucedida. */
+let saveSujo=false;
+let saveEmVoo=null;
+let fichaCarregada=false;
+let saveTentativa=0;
+
+function horaCurta(d){
+  return d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
 }
+
+function salvarAuto(){
+  saveSujo=true;
+  setInd('pendente',t('ficha.unsaved'));
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(salvarAgora,1000);
+}
+
+async function salvarAgora(){
+  clearTimeout(saveTimer);saveTimer=null;
+  if(!saveSujo)return;
+  if(!charId){setInd('erro',t('ficha.errorNoId'));return;}
+  /* carregamento falhou: gravar agora sobrescreveria a ficha com o padrão */
+  if(!fichaCarregada){setInd('erro',t('ficha.errorLoad'));return;}
+  if(saveEmVoo){await saveEmVoo;if(saveSujo)return salvarAgora();return;}
+
+  coletarCampos();
+  document.querySelectorAll('.attr-val').forEach(function(el){validaCampo(el);});
+
+  /* congela o que está indo pro banco: edições durante o request não podem
+     ser dadas como salvas nem se perder */
+  const snapshot=clone(D);
+  snapshot.foto='';
+  if(snapshot.estado)delete snapshot.estado.selectedTags;
+  const fotoB64=D.foto||null;
+  const nome=D.nome||null,codinome=D.codinome||null;
+
+  saveSujo=false;
+  setInd('salvando',t('ficha.saving'));
+  saveEmVoo=(async()=>{
+    try{
+      await api.saveCharacter(charId,{data:snapshot,foto_base64:fotoB64,name:nome,codename:codinome});
+      saveTentativa=0;
+      if(!saveSujo)setInd('salvo',t('ficha.savedAt')+' '+horaCurta(new Date()));
+    }catch(e){
+      console.error('Erro ao salvar:',e);
+      saveSujo=true; /* continua pendente: a próxima tentativa reenvia */
+      setInd('erro',t('ficha.errorSave'));
+      /* o cache guardava a versão otimista e escondia a falha por 2 min */
+      if(window.cache)window.cache.invalidate('char',charId);
+      /* rede de celular cai o tempo todo: tenta de novo sozinho */
+      saveTentativa++;
+      clearTimeout(saveTimer);
+      saveTimer=setTimeout(salvarAgora,Math.min(30000,5000*saveTentativa));
+      throw e;
+    }finally{
+      saveEmVoo=null;
+    }
+  })();
+  try{await saveEmVoo;}catch(e){}
+}
+
+/* Sair da aba/app mata o timer do debounce — no PWA isso era a diferença
+   entre gravar e perder a última edição. */
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden')salvarAgora();
+});
+window.addEventListener('pagehide',function(){salvarAgora();});
+window.addEventListener('beforeunload',function(e){
+  if(!saveSujo&&!saveEmVoo)return;
+  e.preventDefault();
+  e.returnValue='';
+});
+
+/* Um erro de script no meio de um handler cancelava o salvamento em silêncio
+   enquanto o indicador seguia dizendo SALVO. */
+window.addEventListener('error',function(ev){
+  if(!(ev.error instanceof Error))return;
+  setInd('erro',t('ficha.errorUnexpected'));
+});
 
 /* ── FOTO ── */
 function carregarFoto(e){
@@ -891,6 +959,7 @@ function removerFoto(){
 
 /* ── TABS ── */
 function trocarAba(id,el){
+  if(saveSujo)salvarAgora();
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -950,27 +1019,32 @@ function buildEvoLog(){
   }
   box.replaceChildren(frag);
 }
+function membroEm(i){
+  if(!Array.isArray(D.membros))D.membros=[];
+  if(!D.membros[i])D.membros[i]={nome:'',apoio:0,antagonismo:0};
+  return D.membros[i];
+}
 function buildMembros(){
   const tb=document.getElementById('mbr-tbody');tb.innerHTML='';
-  for(let i=0;i<7;i++){
-    const m=D.membros[i]||{nome:'',apoio:0,antagonismo:0};
+  for(let i=0;i<MAX_MEMBROS;i++){
+    const m=membroEm(i);
     const tr=document.createElement('tr');
     const tdIdx=document.createElement('td');
     const idx=document.createElement('span');idx.className='mbr-idx';idx.textContent=String(i+1).padStart(2,'0');tdIdx.appendChild(idx);
     const tdNome=document.createElement('td');tdNome.style.width='100%';
     const inpNome=document.createElement('input');inpNome.type='text';inpNome.className='mbr-inp';
     inpNome.placeholder='Nome...';inpNome.value=m.nome||'';inpNome.dataset.i=i;
-    inpNome.addEventListener('input',e=>{D.membros[+e.target.dataset.i].nome=e.target.value;salvarAuto();});
+    inpNome.addEventListener('input',e=>{membroEm(+e.target.dataset.i).nome=e.target.value;salvarAuto();});
     tdNome.appendChild(inpNome);tr.appendChild(tdIdx);tr.appendChild(tdNome);
     const tdApoio=document.createElement('td');
     const inpApoio=document.createElement('input');inpApoio.type='number';inpApoio.className='aa-val';inpApoio.style='width:50px';
     inpApoio.placeholder='0';inpApoio.min=0;inpApoio.max=99;inpApoio.value=m.apoio||0;inpApoio.dataset.i=i;
-    inpApoio.addEventListener('input',e=>{D.membros[+e.target.dataset.i].apoio=+e.target.value;salvarAuto();});
+    inpApoio.addEventListener('input',e=>{membroEm(+e.target.dataset.i).apoio=+e.target.value;salvarAuto();});
     tdApoio.appendChild(inpApoio);tr.appendChild(tdApoio);
     const tdAnt=document.createElement('td');
     const inpAnt=document.createElement('input');inpAnt.type='number';inpAnt.className='aa-val';inpAnt.style='width:50px;color:#dd8866';
     inpAnt.placeholder='0';inpAnt.min=0;inpAnt.max=99;inpAnt.value=m.antagonismo||0;inpAnt.dataset.i=i;
-    inpAnt.addEventListener('input',e=>{D.membros[+e.target.dataset.i].antagonismo=+e.target.value;salvarAuto();});
+    inpAnt.addEventListener('input',e=>{membroEm(+e.target.dataset.i).antagonismo=+e.target.value;salvarAuto();});
     tdAnt.appendChild(inpAnt);tr.appendChild(tdAnt);tb.appendChild(tr);
   }
 }
@@ -1237,16 +1311,44 @@ function mesclar(base,src){
   const r=clone(base);
   for(const k in src){
     if(src[k]!==null&&typeof src[k]==='object'&&!Array.isArray(src[k])){r[k]=mesclar(base[k]||{},src[k]);}
-    else{r[k]=src[k];}
+    /* clona arrays: sem isso D apontava para dentro do objeto em cache e
+       toda edição não salva mutava o cache, parecendo persistida */
+    else{r[k]=Array.isArray(src[k])?clone(src[k]):src[k];}
   }
   return r;
+}
+
+/* Fichas salvas por versões antigas podem trazer arrays menores do que a UI
+   desenha. buildMembros escrevia em D.membros[i] de uma linha inexistente e
+   estourava — a digitação sumia sem nenhum aviso. */
+const MAX_MEMBROS=7;
+function normalizarDados(d){
+  if(!Array.isArray(d.membros))d.membros=[];
+  d.membros=d.membros.map(m=>Object.assign({nome:'',apoio:0,antagonismo:0},m||{}));
+  while(d.membros.length<MAX_MEMBROS)d.membros.push({nome:'',apoio:0,antagonismo:0});
+
+  if(!Array.isArray(d.temas))d.temas=[];
+  while(d.temas.length<4)d.temas.push(novoCard());
+  if(!Array.isArray(d.extras))d.extras=[];
+  while(d.extras.length<4)d.extras.push(novoCard());
+  if(!d.temas_emergentes||typeof d.temas_emergentes!=='object')d.temas_emergentes=novoCard();
+
+  if(!Array.isArray(d.evolucao))d.evolucao=[];
+  while(d.evolucao.length<PROG_MAX)d.evolucao.push('');
+  if(!d.evolucao_checked||typeof d.evolucao_checked!=='object')d.evolucao_checked={};
+  d.progressao=Math.min(PROG_MAX,Math.max(0,Number(d.progressao)||0));
+
+  if(!d.stats||typeof d.stats!=='object')d.stats={};
+  STATS.forEach(k=>{if(d.stats[k]===undefined)d.stats[k]='';});
+  return d;
 }
 
 function resetarFicha(){
   var nome=D.nome||'este personagem';
   if(!confirm('Resetar '+nome+'? Esta ação não pode ser desfeita.'))return;
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
-  D=clone(PADRAO);
+  D=normalizarDados(clone(PADRAO));
+  fichaCarregada=true;
   preencherCampos();
   buildDots();buildEvo();buildEvoLog();
   buildGrid('temas-grid',D.temas);

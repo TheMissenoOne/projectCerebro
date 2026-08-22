@@ -386,6 +386,7 @@ body::after {
   margin-right: 4px;
 }
 .save-ind.salvo { color: #44bb44; }
+.save-ind.pendente { color: var(--accent); }
 .save-ind.salvando {
   color: var(--red);
   animation: blinkPulse .8s infinite;
