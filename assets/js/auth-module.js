@@ -42,6 +42,29 @@
   };
 
   /**
+   * Request password reset email
+   */
+  window.api.requestPasswordReset = function(email) {
+    var base = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
+    return client().auth.resetPasswordForEmail(email, {
+      redirectTo: base + 'reset-password.html'
+    }).then(function(result) {
+      if (result.error) throw result.error;
+      return result.data;
+    });
+  };
+
+  /**
+   * Update password (used after recovery flow)
+   */
+  window.api.updatePassword = function(newPassword) {
+    return client().auth.updateUser({ password: newPassword }).then(function(result) {
+      if (result.error) throw result.error;
+      return result.data.user;
+    });
+  };
+
+  /**
    * Logout current user
    */
   window.api.logout = function() {

@@ -24,6 +24,7 @@ const OFFLINE_URL = 'offline.html';
 const SHELL = [
   './',
   'index.html',
+  'reset-password.html',
   'dashboard.html',
   'ficha.html',
   'cerebro.html',

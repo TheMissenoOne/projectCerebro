@@ -65,6 +65,16 @@
           <input type="password" class="form-input" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary">Acessar</button>
+        <button type="button" class="auth-link" id="forgot-password-link">Esqueci minha senha</button>
+      </form>
+
+      <form id="recover-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" name="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar link de recuperação</button>
+        <button type="button" class="auth-link" id="back-to-login-link">Voltar ao login</button>
       </form>
 
       <form id="register-form" class="auth-form">
@@ -143,6 +153,46 @@
         });
     });
 
+    // Forgot password link - switch to recover form
+    document.getElementById('forgot-password-link').addEventListener('click', function() {
+      document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+      document.getElementById('recover-form').classList.add('active');
+      errorEl.textContent = '';
+      errorEl.classList.remove('show');
+    });
+
+    // Back to login link
+    document.getElementById('back-to-login-link').addEventListener('click', function() {
+      document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+      document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+      document.getElementById('login-form').classList.add('active');
+      errorEl.textContent = '';
+      errorEl.classList.remove('show');
+    });
+
+    // Recover form
+    document.getElementById('recover-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('button[type="submit"]');
+      var orig = btn.textContent;
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      window.api.requestPasswordReset(e.target.email.value)
+        .then(function() {
+          errorEl.textContent = 'Se o email existir, um link de recuperação foi enviado. Verifique sua caixa de entrada.';
+          errorEl.classList.add('show');
+          btn.textContent = orig;
+          btn.disabled = false;
+        })
+        .catch(function(err) {
+          errorEl.textContent = err.message;
+          errorEl.classList.add('show');
+          btn.textContent = orig;
+          btn.disabled = false;
+        });
+    });
+
     // Register form
     document.getElementById('register-form').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -188,13 +238,20 @@
         e.target.displayName.value,
         'player'
       )
-        .then(function() {
-          // Wait for session to persist
-          var client = window.getSupabase();
-          return client.auth.getSession();
-        })
-        .then(function() {
-          window.location.href = 'dashboard.html';
+        .then(function(result) {
+          if (result.session) {
+            window.location.href = 'dashboard.html';
+            return;
+          }
+          // Email confirmation required - no session yet
+          btn.textContent = orig;
+          btn.disabled = false;
+          document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+          document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
+          document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+          document.getElementById('login-form').classList.add('active');
+          errorEl.textContent = 'Conta criada! Verifique seu email para confirmar o cadastro.';
+          errorEl.classList.add('show');
         })
         .catch(function(err) {
           var msg = err.message || 'Erro ao criar conta';
