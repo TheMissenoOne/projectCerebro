@@ -1374,6 +1374,9 @@
 .estado-mini-btn.estado-step{font-size:.6rem;font-weight:700;min-width:34px;border-color:var(--b3);color:var(--text);}
 .estado-mini-btn.estado-step:hover{border-color:var(--accent);}
 .estado-chip-kind{opacity:.55;}
+/* marcadores de tag de poder: grau em AP e tag genérica */
+.estado-chip-ap,.estado-chip-gen{display:inline-block;margin-left:6px;padding:1px 4px;font-size:.42rem;letter-spacing:.12em;line-height:1.3;vertical-align:middle;border:1px solid var(--b2);color:var(--muted);}
+.estado-chip-ap{border-color:var(--accent);color:var(--accent);}
 
 @media(max-width:760px){
   .estado-columns{grid-template-columns:1fr;}
@@ -1416,6 +1419,7 @@
 
   /* a nuvem de tags virava uma coluna de 20 linhas */
   .estado-chip-kind{display:none;}
+  .estado-chip-ap,.estado-chip-gen{font-size:.5rem;}
   .estado-chip[data-tipo="poder"]{border-left:3px solid rgba(255,214,0,.55);}
   .estado-chip[data-tipo="fraqueza"]{border-left:3px solid rgba(255,255,255,.28);}
   #estado-tags-list{max-height:46vh;overflow-y:auto;overscroll-behavior:contain;padding-right:2px;}

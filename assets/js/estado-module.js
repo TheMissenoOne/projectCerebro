@@ -119,11 +119,16 @@ window.EstadoModule = (function() {
       const temaNome = (tema && (tema.titulo || tema.tipo || tema.nome)) || 'Tema';
       ['poder', 'fraqueza'].forEach(tipo => {
         const items = Array.isArray(tema && tema[tipo]) ? tema[tipo] : [];
+        /* poder_grau[] / poder_generica[] são paralelos a poder[]; fichas antigas não têm */
+        const graus = tipo === 'poder' && Array.isArray(tema.poder_grau) ? tema.poder_grau : [];
+        const genericas = tipo === 'poder' && Array.isArray(tema.poder_generica) ? tema.poder_generica : [];
         items.forEach((raw, tagIdx) => {
           const texto = typeof raw === 'string' ? raw : (raw && raw.texto) || '';
           if (!texto.trim()) return;
-          const grau = typeof raw === 'object' && raw && Number.isFinite(raw.grau) ? raw.grau : 1;
-          tags.push({ texto, grau, tipo, temaIdx, tagIdx, temaNome });
+          const grauRaw = typeof raw === 'object' && raw && Number.isFinite(raw.grau) ? raw.grau : graus[tagIdx];
+          const grau = Math.max(0, parseInt(grauRaw, 10) || 0);
+          const generica = genericas[tagIdx] === true;
+          tags.push({ texto, grau, generica, tipo, temaIdx, tagIdx, temaNome });
         });
       });
     });
@@ -249,7 +254,22 @@ window.EstadoModule = (function() {
         kind.textContent = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ';
         btn.appendChild(kind);
         btn.appendChild(document.createTextNode(tag.texto));
-        btn.setAttribute('aria-label', (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto);
+        let label = (tag.tipo === 'poder' ? 'Poder' : 'Fraqueza') + ': ' + tag.texto;
+        if (tag.grau > 0) {
+          const ap = document.createElement('span');
+          ap.className = 'estado-chip-ap';
+          ap.textContent = 'AP ' + tag.grau;
+          btn.appendChild(ap);
+          label += ', grau ' + tag.grau + ' AP';
+        }
+        if (tag.generica) {
+          const gen = document.createElement('span');
+          gen.className = 'estado-chip-gen';
+          gen.textContent = 'GEN';
+          btn.appendChild(gen);
+          label += ', genérica';
+        }
+        btn.setAttribute('aria-label', label);
         btn.setAttribute('aria-pressed', isSelected(tag) ? 'true' : 'false');
         btn.addEventListener('click', () => toggleTag(tag));
         cloud.appendChild(btn);

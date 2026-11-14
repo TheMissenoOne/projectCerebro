@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 const ROOT = path.join(__dirname, '..');
 const ficha = fs.readFileSync(path.join(ROOT, 'ficha.html'), 'utf8');
@@ -113,6 +114,63 @@ test('state module is isolated for future render logic', function() {
   assert(estado.includes('function init(') || estado.includes('const init ='), 'init entrypoint missing');
   assert(estado.includes('function render(') || estado.includes('const render ='), 'render entrypoint missing');
   assert(estado.includes('soma dos graus das condições'), 'Threshold legend not tied to condition sum');
+});
+
+test('estado chips show AP grade and GEN badge for power tags, tolerating old sheets', function() {
+  // DOM mínimo: só a nuvem de tags existe; o resto do módulo sai cedo quando o nó falta
+  function el(tag) {
+    return {
+      tag, className: '', dataset: {}, children: [], attrs: {}, textContent: '',
+      set innerHTML(v) { this.children = []; this.textContent = v; },
+      appendChild(c) { this.children.push(c); return c; },
+      setAttribute(k, v) { this.attrs[k] = String(v); },
+      getAttribute(k) { return this.attrs[k]; },
+      addEventListener() {},
+    };
+  }
+  const root = el('div');
+  const document = {
+    getElementById: (id) => (id === 'estado-tags-list' ? root : null),
+    querySelectorAll: () => [],
+    createElement: el,
+    createTextNode: (t) => ({ textContent: t }),
+  };
+  const window = { matchMedia: () => ({ matches: false }) };
+  vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'assets/js/estado-module.js'), 'utf8'),
+    { window, document, localStorage: { getItem: () => null, setItem() {} }, console });
+
+  window.EstadoModule.init({ temas: [
+    { titulo: 'Novo', poder: ['Rajada', 'Liderança', 'Visor'], poder_grau: [2, 0, '3'], poder_generica: [false, true, true], fraqueza: ['Sem visor'] },
+    { titulo: 'Antigo', poder: ['Força'], fraqueza: ['Teimoso'] },
+    { titulo: 'Torto', poder: ['A', 'B'], poder_grau: [-4], poder_generica: 'sim', fraqueza_grau: [9] },
+  ] });
+  window.EstadoModule.render();
+
+  const chips = [];
+  (function walk(n) {
+    if (n.className && /(^| )estado-chip( |$)/.test(n.className)) chips.push(n);
+    (n.children || []).forEach(walk);
+  })(root);
+  const byName = {};
+  chips.forEach(function(c) {
+    byName[c.children[1].textContent] = {
+      label: c.attrs['aria-label'],
+      badges: c.children.slice(2).map(function(b) { return b.className + '=' + b.textContent; }),
+    };
+  });
+
+  assert(chips.length === 8, 'expected 8 chips, got ' + chips.length);
+  assert(byName.Rajada.badges.join() === 'estado-chip-ap=AP 2', 'AP marker missing: ' + byName.Rajada.badges);
+  assert(byName.Rajada.label === 'Poder: Rajada, grau 2 AP', 'aria-label lacks grade: ' + byName.Rajada.label);
+  assert(byName['Liderança'].badges.join() === 'estado-chip-gen=GEN', 'grau 0 must not show AP / GEN missing');
+  assert(byName['Liderança'].label === 'Poder: Liderança, genérica', 'aria-label lacks generic: ' + byName['Liderança'].label);
+  assert(byName.Visor.badges.join() === 'estado-chip-ap=AP 3,estado-chip-gen=GEN', 'string grade / both badges: ' + byName.Visor.badges);
+  ['Sem visor', 'Força', 'Teimoso', 'A', 'B'].forEach(function(n) {
+    assert(byName[n] && !byName[n].badges.length, n + ' should have no badges: ' + (byName[n] && byName[n].badges));
+  });
+
+  const css = fs.readFileSync(path.join(ROOT, 'assets/css/components.css'), 'utf8');
+  assert(css.includes('.estado-chip-ap') && css.includes('.estado-chip-gen'), 'chip badge styles missing');
 });
 
 console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
