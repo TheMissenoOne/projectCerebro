@@ -21,393 +21,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css?v=dev">
-  <style>
-    .wiki-layout {
-      display: flex;
-      min-height: calc(100vh - var(--hdr-h) - var(--bar-h));
-    }
-
-    /* ── Sidebar ── */
-    .wiki-sidebar {
-      width: 220px;
-      background: var(--dark);
-      border-right: 1px solid var(--b1);
-      flex-shrink: 0;
-      overflow-y: auto;
-      padding: 12px 0;
-    }
-
-    .wiki-nav-section {
-      margin-bottom: 8px;
-    }
-
-    .wiki-nav-title {
-      font-family: var(--mono);
-      font-size: .55rem;
-      color: var(--muted2);
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      padding: 10px 16px 4px;
-    }
-
-    .wiki-nav-link {
-      display: block;
-      padding: 7px 16px;
-      font-family: var(--body);
-      font-size: .72rem;
-      color: var(--text);
-      text-decoration: none;
-      transition: background .1s, color .1s;
-      border-left: 2px solid transparent;
-    }
-    .wiki-nav-link:hover {
-      background: rgba(255,255,255,.04);
-      color: var(--white);
-    }
-    .wiki-nav-link.active {
-      background: rgba(var(--accent-rgb, 232,0,28), .1);
-      color: var(--accent);
-      border-left-color: var(--accent);
-    }
-
-    /* ── Content area ── */
-    .wiki-content {
-      flex: 1;
-      padding: clamp(16px, 3vw, 32px);
-      padding-bottom: 180px; /* room for #ar-display */
-      overflow-y: auto;
-      max-height: calc(100vh - var(--hdr-h) - var(--bar-h));
-    }
-
-    .wiki-content h1 {
-      font-family: var(--disp);
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      color: var(--white);
-      letter-spacing: .1em;
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 8px;
-    }
-
-    .wiki-content h2 {
-      font-family: var(--cond);
-      font-size: .85rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      margin: 24px 0 12px;
-      border-left: 3px solid var(--accent);
-      padding-left: 10px;
-    }
-
-    .wiki-content h3 {
-      font-family: var(--body);
-      font-size: .8rem;
-      font-weight: 700;
-      color: var(--white);
-      margin: 18px 0 8px;
-    }
-
-    .wiki-content p {
-      font-family: var(--body);
-      font-size: .78rem;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    .wiki-content ul, .wiki-content ol {
-      margin: 8px 0 12px 20px;
-    }
-
-    .wiki-content li {
-      font-family: var(--body);
-      font-size: .74rem;
-      color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 6px;
-    }
-
-    .wiki-content strong { color: var(--white); }
-
-    .wiki-content code {
-      font-family: var(--mono);
-      font-size: .68rem;
-      background: var(--p2);
-      padding: 2px 6px;
-      color: var(--accent);
-    }
-
-    .wiki-content pre {
-      background: var(--p1);
-      border: 1px solid var(--b1);
-      padding: 12px;
-      margin: 12px 0;
-      overflow-x: auto;
-    }
-
-    .wiki-content pre code {
-      background: none;
-      padding: 0;
-    }
-
-    /* ── Fade-in on page load ── */
-    .wiki-content.page-fade {
-      animation: wikiPageIn .18s ease-out;
-    }
-    @keyframes wikiPageIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to   { opacity: 1; transform: none; }
-    }
-
-    /* ── Tables ── */
-    .table-container {
-      overflow-x: auto;
-      margin: 20px 0;
-      border-radius: 4px;
-      border: 1px solid var(--b1);
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .wiki-content table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.7rem;
-    }
-
-    .wiki-content th,
-    .wiki-content td {
-      padding: 10px 12px;
-      border: 1px solid var(--b1);
-      text-align: center;
-      vertical-align: middle;
-      font-family: var(--mono);
-      white-space: nowrap;
-    }
-
-    .wiki-content th {
-      background: var(--p2);
-      color: var(--white);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.65rem;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
-
-    .wiki-content table td:first-child {
-      background: var(--p1);
-      font-weight: 600;
-    }
-
-    /* Row/column highlight override */
-    .wiki-content table td[style*="background"] {
-      color: #111 !important;
-    }
-
-    /* ── AR button group ── */
-    .ar-modes, .ar-table-type {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .ar-type-btn, .ar-mode-btn {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      padding: 8px 16px;
-      background: var(--p1);
-      border: 1px solid var(--b2);
-      color: var(--muted);
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.15s;
-    }
-
-    .ar-type-btn:hover, .ar-mode-btn:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-
-    .ar-type-btn.active, .ar-mode-btn.active {
-      background: var(--accent);
-      color: var(--black);
-      border-color: var(--accent);
-      font-weight: bold;
-    }
-
-    /* ── AR display panel ── */
-    #ar-display {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: var(--p1); border-top: 2px solid var(--accent);
-      z-index: 1000; box-shadow: 0 -4px 20px rgba(0,0,0,.55);
-      font-family: var(--mono); padding: 0;
-    }
-    .ard-section {
-      display: flex; align-items: stretch;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .ard-section:last-child { border-bottom: none; }
-    .ard-section-label {
-      writing-mode: vertical-rl; text-orientation: mixed;
-      font-size: .45rem; font-weight: 900; letter-spacing: .2em;
-      text-transform: uppercase; padding: 6px 5px;
-      color: #111; background: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      min-width: 18px; flex-shrink: 0;
-    }
-    .ard-cards {
-      display: flex; flex: 1; overflow-x: auto; gap: 0;
-    }
-    .ard-card {
-      flex: 1; min-width: 130px; padding: 5px 10px;
-      border-right: 1px solid var(--b1);
-    }
-    .ard-card:last-child { border-right: none; }
-    .ard-card-header {
-      display: flex; align-items: baseline; gap: 5px; margin-bottom: 3px;
-    }
-    .ard-card-tag {
-      font-size: .42rem; font-weight: 900; letter-spacing: .15em;
-      color: #111; background: var(--accent);
-      padding: 1px 3px; text-transform: uppercase; flex-shrink: 0;
-    }
-    .ard-card-val {
-      font-size: .78rem; font-weight: 700; color: var(--white);
-    }
-    .ard-refs { display: flex; flex-direction: column; gap: 1px; }
-    .ard-ref-row {
-      display: flex; gap: 5px; font-size: .58rem; line-height: 1.3;
-    }
-    .ard-ref-k {
-      color: var(--muted2); text-transform: uppercase;
-      letter-spacing: .05em; flex-shrink: 0; min-width: 34px;
-    }
-    .ard-ref-v { color: var(--text); }
-    .ard-ref-ex {
-      display: block; color: var(--muted2); font-size: .5rem;
-      font-style: italic; margin-top: 1px; line-height: 1.2;
-    }
-    .ard-card.ard-raps .ard-card-tag { background: var(--red); color: #fff; }
-    .ard-card.ard-raps .ard-card-val { color: var(--accent); }
-    .ard-tab-strip {
-      display: flex; border-bottom: 1px solid var(--b1);
-    }
-    .ard-tab {
-      flex: 1; padding: 4px 12px;
-      font-family: var(--mono); font-size: .5rem; font-weight: 900;
-      letter-spacing: .15em; text-transform: uppercase;
-      color: var(--muted2); background: var(--p2);
-      border: none; cursor: pointer;
-      border-right: 1px solid var(--b1);
-      transition: background .1s, color .1s;
-    }
-    .ard-tab:last-child { border-right: none; }
-    .ard-tab.active { background: var(--accent); color: #111; }
-    .ard-tab:not(.active):hover { background: var(--p1); color: var(--text); }
-
-    /* ── Mobile nav ── */
-    .wiki-nav-toggle {
-      display: none;
-      position: sticky; top: 0; z-index: 100;
-      width: 100%; padding: 0 12px;
-      background: var(--dark); border-bottom: 1px solid var(--b1);
-      align-items: center; gap: 10px;
-      font-family: var(--mono); font-size: .65rem;
-      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
-      cursor: pointer; user-select: none;
-      min-height: 38px;
-    }
-    .wiki-nav-toggle svg { flex-shrink: 0; }
-    .wiki-nav-toggle .nav-current {
-      flex: 1; color: var(--accent); font-weight: 700;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .wiki-nav-toggle .nav-chevron {
-      transition: transform .2s; flex-shrink: 0;
-    }
-    .wiki-nav-toggle.open .nav-chevron { transform: rotate(180deg); }
-    .wiki-sidebar-drawer {
-      overflow: hidden;
-      transition: max-height .25s ease;
-    }
-    /* Closed on mobile by default; open class overrides */
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .wiki-layout { flex-direction: column; }
-
-      /* sidebar becomes collapsible drawer */
-      .wiki-sidebar {
-        width: 100%; border-right: none;
-        border-bottom: 1px solid var(--b1);
-        padding: 0; overflow: visible;
-      }
-      .wiki-nav-toggle { display: flex; }
-      .wiki-sidebar-drawer {
-        display: block; background: var(--dark);
-        max-height: 0;   /* collapsed by default on mobile */
-      }
-      .wiki-sidebar-drawer.open { max-height: 600px; }
-
-      /* nav links in a 2-col grid on mobile */
-      .wiki-nav-section { margin: 0; }
-      .wiki-nav-title { padding: 8px 12px 3px; font-size: .5rem; }
-      .wiki-nav-links-grid {
-        display: grid; grid-template-columns: 1fr 1fr;
-        border-top: 1px solid var(--b1);
-      }
-      .wiki-nav-link {
-        padding: 9px 12px; font-size: .68rem;
-        border-right: 1px solid var(--b1);
-        border-bottom: 1px solid var(--b1);
-      }
-      .wiki-nav-link:nth-child(even) { border-right: none; }
-
-      .wiki-content table th,
-      .wiki-content table td { padding: 6px 8px; font-size: 0.6rem; }
-
-      /* ar-display: ultra compact on mobile */
-      .ard-section-label {
-        writing-mode: horizontal-tb;
-        font-size: .45rem; padding: 0 5px;
-        min-width: unset; min-height: 18px;
-        letter-spacing: .1em;
-      }
-      .ard-section { flex-direction: column; }
-      .ard-section-label {
-        writing-mode: horizontal-tb;
-        width: 100%; min-width: unset; min-height: unset;
-        padding: 2px 8px; justify-content: flex-start;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-      }
-      .ard-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        overflow-x: visible;
-      }
-      .ard-card {
-        min-width: unset; padding: 4px 6px;
-        border-right: 1px solid var(--b1);
-      }
-      .ard-card-header { margin-bottom: 2px; gap: 4px; flex-wrap: wrap; }
-      .ard-card-val { font-size: .7rem; }
-      /* refs: hide example, inline as compact pills */
-      .ard-ref-ex { display: none; }
-      .ard-refs { flex-direction: row; flex-wrap: wrap; gap: 2px 5px; }
-      .ard-ref-row { font-size: .5rem; gap: 2px; }
-      .ard-ref-k { min-width: unset; font-size: .45rem; }
-    }
-    @media (max-width: 400px) {
-      .ard-card-tag { font-size: .38rem; }
-      .ard-card-val { font-size: .65rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/components.css?v=dev">
+  <link rel="stylesheet" href="assets/css/wiki.css?v=dev">
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
 </head>
 <body>
@@ -417,75 +32,64 @@
   if (t) document.body.className = 'theme-' + t;
 })();
 </script>
+  <a class="skip-link" href="#wiki-main" data-i18n="wiki.skip">Pular para o conteúdo</a>
   <div id="header-container"></div>
   <div id="toolbar-container"></div>
 
   <div class="wiki-layout">
-    <nav class="wiki-sidebar">
-      <button class="wiki-nav-toggle" id="wiki-nav-toggle" aria-expanded="false">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <rect y="2" width="14" height="1.5" rx=".75" fill="currentColor"/>
-          <rect y="6.25" width="14" height="1.5" rx=".75" fill="currentColor"/>
-          <rect y="10.5" width="14" height="1.5" rx=".75" fill="currentColor"/>
-        </svg>
-        <span data-i18n="wiki.nav">Navegação</span>
-        <span class="nav-current" id="nav-current-label">Introdução</span>
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="wiki-sidebar-drawer" id="wiki-sidebar-drawer">
-        <div class="wiki-nav-section">
-          <div class="wiki-nav-title" data-i18n="wiki.rules">Regras</div>
-          <div class="wiki-nav-links-grid">
-            <a href="wiki.html" class="wiki-nav-link" data-page="index" data-i18n="wiki.intro">Introdução</a>
-            <a href="wiki.html?p=sistema_hibrido" class="wiki-nav-link" data-page="sistema_hibrido" data-i18n="wiki.hybrid">Sistema Híbrido</a>
-            <a href="wiki.html?p=temas" class="wiki-nav-link" data-page="temas" data-i18n="wiki.themes">Temas</a>
-            <a href="wiki.html?p=tags" class="wiki-nav-link" data-page="tags" data-i18n="wiki.tags">Tags</a>
-            <a href="wiki.html?p=combate" class="wiki-nav-link" data-page="combate" data-i18n="wiki.combat">Combate</a>
-            <a href="wiki.html?p=tipos_acao" class="wiki-nav-link" data-page="tipos_acao" data-i18n="wiki.actions">Sistema de Ações</a>
-            <a href="wiki.html?p=modificadores" class="wiki-nav-link" data-page="modificadores" data-i18n="wiki.modifiers">Modificadores</a>
-            <a href="wiki.html?p=acao_resultado" class="wiki-nav-link" data-page="acao_resultado" data-i18n="wiki.avov">Tabela AV/OV·EV/RV</a>
-            <a href="wiki.html?p=aps_referencia" class="wiki-nav-link" data-page="aps_referencia" data-i18n="wiki.aps">APs Referência</a>
-          </div>
-        </div>
-        <div class="wiki-nav-section">
-          <div class="wiki-nav-title" data-i18n="wiki.characters">Personagens</div>
-          <div class="wiki-nav-links-grid">
-            <a href="wiki.html?p=galera" class="wiki-nav-link" data-page="galera" data-i18n="wiki.crewTheme">Tema de Galera</a>
-            <a href="wiki.html?p=npcs" class="wiki-nav-link" data-page="npcs" data-i18n="wiki.npcs">NPCs & Cérebro</a>
-          </div>
-        </div>
-        <div class="wiki-nav-section">
-          <div class="wiki-nav-title" data-i18n="wiki.ops">Operações</div>
-          <div class="wiki-nav-links-grid">
-            <a href="wiki.html?p=relatorios" class="wiki-nav-link" data-page="relatorios" data-i18n="wiki.reports">Relatórios</a>
-          </div>
-        </div>
+    <div class="wiki-scrim" id="wiki-scrim" hidden></div>
+    <!-- desktop: sticky sidebar · ≤768px: bottom sheet opened from the dock -->
+    <aside class="wiki-sidebar" id="wiki-sidebar" aria-labelledby="wiki-sheet-title">
+      <div class="wiki-sheet-hd">
+        <span class="wiki-sheet-title" id="wiki-sheet-title" data-i18n="wiki.pages">Páginas</span>
+        <button type="button" class="wiki-sheet-close" id="wiki-sheet-close" aria-label="Fechar" data-i18n-aria-label="common.close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
-    </nav>
+      <div class="wiki-search" id="wiki-search" role="search">
+        <label class="sr-only" for="wiki-q" data-i18n="wiki.searchLabel">Buscar nas regras</label>
+        <svg class="wiki-search-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        <input class="search-box wiki-search-input" id="wiki-q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search"
+          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wiki-results"
+          placeholder="Buscar nas regras…" data-i18n-placeholder="wiki.searchPh">
+        <kbd class="wiki-kbd" aria-hidden="true">/</kbd>
+        <div class="wiki-results scroll-thin" id="wiki-results" role="listbox" aria-label="Resultados da busca" data-i18n-aria-label="wiki.resultsLabel" hidden></div>
+        <p class="sr-only" id="wiki-search-status" role="status" aria-live="polite"></p>
+      </div>
+      <nav class="wiki-nav scroll-thin" id="wiki-nav" aria-label="Navegação" data-i18n-aria-label="wiki.nav"></nav>
+    </aside>
 
-    <main class="wiki-content" id="wiki-content">
-      <h1 data-i18n="wiki.welcome">Bem-vindo à Wiki X-MEN TTRPG</h1>
-      <p>Este é o sistema de regras para jogar X-Men usando o sistema City of Mist adaptado. Aqui você encontrará todas as informações necessárias para criar seus personagens, entender os movimentos, e rodar suas sessões.</p>
-      
-      <h2>Sobre o Sistema</h2>
-      <p>X-Men TTRPG usa uma versão adaptada do sistema City of Mist para o universo X-Men. O foco está em:</p>
-      <ul>
-        <li><strong>Dramaticidade:</strong> Personagens são definidos por seus Temas e identidades</li>
-        <li><strong>Poder:</strong> Mutantes com habilidades extraordinárias, desde Telepatia até Fator de Cura</li>
-        <li><strong>Conflito:</strong> A eterna luta entre mutantes e humanos, e as complexas relações entre os personagens</li>
-      </ul>
-      
-      <h2>Navegação</h2>
-      <p>Use a barra lateral para navegar pelas diferentes seções:</p>
-      <ul>
-        <li><strong>Movimentos:</strong> As ações básicas que personagens podem tomar</li>
-        <li><strong>Temas:</strong> A estrutura de criação de personagens (Mutação vs Humanidade)</li>
-        <li><strong>Tags:</strong> O sistema de poderes e fraquezas</li>
-        <li><strong>Combate:</strong> Regras de combate, condições e recuperação</li>
-      </ul>
+    <main class="wiki-main" id="wiki-main" tabindex="-1">
+      <div class="wiki-resume" id="wiki-resume" hidden></div>
+      <nav class="wiki-toc-wrap" id="wiki-toc-wrap" aria-labelledby="wiki-toc-title" hidden>
+        <details class="wiki-toc" id="wiki-toc">
+          <summary class="wiki-toc-sum"><span id="wiki-toc-title" data-i18n="wiki.onThisPage">Nesta página</span><span class="wiki-toc-n" id="wiki-toc-n"></span></summary>
+          <ol class="wiki-toc-list" id="wiki-toc-list"></ol>
+          <a class="wiki-toc-top" href="#wiki-main" data-top data-i18n="wiki.backTop">Voltar ao topo</a>
+        </details>
+      </nav>
+      <div class="dwl wiki-kicker" id="wiki-kicker"></div>
+      <!-- rules content stays Portuguese whatever the UI language -->
+      <article class="wiki-content" id="wiki-content" lang="pt-BR">
+        <p class="state-msg is-loading">// CARREGANDO</p>
+      </article>
+      <nav class="wiki-pager" id="wiki-pager" aria-label="Navegação entre páginas" data-i18n-aria-label="wiki.pagerLabel"></nav>
     </main>
+  </div>
+
+  <!-- ≤768px: thumb-zone dock (page list · search · top) -->
+  <div class="wiki-dock" id="wiki-dock">
+    <button type="button" class="wiki-dock-pages" id="wiki-dock-pages" aria-controls="wiki-sidebar" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      <span class="wiki-dock-txt"><span class="wiki-dock-k" data-i18n="wiki.pages">Páginas</span><span class="wiki-dock-cur" id="wiki-dock-cur"></span></span>
+      <svg class="wiki-dock-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    </button>
+    <button type="button" class="wiki-dock-btn" id="wiki-dock-search" aria-controls="wiki-sidebar" aria-label="Buscar" data-i18n-aria-label="wiki.searchBtn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+    </button>
+    <button type="button" class="wiki-dock-btn" id="wiki-dock-top" aria-label="Voltar ao topo" data-i18n-aria-label="wiki.backTop">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
   </div>
 
   <!-- scripts no fim do body: HTML e CSS renderizam antes do parse do JS -->
@@ -503,99 +107,7 @@
   <script src="assets/js/header.js?v=dev"></script>
   <script src="assets/js/pwa.js?v=dev"></script>
   <script>
-    const wikiContent = document.getElementById('wiki-content');
-    const navLinks = document.querySelectorAll('.wiki-nav-link');
-    const pages = window.wikiPages;
-    const navToggle = document.getElementById('wiki-nav-toggle');
-    const navDrawer = document.getElementById('wiki-sidebar-drawer');
-    const navCurrentLabel = document.getElementById('nav-current-label');
-
-    // Mobile nav toggle
-    navToggle.addEventListener('click', () => {
-      const open = navDrawer.classList.toggle('open');
-      navToggle.classList.toggle('open', open);
-      navToggle.setAttribute('aria-expanded', open);
-    });
-
-    function wrapTables() {
-      wikiContent.querySelectorAll('table').forEach(table => {
-        if (!table.closest('.table-container')) {
-          const wrap = document.createElement('div');
-          wrap.className = 'table-container';
-          table.parentNode.insertBefore(wrap, table);
-          wrap.appendChild(table);
-        }
-      });
-    }
-
-    function renderTemasHTML(temas) {
-      const byType = {'Mutação':[],'Humanidade':[],'Adicional':[]};
-      temas.forEach(t => { if (byType[t.tipo]) byType[t.tipo].push(t); });
-      const typeLabels = {'Mutação':'Temas de Mutação','Humanidade':'Temas de Humanidade','Adicional':'Temas Adicionais'};
-      const typeDesc = {
-        'Mutação':'Representam os poderes e a natureza mutante. As perguntas guiam a criação das tags de poder e fraqueza.',
-        'Humanidade':'Representam background humano, identidade e relações do personagem.',
-        'Adicional':'Recursos, aliados e locais como temas de suporte.'
-      };
-      const css = `<style>.tema-details{border:1px solid var(--b1);margin-bottom:6px;background:var(--p1)}.tema-summary{cursor:pointer;padding:9px 14px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;list-style:none;user-select:none}.tema-summary::-webkit-details-marker{display:none}.tema-summary::before{content:"▶";font-size:.52rem;color:var(--accent);transition:transform .15s;flex-shrink:0}.tema-details[open]>.tema-summary::before{transform:rotate(90deg)}.tema-tipo{font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;padding:2px 6px;background:var(--accent);color:#111;font-weight:700;flex-shrink:0}.tema-nome{color:var(--white);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.tema-body{padding:12px 14px;border-top:1px solid var(--b1)}.tema-desc{font-family:var(--body);font-size:.75rem;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic}.tema-q-label{font-family:var(--mono);font-size:.5rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin:10px 0 5px}.tema-q-label.fraq{color:var(--muted2)}.tema-questions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}.tema-questions li{font-family:var(--body);font-size:.72rem;color:var(--text);padding:4px 8px;background:var(--p2);border-left:2px solid var(--b2);line-height:1.4;counter-increment:tq}.tema-questions.poder-q li{border-left-color:rgba(232,0,28,.35)}.tema-questions.fraq-q li{border-left-color:rgba(100,150,200,.35)}.tema-questions li:first-child{font-weight:700;color:var(--white);border-left-width:3px}</style>`;
-      let html = css;
-      for (const [tipo, themes] of Object.entries(byType)) {
-        if (!themes.length) continue;
-        html += `<h2>${typeLabels[tipo]}</h2><p>${typeDesc[tipo]}</p>`;
-        for (const th of themes) {
-          const pqs = th.perguntas_poder || [];
-          const fqs = th.perguntas_fraqueza || [];
-          html += `<details class="tema-details"><summary class="tema-summary"><span class="tema-tipo">${tipo}</span><span class="tema-nome">${th.nome}</span></summary><div class="tema-body">${th.descricao ? `<p class="tema-desc">${th.descricao}</p>` : ''}<div class="tema-q-label">Tags de Poder (${pqs.length})</div><ol class="tema-questions poder-q">${pqs.map(q=>`<li>${q}</li>`).join('')}</ol><div class="tema-q-label fraq">Tags de Fraqueza (${fqs.length})</div><ol class="tema-questions fraq-q">${fqs.map(q=>`<li>${q}</li>`).join('')}</ol></div></details>`;
-        }
-      }
-      return html;
-    }
-
-    async function renderTemasPage() {
-      const container = document.getElementById('temas-dynamic');
-      if (!container) return;
-      try {
-        const d = await fetch('temas.json').then(r => r.json());
-        container.innerHTML = renderTemasHTML(d.temas || []);
-      } catch(e) {
-        container.innerHTML = '<p style="color:var(--muted);font-family:var(--mono);font-size:.65rem;">Erro ao carregar temas.json</p>';
-      }
-    }
-
-    function loadPage(page) {
-      const content = pages[page] || pages.index;
-      wikiContent.innerHTML = content;
-      wikiContent.classList.remove('page-fade');
-      void wikiContent.offsetWidth; // reflow to restart animation
-      wikiContent.classList.add('page-fade');
-      wikiContent.scrollTop = 0;
-
-      navLinks.forEach(link => {
-        const active = link.dataset.page === page;
-        link.classList.toggle('active', active);
-        link.setAttribute('aria-current', active ? 'page' : 'false');
-        if (active && navCurrentLabel) navCurrentLabel.textContent = link.textContent;
-      });
-
-      // Close drawer on navigation
-      navDrawer.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', false);
-
-      // Clear display when leaving the AR table page
-      if (page !== 'acao_resultado') {
-        avSelection = null;
-        rvSelection = null;
-        const d = document.getElementById('ar-display');
-        if (d) d.remove();
-      }
-
-      // Page-specific post-processing
-      if (page === 'temas') renderTemasPage();
-      if (page === 'acao_resultado') requestAnimationFrame(renderActionTable);
-      wrapTables();
-    }
-    
+    /* AV/OV · EV/RV reference panel (acao_resultado page). Navigation, search and tables live in wiki.js. */
     // Armazena seleção de cada tabela
     let avSelection = null;
     let rvSelection = null;
@@ -636,9 +148,9 @@
         '-5': '~450 g', '-4': '1 kg', '-3': '~2 kg', '-2': '~4,5 kg', '-1': '~8 kg', '0': '~22 kg', '1': '~45 kg', '2': '~90 kg',
         '3': '~180 kg', '4': '~340 kg', '5': '~680 kg', '6': '~1,5 t', '7': '~3 t', '8': '~6 t', '9': '~13 t', '10': '~25 t', '11': '~50 t', '12': '~100 t',
         '13': '~200 t', '14': '~400 t', '15': '~800 t', '16': '~1.500 t', '17': '~3.000 t', '18': '~6.000 t', '19': '~12.000 t', '20': '~25.000 t', '21': '~50.000 t', '22': '~100.000 t',
-        '23': '~200.000 t', '24': '~400.000 t', '25': '~800.000 t', '26': '~1,5 milhão t', '27': '~3 milhões t', '28': '~6 milhões t', '29': '~10 milhões t', '30': '~13 milhões t', '31': '~26 milhões t', '32': '~52 milhões t',
-        '33': '~100 milhões t', '34': '~200 milhões t', '35': '~400 milhões t', '36': '~800 milhões t', '37': '~1,6 bilhões t', '38': '~3 bilhões t', '39': '~6 bilhões t', '40': '~12 bilhões t', '41': '~25 bilhões t', '42': '~50 bilhões t',
-        '43': '~100 bilhões t', '44': '~200 bilhões t', '45': '~400 bilhões t', '46': '~800 bilhões t', '47': '~1,6 trilhões t', '48': '~3 trilhões t', '49': '~6 trilhões t', '50': '~12 trilhões t'
+        '23': '~200.000 t', '24': '~400.000 t', '25': '~800.000 t', '26': '~1,5 milhão t', '27': '~3 milhões t', '28': '~6 milhões t', '29': '~12 milhões t', '30': '~25 milhões t', '31': '~50 milhões t', '32': '~100 milhões t',
+        '33': '~200 milhões t', '34': '~400 milhões t', '35': '~800 milhões t', '36': '~1,6 bilhões t', '37': '~3 bilhões t', '38': '~6 bilhões t', '39': '~12 bilhões t', '40': '~25 bilhões t', '41': '~50 bilhões t', '42': '~100 bilhões t',
+        '43': '~200 bilhões t', '44': '~400 bilhões t', '45': '~800 bilhões t', '46': '~1,6 trilhões t', '47': '~3 trilhões t', '48': '~6 trilhões t', '49': '~12 trilhões t', '50': '~25 trilhões t'
       },
       informacao: {
         '-9': '1 B',     '-8': '2 B',     '-7': '4 B',     '-6': '8 B',
@@ -1041,105 +553,49 @@
       display.innerHTML = tabStrip + sectionHtml;
     }
     
-    // Delegação global para highlight das tabelas (funciona mesmo após troca de página)
+
+    // Tap a cell of the AV/OV · EV/RV table: cross-highlight its row/column and show the AP equivalences.
     document.body.addEventListener('click', function(e) {
-      const cell = e.target.closest('td');
+      const cell = e.target.closest('#action-table td');
       if (!cell) return;
-      
       const table = cell.closest('table');
-      if (!table) return;
-      
-      // Verifica se a tabela é uma tabela de AV/OV (contém cabeçalhos com AV/OV ou EV/RV)
-      const headers = Array.from(table.querySelectorAll('th'));
-      const isAVTable = headers.some(h => h.textContent.includes('AV') || h.textContent.includes('OV'));
-      const isRVTable = headers.some(h => h.textContent.includes('EV') || h.textContent.includes('RV'));
-      
-      if (!isAVTable && !isRVTable) return;
-      
-      // Limpa highlighting APENAS desta tabela (mantém as outras)
-      const allCells = table.querySelectorAll('td, th');
-      allCells.forEach(td => {
-        td.style.background = '';
-        td.style.color = '';
-        td.style.fontWeight = '';
-      });
-      
-      // Obtém linha e coluna
+      const isAVTable = (activeType || 'avov') === 'avov';
+
+      table.querySelectorAll('.is-row, .is-col, .is-cross').forEach(c => c.classList.remove('is-row', 'is-col', 'is-cross'));
       const row = cell.parentElement;
       const colIndex = cell.cellIndex;
-      
-      // Destaca toda a coluna
-      table.querySelectorAll('tr').forEach(tr => {
-        if (tr.cells[colIndex]) {
-          tr.cells[colIndex].style.background = 'var(--accent)';
-          tr.cells[colIndex].style.color = '#111';
-          tr.cells[colIndex].style.fontWeight = 'bold';
-        }
-      });
-      
-      // Destaca toda a linha
-      row.querySelectorAll('td').forEach(td => {
-        td.style.background = 'var(--accent)';
-        td.style.color = '#111';
-        td.style.fontWeight = 'bold';
-      });
-      
-      // Pega valores de linha e coluna
-      let firstColText = row.cells[0] ? row.cells[0].textContent.trim() : '?';
-      let headerText = table.querySelector('thead') ? 
-        table.querySelectorAll('th')[colIndex]?.textContent.trim() : 
-        table.rows[0].cells[colIndex]?.textContent.trim();
-      
-      // Armazena seleção
-      let selection = {
+      table.querySelectorAll('tr').forEach(tr => { if (tr.cells[colIndex]) tr.cells[colIndex].classList.add('is-col'); });
+      Array.from(row.cells).forEach(c => c.classList.add('is-row'));
+      cell.classList.add('is-cross');
+
+      const firstColText = row.cells[0] ? row.cells[0].textContent.trim() : '?';
+      const headerText = table.tHead ? table.tHead.rows[0].cells[colIndex]?.textContent.trim() : '?';
+      const selection = {
         tipo: isAVTable ? 'AV' : 'EV',
         oposto: isAVTable ? 'OV' : 'RV',
         valorLinha: firstColText,
         valorCol: headerText,
         raps: cell.textContent.trim()
       };
-      
-      if (isAVTable) {
-        avSelection = selection;
-        activeSection = 'av';
-      } else {
-        rvSelection = selection;
-        activeSection = 'rv';
-      }
-      
+      if (isAVTable) { avSelection = selection; activeSection = 'av'; }
+      else { rvSelection = selection; activeSection = 'rv'; }
       updateARDisplay();
     });
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialPage = urlParams.get('p') || 'index';
-    loadPage(initialPage);
-    
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const page = link.dataset.page;
-        const url = page === 'index' ? 'wiki.html' : `wiki.html?p=${page}`;
-        window.history.pushState({ page }, '', url);
-        loadPage(page);
-      });
+
+    // Leaving the table page clears the panel.
+    document.addEventListener('wiki:page', function(e) {
+      if (e.detail.page === 'acao_resultado') return;
+      avSelection = null;
+      rvSelection = null;
+      const d = document.getElementById('ar-display');
+      if (d) d.remove();
     });
 
-    window.addEventListener('popstate', () => {
-      const p = new URLSearchParams(window.location.search).get('p') || 'index';
-      loadPage(p);
-    });
-    
     initLanguage();
     applyTranslations();
     initTheme();
     renderNavBar({ page: 'wiki' });
-    
-    // Save bar
-    var saveBar = document.createElement('div');
-    saveBar.id = 'save-bar';
-    saveBar.className = 'save-bar';
-    saveBar.innerHTML = '<div class="save-status"><span class="save-dot"></span><span class="save-text" data-i18n="admin.waiting">' + t('admin.waiting') + '</span></div><span class="save-timestamp"></span>';
-    document.body.appendChild(saveBar);
+    WikiApp.init();
   </script>
 </body>
 </html>
