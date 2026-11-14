@@ -274,6 +274,11 @@ button{font:inherit;color:inherit;}
 .ntag-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
 .ntag{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:34px;padding:3px 4px 3px 9px;background:rgba(255,255,255,.02);border:1px solid var(--b1);border-left:2px solid rgba(var(--accentRGB),.65);}
 .ntc-frq .ntag{border-left-color:rgba(111,169,207,.75);}
+/* loose tags: in data.tags but in no tema — neutral card, same AP markers */
+.npc-tema-card.loose{border-top-color:var(--b3);}
+.npc-tema-card.loose .ntc-hd{background:linear-gradient(90deg,rgba(255,255,255,.05),transparent 75%);}
+.npc-tema-card.loose .ntc-title{color:#b5b5b5;text-shadow:none;}
+.npc-tema-card.loose .ntag{border-left-color:var(--b3);}
 .ntag-t{flex:1;min-width:0;font-size:15px;color:var(--text);line-height:1.2;overflow-wrap:anywhere;}
 .no-tags{color:var(--muted);font-family:var(--mono);font-size:var(--fs-xs);}
 .tags-wrap{background:var(--p1);border:1px solid var(--b1);padding:10px 12px;}
@@ -336,6 +341,9 @@ select.f-inp option{background:var(--dark);color:var(--white);}
 .stat-num::-webkit-inner-spin-button,.stat-num::-webkit-outer-spin-button{-webkit-appearance:none;}
 .stat-num:focus{border-color:var(--accent);}
 .tema-edit-card{background:var(--p1);border:1px solid var(--b1);border-left:3px solid var(--accent);padding:10px;margin-bottom:10px;}
+.tema-edit-card.loose{border-left-color:var(--b3);margin:12px 0 0;}
+.tema-edit-card.loose .tema-edit-lbl{color:var(--text);}
+.loose-hint{font-family:var(--mono);font-size:var(--fs-xs);color:var(--muted);margin-bottom:8px;line-height:1.5;}
 .tema-edit-hd{display:flex;gap:6px;align-items:center;margin-bottom:6px;}
 .tema-edit-hd .f-inp{font-family:var(--title);font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;}
 .tema-edit-grp{margin-top:8px;}
@@ -647,6 +655,7 @@ if(window.visualViewport){window.visualViewport.addEventListener('resize',update
       <div class="form-lbl" style="margin-bottom:6px" data-i18n="cerebro.temasHelp">TEMAS — poderes e fraquezas · AP 0–99 (vazio = sem grau)</div>
       <div id="temas-edit-list"></div>
       <button class="tbtn tbtn-acc" onclick="addTema()" data-i18n="cerebro.addThemeCard">+ CARTÃO DE TEMA</button>
+      <div id="avulsas-edit-list"></div>
     </div>
     <div class="form-grp">
       <label class="form-lbl" for="f-descricao" data-i18n="common.description">DESCRIÇÃO</label>
@@ -731,6 +740,7 @@ let currentId=null;
 let categoriaAtual='todos',esquadraoAtual='todos',perigoAtual='todos',tagAtual='',ordemAtual='nome',searchTerm='';
 let encSectionOpen=false;
 let temasEdit=[];
+let avulsasEdit=[];   // loose tags being edited (null = section hidden: NPC had none)
 let editingId=null;
 let condTargetId=null;
 let currentPartyId=null;
@@ -768,8 +778,20 @@ function apHTML(g){
   const[,c,k]=apBand(g),l=esc(t(k)),fx=esc(t('cerebro.band'));
   return`<span class="ap b-${c}" role="img" title="AP ${g} · ${fx} ${l}" aria-label="AP ${g}, ${fx} ${l}"><span class="ap-k" aria-hidden="true">AP</span><span class="ap-n" aria-hidden="true">${g}</span></span>`;
 }
-function allTags(n){return n.temas&&n.temas.length?n.temas.flatMap(tm=>[...tm.poder,...tm.fraqueza]):(n.tags||[]);}
-function powersOf(n){return n.temas&&n.temas.length?n.temas.flatMap(tm=>tm.poder):(n.tags||[]);}
+/* loose tags = data.tags entries matching no tema entry (texto, case/trim-insensitive). Only NPCs with temas
+   have them; without temas, tags are the whole list (flat fallback). */
+const tagKey=s=>String(s).trim().toLowerCase();
+function temaTags(temas){return (temas||[]).flatMap(tm=>[...tm.poder,...tm.fraqueza]);}
+function looseOf(temas,tags){
+  if(!temas||!temas.length)return[];
+  const seen=new Set(temaTags(temas).map(x=>tagKey(x.texto)));
+  return (tags||[]).filter(x=>{const k=tagKey(x.texto);if(seen.has(k))return false;seen.add(k);return true;});
+}
+/* data.tags written on save/import: themed first, then loose; deduped by texto so mirrors never double */
+function tagsFor(temas,loose){const seen=new Set();return [...temaTags(temas),...loose].filter(x=>{const k=tagKey(x.texto);if(seen.has(k))return false;seen.add(k);return true;});}
+function allTags(n){return n.temas&&n.temas.length?[...temaTags(n.temas),...n.avulsas]:(n.tags||[]);}
+/* graded loose tags count as powers for the combat strip (e.g. a teleport only stored in data.tags) */
+function powersOf(n){return n.temas&&n.temas.length?[...n.temas.flatMap(tm=>tm.poder),...n.avulsas.filter(x=>x.grau!=null)]:(n.tags||[]);}
 function topPowers(n,k=3){return powersOf(n).slice().sort(byAp).slice(0,k);}
 function iniOf(n){const a=n.atributos||{};return n.iniciativa||((a.Destreza||0)+(a['Inteligência']||0)+(a['Influência']||0));}
 function temaTitle(tm,i){return /^\s*\d*\s*$/.test(tm.nome||'')?{t:t('cerebro.themeN')+' '+String(i+1).padStart(2,'0'),fb:true}:{t:tm.nome,fb:false};}
@@ -780,6 +802,7 @@ function apiToInternal(npc){
   const d=npc.data||{};
   const src=(npc.atributos&&typeof npc.atributos==='object')?npc.atributos:(d.atributos&&typeof d.atributos==='object')?d.atributos:d.stats;
   const rawTemas=Array.isArray(d.temas)?d.temas:Array.isArray(npc.temas)?npc.temas:[];
+  const tags=(npc.tags||d.tags||[]).map(normTag).filter(Boolean);
   const temas=rawTemas.map(tm=>({
     nome:String(tm.nome??tm.titulo??''),
     poder:(tm.poder||[]).map(normTag).filter(Boolean),
@@ -790,7 +813,7 @@ function apiToInternal(npc){
     fracao:npc.faction||'neutro',perigo:npc.danger||'medio',
     iniciativa:parseInt(npc.iniciativa??d.iniciativa,10)||0, /* stored only; 0 = computed (iniOf) */
     atributos:mapAttrs(src),
-    tags:(npc.tags||d.tags||[]).map(normTag).filter(Boolean),temas,
+    tags,temas,avulsas:looseOf(temas,tags),
     descricao:npc.descricao||d.descricao||'',isGlobal:npc.is_global||false,
     foto:npc.foto_url||d.foto_url||'',
     esquadrao:npc.esquadrao||d.esquadrao||'',
@@ -1139,17 +1162,19 @@ function renderCondBanner(conds){
 }
 
 const CHEV_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>';
-/* theme cards; legacy NPCs without temas fall back to one flat list */
+/* theme cards (+ one neutral loose-tags card); legacy NPCs without temas fall back to one flat list */
 function renderTemasHTML(npc){
   const list=(arr)=>`<ul class="ntag-list">${arr.map(x=>`<li class="ntag"><span class="ntag-t">${esc(x.texto)}</span>${apHTML(x.grau)}</li>`).join('')}</ul>`;
   if(!npc.temas.length){
     return npc.tags.length?`<div class="tags-wrap ntc-pod">${list(npc.tags.slice().sort(byAp))}</div>`:'<span class="no-tags">'+esc(t('cerebro.noTags'))+'</span>';
   }
-  return'<div class="npc-temas">'+npc.temas.map((tm,i)=>{
-    const key=npc.id+':'+i,col=collapsedTemas.has(key),{t:title,fb}=temaTitle(tm,i);
+  const cards=npc.temas.map((tm,i)=>({tm,key:npc.id+':'+i,...temaTitle(tm,i)}));
+  if(npc.avulsas.length)cards.push({tm:{poder:npc.avulsas,fraqueza:[],loose:true},key:npc.id+':loose',t:t('cerebro.looseTags'),fb:false});
+  return'<div class="npc-temas">'+cards.map(({tm,key,t:title,fb})=>{
+    const col=collapsedTemas.has(key);
     const pod=tm.poder.slice().sort(byAp),frq=tm.fraqueza;
     const maxAp=pod.length&&pod[0].grau!=null?apHTML(pod[0].grau):'';
-    return`<article class="npc-tema-card${col?' collapsed':''}">
+    return`<article class="npc-tema-card${tm.loose?' loose':''}${col?' collapsed':''}">
       <button class="ntc-hd" data-act="tema-toggle" data-key="${esc(key)}" aria-expanded="${!col}">
         <span class="ntc-title${fb?' fallback':''}">${esc(title)}</span>
         <span class="ntc-sum"><span class="pod">${pod.length}▲</span><span class="frq">${frq.length}▼</span>${maxAp}</span>
@@ -1157,7 +1182,7 @@ function renderTemasHTML(npc){
         <span class="sr-only">${esc(t(col?'cerebro.expand':'cerebro.collapse'))}</span>
       </button>
       <div class="ntc-body">
-        ${pod.length?`<div class="ntc-pod"><div class="ntc-lbl">${esc(t('cerebro.powerLbl'))}</div>${list(pod)}</div>`:''}
+        ${pod.length?`<div class="ntc-pod">${tm.loose?'':`<div class="ntc-lbl">${esc(t('cerebro.powerLbl'))}</div>`}${list(pod)}</div>`:''}
         ${frq.length?`<div class="ntc-frq"><div class="ntc-lbl">${esc(t('cerebro.weakLbl'))}</div>${list(frq)}</div>`:''}
         ${!pod.length&&!frq.length?`<span class="no-tags">${esc(t('cerebro.emptyTheme'))}</span>`:''}
       </div>
@@ -1228,7 +1253,7 @@ function preencherForm(npc){
 }
 function resetSaveBtn(){const b=document.getElementById('btn-salvar-npc');b.disabled=false;b.textContent=t(editingId?'cerebro.save':'cerebro.create');}
 function abrirAddModal(){
-  editingId=null;formSeq++;temasEdit=[{nome:'',poder:[],fraqueza:[]}];
+  editingId=null;formSeq++;temasEdit=[{nome:'',poder:[],fraqueza:[]}];avulsasEdit=null;
   document.getElementById('modal-npc-title').textContent=t('cerebro.newNpcTitle');
   resetSaveBtn();
   preencherForm({atributos:{}});
@@ -1240,6 +1265,7 @@ function abrirEditModal(id){
   editingId=id;formSeq++;
   const src=npc.temas.length?npc.temas:[{nome:'Poderes',poder:npc.tags,fraqueza:[]}]; /* tema name is saved data, kept pt-BR */
   temasEdit=src.map(tm=>({nome:tm.nome||'',poder:tm.poder.map(x=>({...x})),fraqueza:tm.fraqueza.map(x=>({...x}))}));
+  avulsasEdit=npc.avulsas.length?npc.avulsas.map(x=>({...x})):null;
   document.getElementById('modal-npc-title').textContent=t('cerebro.editNpcTitle');
   resetSaveBtn();
   preencherForm(npc);
@@ -1266,7 +1292,7 @@ async function salvarNPC(){
     npcData={nome,codinome:val('f-codinome').trim(),esquadrao:val('f-esquadrao').trim(),
       fracao:val('f-fracao'),perigo:val('f-perigo'),
       iniciativa:parseGrau(val('f-iniciativa'))||0,
-      atributos,tags:temas.flatMap(tm=>[...tm.poder,...tm.fraqueza]),temas,
+      atributos,tags:tagsFor(temas,(avulsasEdit||[]).map(normTag).filter(Boolean)),temas,
       descricao:val('f-descricao').trim(),foto:val('f-foto').trim(),
       isGlobal:original?original.isGlobal:false,_data:original?original._data:undefined};
     apiData=internalToApi(npcData);
@@ -1288,7 +1314,7 @@ async function salvarNPC(){
 function tagRowsHTML(arr,ti,tipo){
   const L=k=>esc(t('cerebro.'+k)),pod=tipo==='poder';
   return arr.map((tg,j)=>`<div class="tag-row">
-    <input type="text" class="f-inp" value="${esc(tg.texto)}" data-ti="${ti}" data-tipo="${tipo}" data-j="${j}" data-f="texto" aria-label="${L(pod?'powerN':'weakN')} ${j+1}">
+    <input type="text" class="f-inp" value="${esc(tg.texto)}" data-ti="${ti}" data-tipo="${tipo}" data-j="${j}" data-f="texto" aria-label="${L(tipo==='avulsa'?'looseN':pod?'powerN':'weakN')} ${j+1}">
     <label class="ap-inp" title="${L('apHint')}"><span>AP</span><input type="number" inputmode="numeric" min="0" max="99" placeholder="—" value="${tg.grau??''}" data-ti="${ti}" data-tipo="${tipo}" data-j="${j}" data-f="grau" aria-label="${L('apOf')} ${esc(tg.texto)}"></label>
     <button class="icon-btn danger" data-act="tag-del" data-ti="${ti}" data-tipo="${tipo}" data-j="${j}" aria-label="${L('remove')} ${esc(tg.texto)}">✕</button>
   </div>`).join('');
@@ -1296,9 +1322,9 @@ function tagRowsHTML(arr,ti,tipo){
 function addRowHTML(ti,tipo){
   const L=k=>esc(t('cerebro.'+k)),pod=tipo==='poder';
   return`<div class="tag-row add">
-    <input type="text" class="f-inp" id="tema-${ti}-${tipo}-inp" placeholder="${L(pod?'newPowerPh':'newWeakPh')}" data-add="${ti}" data-tipo="${tipo}" aria-label="${L(pod?'newPower':'newWeak')}">
+    <input type="text" class="f-inp" id="tema-${ti}-${tipo}-inp" placeholder="${L(tipo==='avulsa'?'newLoosePh':pod?'newPowerPh':'newWeakPh')}" data-add="${ti}" data-tipo="${tipo}" aria-label="${L(tipo==='avulsa'?'newLoose':pod?'newPower':'newWeak')}">
     <label class="ap-inp" title="${L('apHint')}"><span>AP</span><input type="number" inputmode="numeric" id="tema-${ti}-${tipo}-grau" min="0" max="99" placeholder="—" data-add="${ti}" data-tipo="${tipo}" aria-label="${L('apOfNew')}"></label>
-    <button class="tbtn ${pod?'tbtn-acc':''}" data-act="tag-add" data-ti="${ti}" data-tipo="${tipo}" aria-label="${L(pod?'addPower':'addWeak')}">+</button>
+    <button class="tbtn ${pod?'tbtn-acc':''}" data-act="tag-add" data-ti="${ti}" data-tipo="${tipo}" aria-label="${L(tipo==='avulsa'?'addLoose':pod?'addPower':'addWeak')}">+</button>
   </div>`;
 }
 function renderTemasEdit(){
@@ -1313,28 +1339,39 @@ function renderTemasEdit(){
       <div class="tema-edit-grp pod"><div class="tema-edit-lbl pod">${L('powerLbl')}</div>${tagRowsHTML(tm.poder,i,'poder')}${addRowHTML(i,'poder')}</div>
       <div class="tema-edit-grp frq"><div class="tema-edit-lbl frq">${L('weakLbl')}</div>${tagRowsHTML(tm.fraqueza,i,'fraqueza')}${addRowHTML(i,'fraqueza')}</div>
     </div>`).join('');
+  /* loose tags: separate from temas; to move one, retype it in a tema and delete it here */
+  document.getElementById('avulsas-edit-list').innerHTML=avulsasEdit?`
+    <div class="tema-edit-card loose">
+      <div class="tema-edit-lbl">${L('looseTags')}</div>
+      <div class="loose-hint">${L('looseHint')}</div>
+      ${tagRowsHTML(avulsasEdit,0,'avulsa')}${addRowHTML(0,'avulsa')}
+    </div>`:'';
 }
+/* tag array behind an editor row: a tema's poder/fraqueza, or the loose list */
+function editList(ti,tipo){return tipo==='avulsa'?avulsasEdit:(temasEdit[+ti]||{})[tipo];}
 function addTema(){temasEdit.push({nome:'',poder:[],fraqueza:[]});renderTemasEdit();}
 function removeTema(i){temasEdit.splice(i,1);if(!temasEdit.length)temasEdit.push({nome:'',poder:[],fraqueza:[]});renderTemasEdit();}
 function addTemaTag(i,tipo){
   const inp=document.getElementById(`tema-${i}-${tipo}-inp`),grauInp=document.getElementById(`tema-${i}-${tipo}-grau`);
   const tag=normTag({texto:inp.value,grau:grauInp.value});if(!tag)return;
-  temasEdit[i][tipo].push(tag);
+  editList(i,tipo).push(tag);
   renderTemasEdit();
   const nxt=document.getElementById(`tema-${i}-${tipo}-inp`);if(nxt)nxt.focus();
 }
-function removeTemaTag(i,tipo,j){temasEdit[i][tipo].splice(j,1);renderTemasEdit();}
-document.getElementById('temas-edit-list').addEventListener('input',e=>{
-  const el=e.target,f=el.dataset.f;if(!f)return;
-  const tm=temasEdit[+el.dataset.ti];if(!tm)return;
-  if(f==='nome'){tm.nome=el.value;return;}
-  const tg=tm[el.dataset.tipo][+el.dataset.j];if(!tg)return;
-  if(f==='texto')tg.texto=el.value;
-  else{const g=parseGrau(el.value);if(g===null)delete tg.grau;else tg.grau=g;}
-});
-document.getElementById('temas-edit-list').addEventListener('keydown',e=>{
-  const el=e.target;
-  if(e.key==='Enter'&&el.dataset.add!==undefined){e.preventDefault();addTemaTag(+el.dataset.add,el.dataset.tipo);}
+function removeTemaTag(i,tipo,j){editList(i,tipo).splice(j,1);renderTemasEdit();}
+['temas-edit-list','avulsas-edit-list'].forEach(cid=>{
+  const c=document.getElementById(cid);
+  c.addEventListener('input',e=>{
+    const el=e.target,f=el.dataset.f;if(!f)return;
+    if(f==='nome'){const tm=temasEdit[+el.dataset.ti];if(tm)tm.nome=el.value;return;}
+    const tg=(editList(el.dataset.ti,el.dataset.tipo)||[])[+el.dataset.j];if(!tg)return;
+    if(f==='texto')tg.texto=el.value;
+    else{const g=parseGrau(el.value);if(g===null)delete tg.grau;else tg.grau=g;}
+  });
+  c.addEventListener('keydown',e=>{
+    const el=e.target;
+    if(e.key==='Enter'&&el.dataset.add!==undefined){e.preventDefault();addTemaTag(+el.dataset.add,el.dataset.tipo);}
+  });
 });
 
 /* ═══ ENCONTRO ═══ */
@@ -1472,6 +1509,11 @@ function mergeImportedTemas(temas,tags){
   const upd=x=>{const m=by.get(key(x.texto));return m?normTag({texto:x.texto,grau:m.grau}):x;};
   return (temas||[]).map(tm=>({...tm,poder:tm.poder.map(upd),fraqueza:tm.fraqueza.map(upd)}));
 }
+/* imported tags that match no tema entry become loose tags (kept in data.tags, shown in the loose card) */
+function importMerge(existente,tags){
+  const temas=mergeImportedTemas(existente.temas,tags);
+  return {temas,tags:tagsFor(temas,looseOf(temas,tags))};
+}
 async function importarMarkdown(){
   const raw=document.getElementById('import-text').value;
   if(!raw.trim()){toast(t('common.noContent'));return;}
@@ -1480,7 +1522,7 @@ async function importarMarkdown(){
   for(const n of novos){
     const existente=NPC_ROWS.find(e=>e.nome===n.nome);
     /* update keeps fields the MD format doesn't carry (temas, foto, squad, other JSONB keys) */
-    const apiData=internalToApi(existente?{...existente,...n,temas:mergeImportedTemas(existente.temas,n.tags)}:{...n,isGlobal:true});
+    const apiData=internalToApi(existente?{...existente,...n,...importMerge(existente,n.tags)}:{...n,isGlobal:true});
     try{
       if(existente){await api.updateNPC(existente.id,apiData);u++;}
       else{await api.createNPC(null,apiData);c++;}

@@ -328,6 +328,87 @@ if (require.main === module) (async () => {
     await c.close();
   });
 
+  /* NPC with temas whose data.tags also holds tags outside every tema ("loose"), plus a mirrored weakness */
+  const NOTURNO = {
+    id: 'npc-nc', name: 'Kurt Wagner', codename: 'Noturno', faction: 'x-men', danger: 'alto', is_global: false, foto_url: '',
+    data: {
+      stats: { destreza: 10, 'força': 4, corpo: 5, 'inteligência': 5, vontade: 6, mente: 5, 'influência': 4, aura: 5, 'espírito': 7 },
+      temas: [{ nome: 'Acrobata', poder: [{ texto: 'Acrobacia Sobre-humana', grau: 6 }, { texto: 'Cauda Preênsil' }], fraqueza: [{ texto: 'Aparência Demoníaca' }] }],
+      tags: [{ texto: 'Acrobacia Sobre-humana', grau: 6 }, { texto: ' aparência demoníaca ' }, { texto: 'Teletransporte via Dimensão Sombria (bamf)', grau: 9 }, { texto: 'Visão no Escuro' }]
+    }
+  };
+  const LOOSE_A = 'Teletransporte via Dimensão Sombria (bamf)', LOOSE_B = 'Visão no Escuro';
+  const looseCard = p => p.$$eval('#npc-detail .npc-tema-card.loose .ntag', els => els.map(e => [e.querySelector('.ntag-t').textContent, e.querySelector('.ap-n') ? e.querySelector('.ap-n').textContent : null]));
+  const keyOf = s => s.trim().toLowerCase();
+
+  await test('loose tags (in data.tags, outside every tema) are shown, ranked and searchable (follow-up 2)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base, { npcs: [...NPCS, NOTURNO] });
+    await p.click('#npc-list [data-id="npc-nc"]');
+    eq(await looseCard(p), [[LOOSE_A, '9'], [LOOSE_B, null]], 'loose card');
+    assert(/TAGS AVULSAS/.test(await p.textContent('#npc-detail .npc-tema-card.loose .ntc-title')), 'loose card title');
+    eq(await p.$$eval('#npc-detail .cs-pow .cs-pow-t', e => e.map(x => x.textContent)), [LOOSE_A, 'Acrobacia Sobre-humana', 'Cauda Preênsil'], 'top powers: graded loose ranks first');
+    eq(await p.evaluate(n => powersOf(NPC_DB.find(x => x.id === 'npc-nc')).map(x => x.texto), LOOSE_B), [ 'Acrobacia Sobre-humana', 'Cauda Preênsil', LOOSE_A], 'strip candidates: only graded loose tags count');
+    eq(await p.$$eval('#npc-detail .npc-tema-card:not(.loose) .ntag-t', e => e.map(x => x.textContent)).then(a => a.filter(x => keyOf(x) === 'aparência demoníaca').length), 1, 'mirrored weakness duplicated');
+    await p.fill('#search-inp', 'visão no escuro'); await p.waitForTimeout(250);
+    eq(await p.$$eval('#npc-list [data-id]', e => e.map(x => x.dataset.id)), ['npc-nc'], 'search misses loose tag');
+    await p.fill('#search-inp', ''); await p.waitForTimeout(250);
+    assert(await p.$(`#tag-pills [data-tag="${LOOSE_B}"]`), 'tag filter misses loose tag');
+    await c.close();
+    /* NPC without temas: flat fallback only, no loose card */
+    const { ctx: c2, page: p2 } = await openCerebro(browser, base, { npcs: [{ ...NOTURNO, id: 'npc-flat', data: { ...NOTURNO.data, temas: [] } }] });
+    await p2.click('#npc-list [data-id="npc-flat"]');
+    eq(await p2.$$eval('#npc-detail .npc-tema-card', e => e.length), 0, 'no-tema NPC rendered cards');
+    eq(await p2.$$eval('#npc-detail .tags-wrap .ntag', e => e.length), 4, 'no-tema fallback list');
+    await c2.close();
+  });
+
+  await test('editor round-trips, edits and deletes loose tags without dropping or duplicating (follow-up 1+3)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base, { npcs: [...NPCS, NOTURNO] });
+    await p.click('#npc-list [data-id="npc-nc"]');
+    await p.click('#npc-detail [data-act="edit"]');
+    eq(await p.$$eval('#avulsas-edit-list [data-tipo="avulsa"][data-f="texto"]', e => e.map(x => x.value)), [LOOSE_A, LOOSE_B], 'loose section in editor');
+    await p.click('#btn-salvar-npc');
+    await p.waitForFunction(() => window.__calls.update.length === 1);
+    let tags = await p.evaluate(() => window.__calls.update[0].data.data.tags);
+    eq(tags.find(x => x.texto === LOOSE_A), { texto: LOOSE_A, grau: 9 }, 'graded loose tag lost on no-op save');
+    eq(tags.find(x => x.texto === LOOSE_B), { texto: LOOSE_B }, 'ungraded loose tag lost on no-op save');
+    eq(tags.length, new Set(tags.map(x => keyOf(x.texto))).size, 'duplicate tags ' + JSON.stringify(tags));
+    assert(tags.some(x => x.texto === 'Cauda Preênsil') && tags.some(x => x.texto === 'Aparência Demoníaca'), 'themed tags missing');
+    await p.waitForFunction(() => !document.querySelector('#modal-npc.open'));
+    eq(await looseCard(p), [[LOOSE_A, '9'], [LOOSE_B, null]], 'loose card after save');
+    await p.click('#npc-detail [data-act="edit"]');
+    await p.fill('#avulsas-edit-list [data-tipo="avulsa"][data-j="0"][data-f="grau"]', '14');
+    await p.click('#avulsas-edit-list [data-act="tag-del"][data-j="1"]');
+    await p.fill('#tema-0-avulsa-inp', 'Fé Inabalável');
+    await p.fill('#tema-0-avulsa-grau', '3');
+    await p.press('#tema-0-avulsa-inp', 'Enter');
+    await p.click('#btn-salvar-npc');
+    await p.waitForFunction(() => window.__calls.update.length === 2);
+    tags = await p.evaluate(() => window.__calls.update[1].data.data.tags);
+    eq(tags.find(x => x.texto === LOOSE_A), { texto: LOOSE_A, grau: 14 }, 'loose AP edit');
+    assert(!tags.some(x => x.texto === LOOSE_B), 'deleted loose tag still saved');
+    eq(tags.find(x => x.texto === 'Fé Inabalável'), { texto: 'Fé Inabalável', grau: 3 }, 'added loose tag');
+    const temas = await p.evaluate(() => window.__calls.update[1].data.data.temas);
+    assert(!temas.some(tm => [...tm.poder, ...tm.fraqueza].some(x => x.texto === LOOSE_A || x.texto === 'Fé Inabalável')), 'loose tags leaked into temas');
+    eq(p.__errors || [], [], 'page errors');
+    await c.close();
+  });
+
+  await test('MD import: unmatched tag lands in the loose card and the payload (follow-up 4)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base);
+    await p.click('#npc-list [data-id="npc-mid"]');
+    await p.evaluate(() => {
+      document.getElementById('import-text').value = '# NPC: Yuriko Oyama\n**Fração:** vilao\n**Perigo:** alto\n\n## Tags\n- Garras de Adamantium (AP 18)\n- Fator de Cura Parcial (AP 7)\n\n## Descrição\nx\n';
+      return importarMarkdown();
+    });
+    const d = await p.evaluate(() => window.__calls.update[0].data.data);
+    eq(d.tags.find(x => x.texto === 'Fator de Cura Parcial'), { texto: 'Fator de Cura Parcial', grau: 7 }, 'unmatched tag not in payload');
+    assert(d.tags.some(x => x.texto === 'Reflexos Cibernéticos'), 'themed tag absent from MD dropped from tags');
+    await p.waitForSelector('#npc-detail .npc-tema-card.loose');
+    eq(await looseCard(p), [['Fator de Cura Parcial', '7']], 'imported loose tag not visible');
+    await c.close();
+  });
+
   await test('English: switching language re-renders the shown NPC in English, no raw keys (review #5)', async () => {
     const { ctx: c, page: p } = await openCerebro(browser, base);
     await p.click('#npc-list [data-id="npc-mag"]');
