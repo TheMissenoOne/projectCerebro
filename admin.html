@@ -445,6 +445,7 @@ let currentParty = null;
           byPlayer[pid].push(c);
         });
         el.innerHTML = '';
+        let nJog = 0;
         Object.entries(byPlayer).forEach(([pid, pChars]) => {
           const block = document.createElement('div');
           block.style.cssText = 'margin-bottom:18px;border:1px solid var(--b1);background:var(--p1);';
@@ -453,10 +454,11 @@ let currentParty = null;
           hdr.style.cssText = 'background:var(--p2);border-bottom:1px solid var(--b2);';
           const av = document.createElement('div');
           av.className = 'member-avatar';
-          av.textContent = pid.charAt(0).toUpperCase();
+          const jog = rotuloJogador(pChars, nJog++);
+          av.textContent = jog.charAt(0).toUpperCase();
           const info = document.createElement('div');
           info.className = 'member-info';
-          info.innerHTML = '<div class="member-name">' + (pid.length > 36 ? pid.slice(0,8)+'…' : pid) + '</div><div class="member-username">' + pChars.length + ' ' + t('admin.charCount') + '</div>';
+          info.innerHTML = '<div class="member-name">' + escH(jog) + '</div><div class="member-username">' + pChars.length + ' ' + t('admin.charCount') + '</div>';
           hdr.appendChild(av);
           hdr.appendChild(info);
           block.appendChild(hdr);
@@ -471,8 +473,8 @@ let currentParty = null;
             else thumb.textContent = initial;
             const cinfo = document.createElement('div');
             cinfo.style.cssText = 'flex:1;min-width:0;';
-            cinfo.innerHTML = '<div style="font-family:var(--body);font-size:.78rem;color:var(--white);font-weight:600">' + (c.nome || t('admin.noName')) + '</div>'
-              + (c.codename ? '<div style="font-family:var(--mono);font-size:.44rem;color:var(--muted)">' + c.codename + '</div>' : '');
+            cinfo.innerHTML = '<div style="font-family:var(--body);font-size:.78rem;color:var(--white);font-weight:600">' + escH(c.nome || t('admin.noName')) + '</div>'
+              + (c.codinome ? '<div style="font-family:var(--mono);font-size:.44rem;color:var(--muted)">' + escH(c.codinome) + '</div>' : '');
             const editBtn = document.createElement('a');
             editBtn.href = 'ficha.html?id=' + c.id;
             editBtn.target = '_blank';
@@ -493,11 +495,24 @@ let currentParty = null;
 
     let pointsLoaded = false;
     function safeNum(v){ v = parseFloat(v); return isFinite(v) && v > 0 ? v : 0; }
-    function membrosDe(c){
+    /* Não existe tabela de perfis (auth é Supabase Auth): o único nome legível de um jogador
+       é o dos personagens dele. Antes o cabeçalho mostrava o player_id cru. */
+    const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    function nomeChar(c){ return (c && (c.codinome || c.nome)) || ''; }
+    function rotuloJogador(pChars, i){
+      const ns = [...new Set(pChars.map(nomeChar).filter(Boolean))];
+      return ns.length ? ns.join(' · ') : t('admin.player') + ' ' + (i + 1);
+    }
+    /* membro salvo como id de personagem: resolve pelo nome; sem match, nunca mostra o uuid */
+    function nomeMembro(nome, porId){
+      if (!UUID_RE.test(nome)) return nome;
+      return nomeChar(porId[nome.toLowerCase()]) || t('admin.unknownChar');
+    }
+    function membrosDe(c, porId){
       const d = (c && c.data) || {};
       const raw = Array.isArray(d.membros) ? d.membros : [];
       return raw.filter(m => m && m.nome && String(m.nome).trim())
-        .map(m => ({ nome: String(m.nome).trim(), apoio: safeNum(m.apoio), antagonismo: safeNum(m.antagonismo) }));
+        .map(m => ({ nome: nomeMembro(String(m.nome).trim(), porId || {}), apoio: safeNum(m.apoio), antagonismo: safeNum(m.antagonismo) }));
     }
     function barraHTML(v, total, cor){
       const pct = total > 0 ? Math.min(100, Math.round((v / total) * 100)) : 0;
@@ -525,16 +540,18 @@ let currentParty = null;
           byPlayer[pid].push(c);
         });
 
+        const porId = {};
+        chars.forEach(c => { if (c.id) porId[String(c.id).toLowerCase()] = c; });
         let gTotalApoio = 0, gTotalAnt = 0, gPlayers = 0;
         const rows = [];
         Object.entries(byPlayer).forEach(([pid, pChars]) => {
           let pApoio = 0, pAnt = 0;
           const charBlocks = pChars.map(c => {
-            const ms = membrosDe(c);
+            const ms = membrosDe(c, porId);
             const ca = ms.reduce((s, m) => s + m.apoio, 0);
             const cAnt = ms.reduce((s, m) => s + m.antagonismo, 0);
             pApoio += ca; pAnt += cAnt;
-            const nome = c.codinome || c.nome || t('admin.noName');
+            const nome = nomeChar(c) || t('admin.noName');
             const rowsHtml = ms.length ? ms.map(m =>
               '<tr><td class="pts-m-nome">' + escH(m.nome) + '</td><td class="pts-cell-a">' + barraHTML(m.apoio, ca || m.apoio, 'var(--accent2)') + '</td><td class="pts-cell-ant">' + barraHTML(m.antagonismo, cAnt || m.antagonismo, 'var(--pr-alto)') + '</td></tr>').join('')
               : '<tr><td colspan="3" class="pts-empty">' + t('admin.pointsNoMembers') + '</td></tr>';
@@ -544,10 +561,11 @@ let currentParty = null;
               + '<table class="pts-table"><thead><tr><th>' + t('admin.pointsMember') + '</th><th>A</th><th>ANT</th></tr></thead><tbody>' + rowsHtml + '</tbody></table>'
               + '</div>';
           }).join('');
+          const jog = rotuloJogador(pChars, gPlayers);
           gTotalApoio += pApoio; gTotalAnt += pAnt; gPlayers++;
           rows.push('<div class="pts-player"><div class="pts-player-head">'
-            + '<div class="member-avatar">' + escH((pid.charAt(0) || '?').toUpperCase()) + '</div>'
-            + '<div class="member-info"><div class="member-name">' + escH(pid.length > 36 ? pid.slice(0, 8) + '…' : pid) + '</div>'
+            + '<div class="member-avatar">' + escH((jog.charAt(0) || '?').toUpperCase()) + '</div>'
+            + '<div class="member-info"><div class="member-name">' + escH(jog) + '</div>'
             + '<div class="member-username">' + pChars.length + ' ' + t('admin.charCount') + ' · A+' + pApoio + ' · ANT+' + pAnt + '</div></div>'
             + '<div class="pts-player-bars">'
             + '<div class="pts-pair"><span class="pts-pair-lbl">A</span>' + barraHTML(pApoio, pApoio + pAnt, 'var(--accent2)') + '</div>'
