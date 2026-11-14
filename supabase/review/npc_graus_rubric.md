@@ -158,7 +158,7 @@ Magnético Global"), grade o feito que o texto afirma.
 - **Texto de fraqueza dentro de `poder`** ("Paraplégico", "Poderes em Declínio") ou texto
   corrompido (ex.: tag `"4"` de M (Monet St. Croix)) → `null`, `feat` explica.
 - **Mesma capacidade em duas tags** (duas tags de capacete, voo repetido) → mesmo grau.
-- **`null`** = a tag fica sem grau no banco (o SQL não a toca). Use para tudo que não é
+- **`null`** = a tag fica sem grau no banco: o SQL remove qualquer grau antigo (escala 1–6) dela, para não ser lido como AP. Use para tudo que não é
   capacidade mensurável. Não é "não sei": incerteza = grau + `confidence: baixa`.
 
 ## 5. Arquivo de notas (formato exato)

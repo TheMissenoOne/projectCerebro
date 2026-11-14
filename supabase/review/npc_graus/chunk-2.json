@@ -223,11 +223,11 @@
       },
       {
         "texto": "Telepatia Ômega",
-        "grau": 20,
+        "grau": 21,
+        "peak": 23,
         "benchmark": "distancia",
-        "feat": "rotina sem amplificador: alcance de país ~2.800 km → 20 (pico global com Cérebro 23)",
-        "confidence": "media",
-        "peak": 23
+        "feat": "ladder: rotina Ômega sem amplificador, alcance continental ~5.000 km → 21; com Cérebro global 23 (peak)",
+        "confidence": "media"
       },
       {
         "texto": "Manipulação Psicológica Refinada",
@@ -287,9 +287,9 @@
       },
       {
         "texto": "Escudos Psíquicos Intransponíveis",
-        "grau": 24,
+        "grau": 25,
         "benchmark": "outro",
-        "feat": "pareado à telepatia de Xavier/Jean (~23) → 24; mesma capacidade de Resistência a Telepatia Alheia",
+        "feat": "ladder: escudos que barram Xavier/Jean (telepatas Ômega) → 25; mesma capacidade de Resistência a Telepatia Alheia",
         "confidence": "media"
       },
       {
@@ -336,9 +336,9 @@
       },
       {
         "texto": "Resistência a Telepatia Alheia (Bloqueia Xavier/Jean)",
-        "grau": 24,
+        "grau": 25,
         "benchmark": "outro",
-        "feat": "pareado à telepatia de Xavier/Jean (~23) → 24",
+        "feat": "ladder: o texto diz que bloqueia Xavier/Jean → 25",
         "confidence": "media"
       },
       {
@@ -488,9 +488,9 @@
       },
       {
         "texto": "Imune a Telepatia",
-        "grau": 20,
+        "grau": 21,
         "benchmark": "outro",
-        "feat": "pareado à telepatia Ômega de rotina (~20) → 20",
+        "feat": "ladder: pareado à telepatia Ômega de rotina (21); a ficção não o mostra segurando Xavier/Jean no auge",
         "confidence": "baixa"
       },
       {
@@ -620,11 +620,11 @@
     "tags": [
       {
         "texto": "Telepatia Ômega",
-        "grau": 20,
+        "grau": 21,
+        "peak": 23,
         "benchmark": "distancia",
-        "feat": "rotina sem Cérebro: alcance de país ~2.800 km → 20; com Cérebro global 23–24",
-        "confidence": "media",
-        "peak": 24
+        "feat": "ladder: rotina Ômega sem Cérebro, alcance continental ~5.600 km → 21; com Cérebro global 23 (peak)",
+        "confidence": "media"
       },
       {
         "texto": "Controle Mental Profundo",
@@ -726,9 +726,9 @@
       },
       {
         "texto": "Bloqueio Mental Absoluto",
-        "grau": 24,
+        "grau": 25,
         "benchmark": "outro",
-        "feat": "pareado à telepatia mais forte (~23) → 24",
+        "feat": "ladder: escudo que barra telepatas Ômega (Jean/Xavier com Cérebro 23) → 25",
         "confidence": "media"
       },
       {
@@ -859,9 +859,9 @@
       },
       {
         "texto": "Intelecto Genial",
-        "grau": 12,
+        "grau": 14,
         "benchmark": "informacao",
-        "feat": "gênio em genética/psicologia (rua alta) → 12",
+        "feat": "gênio em genética/psicologia (construiu o Cérebro) → 14; = Intelecto Genial do Fera (mesma tag)",
         "confidence": "media"
       },
       {
@@ -886,17 +886,18 @@
     "tags": [
       {
         "texto": "Transmutação Molecular/Atômica Absoluta",
-        "grau": 22,
+        "grau": 30,
+        "peak": 32,
         "benchmark": "peso",
-        "feat": "rotina: transmuta massa de prédio/navio ~100 kt → 22; pico cidade",
-        "confidence": "media",
-        "peak": 32
+        "feat": "umbrella ≥ sub-técnica \"Reorganiza a Matéria de uma Cidade\" (30, teto não-variante); rotina demonstrada ~100 kt (22); literal cidade ~10⁸ t (32) em peak",
+        "confidence": "baixa"
       },
       {
         "texto": "Transforma Qualquer Coisa em Qualquer Coisa",
-        "grau": 22,
+        "grau": 30,
+        "peak": 32,
         "benchmark": "peso",
-        "feat": "= Transmutação Molecular → 22",
+        "feat": "= Transmutação Molecular (umbrella) → 30; peak 32",
         "confidence": "media"
       },
       {
@@ -936,9 +937,10 @@
       },
       {
         "texto": "Reorganiza a Matéria de uma Cidade Inteira",
-        "grau": 32,
+        "grau": 30,
+        "peak": 32,
         "benchmark": "peso",
-        "feat": "o texto é o feito: matéria de uma cidade ~10⁸ t → 32",
+        "feat": "Eterna, entrada não-variante: teto planetário 30; literal matéria de uma cidade ~10⁸ t (32) em peak",
         "confidence": "baixa"
       },
       {
@@ -977,11 +979,11 @@
     "tags": [
       {
         "texto": "Absorção e Redirecionamento de Energia",
-        "grau": 18,
+        "grau": 20,
+        "peak": 25,
         "benchmark": "outro",
-        "feat": "pareado ao que absorve de rotina (rajadas ópticas, plasma, Sentinelas ~15–18) → 18; pico: energia Fênix/cósmica",
-        "confidence": "media",
-        "peak": 25
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
+        "confidence": "media"
       },
       {
         "texto": "Armamento Pesado",
@@ -1001,14 +1003,14 @@
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Absorve Qualquer Forma de Energia (Cinética, Térmica, Elétrica, Cósmica)",
-        "grau": 18,
+        "grau": 20,
         "benchmark": "outro",
-        "feat": "= Absorção e Redirecionamento → 18",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
         "confidence": "media"
       },
       {
@@ -1042,9 +1044,9 @@
       },
       {
         "texto": "Absorve Ataques de Múltiplas Fontes Simultaneamente",
-        "grau": 18,
+        "grau": 20,
         "benchmark": "outro",
-        "feat": "= Absorção e Redirecionamento → 18",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
         "confidence": "media"
       },
       {
@@ -1063,9 +1065,9 @@
       },
       {
         "texto": "Canaliza Energia Absorvida Através do Próprio Corpo Sem Dano",
-        "grau": 18,
+        "grau": 20,
         "benchmark": "outro",
-        "feat": "= Absorção e Redirecionamento → 18",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
         "confidence": "media"
       },
       {
@@ -1257,9 +1259,9 @@
       },
       {
         "texto": "Séculos de Experiência em Combate",
-        "grau": 7,
+        "grau": 8,
         "benchmark": "outro",
-        "feat": "experiência acima do pico humano (rua baixa) → 7",
+        "feat": "veterano centenário, acima do pico humano (faixa rua) → 8; = mesma tag do Sabretooth",
         "confidence": "media"
       },
       {
@@ -1320,66 +1322,66 @@
       },
       {
         "texto": "Combate Corporal",
-        "grau": 4,
-        "benchmark": "outro",
-        "feat": "luta treinada (atleta) → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Estratégia",
-        "grau": 5,
-        "benchmark": "informacao",
-        "feat": "estratégia de líder estudantil treinado → 5",
-        "confidence": "baixa"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Vontade de Ferro",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Exploração de Ambiente",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia de campo treinada → 4",
-        "confidence": "baixa"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Treinamento Intensivo",
-        "grau": 4,
-        "benchmark": "outro",
-        "feat": "treino X-Men intenso (atleta) → 4",
-        "confidence": "baixa"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Táticas Avançadas",
-        "grau": 6,
-        "benchmark": "informacao",
-        "feat": "tática avançada: pico humano → 6",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Perícia em Campo",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "agente de campo treinado → 5",
-        "confidence": "baixa"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Arrogância de Elite",
@@ -1567,7 +1569,7 @@
         "texto": "Aluna do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 9 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
@@ -1627,9 +1629,9 @@
       },
       {
         "texto": "Escudos Psíquicos Intransponíveis",
-        "grau": 24,
+        "grau": 25,
         "benchmark": "outro",
-        "feat": "pareado à telepatia mais forte (~23) → 24",
+        "feat": "ladder: escudo que barra telepatas Ômega (Jean/Xavier com Cérebro 23) → 25; = Bloqueio Mental Absoluto do Professor X",
         "confidence": "media"
       },
       {
@@ -1683,9 +1685,10 @@
       },
       {
         "texto": "Alcance Interestelar/Interdimensional",
-        "grau": 51,
+        "grau": 23,
+        "peak": 51,
         "benchmark": "distancia",
-        "feat": "o texto é o feito (via Cérebro): interestelar, 1 ano-luz → 51",
+        "feat": "entrada base: rotina com Cérebro = global 23 (ladder); o literal interestelar (1 ano-luz = 51) vai para peak",
         "confidence": "baixa"
       },
       {
@@ -1697,9 +1700,10 @@
       },
       {
         "texto": "Localiza Qualquer Mente no Universo",
-        "grau": 51,
+        "grau": 23,
+        "peak": 51,
         "benchmark": "distancia",
-        "feat": "texto hiperbólico; pareado ao Alcance Interestelar → 51",
+        "feat": "entrada base: texto hiperbólico; rotina com Cérebro = global 23 (ladder); literal interestelar 51 em peak",
         "confidence": "baixa"
       },
       {
@@ -1898,9 +1902,9 @@
       },
       {
         "texto": "Telepatia de Nível Ômega em Conjunto",
-        "grau": 20,
+        "grau": 21,
         "benchmark": "distancia",
-        "feat": "unidas: alcance de país ~2.800 km → 20 (= rotina da Emma)",
+        "feat": "ladder: unidas = telepatia Ômega de rotina, continental ~5.000 km → 21 (= rotina da Emma)",
         "confidence": "media"
       },
       {
@@ -2053,7 +2057,7 @@
         "texto": "Aluno do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       }
     ]
@@ -2175,58 +2179,58 @@
     "tags": [
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Treinamento Básico",
-        "grau": 3,
-        "benchmark": "outro",
-        "feat": "treino de combate básico, humano treinado → 3",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Determinação",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
@@ -2511,7 +2515,7 @@
         "texto": "Aluno do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       }
     ]
@@ -2522,66 +2526,66 @@
     "tags": [
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Treinamento Básico",
-        "grau": 3,
-        "benchmark": "outro",
-        "feat": "treino de combate básico, humano treinado → 3",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Determinação",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Arpões Energéticos",
-        "grau": 15,
+        "grau": 18,
         "benchmark": "outro",
-        "feat": "ignoram invulnerabilidade, ferem Colossus em aço: pareado ao Corpo de aço (~15) → 15",
-        "confidence": "media"
+        "feat": "ignoram invulnerabilidade, ferem Colossus em aço: pareado ao Corpo de aço do Colossus (18) → 18",
+        "confidence": "baixa"
       },
       {
         "texto": "Poder de Penetrar Qualquer Defesa",
@@ -2612,45 +2616,45 @@
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Treinamento de Combate de Elite",
@@ -2681,45 +2685,45 @@
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Inocência Infantil",
@@ -3106,7 +3110,7 @@
         "texto": "Aluno do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
@@ -3332,45 +3336,45 @@
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Efeitos Imprevisíveis",
@@ -3401,58 +3405,58 @@
       },
       {
         "texto": "Foguetes de Alta Explosão",
-        "grau": 10,
+        "grau": 11,
         "benchmark": "energia",
-        "feat": "foguetes AE partem blindado leve/concreto armado (9–10) → 10",
+        "feat": "foguetes arruínam blindado/tanque (11–12) → 11; = foguetes do Sentinela Mark I",
         "confidence": "media"
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Armadura Estrutural Reforçada",
-        "grau": 12,
+        "grau": 13,
         "benchmark": "resistencia",
-        "feat": "aguenta fogo de tanque/bunker (11–12) → 12",
+        "feat": "casco de Sentinela aguenta antitanque (13–15) → 13; = Sentinela Mark I",
         "confidence": "media"
       },
       {
@@ -3477,45 +3481,45 @@
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Camuflagem de Pele",
@@ -3546,45 +3550,45 @@
       },
       {
         "texto": "Reflexos Rápidos",
-        "grau": 5,
-        "benchmark": "outro",
-        "feat": "tag genérica: reflexos de pico humano (5–6) → 5",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Lealdade",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Especial",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga, sem capacidade definida",
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Trabalho em Equipe",
         "grau": null,
         "benchmark": null,
-        "feat": "traço social, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Conhecimento Tático",
-        "grau": 4,
-        "benchmark": "informacao",
-        "feat": "perícia tática de agente treinado, faixa humana → 4",
-        "confidence": "media"
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
       },
       {
         "texto": "Cada Carta tem Efeito Específico",
@@ -3667,7 +3671,7 @@
         "texto": "Aluno do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       }
     ]
@@ -3873,35 +3877,35 @@
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Especialização",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga",
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Única",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga",
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Sorte nos Momentos Críticos",
         "grau": null,
         "benchmark": null,
-        "feat": "recurso narrativo genérico, não poder",
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Determinação",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
@@ -3963,7 +3967,7 @@
         "texto": "Aluno do Instituto Xavier",
         "grau": null,
         "benchmark": null,
-        "feat": "papel",
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       }
     ]
@@ -3983,28 +3987,28 @@
         "texto": "Sorte nos Momentos Críticos",
         "grau": null,
         "benchmark": null,
-        "feat": "recurso narrativo genérico, não poder",
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Determinação",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Personagem Menor",
         "grau": null,
         "benchmark": null,
-        "feat": "rótulo meta, não capacidade",
+        "feat": "filler de template repetido verbatim em 4 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
@@ -4024,35 +4028,35 @@
         "texto": "Instinto de Sobrevivência",
         "grau": null,
         "benchmark": null,
-        "feat": "traço genérico, não capacidade mensurável",
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Especialização",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga",
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Habilidade Única",
         "grau": null,
         "benchmark": null,
-        "feat": "tag genérica vaga",
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Sorte nos Momentos Críticos",
         "grau": null,
         "benchmark": null,
-        "feat": "recurso narrativo genérico, não poder",
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {
         "texto": "Determinação",
         "grau": null,
         "benchmark": null,
-        "feat": "traço de personalidade",
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
         "confidence": "alta"
       },
       {

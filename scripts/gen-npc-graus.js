@@ -288,8 +288,13 @@ const tagMatch = (el, k) => `(CASE jsonb_typeof(${el})
               ELSE FALSE END)`;
 
 // Reescreve um elemento de array de tags aplicando o grau, se casar (string → objeto, sem o sufixo).
+// g.grau NULL = tag graduada null: remove o grau antigo (objeto perde a chave; string "X 3" vira {"texto":"X"}).
 const tagRewrite = el => `COALESCE((
-          SELECT CASE WHEN jsonb_typeof(${el}) = 'object' THEN ${el} || jsonb_build_object('grau', g.grau)
+          SELECT CASE WHEN g.grau IS NULL THEN
+                        CASE WHEN jsonb_typeof(${el}) = 'object' THEN ${el} - 'grau'
+                             WHEN lower(btrim(${el} #>> '{}')) = lower(btrim(g.tag_texto)) THEN ${el}
+                             ELSE jsonb_build_object('texto', ${STRIP(el)}) END
+                      WHEN jsonb_typeof(${el}) = 'object' THEN ${el} || jsonb_build_object('grau', g.grau)
                       ELSE jsonb_build_object('texto', CASE WHEN lower(btrim(${el} #>> '{}')) = lower(btrim(g.tag_texto)) THEN ${el} #>> '{}' ELSE ${STRIP(el)} END, 'grau', g.grau) END
           FROM _g010 g
           WHERE g.npc_name = n.name AND g.is_global = n.is_global
@@ -297,7 +302,7 @@ const tagRewrite = el => `COALESCE((
           LIMIT 1), ${el})`;
 
 function genSQL(rows) {
-  const values = rows.map(r => `  (${sqlStr(r.name)}, ${r.is_global ? 'TRUE' : 'FALSE'}, ${sqlStr(r.texto)}, ${r.grau})`).join(',\n');
+  const values = rows.map(r => `  (${sqlStr(r.name)}, ${r.is_global ? 'TRUE' : 'FALSE'}, ${sqlStr(r.texto)}, ${r.grau ?? 'NULL'})`).join(',\n');
   return `-- ═══════════════════════════════════════════════════════════════
 -- Migração 010 — grau (APs) nas tags de PODER dos NPCs
 -- Gerado por: node scripts/gen-npc-graus.js build   (NÃO editar à mão)
@@ -308,11 +313,15 @@ function genSQL(rows) {
 -- e de data->'tags'. Não toca fraquezas, outras chaves, outros elementos nem a ordem.
 -- Tag guardada como string "X" (ou "X 3", formato que o editor do cerebro.html grava) que
 -- casar vira objeto {"texto":"X","grau":N}.
+-- Linhas com grau NULL (tag graduada null): REMOVE o grau antigo (escala 1–6) da tag — objeto
+-- perde a chave "grau"; string "X 3" vira {"texto":"X"}; string "X" sem sufixo fica como está.
+-- Só toca tags desta lista (textos do baseline do NPC).
 -- Não altera stats, danger, nomes nem textos das tags.
 --
 -- Como rodar: cole o arquivo inteiro no SQL Editor do Supabase e execute. Idempotente:
--- rodar de novo produz o mesmo data. O último SELECT lista linhas da lista que não
+-- rodar de novo produz o mesmo data. O último SELECT lista linhas COM grau da lista que não
 -- casaram com nenhum NPC ou tag (drift do banco de produção) — vazio = tudo aplicado.
+-- (Linhas NULL que não casam não são drift: não havia grau a remover.)
 --
 -- Backup: a 1ª execução cria npcs_backup_010 (id, data) com o estado ANTERIOR; execuções
 -- seguintes não o sobrescrevem. Rollback:
@@ -327,7 +336,7 @@ CREATE TABLE IF NOT EXISTS npcs_backup_010 AS SELECT id, data FROM npcs;
 ALTER TABLE npcs_backup_010 ENABLE ROW LEVEL SECURITY;
 
 DROP TABLE IF EXISTS _g010;
-CREATE TEMP TABLE _g010 (npc_name text NOT NULL, is_global boolean NOT NULL, tag_texto text NOT NULL, grau int NOT NULL CHECK (grau BETWEEN 0 AND 99));
+CREATE TEMP TABLE _g010 (npc_name text NOT NULL, is_global boolean NOT NULL, tag_texto text NOT NULL, grau int CHECK (grau BETWEEN 0 AND 99));  -- grau NULL = remover grau antigo
 INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
 ${values};
 
@@ -350,12 +359,12 @@ WHERE EXISTS (SELECT 1 FROM _g010 g WHERE g.npc_name = n.name AND g.is_global = 
 
 COMMIT;
 
--- Drift: linhas da lista sem NPC ou sem a tag no NPC (vazio = tudo aplicado).
+-- Drift: linhas com grau da lista sem NPC ou sem a tag no NPC (vazio = tudo aplicado).
 SELECT g.npc_name, g.tag_texto, g.grau,
        CASE WHEN NOT EXISTS (SELECT 1 FROM npcs n WHERE n.name = g.npc_name AND n.is_global = g.is_global)
             THEN 'NPC não encontrado' ELSE 'tag não encontrada' END AS motivo
 FROM _g010 g
-WHERE NOT EXISTS (
+WHERE g.grau IS NOT NULL AND NOT EXISTS (
   SELECT 1 FROM npcs n
   WHERE n.name = g.npc_name AND n.is_global = g.is_global
     AND (EXISTS (
@@ -371,18 +380,36 @@ ORDER BY 1, 2;
 
 const md = s => String(s == null ? '' : s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
 
-function genReview(base, grades) {
+// Graus antigos que o SQL remove: tags graduadas null que, no estado reconstruído (seed + 002..009),
+// são objeto com "grau" ou string "texto N". (Prod pode diferir — ver drift.)
+function countOldGraus(grades) {
+  const nulls = new Map(grades.map(g => [key(g.name, g.is_global), new Set(g.tags.filter(t => t.grau === null).map(t => norm(t.texto)))]));
+  let n = 0;
+  for (const r of replay()) {
+    const ns = nulls.get(key(r.name, r.is_global));
+    if (!ns || !r.data) continue;
+    const els = [...(r.data.temas || []).flatMap(t => (Array.isArray(t.poder) ? t.poder : [])), ...(Array.isArray(r.data.tags) ? r.data.tags : [])];
+    for (const e of els) {
+      if (e && typeof e === 'object' && 'grau' in e && ns.has(norm(e.texto))) n++;
+      else if (typeof e === 'string' && !ns.has(norm(e)) && ns.has(norm(e.replace(/\s+-?\d+$/, '')))) n++;
+    }
+  }
+  return n;
+}
+
+function genReview(base, grades, removed) {
   const gBy = new Map(grades.map(g => [key(g.name, g.is_global), g]));
   const npcs = base.filter(n => gBy.has(key(n.name, n.is_global)))
     .sort((a, b) => DANGER.indexOf(a.danger) - DANGER.indexOf(b.danger) || a.name.localeCompare(b.name, 'pt'));
   const all = npcs.flatMap(n => gBy.get(key(n.name, n.is_global)).tags.map(t => ({ n, t })));
   const withG = all.filter(x => x.t.grau !== null);
-  const hist = {};
-  withG.forEach(({ t }) => { const b = Math.floor(t.grau / 5) * 5; hist[b] = (hist[b] || 0) + 1; });
+  // faixas da rubrica (§3): humano · rua · Ômega · cósmico
+  const BANDS = [['1–6 humano', 1, 6], ['7–15 rua', 7, 15], ['16–30 Ômega', 16, 30], ['31+ cósmico', 31, 99]];
   let o = `# Revisão — graus das tags de poder dos NPCs\n\nGerado por \`node scripts/gen-npc-graus.js build\`. Rubrica: \`supabase/review/npc_graus_rubric.md\`.\n\n`;
   o += `## Resumo\n\n- NPCs: ${npcs.length} · tags de poder: ${all.length} · com grau: ${withG.length} · null: ${all.length - withG.length}\n`;
+  o += `- Graus antigos removidos (tags graduadas null que tinham grau 1–6 no estado seed+002..009): ${removed}\n`;
   o += `- Confiança: ${CONFIDENCE.map(c => `${c} ${all.filter(x => x.t.confidence === c).length}`).join(' · ')}\n\n`;
-  o += `| Faixa de grau | Tags |\n|---|---:|\n` + Object.keys(hist).map(Number).sort((a, b) => a - b).map(b => `| ${b}–${b + 4} | ${hist[b]} |`).join('\n') + '\n\n';
+  o += `| Faixa de grau | Tags |\n|---|---:|\n` + BANDS.map(([l, lo, hi]) => `| ${l} | ${withG.filter(x => x.t.grau >= lo && x.t.grau <= hi).length} |`).join('\n') + '\n\n';
   o += `| Perigo | NPCs | Grau máx. (NPC — tag) | Mediana |\n|---|---:|---|---:|\n`;
   for (const d of DANGER) {
     const xs = withG.filter(x => x.n.danger === d).sort((a, b) => b.t.grau - a.t.grau);
@@ -390,9 +417,19 @@ function genReview(base, grades) {
     const med = xs[Math.floor(xs.length / 2)].t.grau;
     o += `| ${d} | ${npcs.filter(n => n.danger === d).length} | ${xs[0].t.grau} (${md(xs[0].n.name)} — ${md(xs[0].t.texto)}) | ${med} |\n`;
   }
+  // Rubrica §3: grau > 30 só em entrada que É a variante cósmica — esta lista deve conter só essas.
+  const maxOf = n => Math.max(0, ...gBy.get(key(n.name, n.is_global)).tags.map(t => t.grau ?? 0));
+  const cosmic = npcs.filter(n => maxOf(n) > 30).sort((a, b) => maxOf(b) - maxOf(a));
+  o += `\n## Entradas com grau > 30 (devem ser só variantes/seres cósmicos) (${cosmic.length})\n\n`;
+  o += cosmic.length ? `| NPC | Perigo | Grau máx. | Tags > 30 |\n|---|---|---:|---:|\n` + cosmic.map(n => `| ${md(n.name)} | ${n.danger} | ${maxOf(n)} | ${gBy.get(key(n.name, n.is_global)).tags.filter(t => t.grau > 30).length} |`).join('\n') + '\n' : '_nenhuma_\n';
   const low = all.filter(x => x.t.confidence === 'baixa');
-  o += `\n## Confiança baixa (${low.length})\n\n`;
-  o += low.length ? `| NPC | Tag | Grau | Benchmark | Feat |\n|---|---|---:|---|---|\n` + low.map(({ n, t }) => `| ${md(n.name)} | ${md(t.texto)} | ${t.grau ?? '—'} | ${t.benchmark ?? '—'} | ${md(t.feat)} |`).join('\n') + '\n' : '_nenhuma_\n';
+  o += `\n## Confiança baixa (${low.length}), por NPC\n`;
+  if (!low.length) o += '\n_nenhuma_\n';
+  for (const n of npcs) {
+    const ts = low.filter(x => x.n === n);
+    if (!ts.length) continue;
+    o += `\n**${md(n.name)}** (${n.danger}, ${ts.length})\n\n` + ts.map(({ t }) => `- ${md(t.texto)} — **${t.grau ?? '—'}**${t.peak != null ? ` (pico ${t.peak})` : ''} · ${t.benchmark ?? '—'} · ${md(t.feat)}`).join('\n') + '\n';
+  }
   for (const d of DANGER) {
     const ns = npcs.filter(n => n.danger === d);
     if (!ns.length) continue;
@@ -414,11 +451,13 @@ function build(src, partial) {
   const grades = loadGrades(src);
   const { errs, graded } = validate(base, grades, partial);
   if (errs.length) { console.error(`ERRO: ${errs.length} problemas nas notas:\n- ` + errs.join('\n- ')); process.exit(1); }
-  const rows = grades.flatMap(g => g.tags.filter(t => t.grau !== null).map(t => ({ name: g.name, is_global: g.is_global, texto: t.texto, grau: t.grau })));
-  if (!rows.length) { console.error('ERRO: nenhum grau não-null para gravar'); process.exit(1); }
+  // inclui as null: o SQL remove delas o grau antigo
+  const rows = grades.flatMap(g => g.tags.map(t => ({ name: g.name, is_global: g.is_global, texto: t.texto, grau: t.grau })));
+  if (!rows.some(r => r.grau !== null)) { console.error('ERRO: nenhum grau não-null para gravar'); process.exit(1); }
   fs.writeFileSync(OUT_SQL, genSQL(rows));
-  fs.writeFileSync(OUT_MD, genReview(base, grades));
-  console.log(`build: ${graded.length}/${base.length} NPCs, ${rows.length} graus → ${path.relative(ROOT, OUT_SQL)}, ${path.relative(ROOT, OUT_MD)}${partial ? ' (PARCIAL)' : ''}`);
+  const removed = countOldGraus(grades);
+  fs.writeFileSync(OUT_MD, genReview(base, grades, removed));
+  console.log(`build: ${graded.length}/${base.length} NPCs, ${rows.filter(r => r.grau !== null).length} graus + ${rows.filter(r => r.grau === null).length} null (${removed} graus antigos removidos) → ${path.relative(ROOT, OUT_SQL)}, ${path.relative(ROOT, OUT_MD)}${partial ? ' (PARCIAL)' : ''}`);
 }
 
 // ── main ──
