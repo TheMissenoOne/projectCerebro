@@ -910,7 +910,9 @@
 .pts-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
+.pts-table th:first-child { width: 34%; }
 .pts-table th {
   font-family: var(--mono);
   font-size: .36rem;
@@ -929,13 +931,17 @@
   color: var(--text);
 }
 .pts-table tr:last-child td { border-bottom: none; }
-.pts-cell-a, .pts-cell-ant { display: flex; align-items: center; gap: 6px; }
+/* o flex fica num div interno: um <td> com display:flex deixa de ser table-cell e os dois
+   viravam uma única célula anônima, empilhados sob a coluna A */
+.pts-cell { display: flex; align-items: center; gap: 6px; min-width: 0; }
+@media (max-width: 520px), (pointer: coarse) {
+  .pts-table td { height: 40px; }
+}
 .pts-cell-ant .pts-bar-fill { background: var(--pr-alto); }
 .pts-m-nome {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 160px;
 }
 .pts-empty {
   color: var(--muted);
