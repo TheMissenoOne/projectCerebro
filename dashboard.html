@@ -34,497 +34,6 @@
   <script src="assets/js/themes.js?v=dev" defer></script>
   <script src="assets/js/header.js?v=dev" defer></script>
   <script src="assets/js/pwa.js?v=dev" defer></script>
-  <style>
-/* ── DASHBOARD PAGE-LOCAL OVERRIDES ─────────────────────────────── */
-
-/* Staggered page-load reveal */
-@keyframes dashIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: none; }
-}
-.dash-animate { animation: dashIn .4s ease both; }
-.dash-animate:nth-child(1) { animation-delay: .04s; }
-.dash-animate:nth-child(2) { animation-delay: .1s; }
-.dash-animate:nth-child(3) { animation-delay: .17s; }
-.dash-animate:nth-child(4) { animation-delay: .24s; }
-
-/* ── LAYOUT ──────────────────────────────── */
-.dash-body {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 28px) 60px;
-}
-
-/* ── IDENTITY ROW ────────────────────────── */
-.dash-identity {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px 22px;
-  background: var(--p1);
-  border: 1px solid var(--b1);
-  border-left: 3px solid var(--accent);
-  margin-bottom: 28px;
-  position: relative;
-  overflow: hidden;
-}
-/* subtle diagonal accent */
-.dash-identity::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 120px; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(var(--accentRGB),.04));
-  pointer-events: none;
-}
-
-.dash-avatar {
-  width: 48px; height: 48px;
-  background: var(--p2);
-  border: 2px solid var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--disp);
-  font-size: 1.5rem;
-  color: var(--accent);
-  flex-shrink: 0;
-  letter-spacing: .05em;
-}
-
-.dash-identity-info { flex: 1; min-width: 0; }
-
-.dash-greeting {
-  font-family: var(--disp);
-  font-size: clamp(1.2rem, 3vw, 1.65rem);
-  color: var(--white);
-  letter-spacing: .12em;
-  line-height: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.dash-greeting span { color: var(--accent); }
-
-.dash-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-  flex-wrap: wrap;
-}
-.dash-role-badge {
-  font-family: var(--mono);
-  font-size: .48rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  background: rgba(var(--accentRGB), .08);
-}
-.dash-username {
-  font-family: var(--mono);
-  font-size: .48rem;
-  color: var(--muted);
-  letter-spacing: .1em;
-}
-
-.dash-identity-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-/* ── ENCOUNTER BANNER ────────────────────── */
-.encounter-banner {
-  display: none;
-  padding: 10px 16px;
-  background: rgba(192,112,64,.08);
-  border: 1px solid rgba(192,112,64,.35);
-  border-left: 3px solid #c07040;
-  margin-bottom: 20px;
-}
-.encounter-banner.active { display: flex; align-items: center; gap: 8px; }
-.enc-banner-title {
-  font-family: var(--mono);
-  font-size: .58rem;
-  color: #c07040;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-/* ── SECTION HEADERS ─────────────────────── */
-.dash-section {
-  margin-bottom: 28px;
-}
-
-.dash-section-header {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 14px;
-}
-
-.section-bar {
-  width: 3px;
-  height: 18px;
-  background: var(--accent);
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-.dash-section-title {
-  font-family: var(--cond);
-  font-size: .78rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.section-line {
-  flex: 1;
-  height: 1px;
-  background: var(--b1);
-  margin-left: 12px;
-}
-
-/* ── CHARACTER GRID ──────────────────────── */
-.chars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 10px;
-}
-
-.char-card {
-  background: var(--p1);
-  border: 1px solid var(--b1);
-  cursor: pointer;
-  transition: border-color .15s, transform .15s;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
-}
-.char-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-/* portrait / avatar — flush to card edges, accent rule beneath */
-.char-card-img,
-.char-avatar {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  background-size: cover;
-  background-position: center top;
-  border-bottom: 2px solid var(--b1);
-  transition: border-color .15s;
-}
-.char-card:hover .char-card-img,
-.char-card:hover .char-avatar { border-bottom-color: var(--accent); }
-.char-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--p3), var(--p1));
-  font-family: var(--disp);
-  font-size: 3.2rem;
-  line-height: 1;
-  color: var(--b3);
-  letter-spacing: .04em;
-  transition: color .15s, border-color .15s;
-}
-.char-card:hover .char-avatar { color: var(--accent); }
-/* info readout band */
-.char-info {
-  padding: 8px 10px 9px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-.char-info-name {
-  font-family: var(--cond);
-  font-size: .82rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color .15s;
-}
-.char-card:hover .char-info-name { color: var(--accent); }
-.char-info-codename {
-  font-family: var(--mono);
-  font-size: .46rem;
-  color: var(--muted);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.char-info-codename::before { content: "// "; color: var(--accent); opacity: .7; }
-
-/* NEW CHAR CARD */
-.char-card-new {
-  border-style: dashed;
-  border-color: var(--b2);
-  background: transparent;
-  min-height: 76px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.char-card-new:hover {
-  border-color: var(--accent);
-  border-style: solid;
-  background: rgba(var(--accentRGB), .04);
-  transform: none;
-}
-.char-card-new svg {
-  width: 20px; height: 20px;
-  stroke: var(--b3);
-  transition: stroke .15s;
-}
-.char-card-new:hover svg { stroke: var(--accent); }
-.char-card-new span {
-  font-family: var(--mono);
-  font-size: .46rem;
-  color: var(--muted2);
-  letter-spacing: .14em;
-  transition: color .15s;
-}
-.char-card-new:hover span { color: var(--accent); }
-
-/* ── PARTY PANEL ─────────────────────────── */
-.party-section {
-  background: var(--p1);
-  border: 1px solid var(--b1);
-  overflow: hidden;
-}
-
-/* Empty state */
-.party-empty {
-  padding: 32px 24px;
-  text-align: center;
-}
-.party-empty-icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  opacity: .4;
-}
-.party-empty p {
-  font-family: var(--mono);
-  font-size: .56rem;
-  color: var(--muted);
-  letter-spacing: .1em;
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
-.party-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.party-actions .btn {
-  font-size: .56rem;
-  padding: 9px 18px;
-}
-
-/* Party Info */
-.party-info {
-  display: none;
-  flex-direction: column;
-}
-.party-info-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--b1);
-  background: var(--p2);
-}
-.party-name-display {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.party-name {
-  font-family: var(--disp);
-  font-size: 1.3rem;
-  color: var(--white);
-  letter-spacing: .12em;
-  line-height: 1;
-}
-.party-code {
-  font-family: var(--mono);
-  font-size: .48rem;
-  color: var(--muted);
-  letter-spacing: .1em;
-}
-.party-code strong {
-  color: var(--accent);
-  font-weight: normal;
-  letter-spacing: .14em;
-}
-
-.party-body {
-  padding: 16px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.party-members-label {
-  font-family: var(--mono);
-  font-size: .46rem;
-  color: var(--muted2);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.party-members {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.party-member {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--mono);
-  font-size: .52rem;
-  color: var(--text);
-  background: var(--p3);
-  padding: 4px 10px;
-  border: 1px solid var(--b1);
-  letter-spacing: .06em;
-}
-.party-member.is-gm {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(var(--accentRGB), .06);
-}
-.party-gm-badge {
-  font-size: .38rem;
-  letter-spacing: .08em;
-  opacity: .7;
-}
-.party-member-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--b3);
-  flex-shrink: 0;
-}
-.party-member.is-gm .party-member-dot { background: var(--accent); }
-
-.party-admin-link {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: rgba(var(--accentRGB), .1);
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-family: var(--mono);
-  font-size: .5rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background .15s, color .15s;
-  margin-left: auto;
-  flex-shrink: 0;
-  align-self: flex-start;
-}
-.party-admin-link:hover {
-  background: var(--accent);
-  color: var(--black);
-  text-decoration: none;
-}
-
-/* ── MODALS ──────────────────────────────── */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.82);
-  z-index: 500;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeIn .2s ease;
-}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.modal.open { display: flex; }
-
-.modal-card {
-  background: var(--p1);
-  border: 1px solid var(--b2);
-  border-top: 3px solid var(--accent);
-  padding: 26px 24px;
-  width: 100%;
-  max-width: 360px;
-  animation: dashIn .25s ease both;
-}
-.modal-title {
-  font-family: var(--disp);
-  font-size: 1.3rem;
-  color: var(--white);
-  letter-spacing: .15em;
-  margin-bottom: 20px;
-  line-height: 1;
-}
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 20px;
-}
-.modal-actions .btn { flex: 1; justify-content: center; }
-
-/* ── THEME SWITCHER ──────────────────────── */
-.theme-switcher {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.th-btn {
-  padding: 5px !important;
-  min-width: unset !important;
-  border: 1px solid var(--b2) !important;
-  border-radius: 50% !important;
-  transition: border-color .15s, transform .15s !important;
-}
-.th-btn:hover {
-  border-color: var(--accent) !important;
-  transform: scale(1.2);
-}
-.th-btn span {
-  width: 10px !important;
-  height: 10px !important;
-  border-radius: 50%;
-  display: block;
-}
-
-/* ── RESPONSIVE ──────────────────────────── */
-@media (max-width: 600px) {
-  .dash-identity { gap: 12px; padding: 14px 16px; }
-  .dash-avatar { width: 40px; height: 40px; font-size: 1.2rem; }
-  .dash-greeting { font-size: 1rem; }
-  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  .party-body { gap: 12px; }
-  .party-admin-link { margin-left: 0; }
-}
-  </style>
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
 </head>
 <body>
@@ -538,423 +47,598 @@
 <div id="header-container"></div>
 <div id="toolbar-container"></div>
 
-<div class="content dash-body">
+<main id="main" class="content dash-body">
 
-  <!-- Encounter banner -->
-  <div id="encounter-banner" class="encounter-banner">
-    <svg viewBox="0 0 24 24" width="14" height="14" stroke="#c07040" fill="none" stroke-width="2" style="flex-shrink:0"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 9H17v1.5c0 .83-.67 1.5-1.5 1.5S14 11.33 14 10.5 14.67 9 15.5 9z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 15H7v-1.5c0-.83.67-1.5 1.5-1.5S10 12.67 10 13.5 9.33 15 8.5 15z"/></svg>
-    <span class="enc-banner-title" data-i18n="dash.encounter">Encontro Ativo!</span>
-  </div>
-
-  <!-- Identity row -->
-  <div class="dash-identity dash-animate">
-    <div class="dash-avatar" id="user-avatar">?</div>
-    <div class="dash-identity-info">
-      <div class="dash-greeting" data-i18n="dash.welcome">Bem-vindo, <span id="user-name">...</span></div>
+  <!-- Identity -->
+  <section class="dash-hello" aria-label="Perfil" data-i18n-aria-label="dash.profile">
+    <div class="dash-avatar" id="user-avatar" aria-hidden="true">?</div>
+    <div class="dash-hello-info">
+      <p class="dash-greeting" data-i18n="dash.welcome">Bem-vindo, <span id="user-name">...</span></p>
       <div class="dash-meta">
-        <span class="dash-role-badge" id="user-role">JOGADOR</span>
-        <span class="dash-username" id="user-display">...</span>
+        <span class="badge is-solid" id="user-role">JOGADOR</span>
+        <span class="dash-username" id="user-display"></span>
       </div>
     </div>
-    <div class="dash-identity-actions">
-      <button class="tbtn" id="logout-btn">
-        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Sair
-      </button>
+    <div class="dash-hello-acts" id="gm-acts" hidden>
+      <a class="btn" href="admin.html" id="gm-panel-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-i18n="dash.gmPanel">Painel GM</span>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <!-- Personagens -->
-  <div class="dash-section dash-animate">
-    <div class="dash-section-header">
-      <div class="section-bar"></div>
-      <span class="dash-section-title" data-i18n="dash.characters">Personagens</span>
-      <div class="section-line"></div>
-    </div>
-    <div class="chars-grid" id="chars-grid">
-      <div class="char-card char-card-new" id="new-char-btn">
-        <svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span data-i18n="dash.newSheet">NOVA FICHA</span>
-      </div>
-    </div>
-  </div>
+  <div class="dash-grid">
 
-  <!-- Party -->
-  <div class="dash-section dash-animate">
-    <div class="dash-section-header">
-      <div class="section-bar"></div>
-      <span class="dash-section-title" data-i18n="dash.party">Party</span>
-      <div class="section-line"></div>
-    </div>
+    <!-- Characters -->
+    <section class="dash-sec" aria-labelledby="chars-title">
+      <div class="sec"><div class="sec-bar"></div><h2 class="sec-label" id="chars-title" data-i18n="dash.characters">Personagens</h2><div class="sec-line"></div><span class="sec-code" id="chars-count"></span></div>
+      <div id="chars-state" aria-live="polite"><p class="sr-only" data-i18n="dash.loadingChars">Carregando fichas…</p></div>
+      <ul class="char-list" id="chars-list" aria-busy="true">
+        <li class="char-skel" aria-hidden="true"></li><li class="char-skel" aria-hidden="true"></li><li class="char-skel" aria-hidden="true"></li>
+      </ul>
+    </section>
 
-    <div class="party-section" id="party-section">
+    <!-- Party -->
+    <section class="dash-sec" aria-labelledby="party-title">
+      <div class="sec"><div class="sec-bar"></div><h2 class="sec-label" id="party-title" data-i18n="dash.party">Party</h2><div class="sec-line"></div></div>
+      <div class="dossier party-card" id="party-card">
+        <header class="dossier-hd scan-once">
+          <h3 class="dossier-title stencil stencil-fx" id="party-name">—</h3>
+          <span class="dossier-meta" id="party-meta"></span>
+        </header>
+        <div class="dossier-body">
+          <div id="party-state"><p class="state-msg is-loading" data-i18n="common.loading">// CARREGANDO...</p></div>
 
-      <!-- Empty state -->
-      <div class="party-empty" id="party-empty">
-        <div class="party-empty-icon">⊞</div>
-        <p data-i18n="dash.noParty">Você ainda não faz parte de uma party.</p>
-        <p data-i18n="dash.noParty2">Crie uma ou entre com o código fornecido pelo GM.</p>
-        <div class="party-actions">
-          <button class="btn" id="create-party-btn" data-i18n="dash.createParty">Criar Party</button>
-          <button class="btn" id="join-party-btn" data-i18n="dash.joinCode">Entrar com Código</button>
-        </div>
-      </div>
-
-      <!-- Active party -->
-      <div class="party-info" id="party-info">
-        <div class="party-info-header">
-          <div class="party-name-display">
-            <span class="party-name" id="party-name">...</span>
-            <span class="party-code" data-i18n="dash.accessCode">Código de acesso: <strong id="party-code">...</strong></span>
+          <div class="party-info" id="party-info" hidden>
+              <div class="dwl" id="party-code-label" data-i18n="dash.codeLabel">Código de Acesso</div>
+              <div class="party-code-row">
+                <button type="button" class="party-code-btn" id="party-code-btn" aria-describedby="party-code-hint">
+                  <span class="party-code-val" id="party-code">...</span>
+                  <span class="party-code-act">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+                    <span id="copy-lbl" data-i18n="dash.copyCode">Copiar</span>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-icon" id="party-share-btn" hidden aria-label="Compartilhar código" data-i18n-aria-label="dash.share" title="Compartilhar código" data-i18n-title="dash.share">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+                </button>
+              </div>
+              <p class="party-hint" id="party-code-hint" data-i18n="dash.codeHint">Toque para copiar. Novos jogadores entram com este código.</p>
+              <div class="dwl" data-i18n="dash.members">Membros</div>
+              <ul class="party-members" id="party-members"></ul>
           </div>
-          <a href="admin.html" class="party-admin-link" id="admin-party-link" style="display:none;">
-            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span data-i18n="dash.gmPanel">Painel GM</span>
-          </a>
-        </div>
-        <div class="party-body">
-          <div style="flex:1;min-width:0;">
-            <div class="party-members-label" data-i18n="dash.members">Membros</div>
-            <div class="party-members" id="party-members"></div>
+
+          <div class="party-none" id="party-none" hidden>
+            <p class="party-none-txt" data-i18n="dash.noParty">Você ainda não faz parte de uma party.</p>
+            <p class="party-none-sub" data-i18n="dash.noParty2">Crie uma ou entre com o código fornecido pelo GM.</p>
+            <div class="party-actions">
+              <button type="button" class="btn" id="join-party-btn" data-i18n="dash.joinCode">Entrar com Código</button>
+              <button type="button" class="btn" id="create-party-btn" data-i18n="dash.createParty">Criar Party</button>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
   </div>
+</main>
 
-</div><!-- /dash-body -->
-
-<!-- Modal: Criar Party -->
-<div class="modal" id="create-party-modal">
-  <div class="modal-card">
-    <h3 class="modal-title" data-i18n="dash.createTitle">Criar Party</h3>
+<!-- Modal: create party -->
+<div class="modal-bg" id="create-party-modal">
+  <form class="modal compact" id="create-party-form" role="dialog" aria-modal="true" aria-labelledby="cp-title" tabindex="-1" novalidate>
+    <h2 class="modal-title" id="cp-title" data-i18n="dash.createTitle">Criar Party</h2>
+    <p class="modal-sub" data-i18n="dash.createSub">Você será o mestre desta party e receberá um código para convidar os jogadores.</p>
     <div class="form-group">
-      <label class="form-label" data-i18n="dash.partyName">Nome da Party</label>
-      <input type="text" class="form-input" id="party-name-input" data-i18n-placeholder="dash.partyPlaceholder" placeholder="X-Men Squad" autocomplete="off">
+      <label class="form-label" for="party-name-input" data-i18n="dash.partyName">Nome da Party</label>
+      <input type="text" class="form-input" id="party-name-input" maxlength="40" required autocomplete="off" data-i18n-placeholder="dash.partyPlaceholder" placeholder="X-Men Squad" aria-describedby="party-name-err">
+      <div class="form-error" id="party-name-err" role="alert"></div>
     </div>
-    <div class="modal-actions">
-      <button class="btn" id="cancel-create-party" data-i18n="common.cancel">Cancelar</button>
-      <button class="btn btn-primary" id="confirm-create-party" data-i18n="dash.create">Criar</button>
+    <div class="modal-acts">
+      <button type="button" class="btn" data-close data-i18n="common.cancel">Cancelar</button>
+      <button type="submit" class="btn btn-primary" id="confirm-create-party" data-i18n="dash.create">Criar</button>
     </div>
-  </div>
+  </form>
 </div>
 
-<!-- Modal: Entrar na Party -->
-<div class="modal" id="join-party-modal">
-  <div class="modal-card">
-    <h3 class="modal-title" data-i18n="dash.joinTitle">Entrar na Party</h3>
+<!-- Modal: join party -->
+<div class="modal-bg" id="join-party-modal">
+  <form class="modal compact" id="join-party-form" role="dialog" aria-modal="true" aria-labelledby="jp-title" tabindex="-1" novalidate>
+    <h2 class="modal-title" id="jp-title" data-i18n="dash.joinTitle">Entrar na Party</h2>
+    <p class="modal-sub" data-i18n="dash.joinSub">Peça ao mestre o código de 6 caracteres.</p>
     <div class="form-group">
-      <label class="form-label" data-i18n="dash.codeLabel">Código de Acesso</label>
-      <input type="text" class="form-input" id="party-code-input" data-i18n-placeholder="dash.codePlaceholder" placeholder="ABC123" maxlength="6" style="text-transform:uppercase;letter-spacing:.2em;" autocomplete="off">
+      <label class="form-label" for="party-code-input" data-i18n="dash.codeLabel">Código de Acesso</label>
+      <input type="text" class="form-input code-input" id="party-code-input" maxlength="6" required autocomplete="off" autocapitalize="characters" spellcheck="false" data-i18n-placeholder="dash.codePlaceholder" placeholder="ABC123" aria-describedby="party-code-err">
+      <div class="form-error" id="party-code-err" role="alert"></div>
     </div>
-    <div class="modal-actions">
-      <button class="btn" id="cancel-join-party" data-i18n="common.cancel">Cancelar</button>
-      <button class="btn btn-primary" id="confirm-join-party" data-i18n="dash.join">Entrar</button>
+    <div class="modal-acts">
+      <button type="button" class="btn" data-close data-i18n="common.cancel">Cancelar</button>
+      <button type="submit" class="btn btn-primary" id="confirm-join-party" data-i18n="dash.join">Entrar</button>
     </div>
-  </div>
+  </form>
 </div>
 
-<!-- Toast notification -->
-<div id="toast" style="
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: var(--white);
-  padding: 12px 20px;
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-  max-width: 90%;
-  word-wrap: break-word;
-  text-align: center;
-">—</div>
-
-<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
-<!-- Scripts already loaded in <head> -->
-<script>
-// Toast notification
-function toast(msg) {
-  var el = document.getElementById('toast');
-  if (!el) return;
-  el.textContent = '// ' + msg;
-  el.style.opacity = '1';
-  clearTimeout(el._timeout);
-  el._timeout = setTimeout(function() {
-    el.style.opacity = '0';
-  }, 2600);
-}
-
-</script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// Populate user info in header
-function populateUserInfo(user, profile) {
-  var userNameEl = document.getElementById('user-name');
-  var userAvatarEl = document.getElementById('user-avatar');
-  var userRoleEl = document.getElementById('user-role');
-  var userDisplayEl = document.getElementById('user-display');
-  var userCodeEl = document.getElementById('hdr-user-code');
-  
-  var displayName = profile?.display_name || profile?.username || user?.email || t('dash.fallbackName');
-  var initial = displayName.charAt(0).toUpperCase();
-  var role = profile?.role === 'gm' ? t('dash.gm') : t('dash.player');
-  var username = profile?.username || user?.email?.split('@')[0] || t('dash.fallbackUser');
-  
-  if (userNameEl) userNameEl.textContent = displayName;
-  if (userAvatarEl) userAvatarEl.textContent = initial;
-  if (userRoleEl) userRoleEl.textContent = role;
-  if (userDisplayEl) userDisplayEl.textContent = username.toUpperCase();
-  if (userCodeEl) userCodeEl.textContent = username.toUpperCase();
-}
+/* Dashboard: one-tap access to my sheets, create a sheet, my party + its access code. */
+(function () {
+  var RECENT_KEY = 'cerebro_recent_chars';   // ids, most recently opened first
+  var S = { uid: null, role: 'player', name: '', party: null, memberParty: null, partyP: Promise.resolve(), creating: false, joining: false, charsFailed: false, partyFailed: false };
+  var ICON = {
+    plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+    chev: '<polyline points="9 6 15 12 9 18"/>'
+  };
 
-// Dashboard initialization
-window.addEventListener('DOMContentLoaded', function() {
-  initLanguage();
-  applyTranslations();
-  initTheme();
-  
-  requireAuth().then(function(auth) {
-    if (!auth) return;
-    
-    var userId = auth.session.user.id;
-    
-    renderNavBar({ page: 'dashboard', userCode: auth.session.user.email || '—' });
-    setGMFlag(false);
-    
-    window.getProfile(userId).then(function(profile) {
-      populateUserInfo(auth.session.user, profile);
-      if (profile && profile.role === 'gm') setGMFlag(true);
-    }).catch(function(err) {
-      populateUserInfo(auth.session.user, null);
-    });
-    
-    window.listCharacters(userId, true).then(function(chars) {
-      populateCharacterGrid(chars);
-    }).catch(function(err) {
-      console.error('Error loading characters:', err);
-    });
-
-    window.getPlayerParty(userId).then(function(party) {
-      if (party) {
-        populatePartyInfo(party, userId);
-      }
-    }).catch(function(err) {
-      console.error('Error loading party:', err);
-    });
-    
-    bindDashboardEvents();
-  }).catch(function(err) {
-    console.error('Auth error:', err);
-  });
-});
-
-// Theme handled by themes.js + header.js
-
-function populateCharacterGrid(chars) {
-  var grid = document.getElementById('chars-grid');
-  if (!grid) return;
-
-  // Keep new char button
-  var newBtn = grid.querySelector('.char-card-new');
-  grid.innerHTML = '';
-  if (newBtn) grid.appendChild(newBtn);
-
-  // Add character cards
-  if (chars && chars.length > 0) {
-    chars.forEach(function(char) {
-      var card = document.createElement('a');
-      card.className = 'char-card';
-      card.href = 'ficha.html?id=' + char.id;
-      var foto = char.foto_base64 || '';
-      var topNome = char.name && char.name.trim();
-      var dataNome = char.data && char.data.nome && char.data.nome.trim();
-      var charName = topNome || dataNome || t('dash.newChar');
-      var topCodinome = char.codename && char.codename.trim();
-      var dataCodinome = char.data && char.data.codinome && char.data.codinome.trim();
-      var charCodinome = topCodinome || dataCodinome || '—';
-      var nameForInitial = charCodinome !== '—' ? charCodinome : charName;
-      var initial = nameForInitial.charAt(0).toUpperCase();
-      if (foto) {
-      card.innerHTML = '<div class="char-card-img" style="background-image:url(' + foto + ')"></div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
-      } else {
-      card.innerHTML = '<div class="char-avatar">' + initial + '</div><div class="char-info"><div class="char-info-name">' + charName + '</div><div class="char-info-codename">' + charCodinome + '</div></div>';
-      }
-      grid.appendChild(card);
-    });
+  function $(id) { return document.getElementById(id); }
+  function svg(name) { return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + ICON[name] + '</svg>'; }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
   }
-}
+  function clean(v) { return typeof v === 'string' ? v.trim() : ''; }
+  function offline() { return navigator.onLine === false; }
+  function fmt(key, vars) { return t(key).replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }); }
 
-function populatePartyInfo(party, playerId) {
-  var emptyState = document.getElementById('party-empty');
-  var infoState = document.getElementById('party-info');
-  if (!infoState || !emptyState) return;
-
-  // Show party info, hide empty
-  emptyState.style.display = 'none';
-  infoState.style.display = 'block';
-
-  // Set party name and code
-  var nameEl = document.getElementById('party-name');
-  var codeEl = document.getElementById('party-code');
-  if (nameEl) nameEl.textContent = party.name || t('dash.party');
-  if (codeEl) codeEl.textContent = party.code || '—';
-
-  // Show admin link if current user is GM
-  var adminLink = document.getElementById('admin-party-link');
-  if (adminLink && party.gm_id === playerId) {
-    adminLink.style.display = 'inline-flex';
+  /* ── feedback ── */
+  var toastTimer;
+  function toast(msg, isErr) {
+    var box = $('toast');
+    box.textContent = msg;
+    box.classList.toggle('err', !!isErr);
+    box.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { box.classList.remove('show'); }, isErr ? 5000 : 2500);
   }
-
-  // Load and display members
-  window.getPartyMembers(party.id).then(function(members) {
-    var membersContainer = document.getElementById('party-members');
-    if (membersContainer) {
-      membersContainer.innerHTML = '';
-      if (members && members.length > 0) {
-        members.forEach(function(member) {
-          var memberEl = document.createElement('div');
-          memberEl.className = 'party-member';
-          memberEl.textContent = member.name || t('dash.member');
-          membersContainer.appendChild(memberEl);
-        });
-      }
+  /* busy state for buttons and links: label → "Criando…", disabled, aria-busy */
+  function busy(ctrl, on, key) {
+    if (!ctrl) return;
+    var lbl = ctrl.querySelector('[data-lbl], .tbtn-lbl') || ctrl;
+    if (on) {
+      ctrl.dataset.idle = lbl.textContent;
+      lbl.textContent = t(key);
+      ctrl.setAttribute('aria-busy', 'true');
+      if (ctrl.tagName === 'A') ctrl.setAttribute('aria-disabled', 'true'); else ctrl.disabled = true;
+    } else {
+      if (ctrl.dataset.idle) lbl.textContent = ctrl.dataset.idle;
+      ctrl.removeAttribute('aria-busy');
+      ctrl.removeAttribute('aria-disabled');
+      ctrl.disabled = false;
     }
-  });
-}
+  }
+  function errorState(box, key, retry) {
+    box.textContent = '';
+    var p = el('div', 'state-msg is-error');
+    p.setAttribute('role', 'alert');
+    p.appendChild(el('span', null, offline() ? t('dash.offline') : t(key)));
+    var b = el('button', 'btn btn-sm', t('dash.retry'));
+    b.type = 'button';
+    b.addEventListener('click', retry);
+    p.appendChild(b);
+    box.appendChild(p);
+  }
 
-function bindDashboardEvents() {
-  // New character button
-  var newBtn = document.getElementById('new-char-btn');
-  if (newBtn) {
-    newBtn.addEventListener('click', function(e) {
+  /* ── recently opened sheets (local only) ── */
+  function recentIds() {
+    try { var a = JSON.parse(localStorage.getItem(RECENT_KEY)); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+  }
+  function remember(id) {
+    if (!id) return;
+    var a = recentIds().filter(function (x) { return x !== id; });
+    a.unshift(id);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(a.slice(0, 20))); } catch (e) {}
+  }
+
+  /* ── characters ── */
+  function charName(c) { var d = c.data || {}; return clean(c.name) || clean(d.nome) || t('dash.newChar'); }
+  function charCode(c) { var d = c.data || {}; return clean(c.codename) || clean(d.codinome); }
+  function charStatus(c) {
+    var d = c.data || {};
+    var temas = (Array.isArray(d.temas) ? d.temas : []).filter(function (x) { return x && clean(x.nome); }).length;
+    var parts = [];
+    if (clean(d.mutacao_ficha)) parts.push(clean(d.mutacao_ficha));
+    if (temas) parts.push(temas === 1 ? t('dash.themeOne') : fmt('dash.themesN', { n: temas }));
+    return parts.join(' · ') || t('dash.noThemes');
+  }
+
+  function charItem(c, last) {
+    var li = el('li', last ? 'is-last-item' : '');
+    var a = el('a', 'char-card' + (last ? ' is-last' : ''));
+    a.href = 'ficha.html?id=' + encodeURIComponent(c.id);
+    a.dataset.id = c.id;
+    var name = charName(c), code = charCode(c);
+    var ava = el('span', 'char-ava');
+    ava.setAttribute('aria-hidden', 'true');
+    var foto = clean(c.foto_base64);
+    if (foto) ava.style.backgroundImage = 'url("' + foto.replace(/["\\\s]/g, '') + '")';
+    else ava.textContent = (code || name).charAt(0).toUpperCase();
+    var main = el('span', 'char-main');
+    main.appendChild(el('span', 'char-name', name));
+    if (code) main.appendChild(el('span', 'char-code', code));
+    main.appendChild(el('span', 'char-stat', charStatus(c)));
+    var go = el('span', 'char-go');
+    if (last) go.appendChild(el('span', 'badge is-solid', t('dash.continue')));
+    go.insertAdjacentHTML('beforeend', svg('chev'));
+    a.appendChild(ava); a.appendChild(main); a.appendChild(go);
+    li.appendChild(a);
+    return li;
+  }
+
+  function createButton(cls, withIcon) {
+    var b = el('button', cls);
+    b.type = 'button';
+    b.id = 'new-char-btn';
+    b.addEventListener('click', function () { createChar(b); });
+    return b;
+  }
+  function newTile() {
+    var li = el('li');
+    var b = createButton('char-card char-new');
+    b.innerHTML = '<span class="char-ava" aria-hidden="true">' + svg('plus') + '</span><span class="char-main"><span class="char-name" data-lbl></span></span>';
+    b.querySelector('[data-lbl]').textContent = t('dash.newSheet');
+    li.appendChild(b);
+    return li;
+  }
+  function emptyState() {
+    var box = el('div', 'empty-state');
+    box.appendChild(el('h3', 'empty-title stencil', t('dash.noChars')));
+    box.appendChild(el('p', 'empty-sub', t('dash.noCharsSub')));
+    var b = createButton('btn btn-primary');
+    b.innerHTML = svg('plus') + '<span data-lbl></span>';
+    b.querySelector('[data-lbl]').textContent = t('dash.newSheet');
+    box.appendChild(b);
+    return box;
+  }
+
+  function renderChars(chars) {
+    var list = $('chars-list'), state = $('chars-state');
+    list.removeAttribute('aria-busy');
+    list.textContent = '';
+    state.textContent = '';
+    $('chars-count').textContent = chars.length ? String(chars.length).padStart(2, '0') : '';
+    if (!chars.length) { list.hidden = true; state.appendChild(emptyState()); return; }
+    list.hidden = false;
+    var rec = recentIds();
+    var sorted = chars.map(function (c, i) {
+      var r = rec.indexOf(c.id);
+      return { c: c, r: r === -1 ? 1e6 + i : r };
+    }).sort(function (a, b) { return a.r - b.r; });
+    sorted.forEach(function (x, i) { list.appendChild(charItem(x.c, i === 0 && x.r < 1e6)); });
+    list.appendChild(newTile());
+  }
+
+  function loadChars() {
+    var list = $('chars-list'), state = $('chars-state');
+    S.charsFailed = false;
+    state.innerHTML = '<p class="sr-only"></p>';
+    state.firstChild.textContent = t('dash.loadingChars');
+    list.hidden = false;
+    list.setAttribute('aria-busy', 'true');
+    list.innerHTML = new Array(4).join('<li class="char-skel" aria-hidden="true"></li>');
+    // force a network read when online (the shared cache lives in localStorage for 2 min and
+    // would show stale names after editing a sheet); offline, take whatever is cached
+    return window.api.listCharacters(S.uid, !offline()).then(function (chars) {
+      renderChars(chars || []);
+    }).catch(function (err) {
+      console.error('[dashboard] characters:', err);
+      S.charsFailed = true;
+      list.hidden = true;
+      list.removeAttribute('aria-busy');
+      errorState(state, 'dash.errorLoadChars', loadChars);
+    });
+  }
+
+  function createControls() {
+    return [$('new-char-btn'), document.querySelector('#toolbar-container a[href*="new=true"]')].filter(Boolean);
+  }
+  /* create here (not via ficha.html?new=true) so the button can show progress and a
+     double tap cannot create two sheets; party = same rule as ficha (party I'm a member of) */
+  function createChar() {
+    if (S.creating || !S.uid) return;
+    S.creating = true;
+    var ctrls = createControls();
+    ctrls.forEach(function (c) { busy(c, true, 'dash.creating'); });
+    S.partyP.then(function () {
+      return window.api.createCharacter(S.uid, S.memberParty ? S.memberParty.id : null);
+    }).then(function (c) {
+      if (!c || !c.id) throw new Error('no id');
+      remember(c.id);
+      window.location.href = 'ficha.html?id=' + encodeURIComponent(c.id);
+    }).catch(function (err) {
+      console.error('[dashboard] create character:', err);
+      toast(offline() ? t('dash.offline') : t('dash.errorCreateChar'), true);
+      ctrls.forEach(function (c) { busy(c, false); });
+      S.creating = false;
+    });
+  }
+
+  /* ── party ── */
+  function loadParty() {
+    var state = $('party-state');
+    S.partyFailed = false;
+    $('party-info').hidden = true;
+    $('party-none').hidden = true;
+    state.innerHTML = '<p class="state-msg is-loading"></p>';
+    state.firstChild.textContent = t('common.loading');
+    var fresh = !offline();
+    return window.api.getPlayerParty(S.uid, fresh).then(function (p) {
+      S.memberParty = p || null;
+      // a GM who created a party is not in party_members: fall back to the party they run
+      return p || window.api.getGMParty(S.uid, fresh);
+    }).then(function (p) {
+      // getPlayerParty/getGMParty turn errors into null: offline, "no party" would be a lie
+      if (!p && offline()) throw new Error('offline');
+      renderParty(p || null);
+    }).catch(function (err) {
+      console.error('[dashboard] party:', err);
+      S.partyFailed = true;
+      $('party-name').textContent = t('dash.party');
+      errorState(state, 'dash.errorLoadParty', function () { S.partyP = loadParty(); });
+    });
+  }
+
+  function renderParty(p) {
+    S.party = p;
+    $('party-state').textContent = '';
+    var card = $('party-card');
+    card.classList.toggle('is-muted', !p);
+    $('party-none').hidden = !!p;
+    $('party-info').hidden = !p;
+    if (!p) {
+      $('party-name').textContent = t('dash.noPartyTitle');
+      $('party-meta').textContent = '';
+      return;
+    }
+    $('party-name').textContent = p.name || t('dash.party');
+    $('party-code').textContent = p.code || '—';
+    $('party-code-btn').disabled = !p.code;
+    $('party-share-btn').hidden = !(p.code && navigator.share);
+    loadMembers(p);
+  }
+
+  function loadMembers(p) {
+    var ul = $('party-members');
+    ul.innerHTML = '<li class="member"><span class="member-sub"></span></li>';
+    ul.querySelector('.member-sub').textContent = t('common.loading');
+    var fresh = !offline();
+    Promise.all([
+      window.api.getPartyMembers(p.id, fresh),
+      window.api.listPartyCharacters(p.id, fresh).catch(function () { return []; })
+    ]).then(function (r) {
+      if (S.party === p) renderMembers(p, r[0] || [], r[1] || []);
+    }).catch(function (err) {
+      console.error('[dashboard] members:', err);
+      ul.textContent = '';
+      var li = el('li', 'member');
+      li.appendChild(el('span', 'member-sub', offline() ? t('dash.offline') : t('dash.errorMembers')));
+      ul.appendChild(li);
+    });
+  }
+
+  /* No profiles table: a member is labelled by their characters in this party,
+     me by my own name, the GM as GM; never by the raw player id. */
+  function renderMembers(p, members, chars) {
+    var ids = [];
+    if (p.gm_id) ids.push(p.gm_id);
+    members.forEach(function (m) { if (m.player_id && ids.indexOf(m.player_id) === -1) ids.push(m.player_id); });
+    var rank = function (id) { return id === p.gm_id ? 0 : id === S.uid ? 1 : 2; };
+    ids = ids.map(function (id, i) { return { id: id, i: i }; })
+      .sort(function (a, b) { return rank(a.id) - rank(b.id) || a.i - b.i; })
+      .map(function (x) { return x.id; });
+    var names = {};
+    chars.forEach(function (c) { (names[c.player_id] = names[c.player_id] || []).push(charName(c)); });
+
+    var ul = $('party-members');
+    ul.textContent = '';
+    var n = 0;
+    ids.forEach(function (id) {
+      var me = id === S.uid, gm = id === p.gm_id, own = names[id] || [];
+      var label, sub = '', gmBadge = gm;
+      if (me) { label = S.name; sub = own.join(', '); }
+      else if (own.length) { label = own.join(', '); }
+      else if (gm) { label = t('dash.gmLabel'); gmBadge = false; }
+      else { n++; label = fmt('dash.playerN', { n: n }); sub = t('dash.noSheet'); }
+      var li = el('li', 'member' + (gm ? ' is-gm' : ''));
+      var ini = el('span', 'member-ini', label.charAt(0).toUpperCase());
+      ini.setAttribute('aria-hidden', 'true');
+      var txt = el('span', 'member-txt');
+      txt.appendChild(el('span', 'member-name', label));
+      if (sub) txt.appendChild(el('span', 'member-sub', sub));
+      li.appendChild(ini); li.appendChild(txt);
+      if (me) li.appendChild(el('span', 'badge', t('dash.you')));
+      if (gmBadge) { var b = el('span', 'badge is-solid', t('dash.gm')); li.appendChild(b); }
+      ul.appendChild(li);
+    });
+    $('party-meta').textContent = ids.length === 1 ? t('dash.memberOne') : fmt('dash.membersN', { n: ids.length });
+  }
+
+  function copyText(s) {
+    function legacy() {
+      var ta = el('textarea');
+      ta.value = s;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      ta.remove();
+      return ok ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    }
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(s).catch(legacy);
+    return legacy();
+  }
+  var copyTimer;
+  function copyCode() {
+    var code = S.party && S.party.code;
+    if (!code) return;
+    copyText(code).then(function () {
+      var b = $('party-code-btn');
+      b.classList.add('is-copied');
+      $('copy-lbl').textContent = t('dash.copied');
+      toast(t('dash.codeCopied') + ' ' + code);
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(function () { b.classList.remove('is-copied'); $('copy-lbl').textContent = t('dash.copyCode'); }, 2500);
+    }).catch(function () {
+      toast(t('dash.copyFail') + ' ' + code, true);
+    });
+  }
+  function shareCode() {
+    var p = S.party;
+    if (!p || !navigator.share) return;
+    navigator.share({ title: p.name, text: fmt('dash.shareText', { party: p.name, code: p.code }) }).catch(function () {});
+  }
+  function invalidatePartyCache() {
+    if (!window.cache) return;
+    window.cache.invalidate('player_party', S.uid);
+    window.cache.invalidate('gm_party', S.uid);
+  }
+
+  /* ── modals (focus first field, trap Tab, Esc / backdrop close, focus back to trigger) ── */
+  var modalTrigger = null;
+  function openModal(id) {
+    var bg = $(id);
+    modalTrigger = document.activeElement;
+    bg.querySelectorAll('.form-input').forEach(function (i) { fieldError(i, null); });
+    bg.classList.add('open');
+    document.body.classList.add('modal-open');
+    (bg.querySelector('.form-input') || bg.querySelector('.modal')).focus();
+  }
+  function closeModal(bg) {
+    bg.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (modalTrigger && document.contains(modalTrigger)) modalTrigger.focus();
+  }
+  function fieldError(input, key) {
+    var err = $(input.getAttribute('aria-describedby'));
+    err.textContent = key ? t(key) : '';
+    err.classList.toggle('show', !!key);
+    input.classList.toggle('validate-error', !!key);
+    if (key) { input.setAttribute('aria-invalid', 'true'); input.focus(); } else input.removeAttribute('aria-invalid');
+  }
+  function bindModal(bg) {
+    bg.addEventListener('click', function (e) {
+      if (e.target === bg || e.target.closest('[data-close]')) closeModal(bg);
+    });
+    bg.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); closeModal(bg); return; }
+      if (e.key !== 'Tab') return;
+      var f = Array.prototype.filter.call(bg.querySelectorAll('input, button'), function (x) { return !x.disabled && x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+
+  function submitCreateParty(e) {
+    e.preventDefault();
+    if (S.joining) return;
+    var input = $('party-name-input'), btn = $('confirm-create-party');
+    var name = input.value.trim();
+    if (!name) return fieldError(input, 'dash.nameRequired');
+    fieldError(input, null);
+    S.joining = true;
+    busy(btn, true, 'dash.creating');
+    window.api.createParty(name, S.uid).then(function (party) {
+      invalidatePartyCache();
+      closeModal($('create-party-modal'));
+      input.value = '';
+      toast(t('dash.partyCreated'));
+      // the creator is the GM, not a party_members row: show the returned party directly
+      renderParty(party);
+    }).catch(function (err) {
+      console.error('[dashboard] create party:', err);
+      fieldError(input, offline() ? 'dash.offline' : 'dash.errorCreateParty');
+    }).then(function () { S.joining = false; busy(btn, false); });
+  }
+
+  function submitJoinParty(e) {
+    e.preventDefault();
+    if (S.joining) return;
+    var input = $('party-code-input'), btn = $('confirm-join-party');
+    var code = input.value.replace(/\s+/g, '').toUpperCase();
+    input.value = code;
+    if (!/^[A-Z0-9]{6}$/.test(code)) return fieldError(input, 'dash.codeInvalid');
+    fieldError(input, null);
+    S.joining = true;
+    busy(btn, true, 'dash.joining');
+    window.api.getPartyByCode(code).then(function (party) {
+      if (!party) throw { code: 'PGRST116' };
+      return window.api.joinParty(party.id, S.uid).then(function () { return { party: party }; }, function (err) {
+        if (err && err.code === '23505') return { party: party, already: true };   // unique violation: already a member
+        throw err;
+      });
+    }).then(function (r) {
+      invalidatePartyCache();
+      if (window.cache) window.cache.invalidate('party_members', r.party.id);
+      closeModal($('join-party-modal'));
+      input.value = '';
+      toast(r.already ? t('dash.alreadyMember') : t('dash.joinedParty') + ' ' + r.party.name);
+      S.memberParty = r.party;
+      renderParty(r.party);
+    }).catch(function (err) {
+      console.error('[dashboard] join party:', err);
+      fieldError(input, err && err.code === 'PGRST116' ? 'dash.partyNotFound' : offline() ? 'dash.offline' : 'dash.errorJoinParty');
+    }).then(function () { S.joining = false; busy(btn, false); });
+  }
+
+  function bind() {
+    $('chars-list').addEventListener('click', function (e) {
+      var a = e.target.closest('a.char-card');
+      if (a) remember(a.dataset.id);
+    });
+    // the shared toolbar's NOVA FICHA link gets the same guarded create (plain link = fallback)
+    $('toolbar-container').addEventListener('click', function (e) {
+      var a = e.target.closest('a[href*="new=true"]');
+      if (!a || !S.uid || e.metaKey || e.ctrlKey || e.shiftKey) return;
       e.preventDefault();
-      window.location.href = 'ficha.html?new=true';
+      createChar();
+    });
+    $('party-code-btn').addEventListener('click', copyCode);
+    $('party-share-btn').addEventListener('click', shareCode);
+    $('create-party-btn').addEventListener('click', function () { openModal('create-party-modal'); });
+    $('join-party-btn').addEventListener('click', function () { openModal('join-party-modal'); });
+    $('create-party-form').addEventListener('submit', submitCreateParty);
+    $('join-party-form').addEventListener('submit', submitJoinParty);
+    document.querySelectorAll('.modal-bg').forEach(bindModal);
+    window.addEventListener('online', function () {
+      if (S.charsFailed) loadChars();
+      if (S.partyFailed) S.partyP = loadParty();
     });
   }
 
-  // Create party button
-  var createPartyBtn = document.getElementById('create-party-btn');
-  if (createPartyBtn) {
-    createPartyBtn.addEventListener('click', function() {
-      var modal = document.getElementById('create-party-modal');
-      if (modal) modal.style.display = 'flex';
-    });
-  }
+  window.addEventListener('DOMContentLoaded', function () {
+    initLanguage();
+    applyTranslations();
+    initTheme();
+    bind();
 
-  // Cancel create party
-  var cancelCreateParty = document.getElementById('cancel-create-party');
-  if (cancelCreateParty) {
-    cancelCreateParty.addEventListener('click', function() {
-      var modal = document.getElementById('create-party-modal');
-      if (modal) modal.style.display = 'none';
-    });
-  }
+    requireAuth().then(function (auth) {
+      if (!auth) return;
+      var u = auth.session.user, md = u.user_metadata || {};
+      var emailUser = (u.email || '').split('@')[0];
+      var username = clean(md.username) || emailUser;
+      S.uid = u.id;
+      S.role = auth.profile.role;
+      S.name = clean(md.display_name) || username || t('dash.fallbackName');
 
-    // Confirm create party
-  var confirmCreateParty = document.getElementById('confirm-create-party');
-  if (confirmCreateParty) {
-    confirmCreateParty.addEventListener('click', function() {
-      var input = document.getElementById('party-name-input');
-      if (input && input.value.trim()) {
-        requireAuth().then(function(auth) {
-          if (!auth) return;
-          var userId = auth.session.user.id;
-           window.createParty(input.value.trim(), userId).then(function() {
-             toast(t('dash.partyCreated'));
-             var modal = document.getElementById('create-party-modal');
-             if (modal) modal.style.display = 'none';
-             input.value = '';
-             // Clear cache and reload party info
-             if (window.cache) {
-               window.cache.invalidate('gm_party', userId);
-               window.cache.invalidate('player_party', userId);
-             }
-             window.getPlayerParty(userId).then(function(party) {
-               if (party) populatePartyInfo(party, userId);
-             }).catch(function(err) {
-               toast(t('dash.errorLoadParty'));
-               console.error('Error loading party:', err);
-             });
-           }).catch(function(err) {
-             toast(t('dash.errorCreateParty'));
-             console.error('Error creating party:', err);
-           });
-         });
-      }
-    });
-  }
+      renderNavBar({ page: 'dashboard', userCode: username.toUpperCase() || '—' });
+      setGMFlag(S.role === 'gm');
 
-  // Join party button
-  var joinPartyBtn = document.getElementById('join-party-btn');
-  if (joinPartyBtn) {
-    joinPartyBtn.addEventListener('click', function() {
-      var modal = document.getElementById('join-party-modal');
-      if (modal) modal.style.display = 'flex';
-    });
-  }
+      $('user-name').textContent = S.name;
+      $('user-avatar').textContent = S.name.charAt(0).toUpperCase();
+      $('user-role').textContent = S.role === 'gm' ? t('dash.gm') : t('dash.player');
+      $('user-display').textContent = username ? '@' + username : '';
+      $('gm-acts').hidden = S.role !== 'gm';
 
-  // Cancel join party
-  var cancelJoinParty = document.getElementById('cancel-join-party');
-  if (cancelJoinParty) {
-    cancelJoinParty.addEventListener('click', function() {
-      var modal = document.getElementById('join-party-modal');
-      if (modal) modal.style.display = 'none';
-    });
-  }
-
-  // Confirm join party
-  var confirmJoinParty = document.getElementById('confirm-join-party');
-  if (confirmJoinParty) {
-    confirmJoinParty.addEventListener('click', function() {
-      var input = document.getElementById('party-code-input');
-      if (input && input.value.trim()) {
-        requireAuth().then(function(auth) {
-          if (!auth) return;
-          var userId = auth.session.user.id;
-          window.getPartyByCode(input.value.trim()).then(function(party) {
-            if (party) {
-              return window.joinParty(party.id, userId).then(function() {
-                toast(t('dash.joinedParty') + ' ' + party.name);
-                var modal = document.getElementById('join-party-modal');
-                if (modal) modal.style.display = 'none';
-                input.value = '';
-                // Clear cache before reloading
-                if (window.cache) {
-                  window.cache.invalidate('player_party', userId);
-                }
-                populatePartyInfo(party, userId);
-              }).catch(function(err) {
-                toast(t('dash.errorJoinParty'));
-                console.error('Error joining party:', err);
-              });
-            } else {
-              toast(t('dash.partyNotFound'));
-            }
-          }).catch(function(err) {
-            toast(t('dash.errorFindParty'));
-            console.error('Error finding party:', err);
-          });
-        });
-      }
-    });
-  }
-
-  // Close modals on outside click
-  document.querySelectorAll('.modal').forEach(function(modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
+      loadChars();
+      S.partyP = loadParty();
+    }).catch(function (err) {
+      console.error('[dashboard] auth:', err);
     });
   });
-}
+})();
 </script>
 </body>
 </html>
