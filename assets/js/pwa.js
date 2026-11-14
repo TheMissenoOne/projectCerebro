@@ -108,13 +108,53 @@
         console.warn('[pwa] registro do service worker falhou:', e);
       });
 
+    /* Primeira instalação: clients.claim() também dispara controllerchange, mas não é
+       atualização — recarregar ali apagava o que o usuário já tinha digitado. Em vez
+       disso, repassa pelo SW o que a página carregou antes de ser controlada. */
+    var hadController = !!navigator.serviceWorker.controller;
     var reloading = false;
     navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!hadController) {
+        hadController = true;
+        warmCache();
+        return;
+      }
       if (reloading) return;
       reloading = true;
       location.reload();
     });
   });
+
+  /* Refaz, já controlado pelo SW, os pedidos da 1ª visita (CSS do Google Fonts,
+     supabase-js, assets fora do precache) para que a próxima abertura funcione offline.
+     Modo cors (as três CDNs mandam ACAO:*): o @font-face pede woff2 em cors e não
+     aceita resposta opaca. */
+  function warmCache() {
+    var cdn = /^https:\/\/(fonts\.(googleapis|gstatic)\.com|cdn\.jsdelivr\.net)\//;
+    var noop = function () {};
+    performance.getEntriesByType('resource').forEach(function (e) {
+      if (e.name.indexOf(location.origin + '/') !== 0 && !cdn.test(e.name)) return;
+      var req = fetch(e.name);
+      if (e.name.indexOf('https://fonts.googleapis.com/') !== 0) {
+        /* lê o corpo: um fetch largado fica com o stream do SW aberto até o GC */
+        req.then(function (r) { return r.blob(); }).catch(noop);
+        return;
+      }
+      /* woff2 pedidos por um CSS sem crossorigin (opaco) não aparecem no Resource
+         Timing — tira as URLs do próprio CSS.
+         ponytail: só o subset latin (cobre pt-BR); outros scripts caem na fonte de
+         sistema offline. */
+      req
+        .then(function (r) { return r.text(); })
+        .then(function (css) {
+          (css.match(/\/\* latin \*\/[^}]*/g) || []).forEach(function (block) {
+            var m = block.match(/url\(([^)]+)\)/);
+            if (m) fetch(m[1]).then(function (r) { return r.blob(); }).catch(noop);
+          });
+        })
+        .catch(noop);
+    });
+  }
 
   /* ── estado da rede ───────────────────────────────────────────── */
 

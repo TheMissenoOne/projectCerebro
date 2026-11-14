@@ -98,12 +98,22 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
+/* ponytail: <link>/<script> sem crossorigin pedem a CDN em no-cors → resposta opaca
+   (status 0, sem como checar ok). Sem guardá-las, o CSS do Google Fonts e o supabase-js
+   nunca entravam no cache e a página quebrava offline. Uma opaca com erro é trocada na
+   próxima revalidação. Teto: cada opaca conta ~7 MB de cota no Chrome (são ~3 URLs);
+   se crescer, pôr crossorigin nas tags e voltar a exigir response.ok. */
+function cacheable(response) {
+  return response && (response.ok || response.type === 'opaque');
+}
+
 function staleWhileRevalidate(request, cacheName) {
   return caches.open(cacheName).then((cache) =>
-    cache.match(request).then((cached) => {
+    /* cai nos outros caches: o precache da casca mora no SHELL_CACHE */
+    cache.match(request).then((hit) => hit || caches.match(request)).then((cached) => {
       const network = fetch(request)
         .then((response) => {
-          if (response && response.ok && response.type !== 'opaque') cache.put(request, response.clone());
+          if (cacheable(response)) cache.put(request, response.clone());
           return response;
         })
         .catch(() => cached);

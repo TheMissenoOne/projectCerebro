@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 const ROOT = path.join(__dirname, '..');
 const PAGES = ['index.html', 'dashboard.html', 'ficha.html', 'cerebro.html', 'wiki.html', 'combate.html', 'admin.html'];
@@ -92,5 +93,139 @@ test('render-blocking scripts were moved out of <head>', function () {
   });
 });
 
-console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
-process.exit(failed ? 1 : 0);
+/* ── comportamento do sw.js num sandbox: caches e fetch falsos ─────────────── */
+
+function loadSW(fetchImpl) {
+  const stores = {};
+  const open = (name) => {
+    stores[name] = stores[name] || new Map();
+    const m = stores[name];
+    return {
+      match: (req) => Promise.resolve(m.get(req.url || req)),
+      put: (req, res) => { m.set(req.url || req, res); return Promise.resolve(); },
+      add: () => Promise.resolve(),
+    };
+  };
+  const caches = {
+    open: (name) => Promise.resolve(open(name)),
+    match: (req) => Promise.resolve(Object.values(stores).map((m) => m.get(req.url || req)).find(Boolean)),
+    keys: () => Promise.resolve(Object.keys(stores)),
+  };
+  const listeners = {};
+  const self = {
+    location: { origin: 'https://app.test' },
+    addEventListener: (t, fn) => { listeners[t] = fn; },
+    skipWaiting() {},
+    clients: { claim: () => Promise.resolve() },
+  };
+  vm.runInNewContext(read('sw.js'), { self, caches, fetch: fetchImpl, URL, Request: function (u) { this.url = u; }, console });
+  return {
+    stores,
+    shell: (url, res) => open('cerebro-shell-dev').put(url, res),
+    fetch(url, mode) {
+      let responded = null;
+      listeners.fetch({ request: { url, method: 'GET', mode: mode || 'no-cors' }, respondWith: (p) => { responded = p; } });
+      return responded;
+    },
+  };
+}
+
+const swTests = [];
+function swTest(name, fn) { swTests.push([name, fn]); }
+
+swTest('offline: a precached asset is served even though it never hit the runtime cache', async function () {
+  const sw = loadSW(() => Promise.reject(new TypeError('offline')));
+  const js = { ok: true, type: 'basic', body: 'header' };
+  await sw.shell('https://app.test/assets/js/header.js?v=dev', js);
+  const res = await sw.fetch('https://app.test/assets/js/header.js?v=dev');
+  assert(res === js, 'precached shell asset not served offline');
+});
+
+swTest('opaque CDN responses (Google Fonts CSS, supabase-js without crossorigin) are cached', async function () {
+  const opaque = { ok: false, status: 0, type: 'opaque', clone() { return this; } };
+  const sw = loadSW(() => Promise.resolve(opaque));
+  const url = 'https://fonts.googleapis.com/css2?family=Oswald&display=swap';
+  await sw.fetch(url);
+  await new Promise((r) => setTimeout(r, 0));
+  assert(sw.stores['cerebro-cdn-dev'] && sw.stores['cerebro-cdn-dev'].get(url) === opaque, 'opaque font CSS not cached');
+});
+
+swTest('failed same-origin responses are not cached', async function () {
+  const notFound = { ok: false, status: 404, type: 'basic', clone() { return this; } };
+  const sw = loadSW(() => Promise.resolve(notFound));
+  await sw.fetch('https://app.test/missing.js');
+  await new Promise((r) => setTimeout(r, 0));
+  assert(!(sw.stores['cerebro-runtime-dev'] || new Map()).size, '404 was cached');
+});
+
+swTest('Supabase requests never reach the SW cache', async function () {
+  const sw = loadSW(() => Promise.reject(new Error('should not fetch')));
+  assert(sw.fetch('https://abc.supabase.co/rest/v1/characters', 'cors') === null, 'supabase request was intercepted');
+});
+
+/* ── pwa.js: primeira instalação não recarrega; atualização recarrega ─────── */
+
+swTest('first SW claim warms the cache instead of reloading; a real update reloads', async function () {
+  const handlers = {};
+  const fetched = [];
+  let reloads = 0;
+  let drained = 0;
+  const css = '/* cyrillic */\n@font-face { src: url(https://fonts.gstatic.com/c.woff2); }\n' +
+    '/* latin */\n@font-face { src: url(https://fonts.gstatic.com/l.woff2) format("woff2"); }\n';
+  const win = {
+    addEventListener: (t, fn) => { if (t === 'load') fn(); },
+    matchMedia: () => ({ matches: false }),
+    navigator: {
+      onLine: true,
+      serviceWorker: {
+        controller: null,
+        register: () => new Promise(() => {}),
+        addEventListener: (t, fn) => { handlers[t] = fn; },
+      },
+    },
+  };
+  win.window = win;
+  vm.runInNewContext(read('assets/js/pwa.js'), Object.assign(win, {
+    location: { protocol: 'https:', hostname: 'app.test', origin: 'https://app.test', reload: () => reloads++ },
+    document: { readyState: 'complete', documentElement: { classList: { toggle() {} } } },
+    localStorage: { getItem() { return null; }, setItem() {}, removeItem() {} },
+    performance: { getEntriesByType: () => [
+      { name: 'https://fonts.googleapis.com/css2?family=Oswald' },
+      { name: 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2' },
+      { name: 'https://app.test/icons/x.svg' },
+      { name: 'https://abc.supabase.co/auth/v1/user' },
+    ] },
+    fetch: (u) => {
+      fetched.push(u);
+      const drain = (v) => () => { drained++; return Promise.resolve(v); };
+      return Promise.resolve({ text: drain(css), blob: drain(null) });
+    },
+    console,
+  }));
+  handlers.controllerchange();
+  await new Promise((r) => setTimeout(r, 0));
+  assert(reloads === 0, 'first install reloaded the page');
+  ['https://fonts.googleapis.com/css2?family=Oswald', 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+    'https://app.test/icons/x.svg', 'https://fonts.gstatic.com/l.woff2'].forEach((u) => assert(fetched.includes(u), 'not warmed: ' + u));
+  assert(!fetched.some((u) => u.includes('supabase.co')), 'warm-up hit the Supabase API');
+  assert(!fetched.includes('https://fonts.gstatic.com/c.woff2'), 'warm-up pulled non-latin font subsets');
+  await new Promise((r) => setTimeout(r, 0));
+  assert(drained === fetched.length, 'warm-up left response bodies unread (stream stays open, breaks networkidle)');
+  handlers.controllerchange();
+  assert(reloads === 1, 'an update did not reload the page');
+});
+
+(async function () {
+  for (const [name, fn] of swTests) {
+    try {
+      await fn();
+      console.log('✅ ' + name);
+      passed++;
+    } catch (e) {
+      console.log('❌ ' + name + ': ' + e.message);
+      failed++;
+    }
+  }
+  console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
+  process.exit(failed ? 1 : 0);
+})();
