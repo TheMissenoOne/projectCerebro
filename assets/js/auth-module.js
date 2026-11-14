@@ -156,4 +156,146 @@
     });
   };
 
+  /**
+   * Map a Supabase auth error (code / status / message, any auth-js v2 version) to an i18n key.
+   * Order matters: "Email link is invalid or has expired" must hit expired, not email.
+   */
+  window.authErrorKey = function(err) {
+    err = err || {};
+    var code = String(err.code || err.error_code || '');
+    var msg = String(err.message || err.msg || err.error_description || '').toLowerCase();
+    if (navigator.onLine === false || err.name === 'AuthRetryableFetchError' ||
+        /failed to fetch|networkerror|load failed|network request failed/.test(msg)) return 'auth.err.network';
+    if (code === 'invalid_credentials' || /invalid login credentials/.test(msg)) return 'auth.err.credentials';
+    if (code === 'email_not_confirmed' || /email not confirmed/.test(msg)) return 'auth.err.unconfirmed';
+    if (code === 'user_already_exists' || code === 'email_exists' || /already (been )?registered|already exists/.test(msg)) return 'auth.err.exists';
+    if (code === 'same_password' || /should be different/.test(msg)) return 'auth.err.samePassword';
+    if (code === 'weak_password' || /password should|password is too weak|weak password/.test(msg)) return 'auth.err.weak';
+    if (err.status === 429 || /rate_limit/.test(code) || /rate limit|security purposes|too many/.test(msg)) return 'auth.err.rate';
+    if (err.name === 'AuthSessionMissingError' || /otp_expired|flow_state|bad_jwt|session_not_found/.test(code) ||
+        /session missing|expired|invalid.*(token|jwt|link)/.test(msg)) return 'auth.err.expired';
+    if (code === 'email_address_invalid' || /invalid.*email|email.*invalid|unable to validate email/.test(msg)) return 'auth.err.email';
+    return 'auth.err.generic';
+  };
+
+  /**
+   * Shared UI for the standalone auth pages (index.html, reset-password.html).
+   * Field contract: <input id="x"> + optional #x-err (.form-error), #x-hint (.form-hint data-ok="key"), #x-caps.
+   * ponytail: lives here because both auth pages already load this file; split out if a third consumer appears.
+   */
+  var $ = function(id) { return document.getElementById(id); };
+  var ui = window.authUI = {};
+
+  /* form-level banner: success → #auth-status (role=status), error → #auth-error (role=alert); no args clears */
+  ui.say = function(kind, text) {
+    [['error', $('auth-error')], ['success', $('auth-status')]].forEach(function(p) {
+      if (!p[1]) return;
+      var on = p[0] === kind && !!text;
+      p[1].textContent = on ? text : '';
+      p[1].hidden = !on;
+    });
+  };
+
+  /* returns the i18n key of the first problem, '' when fine */
+  ui.problem = function(inp) {
+    var v = inp.value;
+    if (inp.required && !(inp.type === 'password' ? v : v.trim())) return 'auth.val.required';
+    if (inp.type === 'email' && inp.validity.typeMismatch) return 'auth.val.email';
+    if (inp.minLength > 0 && v.length < inp.minLength) return 'auth.val.passwordShort';
+    if (inp.dataset.match && v !== $(inp.dataset.match).value) return 'auth.val.mismatch';
+    return '';
+  };
+
+  ui.fieldError = function(inp, key) {
+    var el = $(inp.id + '-err');
+    if (el) { el.textContent = key ? t(key) : ''; el.classList.toggle('show', !!key); }
+    inp.classList.toggle('validate-error', !!key);
+    if (key) inp.setAttribute('aria-invalid', 'true'); else inp.removeAttribute('aria-invalid');
+  };
+
+  function hint(inp) {
+    var h = $(inp.id + '-hint');
+    if (!h || !h.dataset.ok) return;
+    var ok = !!inp.value && !ui.problem(inp);
+    h.textContent = ok ? t(h.dataset.ok) : (h.dataset.i18n ? t(h.dataset.i18n) : '');
+    h.classList.toggle('is-ok', ok);
+  }
+  function check(inp) { ui.fieldError(inp, ui.problem(inp)); hint(inp); }
+  function fields(form) { return Array.prototype.filter.call(form.querySelectorAll('.form-input'), function(i) { return !i.disabled && i.offsetParent !== null; }); }
+
+  /* errors appear only after the user typed in a field (on blur) or tried to submit; once shown they update live */
+  ui.wire = function(form) {
+    form.noValidate = true;
+    form.querySelectorAll('.form-input').forEach(function(inp) {
+      inp.addEventListener('input', function() {
+        inp.dataset.dirty = '1';
+        if (inp.getAttribute('aria-invalid')) check(inp); else hint(inp);
+        var dep = form.querySelector('[data-match="' + inp.id + '"]');
+        if (dep && dep.dataset.dirty) check(dep);
+      });
+      inp.addEventListener('blur', function() { if (inp.dataset.dirty) check(inp); });
+    });
+  };
+
+  /* validates every visible field; returns the first invalid one (or null) */
+  ui.validate = function(form) {
+    var first = null;
+    fields(form).forEach(function(inp) { inp.dataset.dirty = '1'; check(inp); if (!first && inp.getAttribute('aria-invalid')) first = inp; });
+    return first;
+  };
+
+  /* busy state: disabled + aria-busy + "…ing" label; returns restore() */
+  ui.busy = function(btn) {
+    var idle = btn.textContent;
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    if (btn.dataset.busy) btn.textContent = t(btn.dataset.busy);
+    return function() { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = idle; };
+  };
+
+  /* submit = validate → busy → run(); run resolves true to stay busy (redirecting) */
+  ui.onSubmit = function(form, run) {
+    ui.wire(form);
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      if (btn.disabled) return;
+      ui.say();
+      var bad = ui.validate(form);
+      if (bad) { bad.focus(); return; }
+      var restore = ui.busy(btn);
+      Promise.resolve().then(run).then(function(stay) { if (stay !== true) restore(); }, function(err) { restore(); console.warn('[auth]', err); ui.say('error', t('auth.err.generic')); });
+    });
+  };
+
+  /* show/hide toggles (.pw-toggle[aria-controls]) + caps-lock hint (#<input>-caps) */
+  ui.wirePasswords = function(root) {
+    root.querySelectorAll('.pw-toggle').forEach(function(b) {
+      var inp = $(b.getAttribute('aria-controls'));
+      b.addEventListener('click', function() {
+        var show = inp.type === 'password';
+        inp.type = show ? 'text' : 'password';
+        b.firstElementChild.textContent = t(show ? 'auth.pw.hide' : 'auth.pw.show');
+        b.setAttribute('aria-label', t(show ? 'auth.pw.hideLabel' : 'auth.pw.showLabel'));
+      });
+    });
+    root.querySelectorAll('input[type="password"]').forEach(function(inp) {
+      var caps = $(inp.id + '-caps');
+      if (!caps) return;
+      var upd = function(e) { if (e.getModifierState) caps.hidden = !e.getModifierState('CapsLock'); };
+      inp.addEventListener('keydown', upd);
+      inp.addEventListener('keyup', upd);
+      inp.addEventListener('blur', function() { caps.hidden = true; });
+    });
+  };
+
+  /* pre-login language toggle; before() runs right before the reload */
+  ui.lang = function(btn, before) {
+    var next = getCurrentLanguage() === 'en' ? 'pt-BR' : 'en';
+    btn.textContent = (window.LANGUAGES[next] || {}).name || next;
+    btn.lang = next;
+    btn.setAttribute('aria-label', t('auth.langLabel'));
+    btn.addEventListener('click', function() { if (before) before(); setLanguage(next); });
+  };
+
 })();
