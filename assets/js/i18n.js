@@ -1108,11 +1108,26 @@ function t(key) {
   return key;
 }
 
+// inline formatting (br/b/strong/i/em without an id) is part of the translated sentence; any other child element is kept
+const I18N_INLINE = { BR: 1, B: 1, STRONG: 1, I: 1, EM: 1 };
+
+// Rule: data-i18n replaces the element's own text (plain; id-less br/b/strong/i/em dropped) and keeps every other child element in place.
+function setI18nText(el, text) {
+  const own = Array.from(el.childNodes).filter(n => n.nodeType === 3 || (n.nodeType === 1 && I18N_INLINE[n.nodeName] && !n.id));
+  // the translation takes the place of the first real text (else the first own node, else the start)
+  const first = own.find(n => n.nodeType === 3 && n.nodeValue.trim()) || own[0];
+  const anchor = document.createTextNode('');
+  el.insertBefore(anchor, first || el.firstChild);
+  own.forEach(n => n.remove());
+  // keep the spacing that separated the text from its widgets ("Bem-vindo, <span>")
+  const v = first && first.nodeType === 3 ? first.nodeValue : '';
+  anchor.nodeValue = el.children.length ? v.match(/^\s*/)[0] + text + v.match(/\s*$/)[0] : text;
+}
+
 function applyTranslations(el) {
   const root = el || document;
   root.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    el.textContent = t(key);
+    setI18nText(el, t(el.dataset.i18n));
   });
   root.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.dataset.i18nPlaceholder;

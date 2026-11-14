@@ -144,6 +144,58 @@ testAsync('api.listAllGMCharacters: ficha antiga sem colunas name/codename usa o
   });
 });
 
+/* applyTranslations: troca só o texto do elemento; filhos-widget (span com id, botão "?", svg) sobrevivem.
+   DOM mínimo em vm, sem dependências. */
+function miniDom() {
+  function node(type, name, value) {
+    const n = { nodeType: type, nodeName: name, nodeValue: value, id: '', dataset: {}, childNodes: [], parentNode: null,
+      get children() { return this.childNodes.filter(c => c.nodeType === 1); },
+      remove() { if (this.parentNode) { const a = this.parentNode.childNodes; a.splice(a.indexOf(this), 1); this.parentNode = null; } },
+      insertBefore(c, ref) { c.remove(); c.parentNode = this; const i = ref ? this.childNodes.indexOf(ref) : -1; i < 0 ? this.childNodes.push(c) : this.childNodes.splice(i, 0, c); return c; },
+      appendChild(c) { return this.insertBefore(c, null); },
+      get firstChild() { return this.childNodes[0] || null; },
+      get text() { return this.childNodes.map(c => c.nodeType === 3 ? c.nodeValue : (c.nodeName === 'BR' ? '\n' : c.text)).join(''); },
+      querySelectorAll(sel) { const out = []; (function walk(x) { x.childNodes.forEach(c => { if (c.nodeType === 1) { if (sel === '[data-i18n]' && c.dataset.i18n) out.push(c); walk(c); } }); })(this); return out; }
+    };
+    return n;
+  }
+  const el = (name, attrs, kids) => { const e = node(1, name); Object.assign(e, attrs || {}); (kids || []).forEach(k => e.appendChild(typeof k === 'string' ? node(3, '#text', k) : k)); return e; };
+  return { el, document: { createTextNode: v => node(3, '#text', v) } };
+}
+test('applyTranslations preserva filhos-widget e troca o texto (dashboard, combate, ficha, header)', function () {
+  const vm = require('vm');
+  const D = miniDom();
+  const store = { cerebro_idioma: 'en' };
+  const box = { window: {}, document: D.document, localStorage: { getItem: k => store[k] || null, setItem() {} } };
+  vm.createContext(box);
+  vm.runInContext(i18n + '\nthis.applyTranslations = applyTranslations;', box);
+  const name = D.el('SPAN', { id: 'user-name' }, ['Charles']);
+  const code = D.el('STRONG', { id: 'party-code' }, ['XAV123']);
+  const help = D.el('BUTTON', { className: 'field-help' }, ['?']);
+  const ico = D.el('SVG');
+  const root = D.el('DIV', {}, [
+    D.el('DIV', { dataset: { i18n: 'dash.welcome' } }, ['Bem-vindo, ', name]),
+    D.el('SPAN', { dataset: { i18n: 'dash.accessCode' } }, ['Código de acesso: ', code]),
+    D.el('SPAN', { dataset: { i18n: 'combat.av' } }, ['AV', D.el('SPAN', { className: 'field-help' }, ['?'])]),
+    D.el('SPAN', { dataset: { i18n: 'ficha.dexterity' } }, ['Destreza ', help]),
+    D.el('BUTTON', { dataset: { i18n: 'common.logout' } }, [ico, ' SAIR']),
+    D.el('P', { dataset: { i18n: 'combat.info' } }, [D.el('STRONG', {}, ['Sistema MEGS:']), ' AV = …']),
+    D.el('DIV', { dataset: { i18n: 'ficha.photo' } }, ['FOTO', D.el('BR'), 'CLIQUE', D.el('BR'), 'P/ CARREGAR']),
+    D.el('SPAN', { dataset: { i18n: 'common.dashboard' } }, ['DASHBOARD'])
+  ]);
+  box.applyTranslations(root);
+  box.applyTranslations(root); // idempotente
+  const [w, c, av, dex, out, info, photo, plain] = root.children;
+  assert(w.text === 'Welcome, Charles' && w.childNodes.includes(name), 'welcome: ' + JSON.stringify(w.text));
+  assert(c.text === 'Access code: XAV123' && c.childNodes.includes(code), 'access code: ' + JSON.stringify(c.text));
+  assert(av.text === 'AV?' && av.children.length === 1, 'combat help: ' + JSON.stringify(av.text));
+  assert(dex.children[0] === help && /^Dexterity\s/.test(dex.text), 'ficha help: ' + JSON.stringify(dex.text));
+  assert(out.childNodes[0] === ico && out.text === ' LOGOUT', 'icon: ' + JSON.stringify(out.text));
+  assert(info.children.length === 0 && info.text.startsWith('MEGS System: AV'), 'inline <strong> sem id faz parte da frase: ' + JSON.stringify(info.text.slice(0, 20)));
+  assert(photo.children.length === 0 && photo.text === 'CLICK TO\nLOAD\nPHOTO', 'br sem id faz parte da frase: ' + JSON.stringify(photo.text));
+  assert(plain.text === 'DASHBOARD' && plain.childNodes.length === 1, 'texto puro: ' + JSON.stringify(plain.text));
+});
+
 Promise.all(pendentes).then(function () {
   console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
   process.exit(failed ? 1 : 0);
