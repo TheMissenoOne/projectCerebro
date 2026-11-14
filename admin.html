@@ -558,7 +558,7 @@ let currentParty = null;
             return '<div class="pts-char">'
               + '<div class="pts-char-head"><span class="pts-char-name">' + escH(nome) + '</span>'
               + '<span class="pts-char-total" title="' + t('admin.pointsTotal') + '">A+' + ca + ' · ANT+' + cAnt + '</span></div>'
-              + '<table class="pts-table"><thead><tr><th>' + t('admin.pointsMember') + '</th><th>APOIO</th><th>ANTAG.</th></tr></thead><tbody>' + rowsHtml + '</tbody></table>'
+              + '<table class="pts-table"><thead><tr><th>' + t('admin.pointsMember') + '</th><th>' + t('admin.pointsColApoio') + '</th><th>' + t('admin.pointsColAnt') + '</th></tr></thead><tbody>' + rowsHtml + '</tbody></table>'
               + '</div>';
           }).join('');
           const jog = rotuloJogador(pChars, gPlayers);

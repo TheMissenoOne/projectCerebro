@@ -78,8 +78,8 @@ window.api=Object.assign(window.api||{},{
   listPartyCharacters:function(){return Promise.resolve(JSON.parse(JSON.stringify(_chars)));},
   updateNPC:function(id,d){window.__calls.update.push({id:id,data:JSON.parse(JSON.stringify(d))});
     ${opts && opts.failUpdate ? "return Promise.reject(new Error('boom'));" : ''}
-    var n=_npcs.find(function(x){return x.id===id;});if(n){n.name=d.name;n.codename=d.codename;n.faction=d.faction;n.danger=d.danger;n.data=d.data;n.foto_url=d.foto_url;}
-    return Promise.resolve(n);},
+    var apply=function(){var n=_npcs.find(function(x){return x.id===id;});if(n){n.name=d.name;n.codename=d.codename;n.faction=d.faction;n.danger=d.danger;n.data=d.data;n.foto_url=d.foto_url;}return n;};
+    ${opts && opts.delayUpdate ? 'return new Promise(function(r){window.__releaseUpdate=function(){r(apply());};});' : 'return Promise.resolve(apply());'}},
   createNPC:function(pid,d){window.__calls.create.push({pid:pid,data:d});var n=Object.assign({id:'npc-new-'+_npcs.length,is_global:!!d.is_global},d);_npcs.push(n);return Promise.resolve(n);},
   deleteNPC:function(id){_npcs=_npcs.filter(function(x){return x.id!==id;});return Promise.resolve();}
 });`;
@@ -243,6 +243,124 @@ if (require.main === module) (async () => {
 
   await test('no page errors on desktop', async () => { eq(page.__errors || [], [], 'page errors'); });
   await ctx.close();
+
+  await test('MD import over a themed NPC updates grau in temas and tags (review #1)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base);
+    await p.click('#npc-list [data-id="npc-mag"]');
+    await p.evaluate(() => {
+      document.getElementById('import-text').value = '# NPC: Erik Lehnsherr\n**Fração:** irmandade\n**Perigo:** extremo\n\n## Tags\n- controle magnético total  (AP 35)\n- Voo Magnético\n- Tag Nova (AP 5)\n\n## Descrição\nx\n';
+      return importarMarkdown();
+    });
+    const d = await p.evaluate(() => window.__calls.update[0].data.data);
+    eq(d.temas.length, 3, 'temas dropped');
+    const pod = d.temas[0].poder;
+    eq(pod.find(x => x.texto === 'Controle Magnético Total'), { texto: 'Controle Magnético Total', grau: 35 }, 'tema grau not updated');
+    eq(pod.find(x => x.texto === 'Voo Magnético'), { texto: 'Voo Magnético' }, 'ungraded import did not clear tema grau');
+    eq(pod.find(x => x.texto === 'Campo de Força'), { texto: 'Campo de Força', grau: 26 }, 'tag absent from MD changed');
+    assert(d.tags.some(x => x.texto.toLowerCase() === 'controle magnético total' && x.grau === 35), 'tags lost new grau: ' + JSON.stringify(d.tags));
+    assert(d.tags.some(x => x.texto === 'Tag Nova' && x.grau === 5), 'unmatched tag not kept in tags');
+    assert(!d.temas.some(tm => [...tm.poder, ...tm.fraqueza].some(x => x.texto === 'Tag Nova')), 'unmatched tag leaked into temas');
+    await p.waitForFunction(() => document.querySelector('#npc-detail .cs-pow .ap-n'));
+    eq((await p.textContent('#npc-detail .cs-pow .ap-n')).trim(), '35', 'detail still shows old AP');
+    eq(p.__errors || [], [], 'page errors');
+    await c.close();
+  });
+
+  await test('deleting the shown NPC resets the detail to the empty state (review #2)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base);
+    p.on('dialog', dl => dl.accept());
+    await p.click('#npc-list [data-id="npc-mid"]');
+    await p.click('#npc-detail [data-act="del"]');
+    await p.waitForFunction(() => !document.querySelector('#npc-list [data-id="npc-mid"]'));
+    assert(await p.$('#npc-detail .empty-state'), 'detail not reset: ' + (await p.textContent('#npc-detail')).slice(0, 80));
+    assert(!(await p.$('#npc-detail [data-act]')), 'stale action buttons remain');
+    await c.close();
+    const { ctx: m, page: q } = await openCerebro(browser, base, { viewport: { width: 390, height: 800 }, touch: true, mobile: true });
+    q.on('dialog', dl => dl.accept());
+    await q.click('#npc-list [data-id="npc-mid"]');
+    await q.click('#npc-detail [data-act="del"]');
+    await q.waitForSelector('#npc-list [data-id="npc-low"]', { state: 'visible', timeout: 3000 });
+    assert(!(await q.evaluate(() => document.body.classList.contains('mob-detail'))), 'mobile stayed on detail');
+    await m.close();
+  });
+
+  await test('a pending save never closes or relabels a form opened afterwards (review #3)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base, { delayUpdate: true });
+    await p.click('#npc-list [data-id="npc-mid"]');
+    await p.click('#npc-detail [data-act="edit"]');
+    await p.click('#btn-salvar-npc');
+    await p.waitForFunction(() => typeof window.__releaseUpdate === 'function');
+    assert(await p.$eval('#btn-salvar-npc', b => b.disabled), 'save button not disabled while saving');
+    assert(/SALVANDO/i.test(await p.textContent('#btn-salvar-npc')), 'no saving label: ' + await p.textContent('#btn-salvar-npc'));
+    await p.keyboard.press('Escape');
+    await p.click('#npc-list [data-id="npc-low"]');
+    await p.click('#npc-detail [data-act="edit"]');
+    assert(!(await p.$eval('#btn-salvar-npc', b => b.disabled)), 'second form inherits disabled save');
+    await p.fill('#f-nome', 'Rascunho');
+    await p.evaluate(() => window.__releaseUpdate());
+    await p.waitForSelector('#toast.show');
+    await p.waitForTimeout(150);
+    assert(await p.isVisible('#modal-npc'), 'second form was closed by the first save');
+    eq(await p.inputValue('#f-nome'), 'Rascunho', 'draft lost');
+    eq(await p.evaluate(() => editingId), 'npc-low', 'editingId changed');
+    eq(await p.$eval('#npc-list .npc-row.active', r => r.dataset.id), 'npc-low', 'selection hijacked by the old save');
+    await c.close();
+  });
+
+  await test('collapsed encounter panel holds no focusable controls (review #4)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base);
+    const tabFromRound = async () => { await p.focus('.enc-round-btn:last-of-type'); await p.keyboard.press('Tab'); return p.evaluate(() => !!document.activeElement.closest('#enc-body')); };
+    eq(await p.$eval('#enc-toggle', b => b.getAttribute('aria-expanded')), 'false', 'starts collapsed');
+    assert(await p.$eval('#enc-body', b => b.inert), 'collapsed body not inert');
+    eq(await tabFromRound(), false, 'Tab entered collapsed encounter body');
+    await p.click('#enc-toggle');
+    assert(!(await p.$eval('#enc-body', b => b.inert)), 'open body still inert');
+    eq(await tabFromRound(), true, 'Tab skips open encounter body');
+    await p.click('#enc-toggle');
+    eq(await tabFromRound(), false, 'Tab entered re-collapsed body');
+    /* other collapsibles: collapsed region has no rendered focusable descendant */
+    const noFocusable = sel => p.$eval(sel, el => [...el.querySelectorAll('button,input,select,textarea,a[href]')].every(x => x.offsetParent === null || x.closest('[inert]')));
+    eq(await p.$eval('#filter-toggle', b => b.getAttribute('aria-expanded')), 'false', 'filters start closed');
+    assert(await noFocusable('#filter-body'), 'closed filter panel has focusable controls');
+    await p.click('#npc-list [data-id="npc-mag"]');
+    await p.click('#npc-detail .npc-tema-card .ntc-hd');
+    assert(await noFocusable('#npc-detail .npc-tema-card.collapsed .ntc-body'), 'collapsed tema card has focusable controls');
+    await c.close();
+  });
+
+  await test('English: switching language re-renders the shown NPC in English, no raw keys (review #5)', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base);
+    await p.click('#npc-list [data-id="npc-mag"]');
+    await Promise.all([p.waitForNavigation({ waitUntil: 'load' }), p.click('#lang-toggle-btn')]);
+    await p.waitForFunction(() => document.querySelector('#npc-detail .combat-strip'), null, { timeout: 8000 });
+    const txt = s => p.$eval(s, e => e.textContent.trim());
+    eq(await txt('#npc-detail .cs-code'), '// COMBAT PROFILE', 'combat profile');
+    eq(await txt('#npc-detail .cs-def-lbl'), 'DEFENSES', 'defenses');
+    const secs = await p.$$eval('#npc-detail .sec-label', e => e.map(x => x.textContent.trim()));
+    eq(secs, ['Attributes', 'Themes', 'Dossier'], 'section headings');
+    eq(await txt('#npc-detail .amx-g'), 'Physical', 'attr group');
+    eq(await txt('#npc-detail [data-act="enc-add"]'), '+ ADD TO ENCOUNTER', 'encounter action');
+    eq(await txt('#npc-detail [data-act="edit"]'), 'EDIT', 'edit button');
+    assert((await p.$eval('#npc-detail .cs-pow .ap', e => e.getAttribute('aria-label'))).includes('Omega'), 'AP band not English');
+    eq(await txt('#mob-back'), 'LIST', 'mobile back');
+    eq(await txt('#perigo-pills [data-perigo="baixo"]'), 'LOW', 'danger pill');
+    eq(await p.$eval('#left-panel', e => e.getAttribute('aria-label')), 'NPC list', 'panel aria-label');
+    assert(!/CARREGANDO|LOADING/.test(await txt('#save-ind')), 'status clobbered');
+    const leaks = await p.evaluate(() => {
+      const bits = [document.body.innerText];
+      document.querySelectorAll('[aria-label],[title],[placeholder]').forEach(e => ['aria-label', 'title', 'placeholder'].forEach(a => e.hasAttribute(a) && bits.push(e.getAttribute(a))));
+      return bits.join('\n').split('\n').filter(l => /undefined|\b(cerebro|common|danger|faction|ficha|wiki)\.[a-zA-Z]/.test(l));
+    });
+    eq(leaks, [], 'raw keys / undefined rendered');
+    await p.click('#npc-detail [data-act="edit"]');
+    eq(await txt('#modal-npc-title'), 'EDIT NPC', 'modal title');
+    eq(await txt('#modal-npc .stat-lbl-sm'), 'Dexterity', 'stat label');
+    await p.keyboard.press('Escape');
+    if (process.env.SHOT) await p.screenshot({ path: process.env.SHOT, fullPage: false });
+    eq(p.__errors || [], [], 'page errors');
+    await p.evaluate(() => localStorage.removeItem('cerebro_idioma'));
+    await c.close();
+  });
 
   for (const w of [360, 390]) {
     await test(`mobile ${w}px: list first, detail with back, no horizontal overflow`, async () => {
