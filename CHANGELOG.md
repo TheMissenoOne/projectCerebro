@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Grau em tags, cards e PWA offline** - tags de poder ganham grau em APs e badge GEN (Factor Cost 6/7); 4ª melhoria em todo tema (Potencial Ômega/Savant/Mestre/Elite); cards de tema redesenhados (título em estêncil, identidade por categoria, recolher, slots vazios atrás do +); PWA offline corrigido (precache servido de fato, fontes da CDN e supabase-js em cache, sem reload na primeira instalação).
+
 ## [2026-08-19] - Temas extras, Progressão, performance e PWA
 
 ### Added

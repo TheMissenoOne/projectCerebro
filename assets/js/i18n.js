@@ -74,7 +74,7 @@ const I18N = {
     'ficha.addWeakTag': 'Adicionar tag de fraqueza',
     'ficha.sumPower': 'poder',
     'ficha.sumWeak': 'fraq.',
-    'ficha.stampMutacao': 'X-GENE // CLASSIFICADO',
+    'ficha.stampMutacao': 'X-GENE // SIGILOSO',
     'ficha.stampHumanidade': 'CIVIL // REGISTRO',
     'ficha.stampAdicional': 'ATIVO // INVENTÁRIO',
     'ficha.omegaOn': 'GRAU EM TAGS ATIVO',
