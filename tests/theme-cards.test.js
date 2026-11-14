@@ -182,7 +182,7 @@ test('ficha.html - title font loaded in preload, stylesheet and noscript links',
 
 test('i18n - new ficha keys exist in pt-BR and en', () => {
   const i18n = fs.readFileSync(path.join(PROJECT_ROOT, 'assets/js/i18n.js'), 'utf-8');
-  ['tagGen', 'tagSpecific', 'apGrau', 'factorCost', 'collapseCard', 'expandCard', 'addPowerTag', 'addWeakTag', 'sumPower', 'sumWeak', 'stampMutacao', 'stampHumanidade', 'stampAdicional', 'omegaOn'].forEach(k => {
+  ['tagGen', 'tagSpecific', 'apGrau', 'factorCost', 'minimizeCard', 'expandCard', 'addPowerTag', 'addWeakTag', 'sumPower', 'sumWeak', 'stampMutacao', 'stampHumanidade', 'stampAdicional', 'omegaOn'].forEach(k => {
     const n = (i18n.match(new RegExp("'ficha\\." + k + "'", 'g')) || []).length;
     if (n < 2) throw new Error('ficha.' + k + ' found ' + n + 'x');
   });

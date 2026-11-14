@@ -184,12 +184,22 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .card-hdr-main{display:flex;align-items:center;gap:7px;flex:1;min-width:0;}
 .cat-badge{font-family:var(--mono);font-size:.42rem;font-weight:700;letter-spacing:.14em;padding:2px 6px;color:var(--hdr-fg);flex-shrink:0;display:flex;align-items:center;gap:5px;}
 .cat-badge .theme-icon{width:20px;height:20px;flex-shrink:0;display:inline-block;background:currentColor;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;}
-.tipo-sel{flex:1;background:transparent;border:none;color:var(--hdr-fg);font-family:var(--cond);font-weight:700;font-size:.74rem;outline:none;cursor:pointer;min-width:0;min-height:32px;text-transform:uppercase;letter-spacing:.04em;}
+/* tipo: nome + ▾ formam um controle só, do tamanho do nome; o <select> fica por cima, transparente */
+.tipo-ctl{position:relative;display:inline-flex;align-items:center;gap:5px;min-width:0;max-width:100%;min-height:32px;padding:0 6px 0 4px;color:var(--hdr-fg);cursor:pointer;transition:background .15s;}
+.tipo-ctl:hover{background:rgba(0,0,0,.12);}
+.tipo-ctl:focus-within{outline:2px solid var(--hdr-fg);outline-offset:-2px;}
+.tipo-nome{min-width:0;font-family:var(--cond);font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;color:var(--hdr-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tipo-fixo{padding:0 4px;}
+.tipo-caret{flex-shrink:0;font-size:.62rem;line-height:1;}
+.tipo-sel{position:absolute;inset:0;width:100%;height:100%;opacity:0;border:none;background:transparent;font-size:16px;cursor:pointer;-webkit-appearance:none;appearance:none;}
 .tipo-sel option,.tipo-sel optgroup{background:var(--dark);color:var(--white);}
+/* ações à direita, separadas do título por um filete */
+.card-actions{display:flex;align-items:center;flex-shrink:0;margin-left:8px;}
+.card-actions::before{content:'';width:1px;height:20px;background:var(--hdr-fg);opacity:.35;margin-right:4px;}
+.card-collapse-btn{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:0;line-height:1;}
 .card-collapse-btn,.del-card-btn{width:32px;height:32px;flex-shrink:0;background:none;border:none;color:var(--hdr-fg);opacity:.75;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s,background .15s;-webkit-tap-highlight-color:transparent;}
-.card-collapse-btn svg,.del-card-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .2s;}
+.del-card-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .2s;}
 .card-collapse-btn:hover,.del-card-btn:hover,.card-collapse-btn:focus-visible,.del-card-btn:focus-visible{opacity:1;background:rgba(0,0,0,.14);}
-.tcard.collapsed .card-collapse-btn svg{transform:rotate(180deg);}
 .card-body{position:relative;padding:10px;display:flex;flex-direction:column;gap:8px;}
 .card-body[data-icon]::before{content:'';position:absolute;inset:0;background-image:var(--card-bg);background-size:auto;background-position:center;background-repeat:no-repeat;opacity:0.15;pointer-events:none;z-index:0;transition:opacity .3s ease;}
 .card-body[data-icon] > *{position:relative;z-index:1;}
@@ -410,7 +420,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 @media(max-width:520px),(pointer:coarse){
   .card-hdr{min-height:44px;}
   .card-collapse-btn,.del-card-btn{width:40px;height:40px;}
-  .tipo-sel{min-height:40px;}
+  .tipo-ctl{min-height:40px;}
   .q-btn{width:40px;height:40px;font-size:1rem;}
   .tri-wrap{width:22px;height:22px;}
   .card-inp{min-height:40px;}
@@ -438,7 +448,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 @media(prefers-reduced-motion:reduce){
   .tcard,.card-title-wrap,.card-title-inp,.card-title-wrap:hover .card-title-inp,.card-title-inp:focus{animation:none!important;}
   .card-hdr::after{display:none;}
-  .card-collapse-btn svg{transition:none;}
 }
 </style>
 <script src="assets/js/config.js?v=dev" defer></script>
@@ -1196,8 +1205,6 @@ function buildMembros(){
   }
 }
 const FLAME_SVG='<svg viewBox="0 0 24 24" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M12 2C10 5 7 8 7 12a5 5 0 0 0 10 0c0-4-3-7-5-10z M10 14c0-1.5 1-3 2-4 1 1 2 2.5 2 4a2 2 0 0 1-4 0z" fill="currentColor"/></svg>';
-/* chevron pra cima = recolher; não confunde com a seta do <select> do tipo */
-const CHEV_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 15 12 9 18 15"/></svg>';
 const STAMP_KEY={mutacao:'ficha.stampMutacao',humanidade:'ficha.stampHumanidade',adicional:'ficha.stampAdicional'};
 /* title + aria-label: botões só com ícone/sigla precisam dos dois */
 function rotular(el,txt){el.title=txt;el.setAttribute('aria-label',txt);}
@@ -1380,7 +1387,7 @@ function syncCardState(div,card){
   div.style.setProperty('--card-icon',url);
   if(body){body.style.setProperty('--card-bg',url);body.dataset.stamp=c?t(STAMP_KEY[c]):'';}
   const btn=div.querySelector('.card-collapse-btn');
-  if(btn){btn.setAttribute('aria-expanded',String(!card.collapsed));rotular(btn,t(card.collapsed?'ficha.expandCard':'ficha.collapseCard'));}
+  if(btn){btn.textContent=card.collapsed?'[+]':'[–]';btn.setAttribute('aria-expanded',String(!card.collapsed));rotular(btn,t(card.collapsed?'ficha.expandCard':'ficha.minimizeCard'));}
 }
 function paintResumo(sum,card){
   const r=cardResumo(card);
@@ -1418,7 +1425,7 @@ function buildCard(card,lista,cid,opts={}){
   const hdr=document.createElement('div');hdr.className='card-hdr';
   const main=document.createElement('div');main.className='card-hdr-main';
   if(opts.fixed){
-    const lb=document.createElement('span');lb.className='tipo-sel';lb.style.cursor='default';lb.textContent=t('ficha.emergingThemes');main.appendChild(lb);
+    const lb=document.createElement('span');lb.className='tipo-nome tipo-fixo';lb.textContent=t('ficha.emergingThemes');main.appendChild(lb);
   }else{
     const badge=document.createElement('span');badge.className='cat-badge';
     const codePrefix=cid==='temas-grid'?'TEMA':'EXTRA';
@@ -1435,25 +1442,33 @@ function buildCard(card,lista,cid,opts={}){
     grupo(t('ficha.humanity'),T_HUM);
     if(T_ADICIONAL.length>0)grupo(t('ficha.additional'),T_ADICIONAL);
     sel.value=card.tipo||'';
+    /* nome + ▾ visíveis num span; o <select> nativo transparente cobre os dois (teclado e picker do
+       celular continuam nativos) e o controle mede o nome, não a opção mais longa */
+    const ctl=document.createElement('label');ctl.className='tipo-ctl';
+    const nome=document.createElement('span');nome.className='tipo-nome';
+    const caret=document.createElement('span');caret.className='tipo-caret';caret.setAttribute('aria-hidden','true');caret.textContent='▾';
+    const pintaNome=()=>{nome.textContent=sel.selectedOptions[0]?sel.selectedOptions[0].textContent:t('ficha.choose');};
+    pintaNome();
     sel.addEventListener('change',e=>{
-      card.tipo=e.target.value;
+      card.tipo=e.target.value;pintaNome();
       renderCardSections(body,card,editable);
       syncCardState(div,card);
       salvarAuto();
     });
-    main.appendChild(sel);
+    ctl.append(nome,caret,sel);main.appendChild(ctl);
   }
   hdr.appendChild(main);
-  const colBtn=document.createElement('button');colBtn.type='button';colBtn.className='card-collapse-btn';colBtn.innerHTML=CHEV_SVG;
+  const acts=document.createElement('div');acts.className='card-actions';hdr.appendChild(acts);
+  const colBtn=document.createElement('button');colBtn.type='button';colBtn.className='card-collapse-btn';
   const sum=document.createElement('button');sum.type='button';sum.className='card-sum';
   const toggle=()=>{card.collapsed=!card.collapsed;if(card.collapsed)paintResumo(sum,card);syncCardState(div,card);salvarAuto();};
   colBtn.addEventListener('click',toggle);sum.addEventListener('click',toggle);
-  hdr.appendChild(colBtn);
+  acts.appendChild(colBtn);
   if(editable){
     const delBtn=document.createElement('button');delBtn.type='button';delBtn.className='del-card-btn';rotular(delBtn,t('ficha.removeCard'));
     delBtn.innerHTML='<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg>';
     delBtn.addEventListener('click',()=>{if(confirm(t('ficha.removeCardConfirm'))){lista.splice(lista.indexOf(card),1);buildGrid(cid,lista);salvarAuto();}});
-    hdr.appendChild(delBtn);
+    acts.appendChild(delBtn);
   }
   div.append(hdr,sum,body);
   if(editable){
