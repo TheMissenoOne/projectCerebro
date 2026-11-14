@@ -1,0 +1,4071 @@
+[
+  {
+    "name": "Apocalipse (Com Tecnologia Celestial Completa)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Invulnerabilidade Quase Absoluta",
+        "grau": 40,
+        "benchmark": "resistencia",
+        "feat": "variante cósmica: aguenta devastação regional/continental (31–45) → 40",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Força Classe 100+ (Move Montanhas/Placas Tectônicas)",
+        "grau": 43,
+        "benchmark": "peso",
+        "feat": "o texto é o feito: move montanha massiva ~1,6×10¹¹ t (Everest) → 43; placa tectônica ~10¹⁹ t → ~70",
+        "confidence": "media",
+        "peak": 70
+      },
+      {
+        "texto": "Teletransporte Interestelar Instantâneo",
+        "grau": 53,
+        "benchmark": "distancia",
+        "feat": "estrela mais próxima ~4,2 anos-luz: 51 + log2(4,2) → 53",
+        "confidence": "media"
+      },
+      {
+        "texto": "Projeção Energia Cósmica (Olhos/Mãos)",
+        "grau": 28,
+        "benchmark": "energia",
+        "feat": "variante cósmica: arrasa distrito/cidade (25–30) → 28; pico região ~35",
+        "confidence": "baixa",
+        "peak": 35
+      },
+      {
+        "texto": "Campo de Força Planetário",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: raio da Terra ~6.400 km → 21 (= Escudo Global do Magneto)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo Velocidade da Luz",
+        "grau": 29,
+        "benchmark": "velocidade",
+        "feat": "c ≈ 1,08×10⁹ km/h ÷ 2,5 → log2(4,3×10⁸) ≈ 28,7 → 29",
+        "confidence": "media"
+      },
+      {
+        "texto": "Interface Direta com Nave Celestial",
+        "grau": 31,
+        "benchmark": "outro",
+        "feat": "comanda nave Celestial: pareado à faixa cósmica (31+) → 31",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Auto-Reparo Instantâneo da Armadura",
+        "grau": 22,
+        "benchmark": "resistencia",
+        "feat": "regenera de quase nada instantaneamente (topo de 18–22) → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Módulos de Combate Reconfiguráveis (Lâminas/Canhões)",
+        "grau": 22,
+        "benchmark": "energia",
+        "feat": "canhões celestiais derrubam arranha-céu (22–24) → 22; abaixo da projeção cósmica",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Escudo Anti-Energia Cósmica (Resiste Golpes de Entidades Cósmicas)",
+        "grau": 40,
+        "benchmark": "outro",
+        "feat": "pareado a golpes de entidades cósmicas (faixa 31–45) → 40, = Invulnerabilidade",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Transmuta Matéria em Escala Maciça",
+        "grau": 30,
+        "benchmark": "peso",
+        "feat": "transmuta massa de montanha pequena ~24 Mt → 30",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Cria Vida/Seres Artificiais",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "cria seres vivos artificiais: faixa Ômega alta → 25",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reescreve DNA Global (Vírus Meta)",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: alcance planetário, raio da Terra 6.400 km → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Adaptação Instantânea a Qualquer Ameaça",
+        "grau": 30,
+        "benchmark": "outro",
+        "feat": "pareado às ameaças Ômega/cósmicas que enfrenta (topo 16–30) → 30",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Absorve Poderes/Energia de Inimigos",
+        "grau": 30,
+        "benchmark": "outro",
+        "feat": "pareado aos alvos Ômega que absorve (16–30) → 30",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Tecnologia Milhões Anos Avançada",
+        "grau": 30,
+        "benchmark": "informacao",
+        "feat": "muito além da ciência terrestre (13–15); tecnologia Celestial → faixa cósmica 30",
+        "confidence": "media"
+      },
+      {
+        "texto": "Engenharia Genética Divina",
+        "grau": 28,
+        "benchmark": "informacao",
+        "feat": "engenharia genética de nível Celestial, muito acima de Sinister (15) → 28",
+        "confidence": "media"
+      },
+      {
+        "texto": "História/Mapa do Universo Conhecido",
+        "grau": 35,
+        "benchmark": "informacao",
+        "feat": "conhecimento de escala cósmica (31+) → 35",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Conhece Fraquezas de Quase Todos Seres",
+        "grau": 30,
+        "benchmark": "informacao",
+        "feat": "conhecimento estratégico cósmico → 30",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Pestilência: Doenças/Pragas Globais",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: pragas globais, raio da Terra → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Guerra: Conflito/Violência Amplificada",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "influência social em escala país/continente (18–21) → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Fome: Escassez/Colapso Recursos",
+        "grau": 20,
+        "benchmark": "area",
+        "feat": "colapso de recursos em escala de país (2.800 km) → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Morte: Fim/Entropia Personificada",
+        "grau": 25,
+        "benchmark": "energia",
+        "feat": "entropia/morte em massa: distrito → cidade (25–30) → 25",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Apocalipse os Empodera com Tech Celestial",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "concede poderes de nível Ômega aos Cavaleiros (16–30) → 25",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reescreve Biosfera Planetária",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: biosfera inteira, raio da Terra → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Exércitos Tecnorgânicos Infinitos",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "exércitos ilimitados: faixa Ômega alta → 25",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Domina Civilizações Inteiras em Dias",
+        "grau": 24,
+        "benchmark": "informacao",
+        "feat": "domínio social em escala global (23–24) → 24",
+        "confidence": "media"
+      },
+      {
+        "texto": "Subjugou Deuses/Eternos/Deviantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico (feito passado), não capacidade de rotina",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Emma Frost",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Professora Brutal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ex-Rainha do Clube do Inferno",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Telepatia Ômega",
+        "grau": 21,
+        "peak": 23,
+        "benchmark": "distancia",
+        "feat": "ladder: rotina Ômega sem amplificador, alcance continental ~5.000 km → 21; com Cérebro global 23 (peak)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Manipulação Psicológica Refinada",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "manipuladora de elite em política/Clube do Inferno, = Carisma do Magneto → 14",
+        "confidence": "media"
+      },
+      {
+        "texto": "Forma de Diamante",
+        "grau": 15,
+        "benchmark": "resistencia",
+        "feat": "diamante orgânico aguenta antitanque/titânio (13–15) → 15; pode ser rachado",
+        "confidence": "media"
+      },
+      {
+        "texto": "Lealdade Feroz aos Alunos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mentora Brutal e Exigente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Manipulação Psíquica Sutil",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "manipulação telepática indetectável: base da faixa Ômega → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mente Tática e Inescrupulosa",
+        "grau": 9,
+        "benchmark": "informacao",
+        "feat": "estrategista de elite (faixa rua) → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Leitura Mental Global",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: alcance global (23–24) → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Controle Mental de Multidões",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "controla centenas/milhares de mentes de uma vez: faixa Ômega → 18",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Escudos Psíquicos Intransponíveis",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "ladder: escudos que barram Xavier/Jean (telepatas Ômega) → 25; mesma capacidade de Resistência a Telepatia Alheia",
+        "confidence": "media"
+      },
+      {
+        "texto": "Cirurgia Mental Precisa",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "edita mente/memória com precisão: faixa Ômega → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Transferência de Consciência",
+        "grau": 16,
+        "benchmark": "outro",
+        "feat": "troca/transfere mentes: base da faixa Ômega → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Bloqueio de Poderes Mutantes",
+        "grau": 16,
+        "benchmark": "outro",
+        "feat": "desliga poderes por via telepática: pareado a alvos rua/Ômega típicos → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Ilusões Perfeitas",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "ilusões indistinguíveis da realidade: faixa Ômega → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Projeção Astral de Combate",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "combate no plano astral, mesma escala das ilusões → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Detecção de Mentiras Absoluta",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "pareado a qualquer mentiroso sem escudo → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Resistência a Telepatia Alheia (Bloqueia Xavier/Jean)",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "ladder: o texto diz que bloqueia Xavier/Jean → 25",
+        "confidence": "media"
+      },
+      {
+        "texto": "Professora Exigente e Eficaz",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade aos Alunos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Jean Grey (White Phoenix of the Crown)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Mestra do Multiverso (Todas Linhas Temporais)",
+        "grau": 95,
+        "benchmark": "outro",
+        "feat": "variante cósmica: escala multiversal, acima do universo observável (~86) → 95",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Restaura Realidades Apagadas",
+        "grau": 86,
+        "benchmark": "area",
+        "feat": "realidade inteira: raio do universo observável ~46 bi anos-luz → 51+35 = 86",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Julgamento Cósmico Final",
+        "grau": 75,
+        "benchmark": "energia",
+        "feat": "julga/destrói mundos: destrói planeta (70+) → 75",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Onisciência Verdadeira (Passado/Presente/Futuro)",
+        "grau": 86,
+        "benchmark": "informacao",
+        "feat": "alcance universal (~86)",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Cria/Apaga Linhas Temporais",
+        "grau": 95,
+        "benchmark": "outro",
+        "feat": "escala multiversal, = Mestra do Multiverso → 95",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Transcende Morte/Morte Permanente Impossível",
+        "grau": 90,
+        "benchmark": "duracao",
+        "feat": "imortalidade absoluta de entidade cósmica: faixa cósmica máxima → 90",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Comunhão Direta com a Força Fênix Primordial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "vínculo/fonte do poder, sem feito próprio",
+        "confidence": "media"
+      },
+      {
+        "texto": "Cura/Restaura Universos Inteiros Corrompidos",
+        "grau": 86,
+        "benchmark": "area",
+        "feat": "o texto é o feito: universo inteiro (~86)",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Onipresença Dentro do Espectro Fênix",
+        "grau": 86,
+        "benchmark": "distancia",
+        "feat": "presença em escala universal (~86)",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Impõe Equilíbrio Cósmico Vida-Morte-Renascimento",
+        "grau": 86,
+        "benchmark": "outro",
+        "feat": "regula o ciclo cósmico em escala universal (~86)",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Mister Sinister",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Gênio de Genética Mutante",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "maior geneticista do planeta, além da ciência terrestre (13–15) → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Imortalidade e Regeneração",
+        "grau": 16,
+        "benchmark": "resistencia",
+        "feat": "regenera membros/órgãos e vive há séculos (13–16) → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Clonagem e Manipulação Genética",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "clonagem de mutantes completos, mesma escala do gênio → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Poderes Psiônicos e Telepatia Limitada",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "telepatia limitada ~campus 180 m → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Obsessão com Linhagem Summers/Grey",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza/obsessão",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Obsessão Científica Cega à Ética",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Corpo de Diamante Sintético",
+        "grau": 15,
+        "benchmark": "resistencia",
+        "feat": "corpo de diamante (= Forma de Diamante da Emma) aguenta antitanque → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Imune a Telepatia",
+        "grau": 21,
+        "benchmark": "outro",
+        "feat": "ladder: pareado à telepatia Ômega de rotina (21); a ficção não o mostra segurando Xavier/Jean no auge",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Força Sobre-humana",
+        "grau": 9,
+        "benchmark": "peso",
+        "feat": "ergue ~10–13 t → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Clones de Si Mesmo",
+        "grau": 15,
+        "benchmark": "outro",
+        "feat": "mantém clones funcionais de si: escala do gênio genético → 15",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Clones de Mutantes Poderosos",
+        "grau": 18,
+        "benchmark": "outro",
+        "feat": "clones de mutantes de nível Ômega (ex.: Madelyne): pareado a 16–20 → 18",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Transferência de Consciência",
+        "grau": 16,
+        "benchmark": "outro",
+        "feat": "transfere a mente entre corpos: base Ômega → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Backup Corporal Sempre Pronto (Nunca Morre Permanentemente)",
+        "grau": 22,
+        "benchmark": "resistencia",
+        "feat": "volta de quase nada / da morte (topo de 18–22) → 22",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Manipulação Genética Instantânea de Terceiros",
+        "grau": 16,
+        "benchmark": "outro",
+        "feat": "reescreve corpo do alvo ignorando Corpo: pareado a alvos rua/Ômega → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Cria Exército de Marauders sob Controle Total",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "Marauders são super-humanos de rua (10–14) → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Acesso a DNA de Praticamente Todo Mutante Catalogado",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "banco genético de quase todos os mutantes, recurso de gênio → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reconstrói Corpo a Partir de Amostra Genética Mínima",
+        "grau": 22,
+        "benchmark": "resistencia",
+        "feat": "volta de quase nada (18–22) → 22",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Implanta Gatilhos Genéticos Latentes em Vítimas",
+        "grau": 16,
+        "benchmark": "outro",
+        "feat": "pareado ao Corpo das vítimas (rua/Ômega) → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sobrevive à Destruição Total do Corpo Físico",
+        "grau": 22,
+        "benchmark": "resistencia",
+        "feat": "volta de quase nada (18–22) → 22",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Arquivo Genético Completo",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "= Acesso a DNA de quase todo mutante → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Previu Chegada de Mutantes Ômega",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "media"
+      },
+      {
+        "texto": "Manipulou Linhagem Summers por Gerações",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Manipulador Genético",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "extra; = Clonagem e Manipulação Genética",
+        "confidence": "media"
+      },
+      {
+        "texto": "Clonagem",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "extra; = Clonagem e Manipulação Genética",
+        "confidence": "media"
+      },
+      {
+        "texto": "Marotos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "afiliação/equipe",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Professor X",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Telepatia Ômega",
+        "grau": 21,
+        "peak": 23,
+        "benchmark": "distancia",
+        "feat": "ladder: rotina Ômega sem Cérebro, alcance continental ~5.600 km → 21; com Cérebro global 23 (peak)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Controle Mental Profundo",
+        "grau": 22,
+        "benchmark": "informacao",
+        "feat": "domina mentes de Ômegas/multidões: faixa Ômega alta → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mestre de Xadrez",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "grão-mestre de xadrez: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Estrategista e Líder Visionário",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "estrategista/líder de alcance internacional (rua alta) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Fundador do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Paraplégico",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza física",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mestre em Xadrez Psíquico",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "xadrez + leitura telepática do oponente: acima do pico humano → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sacrifica a Ética pelo Bem Maior",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia/falha",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Rede de Contatos Global",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "contatos em vários países/continentes (18–21) → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Criou Gerações de Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Legado Vive nos Alunos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "legado narrativo",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perdoa Falhas dos Alunos Repetidamente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Telepatia de Alcance Global",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: global (23–24) → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Acesso Simultâneo a Bilhões de Mentes",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "bilhões de mentes = alcance global → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Rastreamento Mutante Planetário",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: planeta inteiro → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Bloqueio Mental Absoluto",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "ladder: escudo que barra telepatas Ômega (Jean/Xavier com Cérebro 23) → 25",
+        "confidence": "media"
+      },
+      {
+        "texto": "Projeção Astral Corpórea",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "projeção astral que afeta o mundo físico, alcance continental → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reescrita de Personalidade",
+        "grau": 22,
+        "benchmark": "informacao",
+        "feat": "reescreve mentes inteiras: = Controle Mental Profundo → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Comunicação Instantânea com X-Men",
+        "grau": 21,
+        "benchmark": "distancia",
+        "feat": "elo com a equipe em escala continental ~5.600 km → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Arquivo Mental da História Mutante",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "conhecimento enciclopédico (rua alta) → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Download de Conhecimento/Habilidades",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "transfere conhecimento/perícias entre mentes: faixa Ômega → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Edição de Memória em Massa",
+        "grau": 22,
+        "benchmark": "informacao",
+        "feat": "edita memórias de multidões: = Reescrita de Personalidade → 22",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sugestão Póstuma em Escala Global",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: global → 23",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Arquiteto do Sonho Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia/papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Recrutador da Primeira Geração de X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Criador do Instituto Xavier para Jovens Superdotados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mentor de Gerações de Líderes Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel/histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Diplomata da Coexistência Mutante-Humana",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "diplomacia em escala internacional (rua alta) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Criador da Sala de Perigo para Treinamento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Fundou Múltiplas Gerações de Equipes Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Visionário do Sonho de Krakoa",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Financia o Instituto com Fortuna Pessoal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "recurso/histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reconhecido como Líder Espiritual da Mutação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "reputação",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Líder dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Intelecto Genial",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "gênio em genética/psicologia (construiu o Cérebro) → 14; = Intelecto Genial do Fera (mesma tag)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Diplomacia Mutante-Humano",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "extra; = Diplomata da Coexistência",
+        "confidence": "media"
+      },
+      {
+        "texto": "Idealismo Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Sersi (Eterna)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Transmutação Molecular/Atômica Absoluta",
+        "grau": 30,
+        "peak": 32,
+        "benchmark": "peso",
+        "feat": "umbrella ≥ sub-técnica \"Reorganiza a Matéria de uma Cidade\" (30, teto não-variante); rotina demonstrada ~100 kt (22); literal cidade ~10⁸ t (32) em peak",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Transforma Qualquer Coisa em Qualquer Coisa",
+        "grau": 30,
+        "peak": 32,
+        "benchmark": "peso",
+        "feat": "= Transmutação Molecular (umbrella) → 30; peak 32",
+        "confidence": "media"
+      },
+      {
+        "texto": "Cria Vida / Seres Vivos do Nada",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "cria seres vivos por transmutação: faixa Ômega → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Imortalidade / Regeneração Absoluta",
+        "grau": 22,
+        "benchmark": "resistencia",
+        "feat": "Eterna regenera de quase nada (topo 18–22) → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo / Projeção Energia Cósmica",
+        "grau": 16,
+        "benchmark": "energia",
+        "feat": "rajada cósmica de Eterna derruba prédio pequeno (16–18) → 16",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Ilusões Perfeitas (Manipula Luz/Matéria)",
+        "grau": 18,
+        "benchmark": "informacao",
+        "feat": "ilusões de luz/matéria indistinguíveis: faixa Ômega → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Transmuta Pessoas em Estátuas de Ouro ou Pedra",
+        "grau": 18,
+        "benchmark": "outro",
+        "feat": "ignora Corpo: pareado a super-humanos rua/Ômega → 18",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reorganiza a Matéria de uma Cidade Inteira",
+        "grau": 30,
+        "peak": 32,
+        "benchmark": "peso",
+        "feat": "Eterna, entrada não-variante: teto planetário 30; literal matéria de uma cidade ~10⁸ t (32) em peak",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Desintegra Matéria à Vontade",
+        "grau": 18,
+        "benchmark": "energia",
+        "feat": "desintegra até prédio pequeno inteiro (16–18) → 18",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Absorve e Redistribui Energia Cósmica em Escala Massiva",
+        "grau": 22,
+        "benchmark": "outro",
+        "feat": "pareado a ataques cósmicos/Ômega altos → 22",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Influência Social / Festa / Carisma Divino",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "carisma milenar, influência social de elite (= Magneto 14) → 14",
+        "confidence": "media"
+      },
+      {
+        "texto": "História Milenar / Conhecimento Antigo",
+        "grau": 13,
+        "benchmark": "informacao",
+        "feat": "milênios de conhecimento acumulado (rua alta) → 13",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Bishop",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Absorção e Redirecionamento de Energia",
+        "grau": 20,
+        "peak": 25,
+        "benchmark": "outro",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
+        "confidence": "media"
+      },
+      {
+        "texto": "Armamento Pesado",
+        "grau": 10,
+        "benchmark": "energia",
+        "feat": "rifles de plasma do futuro partem blindado leve (9–10) → 10",
+        "confidence": "media"
+      },
+      {
+        "texto": "Treinamento XSE",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "treino policial/militar de elite: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Absorve Qualquer Forma de Energia (Cinética, Térmica, Elétrica, Cósmica)",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
+        "confidence": "media"
+      },
+      {
+        "texto": "Redireciona Energia Absorvida em Rajadas Devastadoras",
+        "grau": 14,
+        "benchmark": "energia",
+        "feat": "rotina: rajada derruba tanque/avião (11–15) → 14; pico depende do que absorveu",
+        "confidence": "media",
+        "peak": 22
+      },
+      {
+        "texto": "Imune a Danos de Projéteis e Armas de Energia",
+        "grau": 15,
+        "benchmark": "outro",
+        "feat": "pareado a armas de energia típicas (Sentinelas ~15) → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Carrega Armas Convencionais com Energia Absorvida",
+        "grau": 10,
+        "benchmark": "energia",
+        "feat": "munição carregada parte blindado leve → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sobrecarga Deliberada Gera Explosão de Área",
+        "grau": 15,
+        "benchmark": "energia",
+        "feat": "descarga total derruba avião grande / navio pequeno (13–15) → 15",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Absorve Ataques de Múltiplas Fontes Simultaneamente",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
+        "confidence": "media"
+      },
+      {
+        "texto": "Redistribui Energia Absorvida para Fortalecer o Próprio Corpo",
+        "grau": 9,
+        "benchmark": "peso",
+        "feat": "força ampliada ergue ~13 t → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Absorve Radiação e Energia Cósmica de Nível Extremo",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "o texto afirma nível extremo: pareado a energia cósmica pesada → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Canaliza Energia Absorvida Através do Próprio Corpo Sem Dano",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "umbrella ≥ sub-técnica \"Absorve Radiação e Energia Cósmica de Nível Extremo\" (20): absorve energia cósmica pesada de rotina → 20",
+        "confidence": "media"
+      },
+      {
+        "texto": "Detecta Fontes de Energia à Distância Antes do Impacto",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "percebe fontes de energia a ~180 m → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Rastreamento Temporal",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "rastreia viajantes do tempo entre eras: faixa rua alta → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Conhecimento de Eventos Futuros",
+        "grau": 10,
+        "benchmark": "informacao",
+        "feat": "conhece a linha do tempo futura (desatualizável): faixa rua → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Táticas da XSE",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "tática de força policial de elite: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Marcado com M no Rosto",
+        "grau": null,
+        "benchmark": null,
+        "feat": "marca física/histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Marcado com \"M\" no rosto",
+        "grau": null,
+        "benchmark": null,
+        "feat": "marca física/histórico",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Domino",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Campo de Sorte Probabilística",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "pareado ao que anula: tiros erram, armas travam, golpes super-humanos desviam (rua alta) → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Franco-atirador de Elite",
+        "grau": 9,
+        "benchmark": "distancia",
+        "feat": "tiro de precisão a ~1,5–2 km → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Combate Corpo-a-Corpo Avançado",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "luta de elite: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mercenária Veterana",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico/papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Coração de Mercenária",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Distorce a Probabilidade ao Seu Redor em Favor Próprio",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "= Campo de Sorte Probabilística → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Projéteis e Golpes Inimigos Desviam Sozinhos por \"Coincidência\"",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "pareado a projéteis/golpes super-humanos de rua → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Funciona Melhor Sob Instinto — Falha Quando Ela Tenta Planejar",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza/limitação",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Confiança Absoluta em Nathan",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ex-Membro X-Force",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Foxx",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Metamorfismo Perfeito (Mística)",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "mimetismo físico perfeito, engana tudo menos telepatia/sentidos super-humanos (rua alta) → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Imita Voz, Rosto e Impressões Digitais",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "= Metamorfismo Perfeito → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Disfarce Indetectável",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "= Metamorfismo Perfeito → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mímica de Aparência e Gênero",
+        "grau": 15,
+        "benchmark": "informacao",
+        "feat": "= Metamorfismo Perfeito → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Regeneração Lenta",
+        "grau": 5,
+        "benchmark": "resistencia",
+        "feat": "cura acelerada leve, retarda envelhecimento (3–6) → 5",
+        "confidence": "media"
+      },
+      {
+        "texto": "Espionagem e Sedução de Elite",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "espiã de elite, acima do pico humano por séculos de prática → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Provocação e Manipulação Constantes",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "manipulação social hábil (rua baixa) → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Leitura Fria de Pessoas",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "leitura fria de especialista: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Rede de Contatos no Submundo",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "rede criminosa internacional de Mística (~metrópole → país) → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Séculos de Experiência em Combate",
+        "grau": 8,
+        "benchmark": "outro",
+        "feat": "veterano centenário, acima do pico humano (faixa rua) → 8; = mesma tag do Sabretooth",
+        "confidence": "media"
+      },
+      {
+        "texto": "Marcialista e Assassina Letal",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "artes marciais de elite: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Sabotagem e Infiltração",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "infiltração de elite somada ao metamorfismo → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Nervos de Aço",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço de personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Testa os Limites de Gambit",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento/arco",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Infiltrada entre os Alunos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "situação narrativa",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Hellion",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Telecinesia de Alto Nível",
+        "grau": 12,
+        "benchmark": "peso",
+        "feat": "rotina: ergue veículos pesados até ~100 t (avião pequeno) → 12; pico: estruturas ~1.500 t",
+        "confidence": "media",
+        "peak": 16
+      },
+      {
+        "texto": "Próteses Controladas por Telecinese (perdeu as mãos)",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "controle fino telecinético que substitui mãos: pico humano de destreza → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 3 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 5 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Arrogância de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ergue e Arremessa Veículos e Estruturas Inteiras",
+        "grau": 14,
+        "benchmark": "peso",
+        "feat": "o texto é o feito: estrutura inteira ~400 t → 14",
+        "confidence": "media"
+      },
+      {
+        "texto": "Escudos Telecinéticos Reativos Contra Múltiplos Ataques",
+        "grau": 11,
+        "benchmark": "resistencia",
+        "feat": "aguenta fogo de tanque (11–12) → 11",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo Sustentado por Propulsão Telecinética",
+        "grau": 8,
+        "benchmark": "velocidade",
+        "feat": "voo rápido ~500–640 km/h → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Rajadas de Força Concentrada em Curto Alcance",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "rajada parte concreto armado (9–10) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Controle Simultâneo de Dezenas de Objetos em Combate",
+        "grau": 10,
+        "benchmark": "outro",
+        "feat": "dezenas de objetos ao mesmo tempo: faixa rua → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Constrói Próteses e Ferramentas Telecinéticas Complexas",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "= controle fino das próteses → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Corta e Perfura com Lâminas de Força Pura",
+        "grau": 10,
+        "benchmark": "energia",
+        "feat": "lâminas cortam blindado leve (9–10) → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Amplifica Potência Quando Motivado pela Raiva",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "sob raiva a telecinesia chega ao topo da rotina (~400 t) → 14; pico 16",
+        "confidence": "baixa",
+        "peak": 16
+      },
+      {
+        "texto": "Manipulação de Precisão Fina Apesar da Falta das Mãos",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "= controle fino das próteses → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Potencial Bruto Comparável a Telecinéticos Ômega Estabelecidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "potencial latente, não feito de rotina",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Telecinesia Poderosa",
+        "grau": 12,
+        "benchmark": "peso",
+        "feat": "extra; = Telecinesia de Alto Nível → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mãos Protéticas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço físico; o controle está em outra tag",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Líder dos Hellions",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade Profunda a Quem Chama de Amigo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Loa",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Fase Através da Matéria Sólida",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "atravessa concreto/aço; pareado ao que atravessa e aos ataques que evita (tanque/bunker 11–12) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Desintegração por Contato",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "abre buracos em qualquer matéria que atravessa, ignora Corpo: pareado a blindagem de tanque → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Rastros de Decomposição",
+        "grau": null,
+        "benchmark": null,
+        "feat": "efeito colateral descritivo, não capacidade",
+        "confidence": "media"
+      },
+      {
+        "texto": "Intangibilidade Defensiva",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "= Fase Através da Matéria → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ataque que Ignora Armaduras",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "pareado a blindagem pesada (tanque 11–12) → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Espírito Livre e Praiano",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Misticismo das Ilhas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "cultura/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Otimismo Contagiante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Sobreviveu à Mordida de um Vampiro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Amizade com Anole e Match",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Aluna do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 9 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Curiosidade Insaciável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade aos Corsários",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Professor X (Base - Cadeira de Rodas)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Alcance Global Sem Cerebro",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: global sem amplificador (23–24) → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Congela Mentes Inteiras Instantaneamente",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "paralisa todas as mentes ao redor: faixa Ômega → 20",
+        "confidence": "media"
+      },
+      {
+        "texto": "Edita Memórias/Personalidades",
+        "grau": 22,
+        "benchmark": "informacao",
+        "feat": "= Reescrita de Personalidade do Professor X → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Projeção Astral Física/Ofensiva",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "= Projeção Astral Corpórea do Professor X → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Comunicação Telepática Instantânea X-Men",
+        "grau": 21,
+        "benchmark": "distancia",
+        "feat": "elo com a equipe em escala continental → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Escudos Psíquicos Intransponíveis",
+        "grau": 25,
+        "benchmark": "outro",
+        "feat": "ladder: escudo que barra telepatas Ômega (Jean/Xavier com Cérebro 23) → 25; = Bloqueio Mental Absoluto do Professor X",
+        "confidence": "media"
+      },
+      {
+        "texto": "Rastreia Mutantes em Qualquer Lugar",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "qualquer lugar do planeta → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Leitura Mental Instantânea em Qualquer Distância",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "qualquer distância na Terra → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Implanta Memórias Falsas Indetectáveis",
+        "grau": 22,
+        "benchmark": "informacao",
+        "feat": "= Edita Memórias → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Apaga Rastros da Própria Presença Mental",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "pareado à detecção por telepatas Ômega (~20) → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Prevê Movimentos Inimigos (Mentes)",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "antecipa ações lendo intenções: base Ômega → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Planos de Contingência 42+ (Kuurth)",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "planejamento estratégico de alto nível → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Manipula Eventos Globais Sutilmente",
+        "grau": 20,
+        "benchmark": "informacao",
+        "feat": "influência em escala país/continente → 20",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Alcance Interestelar/Interdimensional",
+        "grau": 23,
+        "peak": 51,
+        "benchmark": "distancia",
+        "feat": "entrada base: rotina com Cérebro = global 23 (ladder); o literal interestelar (1 ano-luz = 51) vai para peak",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Bloqueio Mental Planetário Total",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "bloqueio telepático global → 23",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Localiza Qualquer Mente no Universo",
+        "grau": 23,
+        "peak": 51,
+        "benchmark": "distancia",
+        "feat": "entrada base: texto hiperbólico; rotina com Cérebro = global 23 (ladder); literal interestelar 51 em peak",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Rastreamento de DNA Mutante em Escala Global",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "o texto é o feito: global → 23",
+        "confidence": "media"
+      },
+      {
+        "texto": "Amplificação de Poder Psíquico Múltiplas Vezes",
+        "grau": 23,
+        "benchmark": "outro",
+        "feat": "leva a telepatia de ~20 a escala global ~23",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Integração com Satélites e Redes de Vigilância",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "cobertura global via satélites → 23",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Simulação de Cenários de Batalha em Tempo Real",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "simulação tática computacional de alto nível → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Acesso a Bancos de Dados Mutantes Catalogados",
+        "grau": 14,
+        "benchmark": "informacao",
+        "feat": "banco de dados mutante abrangente → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Interface Neural Direta com o Operador",
+        "grau": null,
+        "benchmark": null,
+        "feat": "mecanismo de interface, sem feito próprio",
+        "confidence": "media"
+      },
+      {
+        "texto": "Detecção de Mutações Emergentes ao Nascimento",
+        "grau": 23,
+        "benchmark": "distancia",
+        "feat": "detecta novos mutantes no mundo todo → 23",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Sauron",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Transformação em Pterossauro Humanóide",
+        "grau": 7,
+        "benchmark": "peso",
+        "feat": "forma de pterossauro ergue ~3 t → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Drenagem de Energia Vital",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "drena humanos e super-humanos ignorando Corpo: pareado a Corpo de rua (tanque 11–12) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo",
+        "grau": 6,
+        "benchmark": "velocidade",
+        "feat": "voo planado/batido ~160 km/h → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Agilidade de Predador Aéreo em Voo",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "manobra aérea de predador: pico humano/ave → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Garras e Bico Cortantes em Mergulho",
+        "grau": 7,
+        "benchmark": "energia",
+        "feat": "mergulho com garras rasga chapa/tijolo (7–8) → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Visão de Caçador Localiza Presas a Distância",
+        "grau": 9,
+        "benchmark": "distancia",
+        "feat": "visão de ave de rapina ~1,5 km → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Drena Força Vital ao Toque, Enfraquecendo a Vítima",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "= Drenagem de Energia Vital → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Converte a Energia Roubada em Força e Massa Muscular",
+        "grau": 8,
+        "benchmark": "peso",
+        "feat": "força ampliada ~6 t → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sustenta e Prolonga a Transformação em Pterossauro Drenando Continuamente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "dependência/mecânica, não feito",
+        "confidence": "media"
+      },
+      {
+        "texto": "Vítimas Ficam Comatosas ou Envelhecidas pela Drenagem Prolongada",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "efeito da mesma drenagem → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Drena Também Energia Psíquica e Mutante de Alvos Poderosos",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "pareado a mutantes poderosos de rua alta → 14",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Drenagem Letal se Sustentada Além do Limite da Vítima",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "= Drenagem de Energia Vital → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Voo Sustentado por Energia Roubada Alcança Grandes Altitudes",
+        "grau": 11,
+        "benchmark": "distancia",
+        "feat": "teto de voo ~5 km → 11",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sentidos Detectam Energia Vital de Presas à Distância",
+        "grau": 8,
+        "benchmark": "distancia",
+        "feat": "sente presas a ~760 m → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Cada Drenagem Bem-Sucedida Acelera Reflexos e Cura Ferimentos",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "cura acelerada leve após drenar (3–6) → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Fome pela Energia Vital Suprime a Consciência de Karl Lykos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Pterossauro",
+        "grau": 7,
+        "benchmark": "peso",
+        "feat": "extra; = Transformação em Pterossauro → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Doutor",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo/profissão de Karl Lykos",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Três‑em‑Uma (Stepford Cuckoos)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Mente de Colmeia Telepática",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "elo telepático total entre as três, base da faixa Ômega → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Telepatia de Nível Ômega em Conjunto",
+        "grau": 21,
+        "benchmark": "distancia",
+        "feat": "ladder: unidas = telepatia Ômega de rotina, continental ~5.000 km → 21 (= rotina da Emma)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ilusões e Ataques Psíquicos",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "ilusões/ataques coordenados: base Ômega → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Controle Mental Coordenado",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "controle mental conjunto: base Ômega → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Leitura Simultânea de Muitas Mentes",
+        "grau": 16,
+        "benchmark": "informacao",
+        "feat": "lê dezenas/centenas de mentes de uma vez → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Forma de Diamante (como Emma)",
+        "grau": 15,
+        "benchmark": "resistencia",
+        "feat": "= Forma de Diamante da Emma → 15",
+        "confidence": "media"
+      },
+      {
+        "texto": "Elegância Fria e Calculista",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Filhas/Clones de Emma Frost",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento/origem",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Completam as Frases umas das Outras",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Falam como uma Só Voz",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Alunas de Elite do Instituto",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Confiança Intelectual Imensa",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Anole",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Camuflagem Cromática",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "pele muda de cor com o ambiente, camuflagem parcial (rua baixa) → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Língua Preênsil Extensível",
+        "grau": 1,
+        "benchmark": "distancia",
+        "feat": "agarra a ~6 m → 1",
+        "confidence": "media"
+      },
+      {
+        "texto": "Garras e Aderência a Superfícies",
+        "grau": 4,
+        "benchmark": "outro",
+        "feat": "escala paredes/teto e corta com garras (atleta) → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Regeneração de Membros",
+        "grau": 13,
+        "benchmark": "resistencia",
+        "feat": "regenera membros perdidos (13–16) → 13",
+        "confidence": "media"
+      },
+      {
+        "texto": "Agilidade Réptil",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "agilidade no pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Assumidamente Gay e Confiante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "identidade/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Sarcasmo como Escudo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ídolo dos Alunos Marginalizados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "reputação",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Melhor Amigo de Rockslide",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade Feroz à Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Aluno do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Banshee",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Emite grito sônico capaz de derrubar e desorientar",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "grito estilhaça aço e concreto armado (9–10) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Modula frequência para concussão, ruptura ou confusão",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "mesmo grito sônico modulado → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Usa ondas sonoras para defesa de área",
+        "grau": 8,
+        "benchmark": "resistencia",
+        "feat": "parede sônica desvia balas/estilhaços (7–8) → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Voa surfando as próprias ondas sonoras",
+        "grau": 7,
+        "benchmark": "velocidade",
+        "feat": "voo ~320 km/h → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Cria barreiras vibratórias de proteção",
+        "grau": 8,
+        "benchmark": "resistencia",
+        "feat": "= defesa sônica de área → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Percebe vibrações e ecos no ambiente",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "sonar a ~180 m → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Investigação internacional e liderança de jovens mutantes",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "ex-Interpol: investigador de elite, pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Experiência de comando em crises",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "comando treinado em crise (humano experiente) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Atua como mentor e pai de Siryn",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento/papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Frequência Hipnótica",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "frequência que induz transe em humanos próximos (rua baixa) → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Ex-Agente da Interpol",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Fundador da Geração X",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Pai de Siryn",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Grito Sonar",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "extra; = grito sônico → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo via Ondas Sonoras",
+        "grau": 7,
+        "benchmark": "velocidade",
+        "feat": "extra; = voo sônico → 7",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Bolt",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Básico",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Projeção de Rajadas Elétricas",
+        "grau": 7,
+        "benchmark": "energia",
+        "feat": "rajada derruba gente e danifica parede de tijolo/veículo (7–8) → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ex-Militar",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Cannonball",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Lança-se em alta velocidade como um projétil humano",
+        "grau": 9,
+        "benchmark": "velocidade",
+        "feat": "rotina ~Mach 1 (1.200 km/h) → 9; pico ~Mach 4",
+        "confidence": "media",
+        "peak": 11
+      },
+      {
+        "texto": "Fica praticamente invulnerável enquanto está em explosão",
+        "grau": 16,
+        "benchmark": "resistencia",
+        "feat": "\"praticamente invulnerável\" em explosão: virtualmente indestrutível (16–18) → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Usa impacto e impulso para romper defesas ou resgatar aliados",
+        "grau": 11,
+        "benchmark": "energia",
+        "feat": "investida atravessa tanque/bunker (11–12) → 11",
+        "confidence": "media"
+      },
+      {
+        "texto": "Coordena jovens mutantes sob pressão",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "liderança de campo treinada → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Toma decisões de resgate rapidamente",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "decisão tática rápida (humano treinado) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Mantém a equipe unida em crise",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "liderança social de campo → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Invulnerabilidade em Voo",
+        "grau": 16,
+        "benchmark": "resistencia",
+        "feat": "extra; = invulnerável em explosão → 16",
+        "confidence": "media"
+      },
+      {
+        "texto": "Liderança Natural",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "extra; = liderança de campo → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Família Guthrie",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "afiliação",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Propulsão Termoquímica",
+        "grau": 9,
+        "benchmark": "velocidade",
+        "feat": "extra; = lança-se como projétil → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Liderança Natural e Leal",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "extra; = liderança de campo → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Membro de Família Numerosa de Mutantes (Guthries)",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "DJ",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Manipulação Sônica através de Música",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "batida derruba adultos e racha vidro/metal fino (amassa carro 5–6) → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ondas de Choque Rítmicas",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "= manipulação sônica → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Amplificação de Frequências Ofensivas",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "= manipulação sônica → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Criação de Barreiras Sonoras",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "barreira para golpes/pedaços de pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Controle de Volume e Tom à Vontade",
+        "grau": 3,
+        "benchmark": "outro",
+        "feat": "controle fino de som, utilidade menor → 3",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Ressonância que Racha Vidro e Metal Fino",
+        "grau": 5,
+        "benchmark": "energia",
+        "feat": "o texto é o feito: vidro e chapa fina (amassa carro) → 5",
+        "confidence": "media"
+      },
+      {
+        "texto": "Scratches que Distorcem a Realidade Sonora Local",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "ilusão auditiva local → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Batidas que Desorientam Inimigos",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "desorienta humanos/atletas próximos → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Mixagem de Efeitos em Tempo Real",
+        "grau": 4,
+        "benchmark": "outro",
+        "feat": "combina efeitos sônicos na hora → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Amplificadores Portáteis Improvisados",
+        "grau": 4,
+        "benchmark": "outro",
+        "feat": "equipamento que reforça o alcance sônico (~45 m) → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Loop de Batidas para Sustentar Efeitos",
+        "grau": 4,
+        "benchmark": "outro",
+        "feat": "mantém efeito sem esforço por uma cena → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Carisma de Palco Inegável",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "carisma de artista talentoso → 5",
+        "confidence": "media"
+      },
+      {
+        "texto": "Energia que Contagia a Plateia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "media"
+      },
+      {
+        "texto": "Competitividade Saudável nas Batalhas de Som",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Talento Musical Reconhecido no Instituto",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "músico talentoso (perícia humana alta) → 5",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Espectro",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Intangibilidade",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "atravessa paredes e evita ataques; pareado a tanque/bunker (11–12) → 12, = Loa",
+        "confidence": "media"
+      },
+      {
+        "texto": "Invisibilidade Parcial",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "quase invisível (= camuflagem em sombras do Noturno) → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Atravessa Paredes",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "= Intangibilidade → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Evasão e Fuga",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "fuga de especialista com intangibilidade: pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Humor Seco e Sussurrado",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Observador Perspicaz",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "observação atenta (humano alto) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Surge do Nada quando a Equipe Precisa",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço narrativo",
+        "confidence": "media"
+      },
+      {
+        "texto": "Aluno do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Harpoon",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Básico",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Arpões Energéticos",
+        "grau": 18,
+        "benchmark": "outro",
+        "feat": "ignoram invulnerabilidade, ferem Colossus em aço: pareado ao Corpo de aço do Colossus (18) → 18",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Poder de Penetrar Qualquer Defesa",
+        "grau": 18,
+        "benchmark": "outro",
+        "feat": "extra; = Arpões Energéticos (mesmo poder: ignoram invulnerabilidade, ferem Colossus em aço) → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Assassino Calculista",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade/papel",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Kestrel",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Teletransporte de Curta Distância",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "curto alcance tático ~180 m → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate de Elite",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "décadas na Arma X: combatente de pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Código de Honra Próprio",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Leech",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Campo de Supressão de Mutantes",
+        "grau": 22,
+        "benchmark": "outro",
+        "feat": "anula Wolverine, Ciclope e Xavier: pareado aos poderes Ômega que anula (~20) → 22",
+        "confidence": "media"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Inocência Infantil",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Presença Cativante Apesar da Aparência",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "presença social marcante (humano alto) → 5",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Madrox",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Absorve impacto para criar duplicatas de si mesmo",
+        "grau": 10,
+        "benchmark": "outro",
+        "feat": "dezenas a centenas de cópias por impacto: faixa rua → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Envia duplicatas para tarefas simultâneas e perigosas",
+        "grau": 10,
+        "benchmark": "outro",
+        "feat": "= criação de duplicatas → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reintegra memórias e habilidades aprendidas por uma duplicata",
+        "grau": 10,
+        "benchmark": "informacao",
+        "feat": "absorve perícias/memórias de muitas cópias → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Conduz investigações de desaparecimentos e casos mutantes",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "detetive de elite: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Distribui duplicatas para vigilância, entrevistas e busca de pistas",
+        "grau": 12,
+        "benchmark": "distancia",
+        "feat": "cópias cobrem uma cidade inteira ~11 km → 12",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Monta conclusões cruzando experiências de várias cópias",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "dedução com dados de várias cópias, acima do pico humano → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Conhece a responsabilidade de trazer duplicatas de volta em segurança",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço/ética",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Coopera com a X-Factor como multiplicador de equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "afiliação/papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Adapta planos quando uma cópia descobre informação nova",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "adaptação tática de humano treinado → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Criação de Duplicatas ao Impacto",
+        "grau": 10,
+        "benchmark": "outro",
+        "feat": "extra; = criação de duplicatas → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Absorção de Duplicatas com Memórias e Habilidades",
+        "grau": 10,
+        "benchmark": "informacao",
+        "feat": "extra; = reintegração → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Detetive Particular",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "extra; = investigações → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Cada Duplicata Desenvolve Personalidade Própria",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza disfarçada",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Match",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Combustão Corporal Sem Autodano",
+        "grau": 7,
+        "benchmark": "energia",
+        "feat": "corpo em chamas queima/derrete parede de tijolo e veículo leve (7–8) → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo por Propulsão de Fogo",
+        "grau": 6,
+        "benchmark": "velocidade",
+        "feat": "voo ~160 km/h → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Rajadas de Fogo Concentradas",
+        "grau": 8,
+        "benchmark": "energia",
+        "feat": "rajada destrói parede de tijolo / incendeia caminhão (7–8) → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Resistência Total a Calor e Fogo",
+        "grau": 10,
+        "benchmark": "outro",
+        "feat": "\"total\": pareado a ataques de fogo de rua (Pyro ~10) → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Controle de Intensidade da Chama",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "controle fino da chama (utilidade) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Escudo de Chamas Defensivo",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "escudo detém golpes/projéteis de pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Manobras Aéreas Agressivas em Combate",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "manobra aérea ágil (humano alto) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Aterrissagens Explosivas Controladas",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "impacto flamejante amassa carro (5–6) → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Trilhas de Fumaça para Cobertura",
+        "grau": 3,
+        "benchmark": "area",
+        "feat": "cortina de fumaça raio ~25 m → 3",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Acender Objetos à Distância Curta",
+        "grau": 2,
+        "benchmark": "distancia",
+        "feat": "ignição a ~12 m → 2",
+        "confidence": "media"
+      },
+      {
+        "texto": "Explosões de Curto Alcance ao Pousar",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "= aterrissagem explosiva → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Confiança Inabalável em Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Espírito Competitivo entre os Paragons",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança pelo Exemplo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "estilo/personalidade",
+        "confidence": "media"
+      },
+      {
+        "texto": "Energia Positiva que Motiva a Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Mirage",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Projeta o maior medo ou desejo de um alvo como ilusão convincente",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "ilusões psíquicas tiradas da mente do alvo, afetam super-humanos (rua alta) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Usa visões para interromper ataques ou abrir diálogo",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "= projeção de medos/desejos → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Percebe a carga emocional que guia uma ilusão",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "leitura empática de emoções (rua) → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Comunica-se empaticamente com animais próximos",
+        "grau": 4,
+        "benchmark": "distancia",
+        "feat": "elo com animais próximos ~45 m → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Encontra rastros e perigos com auxílio de animais",
+        "grau": 8,
+        "benchmark": "distancia",
+        "feat": "animais batedores ampliam percepção a ~760 m → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Acalma criaturas assustadas ou hostis",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "acalma animais selvagens (pico humano+) → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reconhece presságios de morte e conduz espíritos quando seu vínculo está ativo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "poder de Valquíria condicional/indisponível (latente)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Combatente treinada com arco, flecha e tática de campo",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "arqueira de elite, tiro útil a ~180 m → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Mentora firme dos Novos Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "papel",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Arco e Flecha",
+        "grau": 6,
+        "benchmark": "distancia",
+        "feat": "extra; = arqueira de elite → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ex-Valquíria",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico; poderes não mais disponíveis",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Manifestação de Medos e Desejos Profundos",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "extra; = projeção de medos/desejos → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ligação Empática com Animais",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "extra; elo empático com animais → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Cheyenne",
+        "grau": null,
+        "benchmark": null,
+        "feat": "identidade cultural",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Onyxx",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Corpo de Pedra Sólida",
+        "grau": 9,
+        "benchmark": "resistencia",
+        "feat": "pele de granito aguenta balas e artilharia leve (9–10) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Superforça e Resistência",
+        "grau": 10,
+        "benchmark": "peso",
+        "feat": "ergue ~25 t → 10",
+        "confidence": "media"
+      },
+      {
+        "texto": "Muralha Viva em Combate",
+        "grau": 9,
+        "benchmark": "resistencia",
+        "feat": "= Corpo de Pedra → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Investida Devastadora",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "investida parte concreto armado (9–10) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Jeito Rapper e Fanfarrão",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Protetor Secreto dos Mais Fracos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Presença Divertida",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Aluno do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Condicionamento Bruto",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "vigor físico de pico humano → 6",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Prodigy",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Assimila temporariamente conhecimento e técnica de pessoas próximas",
+        "grau": 9,
+        "benchmark": "informacao",
+        "feat": "copia perícias de qualquer especialista próximo: perícia de elite multiplicada (rua) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Replica treinamento de luta, línguas e especialidades com rapidez",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "domina perícias copiadas acima do pico humano → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Combina competências de colegas para resolver problemas de campo",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "soma perícias de vários colegas → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Estuda padrões, pessoas e missões com disciplina metódica",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "análise metódica: pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Experiência de liderança entre os Jovens X-Men",
+        "grau": 5,
+        "benchmark": "informacao",
+        "feat": "liderança estudantil treinada → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Transforma insegurança intelectual em preparação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Memória Absoluta",
+        "grau": 9,
+        "benchmark": "informacao",
+        "feat": "memória eidética perfeita, acima do pico humano → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Gênio",
+        "grau": 9,
+        "benchmark": "informacao",
+        "feat": "intelecto no teto humano (Inteligência alta) → 9",
+        "confidence": "media"
+      },
+      {
+        "texto": "Conhecimento de Centenas de Especialistas Retido Permanentemente",
+        "grau": 10,
+        "benchmark": "informacao",
+        "feat": "centenas de especialidades retidas: faixa rua → 10",
+        "confidence": "media"
+      },
+      {
+        "texto": "Estrategista de Elite",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "estrategista acima do pico humano → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Artes Marciais e Combate de Vários Especialistas",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "luta de vários mestres: pico humano → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Parceiro de Surge",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Redneck",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Força Sobre-humana Capaz de Arrancar Concreto",
+        "grau": 7,
+        "benchmark": "peso",
+        "feat": "arranca blocos de concreto/ergue ~3 t → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Resistência Física Elevada a Impactos",
+        "grau": 7,
+        "benchmark": "resistencia",
+        "feat": "aguenta balas de baixo calibre / impactos de caminhão (7–8) → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Golpes que Derrubam Estruturas",
+        "grau": 8,
+        "benchmark": "energia",
+        "feat": "derruba parede de tijolo / pequena estrutura (7–8) → 8",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Salto de Longa Distância com as Pernas Reforçadas",
+        "grau": 4,
+        "benchmark": "distancia",
+        "feat": "salto de ~45 m → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Aguenta Golpes que Derrubariam um Adulto Comum",
+        "grau": 5,
+        "benchmark": "resistencia",
+        "feat": "aguenta acima do humano comum (pico humano) → 5",
+        "confidence": "media"
+      },
+      {
+        "texto": "Levanta Objetos Vários Vezes Maiores que o Próprio Corpo",
+        "grau": 7,
+        "benchmark": "peso",
+        "feat": "= força sobre-humana ~3 t → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Ancoragem Física para Resistir a Empurrões",
+        "grau": 7,
+        "benchmark": "outro",
+        "feat": "resiste a empurrões até sua força (~3 t) → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Presença Intimidadora pelo Tamanho",
+        "grau": 4,
+        "benchmark": "informacao",
+        "feat": "intimidação física (humano alto) → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Braço de Ferro em Disputas de Força",
+        "grau": 7,
+        "benchmark": "peso",
+        "feat": "= força sobre-humana → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Estabilidade Total ao Segurar Posição em Combate",
+        "grau": 7,
+        "benchmark": "outro",
+        "feat": "= ancoragem → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Amortece Quedas de Grande Altura",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "cai de ~30 m sem dano (pico humano+) → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Lealdade Cega a Quem Lhe Dá Ordens Claras",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade/fraqueza",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Simplicidade que o Torna Fácil de Manipular por Bons ou Maus",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Coragem Bruta sem Hesitação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Protetor Fiel de Quem Considera Aliado",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Roulette",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Discos de Sorte/Azar",
+        "grau": 9,
+        "benchmark": "outro",
+        "feat": "efeitos de sorte/azar até paralisia ao toque: pareado ao Corpo/Vontade de alvos de rua → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Efeitos Imprevisíveis",
+        "grau": null,
+        "benchmark": null,
+        "feat": "fraqueza (aleatoriedade)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Jogadora Compulsiva",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade/vício",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Sentinela Mk I",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Detector de Mutação por DNA",
+        "grau": 9,
+        "benchmark": "distancia",
+        "feat": "varredura de mutantes a ~1,5 km → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Foguetes de Alta Explosão",
+        "grau": 11,
+        "benchmark": "energia",
+        "feat": "foguetes arruínam blindado/tanque (11–12) → 11; = foguetes do Sentinela Mark I",
+        "confidence": "media"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Armadura Estrutural Reforçada",
+        "grau": 13,
+        "benchmark": "resistencia",
+        "feat": "casco de Sentinela aguenta antitanque (13–15) → 13; = Sentinela Mark I",
+        "confidence": "media"
+      },
+      {
+        "texto": "Supressor de Poderes",
+        "grau": 12,
+        "benchmark": "outro",
+        "feat": "modelo antigo: pareado a mutantes de rua típicos (~12) → 12",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Stacy X",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Feromonas",
+        "grau": 9,
+        "benchmark": "informacao",
+        "feat": "feromônios ao toque dominam emoções/corpo do alvo: pareado à Vontade de alvos de rua → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Camuflagem de Pele",
+        "grau": 7,
+        "benchmark": "informacao",
+        "feat": "pele reptiliana se mistura ao ambiente (camuflagem parcial) → 7",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Presença Sexual Dominante",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "presença social/sedução forte (pico humano) → 6",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Tarot",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Invocação de Arquétipos do Tarô",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "figuras das cartas lutam e partem concreto armado (9–10) → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 47 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Cada Carta tem Efeito Específico",
+        "grau": null,
+        "benchmark": null,
+        "feat": "mecânica/limitação, não feito",
+        "confidence": "media"
+      },
+      {
+        "texto": "Precognição Limitada via Leitura de Cartas",
+        "grau": 5,
+        "benchmark": "duracao",
+        "feat": "vislumbres vagos do futuro próximo: faixa humana alta → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Treinada por Emma Frost",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico/relacionamento",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Trovão",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Ondas de Choque Sônicas pela Voz",
+        "grau": 12,
+        "benchmark": "energia",
+        "feat": "rotina parte tanque/bunker (11–12) → 12; a descrição diz \"derrubar edifícios\" (prédio pequeno 16)",
+        "confidence": "baixa",
+        "peak": 16
+      },
+      {
+        "texto": "Gera Trovões e Vibrações",
+        "grau": 10,
+        "benchmark": "energia",
+        "feat": "trovão/vibração parte concreto armado (9–10) → 10",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Ataque em Área Ensurdecedor",
+        "grau": 5,
+        "benchmark": "area",
+        "feat": "ensurdece num raio de ~90 m → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Espírito Brasileiro Contagiante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Paixão pelo Futebol e Samba",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Energia que Anima a Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Generosidade Calorosa",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Aluno do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Vic Slaughter",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Força e Velocidade Vampíricas Aprimoradas",
+        "grau": 6,
+        "benchmark": "peso",
+        "feat": "força vampírica ergue ~1,5 t (carro) → 6",
+        "confidence": "media"
+      },
+      {
+        "texto": "Fator de Cura Moderado",
+        "grau": 8,
+        "benchmark": "resistencia",
+        "feat": "\"moderado\": entre cura leve (3–6) e balas em minutos (9–12) → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Garras e Presas",
+        "grau": 5,
+        "benchmark": "energia",
+        "feat": "garras/presas rasgam carne e chapa leve (pico humano) → 5",
+        "confidence": "media"
+      },
+      {
+        "texto": "Distorção Corporal (pode estender membros)",
+        "grau": 1,
+        "benchmark": "distancia",
+        "feat": "estende membros a ~6 m → 1",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Lealdade Forçada a Morbius",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento/fraqueza",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ex-líder dos Hardcases",
+        "grau": null,
+        "benchmark": null,
+        "feat": "histórico",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Wither",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Toque que Apodrece Carne e Matéria Vegetal",
+        "grau": 9,
+        "benchmark": "outro",
+        "feat": "apodrece tecido vivo ignorando Corpo orgânico (árvores, humanos, super-humanos de carne): pareado a Corpo de rua → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Desidratação Instantânea ao Contato",
+        "grau": 9,
+        "benchmark": "outro",
+        "feat": "= toque que apodrece → 9",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Controle sobre a Velocidade da Decomposição",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "dosa a decomposição (utilidade) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Sente a Vitalidade de Seres Próximos",
+        "grau": 3,
+        "benchmark": "distancia",
+        "feat": "sente vida a ~25 m → 3",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Pode Direcionar o Apodrecimento a Distância Curta",
+        "grau": 1,
+        "benchmark": "distancia",
+        "feat": "apodrece a ~6 m → 1",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Mão Reduzida a Osso Imune ao Próprio Poder",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço físico",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Golpes Físicos com a Mão Óssea",
+        "grau": 3,
+        "benchmark": "energia",
+        "feat": "golpe humano treinado → 3",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Resistência a Dor na Extremidade Afetada",
+        "grau": 3,
+        "benchmark": "resistencia",
+        "feat": "tolerância à dor localizada (humano alto) → 3",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Presença Intimidadora em Combate",
+        "grau": 4,
+        "benchmark": "informacao",
+        "feat": "intimidação (humano alto) → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Precisão Cirúrgica no Toque",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "toque preciso (pico humano baixo) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Treinamento Rigoroso da Academia Hellfire",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "treino de combate rigoroso → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Disciplina de Combate Silenciosa",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "combate furtivo disciplinado → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Escolheu o Caminho do Bem por Conta Própria",
+        "grau": null,
+        "benchmark": null,
+        "feat": "arco/ideologia",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade Cautelosa aos Novos Colegas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "relacionamento",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência Aguçado",
+        "grau": null,
+        "benchmark": null,
+        "feat": "traço genérico, não capacidade mensurável",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Adepto (Magneto)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Poder Mutante de Baixo Nível",
+        "grau": 4,
+        "benchmark": "outro",
+        "feat": "poder genérico modesto: uso típico de atleta/humano alto → 4",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Fanatismo Ideológico",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Disposto a Morrer pela Causa",
+        "grau": null,
+        "benchmark": null,
+        "feat": "ideologia",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Básico de Combate",
+        "grau": 3,
+        "benchmark": "outro",
+        "feat": "treino de combate básico, humano treinado → 3",
+        "confidence": "media"
+      }
+    ]
+  },
+  {
+    "name": "Bolivar Trask",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Especialização",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Única",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Sorte nos Momentos Críticos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Gênio em Robótica e Bioengenharia",
+        "grau": 13,
+        "benchmark": "informacao",
+        "feat": "criou as Sentinelas, robótica além da tecnologia da época (13–15) → 13",
+        "confidence": "media"
+      },
+      {
+        "texto": "Arrependido no Final da Vida",
+        "grau": null,
+        "benchmark": null,
+        "feat": "arco/personalidade",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Flubber",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Massa Gelatinosa e Elástica",
+        "grau": 6,
+        "benchmark": "resistencia",
+        "feat": "corpo gelatinoso absorve impactos contundentes de pico humano → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Maleabilidade Extrema",
+        "grau": 5,
+        "benchmark": "outro",
+        "feat": "estica/deforma o corpo livremente (utilidade) → 5",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Espreme-se por Qualquer Fresta",
+        "grau": 6,
+        "benchmark": "outro",
+        "feat": "passa por frestas mínimas: contorna portas/barreiras comuns → 6",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Entusiasmo Contagiante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Não Tem Um Osso Mau (literalmente)",
+        "grau": null,
+        "benchmark": null,
+        "feat": "piada/personalidade",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Aluno do Instituto Xavier",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 10 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Impulse",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Supervelocidade",
+        "grau": 7,
+        "benchmark": "velocidade",
+        "feat": "velocista de baixo nível ~300 km/h → 7",
+        "confidence": "media"
+      },
+      {
+        "texto": "Sorte nos Momentos Críticos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Personagem Menor",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 4 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Explosão Cinética",
+        "grau": 6,
+        "benchmark": "energia",
+        "feat": "estouro cinético amassa carro (5–6) → 6",
+        "confidence": "baixa"
+      }
+    ]
+  },
+  {
+    "name": "Timeshadow",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Especialização",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Única",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 12 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Sorte nos Momentos Críticos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 18 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template repetido verbatim em 29 NPCs; não é poder (harmonização: null uniforme)",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Ilusões Temporais de Si Mesma",
+        "grau": 6,
+        "benchmark": "informacao",
+        "feat": "cópias ilusórias passadas/futuras confundem oponentes próximos (pico humano) → 6",
+        "confidence": "baixa"
+      }
+    ]
+  }
+]

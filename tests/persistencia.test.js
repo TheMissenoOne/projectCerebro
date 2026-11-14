@@ -90,5 +90,61 @@ test('a gravação envia um retrato congelado dos dados', function () {
   assert(!ficha.includes('Object.assign({},D,{foto:\'\'})'), 'shallow copy still mutates D.estado');
 });
 
-console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
-process.exit(failed ? 1 : 0);
+// ── Apoio×Antagonismo (admin.html): nunca mostrar uuid no lugar de nome ──
+const vm = require('vm');
+const admin = fs.readFileSync(path.join(ROOT, 'admin.html'), 'utf8');
+const UUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+
+// roda os helpers reais do admin.html num sandbox (extraídos pelo nome)
+function pegar(src, inicio, fim) {
+  const a = src.indexOf(inicio);
+  assert(a !== -1, 'not found: ' + inicio);
+  return src.slice(a, src.indexOf(fim, a));
+}
+const adminBox = { t: k => k };
+vm.createContext(adminBox);
+vm.runInContext(pegar(admin, 'function safeNum(', 'function barraHTML(').replace(/const UUID_RE/, 'var UUID_RE'), adminBox);
+
+test('admin: jogador é rotulado pelos personagens, não pelo player_id', function () {
+  assert(!/pid\.length > 36/.test(admin), 'header still renders the raw player_id');
+  const r = adminBox.rotuloJogador([{ codinome: 'Ciclope' }, { nome: 'Ororo' }, { codinome: 'Ciclope' }], 0);
+  assert(r === 'Ciclope · Ororo', 'got ' + r);
+  assert(adminBox.rotuloJogador([{}], 1) === 'admin.player 2', 'nameless player fallback');
+});
+
+test('admin: membro salvo como id de personagem resolve para o nome; id órfão vira fallback', function () {
+  const porId = { 'c1111111-1111-4111-8111-111111111111': { codinome: 'Ciclope' } };
+  const ms = adminBox.membrosDe({ data: { membros: [
+    { nome: 'Jean', apoio: 2 },
+    { nome: 'C1111111-1111-4111-8111-111111111111', apoio: 1 },
+    { nome: 'ffffffff-0000-4000-8000-000000000000', antagonismo: 1 },
+  ] } }, porId);
+  assert(ms.map(m => m.nome).join('|') === 'Jean|Ciclope|admin.unknownChar', 'got ' + ms.map(m => m.nome).join('|'));
+  assert(!ms.some(m => UUID.test(m.nome)), 'uuid leaked into a member label');
+});
+
+const pendentes = [];
+function testAsync(name, fn) {
+  pendentes.push(Promise.resolve().then(fn).then(
+    function () { console.log('✅ ' + name); passed++; },
+    function (e) { console.log('❌ ' + name + ': ' + e.message); failed++; }));
+}
+
+testAsync('api.listAllGMCharacters: ficha antiga sem colunas name/codename usa o nome de data', function () {
+  const rows = { parties: [{ id: 'p1', name: 'Equipe' }], characters: [{ id: 'c2', player_id: 'u2', party_id: 'p1', name: null, codename: null, data: { nome: 'Ororo Munroe', codinome: 'Tempestade' } }] };
+  const q = t => { const b = { select: () => b, eq: () => b, in: () => b, range: () => b, then: (res, rej) => Promise.resolve({ data: rows[t], error: null }).then(res, rej) }; return b; };
+  // window é o próprio global, como no browser (api.js lê window.getSupabase sem prefixo)
+  const win = { supabase: { createClient: () => ({ from: q }) }, SUPABASE_CONFIG: { url: 'x', anonKey: 'y' }, console: { log() {}, error() {}, warn() {} } };
+  win.window = win;
+  const box = vm.createContext(win);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'assets/js/api.js'), 'utf8'), box);
+  return win.api.listAllGMCharacters('gm1', true).then(function (chars) {
+    const c = chars[0];
+    assert(c && c.nome === 'Ororo Munroe' && c.codinome === 'Tempestade', 'got ' + JSON.stringify(c));
+  });
+});
+
+Promise.all(pendentes).then(function () {
+  console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
+  process.exit(failed ? 1 : 0);
+});

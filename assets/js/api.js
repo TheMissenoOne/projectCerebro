@@ -253,9 +253,11 @@
           
           // Map player IDs to emails from auth - use session user data where possible
           var mapped = chars.map(function(c) {
-            c.nome = c.name || c.nome || null;
-            c.codinome = c.codename || c.codinome || null;
-            c.player_name = c.player_id; // Use ID as fallback name
+            /* fichas antigas têm as colunas name/codename vazias e o nome só dentro de data */
+            var d = c.data || {};
+            c.nome = c.name || c.nome || d.nome || null;
+            c.codinome = c.codename || c.codinome || d.codinome || null;
+            c.player_name = c.player_id; // sem tabela de perfis: a UI rotula o jogador pelos personagens
             c.party_name = partyNames[c.party_id] || null;
             return c;
           });

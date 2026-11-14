@@ -163,11 +163,10 @@
             </div>
             <div class="selector-row" style="margin-top:8px">
               <span class="selector-label" data-i18n="combat.defender">DEFENSOR:</span>
-              <select class="selector-select" id="ov-char-select">
-                <option value="" data-i18n="combat.selectNpc">Selecionar NPC...</option>
-              </select>
+              <input type="search" class="selector-select" id="ov-char-select" list="ov-npc-list" autocomplete="off" data-i18n-placeholder="combat.selectNpc" placeholder="Selecionar NPC..." data-i18n-aria-label="combat.defenderNpc" aria-label="NPC defensor">
+              <datalist id="ov-npc-list"></datalist>
               <select class="selector-select" id="ov-stat-select" style="max-width: 120px;">
-                <option value="">Atributo</option>
+                <option value="" data-i18n="combat.attribute">Atributo</option>
                 <option value="destreza">Destreza</option>
                 <option value="forca">Força</option>
                 <option value="corpo">Corpo</option>
@@ -607,12 +606,13 @@ async function loadCharacters() {
 async function loadNPCs() {
   try {
     const npcs = await api.listNPCs(null, true);
-    const select = document.getElementById('ov-char-select');
-    npcs.slice(0, 20).forEach(npc => {
+    // every NPC is reachable: native datalist filters as you type
+    const list = document.getElementById('ov-npc-list');
+    npcs.slice().sort((a, b) => (a.name || '').localeCompare(b.name || '')).forEach(npc => {
       const opt = document.createElement('option');
-      opt.value = npc.id;
-      opt.textContent = npc.name;
-      select.appendChild(opt);
+      opt.value = npc.name;
+      if (npc.codename && npc.codename !== npc.name) opt.label = npc.codename;
+      list.appendChild(opt);
     });
   } catch (e) {
     console.error('Error loading NPCs:', e);
