@@ -148,14 +148,26 @@ test('cardResumo - counts filled tags and keeps tracker value', () => {
   if (r.titulo !== 'Pele' || r.poder !== 2 || r.fraqueza !== 1 || r.valor !== -2) throw new Error(JSON.stringify(r));
 });
 
-test('pdfCard - appends [GEN] and AP grade using the original tag index', () => {
+test('pdfCard - [GEN] always; " · AP n" only when [Grau em tags] is checked and grau > 0', () => {
+  X.MELHORIAS.adaptabilidade = ['A: x [Tag cruzada]', 'B: y [Condição temporária]', 'C: z [Especial]', 'Potencial Ômega: w [Grau em tags]'];
   const c = X.novoCard();
   c.tipo = 'adaptabilidade';
   c.poder[0] = ''; c.poder[1] = 'Voo'; c.poder[2] = 'Força';
   c.poder_grau[1] = 3; c.poder_generica[1] = true; c.poder_grau[2] = 0;
+  const locked = X.pdfCard(c);
+  if (!locked.includes('Voo [GEN]') || /AP 3/.test(locked)) throw new Error('locked card: ' + locked);
+  if (c.poder_grau[1] !== 3) throw new Error('grau was zeroed while locked');
+  c.melhorias_checked = [false, false, false, true];
   const h = X.pdfCard(c);
   if (!h.includes('Voo [GEN] · AP 3')) throw new Error('graded tag missing marks: ' + h);
   if (/Força[^<]*(AP|GEN)/.test(h)) throw new Error('ungraded tag got marks');
+});
+
+test('ficha.html - AP control hidden (no space) unless the card is unlocked; GEN lives inside the tag field', () => {
+  if (!/\.tcard:not\(\.omega\) \.tag-ap\{display:none;\}/.test(html)) throw new Error('AP control not display:none outside .omega');
+  if (/\.tag-ap\{[^}]*opacity:/.test(html)) throw new Error('old dimmed-when-locked styling left');
+  if (!html.includes("field.appendChild(gen)")) throw new Error('GEN not appended inside the tag field');
+  if (!/\.poder-tags \.tag-inp\{padding-right:/.test(html)) throw new Error('no right padding reserved for GEN');
 });
 
 test('ficha.html - type change and initial build share renderCardSections (no inline melhoria styles)', () => {

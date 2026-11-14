@@ -255,7 +255,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .card-inp.invalid{border-color:var(--red);background:rgba(232,0,28,.1);}
 .card-inp::placeholder{color:var(--b3);}
 
-/* título do card: estêncil de arquivo classificado + aberração cromática no canal da categoria.
+/* título do card: estêncil de arquivo sigiloso + aberração cromática no canal da categoria.
    O wrapper existe porque <input> não tem ::before/::after. */
 .card-title-wrap{position:relative;animation:titleOn .75s .12s steps(1,end) 1 both;}
 .card-title-wrap::before{content:'';position:absolute;left:0;top:3px;bottom:5px;width:4px;background:var(--cat);}
@@ -292,25 +292,28 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .tag-inp::placeholder{color:var(--b3);}
 .tag-inp.burned{text-decoration:line-through;color:var(--b3);opacity:.55;}
 .tag-row{display:flex;align-items:stretch;gap:3px;}
-.tag-row .tag-inp{flex:1;}
+.tag-field{position:relative;flex:1;min-width:0;display:flex;}
+.tag-field .tag-inp{flex:1;}
+.poder-tags .tag-inp{padding-right:42px;}
 /* GEN: liga/desliga; ligado vira um badge sólido */
-.tag-gen{flex-shrink:0;width:38px;background:transparent;border:1px dashed var(--b2);color:var(--muted2);font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;cursor:pointer;padding:0;transition:color .15s,border-color .15s,background .15s;-webkit-tap-highlight-color:transparent;}
+/* GEN: badge pequeno no fim do campo da tag; ::before alarga a área de toque sem crescer o visual */
+.tag-gen{position:absolute;right:6px;top:50%;transform:translateY(-50%);height:17px;padding:0 4px;background:transparent;border:1px solid var(--b2);color:var(--b3);font-family:var(--mono);font-size:9.5px;line-height:15px;letter-spacing:.08em;cursor:pointer;transition:color .15s,border-color .15s,background .15s;-webkit-tap-highlight-color:transparent;}
+.tag-gen::before{content:'';position:absolute;inset:-6px -6px -6px -6px;}
 .tag-gen:hover{border-color:var(--b3);color:var(--text);}
 .tag-gen[aria-pressed="true"]{background:var(--cat);border:1px solid var(--cat);color:var(--hdr-fg);font-weight:700;}
 /* grau em APs: apagado em 0, aceso com grau; FC aparece com grau ou em foco */
-.tag-ap{flex-shrink:0;width:50px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--b1);background:var(--black);padding:1px 4px;cursor:text;opacity:.5;transition:opacity .15s,border-color .15s,background .15s;}
+.tag-ap{flex-shrink:0;width:50px;display:flex;flex-direction:column;justify-content:center;border:1px solid rgba(var(--cat-rgb),.45);background:var(--black);padding:1px 4px;cursor:text;transition:border-color .15s,background .15s;}
+.tcard:not(.omega) .tag-ap{display:none;}
 .tag-ap-k{font-family:var(--mono);font-size:.38rem;letter-spacing:.1em;color:var(--muted);line-height:1.1;white-space:nowrap;}
 .tag-ap-fc{display:none;color:var(--cat);}
 .tag-ap-inp{width:100%;min-width:0;background:transparent;border:none;outline:none;color:var(--muted);font-family:var(--mono);font-size:.78rem;line-height:1.1;padding:0;-moz-appearance:textfield;}
 .tag-ap-inp::-webkit-inner-spin-button,.tag-ap-inp::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
-.tag-ap:focus-within{opacity:1;border-color:var(--cat);}
-.tag-row.graded .tag-ap{opacity:.85;}
+.tag-ap:focus-within{border-color:var(--cat);}
 .tag-row.graded .tag-ap-inp{color:var(--white);}
 .tag-row.graded .tag-ap-fc,.tag-ap:focus-within .tag-ap-fc{display:inline;}
-.tcard.omega .tag-ap{opacity:.9;border-color:rgba(var(--cat-rgb),.45);}
-.tcard.omega .tag-row.graded .tag-ap{opacity:1;border-color:var(--cat);background:rgba(var(--cat-rgb),.16);box-shadow:inset 0 -2px 0 var(--cat);}
-.tcard.omega .tag-row.graded .tag-ap-inp{font-weight:700;}
-/* slot vazio: controles somem, mas guardam o lugar (linhas alinhadas) */
+.tag-row.graded .tag-ap{border-color:var(--cat);background:rgba(var(--cat-rgb),.16);box-shadow:inset 0 -2px 0 var(--cat);}
+.tag-row.graded .tag-ap-inp{font-weight:700;}
+/* slot vazio: GEN e AP somem, mas guardam o lugar (linhas alinhadas) */
 .tag-row.empty .tag-gen,.tag-row.empty .tag-ap{visibility:hidden;}
 .tag-burn-btn{width:30px;background:none;border:none;color:var(--b2);cursor:pointer;padding:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .12s;-webkit-tap-highlight-color:transparent;line-height:1;}
 .tag-burn-btn svg{max-width:18px;max-height:18px;}
@@ -413,9 +416,10 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   .card-inp{min-height:40px;}
   .tag-row{gap:4px;}
   .tag-inp{min-height:40px;}
-  .tag-gen{width:40px;font-size:.5rem;}
+  .tag-gen::before{inset:-12px -8px;}
   .tag-ap{width:52px;}
-  .tag-ap-inp{font-size:.9rem;}
+  /* iOS Safari dá zoom ao focar campo < 16px (título já é 1.25rem+) */
+  .tag-inp,.card-inp,.tag-ap-inp{font-size:16px;}
   .tag-burn-btn{width:36px;}
   .add-tag-btn{min-height:40px;font-size:1.1rem;}
   .mel-row{padding:9px 10px;min-height:44px;}
@@ -426,7 +430,6 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
   .cards-grid{gap:12px;}
   .card-body{padding:10px 10px 12px;}
   .card-title-inp{font-size:1.25rem;min-height:40px;}
-  .tag-inp,.card-inp{font-size:.9rem;}
   .mel-txt{font-size:.8rem;}
   .mel-nome{font-size:.8rem;}
   .card-sum{flex-wrap:wrap;row-gap:4px;}
@@ -1227,8 +1230,9 @@ function focusNextTag(row){
   }
   if(nx)nx.querySelector('.tag-inp').focus();else row.querySelector('.tag-inp').blur();
 }
-/* GEN + grau em APs: só tags de poder; arrays paralelos a poder[] pelo índice */
-function addPowerControls(row,card,i){
+/* GEN (dentro do campo da tag) + grau em APs: só tags de poder; arrays paralelos a poder[] pelo índice.
+   O campo de AP só aparece com [Grau em tags] marcada (.tcard.omega, via CSS) — o valor salvo fica. */
+function addPowerControls(row,field,card,i){
   const gen=document.createElement('button');gen.type='button';gen.className='tag-gen';gen.textContent='GEN';
   const ap=document.createElement('label');ap.className='tag-ap';
   const k=document.createElement('span');k.className='tag-ap-k';k.textContent='AP';
@@ -1254,7 +1258,7 @@ function addPowerControls(row,card,i){
   });
   num.addEventListener('change',()=>{num.value=grauDe(card,i);});
   paint();
-  row.append(gen,ap);
+  field.appendChild(gen);row.appendChild(ap);
 }
 function makeTagRow(card,isPower,i,placeholder){
   const key=isPower?'poder':'fraqueza';
@@ -1281,8 +1285,9 @@ function makeTagRow(card,isPower,i,placeholder){
       t._toastTimer=setTimeout(()=>t.classList.remove('show'),200);
     });
   }
-  row.appendChild(inp);
-  if(isPower)addPowerControls(row,card,i);
+  const field=document.createElement('span');field.className='tag-field';field.appendChild(inp);
+  row.appendChild(field);
+  if(isPower)addPowerControls(row,field,card,i);
   const btn=document.createElement('button');btn.type='button';btn.className='tag-burn-btn'+(burned?' active':'');rotular(btn,t('ficha.burnTag'));
   btn.innerHTML=FLAME_SVG;
   btn.addEventListener('click',()=>{
@@ -1566,7 +1571,7 @@ function pdfCard(card){
   if(!card.tipo&&!pod.length&&!frq.length&&!card.misterio&&!card.melhorias)return '';
   let h=`<div class="pdf-card"><div class="pdf-card-hd">${pdfEsc(lbl(card.tipo)||'TEMA')}</div>`;
   if(card.misterio)h+=`<div class="pdf-myst"><span>MISTÉRIO/IDENTIDADE</span> ${pdfEsc(card.misterio)}</div>`;
-  if(pod.length)h+=`<div class="pdf-taglist"><div class="pdf-tl-lbl pod">PODER</div>${pod.map(o=>{const g=grauDe(card,o.i);return `<div class="pdf-tag pod">▲ ${pdfEsc(o.x)}${ehGenerica(card,o.i)?' [GEN]':''}${g>0?' · AP '+g:''}</div>`;}).join('')}</div>`;
+  if(pod.length)h+=`<div class="pdf-taglist"><div class="pdf-tl-lbl pod">PODER</div>${pod.map(o=>{const g=grauDesbloqueado(card)?grauDe(card,o.i):0;return `<div class="pdf-tag pod">▲ ${pdfEsc(o.x)}${ehGenerica(card,o.i)?' [GEN]':''}${g>0?' · AP '+g:''}</div>`;}).join('')}</div>`;
   if(frq.length)h+=`<div class="pdf-taglist"><div class="pdf-tl-lbl frq">FRAQUEZA</div>${frq.map(x=>`<div class="pdf-tag frq">▼ ${pdfEsc(x)}</div>`).join('')}</div>`;
   if(card.melhorias)h+=`<div class="pdf-melh"><span>MELHORIAS</span> ${pdfNl(card.melhorias)}</div>`;
   h+='</div>';
@@ -1692,7 +1697,7 @@ document.addEventListener('click',function(e){
 
 // ponytail: node-requireable export for tests/theme-cards.test.js; no-op in the browser
 if(typeof module!=='undefined'&&module.exports){
-  module.exports={deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,visibleTagIndices,cardResumo,pdfCard};
+  module.exports={MELHORIAS,deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,visibleTagIndices,cardResumo,pdfCard};
 }
 </script>
 </body>
