@@ -63,5 +63,24 @@ test('NPC creation saves the photo URL used by the shared edit form', function()
   assert(create.includes("foto_url: npcData.foto_url || ''"), 'create payload does not save photo URL');
 });
 
+test('every SK_IDS entry has a matching stat input in the NPC form', function() {
+  const m = cerebro.match(/const SK_IDS=\[([^\]]+)\]/);
+  assert(m, 'SK_IDS not found');
+  const ids = m[1].split(',').map(function(s) { return s.trim().replace(/^"|"$/g, ''); });
+  assert(ids.length === 9, 'SK_IDS must list 9 stats');
+  ids.forEach(function(id) { assert(cerebro.includes('id="f-' + id + '"'), 'missing input f-' + id); });
+});
+
+test('NPC tags are never parsed out of a trailing number', function() {
+  assert(!/function parseTag/.test(cerebro), 'parseTag (trailing-number grau) still present');
+  assert(!/\.grau-[1-6]\{/.test(cerebro), 'per-value grau classes still present');
+});
+
+test('combate NPC picker is not capped at 20 entries', function() {
+  const combate = fs.readFileSync(path.join(ROOT, 'combate.html'), 'utf8');
+  assert(!combate.includes('slice(0, 20)'), 'NPC list still sliced to 20');
+  assert(combate.includes('list="ov-npc-list"'), 'NPC picker is not searchable');
+});
+
 console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
 process.exit(failed ? 1 : 0);
