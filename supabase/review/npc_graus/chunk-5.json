@@ -1921,9 +1921,9 @@
    },
    {
     "texto": "Sobrevive a Ferimentos Letais para Qualquer Humano",
-    "grau": 14,
+    "grau": 16,
     "benchmark": "resistencia",
-    "feat": "mesmo fator de cura (sobrevive ferimentos letais) → 14",
+    "feat": "mesmo fator de cura (Fator de Cura Acelerado, sobrevive ferimentos letais) → 16",
     "confidence": "media"
    },
    {

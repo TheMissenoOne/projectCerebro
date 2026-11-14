@@ -206,7 +206,7 @@ function baseline(chunkDir) {
     (d.temas || []).forEach(t => (t.fraqueza || []).forEach(x => { const s = typeof x === 'string' ? x : x && x.texto; if (s) seen.add(norm(s)); }));
     const extras = [];
     for (const x of d.tags || []) {
-      let s = typeof x === 'string' ? x.replace(/\s+-?\d+$/, '') : x && x.texto;
+      let s = typeof x === 'string' ? x.trim().replace(/\s+-?\d+$/, '') : x && x.texto;
       if (!s || !String(s).trim() || seen.has(norm(s))) continue;
       seen.add(norm(s));
       extras.push(String(s).trim());
@@ -281,7 +281,8 @@ const sqlStr = s => "'" + String(s).replace(/'/g, "''") + "'";
 
 // O editor do cerebro.html salva data.tags como strings "texto N" (tagToStr/parseTag): uma string
 // casa pelo texto inteiro OU sem o sufixo numérico; objetos casam por ->>'texto'.
-const STRIP = el => `btrim(regexp_replace(${el} #>> '{}', '\\s+-?[0-9]+$', ''))`;
+// btrim antes do regex: "X 3 " (espaço no fim) também perde o sufixo.
+const STRIP = el => `btrim(regexp_replace(btrim(${el} #>> '{}'), '\\s+-?[0-9]+$', ''))`;
 const tagMatch = (el, k) => `(CASE jsonb_typeof(${el})
               WHEN 'object' THEN lower(btrim(${el} ->> 'texto')) = ${k}
               WHEN 'string' THEN ${k} IN (lower(btrim(${el} #>> '{}')), lower(${STRIP(el)}))
@@ -391,7 +392,7 @@ function countOldGraus(grades) {
     const els = [...(r.data.temas || []).flatMap(t => (Array.isArray(t.poder) ? t.poder : [])), ...(Array.isArray(r.data.tags) ? r.data.tags : [])];
     for (const e of els) {
       if (e && typeof e === 'object' && 'grau' in e && ns.has(norm(e.texto))) n++;
-      else if (typeof e === 'string' && !ns.has(norm(e)) && ns.has(norm(e.replace(/\s+-?\d+$/, '')))) n++;
+      else if (typeof e === 'string' && !ns.has(norm(e)) && ns.has(norm(e.trim().replace(/\s+-?\d+$/, '')))) n++;
     }
   }
   return n;

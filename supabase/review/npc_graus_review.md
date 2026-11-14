@@ -11,8 +11,8 @@ Gerado por `node scripts/gen-npc-graus.js build`. Rubrica: `supabase/review/npc_
 | Faixa de grau | Tags |
 |---|---:|
 | 1–6 humano | 356 |
-| 7–15 rua | 840 |
-| 16–30 Ômega | 515 |
+| 7–15 rua | 837 |
+| 16–30 Ômega | 518 |
 | 31+ cósmico | 74 |
 
 | Perigo | NPCs | Grau máx. (NPC — tag) | Mediana |
@@ -123,7 +123,7 @@ Gerado por `node scripts/gen-npc-graus.js build`. Rubrica: `supabase/review/npc_
 - Amplificação Cósmica de Poderes de Toda a Equipe (Phoenix Five) — **31** · outro · pareado ao piso cósmico dos demais hospedeiros Fênix → 31
 - Barreira Psíquica Estelar Contra Invasões Mentais — **35** · outro · variante cósmica: barreira em escala estelar (sistema interno ~10¹¹ m) → 35; = barreira estelar da Rachel (Avatar)
 - Invulnerabilidade Absoluta (Até Thor/Martelo) — **40** · resistencia · aguenta golpes de Thor/Mjolnir (região/montanhas massivas 31–45) → 40
-- Força Ilimitada (Classe 100+) — **14** · peso · Classe 100+: ≥100 t = 12; "+" com Fênix → 14
+- Força Ilimitada (Classe 100+) — **14** · peso · Classe 100+: ≥100 t = 12; o "+" com Fênix ~400 t → 14
 - Telepatia Funciona Nesta Forma (Fênix) — **68** · outro · mesma capacidade da Telepatia Cósmica (galáxia) → 68
 
 **Hope Summers (Messias Mutante)** (extremo, 13)
@@ -369,7 +369,7 @@ Gerado por `node scripts/gen-npc-graus.js build`. Rubrica: `supabase/review/npc_
 
 **Rachel Summers (Fênix Force - Avatar Completo)** (extremo, 9)
 
-- Telecinese Molecular/Atômica — **40** (pico 78) · peso · avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 40; pico planetário
+- Telecinese Molecular/Atômica — **42** (pico 78) · peso · avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 42 (AP 40 ≈ 2,5×10¹⁰ t); pico planetário
 - Chamas Fênix Queimam no Vácuo/Tempo — **50** · energia · fogo Fênix cósmico (devastação planetária baixa 46–60) → 50
 - Viagem Temporal / Realidades Psíquica — **40** · outro · viagem entre épocas/realidades (faixa cósmica) → 40
 - Ressurreição Infinita — **50** · duracao · mesma ressurreição Fênix de Jean → 50
@@ -1400,7 +1400,7 @@ Atributos: destreza 8, força 8, corpo 8, inteligência 7, vontade 8, mente 8, i
 | Barreira Psíquica Estelar Contra Invasões Mentais | 35 |  | outro | variante cósmica: barreira em escala estelar (sistema interno ~10¹¹ m) → 35; = barreira estelar da Rachel (Avatar) | baixa |
 | Devastação em Massa Quando Fênix Descontrolada | — |  | — | efeito de descontrole: risco/fraqueza disfarçada | media |
 | Invulnerabilidade Absoluta (Até Thor/Martelo) | 40 |  | resistencia | aguenta golpes de Thor/Mjolnir (região/montanhas massivas 31–45) → 40 | baixa |
-| Força Ilimitada (Classe 100+) | 14 |  | peso | Classe 100+: ≥100 t = 12; "+" com Fênix → 14 | baixa |
+| Força Ilimitada (Classe 100+) | 14 |  | peso | Classe 100+: ≥100 t = 12; o "+" com Fênix ~400 t → 14 | baixa |
 | Telepatia Funciona Nesta Forma (Fênix) | 68 |  | outro | mesma capacidade da Telepatia Cósmica (galáxia) → 68 | baixa |
 
 ### Hope Summers (Messias Mutante) — x-men
@@ -1916,7 +1916,7 @@ Atributos: destreza 8, força 8, corpo 8, inteligência 7, vontade 8, mente 8, i
 | Tag | Grau | Pico | Benchmark | Feat | Conf. |
 |---|---:|---:|---|---|---|
 | Telepatia Cósmica (Galáxia) | 68 |  | informacao | o texto é o feito: galáxia ~100.000 anos-luz → 68 | media |
-| Telecinese Molecular/Atômica | 40 | 78 | peso | avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 40; pico planetário | baixa |
+| Telecinese Molecular/Atômica | 42 | 78 | peso | avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 42 (AP 40 ≈ 2,5×10¹⁰ t); pico planetário | baixa |
 | Chamas Fênix Queimam no Vácuo/Tempo | 50 |  | energia | fogo Fênix cósmico (devastação planetária baixa 46–60) → 50 | baixa |
 | Viagem Temporal / Realidades Psíquica | 40 |  | outro | viagem entre épocas/realidades (faixa cósmica) → 40 | baixa |
 | Ressurreição Infinita | 50 |  | duracao | mesma ressurreição Fênix de Jean → 50 | baixa |
@@ -2150,13 +2150,13 @@ Atributos: destreza 6, força 14, corpo 13, inteligência 5, vontade 7, mente 6,
 | Lealdade à Irmã Magik | — |  | — | relacionamento | alta |
 | Força Interior | — |  | — | personalidade | alta |
 | Força Sobre-humana | 12 |  | peso | mesma força de Força Colossal (~100 t) → 12 | media |
-| Pele de Aço Orgânico | 16 |  | resistencia | mesma forma de aço de Transformação em Aço Orgânico → 16 | media |
+| Pele de Aço Orgânico | 18 |  | resistencia | mesma forma de aço de Transformação em Aço Orgânico Indestrutível (virtualmente indestrutível) → 18 | media |
 | Irmão de Magik (Illyana) | — |  | — | relacionamento | alta |
 | Sangue de Feiticeiros | — |  | — | herança/latente | alta |
 | Conexão com Limbo | — |  | — | vínculo narrativo | media |
 | Protege Inocentes | — |  | — | personalidade | alta |
 | Pele de Aço Orgânico Virtualmente Indestrutível | 18 |  | resistencia | o texto é o feito: virtualmente indestrutível → 18 | media |
-| Força Sobre-Humana Capaz de Erguer Dezenas de Toneladas | 11 |  | peso | o texto é o feito: dezenas de toneladas ~50 t → 11 | alta |
+| Força Sobre-Humana Capaz de Erguer Dezenas de Toneladas | 12 |  | peso | o texto é o feito: dezenas de toneladas, topo ~90 t → 12 (calibragem: o maior); = Força Colossal (~100 t → 12) | alta |
 | Invulnerabilidade a Balas, Explosões e Impactos Diretos | 13 |  | resistencia | balas e explosões até antitanque (13–15) → 13 | media |
 | Resistência Total a Temperaturas Extremas em Forma Metálica | 12 |  | resistencia | aguenta fogo intenso/frio extremo em aço → 12 | media |
 | Golpes Capazes de Rachar Concreto Reforçado e Metal | 10 |  | energia | o texto é o feito: concreto armado (9–10) → 10 | alta |
@@ -2464,7 +2464,7 @@ Atributos: destreza 7, força 5, corpo 5, inteligência 7, vontade 7, mente 7, i
 | Tag | Grau | Pico | Benchmark | Feat | Conf. |
 |---|---:|---:|---|---|---|
 | Criocinese Ômega | 22 | 28 | peso | umbrella ≥ sub-técnica: congela lago/trecho de rio ~100 kt de gelo → 22; pico mar (28) | media |
-| Transformação em Ser de Gelo Puro | 16 |  | resistencia | corpo de gelo se refaz de estilhaços (13–16) → 16 | media |
+| Transformação em Ser de Gelo Puro | 18 |  | resistencia | corpo de gelo se refaz de estilhaços: mesma reconstituição de Regeneração Instantânea do Corpo de Gelo (18–22) → 18 | media |
 | Armadura de Gelo Instantânea | 10 |  | resistencia | armadura aguenta artilharia leve → 10 | baixa |
 | Criação de Estruturas de Gelo Complexas | 18 |  | peso | fortalezas/pontes de gelo ~6 kt → 18 | media |
 | Humor Defensivo | — |  | — | traço de personalidade | alta |
@@ -2841,7 +2841,7 @@ Atributos: destreza 9, força 9, corpo 10, inteligência 6, vontade 9, mente 5, 
 | Gatilhos de Berserk | — |  | — | fraqueza | alta |
 | Resistência a Telepatia | 10 |  | outro | pareado a telepatas de rua (~8–12), cede a Ômegas → 10 | baixa |
 | Regenera Ferimentos Letais em Segundos | 16 |  | resistencia | o texto é o feito: ferimento letal em segundos → 16; = Wolverine | media |
-| Sobrevive a Perfurações no Coração e Ferimentos que Matariam Qualquer Um | 15 |  | resistencia | mesma cura de ferimentos letais → 15 | media |
+| Sobrevive a Perfurações no Coração e Ferimentos que Matariam Qualquer Um | 16 |  | resistencia | mesma cura de ferimentos letais de Regenera Ferimentos Letais em Segundos / Fator de Cura Acelerado → 16 | media |
 | Imune à Maioria dos Venenos, Toxinas e Doenças | 12 |  | outro | pareado a venenos/doenças fortes → 12 | media |
 | Envelhecimento Drasticamente Retardado — Ativo há Mais de um Século | 10 |  | duracao | longevidade de século+ (faixa rua, não pela coluna Tempo) → 10 | baixa |
 | Sentidos de Predador Apex Rastreiam Presas a Quilômetros | 10 |  | distancia | o texto é o feito: quilômetros (~3 km) → 10 | media |
@@ -3057,7 +3057,7 @@ Atributos: destreza 10, força 7, corpo 9, inteligência 7, vontade 10, mente 8,
 | Regeneração Instantânea de Órgãos e Ossos Fraturados | 16 |  | resistencia | regenera órgãos e ossos; mesmo fator → 16 | media |
 | Garras Retráteis Duplas em Cada Mão, Mais Uma no Pé | — |  | — | traço anatômico; o corte está em Garras de Adamantium | media |
 | Cicatrização Neutraliza Quase Todo Veneno e Sedativo | 10 |  | outro | pareado a venenos e sedativos comuns (~10) | media |
-| Sobrevive a Ferimentos Letais para Qualquer Humano | 14 |  | resistencia | mesmo fator de cura (sobrevive ferimentos letais) → 14 | media |
+| Sobrevive a Ferimentos Letais para Qualquer Humano | 16 |  | resistencia | mesmo fator de cura (Fator de Cura Acelerado, sobrevive ferimentos letais) → 16 | media |
 | Corte Cirúrgico Preciso — Nenhum Movimento Desperdiçado | 8 |  | outro | precisão de corte acima do pico humano → 8 | media |
 | Controle Consciente Sobre o Instinto Assassino, ao Contrário de Logan | — |  | — | traço de personalidade/controle | alta |
 | Envelhecimento Retardado pelo Fator de Cura | 6 |  | duracao | envelhecimento retardado; faixa humana alta → 6 | baixa |
@@ -3287,7 +3287,7 @@ Atributos: destreza 7, força 4, corpo 5, inteligência 6, vontade 7, mente 7, i
 | Tag | Grau | Pico | Benchmark | Feat | Conf. |
 |---|---:|---:|---|---|---|
 | Cria esferas de energia plasmática que explodem ao impacto | 8 | 10 | energia | bombas derrubam parede de tijolo/viram carro → 8 | media |
-| Regula força e ricochete para abrir passagem ou afastar inimigos | 8 |  | energia | mesmas bombas → 8 | media |
+| Regula força e ricochete para abrir passagem ou afastar inimigos | 8 |  | energia | uso dosado das bombas (Bombas de Meltdown 10): abre parede de tijolo/afasta alvo (7–8) → 8 | media |
 | Usa o próprio impulso explosivo para acrobacias e fuga | 5 |  | velocidade | impulso explosivo ~80 km/h → 5 | baixa |
 | Sobrevivente independente que improvisa sob pressão | — |  | — | traço | alta |
 | Experiência com X-Force e equipes mutantes jovens | — |  | — | histórico | alta |
@@ -3299,7 +3299,7 @@ Atributos: destreza 7, força 4, corpo 5, inteligência 6, vontade 7, mente 7, i
 | Instinto de Sobrevivência | — |  | — | filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme) | alta |
 | Conhecimento Tático | — |  | — | filler de template repetido verbatim em 48 NPCs; não é poder (harmonização: null uniforme) | alta |
 | Atitude Rebelde | — |  | — | traço de personalidade | alta |
-| Bombas de Plasma com Timer Psiônico _(extra)_ | 8 |  | energia | extra; mesmas bombas → 8 | media |
+| Bombas de Plasma com Timer Psiônico _(extra)_ | 10 |  | energia | extra; mesmas bombas de Bombas de Meltdown (rompem concreto armado) → 10 | media |
 | Bombas de Meltdown _(extra)_ | 10 |  | energia | bombas maiores rompem concreto armado → 10 | media |
 
 ### Cable (Suprimido) — x-men
@@ -3646,7 +3646,7 @@ Atributos: destreza 6, força 6, corpo 6, inteligência 4, vontade 5, mente 4, i
 | Trabalho em Equipe | — |  | — | filler de template repetido verbatim em 53 NPCs; não é poder (harmonização: null uniforme) | alta |
 | Instinto de Sobrevivência | — |  | — | filler de template repetido verbatim em 72 NPCs; não é poder (harmonização: null uniforme) | alta |
 | Arpões Energéticos | 18 |  | outro | ignoram invulnerabilidade, ferem Colossus em aço: pareado ao Corpo de aço do Colossus (18) → 18 | baixa |
-| Poder de Penetrar Qualquer Defesa _(extra)_ | 15 |  | outro | extra; = Arpões Energéticos → 15 | media |
+| Poder de Penetrar Qualquer Defesa _(extra)_ | 18 |  | outro | extra; = Arpões Energéticos (mesmo poder: ignoram invulnerabilidade, ferem Colossus em aço) → 18 | media |
 | Assassino Calculista _(extra)_ | — |  | — | personalidade/papel | alta |
 
 ### Husk (Paige Guthrie) — novatos
@@ -4419,7 +4419,7 @@ Atributos: destreza 7, força 5, corpo 6, inteligência 6, vontade 7, mente 7, i
 | Motivação para proteger a família que escolheu | — |  | — | motivação | alta |
 | Capacidade de se abrir emocionalmente após anos de isolamento | — |  | — | personalidade | alta |
 | Controle Sísmico _(extra)_ | 12 | 18 | energia | extra; mesmo controle sísmico → 12 | media |
-| Vibrações Sísmicas Precisas _(extra)_ | 10 |  | energia | extra; mesmas vibrações dirigidas → 10 | media |
+| Vibrações Sísmicas Precisas _(extra)_ | 12 |  | energia | extra; mesmas vibrações de Gera ondas sísmicas e vibrações pelo solo, dirigidas → 12 | media |
 | Parceiro de Shatterstar _(extra)_ | — |  | — | relacionamento | alta |
 
 ### Riptide — vilao

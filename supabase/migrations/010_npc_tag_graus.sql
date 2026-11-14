@@ -153,7 +153,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Onslaught', TRUE, 'Impõe Suas Regras como Leis Físicas Absolutas', 40),
   ('Onslaught', TRUE, 'Mantém a Ilusão Estável por Meses (Heroes Reborn)', 40),
   ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Telepatia Cósmica (Galáxia)', 68),
-  ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Telecinese Molecular/Atômica', 40),
+  ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Telecinese Molecular/Atômica', 42),
   ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Chamas Fênix Queimam no Vácuo/Tempo', 50),
   ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Viagem Temporal / Realidades Psíquica', 40),
   ('Rachel Summers (Fênix Force - Avatar Completo)', TRUE, 'Ressurreição Infinita', 50),
@@ -177,13 +177,13 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Colossus', TRUE, 'Lealdade à Irmã Magik', NULL),
   ('Colossus', TRUE, 'Força Interior', NULL),
   ('Colossus', TRUE, 'Força Sobre-humana', 12),
-  ('Colossus', TRUE, 'Pele de Aço Orgânico', 16),
+  ('Colossus', TRUE, 'Pele de Aço Orgânico', 18),
   ('Colossus', TRUE, 'Irmão de Magik (Illyana)', NULL),
   ('Colossus', TRUE, 'Sangue de Feiticeiros', NULL),
   ('Colossus', TRUE, 'Conexão com Limbo', NULL),
   ('Colossus', TRUE, 'Protege Inocentes', NULL),
   ('Colossus', TRUE, 'Pele de Aço Orgânico Virtualmente Indestrutível', 18),
-  ('Colossus', TRUE, 'Força Sobre-Humana Capaz de Erguer Dezenas de Toneladas', 11),
+  ('Colossus', TRUE, 'Força Sobre-Humana Capaz de Erguer Dezenas de Toneladas', 12),
   ('Colossus', TRUE, 'Invulnerabilidade a Balas, Explosões e Impactos Diretos', 13),
   ('Colossus', TRUE, 'Resistência Total a Temperaturas Extremas em Forma Metálica', 12),
   ('Colossus', TRUE, 'Golpes Capazes de Rachar Concreto Reforçado e Metal', 10),
@@ -304,7 +304,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Sabretooth', TRUE, 'Gatilhos de Berserk', NULL),
   ('Sabretooth', TRUE, 'Resistência a Telepatia', 10),
   ('Sabretooth', TRUE, 'Regenera Ferimentos Letais em Segundos', 16),
-  ('Sabretooth', TRUE, 'Sobrevive a Perfurações no Coração e Ferimentos que Matariam Qualquer Um', 15),
+  ('Sabretooth', TRUE, 'Sobrevive a Perfurações no Coração e Ferimentos que Matariam Qualquer Um', 16),
   ('Sabretooth', TRUE, 'Imune à Maioria dos Venenos, Toxinas e Doenças', 12),
   ('Sabretooth', TRUE, 'Envelhecimento Drasticamente Retardado — Ativo há Mais de um Século', 10),
   ('Sabretooth', TRUE, 'Sentidos de Predador Apex Rastreiam Presas a Quilômetros', 10),
@@ -967,7 +967,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Harpoon', TRUE, 'Trabalho em Equipe', NULL),
   ('Harpoon', TRUE, 'Instinto de Sobrevivência', NULL),
   ('Harpoon', TRUE, 'Arpões Energéticos', 18),
-  ('Harpoon', TRUE, 'Poder de Penetrar Qualquer Defesa', 15),
+  ('Harpoon', TRUE, 'Poder de Penetrar Qualquer Defesa', 18),
   ('Harpoon', TRUE, 'Assassino Calculista', NULL),
   ('Kestrel', TRUE, 'Teletransporte de Curta Distância', 6),
   ('Kestrel', TRUE, 'Reflexos Rápidos', NULL),
@@ -1345,7 +1345,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Frenzy', TRUE, 'Ex-Acólita de Magneto', NULL),
   ('Frenzy', TRUE, 'Eventual Aliada dos X-Men', NULL),
   ('Ícone', TRUE, 'Criocinese Ômega', 22),
-  ('Ícone', TRUE, 'Transformação em Ser de Gelo Puro', 16),
+  ('Ícone', TRUE, 'Transformação em Ser de Gelo Puro', 18),
   ('Ícone', TRUE, 'Armadura de Gelo Instantânea', 10),
   ('Ícone', TRUE, 'Criação de Estruturas de Gelo Complexas', 18),
   ('Ícone', TRUE, 'Humor Defensivo', NULL),
@@ -1468,7 +1468,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Boomer', TRUE, 'Instinto de Sobrevivência', NULL),
   ('Boomer', TRUE, 'Conhecimento Tático', NULL),
   ('Boomer', TRUE, 'Atitude Rebelde', NULL),
-  ('Boomer', TRUE, 'Bombas de Plasma com Timer Psiônico', 8),
+  ('Boomer', TRUE, 'Bombas de Plasma com Timer Psiônico', 10),
   ('Boomer', TRUE, 'Bombas de Meltdown', 10),
   ('Cecilia Reyes', TRUE, 'Campo de Força Biológico Instintivo', 10),
   ('Cecilia Reyes', TRUE, 'Reflexos Rápidos', NULL),
@@ -2185,7 +2185,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('Rictor', TRUE, 'Motivação para proteger a família que escolheu', NULL),
   ('Rictor', TRUE, 'Capacidade de se abrir emocionalmente após anos de isolamento', NULL),
   ('Rictor', TRUE, 'Controle Sísmico', 12),
-  ('Rictor', TRUE, 'Vibrações Sísmicas Precisas', 10),
+  ('Rictor', TRUE, 'Vibrações Sísmicas Precisas', 12),
   ('Rictor', TRUE, 'Parceiro de Shatterstar', NULL),
   ('Scanner', TRUE, 'Visão de Raio-X', 5),
   ('Scanner', TRUE, 'Reflexos Rápidos', NULL),
@@ -2559,7 +2559,7 @@ INSERT INTO _g010 (npc_name, is_global, tag_texto, grau) VALUES
   ('X-23', TRUE, 'Regeneração Instantânea de Órgãos e Ossos Fraturados', 16),
   ('X-23', TRUE, 'Garras Retráteis Duplas em Cada Mão, Mais Uma no Pé', NULL),
   ('X-23', TRUE, 'Cicatrização Neutraliza Quase Todo Veneno e Sedativo', 10),
-  ('X-23', TRUE, 'Sobrevive a Ferimentos Letais para Qualquer Humano', 14),
+  ('X-23', TRUE, 'Sobrevive a Ferimentos Letais para Qualquer Humano', 16),
   ('X-23', TRUE, 'Corte Cirúrgico Preciso — Nenhum Movimento Desperdiçado', 8),
   ('X-23', TRUE, 'Controle Consciente Sobre o Instinto Assassino, ao Contrário de Logan', NULL),
   ('X-23', TRUE, 'Envelhecimento Retardado pelo Fator de Cura', 6),
@@ -2851,14 +2851,14 @@ UPDATE npcs n SET
           SELECT CASE WHEN g.grau IS NULL THEN
                         CASE WHEN jsonb_typeof(p.v) = 'object' THEN p.v - 'grau'
                              WHEN lower(btrim(p.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN p.v
-                             ELSE jsonb_build_object('texto', btrim(regexp_replace(p.v #>> '{}', '\s+-?[0-9]+$', ''))) END
+                             ELSE jsonb_build_object('texto', btrim(regexp_replace(btrim(p.v #>> '{}'), '\s+-?[0-9]+$', ''))) END
                       WHEN jsonb_typeof(p.v) = 'object' THEN p.v || jsonb_build_object('grau', g.grau)
-                      ELSE jsonb_build_object('texto', CASE WHEN lower(btrim(p.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN p.v #>> '{}' ELSE btrim(regexp_replace(p.v #>> '{}', '\s+-?[0-9]+$', '')) END, 'grau', g.grau) END
+                      ELSE jsonb_build_object('texto', CASE WHEN lower(btrim(p.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN p.v #>> '{}' ELSE btrim(regexp_replace(btrim(p.v #>> '{}'), '\s+-?[0-9]+$', '')) END, 'grau', g.grau) END
           FROM _g010 g
           WHERE g.npc_name = n.name AND g.is_global = n.is_global
             AND (CASE jsonb_typeof(p.v)
               WHEN 'object' THEN lower(btrim(p.v ->> 'texto')) = lower(btrim(g.tag_texto))
-              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(p.v #>> '{}')), lower(btrim(regexp_replace(p.v #>> '{}', '\s+-?[0-9]+$', ''))))
+              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(p.v #>> '{}')), lower(btrim(regexp_replace(btrim(p.v #>> '{}'), '\s+-?[0-9]+$', ''))))
               ELSE FALSE END)
           LIMIT 1), p.v) ORDER BY p.o), '[]'::jsonb)
              FROM jsonb_array_elements(t.v -> 'poder') WITH ORDINALITY p(v, o)))
@@ -2870,14 +2870,14 @@ UPDATE npcs n SET
           SELECT CASE WHEN g.grau IS NULL THEN
                         CASE WHEN jsonb_typeof(x.v) = 'object' THEN x.v - 'grau'
                              WHEN lower(btrim(x.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN x.v
-                             ELSE jsonb_build_object('texto', btrim(regexp_replace(x.v #>> '{}', '\s+-?[0-9]+$', ''))) END
+                             ELSE jsonb_build_object('texto', btrim(regexp_replace(btrim(x.v #>> '{}'), '\s+-?[0-9]+$', ''))) END
                       WHEN jsonb_typeof(x.v) = 'object' THEN x.v || jsonb_build_object('grau', g.grau)
-                      ELSE jsonb_build_object('texto', CASE WHEN lower(btrim(x.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN x.v #>> '{}' ELSE btrim(regexp_replace(x.v #>> '{}', '\s+-?[0-9]+$', '')) END, 'grau', g.grau) END
+                      ELSE jsonb_build_object('texto', CASE WHEN lower(btrim(x.v #>> '{}')) = lower(btrim(g.tag_texto)) THEN x.v #>> '{}' ELSE btrim(regexp_replace(btrim(x.v #>> '{}'), '\s+-?[0-9]+$', '')) END, 'grau', g.grau) END
           FROM _g010 g
           WHERE g.npc_name = n.name AND g.is_global = n.is_global
             AND (CASE jsonb_typeof(x.v)
               WHEN 'object' THEN lower(btrim(x.v ->> 'texto')) = lower(btrim(g.tag_texto))
-              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(x.v #>> '{}')), lower(btrim(regexp_replace(x.v #>> '{}', '\s+-?[0-9]+$', ''))))
+              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(x.v #>> '{}')), lower(btrim(regexp_replace(btrim(x.v #>> '{}'), '\s+-?[0-9]+$', ''))))
               ELSE FALSE END)
           LIMIT 1), x.v) ORDER BY x.o), '[]'::jsonb)
          FROM jsonb_array_elements(n.data -> 'tags') WITH ORDINALITY x(v, o)))
@@ -2899,13 +2899,13 @@ WHERE g.grau IS NOT NULL AND NOT EXISTS (
       SELECT 1 FROM jsonb_array_elements(CASE WHEN jsonb_typeof(n.data -> 'tags') = 'array' THEN n.data -> 'tags' ELSE '[]'::jsonb END) e(v)
       WHERE (CASE jsonb_typeof(e.v)
               WHEN 'object' THEN lower(btrim(e.v ->> 'texto')) = lower(btrim(g.tag_texto))
-              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(e.v #>> '{}')), lower(btrim(regexp_replace(e.v #>> '{}', '\s+-?[0-9]+$', ''))))
+              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(e.v #>> '{}')), lower(btrim(regexp_replace(btrim(e.v #>> '{}'), '\s+-?[0-9]+$', ''))))
               ELSE FALSE END))
     OR EXISTS (
       SELECT 1 FROM jsonb_array_elements(CASE WHEN jsonb_typeof(n.data -> 'temas') = 'array' THEN n.data -> 'temas' ELSE '[]'::jsonb END) t(v),
            jsonb_array_elements(CASE WHEN jsonb_typeof(t.v -> 'poder') = 'array' THEN t.v -> 'poder' ELSE '[]'::jsonb END) p(v)
       WHERE (CASE jsonb_typeof(p.v)
               WHEN 'object' THEN lower(btrim(p.v ->> 'texto')) = lower(btrim(g.tag_texto))
-              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(p.v #>> '{}')), lower(btrim(regexp_replace(p.v #>> '{}', '\s+-?[0-9]+$', ''))))
+              WHEN 'string' THEN lower(btrim(g.tag_texto)) IN (lower(btrim(p.v #>> '{}')), lower(btrim(regexp_replace(btrim(p.v #>> '{}'), '\s+-?[0-9]+$', ''))))
               ELSE FALSE END))))
 ORDER BY 1, 2;

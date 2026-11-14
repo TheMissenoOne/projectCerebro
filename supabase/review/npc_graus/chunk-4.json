@@ -3495,9 +3495,9 @@
       },
       {
         "texto": "Vibrações Sísmicas Precisas",
-        "grau": 10,
+        "grau": 12,
         "benchmark": "energia",
-        "feat": "extra; mesmas vibrações dirigidas → 10",
+        "feat": "extra; mesmas vibrações de Gera ondas sísmicas e vibrações pelo solo, dirigidas → 12",
         "confidence": "media"
       },
       {

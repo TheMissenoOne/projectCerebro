@@ -878,10 +878,10 @@
       },
       {
         "texto": "Telecinese Molecular/Atômica",
-        "grau": 40,
+        "grau": 42,
         "peak": 78,
         "benchmark": "peso",
-        "feat": "avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 40; pico planetário",
+        "feat": "avatar Fênix: TK em escala de montanhas/continente (~10¹¹ t) → 42 (AP 40 ≈ 2,5×10¹⁰ t); pico planetário",
         "confidence": "baixa"
       },
       {
@@ -1061,9 +1061,9 @@
       },
       {
         "texto": "Pele de Aço Orgânico",
-        "grau": 16,
+        "grau": 18,
         "benchmark": "resistencia",
-        "feat": "mesma forma de aço de Transformação em Aço Orgânico → 16",
+        "feat": "mesma forma de aço de Transformação em Aço Orgânico Indestrutível (virtualmente indestrutível) → 18",
         "confidence": "media"
       },
       {
@@ -1103,9 +1103,9 @@
       },
       {
         "texto": "Força Sobre-Humana Capaz de Erguer Dezenas de Toneladas",
-        "grau": 11,
+        "grau": 12,
         "benchmark": "peso",
-        "feat": "o texto é o feito: dezenas de toneladas ~50 t → 11",
+        "feat": "o texto é o feito: dezenas de toneladas, topo ~90 t → 12 (calibragem: o maior); = Força Colossal (~100 t → 12)",
         "confidence": "alta"
       },
       {
@@ -1982,9 +1982,9 @@
       },
       {
         "texto": "Sobrevive a Perfurações no Coração e Ferimentos que Matariam Qualquer Um",
-        "grau": 15,
+        "grau": 16,
         "benchmark": "resistencia",
-        "feat": "mesma cura de ferimentos letais → 15",
+        "feat": "mesma cura de ferimentos letais de Regenera Ferimentos Letais em Segundos / Fator de Cura Acelerado → 16",
         "confidence": "media"
       },
       {

@@ -260,7 +260,7 @@
         "texto": "Força Ilimitada (Classe 100+)",
         "grau": 14,
         "benchmark": "peso",
-        "feat": "Classe 100+: ≥100 t = 12; \"+\" com Fênix → 14",
+        "feat": "Classe 100+: ≥100 t = 12; o \"+\" com Fênix ~400 t → 14",
         "confidence": "baixa"
       },
       {
@@ -1356,9 +1356,9 @@
       },
       {
         "texto": "Transformação em Ser de Gelo Puro",
-        "grau": 16,
+        "grau": 18,
         "benchmark": "resistencia",
-        "feat": "corpo de gelo se refaz de estilhaços (13–16) → 16",
+        "feat": "corpo de gelo se refaz de estilhaços: mesma reconstituição de Regeneração Instantânea do Corpo de Gelo (18–22) → 18",
         "confidence": "media"
       },
       {
@@ -2179,7 +2179,7 @@
         "texto": "Regula força e ricochete para abrir passagem ou afastar inimigos",
         "grau": 8,
         "benchmark": "energia",
-        "feat": "mesmas bombas → 8",
+        "feat": "uso dosado das bombas (Bombas de Meltdown 10): abre parede de tijolo/afasta alvo (7–8) → 8",
         "confidence": "media"
       },
       {
@@ -2261,9 +2261,9 @@
       },
       {
         "texto": "Bombas de Plasma com Timer Psiônico",
-        "grau": 8,
+        "grau": 10,
         "benchmark": "energia",
-        "feat": "extra; mesmas bombas → 8",
+        "feat": "extra; mesmas bombas de Bombas de Meltdown (rompem concreto armado) → 10",
         "confidence": "media"
       },
       {

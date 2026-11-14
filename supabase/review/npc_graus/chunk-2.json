@@ -2589,9 +2589,9 @@
       },
       {
         "texto": "Poder de Penetrar Qualquer Defesa",
-        "grau": 15,
+        "grau": 18,
         "benchmark": "outro",
-        "feat": "extra; = Arpões Energéticos → 15",
+        "feat": "extra; = Arpões Energéticos (mesmo poder: ignoram invulnerabilidade, ferem Colossus em aço) → 18",
         "confidence": "media"
       },
       {
