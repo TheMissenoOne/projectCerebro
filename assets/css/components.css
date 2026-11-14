@@ -417,7 +417,7 @@
 
 .npc-count { font-family: var(--mono); font-size: .42rem; color: var(--muted2); }
 .cat-pills { display: flex; flex-wrap: wrap; gap: 3px; padding: 7px 12px; border-bottom: 1px solid var(--b1); flex-shrink: 0; }
-.cat-pill { font-family: var(--mono); font-size: .4rem; letter-spacing: .05em; padding: 3px 6px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all .12s; -webkit-tap-highlight-color: transparent; }
+.cat-pill { font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: .05em; min-height: 28px; padding: 0 8px; border: 1px solid var(--b2); background: transparent; color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all .12s; -webkit-tap-highlight-color: transparent; }
 .cat-pill.active { background: rgba(var(--accentRGB),.15); border-color: var(--accent2); color: var(--accent); }
 .cat-pill:hover:not(.active) { border-color: var(--b3); color: var(--text); }
 
@@ -522,44 +522,78 @@
 .npc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .npc-tag { font-family: var(--mono); font-size: .48rem; letter-spacing: .04em; padding: 3px 7px; border: 1px solid; border-radius: 2px; }
 
+/* ── BUTTONS ─────────────────────────────────────────────────────────
+   .btn            outline / ghost (default)
+   .btn-primary    accent fill, black text — one per view
+   .btn-danger     destructive (always behind a confirm)
+   .btn-icon       square icon-only, needs aria-label
+   .btn-sm         dense contexts (still ≥ --hit-min tall on touch)
+   [aria-busy=true] while a request is in flight (text → "Salvando…") */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
+  min-height: var(--hit-min);
+  padding: 0 18px;
   font-family: var(--mono);
-  font-size: .6rem;
+  font-size: var(--fs-sm);
   letter-spacing: .1em;
+  line-height: 1.2;
   text-transform: uppercase;
   border: 1px solid var(--b2);
+  border-radius: 0;
   background: transparent;
   color: var(--text);
   cursor: pointer;
-  transition: all .2s;
+  transition: border-color .15s, background .15s, color .15s;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
+.btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
 .btn:hover {
-  border-color: var(--red);
+  border-color: var(--accent);
   color: var(--white);
-  background: rgba(232,0,28,.06);
+  background: rgba(var(--accentRGB), .06);
   text-decoration: none;
 }
+.btn-ghost { border-color: transparent; }
+.btn-ghost:hover { border-color: var(--b3); }
 .btn-primary {
-  background: var(--red);
-  border-color: var(--red);
-  color: var(--white);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--flat-fg);
+  font-weight: 700;
 }
 .btn-primary:hover {
-  background: var(--red2);
-  border-color: var(--red2);
+  background: var(--accent2);
+  border-color: var(--accent2);
+  color: var(--flat-fg);
+}
+.btn-danger { border-color: var(--red2); color: #ff6464; }
+.btn-danger:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+.btn-icon { width: var(--hit-min); padding: 0; flex-shrink: 0; }
+.btn-sm { min-height: 32px; padding: 0 10px; font-size: var(--fs-xs); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; pointer-events: none; }
+.btn[aria-busy="true"] { cursor: progress; opacity: .75; }
+@media (pointer: coarse) {
+  .btn { min-height: var(--hit); }
+  .btn-icon { width: var(--hit); }
+  .btn-sm { min-height: var(--hit-min); }
 }
 
+/* ── FORM CONTROLS ───────────────────────────────────────────────────
+   <div class="form-group">
+     <label class="form-label" for="x">Email</label>
+     <input class="form-input" id="x" aria-describedby="x-err">
+     <div class="form-hint">…</div> <div class="form-error" id="x-err">…</div>
+   </div>
+   Inputs are 16px on touch (iOS zooms anything smaller). */
 .form-group { margin-bottom: 16px; }
 .form-label {
   display: block;
   font-family: var(--mono);
-  font-size: .5rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -567,39 +601,50 @@
 }
 .form-input {
   width: 100%;
-  padding: 10px 12px;
+  min-height: var(--hit-min);
+  padding: 8px 12px;
   background: var(--p2);
   border: 1px solid var(--b2);
+  border-radius: 0;
   color: var(--white);
   font-family: var(--body);
-  font-size: .9rem;
+  font-size: var(--fs-body);
   outline: none;
   transition: border-color .15s;
 }
 .form-input:focus {
-  border-color: var(--red);
+  border-color: var(--accent);
 }
 .form-input::placeholder {
-  color: var(--b3);
+  color: var(--muted2);
+}
+select.form-input { cursor: pointer; }
+select.form-input option { background: var(--dark); color: var(--white); }
+textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
+@media (pointer: coarse), (max-width: 768px) {
+  .form-input, .search-box { font-size: 16px; min-height: var(--hit); }
 }
 
+/* inline banner (form-level error / success). Pair colour with text — never colour alone. */
 .alert {
-  padding: 12px 16px;
+  padding: 10px 14px;
   margin-bottom: 16px;
   border: 1px solid;
+  border-left-width: 3px;
   font-family: var(--mono);
-  font-size: .52rem;
+  font-size: var(--fs-sm);
   letter-spacing: .05em;
+  line-height: 1.5;
 }
 .alert-error {
   background: rgba(232,0,28,.1);
   border-color: var(--red);
-  color: var(--red);
+  color: #ff8a8a;
 }
 .alert-success {
   background: rgba(68,187,68,.1);
-  border-color: #44bb44;
-  color: #44bb44;
+  border-color: var(--ok);
+  color: var(--ok);
 }
 
 .music-toggle-btn {
@@ -800,23 +845,7 @@
   margin-bottom: 8px;
   margin-top: 16px;
 }
-.sec-bar {
-  width: 3px;
-  height: 14px;
-  background: var(--accent);
-}
-.sec-label {
-  font-family: var(--mono);
-  font-size: .5rem;
-  color: var(--accent2);
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-.sec-line {
-  flex: 1;
-  height: 1px;
-  background: var(--b1);
-}
+/* .sec / .sec-bar / .sec-label / .sec-line: one definition, in base.css */
 .ficha-textarea {
   width: 100%;
   min-height: 100px;
@@ -857,12 +886,8 @@
 
 .form-group { position: relative; }
 
-.form-input:invalid:not(:placeholder-shown) {
+.form-input:user-invalid {
   border-color: var(--red) !important;
-}
-
-.form-input:valid:not(:placeholder-shown) {
-  border-color: #44bb44 !important;
 }
 
 .form-input.validate-error {
@@ -875,9 +900,9 @@
 
 .form-error {
   font-family: var(--mono);
-  font-size: 0.42rem;
-  color: var(--red);
-  letter-spacing: 0.08em;
+  font-size: var(--fs-sm);
+  color: #ff8a8a;
+  letter-spacing: 0.06em;
   margin-top: 4px;
   display: none;
   text-transform: uppercase;
@@ -890,8 +915,8 @@
 
 .form-hint {
   font-family: var(--mono);
-  font-size: 0.38rem;
-  color: var(--muted2);
+  font-size: var(--fs-xs);
+  color: var(--muted);
   letter-spacing: 0.06em;
   margin-top: 3px;
 }
@@ -960,26 +985,29 @@
   opacity: 1;
 }
 
-/* Toast notification */
+/* Toast — one live region per page: <div class="toast" id="toast" role="status" aria-live="polite"></div>
+   .show to display, .err for failures. Auto-hide ~2.5s; errors stay ~5s. */
 .toast {
   position: fixed;
   left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
   transform: translateX(-50%) translateY(20px);
-  background: var(--p1);
+  background: var(--accent);
   border: 1px solid var(--accent);
   padding: 10px 16px;
   font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--white);
-  letter-spacing: 0.05em;
+  font-size: var(--fs-sm);
+  color: var(--flat-fg);
+  letter-spacing: 0.08em;
   line-height: 1.4;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.25s ease-out;
+  transition: opacity .2s ease-out, transform .2s ease-out;
   z-index: 2000;
-  max-width: 90vw;
+  max-width: min(90vw, 480px);
   text-align: center;
 }
+.toast.err { background: #ff4d5e; border-color: #ff4d5e; color: #fff; }
 
 .toast.show {
   opacity: 1;
@@ -1194,7 +1222,7 @@
 /* coded data label — renders "POWER // 03" style annotations */
 .dwl {
   font-family: var(--mono);
-  font-size: .46rem;
+  font-size: var(--fs-xs);
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1228,12 +1256,12 @@
 }
 .flatbar.w { background: var(--flat-w); }
 .flatbar .flatbar-id {
-  font-size: .5rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: .16em;
 }
 .flatbar .flatbar-meta {
-  font-size: .42rem;
+  font-size: var(--fs-xs);
   opacity: .72;
   letter-spacing: .14em;
 }
@@ -1449,4 +1477,228 @@
   .estado-threshold,.estado-warning{font-size:.54rem;letter-spacing:.06em;text-transform:none;line-height:1.5;}
   .estado-column-title{font-size:.7rem;}
   .estado-time-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DOSSIER LANGUAGE — shared primitives extracted from ficha.html (theme
+   cards) and cerebro.html (NPC dossier). ficha/cerebro still carry their
+   own inline copies; new work uses these. Guide: see STYLE_GUIDE.md.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── stencil title ───────────────────────────────────────────────────
+   .stencil       Saira Stencil face + chromatic-aberration shadow
+   .stencil-fx    + one-shot "decrypt" flicker on mount, glitch on hover/focus
+   Effects are off under prefers-reduced-motion (bottom of this block). */
+.stencil {
+  font-family: var(--title);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.1;
+  color: var(--white);
+  text-shadow: -.05em 0 rgba(var(--accentRGB), .5), .04em 0 rgba(110, 220, 255, .2);
+  overflow-wrap: anywhere;
+}
+.stencil-fx { animation: stencilOn .75s .12s steps(1, end) 1 both; }
+@media (hover: hover) {
+  .stencil-fx:hover, a:hover > .stencil-fx, button:hover > .stencil-fx { animation: stencilGlitch .36s steps(2, end) 1; }
+}
+.stencil-fx:focus-visible, :focus-visible > .stencil-fx { animation: stencilGlitch .36s steps(2, end) 1; }
+@keyframes stencilOn {
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
+  20%  { opacity: 1; clip-path: inset(0 70% 0 0); }
+  28%  { opacity: .25; }
+  36%  { opacity: 1; clip-path: inset(0 38% 0 0); }
+  50%  { opacity: .4; }
+  58%  { opacity: 1; clip-path: inset(0 12% 0 0); }
+  72%  { opacity: .6; clip-path: inset(0 0 0 0); }
+  80%, 100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes stencilGlitch {
+  0%   { transform: translateX(2px);  clip-path: inset(0 0 40% 0); text-shadow: -3px 0 rgba(var(--accentRGB), .95), 3px 0 rgba(110, 220, 255, .6); }
+  33%  { transform: translateX(-2px); clip-path: inset(35% 0 0 0); text-shadow: 3px 0 rgba(var(--accentRGB), .95), -3px 0 rgba(110, 220, 255, .6); }
+  66%  { transform: none; clip-path: inset(0); text-shadow: -2px 0 rgba(var(--accentRGB), .8), 2px 0 rgba(110, 220, 255, .4); }
+  100% { transform: none; clip-path: inset(0); }
+}
+
+/* ── scanline sweep: one pass when the element mounts (position: relative host) ── */
+.scan-once { position: relative; overflow: hidden; }
+.scan-once::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, .75);
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, .35);
+  opacity: 0;
+  pointer-events: none;
+  animation: scanOnce .9s .1s ease-in 1 both;
+}
+@keyframes scanOnce { 0% { opacity: .9; transform: translateY(0); } 90% { opacity: .6; } 100% { opacity: 0; transform: translateY(46px); } }
+
+/* ── dossier card ────────────────────────────────────────────────────
+   <section class="dossier">
+     <header class="dossier-hd"><h3 class="dossier-title stencil">…</h3><span class="dossier-meta">AP 12</span></header>
+     <div class="dossier-body"><div class="dwl">PODER</div>…</div>
+   </section>
+   Notched top-right corner, accent top rule, tinted header strip.
+   .dossier-hd can be a <button aria-expanded> for collapsible cards; .is-collapsed hides the body.
+   .is-muted = neutral variant (no accent). .dossier--flat = accent-filled header (ficha card look). */
+.dossier {
+  --notch: 12px;
+  background: var(--p1);
+  border: 1px solid var(--b1);
+  border-top: 2px solid var(--accent);
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+  min-width: 0;
+}
+.dossier-hd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--hit);
+  padding: 6px 12px;
+  background: linear-gradient(90deg, rgba(var(--accentRGB), .10), transparent 75%);
+  border: none;
+  border-bottom: 1px solid var(--b1);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+button.dossier-hd { cursor: pointer; }
+.dossier-title { flex: 1; min-width: 0; font-size: 1.2rem; }
+.dossier-meta { font-family: var(--mono); font-size: var(--fs-xs); color: var(--muted); letter-spacing: .1em; white-space: nowrap; }
+.dossier-body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+.dossier.is-collapsed .dossier-body { display: none; }
+.dossier.is-collapsed .dossier-hd { border-bottom-color: transparent; }
+.dossier.is-muted { border-top-color: var(--b3); }
+.dossier.is-muted .dossier-hd { background: linear-gradient(90deg, rgba(255, 255, 255, .05), transparent 75%); }
+.dossier.is-muted .stencil { color: #b5b5b5; text-shadow: none; }
+.dossier--flat .dossier-hd { background: var(--accent); color: var(--flat-fg); border-bottom: 2px solid var(--flat-fg); }
+.dossier--flat .dossier-hd .stencil, .dossier--flat .dossier-meta { color: var(--flat-fg); text-shadow: none; }
+
+/* ── badge (status / faction / danger) — colour + text, never colour alone ──
+   <span class="badge" style="--c:var(--fc-xmen)">X-MEN</span> */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: .08em;
+  line-height: 1.5;
+  padding: 1px 8px;
+  border: 1px solid var(--c, var(--b2));
+  color: var(--c, var(--text));
+  background: rgba(0, 0, 0, .35);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge.is-solid { background: var(--c, var(--accent)); border-color: var(--c, var(--accent)); color: var(--flat-fg); }
+
+/* ── AP marker — same scale everywhere (ficha .tag-ap, cerebro .ap) ──
+   <span class="ap b-ome" aria-label="AP 18 — Ômega"><span class="ap-k">AP</span><span class="ap-n">18</span></span>
+   band = colour + border style + fill, so it reads without colour too:
+   b-hum dashed · b-rua tinted · b-ome underline · b-cos solid fill */
+.ap {
+  --apc: var(--muted);
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+  flex-shrink: 0;
+  min-width: 46px;
+  padding: 2px 6px 3px;
+  border: 1px solid var(--apc);
+  background: var(--black);
+  color: var(--apc);
+  line-height: 1;
+  white-space: nowrap;
+}
+.ap-k { font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: .06em; opacity: .8; }
+.ap-n { font-family: var(--mono); font-size: 15px; font-weight: 700; min-width: 2ch; text-align: right; }
+.ap.b-hum { --apc: #a9a9a9; border-style: dashed; }
+.ap.b-rua { --apc: #5fb8e6; background: rgba(95, 184, 230, .1); }
+.ap.b-ome { --apc: #ff6a4d; background: rgba(255, 106, 77, .16); box-shadow: inset 0 -2px 0 var(--apc); }
+.ap.b-cos { --apc: #d29bff; background: #d29bff; color: #14051f; box-shadow: 0 0 0 1px #14051f inset, 0 0 10px rgba(210, 155, 255, .45); }
+
+/* ── modal shell (cerebro pattern) ───────────────────────────────────
+   <div class="modal-bg" id="m" hidden-or-not>              ← .open shows it
+     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1">
+       <h2 class="modal-title" id="m-title">…</h2> <p class="modal-sub">…</p>
+       …form…
+       <div class="modal-acts"><button class="btn">Cancelar</button><button class="btn btn-primary">Salvar</button></div>
+     </div>
+   </div>
+   Desktop: centred card. ≤768px: full-height sheet with sticky actions (.modal.compact = bottom sheet).
+   Scoped under .modal-bg so the legacy .modal backdrops in dashboard/admin are untouched. */
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .88);
+  z-index: 600;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+.modal-bg.open { display: flex; animation: fadeUp .2s ease; }
+.modal-bg .modal {
+  background: var(--dark);
+  border: 1px solid var(--b2);
+  border-top: 3px solid var(--accent);
+  padding: 18px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 92vh;
+  max-height: 92dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  outline: none;
+}
+.modal-bg .modal-title { font-family: var(--title); font-weight: 400; font-size: 1.45rem; color: var(--white); letter-spacing: .14em; }
+.modal-bg .modal-sub { font-family: var(--mono); font-size: var(--fs-sm); color: var(--muted); letter-spacing: .06em; line-height: 1.7; border-left: 2px solid var(--accent2); padding-left: 8px; }
+.modal-bg .modal-acts { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+body.modal-open { overflow: hidden; }
+@media (max-width: 768px) {
+  .modal-bg { padding: 0; align-items: stretch; }
+  .modal-bg .modal { max-width: none; max-height: none; height: 100%; border-left: none; border-right: none; padding: 14px 12px 0; }
+  .modal-bg .modal.compact { height: auto; margin-top: auto; }
+  .modal-bg .modal-acts {
+    position: sticky;
+    bottom: 0;
+    margin: auto -12px 0;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: var(--dark);
+    border-top: 1px solid var(--b1);
+  }
+  .modal-bg .modal-acts .btn { flex: 1; }
+}
+
+/* ── loading / empty / error states ──────────────────────────────────
+   inline: <p class="state-msg">// CARREGANDO…</p>  · .is-error adds red rule + text
+   block:  <div class="empty-state"><div class="empty-title stencil">NENHUM NPC</div><p class="empty-sub">…</p><button class="btn btn-primary">…</button></div> */
+.state-msg {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  letter-spacing: .08em;
+  line-height: 1.6;
+  text-align: center;
+  padding: 20px 14px;
+}
+.state-msg.is-loading::after { content: '▌'; margin-left: 4px; animation: blinkPulse .8s infinite; }
+.state-msg.is-error { color: #ff8a8a; border-left: 3px solid var(--red); text-align: left; background: rgba(232, 0, 28, .06); }
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 56px 20px; text-align: center; }
+.empty-title { font-size: 1.8rem; color: var(--b3); letter-spacing: .2em; text-shadow: none; }
+.empty-sub { font-family: var(--mono); font-size: var(--fs-sm); color: var(--muted); letter-spacing: .1em; line-height: 1.9; max-width: 42ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stencil-fx, .stencil-fx:hover, .stencil-fx:focus-visible, :focus-visible > .stencil-fx,
+  a:hover > .stencil-fx, button:hover > .stencil-fx { animation: none !important; }
+  .scan-once::after { display: none; }
+  .modal-bg.open, .state-msg.is-loading::after { animation: none; }
 }
