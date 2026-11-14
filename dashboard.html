@@ -367,7 +367,7 @@
       // a GM who created a party is not in party_members: fall back to the party they run
       return p || window.api.getGMParty(S.uid, fresh);
     }).then(function (p) {
-      // getPlayerParty/getGMParty turn errors into null: offline, "no party" would be a lie
+      // getPlayerParty/getGMParty reject on real errors (→ catch below); null is a confirmed "no party", except offline
       if (!p && offline()) throw new Error('offline');
       renderParty(p || null);
     }).catch(function (err) {

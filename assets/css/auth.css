@@ -4,8 +4,6 @@
  * Only layout + the few auth-only bits (password toggle, caps hint, lang button) live here.
  */
 
-/* author display rules (.auth-form.active, .btn) must not beat the hidden attribute */
-.auth-page [hidden] { display: none !important; }
 
 .auth-page {
   min-height: 100vh;

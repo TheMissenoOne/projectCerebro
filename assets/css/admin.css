@@ -27,7 +27,6 @@
   background: var(--dark);
   border-right: 1px solid var(--b1);
 }
-.admin-tabs[hidden] { display: none; }
 .admin-tab {
   display: flex;
   align-items: center;
@@ -56,12 +55,6 @@
   overflow-y: auto;
 }
 #admin-app { max-width: 1120px; }
-#admin-app[hidden], .admin-gate[hidden] { display: none; }
-/* shared gap: mobile.css still has a legacy `.modal { align-items: flex-end }` (≤767px) that pushes the
-   shared dialog's children to the right edge */
-.modal-bg .modal { align-items: stretch; }
-/* shared gap: components.css .btn sets display:inline-flex, which beats the [hidden] attribute */
-.btn[hidden] { display: none; }
 
 /* ── gate: loading / restricted / no party ───────────────────────── */
 .gate-card {

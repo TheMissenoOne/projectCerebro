@@ -573,7 +573,7 @@
 .btn-danger { border-color: var(--red2); color: #ff6464; }
 .btn-danger:hover { background: var(--red); border-color: var(--red); color: var(--white); }
 .btn-icon { width: var(--hit-min); padding: 0; flex-shrink: 0; }
-.btn-sm { min-height: 32px; padding: 0 10px; font-size: var(--fs-xs); }
+.btn-sm { min-height: 32px; padding: 0 10px; font-size: var(--fs-xs); }  /* dense rows only; standalone actions use .btn (44px on touch) */
 .btn[disabled], .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; pointer-events: none; }
 .btn[aria-busy="true"] { cursor: progress; opacity: .75; }
 @media (pointer: coarse) {
@@ -1578,6 +1578,23 @@ button.dossier-hd { cursor: pointer; }
 .dossier--flat .dossier-hd { background: var(--accent); color: var(--flat-fg); border-bottom: 2px solid var(--flat-fg); }
 .dossier--flat .dossier-hd .stencil, .dossier--flat .dossier-meta { color: var(--flat-fg); text-shadow: none; }
 
+/* clip-path (notch) cuts any outline drawn outside the box: draw focus rings inset on and inside notched primitives */
+.dossier:focus-visible, .dossier :focus-visible,
+.notch:focus-visible, .notch :focus-visible,
+.notch-bl:focus-visible, .notch-bl :focus-visible { outline-offset: -2px; }
+
+/* ── skeleton loading row: <div class="skel" style="height:56px"></div> (aria-hidden; pair with a status text) ── */
+.skel {
+  display: block;
+  min-height: 12px;
+  background: linear-gradient(90deg, var(--p1) 0%, var(--p3) 50%, var(--p1) 100%);
+  background-size: 200% 100%;
+  border: 1px solid var(--b1);
+  animation: skelSweep 1.2s linear infinite;
+}
+.skel + .skel { margin-top: 6px; }
+@keyframes skelSweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
 /* ── badge (status / faction / danger) — colour + text, never colour alone ──
    <span class="badge" style="--c:var(--fc-xmen)">X-MEN</span> */
 .badge {
@@ -1659,6 +1676,7 @@ button.dossier-hd { cursor: pointer; }
   gap: 14px;
   outline: none;
 }
+.modal-bg .modal.compact { max-width: 440px; }  /* confirms, short forms */
 .modal-bg .modal-title { font-family: var(--title); font-weight: 400; font-size: 1.45rem; color: var(--white); letter-spacing: .14em; }
 .modal-bg .modal-sub { font-family: var(--mono); font-size: var(--fs-sm); color: var(--muted); letter-spacing: .06em; line-height: 1.7; border-left: 2px solid var(--accent2); padding-left: 8px; }
 .modal-bg .modal-acts { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
@@ -1700,5 +1718,5 @@ body.modal-open { overflow: hidden; }
   .stencil-fx, .stencil-fx:hover, .stencil-fx:focus-visible, :focus-visible > .stencil-fx,
   a:hover > .stencil-fx, button:hover > .stencil-fx { animation: none !important; }
   .scan-once::after { display: none; }
-  .modal-bg.open, .state-msg.is-loading::after { animation: none; }
+  .modal-bg.open, .state-msg.is-loading::after, .skel { animation: none; }
 }

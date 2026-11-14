@@ -166,7 +166,8 @@
 
     async function loadParty(force) {
       gate('loading');
-      currentParty = await api.getGMParty(uid(), force).catch(() => null);
+      try { currentParty = await api.getGMParty(uid(), force); }
+      catch (e) { console.error('[admin] party', e); currentParty = null; return gate('loaderror'); } // network/RLS ≠ "no party"
       if (!currentParty) return gate('noparty');
       gate(null);
       $('party-name').textContent = currentParty.name || '—';
@@ -194,6 +195,11 @@
         + '<p class="empty-sub">' + escH(t('admin.noParty')) + '</p>'
         + '<div class="gate-acts"><a class="btn btn-primary" href="dashboard.html">' + escH(t('admin.createPartyCta')) + '</a>'
         + '<button type="button" class="btn" data-act="party-retry">' + escH(t('admin.retry')) + '</button></div></div>';
+      if (kind === 'loaderror') g.innerHTML = '<div class="empty-state gate-card">'
+        + '<h1 class="empty-title stencil">' + escH(t('common.partyErrTitle')) + '</h1>'
+        + '<p class="empty-sub">' + escH(t('common.partyErrMsg')) + '</p>'
+        + '<div class="gate-acts"><button type="button" class="btn btn-primary" data-act="party-retry">' + escH(t('admin.retry')) + '</button>'
+        + '<a class="btn" href="dashboard.html">' + escH(t('admin.backDashboard')) + '</a></div></div>';
       const h = g.querySelector('h1');
       if (h) { h.tabIndex = -1; h.focus(); }
     }

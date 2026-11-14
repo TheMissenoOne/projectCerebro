@@ -360,41 +360,16 @@
     grid-template-columns: 1fr !important;
   }
 
-  /* ── ADMIN LAYOUT ─────────────────── */
+
+  /* ── ADMIN ──────────────────────── */
   .admin-layout { flex-direction: column; }
-  .admin-sidebar {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-    padding: 8px;
-    border-right: none;
-    border-bottom: 1px solid var(--b1);
-  }
-  .admin-nav-link {
-    border-left: none;
-    border-bottom: 2px solid transparent;
-    padding: 7px 12px;
-    font-size: var(--fs-xs);
-  }
-  .admin-nav-link.active {
-    border-left: none;
-    border-bottom-color: var(--accent);
-    background: rgba(var(--accentRGB), .08);
-  }
 
   /* ── DASHBOARD ────────────────────── */
   .dash-body { padding: clamp(12px, 3vw, 20px) clamp(10px, 3vw, 16px) 80px; }
-  .dash-identity { padding: 12px 14px; gap: 10px; }
-  .dash-identity-actions { gap: 5px; }
-  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 
   /* ── TABS ─────────────────────────── */
   .tab { padding: 12px 14px; font-size: var(--fs-sm, 13px); }
 
-  /* ── MODALS ───────────────────────── */
-  .modal { padding: 12px; align-items: flex-end; }
-  .modal-card { max-width: 100%; border-radius: 0; animation: slideUp .25s ease both; }
 
   /* ── TOAST POSITION ───────────────── */
   .toast { bottom: calc(16px + env(safe-area-inset-bottom)); }
@@ -424,16 +399,7 @@
   .sec { margin-top: 2px; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(8px); opacity: 0; }
-  to   { transform: none; opacity: 1; }
-}
 
-/* ── TABLET ──────────────────────────────────────────────────────── */
-
-@media (min-width: 480px) and (max-width: 767px) {
-  .chars-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-}
 
 @media (prefers-reduced-motion: reduce) {
   #header-container .nav-sheet, #toolbar-container .save-ind.salvando { animation: none; }

@@ -67,12 +67,13 @@ function stubScript(npcs, chars, opts) {
 window.getSupabaseClient=function(){return null;};
 window.cache=null;
 window.__calls={update:[],create:[]};
-window.requireAuth=function(){return Promise.resolve({session:{user:{id:'gm-1'}},profile:{role:'gm'}});};
+window.requireAuth=function(){return Promise.resolve({session:{user:{id:'gm-1'}},profile:{role:${JSON.stringify((opts && opts.role) || 'gm')}}});};
+window.__partyFails=${opts && opts.failParty ? 'true' : 'false'};
 window.logout=function(){};
 var _npcs=${JSON.stringify(npcs)}, _chars=${JSON.stringify(chars)};
 window.api=Object.assign(window.api||{},{
-  getGMParty:function(){return Promise.resolve({id:'party-1'});},
-  getPlayerParty:function(){return Promise.resolve({id:'party-1'});},
+  getGMParty:function(){return window.__partyFails?Promise.reject(new TypeError('Failed to fetch')):Promise.resolve({id:'party-1'});},
+  getPlayerParty:function(){return window.__partyFails?Promise.reject(new TypeError('Failed to fetch')):Promise.resolve({id:'party-1'});},
   listAllNPCs:function(){return Promise.resolve(JSON.parse(JSON.stringify(_npcs)));},
   listNPCs:function(){return Promise.resolve(JSON.parse(JSON.stringify(_npcs)));},
   listPartyCharacters:function(){return Promise.resolve(JSON.parse(JSON.stringify(_chars)));},
@@ -467,6 +468,33 @@ if (require.main === module) (async () => {
       await m.close();
     });
   }
+
+  /* api contract: getGMParty/getPlayerParty reject on network/RLS errors (null = genuinely no party) */
+  await test('party lookup fails: GM still gets the NPC list (global NPCs), no page errors', async () => {
+    const { ctx: c, page: p } = await openCerebro(browser, base, { failParty: true });
+    assert(await p.isVisible('#npc-list [data-id="npc-mag"]'), 'NPC list not shown');
+    assert(!(await p.isVisible('#no-access')), 'no-access shown to GM');
+    eq(p.__errors || [], [], 'page errors');
+    await c.close();
+  });
+
+  await test('party lookup fails: player sees a translated connection error with retry (not "no party"), retry recovers', async () => {
+    const c = await browser.newContext({ viewport: { width: 1280, height: 860 } });
+    const p = await c.newPage();
+    p.__errors = []; p.on('pageerror', e => p.__errors.push(e.message));
+    await stubPage(p, { role: 'player', failParty: true });
+    await p.goto(base + '/cerebro.html', { waitUntil: 'load' });
+    await p.waitForSelector('#no-access-retry', { state: 'visible', timeout: 8000 });
+    const txt = await p.textContent('#no-access');
+    assert(/FALHA DE CONEXÃO/.test(txt) && !/SEM PARTY/.test(txt), 'wrong message: ' + txt);
+    assert(await p.evaluate(() => document.activeElement.id === 'no-access-retry'), 'retry not focused');
+    await p.evaluate(() => { window.__partyFails = false; });
+    await p.click('#no-access-retry');
+    await p.waitForFunction(() => document.getElementById('app-layout').style.display === '', null, { timeout: 8000 });
+    assert(!(await p.isVisible('#no-access')), 'error block still visible after retry');
+    eq(p.__errors, [], 'page errors');
+    await c.close();
+  });
 
   await browser.close();
   srv.close();

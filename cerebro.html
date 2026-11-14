@@ -843,6 +843,16 @@ function charToRow(c){
 }
 
 /* ═══ INIT / LOAD ═══ */
+function showNoAccess(title,msg,retry){
+  const box=document.getElementById('no-access');
+  box.innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>'+esc(title)+'</div><div style="margin-top:12px;color:var(--b3);">'+esc(msg)+'</div>'
+    +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px;">'
+    +(retry?'<button type="button" class="tbtn tbtn-acc" id="no-access-retry" style="min-height:44px;">'+esc(t('common.retry'))+'</button>':'')
+    +'<a href="dashboard.html" class="tbtn" style="display:inline-flex;min-height:44px;">'+esc(t('cerebro.backDash'))+'</a></div>';
+  box.style.display='block';
+  const r=document.getElementById('no-access-retry');
+  if(r){r.onclick=()=>{box.style.display='none';box.innerHTML='';init();};r.focus();}
+}
 async function init(){
   initLanguage();
   initTheme();
@@ -853,15 +863,14 @@ async function init(){
   isGM=(auth.profile||{}).role==='gm';
 
   if(isGM){
-    const party=await api.getGMParty(auth.session.user.id);
+    /* a GM without a reachable party still sees global NPCs: a failed lookup degrades to "no party" */
+    const party=await api.getGMParty(auth.session.user.id).catch(e=>{console.error('[cerebro] gm party',e);return null;});
     if(party)currentPartyId=party.id;
   }else{
-    const party=await api.getPlayerParty(auth.session.user.id);
-    if(!party){
-      document.getElementById('no-access').innerHTML='<div style="font-size:3rem;margin-bottom:16px;">⚠️</div><div>'+esc(t('cerebro.noParty'))+'</div><div style="margin-top:12px;color:var(--b3);">'+esc(t('cerebro.noPartyMsg'))+'</div><a href="dashboard.html" class="tbtn" style="display:inline-flex;margin-top:24px;">'+esc(t('cerebro.backDash'))+'</a>';
-      document.getElementById('no-access').style.display='block';
-      return;
-    }
+    let party;
+    try{party=await api.getPlayerParty(auth.session.user.id);}
+    catch(e){console.error('[cerebro] party',e);showNoAccess(t('common.partyErrTitle'),t('common.partyErrMsg'),true);return;}
+    if(!party){showNoAccess(t('cerebro.noParty'),t('cerebro.noPartyMsg'),false);return;}
     currentPartyId=party.id;
   }
   document.getElementById('app-layout').style.display='';

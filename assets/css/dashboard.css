@@ -20,8 +20,6 @@
   .dash-grid { grid-template-columns: minmax(0, 1fr) 380px; gap: var(--sp-6); }
 }
 .dash-sec { min-width: 0; }
-/* the hidden attribute must win over the display rules below */
-.dash-body [hidden] { display: none !important; }
 .dash-sec .sec { margin-bottom: var(--sp-3); }
 
 /* ── IDENTITY ────────────────────────────── */
@@ -281,10 +279,6 @@
 .dash-sec .empty-state { padding: 36px 20px; background: var(--p1); border: 1px dashed var(--b2); }
 .party-card .state-msg { padding: 14px 4px; }
 
-/* compact modals: the shared .modal-bg .modal is 640px wide on desktop, and mobile.css's
-   legacy `.modal { align-items: flex-end }` would right-align the form on phones */
-.modal-bg .modal { align-items: stretch; }
-.modal-bg .modal.compact { max-width: 440px; }
 .modal-bg .modal .form-group { margin-bottom: 0; }
 .code-input { text-transform: uppercase; letter-spacing: .3em; font-family: var(--mono); }
 

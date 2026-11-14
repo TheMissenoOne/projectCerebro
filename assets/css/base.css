@@ -96,6 +96,9 @@ body { --accent: #FFD600; --accent2: #c4a800; --accent3: #5a4a00; --accentRGB: 2
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scrollbar-color: var(--b2) var(--black); }
 
+/* the hidden attribute always wins (components set display:flex/inline-flex on many classes) */
+[hidden] { display: none !important; }
+
 /* one focus ring everywhere (keyboard only) */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -341,6 +344,7 @@ body::after {
 .tab.active { color: var(--flat-fg); background: var(--accent); }
 .tab.active::after { left: 0; right: 0; background: var(--flat-fg); }
 .tab:hover:not(.active) { color: var(--text); }
+@media (prefers-reduced-motion: reduce) { .tab, .tab::after { transition: none; } }
 
 .content {
   padding: clamp(14px, 2.5vw, 28px);
