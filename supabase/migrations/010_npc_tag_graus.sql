@@ -14,6 +14,7 @@
 -- Não altera stats, danger, nomes nem textos das tags.
 --
 -- Como rodar: cole o arquivo inteiro no SQL Editor do Supabase e execute. Idempotente:
+-- ATENÇÃO: o SQL Editor trunca colagens em ~100k caracteres — lá use 010_npc_tag_graus_partN.sql.
 -- rodar de novo produz o mesmo data. O último SELECT lista linhas COM grau da lista que não
 -- casaram com nenhum NPC ou tag (drift do banco de produção) — vazio = tudo aplicado.
 -- (Linhas NULL que não casam não são drift: não havia grau a remover.)

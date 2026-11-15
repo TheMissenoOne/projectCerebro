@@ -302,8 +302,12 @@ const tagRewrite = el => `COALESCE((
             AND ${tagMatch(el, 'lower(btrim(g.tag_texto))')}
           LIMIT 1), ${el})`;
 
+// SQL Editor do Supabase trunca colagens em ~100k caracteres: além do arquivo completo (psql/CLI),
+// emite partes autocontidas ≤ PART_MAX caracteres, cortadas só em fronteira de NPC.
+const PART_MAX = 70000;
+const chars = s => [...s].length; // code points (= wc -m), não bytes nem UTF-16
+
 function genSQL(rows) {
-  const values = rows.map(r => `  (${sqlStr(r.name)}, ${r.is_global ? 'TRUE' : 'FALSE'}, ${sqlStr(r.texto)}, ${r.grau ?? 'NULL'})`).join(',\n');
   return `-- ═══════════════════════════════════════════════════════════════
 -- Migração 010 — grau (APs) nas tags de PODER dos NPCs
 -- Gerado por: node scripts/gen-npc-graus.js build   (NÃO editar à mão)
@@ -320,6 +324,7 @@ function genSQL(rows) {
 -- Não altera stats, danger, nomes nem textos das tags.
 --
 -- Como rodar: cole o arquivo inteiro no SQL Editor do Supabase e execute. Idempotente:
+-- ATENÇÃO: o SQL Editor trunca colagens em ~100k caracteres — lá use 010_npc_tag_graus_partN.sql.
 -- rodar de novo produz o mesmo data. O último SELECT lista linhas COM grau da lista que não
 -- casaram com nenhum NPC ou tag (drift do banco de produção) — vazio = tudo aplicado.
 -- (Linhas NULL que não casam não são drift: não havia grau a remover.)
@@ -330,7 +335,38 @@ function genSQL(rows) {
 -- Depois de validar (ou do rollback):  DROP TABLE npcs_backup_010;
 -- ═══════════════════════════════════════════════════════════════
 
-BEGIN;
+${genBody(rows)}`;
+}
+
+function genPartSQL(rows, n, m) {
+  return `-- Migração 010 — grau (APs) nas tags de PODER dos NPCs · gerado por node scripts/gen-npc-graus.js build (NÃO editar)
+-- Parte ${n} de ${m} — rode todas as partes, uma por vez, no SQL Editor (qualquer ordem; idempotente).
+-- Detalhes: 010_npc_tag_graus.sql (mesmo SQL, só com os NPCs desta parte). Último SELECT = drift desta parte.
+-- Backup: a 1ª parte executada cria npcs_backup_010 (estado ANTERIOR); as outras não o sobrescrevem. Rollback:
+--   UPDATE npcs n SET data = b.data, updated_at = NOW() FROM npcs_backup_010 b WHERE b.id = n.id;
+-- Depois de validar (ou do rollback):  DROP TABLE npcs_backup_010;
+
+${genBody(rows)}`;
+}
+
+// Agrupa por NPC (name+is_global, ordem de 1ª aparição) e enche cada parte até PART_MAX.
+function splitParts(rows) {
+  const groups = new Map();
+  rows.forEach(r => { const k = key(r.name, r.is_global); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); });
+  const parts = [[]];
+  for (const g of groups.values()) {
+    const cur = parts[parts.length - 1];
+    if (cur.length && chars(genPartSQL([...cur, ...g], 99, 99)) > PART_MAX) parts.push([...g]);
+    else cur.push(...g);
+  }
+  const big = parts.find(p => chars(genPartSQL(p, 99, 99)) > PART_MAX);
+  if (big) throw new Error(`NPC ${big[0].name} sozinho passa de ${PART_MAX} caracteres`);
+  return parts;
+}
+
+function genBody(rows) {
+  const values = rows.map(r => `  (${sqlStr(r.name)}, ${r.is_global ? 'TRUE' : 'FALSE'}, ${sqlStr(r.texto)}, ${r.grau ?? 'NULL'})`).join(',\n');
+  return `BEGIN;
 
 CREATE TABLE IF NOT EXISTS npcs_backup_010 AS SELECT id, data FROM npcs;
 -- tabela em public: sem policies + RLS ligado = invisível para anon/authenticated via API
@@ -456,6 +492,14 @@ function build(src, partial) {
   const rows = grades.flatMap(g => g.tags.map(t => ({ name: g.name, is_global: g.is_global, texto: t.texto, grau: t.grau })));
   if (!rows.some(r => r.grau !== null)) { console.error('ERRO: nenhum grau não-null para gravar'); process.exit(1); }
   fs.writeFileSync(OUT_SQL, genSQL(rows));
+  const dir = path.dirname(OUT_SQL);
+  fs.readdirSync(dir).filter(f => /^010_npc_tag_graus_part\d+\.sql$/.test(f)).forEach(f => fs.unlinkSync(path.join(dir, f)));
+  const parts = splitParts(rows);
+  parts.forEach((p, i) => {
+    const sql = genPartSQL(p, i + 1, parts.length);
+    fs.writeFileSync(OUT_SQL.replace(/\.sql$/, `_part${i + 1}.sql`), sql);
+    console.log(`  parte ${i + 1}/${parts.length}: ${p.length} linhas, ${chars(sql)} caracteres`);
+  });
   const removed = countOldGraus(grades);
   fs.writeFileSync(OUT_MD, genReview(base, grades, removed));
   console.log(`build: ${graded.length}/${base.length} NPCs, ${rows.filter(r => r.grau !== null).length} graus + ${rows.filter(r => r.grau === null).length} null (${removed} graus antigos removidos) → ${path.relative(ROOT, OUT_SQL)}, ${path.relative(ROOT, OUT_MD)}${partial ? ' (PARCIAL)' : ''}`);
