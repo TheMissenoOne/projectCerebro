@@ -76,7 +76,6 @@
     aspect-ratio: 3 / 4;
     min-height: 75vw;
     clip-path: none;
-    border-radius: 4px;
   }
   .portrait-zone::before { display: none; }
   .portrait-img {
@@ -466,7 +465,7 @@
 .enc-npc-name { font-family: var(--body); font-weight: 700; font-size: .8rem; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .enc-npc-item.active .enc-npc-name { color: #c07040; }
 .enc-npc-conds { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px; }
-.enc-cond-chip { font-family: var(--mono); font-size: .36rem; letter-spacing: .04em; padding: 1px 4px; border-radius: 2px; border: 1px solid; }
+.enc-cond-chip { font-family: var(--mono); font-size: .36rem; letter-spacing: .04em; padding: 1px 4px; border: 1px solid; }
 .enc-npc-rem { background: none; border: none; color: var(--b3); cursor: pointer; font-family: var(--mono); font-size: .65rem; padding: 2px 4px; transition: color .1s; -webkit-tap-highlight-color: transparent; }
 .enc-npc-rem:hover { color: var(--red); }
 .enc-empty-msg { font-family: var(--mono); font-size: .46rem; color: var(--muted2); text-align: center; padding: 12px 14px; letter-spacing: .08em; }
@@ -477,7 +476,7 @@
 .enc-banner-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
 .enc-banner-title { font-family: var(--mono); font-size: .5rem; color: #c07040; letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
 .enc-banner-conds { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.enc-cond-tag { display: flex; align-items: center; gap: 4px; font-family: var(--mono); font-size: .56rem; padding: 3px 8px; border: 1px solid; border-radius: 2px; }
+.enc-cond-tag { display: flex; align-items: center; gap: 4px; font-family: var(--mono); font-size: .56rem; padding: 3px 8px; border: 1px solid; }
 .enc-cond-del { background: none; border: none; cursor: pointer; font-size: .7rem; line-height: 1; opacity: .6; transition: opacity .1s; -webkit-tap-highlight-color: transparent; }
 .enc-cond-del:hover { opacity: 1; }
 .enc-add-cond { font-family: var(--mono); font-size: .46rem; padding: 4px 8px; border: 1px dashed rgba(192,112,64,.4); background: transparent; color: #c07040; cursor: pointer; transition: all .15s; -webkit-tap-highlight-color: transparent; }
@@ -520,7 +519,7 @@
 .npc-desc { font-family: var(--body); font-size: .72rem; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
 
 .npc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.npc-tag { font-family: var(--mono); font-size: .48rem; letter-spacing: .04em; padding: 3px 7px; border: 1px solid; border-radius: 2px; }
+.npc-tag { font-family: var(--mono); font-size: .48rem; letter-spacing: .04em; padding: 3px 7px; border: 1px solid; }
 
 /* ── BUTTONS ─────────────────────────────────────────────────────────
    .btn            outline / ghost (default)
@@ -662,7 +661,6 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   transition: all .2s;
   outline: none;
 }
@@ -754,7 +752,6 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
 }
 .theme-dot-sm.active {
   border-color: var(--white);
-  box-shadow: 0 0 4px var(--white);
 }
 .ficha-content {
   padding: 16px;
@@ -1090,7 +1087,6 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   padding: 2px 6px;
   background: var(--accent);
   color: var(--black);
-  border-radius: 2px;
   letter-spacing: 0.08em;
   opacity: 0;
   transition: opacity 0.2s;
@@ -1486,8 +1482,8 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
    ════════════════════════════════════════════════════════════════════ */
 
 /* ── stencil title ───────────────────────────────────────────────────
-   .stencil       Saira Stencil face + chromatic-aberration shadow
-   .stencil-fx    + one-shot "decrypt" flicker on mount, glitch on hover/focus
+   .stencil       Saira Stencil face, flat ink (Muller: no glow, no RGB split)
+   .stencil-fx    + one-shot stepped "declassify" wipe on mount (no flicker, no hover glitch)
    Effects are off under prefers-reduced-motion (bottom of this block). */
 .stencil {
   font-family: var(--title);
@@ -1496,45 +1492,19 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   letter-spacing: .06em;
   line-height: 1.1;
   color: var(--white);
-  text-shadow: -.05em 0 rgba(var(--accentRGB), .5), .04em 0 rgba(110, 220, 255, .2);
   overflow-wrap: anywhere;
 }
-.stencil-fx { animation: stencilOn .75s .12s steps(1, end) 1 both; }
-@media (hover: hover) {
-  .stencil-fx:hover, a:hover > .stencil-fx, button:hover > .stencil-fx { animation: stencilGlitch .36s steps(2, end) 1; }
-}
-.stencil-fx:focus-visible, :focus-visible > .stencil-fx { animation: stencilGlitch .36s steps(2, end) 1; }
+.stencil-fx { animation: stencilOn .6s .12s steps(1, end) 1 both; }
+/* hard-edged reveal in four column steps, like a redaction bar being lifted */
 @keyframes stencilOn {
-  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
-  20%  { opacity: 1; clip-path: inset(0 70% 0 0); }
-  28%  { opacity: .25; }
-  36%  { opacity: 1; clip-path: inset(0 38% 0 0); }
-  50%  { opacity: .4; }
-  58%  { opacity: 1; clip-path: inset(0 12% 0 0); }
-  72%  { opacity: .6; clip-path: inset(0 0 0 0); }
-  80%, 100% { opacity: 1; clip-path: inset(0 0 0 0); }
-}
-@keyframes stencilGlitch {
-  0%   { transform: translateX(2px);  clip-path: inset(0 0 40% 0); text-shadow: -3px 0 rgba(var(--accentRGB), .95), 3px 0 rgba(110, 220, 255, .6); }
-  33%  { transform: translateX(-2px); clip-path: inset(35% 0 0 0); text-shadow: 3px 0 rgba(var(--accentRGB), .95), -3px 0 rgba(110, 220, 255, .6); }
-  66%  { transform: none; clip-path: inset(0); text-shadow: -2px 0 rgba(var(--accentRGB), .8), 2px 0 rgba(110, 220, 255, .4); }
-  100% { transform: none; clip-path: inset(0); }
+  0%   { clip-path: inset(0 100% 0 0); }
+  25%  { clip-path: inset(0 70% 0 0); }
+  50%  { clip-path: inset(0 40% 0 0); }
+  75%  { clip-path: inset(0 12% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
 }
 
-/* ── scanline sweep: one pass when the element mounts (position: relative host) ── */
-.scan-once { position: relative; overflow: hidden; }
-.scan-once::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, .75);
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, .35);
-  opacity: 0;
-  pointer-events: none;
-  animation: scanOnce .9s .1s ease-in 1 both;
-}
-@keyframes scanOnce { 0% { opacity: .9; transform: translateY(0); } 90% { opacity: .6; } 100% { opacity: 0; transform: translateY(46px); } }
+/* (the .scan-once CRT sweep was retired: off-identity glow) */
 
 /* ── dossier card ────────────────────────────────────────────────────
    <section class="dossier">
@@ -1559,7 +1529,7 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   width: 100%;
   min-height: var(--hit);
   padding: 6px 12px;
-  background: linear-gradient(90deg, rgba(var(--accentRGB), .10), transparent 75%);
+  background: rgba(var(--accentRGB), .06);  /* flat tint, no gradient */
   border: none;
   border-bottom: 1px solid var(--b1);
   color: inherit;
@@ -1573,10 +1543,10 @@ button.dossier-hd { cursor: pointer; }
 .dossier.is-collapsed .dossier-body { display: none; }
 .dossier.is-collapsed .dossier-hd { border-bottom-color: transparent; }
 .dossier.is-muted { border-top-color: var(--b3); }
-.dossier.is-muted .dossier-hd { background: linear-gradient(90deg, rgba(255, 255, 255, .05), transparent 75%); }
-.dossier.is-muted .stencil { color: #b5b5b5; text-shadow: none; }
+.dossier.is-muted .dossier-hd { background: rgba(255, 255, 255, .03); }
+.dossier.is-muted .stencil { color: #b5b5b5; }
 .dossier--flat .dossier-hd { background: var(--accent); color: var(--flat-fg); border-bottom: 2px solid var(--flat-fg); }
-.dossier--flat .dossier-hd .stencil, .dossier--flat .dossier-meta { color: var(--flat-fg); text-shadow: none; }
+.dossier--flat .dossier-hd .stencil, .dossier--flat .dossier-meta { color: var(--flat-fg); }
 
 /* clip-path (notch) cuts any outline drawn outside the box: draw focus rings inset on and inside notched primitives */
 .dossier:focus-visible, .dossier :focus-visible,
@@ -1638,7 +1608,7 @@ button.dossier-hd { cursor: pointer; }
 .ap.b-hum { --apc: #a9a9a9; border-style: dashed; }
 .ap.b-rua { --apc: #5fb8e6; background: rgba(95, 184, 230, .1); }
 .ap.b-ome { --apc: #ff6a4d; background: rgba(255, 106, 77, .16); box-shadow: inset 0 -2px 0 var(--apc); }
-.ap.b-cos { --apc: #d29bff; background: #d29bff; color: #14051f; box-shadow: 0 0 0 1px #14051f inset, 0 0 10px rgba(210, 155, 255, .45); }
+.ap.b-cos { --apc: #d29bff; background: #d29bff; color: #14051f; box-shadow: 0 0 0 1px #14051f inset; }
 
 /* ── modal shell (cerebro pattern) ───────────────────────────────────
    <div class="modal-bg" id="m" hidden-or-not>              ← .open shows it
@@ -1713,12 +1683,10 @@ body.modal-open { overflow: hidden; }
 .state-msg.is-loading::after { content: '▌'; margin-left: 4px; animation: blinkPulse .8s infinite; }
 .state-msg.is-error { color: #ff8a8a; border-left: 3px solid var(--red); text-align: left; background: rgba(232, 0, 28, .06); }
 .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 56px 20px; text-align: center; }
-.empty-title { font-size: 1.8rem; color: var(--muted); letter-spacing: .2em; text-shadow: none; }
+.empty-title { font-size: 1.8rem; color: var(--muted); letter-spacing: .2em; }
 .empty-sub { font-family: var(--mono); font-size: var(--fs-sm); color: var(--muted); letter-spacing: .1em; line-height: 1.9; max-width: 42ch; }
 
 @media (prefers-reduced-motion: reduce) {
-  .stencil-fx, .stencil-fx:hover, .stencil-fx:focus-visible, :focus-visible > .stencil-fx,
-  a:hover > .stencil-fx, button:hover > .stencil-fx { animation: none !important; }
-  .scan-once::after { display: none; }
+  .stencil-fx { animation: none !important; }
   .modal-bg.open, .state-msg.is-loading::after, .skel { animation: none; }
 }

@@ -127,7 +127,7 @@
 .cb-raps { display: flex; flex-direction: column; align-items: flex-end; }
 .cb-raps-n { font-family: var(--disp); font-size: 76px; line-height: .85; color: var(--white); }
 .cb-raps-n[data-state="idle"] { color: var(--muted); font-size: 48px; }
-.cb-raps-n[data-state="ok"] { color: var(--accent); text-shadow: 0 0 18px rgba(var(--accentRGB), .25); }
+.cb-raps-n[data-state="ok"] { color: var(--accent); }
 .cb-raps-n[data-state="fail"] { color: var(--muted2); }
 .cb-raps-k { font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
 .cb-dice { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-family: var(--mono); font-size: var(--fs-md); color: var(--text); }

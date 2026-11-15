@@ -9,7 +9,6 @@
   min-height: 100vh;
   min-height: 100dvh;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(var(--accentRGB), .07), transparent 70%),
     linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px) 0 0 / 100% 32px,
     linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px) 0 0 / 32px 100%,
     var(--black);

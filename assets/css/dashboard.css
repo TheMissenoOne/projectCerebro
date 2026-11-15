@@ -29,7 +29,7 @@
   gap: var(--sp-3);
   margin-bottom: var(--sp-5);
   padding: var(--sp-3) var(--sp-4);
-  background: linear-gradient(90deg, rgba(var(--accentRGB), .08), transparent 60%), var(--p1);
+  background: var(--p1);
   border: 1px solid var(--b1);
   border-left: 3px solid var(--accent);
 }
@@ -140,7 +140,7 @@
 .char-card:hover .char-go, .char-card:focus-visible .char-go { color: var(--accent); }
 
 /* most recently opened sheet = the "continue" card: spans the row, accent rule, label */
-.char-card.is-last { border-left-color: var(--accent); border-top: 2px solid var(--accent); background: linear-gradient(90deg, rgba(var(--accentRGB), .09), transparent 70%), var(--p1); }
+.char-card.is-last { border-left-color: var(--accent); border-top: 2px solid var(--accent); background: var(--p1); }
 .char-card.is-last .char-go { color: var(--accent); }
 .char-card.is-last .char-ava { border-color: var(--accent); }
 @media (min-width: 640px) {
