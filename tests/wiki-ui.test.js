@@ -287,6 +287,90 @@ if (require.main === module) (async () => {
     await ctx.close();
   });
 
+  await test('search ordinals match the rendered page on every page (generated AV/OV rows, AP tables, temas, reports)', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html');
+    const idx = await page.evaluate(() => WikiApp.ensureIndex().then(i => i.map(e => [e.page, e.ord, e.text])));
+    const bad = [];
+    for (const k of keys) {
+      await page.evaluate(k => WikiApp.go(k), k);
+      await page.waitForFunction(k => new URL(location.href).searchParams.get('p') === (k === 'index' ? null : k) && document.querySelector('#wiki-content h1'), k);
+      const mine = idx.filter(e => e[0] === k);
+      const got = await page.evaluate(ords => { const b = WikiApp.blocks(document.getElementById('wiki-content')); return ords.map(o => b[o] ? WikiApp.ownText(b[o]).replace(/\s+/g, ' ').trim() : null); }, mine.map(e => e[1]));
+      mine.forEach((e, i) => { if (got[i] !== e[2]) bad.push(k + '#' + e[1] + ': index "' + e[2].slice(0, 40) + '" vs page "' + String(got[i]).slice(0, 40) + '"'); });
+    }
+    assert(!bad.length, bad.length + ' misaligned: ' + bad.slice(0, 3).join(' | '));
+    // the reported case: the legend item, not the first generated table row
+    await page.fill('#wiki-q', 'sucesso automatico');
+    await page.waitForSelector('#wiki-results:not([hidden]) .wr-opt[data-page="acao_resultado"]');
+    await page.click('.wr-opt[data-page="acao_resultado"]');
+    await page.waitForSelector('.wiki-hit');
+    const hit = await page.evaluate(() => { const el = document.querySelector('.wiki-hit'); return el.tagName + ' ' + el.textContent; });
+    assert(/^LI .*sucesso automático/.test(hit), 'landed on: ' + hit.slice(0, 60));
+    await ctx.close();
+  });
+
+  await test('desktop: search results stay above the sticky table headers', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html?p=aps_referencia');
+    await page.fill('#wiki-q', 'a');
+    await page.waitForSelector('#wiki-results:not([hidden]) .wr-opt');
+    const hit = await page.evaluate(() => {
+      const th = document.querySelector('#wiki-content thead th:nth-child(2)'), r = document.getElementById('wiki-results').getBoundingClientRect();
+      window.scrollBy(0, th.getBoundingClientRect().top - (r.top + 60));
+      const b = th.getBoundingClientRect(), x = b.left + 5, y = b.top + 5;
+      if (!(x > r.left && x < r.right && y > r.top && y < r.bottom)) return 'header not under the popover';
+      return document.elementFromPoint(x, y).closest('#wiki-results') ? 'results' : document.elementFromPoint(x, y).tagName;
+    });
+    assert(hit === 'results', 'covered by: ' + hit);
+    await ctx.close();
+  });
+
+  await test('bare wiki.html offers "continue at" the last page read, and the intro never overwrites it', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html?p=tags');
+    await page.goto(base + '/wiki.html', { waitUntil: 'load' });
+    await page.waitForSelector('#wiki-content h1');
+    assert(await page.isVisible('#wiki-resume .wiki-resume-link'), 'no resume link');
+    assert((await page.textContent('#wiki-resume')).includes('Tags'), 'resume points elsewhere: ' + await page.textContent('#wiki-resume'));
+    await page.evaluate(() => window.scrollTo(0, 300));
+    await page.waitForTimeout(250);
+    assert(JSON.parse(await page.evaluate(() => localStorage.getItem('cerebro_wiki_last'))).p === 'tags', 'intro overwrote the record');
+    await page.click('#wiki-resume a');
+    await page.waitForFunction(() => new URL(location.href).searchParams.get('p') === 'tags');
+    await ctx.close();
+  });
+
+  await test('Enter during a cold index load (temas.json in flight) still opens the first result', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html');
+    let release;
+    const held = new Promise(r => { release = r; });
+    await page.route(/temas\.json/, async r => { await held; r.continue(); });
+    await page.focus('#wiki-q');
+    await page.keyboard.type('telepatia');
+    await page.waitForTimeout(250); // debounce fired: the search is waiting on temas.json
+    await page.keyboard.press('Enter');
+    release();
+    await page.waitForFunction(() => new URL(location.href).searchParams.get('p'), null, { timeout: 5000 });
+    await page.waitForSelector('.wiki-hit');
+    await ctx.close();
+  });
+
+  await test('mobile: after picking a search result, PAGES shows the page list again', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html', { mobile: true });
+    await page.click('#wiki-dock-search');
+    await page.keyboard.type('condicao');
+    await page.waitForSelector('#wiki-results:not([hidden]) .wr-opt');
+    await page.click('.wr-opt');
+    await page.waitForFunction(() => !document.querySelector('.wiki-sidebar.is-open') && document.querySelector('.wiki-hit'));
+    await page.click('#wiki-dock-pages');
+    await page.waitForSelector('.wiki-sidebar.is-open');
+    assert(await page.isVisible('.wiki-nav-link[data-page="tags"]'), 'page list hidden in the PAGES sheet');
+    // the search dock brings the (still typed) results back in place of the list
+    await page.click('#wiki-sheet-close');
+    await page.click('#wiki-dock-search');
+    await page.waitForSelector('#wiki-results:not([hidden]) .wr-opt');
+    assert(!(await page.isVisible('#wiki-nav')), 'page list shown under the results');
+    await ctx.close();
+  });
+
   await test('AV/OV table: tapping a cell cross-highlights and opens the AP panel; leaving the page clears it', async () => {
     const { ctx, page } = await open(browser, base, 'wiki.html?p=acao_resultado');
     await page.click('#action-table tbody tr:nth-child(5) td:nth-child(6)');

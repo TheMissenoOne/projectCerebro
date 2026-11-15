@@ -142,8 +142,11 @@ window.WikiApp = (function () {
   ];
   // old/broken keys that still circulate in links
   const ALIAS = { aps_massa: 'aps_mass', sistema_acao: 'tipos_acao', acao: 'acoes', exemplo: 'exemplo_resolucao' };
-  // searchable blocks; render-time decoration never adds or removes these tags inside the article
+  // searchable blocks; render-time decoration never adds or removes these tags inside the article.
+  // #action-table is generated at render time (53 rows), so it is left out of the ordinals on both
+  // sides: search indexes the raw page, landing counts the rendered one.
   const SEL = 'h1,h2,h3,h4,p,li,tr,blockquote,summary';
+  const blocks = root => Array.from(root.querySelectorAll(SEL)).filter(el => !el.closest('#action-table'));
   const LAST_KEY = 'cerebro_wiki_last';
   const mqMobile = window.matchMedia('(max-width: 768px)');
   const mqWide = window.matchMedia('(min-width: 1200px)');
@@ -416,6 +419,7 @@ window.WikiApp = (function () {
   }
 
   function saveLast(page, y) {
+    if (page === 'index') return; // the intro is the landing page, never a place to resume
     try { localStorage.setItem(LAST_KEY, JSON.stringify({ p: page, y: Math.round(y) })); } catch (e) { /* private mode */ }
   }
   function readLast() {
@@ -445,7 +449,7 @@ window.WikiApp = (function () {
 
   function landOn(opts) {
     let target = null;
-    if (opts.ord != null) target = article.querySelectorAll(SEL)[opts.ord] || null;
+    if (opts.ord != null) target = blocks(article)[opts.ord] || null;
     else if (opts.hash) target = document.getElementById(opts.hash);
     if (target) {
       reveal(target);
@@ -547,7 +551,7 @@ window.WikiApp = (function () {
           if (page === 'temas' && temas) { const box = body.querySelector('#temas-dynamic'); if (box) box.innerHTML = renderTemasHTML(temas); }
           assignIds(body);
           let head = { text: '', id: '' };
-          body.querySelectorAll(SEL).forEach((el, ord) => {
+          blocks(body).forEach((el, ord) => {
             const tag = el.tagName;
             if (/^H[1-4]$/.test(tag)) head = { text: el.textContent.trim(), id: tag === 'H1' ? '' : el.id };
             if (tag === 'TR' && el.parentElement.tagName === 'THEAD') return;
@@ -597,11 +601,12 @@ window.WikiApp = (function () {
     return s;
   }
 
-  let activeOpt = -1, lastQ = '';
-  async function runSearch() {
+  let activeOpt = -1, lastQ = '', searchP = Promise.resolve();
+  // the latest search, kept so Enter can wait for one still loading the index (cold temas.json)
+  function runSearch() { return (searchP = search()); }
+  async function search() {
     const q = input.value.trim();
     lastQ = q;
-    sidebar.classList.toggle('has-query', !!q);
     if (!q) { hideResults(); statusEl.textContent = ''; return; }
     const idx = await ensureIndex();
     if (q !== input.value.trim()) return; // typed on
@@ -674,7 +679,7 @@ window.WikiApp = (function () {
       else if (e.key === 'Enter') {
         e.preventDefault();
         clearTimeout(timer);
-        const done = input.value.trim() === lastQ ? Promise.resolve() : runSearch();
+        const done = input.value.trim() === lastQ ? searchP : runSearch();
         done.then(() => {
           const opts = results.querySelectorAll('.wr-opt');
           const a = opts[activeOpt] || opts[0];
@@ -816,5 +821,5 @@ window.WikiApp = (function () {
     if (dest.page === 'index' && !location.search && !location.hash) showResume();
   }
 
-  return { init, decorateTable, go, ensureIndex, parseLoc };
+  return { init, decorateTable, go, ensureIndex, parseLoc, blocks, ownText };
 })();

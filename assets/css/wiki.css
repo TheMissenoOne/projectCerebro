@@ -44,7 +44,12 @@
   background: var(--dark);
   border-right: 1px solid var(--b1);
   min-width: 0;
+  /* sticky = own stacking context: lift it over the sticky table headers (z ≤ 3) so the search
+     popover isn't covered; still under the AV/OV panel (240) and the header (300). ≤768px resets it. */
+  z-index: 10;
 }
+/* while results are open they also beat the fixed AV/OV panel */
+@media (min-width: 769px) { .wiki-sidebar:has(.wiki-results:not([hidden])) { z-index: 260; } }
 .wiki-sheet-hd { display: none; }
 .wiki-scrim { display: none; }
 
@@ -501,7 +506,8 @@
   .wiki-kbd { display: none; }
   /* results live inside the sheet, in place of the page list */
   .wiki-results { position: static; width: auto; max-height: 52vh; max-height: 52dvh; margin: var(--sp-3) calc(-1 * var(--sp-4)) calc(-1 * var(--sp-3)); border: 0; border-top: 1px solid var(--b1); box-shadow: none; }
-  .wiki-sidebar.has-query .wiki-nav { display: none; }
+  /* derived from the results' own state: picking a result hides them, so PAGES shows the list again */
+  .wiki-sidebar:has(.wiki-results:not([hidden])) .wiki-nav { display: none; }
   .wiki-nav-link { min-height: 48px; padding-left: 17px; border-bottom: 1px solid var(--b1); }
 
   .wiki-dock {

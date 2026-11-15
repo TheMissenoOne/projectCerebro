@@ -53,7 +53,7 @@ function stubScript(opts) {
 window.getSupabaseClient=function(){return null;};
 window.cache=null;
 var ROLE=${JSON.stringify(opts.role || 'player')}, UID=${JSON.stringify(opts.uid || 'u-1')};
-var _chars=${JSON.stringify(CHARS)}, _npcs=${JSON.stringify(NPCS)};
+var _chars=${JSON.stringify(opts.chars || CHARS)}, _npcs=${JSON.stringify(NPCS)};
 var FAIL=${!!opts.fail}, DELAY=${opts.delay ? 'true' : 'false'};
 function out(v){ var p=Promise.resolve(JSON.parse(JSON.stringify(v))); if(FAIL) p=Promise.reject(new Error('boom'));
   return DELAY ? new Promise(function(r){ window.__release=function(){ r(p); }; }).then(function(x){return x;}) : p; }
@@ -258,16 +258,56 @@ if (require.main === module) (async () => {
     eq(await page.$$eval('#cb-hist li', ls => ls.map(l => l.className)), ['cb-hist-empty'], 'cleared');
   });
 
-  await test('a tag used in a roll is marked "used this turn" until NOVO TURNO', async () => {
+  const ATRAV = '#atk-src option[value="tag:atravessar paredes"]';
+  await test('a tag used in a roll is spent: disabled, deselected, values kept as MANUAL, unusable until NOVO TURNO', async () => {
     await page.selectOption('#av-char-select', 'c:pc-1');
     await page.selectOption('#atk-src', { label: 'AP 12 · Atravessar paredes' });
     eq(await page.inputValue('#av-input'), '12', 'AV from tag');
     await forceDice(page, [0.95, 0.85]);
     await page.click('#cb-roll');
-    const lbl = await page.$eval('#atk-src option[value="tag:0"]', o => o.textContent);
-    assert(lbl.includes('usada neste turno'), 'used marker ' + lbl);
+    const o = await page.$eval(ATRAV, o => ({ txt: o.textContent, dis: o.disabled }));
+    assert(o.txt.includes('usada neste turno') && o.dis, 'spent tag not marked/disabled ' + JSON.stringify(o));
+    eq(await page.inputValue('#atk-src'), '', 'spent tag still selected');
+    eq([await page.inputValue('#av-input'), await page.inputValue('#ev-input')], ['12', '12'], 'numbers kept');
+    eq([await page.textContent('#av-src'), await page.textContent('#ev-src')], ['MANUAL', 'MANUAL'], 'provenance dropped');
+    // resolving/applying the spent tag is refused even if the selection is forced
+    const forced = await page.evaluate(() => { st.atkSrc = 'tag:atravessar paredes'; const s = sourceOf('atk'); applySource('atk'); st.atkSrc = ''; return s; });
+    eq(forced, null, 'spent tag still resolves as a source');
+    eq(await page.textContent('#av-src'), 'MANUAL', 'forced apply re-labelled the value');
+    // a second roll does not count it again, and manual numbers still roll
+    await forceDice(page, [0.95, 0.85]);
+    await page.click('#cb-roll');
+    eq(await page.evaluate(() => sess.used.filter(k => k === 'c:pc-1|atravessar paredes').length), 1, 'spent once');
     await page.click('#cb-newturn');
-    eq(await page.$eval('#atk-src option[value="tag:0"]', o => o.textContent), 'AP 12 · Atravessar paredes', 'reset');
+    eq(await page.$eval(ATRAV, o => [o.textContent, o.disabled]), ['AP 12 · Atravessar paredes', false], 'reset');
+    await page.selectOption('#atk-src', { label: 'AP 12 · Atravessar paredes' });
+    assert((await page.textContent('#av-src')).includes('Atravessar paredes'), 'usable again after NOVO TURNO');
+  });
+
+  await test('no spend when both values on a side were typed by hand; one tag-fed value still spends it', async () => {
+    await page.click('#cb-newturn');
+    await page.selectOption('#atk-src', { label: 'AP 7 · Reflexos de bailarina' });
+    await setVals(page, { av: 9, ev: 9 });
+    await forceDice(page, [0.95, 0.85]);
+    await page.click('#cb-roll');
+    eq(await page.evaluate(() => sess.used), [], 'manual values spent the selected tag');
+    await page.selectOption('#atk-src', '');           // reselect to re-apply
+    await page.selectOption('#atk-src', { label: 'AP 7 · Reflexos de bailarina' });
+    await setVals(page, { av: 9 });                     // EV still comes from the tag
+    await forceDice(page, [0.95, 0.85]);
+    await page.click('#cb-roll');
+    eq(await page.evaluate(() => sess.used), ['c:pc-1|reflexos de bailarina'], 'EV from the tag did not spend it');
+    await page.click('#cb-newturn');
+  });
+
+  await test('AV 1 vs OV 0: target 11 and no phantom column shift (OV floor applies to the start column)', async () => {
+    eq(await page.evaluate(() => [actionTarget(1, 0), columnShifts(1, 0, 11), columnShifts(1, 0, 12), columnShifts(1, 1, 12)]), [11, 0, 1, 1], 'target / shifts');
+    await setVals(page, { av: 1, ov: 0, ev: 5, rv: 2 });
+    await page.fill('#cb-dice-in', '11');
+    await page.click('.cb-phys-ok');
+    eq(await page.textContent('#cb-verdict'), 'SUCESSO', 'verdict');
+    eq(await page.textContent('#raps-result'), readCsv().R[4][1], 'RAPs = CSV(5,2), RV not shifted');
+    eq(await page.textContent('#cb-shift'), 'sem deslocamento · RV 2', 'shift text');
   });
 
   await test('keyboard: tabs move with arrow keys, roll works with Enter', async () => {
@@ -283,7 +323,13 @@ if (require.main === module) (async () => {
   });
 
   await test('language switch: EN labels, no raw keys, inputs kept', async () => {
+    // spend one tag, then pick another as the live source: both states must survive the reload
+    await page.selectOption('#atk-src', { label: 'AP 7 · Reflexos de bailarina' });
+    await forceDice(page, [0.95, 0.85]);
+    await page.click('#cb-roll');
+    await page.selectOption('#atk-src', { label: 'AP 12 · Atravessar paredes' });
     const before = await page.inputValue('#av-input');
+    eq(before, '12', 'AV from the live tag');
     await Promise.all([page.waitForNavigation(), page.click('#lang-toggle-btn')]);
     await page.waitForFunction(() => !document.querySelector('#cb-state.is-loading'));
     eq(await page.textContent('#tabbtn-resolver'), 'RESOLVE', 'tab');
@@ -291,8 +337,10 @@ if (require.main === module) (async () => {
     const raw = await page.evaluate(() => document.body.innerText.match(/combat\.[a-zA-Z]+/g));
     eq(raw, null, 'raw keys');
     eq(await page.inputValue('#av-input'), before, 'value restored after the reload');
-    // the keyboard roll above spent the tag again: the marker survives the reload too (sessionStorage)
-    eq(await page.$eval('#atk-src', s => s.selectedOptions[0].textContent), 'AP 12 · Atravessar paredes — used this turn', 'source + used marker restored');
+    eq(await page.$eval('#atk-src', s => s.selectedOptions[0].textContent), 'AP 12 · Atravessar paredes', 'live source restored');
+    assert((await page.textContent('#av-src')).includes('Atravessar paredes'), 'provenance restored');
+    // the spent marker survives the reload too (sessionStorage)
+    eq(await page.$eval('#atk-src option[value="tag:reflexos de bailarina"]', o => [o.textContent, o.disabled]), ['AP 7 · Reflexos de bailarina — used this turn', true], 'spent tag restored');
     await page.click('.cb-help[aria-controls="h-ov"]');
     assert((await page.textContent('#h-ov')).startsWith('Opposing Value'), 'help in EN');
     eq(page.__errors, [], 'page errors');
@@ -312,6 +360,34 @@ if (require.main === module) (async () => {
     eq(await page.evaluate(() => ['av', 'ev', 'ov', 'rv'].map(k => document.getElementById(k + '-input').value)), ['26', '26', '8', '8'], 'values');
     eq(await page.textContent('#avov-result'), 'AUTO', '26 vs 8 → N in the CSV → automatic');
     await shot(page, 'desktop.png');
+  });
+  await ctx.close();
+
+  /* ── restored source when the tag list changed between visits ── */
+  ({ ctx, page } = await openPage(browser, base, { role: 'player' }));
+  await test('restored tag source follows the tag (not its position) and is dropped if the tag changed', async () => {
+    await page.selectOption('#av-char-select', 'c:pc-1');
+    await page.selectOption('#atk-src', { label: 'AP 7 · Reflexos de bailarina' }); // 2nd in the list
+    const reload = async chars => {
+      await page.unroute(/assets\/js\/api\.js/);
+      await page.route(/assets\/js\/api\.js/, r => r.fulfill({ contentType: 'text/javascript', body: stubScript({ role: 'player', chars }) }));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => !document.querySelector('#cb-state.is-loading'));
+    };
+    const withTags = (extra, grauReflexos) => CHARS.map(c => c.id !== 'pc-1' ? c : Object.assign({}, c, { data: Object.assign({}, c.data, {
+      temas: [{ ...c.data.temas[0], poder: [...extra.map(x => x[0]), ...c.data.temas[0].poder], poder_grau: [...extra.map(x => x[1]), ...c.data.temas[0].poder_grau], poder_burned: [...extra.map(() => false), ...c.data.temas[0].poder_burned] }],
+      temas_emergentes: { poder: ['Reflexos de bailarina'], poder_grau: [grauReflexos] } }) }));
+    // a new higher tag sorts first: position 2 is now "Atravessar paredes", the source must still be Reflexos
+    await reload(withTags([['Super força', 30]], 7));
+    const tags = await page.$$eval('#atk-src optgroup:nth-of-type(2) option', os => os.map(o => o.textContent));
+    eq(tags.slice(0, 2), ['AP 30 · Super força', 'AP 12 · Atravessar paredes'], 'list re-ordered');
+    eq(await page.$eval('#atk-src', s => s.selectedOptions[0].textContent), 'AP 7 · Reflexos de bailarina', 'selection followed the tag');
+    assert((await page.textContent('#av-src')).includes('Reflexos de bailarina'), 'provenance kept');
+    eq(await page.inputValue('#av-input'), '7', 'value');
+    // the tag was re-graded: the stored 7 no longer comes from it → keep the number, caption MANUAL, clear the pick
+    await reload(withTags([['Super força', 30]], 9));
+    eq([await page.inputValue('#av-input'), await page.textContent('#av-src'), await page.textContent('#ev-src'), await page.inputValue('#atk-src')], ['7', 'MANUAL', 'MANUAL', ''], 'stale provenance');
+    eq(page.__errors, [], 'page errors');
   });
   await ctx.close();
 
@@ -338,7 +414,7 @@ if (require.main === module) (async () => {
   ({ ctx, page } = await openPage(browser, base, { role: 'player', mobile: true }));
   await test('390×844: values, target, ROLL and result on one screen; inputs 16px+; no overflow', async () => {
     await page.selectOption('#av-char-select', 'c:pc-1');
-    await page.selectOption('#atk-src', 'tag:0');
+    await page.selectOption('#atk-src', { label: 'AP 12 · Atravessar paredes' });
     await pickDef(page, 'Magneto (Erik Lehnsherr)');
     await page.selectOption('#def-src', 'attr:corpo');
     await page.evaluate(() => document.activeElement && document.activeElement.blur());

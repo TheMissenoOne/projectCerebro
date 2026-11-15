@@ -261,6 +261,7 @@ function resultRAPs(ev, rv) {
 // the target column (same AV row) whose number the roll still reaches. Each shift lowers RV by 1.
 function columnShifts(av, ov, total) {
   if (total < 11) return 0;
+  ov = Math.max(1, ov);                           // start from the column actionTarget really used (OV floor 1)
   let n = 0;
   while (n < 200 && actionTarget(av, ov + n + 1) <= total) n++;
   return n;
@@ -443,9 +444,21 @@ function setState(kind) {
 // ═══════════════════════════════════════════
 const statLabel = k => t((STATS.find(s => s[0] === k) || [])[1] || k).toUpperCase();
 function entityOf(side) { return ROSTER.get(st[side]) || null; }
+const tagKeyOf = (e, tg) => e.id + '|' + norm(tg.texto);
+// house rule: a graded tag spent this turn can't be a source again until NOVO TURNO
+const isSpent = (e, tg) => sess.used.includes(tagKeyOf(e, tg));
 
 function buildSrc(side) {
-  const sel = $(SIDE[side].src), e = entityOf(side);
+  const sel = $(SIDE[side].src), e = entityOf(side), key = side + 'Src';
+  // provenance survives only if the loaded entity still yields the same value from the same source
+  // (tag removed/re-graded, entity changed, or tag spent → the number stays, captioned MANUAL)
+  SIDE[side].keys.forEach(k => {
+    const s = st.srcs[k];
+    if (!s || sameSource(e, s)) return;
+    if (s.key === st[key]) st[key] = '';
+    delete st.srcs[k];
+  });
+  paintSrc();
   sel.querySelectorAll('optgroup').forEach(g => g.remove());
   sel.disabled = !e;
   if (!e) { sel.value = ''; return; }
@@ -459,25 +472,31 @@ function buildSrc(side) {
   sel.appendChild(ga);
   if (e.tags.length) {
     const gt = document.createElement('optgroup'); gt.label = t('combat.srcTags');
-    e.tags.forEach((tg, i) => {
-      const used = sess.used.includes(e.id + '|' + norm(tg.texto));
-      gt.appendChild(new Option('AP ' + tg.grau + ' · ' + tg.texto + (used ? ' — ' + t('combat.used') : ''), 'tag:' + i));
+    e.tags.forEach(tg => {
+      const used = isSpent(e, tg);
+      // value = normalised texto: stable across reloads even if the tag list is re-sorted
+      const o = new Option('AP ' + tg.grau + ' · ' + tg.texto + (used ? ' — ' + t('combat.used') : ''), 'tag:' + norm(tg.texto));
+      o.disabled = used;
+      gt.appendChild(o);
     });
     sel.appendChild(gt);
   }
-  const key = side + 'Src';
   sel.value = st[key] && [...sel.options].some(o => o.value === st[key] && !o.disabled) ? st[key] : '';
   st[key] = sel.value;
 }
 
-// value + where it came from: {v, kind:'attr'|'tag'|'manual', label, ap?}
-function sourceOf(side) {
-  const e = entityOf(side), key = st[side + 'Src'];
+// value + where it came from: {v, kind:'attr'|'tag', key, label, ap?, tagKey?}; null = not usable now
+function sourceFor(e, key) {
   if (!e || !key) return null;
-  const [kind, ref] = key.split(':');
-  if (kind === 'attr') { const v = e.stats[ref]; return v == null ? null : { v, kind, label: statLabel(ref) + ' ' + v }; }
-  const tg = e.tags[+ref];
-  return tg ? { v: tg.grau, kind, label: tg.texto, ap: tg.grau, tagKey: e.id + '|' + norm(tg.texto) } : null;
+  const i = key.indexOf(':'), kind = key.slice(0, i), ref = key.slice(i + 1);
+  if (kind === 'attr') { const v = e.stats[ref]; return v == null ? null : { v, kind, key, label: statLabel(ref) + ' ' + v }; }
+  const tg = kind === 'tag' ? e.tags.find(x => norm(x.texto) === ref) : null;
+  return tg && !isSpent(e, tg) ? { v: tg.grau, kind, key, label: tg.texto, ap: tg.grau, tagKey: tagKeyOf(e, tg) } : null;
+}
+const sourceOf = side => sourceFor(entityOf(side), st[side + 'Src']);
+function sameSource(e, s) {
+  const now = sourceFor(e, s.key);
+  return !!now && now.v === s.v && now.tagKey === s.tagKey;
 }
 
 function applySource(side) {
@@ -548,8 +567,9 @@ function doRoll(dice) {
   const r = resolve(v, dice);
   last = r;
   paintResult(v, r);
-  // tags spent on this action are out until the next turn (Sistema Híbrido §2.6)
-  ['atk', 'def'].forEach(side => { const s = sourceOf(side); if (s && s.tagKey && !sess.used.includes(s.tagKey)) sess.used.push(s.tagKey); });
+  // tags spent on this action are out until the next turn (Sistema Híbrido §2.6): only the tags
+  // that actually fed a value (per-field provenance; a hand-typed value spends nothing)
+  KEYS.forEach(k => { const s = st.srcs[k]; if (s && s.tagKey && !sess.used.includes(s.tagKey)) sess.used.push(s.tagKey); });
   sess.hist.unshift({ m: matchup(), av: v.av, ov: v.ov, ev: v.ev, rv: v.rv, dur: v.dur, total: r.total, target: r.target, ok: r.success, fumble: r.fumble, act: v.hasAction, raps: v.hasEffect ? r.raps : null, shifts: r.shifts });
   sess.hist = sess.hist.slice(0, 8);
   buildSrc('atk'); buildSrc('def');
