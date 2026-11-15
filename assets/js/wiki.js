@@ -679,8 +679,10 @@ window.WikiApp = (function () {
       else if (e.key === 'Enter') {
         e.preventDefault();
         clearTimeout(timer);
-        const done = input.value.trim() === lastQ ? searchP : runSearch();
+        const q = input.value.trim();
+        const done = q === lastQ ? searchP : runSearch();
         done.then(() => {
+          if (input.value.trim() !== q) return; // query changed while the index loaded: this Enter is cancelled
           const opts = results.querySelectorAll('.wr-opt');
           const a = opts[activeOpt] || opts[0];
           if (a) openOpt(a);

@@ -353,6 +353,30 @@ if (require.main === module) (async () => {
     await ctx.close();
   });
 
+  await test('Enter during a cold index load, then a new query: the old Enter is cancelled; Enter on the new query opens its result', async () => {
+    const { ctx, page } = await open(browser, base, 'wiki.html');
+    let release;
+    const held = new Promise(r => { release = r; });
+    await page.route(/temas\.json/, async r => { await held; r.continue(); });
+    await page.focus('#wiki-q');
+    await page.keyboard.type('telepatia');
+    await page.waitForTimeout(250);
+    await page.keyboard.press('Enter'); // submitted A, index still loading
+    await page.fill('#wiki-q', 'condicao'); // query B before the index arrives
+    await page.waitForTimeout(250);
+    release();
+    await page.waitForFunction(() => document.querySelector('.wr-opt') || new URL(location.href).searchParams.get('p'), null, { timeout: 5000 });
+    await page.waitForTimeout(400);
+    const p = await page.evaluate(() => new URL(location.href).searchParams.get('p'));
+    assert(p === null, 'navigated to "' + p + '" without an Enter on the new query');
+    assert(await page.isVisible('#wiki-results .wr-opt'), 'results for the new query not shown');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => new URL(location.href).searchParams.get('p'), null, { timeout: 5000 });
+    await page.waitForSelector('.wiki-hit');
+    assert(/condi[cç][aãõ]/i.test(await page.textContent('.wiki-hit')), 'opened hit is not a "condicao" result: ' + await page.textContent('.wiki-hit'));
+    await ctx.close();
+  });
+
   await test('mobile: after picking a search result, PAGES shows the page list again', async () => {
     const { ctx, page } = await open(browser, base, 'wiki.html', { mobile: true });
     await page.click('#wiki-dock-search');

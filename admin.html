@@ -339,7 +339,7 @@
     }
     function renderSync() {
       const btn = $('refresh-btn');
-      const loading = charsState === 'loading' || sessionState === 'loading';
+      const loading = charsState === 'loading' || sessionState === 'loading' || !!sessionLoad;
       btn.disabled = loading;
       btn.setAttribute('aria-busy', String(loading));
       $('sync-status').textContent = loading ? t('common.loading')
@@ -488,7 +488,14 @@
     }
 
     /* ═══ session: encounter flag + notes (one row per party) ═══ */
-    async function loadSession() {
+    // Single flight: every caller (Refresh, retry buttons, init) joins the load already running, so two reads
+    // never overlap — an older snapshot answering after the GM typed and saved would otherwise restore stale notes.
+    let sessionLoad = null;
+    function loadSession() {
+      if (!sessionLoad) { sessionLoad = readSession(); renderSync(); } // Refresh stays busy through the save wait too
+      return sessionLoad;
+    }
+    async function readSession() {
       // land pending/in-flight notes first: a read started before the save commits can return the old notes,
       // and once the save marks them 'saved' renderSession would put that stale snapshot back in the textarea.
       // From 'loading' on, saveNotes is a no-op and the textarea is disabled, so no save can overlap the read.
@@ -503,6 +510,7 @@
         console.error('[admin] session', e);
         sessionState = 'error';
       }
+      sessionLoad = null;
       renderSession();
       renderSync();
     }

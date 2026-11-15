@@ -40,8 +40,19 @@ function fakeSupabase(o) {
       then: function(res, rej){
         var go = function(){ return run(); };
         var p = (st.op === 'upsert' && window.__hold) ? new Promise(function(r){ window.__release = function(){ r(); }; }).then(go) : Promise.resolve().then(go);
-        // __holdRead: a sessions read snapshots the row when issued but answers only on __releaseRead() (slow network read)
-        if (st.op === 'select' && table === 'sessions' && window.__holdRead) { var snap = run(); p = new Promise(function(r){ window.__releaseRead = function(){ r(snap); }; }); }
+        // __holdRead: a sessions read snapshots the row when issued but answers only on __releaseRead() (slow network read);
+        // several held reads are released oldest first. __readsOpen/__readsMax: concurrent session reads.
+        var sRead = st.op === 'select' && table === 'sessions';
+        if (sRead && window.__holdRead) {
+          var snap = run(), q = window.__readQ = window.__readQ || [];
+          p = new Promise(function(r){ q.push(function(){ r(snap); }); });
+          window.__releaseRead = function(){ var f = q.shift(); if (f) f(); };
+        }
+        if (sRead) {
+          window.__readsOpen = (window.__readsOpen || 0) + 1;
+          window.__readsMax = Math.max(window.__readsMax || 0, window.__readsOpen);
+          p = p.then(function(v){ window.__readsOpen--; return v; });
+        }
         return p.then(res, rej);
       }
     };
@@ -211,6 +222,39 @@ if (require.main === module) (async () => {
     eq(await page.inputValue('#session-notes'), 'Notas novas.', 'textarea keeps the new notes');
     eq(await page.evaluate(() => window.__db.sessions[0].notes), 'Notas novas.', 'stored row');
     eq((await sessionWrites(page)).map(w => w.row.notes), ['Notas novas.'], 'session writes');
+    eq(page.__errors, [], 'page errors');
+    await ctx.close();
+  });
+
+  await test('overlapping refreshes (double click + another reload path) during a save: one read at a time, no stale notes', async () => {
+    const { ctx, page } = await openAdmin(browser, base, { query: '?tab=notes' });
+    await page.evaluate(() => { // a second reload path (like the error-state retry buttons), outside the toolbar
+      const b = document.createElement('button'); b.id = 'reload-2'; b.dataset.act = 'reload'; document.body.appendChild(b);
+      window.__readsMax = 0; window.__hold = true; window.__holdRead = true;
+    });
+    await page.fill('#session-notes', 'Notas novas.');
+    await page.click('#refresh-btn'); // blur starts the (held) save, the click starts refresh A
+    await page.waitForFunction(() => /SALVANDO/i.test(document.getElementById('notes-status').textContent), null, { timeout: 3000 });
+    await page.waitForFunction(() => document.querySelector('#party-body tbody'), null, { timeout: 3000 }); // chars done, session still waiting
+    eq(await page.isDisabled('#refresh-btn'), true, 'Refresh enabled while the session part of the refresh is still running');
+    await page.click('#refresh-btn', { force: true }); // double click
+    await page.click('#reload-2', { force: true }); // refresh B from another path
+    await page.evaluate(() => { window.__hold = false; window.__release(); });
+    await page.waitForFunction(() => window.__releaseRead, null, { timeout: 3000 });
+    await page.waitForTimeout(100); // let any second read get issued
+    await page.evaluate(() => window.__releaseRead()); // oldest read answers first
+    await page.waitForFunction(() => !document.getElementById('session-notes').disabled, null, { timeout: 3000 });
+    eq(await page.inputValue('#session-notes'), 'Notas novas.', 'first read');
+    await page.fill('#session-notes', 'Notas 2.'); // GM keeps typing: this save lands after any second snapshot
+    await page.waitForFunction(() => /SALVO/i.test(document.getElementById('notes-status').textContent) && window.__db.sessions[0].notes === 'Notas 2.', null, { timeout: 4000 });
+    await page.evaluate(() => { window.__holdRead = false; window.__releaseRead(); }); // a stale second snapshot (if any) answers now
+    await page.waitForTimeout(1300); // past the autosave debounce
+    eq(await page.inputValue('#session-notes'), 'Notas 2.', 'textarea keeps the newest notes');
+    assert(/SALVO/i.test(await page.textContent('#notes-status')), 'status: ' + await page.textContent('#notes-status'));
+    eq(await page.evaluate(() => window.__db.sessions[0].notes), 'Notas 2.', 'stored row');
+    eq((await sessionWrites(page)).map(w => w.row.notes), ['Notas novas.', 'Notas 2.'], 'session writes');
+    eq(await page.evaluate(() => window.__readsMax), 1, 'concurrent session reads');
+    eq(await page.isDisabled('#refresh-btn'), false, 'Refresh usable again');
     eq(page.__errors, [], 'page errors');
     await ctx.close();
   });

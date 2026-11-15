@@ -454,7 +454,9 @@ function buildSrc(side) {
   // (tag removed/re-graded, entity changed, or tag spent → the number stays, captioned MANUAL)
   SIDE[side].keys.forEach(k => {
     const s = st.srcs[k];
-    if (!s || sameSource(e, s)) return;
+    if (!s) return;
+    // same value + tag identity: rebuild from the key so the caption follows the current language
+    if (sameSource(e, s)) { st.srcs[k] = sourceFor(e, s.key); return; }
     if (s.key === st[key]) st[key] = '';
     delete st.srcs[k];
   });

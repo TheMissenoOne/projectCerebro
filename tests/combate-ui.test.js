@@ -330,6 +330,10 @@ if (require.main === module) (async () => {
     await page.selectOption('#atk-src', { label: 'AP 12 · Atravessar paredes' });
     const before = await page.inputValue('#av-input');
     eq(before, '12', 'AV from the live tag');
+    await pickDef(page, 'Magneto (Erik Lehnsherr)'); // an attribute source too: its caption is UI text
+    await page.selectOption('#def-src', '');
+    await page.selectOption('#def-src', 'attr:corpo');
+    eq([await page.textContent('#ov-src'), await page.textContent('#rv-src')], ['CORPO 12', 'CORPO 12'], 'pt-BR attribute caption');
     await Promise.all([page.waitForNavigation(), page.click('#lang-toggle-btn')]);
     await page.waitForFunction(() => !document.querySelector('#cb-state.is-loading'));
     eq(await page.textContent('#tabbtn-resolver'), 'RESOLVE', 'tab');
@@ -339,6 +343,10 @@ if (require.main === module) (async () => {
     eq(await page.inputValue('#av-input'), before, 'value restored after the reload');
     eq(await page.$eval('#atk-src', s => s.selectedOptions[0].textContent), 'AP 12 · Atravessar paredes', 'live source restored');
     assert((await page.textContent('#av-src')).includes('Atravessar paredes'), 'provenance restored');
+    eq([await page.inputValue('#ev-input'), await page.$eval('#ev-src', el => [!!el.querySelector('.ap'), el.textContent])], ['12', [true, 'AP12Atravessar paredes']], 'tag source (EV) unchanged');
+    // the attribute caption follows the new language; value and source stay
+    eq([await page.textContent('#ov-src'), await page.textContent('#rv-src')], ['BODY 12', 'BODY 12'], 'attribute caption in EN');
+    eq([await page.inputValue('#ov-input'), await page.inputValue('#rv-input'), await page.inputValue('#def-src')], ['12', '12', 'attr:corpo'], 'attribute value/source');
     // the spent marker survives the reload too (sessionStorage)
     eq(await page.$eval('#atk-src option[value="tag:reflexos de bailarina"]', o => [o.textContent, o.disabled]), ['AP 7 · Reflexos de bailarina — used this turn', true], 'spent tag restored');
     await page.click('.cb-help[aria-controls="h-ov"]');
