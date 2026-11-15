@@ -958,9 +958,20 @@ const newUrl = 'ficha.html?id=' + char.id;
       return;
       return;
     } catch(e) {
+      // party lookup or insert failed: nothing was created (the insert is the last step). No blank,
+      // unsaveable sheet: replace the page with the failure and a retry that re-runs ?new=true.
       console.error('[ficha] create error:', e);
       setInd('erro',t('ficha.errorCreate'));
-      toast(t('ficha.errorCreateChar')+' '+e.message);
+      document.querySelector('.tabs').hidden=true;
+      const main=document.querySelector('main.content');
+      main.innerHTML='<div class="empty-state" id="create-fail"><div class="empty-title stencil"></div><p class="empty-sub"></p>'
+        +'<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button type="button" class="btn btn-primary" onclick="location.reload()"></button>'
+        +'<a class="btn" href="dashboard.html"></a></div></div>';
+      main.querySelector('.empty-title').textContent=t('ficha.createFailTitle');
+      main.querySelector('.empty-sub').textContent=t('ficha.createFailMsg');
+      main.querySelector('button').textContent=t('common.retry');
+      main.querySelector('a').textContent=t('common.backDash');
+      main.querySelector('button').focus();
       return;
     }
   }

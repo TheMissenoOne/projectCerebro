@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://wlpdfrqzbpwuxyqeayjt.supabase.co" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css?v=dev">
   <link rel="stylesheet" href="assets/css/components.css?v=dev">
   <link rel="stylesheet" href="assets/css/auth.css?v=dev">
@@ -32,80 +32,105 @@
   <script src="assets/js/pwa.js?v=dev" defer></script>
   <link rel="stylesheet" href="assets/css/mobile.css?v=dev">
 </head>
-<body>
+<body class="auth-page">
 
-  <div class="auth-container">
-    <div class="auth-logo">
-      <svg viewBox="0 0 64 64" fill="none">
+  <button type="button" class="btn btn-sm auth-lang" id="auth-lang">EN</button>
+
+  <!-- .auth-container: unstyled marker, tests/spa-e2e.test.js looks for it -->
+  <main class="auth-shell auth-container">
+    <header class="auth-brand">
+      <svg class="auth-logo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
         <rect x="8" y="8" width="48" height="48" rx="1" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
         <line x1="16" y1="16" x2="48" y2="48" stroke="var(--accent)" stroke-width="4.5"/>
         <line x1="48" y1="16" x2="16" y2="48" stroke="var(--accent)" stroke-width="4.5"/>
       </svg>
-    </div>
-
-    <h1 class="auth-title">XAVIER INSTITUTE</h1>
-    <p class="auth-subtitle">Acesso Restrito</p>
-
-    <div class="auth-card">
-      <div class="auth-tabs">
-        <button class="auth-tab active" data-tab="login">Entrar</button>
-        <button class="auth-tab" data-tab="register">Cadastrar</button>
+      <div class="auth-brand-txt">
+        <p class="dwl auth-eyebrow" data-i18n="auth.eyebrow">XAVIER INSTITUTE // SIGILOSO</p>
+        <h1 class="auth-title stencil stencil-fx" data-i18n="auth.title">Cérebro</h1>
+        <p class="auth-subtitle" data-i18n="auth.subtitle">Terminal de acesso restrito</p>
       </div>
+    </header>
 
-      <div id="auth-error" class="auth-error"></div>
+    <section class="dossier auth-card" id="auth-card" data-mode="login" aria-labelledby="tab-login">
+      <div class="tabs auth-tabs" role="tablist" data-i18n-aria-label="auth.tabsLabel" aria-label="Acesso">
+        <button type="button" class="tab auth-tab active" role="tab" id="tab-login" data-tab="login" aria-selected="true" aria-controls="login-form" data-i18n="auth.tab.login">Entrar</button>
+        <button type="button" class="tab auth-tab" role="tab" id="tab-register" data-tab="register" aria-selected="false" aria-controls="register-form" tabindex="-1" data-i18n="auth.tab.register">Cadastrar</button>
+      </div>
+      <header class="dossier-hd auth-recover-hd">
+        <h2 class="dossier-title stencil" id="recover-title" tabindex="-1" data-i18n="auth.recover.title">Recuperar acesso</h2>
+        <span class="dossier-meta">AUTH-02</span>
+      </header>
 
-      <form id="login-form" class="auth-form active">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Senha</label>
-          <input type="password" class="form-input" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Acessar</button>
-        <button type="button" class="auth-link" id="forgot-password-link">Esqueci minha senha</button>
-      </form>
+      <div class="dossier-body auth-body">
+        <div id="auth-error" class="alert alert-error" role="alert" hidden></div>
+        <div id="auth-status" class="alert alert-success" role="status" aria-live="polite" hidden></div>
 
-      <form id="recover-form" class="auth-form">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar link de recuperação</button>
-        <button type="button" class="auth-link" id="back-to-login-link">Voltar ao login</button>
-      </form>
+        <form id="login-form" class="auth-form active" role="tabpanel" aria-labelledby="tab-login" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="login-email" data-i18n="auth.field.email">Email</label>
+            <input class="form-input" id="login-email" name="email" type="email" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" required aria-describedby="login-email-err" data-i18n-placeholder="auth.ph.email" placeholder="voce@exemplo.com">
+            <div class="form-error" id="login-email-err"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-password" data-i18n="auth.field.password">Senha</label>
+            <div class="pw-field">
+              <input class="form-input" id="login-password" name="password" type="password" autocomplete="current-password" required aria-describedby="login-password-err login-password-caps">
+              <button type="button" class="pw-toggle" aria-controls="login-password" data-i18n-aria-label="auth.pw.showLabel" aria-label="Mostrar senha"><span data-i18n="auth.pw.show">Mostrar</span></button>
+            </div>
+            <div class="form-hint caps-hint" id="login-password-caps" hidden data-i18n="auth.hint.capsLock">Caps Lock ativado</div>
+            <div class="form-error" id="login-password-err"></div>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit" data-busy="auth.btn.loginBusy" data-i18n="auth.btn.login">Acessar</button>
+          <button type="button" class="btn btn-ghost auth-link" id="forgot-password-link" data-mode-to="forgot" data-i18n="auth.btn.forgot">Esqueci minha senha</button>
+        </form>
 
-      <form id="register-form" class="auth-form">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" name="email" id="reg-email" required>
-          <div class="form-error" id="email-error"></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Senha</label>
-          <input type="password" class="form-input" name="password" id="reg-password" required minlength="6">
-          <div class="form-hint" id="password-hint">Mínimo 6 caracteres</div>
-          <div class="form-error" id="password-error"></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Usuário</label>
-          <input type="text" class="form-input" name="username" id="reg-username" required>
-          <div class="form-error" id="username-error"></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Nome de Exibição</label>
-          <input type="text" class="form-input" name="displayName" id="reg-displayName" required>
-          <div class="form-error" id="displayName-error"></div>
-        </div>
-        <input type="hidden" name="role" value="player">
-        <button type="submit" class="btn btn-primary" id="reg-submit">Criar Conta</button>
-      </form>
-    </div>
+        <form id="recover-form" class="auth-form" aria-labelledby="recover-title" novalidate>
+          <p class="auth-lead" data-i18n="auth.recover.lead">Informe o email da conta. Enviaremos um link para criar uma nova senha.</p>
+          <div class="form-group">
+            <label class="form-label" for="recover-email" data-i18n="auth.field.email">Email</label>
+            <input class="form-input" id="recover-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" required aria-describedby="recover-email-err" data-i18n-placeholder="auth.ph.email" placeholder="voce@exemplo.com">
+            <div class="form-error" id="recover-email-err"></div>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit" data-busy="auth.btn.recoverBusy" data-i18n="auth.btn.recover">Enviar link</button>
+          <button type="button" class="btn btn-ghost auth-link" id="back-to-login-link" data-mode-to="login" data-i18n="auth.btn.back">Voltar ao login</button>
+        </form>
+
+        <form id="register-form" class="auth-form" role="tabpanel" aria-labelledby="tab-register" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="reg-email" data-i18n="auth.field.email">Email</label>
+            <input class="form-input" id="reg-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" required aria-describedby="reg-email-err" data-i18n-placeholder="auth.ph.email" placeholder="voce@exemplo.com">
+            <div class="form-error" id="reg-email-err"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-password" data-i18n="auth.field.password">Senha</label>
+            <div class="pw-field">
+              <input class="form-input" id="reg-password" name="password" type="password" autocomplete="new-password" required minlength="6" aria-describedby="reg-password-hint reg-password-err reg-password-caps">
+              <button type="button" class="pw-toggle" aria-controls="reg-password" data-i18n-aria-label="auth.pw.showLabel" aria-label="Mostrar senha"><span data-i18n="auth.pw.show">Mostrar</span></button>
+            </div>
+            <div class="form-hint" id="reg-password-hint" data-i18n="auth.hint.passwordMin" data-ok="auth.hint.passwordOk">Mínimo 6 caracteres</div>
+            <div class="form-hint caps-hint" id="reg-password-caps" hidden data-i18n="auth.hint.capsLock">Caps Lock ativado</div>
+            <div class="form-error" id="reg-password-err"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-username" data-i18n="auth.field.username">Usuário</label>
+            <input class="form-input" id="reg-username" name="username" type="text" autocomplete="nickname" autocapitalize="none" spellcheck="false" required aria-describedby="reg-username-err">
+            <div class="form-error" id="reg-username-err"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-displayName" data-i18n="auth.field.displayName">Nome de exibição</label>
+            <input class="form-input" id="reg-displayName" name="displayName" type="text" autocomplete="name" required aria-describedby="reg-displayName-hint reg-displayName-err">
+            <div class="form-hint" id="reg-displayName-hint" data-i18n="auth.hint.displayName">Aparece para o grupo e o mestre</div>
+            <div class="form-error" id="reg-displayName-err"></div>
+          </div>
+          <input type="hidden" name="role" value="player">
+          <button type="submit" class="btn btn-primary auth-submit" id="reg-submit" data-busy="auth.btn.registerBusy" data-i18n="auth.btn.register">Criar conta</button>
+        </form>
+      </div>
+    </section>
 
     <p class="auth-footer">X-MEN // CITY OF MIST</p>
-  </div>
+  </main>
 
   <script>
     // Redirect if already logged in - wait for fully loaded
@@ -115,192 +140,127 @@
       }, 100);
     });
 
-    var errorEl = document.getElementById('auth-error');
+    // deferred scripts (i18n, auth-module) have run by DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguage();
+      applyTranslations();
+      document.title = t('auth.docTitle.login');
 
-    // Tab switching
-    document.querySelectorAll('.auth-tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
-        document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab + '-form').classList.add('active');
-        errorEl.textContent = '';
-        errorEl.classList.remove('show');
+      var ui = window.authUI;
+      var $ = function(id) { return document.getElementById(id); };
+      var card = $('auth-card');
+      var FORMS = { login: $('login-form'), register: $('register-form'), forgot: $('recover-form') };
+      var mode = 'login';
+      var EMAIL_KEY = 'cerebro_auth_email';
+      var hasMouse = matchMedia('(pointer: fine)').matches;
+
+      function firstEmpty(form) {
+        var ins = form.querySelectorAll('.form-input');
+        for (var i = 0; i < ins.length; i++) if (!ins[i].value) return ins[i];
+        return ins[0];
+      }
+
+      // login ⇄ register ⇄ forgot; the typed email follows the user, the mode lives in the hash (#register / #forgot)
+      function setMode(next, focus) {
+        var email = FORMS[mode].elements.email.value;
+        mode = next;
+        card.dataset.mode = next;
+        Object.keys(FORMS).forEach(function(k) { FORMS[k].classList.toggle('active', k === next); });
+        document.querySelectorAll('.auth-tab').forEach(function(tab) {
+          var on = tab.dataset.tab === (next === 'register' ? 'register' : 'login');
+          tab.classList.toggle('active', on);
+          tab.setAttribute('aria-selected', on);
+          tab.tabIndex = on ? 0 : -1;
+        });
+        card.setAttribute('aria-labelledby', next === 'forgot' ? 'recover-title' : 'tab-' + (next === 'register' ? 'register' : 'login'));
+        if (email) FORMS[next].elements.email.value = email;
+        ui.say();
+        history.replaceState(null, '', location.pathname + location.search + (next === 'login' ? '' : '#' + next));
+        if (focus) (next === 'forgot' && !email ? FORMS.forgot.elements.email : firstEmpty(FORMS[next])).focus();
+      }
+
+      document.querySelectorAll('.auth-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() { if (tab.getAttribute('aria-selected') !== 'true' || mode === 'forgot') setMode(tab.dataset.tab, true); });
+        tab.addEventListener('keydown', function(e) {
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+          var other = document.querySelector('.auth-tab:not([data-tab="' + tab.dataset.tab + '"])');
+          other.focus();
+          other.click();
+        });
       });
-    });
+      document.querySelectorAll('[data-mode-to]').forEach(function(b) {
+        b.addEventListener('click', function() { setMode(b.dataset.modeTo, true); });
+      });
 
-    // Login form
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = e.target.querySelector('button[type="submit"]');
-      var orig = btn.textContent;
-      btn.textContent = 'Entrando...';
-      btn.disabled = true;
-      window.api.login(e.target.email.value, e.target.password.value)
-        .then(function() {
-          // Wait for session to persist before redirecting
-          var client = window.getSupabaseInternal();
-          return client.auth.getSession();
-        })
-        .then(function() {
-          window.location.href = 'dashboard.html';
-        })
-        .catch(function(err) {
-          errorEl.textContent = err.message;
-          errorEl.classList.add('show');
-          btn.textContent = orig;
-          btn.disabled = false;
-        });
-    });
+      ui.wirePasswords(document);
+      ui.lang($('auth-lang'), function() {
+        try { sessionStorage.setItem(EMAIL_KEY, FORMS[mode].elements.email.value); } catch (e) {}
+      });
 
-    // Forgot password link - switch to recover form
-    document.getElementById('forgot-password-link').addEventListener('click', function() {
-      document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
-      document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
-      document.getElementById('recover-form').classList.add('active');
-      errorEl.textContent = '';
-      errorEl.classList.remove('show');
-    });
-
-    // Back to login link
-    document.getElementById('back-to-login-link').addEventListener('click', function() {
-      document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
-      document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
-      document.getElementById('login-form').classList.add('active');
-      errorEl.textContent = '';
-      errorEl.classList.remove('show');
-    });
-
-    // Recover form
-    document.getElementById('recover-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = e.target.querySelector('button[type="submit"]');
-      var orig = btn.textContent;
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
-      window.api.requestPasswordReset(e.target.email.value)
-        .then(function() {
-          errorEl.textContent = 'Se o email existir, um link de recuperação foi enviado. Verifique sua caixa de entrada.';
-          errorEl.classList.add('show');
-          btn.textContent = orig;
-          btn.disabled = false;
-        })
-        .catch(function(err) {
-          errorEl.textContent = err.message;
-          errorEl.classList.add('show');
-          btn.textContent = orig;
-          btn.disabled = false;
-        });
-    });
-
-    // Register form
-    document.getElementById('register-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Validate before submit
-      var isValid = true;
-      var password = document.getElementById('reg-password');
-      var email = document.getElementById('reg-email');
-      var username = document.getElementById('reg-username');
-      var displayName = document.getElementById('reg-displayName');
-      
-      if (password.value.length < 6) {
-        showFieldError('password', 'SENHA MUITO CURTA');
-        password.classList.add('validate-error');
-        isValid = false;
+      function fail(err, fieldMap) {
+        var key = window.authErrorKey(err);
+        console.warn('[auth]', err);
+        var field = fieldMap && fieldMap[key];
+        if (field) { ui.fieldError(field, key); field.focus(); return; }
+        ui.say('error', t(key));
       }
-      if (!email.value || !email.validity.valid) {
-        showFieldError('email', 'EMAIL INVÁLIDO');
-        email.classList.add('validate-error');
-        isValid = false;
-      }
-      if (!username.value.trim()) {
-        showFieldError('username', 'USUÁRIO OBRIGATÓRIO');
-        username.classList.add('validate-error');
-        isValid = false;
-      }
-      if (!displayName.value.trim()) {
-        showFieldError('displayName', 'NOME OBRIGATÓRIO');
-        displayName.classList.add('validate-error');
-        isValid = false;
-      }
-      
-      if (!isValid) return;
-      
-      var btn = e.target.querySelector('button[type="submit"]');
-      var orig = btn.textContent;
-      btn.textContent = 'Criando...';
-      btn.disabled = true;
-      window.api.register(
-        e.target.email.value,
-        e.target.password.value,
-        e.target.username.value,
-        e.target.displayName.value,
-        'player'
-      )
-        .then(function(result) {
-          if (result.session) {
+
+      ui.onSubmit(FORMS.login, function() {
+        var f = FORMS.login;
+        return window.api.login(f.email.value.trim(), f.password.value)
+          .then(function() {
+            // Wait for session to persist before redirecting
+            return window.getSupabaseInternal().auth.getSession();
+          })
+          .then(function() {
             window.location.href = 'dashboard.html';
-            return;
-          }
-          // Email confirmation required - no session yet
-          btn.textContent = orig;
-          btn.disabled = false;
-          document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
-          document.querySelectorAll('.auth-form').forEach(function(f) { f.classList.remove('active'); });
-          document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
-          document.getElementById('login-form').classList.add('active');
-          errorEl.textContent = 'Conta criada! Verifique seu email para confirmar o cadastro.';
-          errorEl.classList.add('show');
-        })
-        .catch(function(err) {
-          var msg = err.message || 'Erro ao criar conta';
-          if (msg.toLowerCase().includes('email') || msg.toLowerCase().includes('already')) {
-            showFieldError('email', 'EMAIL JÁ CADASTRADO');
-            document.getElementById('reg-email').classList.add('validate-error');
-          } else {
-            errorEl.textContent = msg;
-            errorEl.classList.add('show');
-          }
-          btn.textContent = orig;
-          btn.disabled = false;
-        });
-    });
-    
-    // Show error below specific field
-    function showFieldError(field, msg) {
-      var errEl = document.getElementById(field + '-error');
-      if (errEl) {
-        errEl.textContent = msg;
-        errEl.classList.add('show');
-      }
-    }
-    
-    // Clear error on input
-    ['reg-email', 'reg-password', 'reg-username', 'reg-displayName'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.addEventListener('input', function() {
-          this.classList.remove('validate-error');
-          var errEl = document.getElementById(id.replace('reg-', '') + '-error');
-          if (errEl) errEl.classList.remove('show');
-        });
-      }
-    });
-    
-    // Password strength indicator
-    document.getElementById('reg-password').addEventListener('input', function() {
-      var hint = document.getElementById('password-hint');
-      if (this.value.length >= 6) {
-        hint.textContent = '✓ SENHA VÁLIDA';
-        hint.classList.add('error');
-        this.classList.remove('validate-error');
-        this.classList.add('validate-valid');
-      } else {
-        hint.textContent = 'Mínimo 6 caracteres';
-        hint.classList.remove('error');
-        this.classList.remove('validate-valid');
-      }
+            return true;
+          })
+          .catch(function(err) {
+            fail(err);
+            if (window.authErrorKey(err) === 'auth.err.credentials') { f.password.focus(); f.password.select(); }
+          });
+      });
+
+      ui.onSubmit(FORMS.forgot, function() {
+        return window.api.requestPasswordReset(FORMS.forgot.email.value.trim())
+          .then(function() { ui.say('success', t('auth.msg.recoverSent')); })
+          .catch(function(err) { fail(err, { 'auth.err.email': FORMS.forgot.email }); });
+      });
+
+      ui.onSubmit(FORMS.register, function() {
+        var f = FORMS.register;
+        var email = f.email.value.trim();
+        return window.api.register(email, f.password.value, f.username.value.trim(), f.displayName.value.trim(), 'player')
+          .then(function(result) {
+            if (result.session) {
+              window.location.href = 'dashboard.html';
+              return true;
+            }
+            // with email confirmation on, Supabase answers an already-registered email with a user that has no identities
+            if (result.user && Array.isArray(result.user.identities) && result.user.identities.length === 0) {
+              ui.fieldError(f.email, 'auth.err.exists');
+              f.email.focus();
+              return;
+            }
+            // Email confirmation required - no session yet
+            f.password.value = '';
+            setMode('login', false);
+            ui.say('success', t('auth.msg.registered').replace('{email}', email));
+            FORMS.login.password.focus();
+          })
+          .catch(function(err) {
+            fail(err, { 'auth.err.exists': f.email, 'auth.err.email': f.email, 'auth.err.weak': f.password });
+          });
+      });
+
+      // restore after a language switch (reload) and honour #register / #forgot links
+      var saved = '';
+      try { saved = sessionStorage.getItem(EMAIL_KEY) || ''; sessionStorage.removeItem(EMAIL_KEY); } catch (e) {}
+      if (saved) FORMS.login.email.value = saved;
+      var start = location.hash.slice(1);
+      setMode(Object.prototype.hasOwnProperty.call(FORMS, start) ? start : 'login', false); // own-prop: #constructor must not match
+      if (hasMouse) firstEmpty(FORMS[mode]).focus();
     });
   </script>
 </body>

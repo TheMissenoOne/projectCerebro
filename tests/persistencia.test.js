@@ -144,6 +144,164 @@ testAsync('api.listAllGMCharacters: ficha antiga sem colunas name/codename usa o
   });
 });
 
+/* api.js de verdade contra um supabase falso com a semântica do PostgREST:
+   upsert com onConflict faz merge e só grava as colunas enviadas; sem onConflict o alvo é a PK
+   (id), então uma 2ª linha da mesma party bate no UNIQUE(party_id) e falha (como no banco real). */
+function apiComBanco(tabelas, falhas) {
+  const db = JSON.parse(JSON.stringify(tabelas));
+  const log = [];
+  const q = t => {
+    const st = { op: 'select', filtros: [], single: false };
+    const b = {
+      select: () => b, order: () => b, limit: () => b, range: () => b,
+      eq: (k, v) => { st.filtros.push(r => String(r[k]) === String(v)); return b; },
+      in: (k, v) => { st.filtros.push(r => v.indexOf(r[k]) !== -1); return b; },
+      single: () => { st.single = true; return b; },
+      upsert: (row, opt) => { st.op = 'upsert'; st.row = row; st.opt = opt || {}; return b; },
+      then: (res, rej) => Promise.resolve().then(() => {
+        if (falhas && falhas[t]) return { data: null, error: falhas[t] };
+        const rows = db[t] = db[t] || [];
+        if (st.op === 'upsert') {
+          log.push({ table: t, row: JSON.parse(JSON.stringify(st.row)), opt: st.opt });
+          const alvo = st.opt.onConflict || 'id';
+          let r = rows.find(x => st.row[alvo] !== undefined && x[alvo] === st.row[alvo]);
+          if (!r && rows.some(x => x.party_id === st.row.party_id)) return { data: null, error: { code: '23505', message: 'duplicate key value violates unique constraint "sessions_party_id_key"' } };
+          if (!r) { r = { id: 's' + rows.length, round: 0, encounter: [], notes: null }; rows.push(r); }
+          Object.assign(r, st.row);
+          return { data: JSON.parse(JSON.stringify(r)), error: null };
+        }
+        const out = rows.filter(r => st.filtros.every(f => f(r)));
+        if (st.single) return out.length ? { data: out[0], error: null } : { data: null, error: { code: 'PGRST116', message: 'no rows' } };
+        return { data: out, error: null };
+      }).then(res, rej)
+    };
+    return b;
+  };
+  const win = { supabase: { createClient: () => ({ from: q }) }, SUPABASE_CONFIG: { url: 'x', anonKey: 'y' }, console: { log() {}, error() {}, warn() {} } };
+  win.window = win;
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'assets/js/api.js'), 'utf8'), vm.createContext(win));
+  return { api: win.api, db, log, win };
+}
+const SESSAO = { sessions: [{ id: 's0', party_id: 'p1', notes: 'Genosha', encounter: ['active'], round: 3 }] };
+
+testAsync('api.updateSession: salvar notas não encerra o encontro nem zera a rodada', function () {
+  const { api, db, log } = apiComBanco(SESSAO);
+  return api.updateSession('p1', { notes: 'Sentinelas' }).then(function () {
+    const s = db.sessions[0], row = log[0].row;
+    assert(!('encounter' in row) && !('round' in row), 'payload clobbers fields it was not given: ' + JSON.stringify(row));
+    assert(log[0].opt.onConflict === 'party_id', 'upsert must target the party_id unique key');
+    assert(db.sessions.length === 1, 'created a second session row');
+    assert(s.notes === 'Sentinelas' && s.round === 3 && JSON.stringify(s.encounter) === '["active"]', 'got ' + JSON.stringify(s));
+  });
+});
+
+testAsync('api.updateSession: salvar o encontro não apaga as notas', function () {
+  const { api, db, log } = apiComBanco(SESSAO);
+  return api.updateSession('p1', { encounter: [] }).then(function () {
+    const s = db.sessions[0];
+    assert(!('notes' in log[0].row), 'payload clobbers notes: ' + JSON.stringify(log[0].row));
+    assert(s.notes === 'Genosha' && s.round === 3 && s.encounter.length === 0, 'got ' + JSON.stringify(s));
+  });
+});
+
+testAsync('api.updateSession: primeira gravação da party cria a linha', function () {
+  const { api, db } = apiComBanco({ sessions: [] });
+  return api.updateSession('p1', { notes: 'x' }).then(function (s) {
+    assert(db.sessions.length === 1 && s.party_id === 'p1' && s.notes === 'x', 'got ' + JSON.stringify(db.sessions));
+  });
+});
+
+testAsync('api.getSession: sem linha = null; falha de rede vira erro (não "notas vazias")', function () {
+  const vazio = apiComBanco({ sessions: [] }).api.getSession('p1');
+  const falha = apiComBanco(SESSAO, { sessions: { message: 'Failed to fetch' } }).api.getSession('p1')
+    .then(() => { throw new Error('error swallowed as null'); }, e => assert(/fetch/.test(e.message), e.message));
+  return Promise.all([vazio.then(s => assert(s === null, 'got ' + JSON.stringify(s))), falha]);
+});
+
+testAsync('api.listAllGMCharacters: party sem personagens = []; falha propaga', function () {
+  const vazio = apiComBanco({ parties: [{ id: 'p1', name: 'X', gm_id: 'gm1' }], characters: [] }).api.listAllGMCharacters('gm1', true)
+    .then(c => assert(Array.isArray(c) && c.length === 0, 'got ' + JSON.stringify(c)));
+  const falha = apiComBanco({ parties: [] }, { parties: { message: 'Failed to fetch' } }).api.listAllGMCharacters('gm1', true)
+    .then(() => { throw new Error('error swallowed as []'); }, e => assert(/fetch/.test(e.message), e.message));
+  return Promise.all([vazio, falha]);
+});
+
+testAsync('api.getGMParty/getPlayerParty: null só para "sem party"; falha de rede/RLS rejeita', function () {
+  const PARTY = { parties: [{ id: 'p1', name: 'X', gm_id: 'gm1' }], party_members: [{ party_id: 'p1', player_id: 'u1' }] };
+  const net = { message: 'Failed to fetch' };
+  const rejeita = (pr, o) => pr.then(() => { throw new Error(o + ': error swallowed as null'); }, e => assert(/fetch/.test(e.message), e.message));
+  return Promise.all([
+    apiComBanco(PARTY).api.getGMParty('gm1', true).then(p => assert(p && p.id === 'p1', 'gm party ' + JSON.stringify(p))),
+    apiComBanco(PARTY).api.getGMParty('outro', true).then(p => assert(p === null, 'gm no rows ' + JSON.stringify(p))),
+    apiComBanco(PARTY).api.getPlayerParty('u1', true).then(p => assert(p && p.id === 'p1', 'player party ' + JSON.stringify(p))),
+    apiComBanco(PARTY).api.getPlayerParty('u9', true).then(p => assert(p === null, 'player no rows ' + JSON.stringify(p))),
+    rejeita(apiComBanco(PARTY, { parties: net }).api.getGMParty('gm1', true), 'gm'),
+    rejeita(apiComBanco(PARTY, { party_members: net }).api.getPlayerParty('u1', true), 'player members'),
+    rejeita(apiComBanco(PARTY, { parties: net }).api.getPlayerParty('u1', true), 'player party row')
+  ]);
+});
+
+testAsync('window.listCharacters/listPartyCharacters repassam forceRefresh', function () {
+  const { win } = apiComBanco({ characters: [{ id: 'c1', player_id: 'u1', party_id: 'p1', name: 'A' }] });
+  win.cache = { get: () => ['CACHE'], set() {}, invalidatePattern() {} };
+  return Promise.all([win.listCharacters('u1', true), win.listPartyCharacters('p1', true), win.listCharacters('u1')]).then(function (r) {
+    assert(r[0][0].id === 'c1' && r[1][0].id === 'c1', 'force ignored: ' + JSON.stringify(r.slice(0, 2)));
+    assert(r[2][0] === 'CACHE', 'cache not used without force');
+  });
+});
+
+/* applyTranslations: troca só o texto do elemento; filhos-widget (span com id, botão "?", svg) sobrevivem.
+   DOM mínimo em vm, sem dependências. */
+function miniDom() {
+  function node(type, name, value) {
+    const n = { nodeType: type, nodeName: name, nodeValue: value, id: '', dataset: {}, childNodes: [], parentNode: null,
+      get children() { return this.childNodes.filter(c => c.nodeType === 1); },
+      remove() { if (this.parentNode) { const a = this.parentNode.childNodes; a.splice(a.indexOf(this), 1); this.parentNode = null; } },
+      insertBefore(c, ref) { c.remove(); c.parentNode = this; const i = ref ? this.childNodes.indexOf(ref) : -1; i < 0 ? this.childNodes.push(c) : this.childNodes.splice(i, 0, c); return c; },
+      appendChild(c) { return this.insertBefore(c, null); },
+      get firstChild() { return this.childNodes[0] || null; },
+      get text() { return this.childNodes.map(c => c.nodeType === 3 ? c.nodeValue : (c.nodeName === 'BR' ? '\n' : c.text)).join(''); },
+      querySelectorAll(sel) { const out = []; (function walk(x) { x.childNodes.forEach(c => { if (c.nodeType === 1) { if (sel === '[data-i18n]' && c.dataset.i18n) out.push(c); walk(c); } }); })(this); return out; }
+    };
+    return n;
+  }
+  const el = (name, attrs, kids) => { const e = node(1, name); Object.assign(e, attrs || {}); (kids || []).forEach(k => e.appendChild(typeof k === 'string' ? node(3, '#text', k) : k)); return e; };
+  return { el, document: { createTextNode: v => node(3, '#text', v) } };
+}
+test('applyTranslations preserva filhos-widget e troca o texto (dashboard, combate, ficha, header)', function () {
+  const vm = require('vm');
+  const D = miniDom();
+  const store = { cerebro_idioma: 'en' };
+  const box = { window: {}, document: D.document, localStorage: { getItem: k => store[k] || null, setItem() {} } };
+  vm.createContext(box);
+  vm.runInContext(i18n + '\nthis.applyTranslations = applyTranslations;', box);
+  const name = D.el('SPAN', { id: 'user-name' }, ['Charles']);
+  const code = D.el('STRONG', { id: 'party-code' }, ['XAV123']);
+  const help = D.el('BUTTON', { className: 'field-help' }, ['?']);
+  const ico = D.el('SVG');
+  const root = D.el('DIV', {}, [
+    D.el('DIV', { dataset: { i18n: 'dash.welcome' } }, ['Bem-vindo, ', name]),
+    D.el('SPAN', { dataset: { i18n: 'dash.accessCode' } }, ['Código de acesso: ', code]),
+    D.el('SPAN', { dataset: { i18n: 'combat.av' } }, ['AV', D.el('SPAN', { className: 'field-help' }, ['?'])]),
+    D.el('SPAN', { dataset: { i18n: 'ficha.dexterity' } }, ['Destreza ', help]),
+    D.el('BUTTON', { dataset: { i18n: 'common.logout' } }, [ico, ' SAIR']),
+    D.el('P', { dataset: { i18n: 'combat.info' } }, [D.el('STRONG', {}, ['Sistema MEGS:']), ' AV = …']),
+    D.el('DIV', { dataset: { i18n: 'ficha.photo' } }, ['FOTO', D.el('BR'), 'CLIQUE', D.el('BR'), 'P/ CARREGAR']),
+    D.el('SPAN', { dataset: { i18n: 'common.dashboard' } }, ['DASHBOARD'])
+  ]);
+  box.applyTranslations(root);
+  box.applyTranslations(root); // idempotente
+  const [w, c, av, dex, out, info, photo, plain] = root.children;
+  assert(w.text === 'Welcome, Charles' && w.childNodes.includes(name), 'welcome: ' + JSON.stringify(w.text));
+  assert(c.text === 'Access code: XAV123' && c.childNodes.includes(code), 'access code: ' + JSON.stringify(c.text));
+  assert(av.text === 'AV?' && av.children.length === 1, 'combat help: ' + JSON.stringify(av.text));
+  assert(dex.children[0] === help && /^Dexterity\s/.test(dex.text), 'ficha help: ' + JSON.stringify(dex.text));
+  assert(out.childNodes[0] === ico && out.text === ' LOGOUT', 'icon: ' + JSON.stringify(out.text));
+  assert(info.children.length === 0 && info.text.startsWith('MEGS System: AV'), 'inline <strong> sem id faz parte da frase: ' + JSON.stringify(info.text.slice(0, 20)));
+  assert(photo.children.length === 0 && photo.text === 'CLICK TO\nLOAD\nPHOTO', 'br sem id faz parte da frase: ' + JSON.stringify(photo.text));
+  assert(plain.text === 'DASHBOARD' && plain.childNodes.length === 1, 'texto puro: ' + JSON.stringify(plain.text));
+});
+
 Promise.all(pendentes).then(function () {
   console.log('\n' + passed + '/' + (passed + failed) + ' tests passed');
   process.exit(failed ? 1 : 0);

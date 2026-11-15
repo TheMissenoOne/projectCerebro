@@ -360,28 +360,28 @@ aps_referencia: `
             <tr><td>26</td><td>176.000 km</td><td>~64 GJ</td><td>~1,5 milhão t</td><td>4 anos</td></tr>
             <tr><td>27</td><td>350.000 km</td><td>~125 GJ</td><td>~3 milhões t</td><td>8 anos</td></tr>
             <tr><td>28</td><td>700.000 km</td><td>~250 GJ</td><td>~6 milhões t</td><td>15 anos</td></tr>
-            <tr><td>29</td><td>1,4 milhão km</td><td>~500 GJ</td><td>~10 milhões t</td><td>30 anos</td></tr>
-            <tr><td>30</td><td>3 milhões km</td><td>~1 TJ</td><td>~13 milhões t</td><td>60 anos</td></tr>
-            <tr><td>31</td><td>6 milhões km</td><td>~2 TJ</td><td>~26 milhões t</td><td>120 anos</td></tr>
-            <tr><td>32</td><td>12 milhões km</td><td>~4 TJ</td><td>~52 milhões t</td><td>250 anos</td></tr>
-            <tr><td>33</td><td>25 milhões km</td><td>~8 TJ</td><td>~100 milhões t</td><td>500 anos</td></tr>
-            <tr><td>34</td><td>50 milhões km</td><td>~16 TJ</td><td>~200 milhões t</td><td>1.000 anos</td></tr>
-            <tr><td>35</td><td>100 milhões km</td><td>~32 TJ</td><td>~400 milhões t</td><td>2.000 anos</td></tr>
-            <tr><td>36</td><td>200 milhões km</td><td>~64 TJ</td><td>~800 milhões t</td><td>4.000 anos</td></tr>
-            <tr><td>37</td><td>400 milhões km</td><td>~125 TJ</td><td>~1,6 bilhões t</td><td>8.000 anos</td></tr>
-            <tr><td>38</td><td>800 milhões km</td><td>~250 TJ</td><td>~3 bilhões t</td><td>16.000 anos</td></tr>
-            <tr><td>39</td><td>1,6 bilhão km</td><td>~500 TJ</td><td>~6 bilhões t</td><td>32.000 anos</td></tr>
-            <tr><td>40</td><td>3 bilhões km</td><td>~1 PJ</td><td>~12 bilhões t</td><td>64.000 anos</td></tr>
-            <tr><td>41</td><td>6 bilhões km</td><td>~2 PJ</td><td>~25 bilhões t</td><td>128.000 anos</td></tr>
-            <tr><td>42</td><td>12 bilhões km</td><td>~4 PJ</td><td>~50 bilhões t</td><td>256.000 anos</td></tr>
-            <tr><td>43</td><td>25 bilhões km</td><td>~8 PJ</td><td>~100 bilhões t</td><td>500.000 anos</td></tr>
-            <tr><td>44</td><td>50 bilhões km</td><td>~16 PJ</td><td>~200 bilhões t</td><td>1 milhão anos</td></tr>
-            <tr><td>45</td><td>100 bilhões km</td><td>~32 PJ</td><td>~400 bilhões t</td><td>2 milhões anos</td></tr>
-            <tr><td>46</td><td>200 bilhões km</td><td>~64 PJ</td><td>~800 bilhões t</td><td>4 milhões anos</td></tr>
-            <tr><td>47</td><td>400 bilhões km</td><td>~125 PJ</td><td>~1,6 trilhões t</td><td>8 milhões anos</td></tr>
-            <tr><td>48</td><td>800 bilhões km</td><td>~250 PJ</td><td>~3 trilhões t</td><td>16 milhões anos</td></tr>
-            <tr><td>49</td><td>1,6 trilhão km</td><td>~500 PJ</td><td>~6 trilhões t</td><td>32 milhões anos</td></tr>
-            <tr><td>50</td><td>3 trilhões km</td><td>~1 EJ</td><td>~12 trilhões t</td><td>64 milhões anos</td></tr>
+            <tr><td>29</td><td>1,4 milhão km</td><td>~500 GJ</td><td>~12 milhões t</td><td>30 anos</td></tr>
+            <tr><td>30</td><td>3 milhões km</td><td>~1 TJ</td><td>~25 milhões t</td><td>60 anos</td></tr>
+            <tr><td>31</td><td>6 milhões km</td><td>~2 TJ</td><td>~50 milhões t</td><td>120 anos</td></tr>
+            <tr><td>32</td><td>12 milhões km</td><td>~4 TJ</td><td>~100 milhões t</td><td>250 anos</td></tr>
+            <tr><td>33</td><td>25 milhões km</td><td>~8 TJ</td><td>~200 milhões t</td><td>500 anos</td></tr>
+            <tr><td>34</td><td>50 milhões km</td><td>~16 TJ</td><td>~400 milhões t</td><td>1.000 anos</td></tr>
+            <tr><td>35</td><td>100 milhões km</td><td>~32 TJ</td><td>~800 milhões t</td><td>2.000 anos</td></tr>
+            <tr><td>36</td><td>200 milhões km</td><td>~64 TJ</td><td>~1,6 bilhões t</td><td>4.000 anos</td></tr>
+            <tr><td>37</td><td>400 milhões km</td><td>~125 TJ</td><td>~3 bilhões t</td><td>8.000 anos</td></tr>
+            <tr><td>38</td><td>800 milhões km</td><td>~250 TJ</td><td>~6 bilhões t</td><td>16.000 anos</td></tr>
+            <tr><td>39</td><td>1,6 bilhão km</td><td>~500 TJ</td><td>~12 bilhões t</td><td>32.000 anos</td></tr>
+            <tr><td>40</td><td>3 bilhões km</td><td>~1 PJ</td><td>~25 bilhões t</td><td>64.000 anos</td></tr>
+            <tr><td>41</td><td>6 bilhões km</td><td>~2 PJ</td><td>~50 bilhões t</td><td>128.000 anos</td></tr>
+            <tr><td>42</td><td>12 bilhões km</td><td>~4 PJ</td><td>~100 bilhões t</td><td>256.000 anos</td></tr>
+            <tr><td>43</td><td>25 bilhões km</td><td>~8 PJ</td><td>~200 bilhões t</td><td>500.000 anos</td></tr>
+            <tr><td>44</td><td>50 bilhões km</td><td>~16 PJ</td><td>~400 bilhões t</td><td>1 milhão anos</td></tr>
+            <tr><td>45</td><td>100 bilhões km</td><td>~32 PJ</td><td>~800 bilhões t</td><td>2 milhões anos</td></tr>
+            <tr><td>46</td><td>200 bilhões km</td><td>~64 PJ</td><td>~1,6 trilhões t</td><td>4 milhões anos</td></tr>
+            <tr><td>47</td><td>400 bilhões km</td><td>~125 PJ</td><td>~3 trilhões t</td><td>8 milhões anos</td></tr>
+            <tr><td>48</td><td>800 bilhões km</td><td>~250 PJ</td><td>~6 trilhões t</td><td>16 milhões anos</td></tr>
+            <tr><td>49</td><td>1,6 trilhão km</td><td>~500 PJ</td><td>~12 trilhões t</td><td>32 milhões anos</td></tr>
+            <tr><td>50</td><td>3 trilhões km</td><td>~1 EJ</td><td>~25 trilhões t</td><td>64 milhões anos</td></tr>
             <tr><td>55</td><td>—</td><td>~32 EJ</td><td>—</td><td>2 bilhões anos</td></tr>
             <tr><td>60</td><td>—</td><td>~1 ZJ</td><td>—</td><td>4 bilhões anos</td></tr>
             <tr><td>65</td><td>—</td><td>~32 ZJ</td><td>—</td><td>8 bilhões anos</td></tr>
@@ -401,7 +401,8 @@ aps_referencia: `
         </div>
         <h3>Legenda</h3>
         <ul>
-          <li><strong>N</strong> = No Effect — sem efeito (AV menor que OV)</li>
+          <li><strong>N</strong> na aba Ação (AV/OV) = sucesso automático: o OV está 7 ou mais abaixo do AV (o alvo da rolagem vai caindo até chegar nele)</li>
+          <li><strong>N</strong> na aba Efeito (EV/RV) = sem efeito: 0 RAPs quando o RV é maior que o EV</li>
           <li><strong>Linha</strong> = AV (Valor de Atuação) ou EV (Valor de Efeito)</li>
           <li><strong>Coluna</strong> = OV (Valor de Obstáculo) ou RV (Valor de Resultado)</li>
           <li>O número na célula = alvo (Ação) ou RAPs (Efeito)</li>
@@ -950,8 +951,8 @@ aps_referencia: `
             <tr><td>24</td><td>44.000 km</td><td>—</td><td>circunferência da Terra</td></tr>
             <tr><td>25</td><td>88.000 km</td><td>—</td><td>órbita alta</td></tr>
             <tr><td>26</td><td>176.000 km</td><td>—</td><td>espaço próximo</td></tr>
-            <tr><td>27</td><td>350.000 km</td><td>—</td><td>escala lunar parcial</td></tr>
-            <tr><td>28</td><td>700.000 km</td><td>—</td><td>distância Terra–Lua</td></tr>
+            <tr><td>27</td><td>350.000 km</td><td>—</td><td>distância Terra–Lua</td></tr>
+            <tr><td>28</td><td>700.000 km</td><td>—</td><td>—</td></tr>
             <tr><td>29</td><td>1,4 milhão km</td><td>—</td><td>velocidade da luz (escala abstrata)</td></tr>
             <tr><td>30</td><td>3 milhões km</td><td>—</td><td>espaço profundo próximo</td></tr>
             <tr><td>31</td><td>6 milhões km</td><td>—</td><td>órbita planetária larga</td></tr>
@@ -1022,28 +1023,28 @@ aps_referencia: `
             <tr><td>26</td><td>~1,5 milhão t</td><td>grande volume de água</td></tr>
             <tr><td>27</td><td>~3 milhões t</td><td>formação rochosa</td></tr>
             <tr><td>28</td><td>~6 milhões t</td><td>pirâmide ou estrutura maciça</td></tr>
-            <tr><td>29</td><td>~10 milhões t</td><td>massa industrial acumulada</td></tr>
-            <tr><td>30</td><td>~13 milhões t</td><td>pequena montanha</td></tr>
-            <tr><td>31</td><td>~26 milhões t</td><td>colina grande</td></tr>
-            <tr><td>32</td><td>~52 milhões t</td><td>estrutura continental</td></tr>
-            <tr><td>33</td><td>~100 milhões t</td><td>massa geológica</td></tr>
-            <tr><td>34</td><td>~200 milhões t</td><td>crosta terrestre localizada</td></tr>
-            <tr><td>35</td><td>~400 milhões t</td><td>população global (ordem de grandeza)</td></tr>
-            <tr><td>36</td><td>~800 milhões t</td><td>biomassa global parcial</td></tr>
-            <tr><td>37</td><td>~1,6 bilhões t</td><td>biomassa oceânica</td></tr>
-            <tr><td>38</td><td>~3 bilhões t</td><td>produção global anual</td></tr>
-            <tr><td>39</td><td>~6 bilhões t</td><td>escala industrial global</td></tr>
-            <tr><td>40</td><td>~12 bilhões t</td><td>massa regional massiva</td></tr>
-            <tr><td>41</td><td>~25 bilhões t</td><td>estrutura continental grande</td></tr>
-            <tr><td>42</td><td>~50 bilhões t</td><td>montanha massiva</td></tr>
-            <tr><td>43</td><td>~100 bilhões t</td><td>grande formação geológica</td></tr>
-            <tr><td>44</td><td>~200 bilhões t</td><td>crosta terrestre ampla</td></tr>
-            <tr><td>45</td><td>~400 bilhões t</td><td>placa tectônica parcial</td></tr>
-            <tr><td>46</td><td>~800 bilhões t</td><td>asteroide pequeno</td></tr>
-            <tr><td>47</td><td>~1,6 trilhões t</td><td>asteroide médio</td></tr>
-            <tr><td>48</td><td>~3 trilhões t</td><td>corpo celeste pequeno</td></tr>
-            <tr><td>49</td><td>~6 trilhões t</td><td>lua pequena</td></tr>
-            <tr><td>50</td><td>~12 trilhões t</td><td>satélite natural</td></tr>
+            <tr><td>29</td><td>~12 milhões t</td><td>massa industrial acumulada</td></tr>
+            <tr><td>30</td><td>~25 milhões t</td><td>pequena montanha</td></tr>
+            <tr><td>31</td><td>~50 milhões t</td><td>colina grande</td></tr>
+            <tr><td>32</td><td>~100 milhões t</td><td>estrutura continental</td></tr>
+            <tr><td>33</td><td>~200 milhões t</td><td>massa geológica</td></tr>
+            <tr><td>34</td><td>~400 milhões t</td><td>crosta terrestre localizada</td></tr>
+            <tr><td>35</td><td>~800 milhões t</td><td>população global (ordem de grandeza)</td></tr>
+            <tr><td>36</td><td>~1,6 bilhões t</td><td>biomassa global parcial</td></tr>
+            <tr><td>37</td><td>~3 bilhões t</td><td>biomassa oceânica</td></tr>
+            <tr><td>38</td><td>~6 bilhões t</td><td>produção global anual</td></tr>
+            <tr><td>39</td><td>~12 bilhões t</td><td>escala industrial global</td></tr>
+            <tr><td>40</td><td>~25 bilhões t</td><td>massa regional massiva</td></tr>
+            <tr><td>41</td><td>~50 bilhões t</td><td>estrutura continental grande</td></tr>
+            <tr><td>42</td><td>~100 bilhões t</td><td>montanha massiva</td></tr>
+            <tr><td>43</td><td>~200 bilhões t</td><td>grande formação geológica</td></tr>
+            <tr><td>44</td><td>~400 bilhões t</td><td>crosta terrestre ampla</td></tr>
+            <tr><td>45</td><td>~800 bilhões t</td><td>placa tectônica parcial</td></tr>
+            <tr><td>46</td><td>~1,6 trilhões t</td><td>asteroide pequeno</td></tr>
+            <tr><td>47</td><td>~3 trilhões t</td><td>asteroide médio</td></tr>
+            <tr><td>48</td><td>~6 trilhões t</td><td>corpo celeste pequeno</td></tr>
+            <tr><td>49</td><td>~12 trilhões t</td><td>lua pequena</td></tr>
+            <tr><td>50</td><td>~25 trilhões t</td><td>satélite natural</td></tr>
             <tr><td>60+</td><td>—</td><td>escala planetária</td></tr>
             <tr><td>70+</td><td>—</td><td>planeta</td></tr>
             <tr><td>90+</td><td>—</td><td>estrela</td></tr>

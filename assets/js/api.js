@@ -16,6 +16,9 @@
 
   window.getSupabaseInternal = getSupabase;
 
+  // .single() with zero rows answers PGRST116: that is "nothing there" (null). Anything else is a real failure.
+  function noRows(err) { if (err && err.code === 'PGRST116') return null; throw err; }
+
   window.api = {
     register: function(email, password, username, displayName, role) {
       return getSupabase().auth.signUp({
@@ -83,7 +86,7 @@
       }
       return getSupabase().from('parties').select('*').eq('gm_id', gmId).single()
         .then(function(result) { 
-          if (result.error) return null; 
+          if (result.error) return noRows(result.error); // null only for "no party"; network/RLS errors reject
           if (cache && result.data) cache.set('gm_party', gmId, result.data, 300000);
           return result.data; 
         });
@@ -133,9 +136,11 @@
       }
       return getSupabase().from('party_members').select('party_id').eq('player_id', playerId).limit(1)
         .then(function(result) { 
-          if (result.error || !result.data || result.data.length === 0) return null; 
+          if (result.error) throw result.error; // a failed lookup is not "no party"
+          if (!result.data || result.data.length === 0) return null; 
           return getSupabase().from('parties').select('*').eq('id', result.data[0].party_id).single()
             .then(function(p) { 
+              if (p.error) return noRows(p.error);
               if (cache && p.data) cache.set('player_party', playerId, p.data, 300000);
               return p.data || null; 
             });
@@ -222,7 +227,12 @@
 
     deleteCharacter: function(charId) {
       return getSupabase().from('characters').delete().eq('id', charId)
-        .then(function(result) { if (result.error) throw result.error; });
+        .then(function(result) {
+          if (result.error) throw result.error;
+          // drop every cached list/sheet that may still hold it (char_, chars_, gm_chars_, party_chars_)
+          var cache = window.cache;
+          if (cache) ['char', 'gm_chars', 'party_chars'].forEach(function(p) { cache.invalidatePattern(p); });
+        });
     },
 
     listAllGMCharacters: function(gmId, forceRefresh, offset, limit) {
@@ -249,7 +259,7 @@
           var charsResult = await charsQuery;
           if (charsResult.error) throw charsResult.error;
           var chars = charsResult.data;
-          if (!chars || chars.length === 0) return { chars: [], total: 0, partyNames: partyNames };
+          if (!chars || chars.length === 0) return [];
           
           // Map player IDs to emails from auth - use session user data where possible
           var mapped = chars.map(function(c) {
@@ -264,11 +274,8 @@
           
           if (cache) cache.set('gm_chars', key, mapped, 300000);
           return mapped;
-        })
-        .catch(function(err) {
-          console.error('[listAllGMCharacters error]', err);
-          return [];
         });
+      // errors propagate: the GM panel shows "failed + retry" instead of a fake empty party
     },
 
     listNPCs: function(partyId, includeGlobal, forceRefresh) {
@@ -327,13 +334,27 @@
         .then(function(result) { if (result.error) throw result.error; });
     },
 
+    // null = the party has no session row yet (PGRST116). Any other failure rejects: a caller must
+    // never mistake "could not load" for "empty notes" and then save over the real ones.
     getSession: function(partyId) {
       return getSupabase().from('sessions').select('*').eq('party_id', partyId).order('created_at', { ascending: false }).limit(1).single()
-        .then(function(result) { if (result.error) return null; return result.data; });
+        .then(function(result) {
+          if (result.error) { if (result.error.code === 'PGRST116') return null; throw result.error; }
+          return result.data;
+        });
     },
 
+    // Partial update of the party's single session row (sessions.party_id is UNIQUE).
+    // Only the fields present in sessionData are written; omitted ones keep their stored value
+    // (PostgREST merge-duplicates updates only the columns sent). Saving notes therefore never
+    // resets encounter/round, and saving the encounter never blanks the notes.
     updateSession: function(partyId, sessionData) {
-      return getSupabase().from('sessions').upsert({ party_id: partyId, round: sessionData.round || 0, notes: sessionData.notes || '', encounter: sessionData.encounter || [], updated_at: new Date().toISOString() }).select().single()
+      var row = { party_id: partyId, updated_at: new Date().toISOString() };
+      ['notes', 'encounter', 'round', 'title'].forEach(function(k) {
+        if (sessionData && sessionData[k] !== undefined) row[k] = sessionData[k];
+      });
+      // onConflict: without it the upsert targets the PK (id, absent here) and every save after the first hit the UNIQUE(party_id) error
+      return getSupabase().from('sessions').upsert(row, { onConflict: 'party_id' }).select().single()
         .then(function(result) { if (result.error) throw result.error; return result.data; });
     },
 
@@ -410,8 +431,8 @@ window.joinParty = function(pid, uid) { return window.api.joinParty(pid, uid); }
 window.getPartyMembers = function(pid) { return window.api.getPartyMembers(pid); };
 window.getPlayerParty = function(uid) { return window.api.getPlayerParty(uid); };
 window.createCharacter = function(uid, pid) { return window.api.createCharacter(uid, pid); };
-window.listCharacters = function(uid) { return window.api.listCharacters(uid); };
-window.listPartyCharacters = function(pid) { return window.api.listPartyCharacters(pid); };
+window.listCharacters = function(uid, force) { return window.api.listCharacters(uid, force); };
+window.listPartyCharacters = function(pid, force) { return window.api.listPartyCharacters(pid, force); };
 window.getProfile = function(id) { return window.api.getProfile(id); };
 window.listNPCs = function(pid, g) { return window.api.listNPCs(pid, g); };
 window.createNPC = function(pid, d) { return window.api.createNPC(pid, d); };

@@ -100,8 +100,13 @@ test('wiki action panel uses reference APs and hides RAPs in Ação', function()
   assert(wikiHtml.includes('Sem RAPs nesta aba.'), 'Ação tab still shows RAPs');
 });
 
-test('wiki tables use range labels instead of step columns', function() {
-  assert(wikiJs.includes("const RANGES = ['1-2'"), 'range labels missing');
+// Superseded design: the 18 range buckets did not match Acao_Resultado-TabelaCompleta.csv; the wiki now
+// shares combate.html's CSV-exact logic (one column per AP). Cell values are checked in tests/wiki-ui.test.js.
+test('wiki tables use the CSV-exact logic shared with combate.html', function() {
+  const combate = fs.readFileSync(path.join(ROOT, 'combate.html'), 'utf8');
+  const fn = src => src.slice(src.indexOf('function actionTarget(av, ov) {'), src.indexOf('return RES[ev - 1][rv - 1];'));
+  assert(!wikiJs.includes("const RANGES = ['1-2'"), 'old range buckets still present');
+  assert(fn(wikiJs).length > 1000 && fn(wikiJs) === fn(combate), 'actionTarget / RES / resultRAPs differ from combate.html');
   assert(wikiJs.includes("return `\\n        <thead><tr><th>${type === 'avov' ? 'AV\\\\OV' : 'EV\\\\RV'}</th>`") || wikiJs.includes("AV\\\\OV"), 'table renderer not using range-based headers');
   assert(!wikiJs.includes('cols = 52;'), 'table renderer still exposes step-based columns');
 });

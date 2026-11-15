@@ -5,37 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>X-MEN TTRPG // OFFLINE</title>
   <meta name="theme-color" content="#080808">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/svg+xml" href="assets/img/pwa-icon.svg">
+  <!-- same URL as the other pages, so the service worker's cached copy is reused offline -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@400;600;700&family=Saira+Stencil+One&display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/base.css?v=dev">
+  <link rel="stylesheet" href="assets/css/components.css?v=dev">
   <style>
-    .off-wrap{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;}
-    .off-logo{width:72px;height:72px;opacity:.9;}
-    .off-title{font-family:var(--disp);font-size:1.8rem;letter-spacing:.22em;color:var(--white);}
-    .off-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);border-left:2px solid var(--accent2);padding-left:10px;max-width:420px;line-height:1.9;text-align:left;}
-    .off-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px;}
-    .off-btn{font-family:var(--cond);font-weight:700;font-size:.62rem;letter-spacing:.12em;padding:7px 14px;background:var(--p2);border:1px solid var(--b2);color:var(--text);cursor:pointer;}
-    .off-btn:hover{border-color:var(--accent);color:var(--white);text-decoration:none;}
-    .off-btn.acc{background:var(--accent);color:var(--flat-fg);border-color:var(--accent);}
+    .off-wrap{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:64px 16px max(24px,env(safe-area-inset-bottom));}
+    .off-card{width:100%;max-width:460px;}
+    .off-card .dossier-hd .dwl{flex:1;}
+    .off-card .dossier-body{padding:20px;gap:16px;}
+    .off-head{display:flex;align-items:center;gap:16px;}
+    .off-logo{width:48px;height:48px;flex-shrink:0;}
+    .off-title{font-size:clamp(2rem,9vw,2.6rem);line-height:1;}
+    .off-lead{font-family:var(--body);font-size:var(--fs-body);line-height:1.5;color:var(--text);}
+    .off-list{list-style:none;display:flex;flex-direction:column;gap:8px;font-family:var(--body);font-size:var(--fs-body);line-height:1.4;color:var(--text);}
+    .off-list li{padding-left:22px;position:relative;}
+    .off-list li::before{position:absolute;left:0;font-family:var(--mono);}
+    .off-list .ok::before{content:'✓';color:var(--ok);}
+    .off-list .no::before{content:'✕';color:var(--muted);}
+    .off-acts{display:flex;flex-direction:column;gap:8px;}
+    .off-links{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .off-links .btn{padding:0 8px;}
+    .off-st{text-align:left;padding:0;}
+    .off-lang{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-width:var(--hit);min-height:var(--hit);}
   </style>
 </head>
 <body>
-  <div class="off-wrap">
-    <img class="off-logo" src="assets/img/pwa-icon.svg" alt="">
-    <h1 class="off-title">SEM SINAL</h1>
-    <p class="off-sub">
-      O Cérebro perdeu contato com a rede. As páginas já visitadas continuam
-      disponíveis offline; dados de personagens e NPCs voltam assim que a conexão
-      for restabelecida.
-    </p>
-    <div class="off-links">
-      <button type="button" class="off-btn acc" onclick="location.reload()">TENTAR DE NOVO</button>
-      <a class="off-btn" href="dashboard.html">DASHBOARD</a>
-      <a class="off-btn" href="wiki.html">WIKI</a>
-      <a class="off-btn" href="combate.html">COMBATE</a>
-    </div>
-  </div>
+  <button type="button" class="btn btn-sm off-lang" id="off-lang" lang="en" aria-label="Switch language to English">EN</button>
+  <main class="off-wrap">
+    <section class="dossier off-card" aria-labelledby="off-title">
+      <header class="dossier-hd"><span class="dwl" data-k="code">REDE // OFFLINE</span><span class="dossier-meta">NET-00</span></header>
+      <div class="dossier-body">
+        <div class="off-head">
+          <img class="off-logo" src="assets/img/pwa-icon.svg" alt="">
+          <h1 class="off-title stencil" id="off-title" data-k="title">Sem sinal</h1>
+        </div>
+        <p class="off-lead" data-k="lead">O Cérebro perdeu contato com a rede. Assim que a conexão voltar, esta página recarrega sozinha.</p>
+        <ul class="off-list">
+          <li class="ok" data-k="ok1">Páginas já visitadas abrem do cache deste aparelho</li>
+          <li class="ok" data-k="ok2">Wiki de regras e calculadora de combate</li>
+          <li class="no" data-k="no1">Fichas, NPCs e login precisam de conexão</li>
+        </ul>
+        <p class="state-msg is-loading off-st" id="off-st" role="status" aria-live="polite" data-k="wait">// AGUARDANDO CONEXÃO</p>
+        <div class="off-acts">
+          <button type="button" class="btn btn-primary" id="off-retry" data-k="retry">Tentar de novo</button>
+          <nav class="off-links" aria-label="Cérebro">
+            <a class="btn" href="dashboard.html">Dashboard</a>
+            <a class="btn" href="wiki.html">Wiki</a>
+            <a class="btn" href="combate.html" data-k="combat">Combate</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </main>
   <script>
-    window.addEventListener('online', function () { location.reload(); });
+    /* self-contained on purpose (offline fallback: no external scripts); pt-BR + en, same localStorage keys as i18n.js / themes.js
+       ponytail: this dictionary duplicates i18n.js on purpose (no build step, page must render with no other asset).
+       Keep its languages = LANGUAGES in assets/js/i18n.js; tests/pwa.test.js fails if languages or keys drift. */
+    (function () {
+      var T = {
+        'pt-BR': { code: 'REDE // OFFLINE', title: 'Sem sinal', lead: 'O Cérebro perdeu contato com a rede. Assim que a conexão voltar, esta página recarrega sozinha.',
+          ok1: 'Páginas já visitadas abrem do cache deste aparelho', ok2: 'Wiki de regras e calculadora de combate', no1: 'Fichas, NPCs e login precisam de conexão',
+          wait: '// AGUARDANDO CONEXÃO', still: '// AINDA SEM SINAL. TENTAREMOS DE NOVO SOZINHOS', retry: 'Tentar de novo', combat: 'Combate',
+          doc: 'X-MEN TTRPG // OFFLINE', other: 'en', otherName: 'EN', otherLabel: 'Mudar idioma para English' },
+        'en': { code: 'NETWORK // OFFLINE', title: 'No signal', lead: 'Cerebro lost contact with the network. This page reloads by itself as soon as the connection is back.',
+          ok1: 'Pages you already visited open from this device\'s cache', ok2: 'Rules wiki and combat calculator', no1: 'Sheets, NPCs and sign-in need a connection',
+          wait: '// WAITING FOR CONNECTION', still: '// STILL NO SIGNAL. WE WILL KEEP TRYING', retry: 'Try again', combat: 'Combat',
+          doc: 'X-MEN TTRPG // OFFLINE', other: 'pt-BR', otherName: 'PT-BR', otherLabel: 'Switch language to Português' }
+      };
+      var lang, st = document.getElementById('off-st'), langBtn = document.getElementById('off-lang');
+      try { lang = localStorage.getItem('cerebro_idioma'); var th = localStorage.getItem('cerebro_tema'); if (th && th !== 'yellow') document.body.classList.add('theme-' + th); } catch (e) {}
+      function render(l) {
+        lang = Object.prototype.hasOwnProperty.call(T, l) ? l : 'pt-BR';
+        var d = T[lang];
+        document.documentElement.lang = lang;
+        document.title = d.doc;
+        document.querySelectorAll('[data-k]').forEach(function (el) { el.textContent = d[el.dataset.k]; });
+        langBtn.textContent = d.otherName;
+        langBtn.lang = d.other;
+        langBtn.setAttribute('aria-label', d.otherLabel);
+      }
+      render(lang);
+      langBtn.addEventListener('click', function () {
+        var next = T[lang].other;
+        try { localStorage.setItem('cerebro_idioma', next); } catch (e) {}
+        render(next);
+      });
+      // reloading while still offline would only show this page again, so say so instead
+      document.getElementById('off-retry').addEventListener('click', function () {
+        if (navigator.onLine === false) { st.textContent = T[lang].still; return; }
+        location.reload();
+      });
+      window.addEventListener('online', function () { location.reload(); });
+    })();
   </script>
 </body>
 </html>
