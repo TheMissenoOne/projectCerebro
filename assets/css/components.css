@@ -997,7 +997,7 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   padding: 10px 16px;
   font-family: var(--mono);
   font-size: var(--fs-sm);
-  color: var(--flat-fg);
+  color: var(--on-accent);
   letter-spacing: 0.08em;
   line-height: 1.4;
   opacity: 0;
@@ -1007,7 +1007,7 @@ textarea.form-input { min-height: 96px; line-height: 1.5; resize: vertical; }
   max-width: min(90vw, 480px);
   text-align: center;
 }
-.toast.err { background: #ff4d5e; border-color: #ff4d5e; color: #fff; }
+.toast.err { background: #ff4d5e; border-color: #ff4d5e; color: var(--flat-fg); }  /* dark on #ff4d5e = 6.2:1 (white was 3.2:1) */
 
 .toast.show {
   opacity: 1;
@@ -1684,7 +1684,9 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 768px) {
   .modal-bg { padding: 0; align-items: stretch; }
   .modal-bg .modal { max-width: none; max-height: none; height: 100%; border-left: none; border-right: none; padding: 14px 12px 0; }
-  .modal-bg .modal.compact { height: auto; margin-top: auto; }
+  /* bottom sheet, capped to the backdrop (= the visible viewport) and scrolling inside, so a
+     short landscape screen can still reach every control (body.modal-open blocks page scroll) */
+  .modal-bg .modal.compact { height: auto; max-height: 100%; margin-top: auto; }
   .modal-bg .modal-acts {
     position: sticky;
     bottom: 0;
@@ -1711,7 +1713,7 @@ body.modal-open { overflow: hidden; }
 .state-msg.is-loading::after { content: '▌'; margin-left: 4px; animation: blinkPulse .8s infinite; }
 .state-msg.is-error { color: #ff8a8a; border-left: 3px solid var(--red); text-align: left; background: rgba(232, 0, 28, .06); }
 .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 56px 20px; text-align: center; }
-.empty-title { font-size: 1.8rem; color: var(--b3); letter-spacing: .2em; text-shadow: none; }
+.empty-title { font-size: 1.8rem; color: var(--muted); letter-spacing: .2em; text-shadow: none; }
 .empty-sub { font-family: var(--mono); font-size: var(--fs-sm); color: var(--muted); letter-spacing: .1em; line-height: 1.9; max-width: 42ch; }
 
 @media (prefers-reduced-motion: reduce) {

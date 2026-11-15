@@ -61,6 +61,7 @@
   /* Tom Muller HUD geometry language */
   --flat-fg: #080808;   /* text on flat accent / white blocks */
   --flat-w:  #f0f0f0;   /* stark white block fill */
+  --on-accent: #080808; /* text on an --accent fill (toast); the red theme overrides it */
   --notch: 10px;        /* diagonal corner-cut size */
   --tick: 7px;          /* corner-bracket arm length */
   --rule: 2px;          /* technical rule weight */
@@ -81,7 +82,7 @@
   --pr-extremo: #b040ff;
 }
 
-body.theme-red { --accent: #E8001C; --accent2: #a8000f; --accent3: #5a0008; --accentRGB: 232, 0, 28; }
+body.theme-red { --accent: #E8001C; --accent2: #a8000f; --accent3: #5a0008; --accentRGB: 232, 0, 28; --on-accent: #fff; } /* no dark text reaches 4.5:1 on #E8001C (#000 = 4.4:1); white = 4.7:1 */
 body.theme-green { --accent: #00C853; --accent2: #009c40; --accent3: #004a1f; --accentRGB: 0, 200, 83; --green: #00C853; --green2: #009c40; --green3: #004a1f; }
 body.theme-purple { --accent: #b040ff; --accent2: #7c1db5; --accent3: #3a0060; --accentRGB: 176, 64, 255; --green: #b040ff; --green2: #7c1db5; --green3: #3a0060; }
 body.theme-blue { --accent: #3a8fc0; --accent2: #226090; --accent3: #0a2a40; --accentRGB: 58, 143, 192; --green: #3a8fc0; --green2: #226090; --green3: #0a2a40; }

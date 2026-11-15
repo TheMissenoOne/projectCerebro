@@ -63,8 +63,11 @@
 #header-container .x-logo { width: 36px; height: 36px; flex-shrink: 0; display: block; }
 #header-container .x-logo svg { width: 100%; height: 100%; display: block; }
 #header-container .hdr-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-#header-container .hdr-title h1 {
+/* .hdr-name is an <h1> only on pages without their own heading (header.js NAV_CONFIG h1);
+   font-weight pins the UA h1 bold so the <div> variant renders identically */
+#header-container .hdr-name {
   font-family: var(--disp);
+  font-weight: 700;
   font-size: clamp(1.3rem, 3vw, 1.85rem);
   color: var(--white);
   letter-spacing: .18em;
@@ -116,6 +119,8 @@
 #header-container .theme-dot:hover::before { transform: scale(1.2); }
 /* selected = ring (not colour alone) */
 #header-container .theme-dot[aria-pressed="true"]::before { box-shadow: 0 0 0 2px var(--black), 0 0 0 3px var(--white); }
+/* touch screens get full-size targets at any width (tablets keep the desktop header); fine pointers keep 28px */
+@media (pointer: coarse) { #header-container .theme-dot { width: var(--hit, 44px); height: var(--hit, 44px); } }
 
 /* small outline button used by toolbar + header tools */
 #header-container .tbtn,
@@ -225,7 +230,7 @@
   #header-container .header-logo { gap: 8px; padding-right: 8px; border-right: none; }
   #header-container .x-logo { width: 30px; height: 30px; }
   #header-container .hdr-sub { display: none; }
-  #header-container .hdr-title h1 { font-size: 1.2rem; letter-spacing: .12em; }
+  #header-container .hdr-name { font-size: 1.2rem; letter-spacing: .12em; }
   #header-container .hdr-tools { display: none; }
 
   #header-container .hdr-menu-btn {

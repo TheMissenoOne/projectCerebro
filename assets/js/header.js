@@ -34,13 +34,16 @@ const NAV_ACTIONS = {
   reset: { action: 'resetarFicha()', icon: 'trash', i18n: 'nav.reset', danger: true }
 };
 
+/* title = brand literal or titleKey (i18n); subKey = i18n key; resolved with t() at render.
+   h1: the header title is the page's heading only where the page has none of its own
+   (wiki/admin render their own <h1>; a page that adds one passes renderNavBar({ h1: false })). */
 const NAV_CONFIG = {
-  dashboard: { title: 'X-MEN', sub: 'TTRPG // DASHBOARD', codes: 'XAVIER INSTITUTE', actions: ['newCharacter'] },
-  ficha: { title: 'X-MEN', sub: 'FICHA DE PERSONAGEM', codes: 'AG—17.19349.583 · LS—16.23435.161 · XAVIER INSTITUTE', actions: ['fichexport', 'reset'], status: true },
-  admin: { title: 'X-MEN', sub: 'PAINEL DO GM', codes: '', actions: [] },
-  cerebro: { title: 'CÉREBRO DATABASE', sub: 'NPCs // XAVIER INSTITUTE // X-MEN TTRPG', codes: '', actions: ['newNpc', 'import', 'export', 'reload'], status: true },
-  combate: { title: 'COMBATE', sub: 'CALCULADORA // MEGS SYSTEM', codes: 'MEGS v1.0', actions: [] },
-  wiki: { title: 'X-MEN', sub: 'TTRPG // WIKI', codes: '', actions: [] }
+  dashboard: { title: 'X-MEN', subKey: 'header.dashSub', codes: 'XAVIER INSTITUTE', actions: ['newCharacter'], h1: true },
+  ficha: { title: 'X-MEN', subKey: 'header.fichaSub', codes: 'AG—17.19349.583 · LS—16.23435.161 · XAVIER INSTITUTE', actions: ['fichexport', 'reset'], status: true, h1: true },
+  admin: { title: 'X-MEN', subKey: 'header.adminSub', codes: '', actions: [] },
+  cerebro: { title: 'CÉREBRO DATABASE', subKey: 'header.cerebroSub', codes: '', actions: ['newNpc', 'import', 'export', 'reload'], status: true, h1: true },
+  combate: { titleKey: 'common.combat', subKey: 'header.combatSub', codes: 'MEGS v1.0', actions: [], h1: true },
+  wiki: { title: 'X-MEN', subKey: 'header.wikiSub', codes: '', actions: [] }
 };
 
 const THEME_COLORS = [
@@ -129,7 +132,7 @@ function renderHeader(page, cfg) {
         '</svg>' +
       '</a>' +
       '<div class="hdr-title">' +
-        '<h1>' + cfg.title + '</h1>' +
+        (cfg.h1 ? '<h1 class="hdr-name">' + cfg.title + '</h1>' : '<div class="hdr-name">' + cfg.title + '</div>') +
         (cfg.sub ? '<div class="hdr-sub">' + cfg.sub + '</div>' : '') +
       '</div>' +
     '</div>' +
@@ -243,10 +246,11 @@ window.renderNavBar = function(opts) {
   const page = NAV_CONFIG[opts.page] ? opts.page : 'dashboard';
   const base = NAV_CONFIG[page];
   const cfg = {
-    title: opts.title || base.title,
-    sub: opts.sub || base.sub,
+    title: opts.title || (base.titleKey ? t(base.titleKey) : base.title),
+    sub: opts.sub || t(base.subKey),
     codes: opts.codes !== undefined ? opts.codes : base.codes,
-    status: base.status
+    status: base.status,
+    h1: opts.h1 !== undefined ? opts.h1 : !!base.h1
   };
   // opts.toolbar (legacy) may still list nav/utility ids: only real page actions are kept,
   // the site nav, theme, language and logout are always rendered by the shell.
