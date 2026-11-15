@@ -247,6 +247,33 @@ if (require.main === module) (async () => {
     await ctx.close();
   });
 
+  await test('validation: a spaces-only password stays valid when "Mostrar" flips the input to type=text', async () => {
+    const { ctx, page } = await openAuth(browser, base, 'index.html');
+    await page.fill('#login-email', 'gm@xavier.test');
+    await page.fill('#login-password', '   ');
+    const problem = () => page.evaluate(() => [authUI.problem(document.getElementById('login-password')), document.getElementById('login-password').type]);
+    eq(await problem(), ['', 'password'], 'hidden');
+    await page.click('#login-form .pw-toggle');
+    eq(await problem(), ['', 'text'], 'shown');
+    await page.fill('#login-email', '   ');
+    eq(await page.evaluate(() => authUI.problem(document.getElementById('login-email'))), 'auth.val.required', 'non-password fields are still trimmed');
+    await page.fill('#login-email', 'gm@xavier.test');
+    await page.press('#login-password', 'Tab');
+    eq(await page.$eval('#login-password-err', e => e.classList.contains('show')), false, 'no "required" error');
+    await Promise.all([page.waitForURL(/dashboard\.html/, { timeout: 4000 }), page.click('#login-form [type=submit]')]);
+    await ctx.close();
+  });
+
+  await test('index: inherited-property hashes (#constructor, #toString, #__proto__) fall back to login', async () => {
+    for (const h of ['constructor', 'toString', '__proto__', 'hasOwnProperty']) {
+      const { ctx, page } = await openAuth(browser, base, 'index.html#' + h);
+      eq(await page.$$eval('.auth-form.active, form.active', fs => fs.map(f => f.id)), ['login-form'], '#' + h + ' active form');
+      eq(page.__errors, [], '#' + h + ' page errors');
+      eq(await page.$$eval('.auth-container', e => e.length), 1, '.auth-container marker (tests/spa-e2e.test.js)');
+      await ctx.close();
+    }
+  });
+
   /* ── signup outcomes ── */
   await test('signup: existing user and weak password land under their fields, translated', async () => {
     const { ctx, page } = await openAuth(browser, base, 'index.html');

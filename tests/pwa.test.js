@@ -85,6 +85,26 @@ test('offline fallback page exists and is self-contained', function () {
   assert(read('sw.js').includes("OFFLINE_URL = 'offline.html'"), 'sw does not use offline.html');
 });
 
+// offline.html cannot load i18n.js, so it carries its own dictionary; this keeps it from drifting
+test('offline page dictionary covers every app language with the same keys', function () {
+  const off = read('offline.html');
+  const T = vm.runInNewContext('(' + off.match(/var T = (\{[\s\S]*?\n {6}\});/)[1] + ')');
+  const LANGUAGES = vm.runInNewContext('(' + read('assets/js/i18n.js').match(/const LANGUAGES = (\{[\s\S]*?\n\});/)[1] + ')');
+  const KEYS = ['code', 'title', 'lead', 'ok1', 'ok2', 'no1', 'wait', 'still', 'retry', 'combat', 'doc', 'other', 'otherName', 'otherLabel'].sort();
+  const langs = Object.keys(T);
+  assert(JSON.stringify(langs.slice().sort()) === JSON.stringify(Object.keys(LANGUAGES).sort()),
+    'offline languages ' + langs + ' != i18n.js LANGUAGES ' + Object.keys(LANGUAGES));
+  langs.forEach(function (l) {
+    assert(JSON.stringify(Object.keys(T[l]).sort()) === JSON.stringify(KEYS), l + ': keys drifted: ' + Object.keys(T[l]).sort());
+    Object.keys(T[l]).forEach(function (k) { assert(typeof T[l][k] === 'string' && T[l][k].trim(), l + '.' + k + ' empty'); });
+    assert(langs.includes(T[l].other) && T[l].other !== l, l + ': "other" must name another offline language');
+  });
+  (off.match(/data-k="[^"]+"/g) || []).forEach(function (a) {
+    const k = a.slice(8, -1);
+    assert(KEYS.includes(k), 'data-k="' + k + '" has no translation');
+  });
+});
+
 test('render-blocking scripts were moved out of <head>', function () {
   ['wiki.html', 'admin.html'].forEach(function (p) {
     const s = read(p);

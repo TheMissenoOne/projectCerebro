@@ -199,7 +199,9 @@
   /* returns the i18n key of the first problem, '' when fine */
   ui.problem = function(inp) {
     var v = inp.value;
-    if (inp.required && !(inp.type === 'password' ? v : v.trim())) return 'auth.val.required';
+    // passwords are never trimmed; keyed on autocomplete (current-/new-password) because the show/hide toggle flips `type`
+    var isPw = /(^|\s)(current|new)-password$/.test(inp.getAttribute('autocomplete') || '');
+    if (inp.required && !(isPw ? v : v.trim())) return 'auth.val.required';
     if (inp.type === 'email' && inp.validity.typeMismatch) return 'auth.val.email';
     if (inp.minLength > 0 && v.length < inp.minLength) return 'auth.val.passwordShort';
     if (inp.dataset.match && v !== $(inp.dataset.match).value) return 'auth.val.mismatch';

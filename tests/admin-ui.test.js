@@ -40,6 +40,8 @@ function fakeSupabase(o) {
       then: function(res, rej){
         var go = function(){ return run(); };
         var p = (st.op === 'upsert' && window.__hold) ? new Promise(function(r){ window.__release = function(){ r(); }; }).then(go) : Promise.resolve().then(go);
+        // __holdRead: a sessions read snapshots the row when issued but answers only on __releaseRead() (slow network read)
+        if (st.op === 'select' && table === 'sessions' && window.__holdRead) { var snap = run(); p = new Promise(function(r){ window.__releaseRead = function(){ r(snap); }; }); }
         return p.then(res, rej);
       }
     };
@@ -192,6 +194,24 @@ if (require.main === module) (async () => {
     await page.evaluate(() => document.getElementById('session-notes').blur());
     await page.waitForSelector('#notes-retry:not([hidden])');
     eq(await unloadBlocked(), true, 'no warning while a save failed');
+    await ctx.close();
+  });
+
+  await test('refresh while notes are saving: a slow read cannot put the old notes back', async () => {
+    const { ctx, page } = await openAdmin(browser, base, { query: '?tab=notes' });
+    await page.evaluate(() => { window.__hold = true; window.__holdRead = true; });
+    await page.fill('#session-notes', 'Notas novas.');
+    await page.click('#refresh-btn'); // blur starts the save, the click starts the reload
+    await page.waitForFunction(() => /SALVANDO/i.test(document.getElementById('notes-status').textContent), null, { timeout: 3000 });
+    await page.evaluate(() => { window.__hold = false; window.__release(); });
+    await page.waitForFunction(() => window.__releaseRead, null, { timeout: 3000 });
+    await page.evaluate(() => { window.__holdRead = false; window.__releaseRead(); });
+    await page.waitForFunction(() => !document.getElementById('session-notes').disabled && /SALVO/i.test(document.getElementById('notes-status').textContent), null, { timeout: 3000 });
+    await page.waitForTimeout(1300); // past the autosave debounce: nothing stale gets written back
+    eq(await page.inputValue('#session-notes'), 'Notas novas.', 'textarea keeps the new notes');
+    eq(await page.evaluate(() => window.__db.sessions[0].notes), 'Notas novas.', 'stored row');
+    eq((await sessionWrites(page)).map(w => w.row.notes), ['Notas novas.'], 'session writes');
+    eq(page.__errors, [], 'page errors');
     await ctx.close();
   });
 

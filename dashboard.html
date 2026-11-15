@@ -72,6 +72,7 @@
     <!-- Characters -->
     <section class="dash-sec" aria-labelledby="chars-title">
       <div class="sec"><div class="sec-bar"></div><h2 class="sec-label" id="chars-title" data-i18n="dash.characters">Personagens</h2><div class="sec-line"></div><span class="sec-code" id="chars-count"></span></div>
+      <div id="create-state"></div>
       <div id="chars-state" aria-live="polite"><p class="sr-only" data-i18n="dash.loadingChars">Carregando fichas…</p></div>
       <ul class="char-list" id="chars-list" aria-busy="true">
         <li class="char-skel" aria-hidden="true"></li><li class="char-skel" aria-hidden="true"></li><li class="char-skel" aria-hidden="true"></li>
@@ -163,7 +164,7 @@
 /* Dashboard: one-tap access to my sheets, create a sheet, my party + its access code. */
 (function () {
   var RECENT_KEY = 'cerebro_recent_chars';   // ids, most recently opened first
-  var S = { uid: null, role: 'player', name: '', party: null, memberParty: null, partyP: Promise.resolve(), creating: false, joining: false, charsFailed: false, partyFailed: false };
+  var S = { uid: null, role: 'player', name: '', party: null, memberParty: null, memberKnown: false, partyP: Promise.resolve(), creating: false, joining: false, charsFailed: false, partyFailed: false };
   var ICON = {
     plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
     chev: '<polyline points="9 6 15 12 9 18"/>'
@@ -337,9 +338,12 @@
   function createChar() {
     if (S.creating || !S.uid) return;
     S.creating = true;
+    $('create-state').textContent = '';
     var ctrls = createControls();
     ctrls.forEach(function (c) { busy(c, true, 'dash.creating'); });
     S.partyP.then(function () {
+      // a failed membership lookup is not "no party": creating now would leave the sheet out of the GM's party
+      if (!S.memberKnown) throw { memberLookup: true };
       return window.api.createCharacter(S.uid, S.memberParty ? S.memberParty.id : null);
     }).then(function (c) {
       if (!c || !c.id) throw new Error('no id');
@@ -347,9 +351,15 @@
       window.location.href = 'ficha.html?id=' + encodeURIComponent(c.id);
     }).catch(function (err) {
       console.error('[dashboard] create character:', err);
-      toast(offline() ? t('dash.offline') : t('dash.errorCreateChar'), true);
       ctrls.forEach(function (c) { busy(c, false); });
       S.creating = false;
+      if (err && err.memberLookup) {
+        // retry = look the party up again, then create
+        errorState($('create-state'), 'ficha.createFailMsg', function () { S.partyP = loadParty(); createChar(); });
+        $('create-state').querySelector('button').focus();
+        return;
+      }
+      toast(offline() ? t('dash.offline') : t('dash.errorCreateChar'), true);
     });
   }
 
@@ -357,6 +367,7 @@
   function loadParty() {
     var state = $('party-state');
     S.partyFailed = false;
+    S.memberKnown = false;
     $('party-info').hidden = true;
     $('party-none').hidden = true;
     state.innerHTML = '<p class="state-msg is-loading"></p>';
@@ -364,6 +375,7 @@
     var fresh = !offline();
     return window.api.getPlayerParty(S.uid, fresh).then(function (p) {
       S.memberParty = p || null;
+      S.memberKnown = !!p || !offline();   // same rule as below: an offline null is not a confirmed "no party"
       // a GM who created a party is not in party_members: fall back to the party they run
       return p || window.api.getGMParty(S.uid, fresh);
     }).then(function (p) {
@@ -576,6 +588,8 @@
       input.value = '';
       toast(r.already ? t('dash.alreadyMember') : t('dash.joinedParty') + ' ' + r.party.name);
       S.memberParty = r.party;
+      S.memberKnown = true;
+      $('create-state').textContent = '';
       renderParty(r.party);
     }).catch(function (err) {
       console.error('[dashboard] join party:', err);

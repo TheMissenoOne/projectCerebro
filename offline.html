@@ -63,7 +63,9 @@
     </section>
   </main>
   <script>
-    /* self-contained on purpose (offline fallback: no external scripts); pt-BR + en, same localStorage keys as i18n.js / themes.js */
+    /* self-contained on purpose (offline fallback: no external scripts); pt-BR + en, same localStorage keys as i18n.js / themes.js
+       ponytail: this dictionary duplicates i18n.js on purpose (no build step, page must render with no other asset).
+       Keep its languages = LANGUAGES in assets/js/i18n.js; tests/pwa.test.js fails if languages or keys drift. */
     (function () {
       var T = {
         'pt-BR': { code: 'REDE // OFFLINE', title: 'Sem sinal', lead: 'O Cérebro perdeu contato com a rede. Assim que a conexão voltar, esta página recarrega sozinha.',
@@ -78,7 +80,7 @@
       var lang, st = document.getElementById('off-st'), langBtn = document.getElementById('off-lang');
       try { lang = localStorage.getItem('cerebro_idioma'); var th = localStorage.getItem('cerebro_tema'); if (th && th !== 'yellow') document.body.classList.add('theme-' + th); } catch (e) {}
       function render(l) {
-        lang = T[l] ? l : 'pt-BR';
+        lang = Object.prototype.hasOwnProperty.call(T, l) ? l : 'pt-BR';
         var d = T[lang];
         document.documentElement.lang = lang;
         document.title = d.doc;

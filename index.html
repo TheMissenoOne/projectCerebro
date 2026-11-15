@@ -36,7 +36,8 @@
 
   <button type="button" class="btn btn-sm auth-lang" id="auth-lang">EN</button>
 
-  <main class="auth-shell">
+  <!-- .auth-container: unstyled marker, tests/spa-e2e.test.js looks for it -->
+  <main class="auth-shell auth-container">
     <header class="auth-brand">
       <svg class="auth-logo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <rect x="2" y="2" width="60" height="60" rx="3" stroke="var(--accent)" stroke-width="3"/>
@@ -258,7 +259,7 @@
       try { saved = sessionStorage.getItem(EMAIL_KEY) || ''; sessionStorage.removeItem(EMAIL_KEY); } catch (e) {}
       if (saved) FORMS.login.email.value = saved;
       var start = location.hash.slice(1);
-      setMode(FORMS[start] ? start : 'login', false);
+      setMode(Object.prototype.hasOwnProperty.call(FORMS, start) ? start : 'login', false); // own-prop: #constructor must not match
       if (hasMouse) firstEmpty(FORMS[mode]).focus();
     });
   </script>

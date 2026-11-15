@@ -489,6 +489,10 @@
 
     /* ═══ session: encounter flag + notes (one row per party) ═══ */
     async function loadSession() {
+      // land pending/in-flight notes first: a read started before the save commits can return the old notes,
+      // and once the save marks them 'saved' renderSession would put that stale snapshot back in the textarea.
+      // From 'loading' on, saveNotes is a no-op and the textarea is disabled, so no save can overlap the read.
+      while (N.inflight || N.state === 'pending') await saveNotes();
       sessionState = 'loading';
       renderSession();
       renderSync();

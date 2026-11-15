@@ -278,6 +278,7 @@
 .dash-sec .state-msg.is-error { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-2) var(--sp-3); }
 .dash-sec .empty-state { padding: 36px 20px; background: var(--p1); border: 1px dashed var(--b2); }
 .party-card .state-msg { padding: 14px 4px; }
+#create-state .state-msg { margin-bottom: var(--sp-3); }
 
 .modal-bg .modal .form-group { margin-bottom: 0; }
 .code-input { text-transform: uppercase; letter-spacing: .3em; font-family: var(--mono); }

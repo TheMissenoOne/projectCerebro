@@ -30,6 +30,7 @@ function fakeSupabase(o) {
   window.__inserts = [];
   window.__failChars = ${!!o.failChars};
   window.__holdCreate = ${!!o.holdCreate};
+  window.__failMembers = ${!!o.failMembers};
   var session = { user: user, access_token: 'x' };
   function q(table){
     var st = { filters: [], single: false, op: 'select', payload: null };
@@ -46,6 +47,7 @@ function fakeSupabase(o) {
     function run(){
       var rows = DB[table] = DB[table] || [];
       if (table === 'characters' && st.op === 'select' && window.__failChars) return Promise.resolve({ data: null, error: { message: 'boom' } });
+      if (table === 'party_members' && st.op === 'select' && window.__failMembers) return Promise.resolve({ data: null, error: { message: 'boom' } });
       if (st.op === 'insert') {
         window.__inserts.push({ table: table, payload: st.payload });
         if (table === 'party_members' && rows.some(function(r){ return r.party_id === st.payload.party_id && r.player_id === st.payload.player_id; }))
@@ -77,7 +79,7 @@ function scenario(o = {}) {
   const chars = o.chars || [KITTY, BLANK, KURT];
   const withParty = o.party !== false;
   return {
-    user, failChars: o.failChars, holdCreate: o.holdCreate,
+    user, failChars: o.failChars, holdCreate: o.holdCreate, failMembers: o.failMembers,
     db: {
       characters: chars,
       parties: o.noParties ? [] : [PARTY],
@@ -206,6 +208,28 @@ if (require.main === module) (async () => {
     eq(await page.evaluate(() => window.__inserts[0].payload.party_id), 'party-1', 'same party rule as ficha');
     await Promise.all([page.waitForURL(/ficha\.html\?id=characters-1$/, { timeout: 5000 }), page.evaluate(() => window.__releaseCreate())]);
     eq(await page.evaluate(() => JSON.parse(localStorage.getItem('cerebro_recent_chars'))[0]), 'characters-1', 'new sheet remembered');
+    await ctx.close();
+  });
+
+  await test('new sheet: failed party lookup creates nothing, shows the error; retry re-checks the party, then creates once with it', async () => {
+    const { ctx, page } = await openDash(browser, base, { user: PLAYER, failMembers: true, holdCreate: true });
+    assert(await page.isVisible('#party-state .state-msg.is-error'), 'party load error shown');
+    await page.click('#new-char-btn');
+    await page.waitForSelector('#create-state .state-msg.is-error', { timeout: 3000 });
+    eq(await page.evaluate(() => window.__inserts.filter(i => i.table === 'characters').length), 0, 'no insert while membership is unknown');
+    assert(/nenhuma ficha foi criada/.test(await txt(page, '#create-state')), 'translated error: ' + await txt(page, '#create-state'));
+    eq(await page.getAttribute('#create-state .state-msg', 'role'), 'alert', 'announced');
+    eq(await page.evaluate(() => document.activeElement.closest('#create-state') !== null), true, 'focus on retry');
+    eq(await page.$eval('#new-char-btn', e => [e.disabled, e.getAttribute('aria-busy')]), [false, null], 'create button restored');
+    await page.evaluate(() => { window.__failMembers = false; });
+    await page.click('#create-state button');
+    await page.waitForFunction(() => window.__releaseCreate, null, { timeout: 3000 });
+    await page.waitForTimeout(100);
+    const ins = await page.evaluate(() => window.__inserts.filter(i => i.table === 'characters').map(i => i.payload.party_id));
+    eq(ins, ['party-1'], 'exactly one insert, carrying the party id');
+    eq(await page.$$eval('#create-state .is-error', e => e.length), 0, 'error cleared on retry');
+    eq(page.__errors, [], 'page errors');
+    await Promise.all([page.waitForURL(/ficha\.html\?id=characters-1$/, { timeout: 5000 }), page.evaluate(() => window.__releaseCreate())]);
     await ctx.close();
   });
 
