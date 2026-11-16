@@ -99,7 +99,7 @@
         "Matéria Aprendida: Responda a uma pergunta de tag de poder de Adaptabilidade ou Familiar para representar um dos usos das suas conjurações. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Superioridade Metafísica: Ao gastar uma cena de intervalo usando suas conjurações para realizar uma tarefa ou alcançar um objetivo que forneça uma vantagem tática crie um efeito temporário referente a esta vantagem com grau igual ao número de tags deste tema. [Condição temporária]",
         "Permanência Declarada: Uma vez por partida, declare que uma conjuração é permanente em vez de temporária ou duradoura, sem custo de modificador adicional. [Especial]",
-        "Gênese Soberana: O que você cria não depende mais do que você consegue sustentar — seu potencial ômega enfim ganha forma. Suas conjurações já não são limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag nasce em grau 0 e ganha substância com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
+        "Vida Própria: O que você cria não depende mais do que você consegue sustentar — seu potencial ômega enfim ganha forma. Suas conjurações já não são limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag nasce em grau 0 e ganha substância com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
       ]
     },
     {
@@ -167,7 +167,7 @@
         "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento, percepção ou rastreamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Leitura Profunda: Ao gastar uma cena de intervalo concentrando o dom para ler a fundo uma pessoa ou cena, crie uma condição temporária de sobrecarga informacional com grau igual ao número de tags deste tema. [Condição temporária]",
         "Varredura Ampla: Uma vez por partida, expanda a percepção para cobrir um raio amplo (instalação, campo de batalha, quarteirão). Faça até 3 perguntas factuais sobre o que acontece nessa área agora. O GM responde todas com honestidade. [Especial]",
-        "Além do Horizonte: Sua percepção ultrapassou o alcance dos seus sentidos e da sua mente; é o potencial ômega do dom enxergando por você. O que você lê não é mais limitado pelos seus atributos: atribua grau (em APs) às tags de percepção deste tema. Cada uma começa em grau 0 e se aguça com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma percepção com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que essa tag poderia ser invocada. [Grau em tags]"
+        "Nas Entrelinhas: Sua percepção ultrapassou o alcance dos seus sentidos e da sua mente; é o potencial ômega do dom enxergando por você. O que você lê não é mais limitado pelos seus atributos: atribua grau (em APs) às tags de percepção deste tema. Cada uma começa em grau 0 e se aguça com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma percepção com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que essa tag poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -269,7 +269,7 @@
         "Essência Transferida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita, canaliza ou transfere. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Posto Avançado: Ao gastar uma cena de intervalo posicionando o familiar com antecedência, ele pode impor uma condição temporária a um alvo ou área com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente — mas não pode usar a mesma tag no mesmo turno que o personagem já a usou. [Especial]",
-        "Simbiose Perfeita: O vínculo cresceu além do que você ou ele alcançariam sozinhos; seu potencial ômega agora desperta nos dois. As capacidades do familiar e do laço não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e amadurece com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Unha e Carne: O vínculo cresceu além do que você ou ele alcançariam sozinhos; seu potencial ômega agora desperta nos dois. As capacidades do familiar e do laço não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e amadurece com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -303,7 +303,7 @@
         "Manobra Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Reconhecimento de Terreno: Ao gastar uma cena de intervalo percorrendo e mapeando o espaço antes do confronto, crie uma condição temporária de perturbação no terreno com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros sem precisar declarar intenção. [Especial]",
-        "Distância Zero: Espaço e velocidade deixaram de ser medidos pelo seu corpo — seu potencial ômega já está do outro lado. Seu deslocamento não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag parte do grau 0 e acelera com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau que ainda não foi usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Passe Livre: Espaço e velocidade deixaram de ser medidos pelo seu corpo — seu potencial ômega já está do outro lado. Seu deslocamento não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag parte do grau 0 e acelera com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau que ainda não foi usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
