@@ -189,9 +189,15 @@ Um arquivo por chunk: `supabase/review/npc_graus/chunk-N.json`. Por NPC, **uma l
 - `benchmark`: `peso | distancia | area | velocidade | energia | informacao | duracao | resistencia | outro` (`null` permitido se `grau` null).
 - `feat`: curto, pt-BR, com o número e a conta ("ergue submarino nuclear ~8.000 t → 18"). Obrigatório se `grau` não-null.
 - `confidence`: `alta | media | baixa`.
-- Validar: `node scripts/gen-npc-graus.js build --grades supabase/review/npc_graus/chunk-N.json --partial`
-  (erro lista NPC/tag desconhecido, faltante, duplicado, grau inválido). Depois apague os outputs
-  se só estava testando.
+- Validar: `node scripts/gen-npc-graus.js build --partial` (lê todo `supabase/review/npc_graus/`;
+  erro lista tag faltante, conflito entre arquivos, grau inválido; notas de NPC/tag fora do baseline
+  são descartadas com aviso). Depois `git checkout` dos outputs se só estava testando.
+- **Rodada prod** (baseline = export de produção, `baseline --from-csv`): `todo --out <dir>` gera
+  `chunk-N.json` só com as tags ainda sem nota. Por NPC, contexto em `temas` (poder + fraqueza),
+  `extras` e `notas_existentes` (já graduadas — use como referência de consistência, não repita).
+  Preencha **só** `tags[]` (`grau`, `benchmark`, `feat`, `confidence`, `peak` opcional; não mude
+  `texto`) e salve como `supabase/review/npc_graus/prod-N.json` (mesmo N). O build junta com as
+  notas reaproveitadas por NPC (name+is_global) e texto (trim + case-insensitive).
 
 ## 6. Exemplos trabalhados
 
