@@ -87,7 +87,7 @@
 .wiki-nav-link:hover { background: rgba(255, 255, 255, .04); color: var(--white); text-decoration: none; }
 .wiki-nav-link[aria-current="page"] {
   border-left-color: var(--accent); color: var(--accent); font-weight: 600;
-  background: linear-gradient(90deg, rgba(var(--accentRGB), .14), transparent 85%);
+  background: rgba(var(--accentRGB), .08);
 }
 
 /* ── search results (desktop: popover over the content) ───────────── */
@@ -98,7 +98,6 @@
   max-height: min(72vh, 680px); overflow-y: auto; overscroll-behavior: contain;
   background: var(--dark);
   border: 1px solid var(--b2); border-top: 2px solid var(--accent);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, .7);
 }
 .wiki-results[hidden] { display: none; }
 .wr-count {
@@ -335,7 +334,6 @@
 #ar-display {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 240;
   background: var(--p1); border-top: 2px solid var(--accent);
-  box-shadow: 0 -8px 28px rgba(0, 0, 0, .6);
   font-family: var(--mono);
 }
 .ard-tab-strip { display: flex; border-bottom: 1px solid var(--b1); }
@@ -402,7 +400,7 @@
 .relatorio-header {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;
   min-height: var(--hit); padding: 10px 40px 10px 14px; position: relative; cursor: pointer;
-  background: linear-gradient(90deg, rgba(var(--accentRGB), .10), transparent 75%);
+  background: rgba(var(--accentRGB), .06);
 }
 .relatorio-header::after {
   content: '▸'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
@@ -489,7 +487,6 @@
     position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 510;
     height: auto; max-height: 86vh; max-height: 86dvh;
     border-right: 0; border-top: 3px solid var(--accent);
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, .6);
     padding-bottom: env(safe-area-inset-bottom);
     transform: translateY(100%); visibility: hidden;
     transition: transform .22s ease, visibility 0s linear .22s;
@@ -514,7 +511,6 @@
     display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 250;
     padding-bottom: env(safe-area-inset-bottom);
     background: var(--black); border-top: 2px solid var(--accent);
-    box-shadow: 0 -6px 20px rgba(0, 0, 0, .5);
   }
   .wiki-dock svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; flex-shrink: 0; }
   .wiki-dock-pages {

@@ -55,7 +55,6 @@ body.theme-purple{--accent:#b040ff;--accent2:#7c1db5;--accent3:#3a0060;--accentR
 body.theme-blue{--accent:#3a8fc0;--accent2:#226090;--accent3:#0a2a40;--accentRGB:58,143,192;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;overflow-x:hidden;}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.05) 3px,rgba(0,0,0,.05) 4px);pointer-events:none;z-index:9999;}
 body.modal-open{overflow:hidden;}
 button{font:inherit;color:inherit;}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
@@ -172,7 +171,6 @@ button{font:inherit;color:inherit;}
 .npc-pin-btn{width:44px;flex-shrink:0;background:none;border:none;color:var(--muted2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;}
 .npc-pin-btn:hover{color:var(--accent);}
 .npc-pin-btn[aria-pressed="true"]{color:var(--accent);}
-.npc-pin-btn[aria-pressed="true"]{text-shadow:0 0 8px rgba(var(--accentRGB),.6);}
 .npc-empty{padding:22px 14px;font-family:var(--mono);font-size:var(--fs-sm);color:var(--muted);text-align:center;letter-spacing:.08em;}
 
 /* ── detail ── */
@@ -191,7 +189,7 @@ button{font:inherit;color:inherit;}
 .npc-actions .tbtn{min-height:36px;}
 
 /* combat strip: everything the GM needs mid-fight, above the fold */
-.combat-strip{--notch:14px;background:linear-gradient(180deg,rgba(var(--accentRGB),.05),transparent 60%),var(--p1);border:1px solid var(--b1);border-top:3px solid var(--accent);padding:10px 12px 12px;margin-bottom:18px;clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% var(--notch),100% 100%,0 100%);display:flex;flex-direction:column;gap:10px;}
+.combat-strip{--notch:14px;background:var(--p1);border:1px solid var(--b1);border-top:3px solid var(--accent);padding:10px 12px 12px;margin-bottom:18px;clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% var(--notch),100% 100%,0 100%);display:flex;flex-direction:column;gap:10px;}
 .cs-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
 .cs-code{font-family:var(--mono);font-size:var(--fs-xs);color:var(--muted);letter-spacing:.16em;}
 .cs-code.on{color:var(--enc);}
@@ -225,7 +223,7 @@ button{font:inherit;color:inherit;}
 .ap.b-hum{--apc:#a9a9a9;border-style:dashed;}
 .ap.b-rua{--apc:#5fb8e6;background:rgba(95,184,230,.1);}
 .ap.b-ome{--apc:#ff6a4d;background:rgba(255,106,77,.16);box-shadow:inset 0 -2px 0 var(--apc);}
-.ap.b-cos{--apc:#d29bff;background:#d29bff;color:#14051f;box-shadow:0 0 0 1px #14051f inset,0 0 10px rgba(210,155,255,.45);}
+.ap.b-cos{--apc:#d29bff;background:#d29bff;color:#14051f;box-shadow:0 0 0 1px #14051f inset;}
 
 /* attribute matrix: 3 groups × 3 numbers */
 .right-content .sec{display:flex;align-items:center;margin:22px 0 10px;}
@@ -246,9 +244,9 @@ button{font:inherit;color:inherit;}
 /* tema cards — NPC dossier identity (ficha visual language, no category) */
 .npc-temas{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;align-items:start;}
 .npc-tema-card{--notch:12px;background:var(--p1);border:1px solid var(--b1);border-top:2px solid var(--accent);clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% var(--notch),100% 100%,0 100%);}
-.ntc-hd{display:flex;align-items:center;gap:8px;width:100%;min-height:46px;padding:6px 4px 6px 12px;background:linear-gradient(90deg,rgba(var(--accentRGB),.10),transparent 75%);border:none;border-bottom:1px solid var(--b1);cursor:pointer;text-align:left;}
-.ntc-title{flex:1;min-width:0;font-family:var(--title);font-size:1.2rem;letter-spacing:.06em;color:var(--white);text-transform:uppercase;line-height:1.1;text-shadow:-.05em 0 rgba(var(--accentRGB),.5),.04em 0 rgba(110,220,255,.2);overflow-wrap:anywhere;}
-.ntc-title.fallback{color:#b5b5b5;text-shadow:none;}
+.ntc-hd{display:flex;align-items:center;gap:8px;width:100%;min-height:46px;padding:6px 4px 6px 12px;background:rgba(var(--accentRGB),.06);border:none;border-bottom:1px solid var(--b1);cursor:pointer;text-align:left;}
+.ntc-title{flex:1;min-width:0;font-family:var(--title);font-size:1.2rem;letter-spacing:.06em;color:var(--white);text-transform:uppercase;line-height:1.1;overflow-wrap:anywhere;}
+.ntc-title.fallback{color:#b5b5b5;}
 .ntc-sum{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:var(--fs-xs);color:var(--muted);white-space:nowrap;}
 .ntc-sum .pod{color:var(--accent);}
 .ntc-sum .frq{color:var(--frq);}
@@ -267,8 +265,8 @@ button{font:inherit;color:inherit;}
 .ntc-frq .ntag{border-left-color:rgba(111,169,207,.75);}
 /* loose tags: in data.tags but in no tema — neutral card, same AP markers */
 .npc-tema-card.loose{border-top-color:var(--b3);}
-.npc-tema-card.loose .ntc-hd{background:linear-gradient(90deg,rgba(255,255,255,.05),transparent 75%);}
-.npc-tema-card.loose .ntc-title{color:#b5b5b5;text-shadow:none;}
+.npc-tema-card.loose .ntc-hd{background:rgba(255,255,255,.03);}
+.npc-tema-card.loose .ntc-title{color:#b5b5b5;}
 .npc-tema-card.loose .ntag{border-left-color:var(--b3);}
 .ntag-t{flex:1;min-width:0;font-size:15px;color:var(--text);line-height:1.2;overflow-wrap:anywhere;}
 .no-tags{color:var(--muted);font-family:var(--mono);font-size:var(--fs-xs);}

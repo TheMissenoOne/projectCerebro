@@ -1720,7 +1720,6 @@ aps_referencia: `
           .relatorio-card {
             background: var(--p2);
             border: 1px solid var(--b2);
-            border-radius: 4px;
             overflow: hidden;
           }
           .relatorio-header {

@@ -270,7 +270,6 @@
     background: var(--dark);
     border-top: 3px solid var(--accent);
     padding-bottom: env(safe-area-inset-bottom);
-    box-shadow: 0 -12px 40px rgba(0, 0, 0, .6);
     animation: sheetUp .2s ease both;
   }
   #header-container .nav-sheet-hd { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 4px 16px; border-bottom: 1px solid var(--b1); }
