@@ -1,0 +1,1992 @@
+[
+  {
+    "name": "Ícone",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Lady Deathstrike",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Loa",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "M (Monet St. Croix)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos Novos Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Morbius",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Resistência a Dano",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Movimentação Tática",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vigilância Constante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Mystique",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mimetiza Voz e Maneirismos",
+        "grau": 12,
+        "benchmark": "informacao",
+        "feat": "mimetiza voz e maneirismos; abaixo do metamorfismo completo (14) → 12",
+        "confidence": "media"
+      },
+      {
+        "texto": "Vigilância Constante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro da Irmandade de Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Polaris",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Manipula Campo Magnético da Terra",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: raio da Terra ~6.400 km → 21",
+        "confidence": "media"
+      },
+      {
+        "texto": "Controla Minérios em Escala Global",
+        "grau": 21,
+        "benchmark": "area",
+        "feat": "o texto é o feito: escala global, raio da Terra ~6.400 km → 21 (como Escudo Magnético Global)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Gera Aurora Boreal Artificial",
+        "grau": 8,
+        "benchmark": "area",
+        "feat": "aurora em raio de ~760 m → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Escudo Magnético Atmosférico",
+        "grau": 18,
+        "benchmark": "resistencia",
+        "feat": "barreira de grande escala detém rajadas pesadas (16–18) → 18",
+        "confidence": "media"
+      },
+      {
+        "texto": "Voo Orbital",
+        "grau": 14,
+        "benchmark": "velocidade",
+        "feat": "velocidade de escape ~40.000 km/h → 14",
+        "confidence": "media"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Psylocke",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Tática e Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Artes Marciais de Elite",
+        "grau": 7,
+        "benchmark": "outro",
+        "feat": "mesmas artes marciais (Ninjitsu e Artes Marciais de Elite 7)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Telepatia Focada em Combate",
+        "grau": 8,
+        "benchmark": "distancia",
+        "feat": "mesma telepatia de combate ~760 m (8)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Lâmina Psiônica Manifesta",
+        "grau": 14,
+        "benchmark": "outro",
+        "feat": "mesma Espada Psiônica (14)",
+        "confidence": "media"
+      },
+      {
+        "texto": "Sombras e Furtividade",
+        "grau": 8,
+        "benchmark": "informacao",
+        "feat": "quase invisível no escuro (igual Noturno) → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Rogue",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Absorve Poderes, Memórias e Personalidade",
+        "grau": 20,
+        "benchmark": "outro",
+        "feat": "mesma absorção ao toque (20), pareada aos graus dos alvos",
+        "confidence": "media"
+      },
+      {
+        "texto": "Tática e Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência a Dano",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Sabretooth",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Sauron",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vigilância Constante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Scalphunter",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vigilância Constante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Shatterstar",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Tática e Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro da X-Force / X-Corp",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Strong Guy",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro da X-Force / X-Corp",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Tempestade",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Três‑em‑Uma (Stepford Cuckoos)",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Trevor Fitzroy",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Vigilância Constante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Combate Corporal",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Vontade de Ferro",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Exploração de Ambiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento Intensivo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Táticas Avançadas",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro do Clube do Inferno",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Wolverine",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "X-23",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Aguçados",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante de Elite",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Veterano de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência Mental Treinada",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Anjo",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência a Dano",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Anole",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Arclight",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Movimentação Tática",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Armor",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos Novos Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Aurora",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Liderança em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecido no Submundo Mutante",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Perícia em Campo",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Avalanche",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Intuição de Batalha",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Reflexos Rápidos",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Lealdade",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade Especial",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Trabalho em Equipe",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Conhecimento Tático",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Habilidade de Luta",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Determinação Inabalável",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro da Irmandade de Mutantes",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      }
+    ]
+  },
+  {
+    "name": "Banshee",
+    "is_global": true,
+    "tags": [
+      {
+        "texto": "Tática e Estratégia",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Escudo Sônico Protetor",
+        "grau": 8,
+        "benchmark": "resistencia",
+        "feat": "parede sônica desvia balas/estilhaços (7–8) → 8",
+        "confidence": "media"
+      },
+      {
+        "texto": "Desorientação em Massa",
+        "grau": 9,
+        "benchmark": "energia",
+        "feat": "mesmo grito sônico (9) aplicado a um grupo",
+        "confidence": "baixa"
+      },
+      {
+        "texto": "Instinto de Sobrevivência",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, independe do personagem): não é capacidade mensurável → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resistência a Dano",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Membro dos X-Men",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Mutante Experiente",
+        "grau": null,
+        "benchmark": null,
+        "feat": "rótulo organizacional/descritivo de template → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Treinamento de Combate",
+        "grau": null,
+        "benchmark": null,
+        "feat": "perícia genérica de template (texto idêntico em vários NPCs, mesmo onde não se aplica); precedente dos graders antigos (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) → null uniforme",
+        "confidence": "alta"
+      },
+      {
+        "texto": "Resiliência Física e Mental",
+        "grau": null,
+        "benchmark": null,
+        "feat": "filler de template (texto idêntico em vários NPCs, inclusive Ômegas/cósmicos e um cão): número fixo enganaria → null nas notas novas; graus individuais antigos (M, Thena) seguem reaproveitados",
+        "confidence": "alta"
+      }
+    ]
+  }
+]
