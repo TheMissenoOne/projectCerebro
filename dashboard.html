@@ -413,11 +413,14 @@
     var ul = $('party-members');
     ul.innerHTML = '<li class="member"><span class="member-sub"></span></li>';
     ul.querySelector('.member-sub').textContent = t('common.loading');
-    var fresh = !offline();
+    var fresh = !offline(), fail = null;
+    // either source alone is a partial roster (RLS may deny one of them): fail only when both do
+    var soft = function (err) { fail = fail || err; return null; };
     Promise.all([
-      window.api.getPartyMembers(p.id, fresh),
-      window.api.listPartyCharacters(p.id, fresh).catch(function () { return []; })
+      window.api.getPartyMembers(p.id, fresh).catch(soft),
+      window.api.listPartyCharacters(p.id, fresh).catch(soft)
     ]).then(function (r) {
+      if (!r[0] && !r[1]) throw fail;
       if (S.party === p) renderMembers(p, r[0] || [], r[1] || []);
     }).catch(function (err) {
       console.error('[dashboard] members:', err);
@@ -428,12 +431,16 @@
     });
   }
 
-  /* No profiles table: a member is labelled by their characters in this party,
+  /* Member = a party_members row OR the owner of a sheet in this party (sheets assigned to the
+     party without a membership row are still players), plus the GM.
+     No profiles table: a member is labelled by their characters in this party,
      me by my own name, the GM as GM; never by the raw player id. */
   function renderMembers(p, members, chars) {
     var ids = [];
     if (p.gm_id) ids.push(p.gm_id);
-    members.forEach(function (m) { if (m.player_id && ids.indexOf(m.player_id) === -1) ids.push(m.player_id); });
+    // I found this party through my own membership row: list me even if the roster read was denied
+    var mine = S.memberParty && S.memberParty.id === p.id ? [{ player_id: S.uid }] : [];
+    members.concat(chars, mine).forEach(function (m) { if (m.player_id && ids.indexOf(m.player_id) === -1) ids.push(m.player_id); });
     var rank = function (id) { return id === p.gm_id ? 0 : id === S.uid ? 1 : 2; };
     ids = ids.map(function (id, i) { return { id: id, i: i }; })
       .sort(function (a, b) { return rank(a.id) - rank(b.id) || a.i - b.i; })

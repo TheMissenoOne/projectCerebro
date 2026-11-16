@@ -682,7 +682,7 @@ const SK_IDS=["Destreza","Forca","Corpo","Inteligencia","Vontade","Mente","Influ
 const SK_DB={Destreza:'destreza',Força:'força',Corpo:'corpo',Inteligência:'inteligência',Vontade:'vontade',Mente:'mente',Influência:'influência',Aura:'aura',Espírito:'espírito'};
 const ATTR_MAP={destreza:'Destreza','força':'Força',forca:'Força',corpo:'Corpo','inteligência':'Inteligência',inteligencia:'Inteligência',vontade:'Vontade',mente:'Mente','influência':'Influência',influencia:'Influência',aura:'Aura','espírito':'Espírito',espirito:'Espírito'};
 const GRUPOS=[['ficha.physical',['Destreza','Força','Corpo']],['ficha.mental',['Inteligência','Vontade','Mente']],['ficha.social',['Influência','Aura','Espírito']]];
-const DEFESAS=['Corpo','Vontade','Mente'];
+const DEFESAS=['Corpo','Mente','Espírito']; // MEGS: RV = Corpo (físico), Mente (mental), Espírito (místico)
 /* SK stays the pt-BR data key; labels come from i18n (full: ficha.*, short: cerebro.abbr<id>) */
 const SK_I18N=['dexterity','strength','body','intelligence','willpower','mind','influence','aura','spirit'];
 const attrLbl=k=>t('ficha.'+SK_I18N[SK.indexOf(k)]),attrAbbr=k=>t('cerebro.abbr'+SK_IDS[SK.indexOf(k)]);

@@ -189,9 +189,15 @@ Um arquivo por chunk: `supabase/review/npc_graus/chunk-N.json`. Por NPC, **uma l
 - `benchmark`: `peso | distancia | area | velocidade | energia | informacao | duracao | resistencia | outro` (`null` permitido se `grau` null).
 - `feat`: curto, pt-BR, com o número e a conta ("ergue submarino nuclear ~8.000 t → 18"). Obrigatório se `grau` não-null.
 - `confidence`: `alta | media | baixa`.
-- Validar: `node scripts/gen-npc-graus.js build --grades supabase/review/npc_graus/chunk-N.json --partial`
-  (erro lista NPC/tag desconhecido, faltante, duplicado, grau inválido). Depois apague os outputs
-  se só estava testando.
+- Validar: `node scripts/gen-npc-graus.js build --partial` (lê todo `supabase/review/npc_graus/`;
+  erro lista tag faltante, conflito entre arquivos, grau inválido; notas de NPC/tag fora do baseline
+  são descartadas com aviso). Depois `git checkout` dos outputs se só estava testando.
+- **Rodada prod** (baseline = export de produção, `baseline --from-csv`): `todo --out <dir>` gera
+  `chunk-N.json` só com as tags ainda sem nota. Por NPC, contexto em `temas` (poder + fraqueza),
+  `extras` e `notas_existentes` (já graduadas — use como referência de consistência, não repita).
+  Preencha **só** `tags[]` (`grau`, `benchmark`, `feat`, `confidence`, `peak` opcional; não mude
+  `texto`) e salve como `supabase/review/npc_graus/prod-N.json` (mesmo N). O build junta com as
+  notas reaproveitadas por NPC (name+is_global) e texto (trim + case-insensitive).
 
 ## 6. Exemplos trabalhados
 
@@ -239,3 +245,23 @@ Note: o 6 antigo vira 25 — e 25 é peso de verdade (~800 kt), não "nível má
 | Membro da Família Guthrie · Instinto Protetor · Gentileza · Determinação | null | — | relacionamento/personalidade |
 
 Aluno de perigo baixo com grau 8 numa tag é correto: não há teto por perigo.
+
+## 7. Rodada prod — filler de template (decisão fechada)
+
+~1.400 das 1.551 tags sem nota da rodada prod são textos de template repetidos verbatim em 6+ NPCs,
+presentes independentemente do personagem (o Cosmo, um cão, tem "Mestre de Múltiplas Disciplinas").
+Política: **um valor por texto (todos null), aplicado mecanicamente em todo NPC** (casamento trim + case-insensitive),
+seguindo o precedente dos graders antigos. Tags NPC-específicas continuam graduadas uma a uma.
+
+| Texto | Grau | Motivo |
+|---|---:|---|
+| Membro dos X-Men · Membro dos Novos Mutantes · Membro do Clube do Inferno · Membro da Irmandade de Mutantes · Membro da X-Force / X-Corp · Membro dos Morlocks · Humano com Acesso a Alto Escalão · Opera nos Dois Lados | null | afiliação/rótulo organizacional |
+| Conhecido no Submundo Mutante · Mutante Experiente · Mutante de Elite · Mutante de Nível Baixo · Mutante de Niveau Ômega ou Equivalente · Rede de Contatos e Aliados · Ameaça Nível Global | null | rótulo descritivo; "Ômega"/"Elite" não dá grau (§4) |
+| Instinto de Sobrevivência · Trabalho em Equipe · Habilidade Especial · Lealdade · Determinação · Determinação Inabalável · Vontade de Ferro · Sorte nos Momentos Críticos · Conhecimento Tático · Exploração de Ambiente · Treinamento Intensivo · Táticas Avançadas · Combate Corporal · Estratégia | null | template; já null uniforme nos chunks antigos |
+| Estratégia Avançada · Presença Imponente · Adaptabilidade Extrema · Conhecimento Oculto · Liderança Nata · Experiência de Séculos · Manipulação em Escala Global · Percepção Sobre-Humana · Mestre de Múltiplas Disciplinas | null | bloco de template dos NPCs "cósmicos/mentais" (Cosmo, Mastermind, Eternos…): não descreve feito do personagem |
+| Treinamento de Combate · Reflexos Aguçados · Reflexos Rápidos · Perícia em Campo · Veterano de Combate · Resistência Mental Treinada · Liderança em Campo · Vigilância Constante · Movimentação Tática · Intuição de Batalha · Tática e Estratégia · Resistência a Dano · Habilidade de Luta · Décadas de Experiência de Combate · Mestre Tático · Vontade Indomável | null | perícia genérica de template, aparece até onde não se aplica; um número fixo mentiria para metade dos NPCs; precedente antigo (Reflexos Rápidos, Perícia em Campo, Combate Corporal = null) |
+| Resiliência Física e Mental · Reflexos Sobre-Humanos · Resistência Mental Superior | null | template que cai até em Onslaught, Legion, Shadow King, Nate Grey, Cosmo (cão) e Mastermind: um 8/9/10 fixo engana. Null nas notas novas; os graus individuais antigos desses textos (M 8; Thena 9/10) continuam reaproveitados |
+
+Variante de filler dentro de um tema próprio segue o filler equivalente ("Liderança de Campo" do Rictor = null,
+como "Liderança em Campo"), salvo quando espelha uma capacidade real já graduada do NPC ("Resiliência Física" do
+Blockbuster = 11, a mesma durabilidade de Força e Resistência Colossais).

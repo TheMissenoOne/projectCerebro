@@ -432,6 +432,22 @@ body{background:var(--black);color:var(--text);font-family:var(--body);font-size
 @media(prefers-reduced-motion:reduce){
   .tcard,.card-title-wrap{animation:none!important;}
 }
+/* ── modo leitura (ficha de outro jogador) ─────────────────────────
+   leitura: faixa escura + selo chapado; editando: faixa inteira no accent (estado de risco). */
+.ro-bar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;padding:10px clamp(14px,2.5vw,28px);background:var(--dark);border-bottom:1px solid var(--b1);border-left:4px solid var(--accent);}
+.ro-badge{color:var(--on-accent);font-weight:700;}
+.ro-msg{flex:1 1 220px;min-width:0;font-family:var(--mono);font-size:var(--fs-sm);letter-spacing:.06em;line-height:1.45;color:var(--white);}
+.ro-btn{flex-shrink:0;}
+.ro-bar.is-editing{background:var(--accent);border-bottom-color:var(--accent);border-left-color:var(--on-accent);}
+.ro-bar.is-editing .ro-msg{color:var(--on-accent);}
+.ro-bar.is-editing .ro-badge{background:var(--on-accent);border-color:var(--on-accent);color:var(--accent);}
+.ro-bar.is-editing .ro-btn{border-color:var(--on-accent);color:var(--on-accent);font-weight:700;}
+.ro-bar.is-editing .ro-btn:hover{background:var(--on-accent);color:var(--accent);}
+.ro-bar.is-editing .ro-btn:focus-visible{outline-color:var(--on-accent);}
+/* em leitura somem as affordances de criar/apagar e os slots vazios; o resto fica legível, sem cursor de edição */
+body.is-readonly :is(.add-tag-btn,.add-card-btn,.del-card-btn,#remove-foto-btn,.tipo-caret,.tag-row.empty,[onclick="resetarFicha()"]){display:none!important;}
+body.is-readonly :is(.portrait-zone,.dot,.mel-row,.mel-chk,.evo-check-row,.evo-chk,.tipo-ctl,.tipo-sel,.tag-ap,.q-btn,.tag-gen,.tag-burn-btn){cursor:default;}
+body.is-readonly main :is(input,textarea):read-only:focus{border-color:var(--b2);}
 </style>
 <script src="assets/js/config.js?v=dev" defer></script>
 <script src="assets/js/i18n.js?v=dev" defer></script>
@@ -481,6 +497,13 @@ function showToast(msg){
   <button class="tab" onclick="trocarAba('estado',this)" data-i18n="ficha.tab4">04 &nbsp;ESTADO</button>
   <button class="tab" onclick="trocarAba('progressao',this)" data-i18n="ficha.tab5">05 &nbsp;PROGRESSÃO</button>
 </nav>
+
+<!-- ficha de outro jogador: abre em leitura; o botão é o opt-in para editar (ver aplicarLeitura) -->
+<section class="ro-bar" id="ro-bar" hidden>
+  <span class="badge is-solid ro-badge" id="ro-badge"></span>
+  <span class="ro-msg" id="ro-msg" role="status" aria-live="polite"></span>
+  <button type="button" class="btn btn-sm ro-btn" id="ro-btn" onclick="alternarLeitura()"></button>
+</section>
 
 <main class="content">
 
@@ -972,6 +995,9 @@ const newUrl = 'ficha.html?id=' + char.id;
     if (D.temas) D.temas.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (D.extras) D.extras.forEach(c=>{if(!c.hasOwnProperty('valor')&&c.hasOwnProperty('atencao'))c.valor=(c.atencao||0)-(c.dissipacao||0);});
     if (char && char.foto_base64) D.foto = char.foto_base64;
+    /* ficha de outro jogador (GM vindo do admin/dashboard): abre em leitura */
+    fichaAlheia=!!(char&&char.player_id&&char.player_id!==auth.session.user.id);
+    readOnly=fichaAlheia;
     normalizarDados(D);
     fichaCarregada=true;
     setInd('',t('ficha.loaded'));
@@ -993,6 +1019,41 @@ const newUrl = 'ficha.html?id=' + char.id;
     buildMembros();
   preencherCampos();
   if (D.foto) mostrarFoto(D.foto);
+  aplicarLeitura();
+}
+
+/* ── LEITURA (ficha de outro jogador) ──────────────────────────────
+   Começa em leitura; "Editar ficha" libera até a página recarregar.
+   A trava de verdade é salvarAuto: todo handler (e o EstadoModule) passa por
+   ela para sujar a ficha, e salvarAgora não grava nada sem sujeira — então o
+   guarda lá cobre debounce, troca de aba, visibilitychange, pagehide e retry.
+   aplicarLeitura é só a camada visível: campos readOnly/disabled. */
+let readOnly=false,fichaAlheia=false;
+const RO_LIVRES='.card-collapse-btn,.card-sum,.field-help,.estado-panel-head';
+function aplicarLeitura(){
+  document.body.classList.toggle('is-readonly',readOnly);
+  // ponytail: passa uma vez por troca de modo; nada re-renderiza campos em leitura (só edição re-renderiza).
+  // Se surgir re-render em leitura, chamar aplicarLeitura() no fim dele (ou um MutationObserver em main).
+  document.querySelectorAll('main.content :is(input,textarea,select,button),#toolbar-container [onclick="resetarFicha()"]').forEach(el=>{
+    if(el.matches(RO_LIVRES))return;
+    if(el.matches('textarea,input:not([type]),input[type=text],input[type=number],input[type=search]'))el.readOnly=readOnly;
+    else el.disabled=readOnly;
+  });
+  ['dots-prog','portrait-zone'].forEach(id=>{const e=document.getElementById(id);if(e)e.inert=readOnly;});
+  const bar=document.getElementById('ro-bar');if(!bar)return;
+  bar.hidden=!fichaAlheia;if(!fichaAlheia)return;
+  const nome=D.codinome||D.nome||t('ficha.roNoName');
+  bar.setAttribute('aria-label',t('ficha.roRegion'));
+  bar.classList.toggle('is-editing',!readOnly);
+  document.getElementById('ro-badge').textContent=t(readOnly?'ficha.roBadge':'ficha.roEditingBadge');
+  document.getElementById('ro-msg').textContent=t(readOnly?'ficha.roMsg':'ficha.roEditingMsg').replace('{nome}',nome);
+  document.getElementById('ro-btn').textContent=t(readOnly?'ficha.roEdit':'ficha.roBack');
+}
+function alternarLeitura(){
+  if(!fichaAlheia)return;
+  if(!readOnly&&saveSujo)salvarAgora(); /* o que foi editado antes de voltar ainda grava */
+  readOnly=!readOnly;
+  aplicarLeitura();
 }
 
 function validaCampo(el,v){
@@ -1015,6 +1076,7 @@ function horaCurta(d){
 }
 
 function salvarAuto(){
+  if(readOnly)return; /* ficha alheia em leitura: nada fica sujo, então nada é gravado */
   saveSujo=true;
   setInd('pendente',t('ficha.unsaved'));
   clearTimeout(saveTimer);
@@ -1381,7 +1443,10 @@ function syncCardState(div,card){
   div.style.setProperty('--card-icon',url);
   if(body){body.style.setProperty('--card-bg',url);body.dataset.stamp=c?t(STAMP_KEY[c]):'';}
   const btn=div.querySelector('.card-collapse-btn');
-  if(btn){btn.textContent=card.collapsed?'[+]':'[–]';btn.setAttribute('aria-expanded',String(!card.collapsed));rotular(btn,t(card.collapsed?'ficha.expandCard':'ficha.minimizeCard'));}
+  if(btn)paintCollapseBtn(btn,card.collapsed);
+}
+function paintCollapseBtn(btn,collapsed){
+  btn.textContent=collapsed?'[+]':'[–]';btn.setAttribute('aria-expanded',String(!collapsed));rotular(btn,t(collapsed?'ficha.expandCard':'ficha.minimizeCard'));
 }
 function paintResumo(sum,card){
   const r=cardResumo(card);
@@ -1455,7 +1520,11 @@ function buildCard(card,lista,cid,opts={}){
   const acts=document.createElement('div');acts.className='card-actions';hdr.appendChild(acts);
   const colBtn=document.createElement('button');colBtn.type='button';colBtn.className='card-collapse-btn';
   const sum=document.createElement('button');sum.type='button';sum.className='card-sum';
-  const toggle=()=>{card.collapsed=!card.collapsed;if(card.collapsed)paintResumo(sum,card);syncCardState(div,card);salvarAuto();};
+  const toggle=()=>{
+    /* em leitura recolher é só visual: não toca card.collapsed (senão gravaria junto na próxima edição) */
+    if(readOnly){const c=!div.classList.contains('collapsed');if(c)paintResumo(sum,card);div.classList.toggle('collapsed',c);paintCollapseBtn(colBtn,c);return;}
+    card.collapsed=!card.collapsed;if(card.collapsed)paintResumo(sum,card);syncCardState(div,card);salvarAuto();
+  };
   colBtn.addEventListener('click',toggle);sum.addEventListener('click',toggle);
   acts.appendChild(colBtn);
   if(editable){
@@ -1551,6 +1620,7 @@ function normalizarDados(d){
 }
 
 function resetarFicha(){
+  if(readOnly)return;
   var nome=D.nome||'este personagem';
   if(!confirm('Resetar '+nome+'? Esta ação não pode ser desfeita.'))return;
   if(!confirm('TEM CERTEZA? Todo o progresso será perdido.'))return;
