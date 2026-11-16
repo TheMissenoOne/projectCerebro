@@ -18,6 +18,7 @@ const KITTY = { id: 'pc-1', player_id: 'u-gm', party_id: 'party-1', name: 'Kitty
   data: { nome: 'Kitty Pryde', codinome: 'Lince Negra', mutacao_ficha: 'Intangibilidade', temas: [{ nome: 'Fase' }, { nome: '' }, { nome: '' }] } };
 const BLANK = { id: 'pc-2', player_id: 'u-gm', party_id: 'party-1', name: 'Novo Personagem', codename: '', is_active: true, data: {} };
 const KURT = { id: 'pc-3', player_id: 'u-p2', party_id: 'party-1', name: 'Kurt Wagner', codename: 'Noturno', is_active: true, data: { temas: [{ nome: 'Teleporte' }, { nome: 'Circo' }] } };
+const LOGAN = { id: 'pc-4', player_id: 'u-p3', party_id: 'party-1', name: 'Logan', codename: 'Wolverine', is_active: true, data: {} };
 const SIX = ['Scott Summers|Ciclope', 'Jean Grey|Fênix', 'Ororo Munroe|Tempestade', 'Hank McCoy|Fera', 'Bobby Drake|Homem de Gelo', 'Warren Worthington|Anjo']
   .map((s, i) => ({ id: 'six-' + i, player_id: 'u-p2', party_id: 'party-1', name: s.split('|')[0], codename: s.split('|')[1], is_active: true, data: { temas: [{ nome: 'A' }] } }));
 
@@ -31,6 +32,7 @@ function fakeSupabase(o) {
   window.__failChars = ${!!o.failChars};
   window.__holdCreate = ${!!o.holdCreate};
   window.__failMembers = ${!!o.failMembers};
+  window.__failMembersList = ${!!o.failMembersList};
   var session = { user: user, access_token: 'x' };
   function q(table){
     var st = { filters: [], single: false, op: 'select', payload: null };
@@ -48,6 +50,9 @@ function fakeSupabase(o) {
       var rows = DB[table] = DB[table] || [];
       if (table === 'characters' && st.op === 'select' && window.__failChars) return Promise.resolve({ data: null, error: { message: 'boom' } });
       if (table === 'party_members' && st.op === 'select' && window.__failMembers) return Promise.resolve({ data: null, error: { message: 'boom' } });
+      // RLS-like: the roster read (by party_id) is denied while "my own row" (by player_id) still works
+      if (table === 'party_members' && st.op === 'select' && window.__failMembersList && st.filters.some(function(f){ return f[0] === 'party_id'; }))
+        return Promise.resolve({ data: null, error: { message: 'permission denied', code: '42501' } });
       if (st.op === 'insert') {
         window.__inserts.push({ table: table, payload: st.payload });
         if (table === 'party_members' && rows.some(function(r){ return r.party_id === st.payload.party_id && r.player_id === st.payload.player_id; }))
@@ -79,11 +84,11 @@ function scenario(o = {}) {
   const chars = o.chars || [KITTY, BLANK, KURT];
   const withParty = o.party !== false;
   return {
-    user, failChars: o.failChars, holdCreate: o.holdCreate, failMembers: o.failMembers,
+    user, failChars: o.failChars, holdCreate: o.holdCreate, failMembers: o.failMembers, failMembersList: o.failMembersList,
     db: {
       characters: chars,
       parties: o.noParties ? [] : [PARTY],
-      party_members: withParty ? [{ party_id: 'party-1', player_id: 'u-gm' }, { party_id: 'party-1', player_id: 'u-p2' }].filter(m => !o.members || o.members.includes(m.player_id)) : [],
+      party_members: o.partyMembers ? o.partyMembers.map(id => ({ party_id: 'party-1', player_id: id })) : withParty ? [{ party_id: 'party-1', player_id: 'u-gm' }, { party_id: 'party-1', player_id: 'u-p2' }].filter(m => !o.members || o.members.includes(m.player_id)) : [],
       sessions: []
     }
   };
@@ -279,6 +284,33 @@ if (require.main === module) (async () => {
     eq(await txt(r.page, '#party-code'), 'XAV123', 'GM-run party shown without membership row');
     const names = await r.page.$$eval('#party-members .member-name', els => els.map(e => e.textContent.trim()));
     eq(names, ['Charles', 'Kurt Wagner'], 'GM listed even without a membership row');
+    await r.ctx.close();
+  });
+
+  /* regression: the party card listed only party_members rows, so players whose sheets are in the
+     party without a membership row vanished (GM saw "me + 1 player") */
+  await test('party roster = membership rows ∪ owners of sheets in the party, GM as GM, no sheet → "Jogador N"', async () => {
+    // u-p2: row + sheet · u-p5: row, no sheet · u-p3: sheet, no row · GM: no row
+    const { ctx, page } = await openDash(browser, base, { partyMembers: ['u-p2', 'u-p5'], chars: [KITTY, KURT, LOGAN] });
+    const names = await page.$$eval('#party-members .member-name', els => els.map(e => e.textContent.trim()));
+    eq(names, ['Charles', 'Kurt Wagner', 'Jogador 1', 'Logan'], 'roster');
+    eq(await page.$$eval('#party-members .member.is-gm', e => e.length), 1, 'one GM row');
+    eq(await txt(page, '#party-meta'), '4 membros', 'count');
+    assert(!/u-p\d|u-gm/.test(await txt(page, '#party-members')), 'raw id shown');
+    eq(page.__errors, [], 'page errors');
+    await ctx.close();
+  });
+
+  await test('player view: roster read denied (RLS) → still lists everyone with a sheet in the party, no error', async () => {
+    const { ctx, page } = await openDash(browser, base, { user: PLAYER, failMembersList: true, chars: [KITTY, KURT, LOGAN] });
+    const names = await page.$$eval('#party-members .member-name', els => els.map(e => e.textContent.trim()));
+    eq(names, ['Kitty Pryde', 'Kurt', 'Logan'], 'roster from sheets');
+    eq(await page.$$eval('#party-members .member.is-gm', e => e.length), 1, 'GM marked');
+    eq(await page.$$eval('#party-members .is-error, #party-state .is-error', e => e.length), 0, 'no error state');
+    await ctx.close();
+    // a member with no sheet of their own still sees themself (they found the party through their own row)
+    const r = await openDash(browser, base, { user: PLAYER, failMembersList: true, chars: [KITTY] });
+    eq(await r.page.$$eval('#party-members .member-name', els => els.map(e => e.textContent.trim())), ['Kitty Pryde', 'Kurt'], 'me without a sheet');
     await r.ctx.close();
   });
 

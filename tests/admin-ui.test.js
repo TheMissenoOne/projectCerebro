@@ -25,7 +25,8 @@ function fakeSupabase(o) {
   return `(function(){
   var DB = { characters: ${JSON.stringify(o.emptyChars ? [] : CHARS)},
     parties: ${JSON.stringify(o.noParty ? [] : [{ id: 'party-1', name: 'Turma Azul', gm_id: 'u-gm', code: 'XAV123' }])},
-    sessions: ${JSON.stringify(o.noSession ? [] : [SESSION])} };
+    sessions: ${JSON.stringify(o.noSession ? [] : [SESSION])},
+    party_members: ${JSON.stringify((o.members || []).map(id => ({ party_id: 'party-1', player_id: id })))} };
   window.__db = DB; window.__writes = []; window.__fail = ${JSON.stringify(o.fail || {})}; window.__hold = null;
   var user = { id: 'u-gm', email: 'gm@x.test', user_metadata: { role: ${JSON.stringify(o.role || 'gm')} } };
   function q(table){
@@ -313,6 +314,37 @@ if (require.main === module) (async () => {
     assert(/Magneto/.test(await page.textContent('#enc-local-body')) && /RODADA 2/.test(await page.textContent('#enc-local-meta')), 'cerebro encounter summary');
     eq(page.__errors, [], 'page errors');
     await ctx.close();
+  });
+
+  /* regression: players were derived only from sheets, so a member who joined by code but has no sheet
+     in the party was missing (dashboard and panel disagreed on who is in the party) */
+  await test('members = sheet owners ∪ party_members rows (GM row ignored); sheetless player → "Jogador N" on every tab', async () => {
+    const P3 = '7f1c2d3e-0000-4000-8000-00000000a003';
+    const { ctx, page } = await openAdmin(browser, base, { members: [P2, P3, 'u-gm'], query: '?tab=members' });
+    eq(await page.$$eval('#members-list .dossier-title', e => e.map(x => x.textContent)), ['Ana', 'Noturno', 'Jogador 3'], 'member headers');
+    assert(/sem ficha/i.test(await page.textContent('#members-list .mbr-card:last-child')), 'no-sheet hint');
+    await showTab(page, 'points');
+    eq(await page.$$eval('#points-list .dossier-title', e => e.map(x => x.textContent)), ['Ana', 'Noturno', 'Jogador 3'], 'points players');
+    assert(/JOGADORES\s*3/i.test(await page.textContent('#points-summary')), 'player count: ' + await page.textContent('#points-summary'));
+    await showTab(page, 'party');
+    eq(await page.$$eval('#party-body tbody tr', r => r.length), 3, 'party tab still lists sheets only');
+    assert(!/[0-9a-f]{8}-[0-9a-f]{4}-/i.test(await visibleText(page)), 'uuid shown');
+    eq(page.__errors, [], 'page errors');
+    await ctx.close();
+  });
+
+  await test('members without any sheet still listed; a failed membership read degrades to sheet owners', async () => {
+    const P3 = '7f1c2d3e-0000-4000-8000-00000000a003';
+    let r = await openAdmin(browser, base, { emptyChars: true, members: [P3], query: '?tab=members' });
+    eq(await r.page.$$eval('#members-list .dossier-title', e => e.map(x => x.textContent)), ['Jogador 1'], 'sheetless member');
+    await showTab(r.page, 'party');
+    assert(await r.page.isVisible('#tab-party .empty-state'), 'party tab: empty roster state');
+    await r.ctx.close();
+    r = await openAdmin(browser, base, { members: [P3], fail: { party_members: true }, query: '?tab=members' });
+    eq(await r.page.$$eval('#members-list .dossier-title', e => e.map(x => x.textContent)), ['Ana', 'Noturno'], 'sheet owners only');
+    eq(await r.page.$$eval('#tab-members .is-error', e => e.length), 0, 'no error state');
+    eq(r.page.__errors, [], 'page errors');
+    await r.ctx.close();
   });
 
   /* ── tabs: deep link, history, keyboard ── */
