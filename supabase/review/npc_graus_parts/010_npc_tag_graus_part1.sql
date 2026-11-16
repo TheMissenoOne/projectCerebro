@@ -1,6 +1,6 @@
 -- Migração 010 — grau (APs) nas tags de PODER dos NPCs · gerado por node scripts/gen-npc-graus.js build (NÃO editar)
 -- Parte 1 de 3 — rode todas as partes, uma por vez, no SQL Editor (qualquer ordem; idempotente).
--- Detalhes: 010_npc_tag_graus.sql (mesmo SQL, só com os NPCs desta parte). Último SELECT = drift desta parte.
+-- Detalhes: supabase/migrations/010_npc_tag_graus.sql (mesmo SQL, só com os NPCs desta parte). Último SELECT = drift desta parte.
 -- Backup: a 1ª parte executada cria npcs_backup_010 (estado ANTERIOR); as outras não o sobrescrevem. Rollback:
 --   UPDATE npcs n SET data = b.data, updated_at = NOW() FROM npcs_backup_010 b WHERE b.id = n.id;
 -- Depois de validar (ou do rollback):  DROP TABLE npcs_backup_010;

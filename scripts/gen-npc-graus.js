@@ -11,7 +11,8 @@
  *
  *   node scripts/gen-npc-graus.js build [--grades <dir|arquivo.json>] [--partial]
  *     Lê as notas (padrão supabase/review/npc_graus/*.json), valida contra o baseline e gera
- *     supabase/migrations/010_npc_tag_graus.sql + supabase/review/npc_graus_review.md.
+ *     supabase/migrations/010_npc_tag_graus.sql + supabase/review/npc_graus_review.md
+ *     + partes p/ o SQL Editor em supabase/review/npc_graus_parts/010_npc_tag_graus_partN.sql.
  *     --partial: permite NPCs do baseline sem nota (só para teste do pipeline).
  *
  * Rubrica dos graus: supabase/review/npc_graus_rubric.md
@@ -27,6 +28,8 @@ const BASELINE = path.join(ROOT, 'supabase/review/npc_graus_baseline.json');
 const GRADES_DIR = path.join(ROOT, 'supabase/review/npc_graus');
 const OUT_SQL = path.join(ROOT, 'supabase/migrations/010_npc_tag_graus.sql');
 const OUT_MD = path.join(ROOT, 'supabase/review/npc_graus_review.md');
+// fora de migrations/: o Supabase CLI recusaria 4 arquivos com a mesma versão 010
+const PARTS_DIR = path.join(ROOT, 'supabase/review/npc_graus_parts');
 const DANGER = ['extremo', 'alto', 'medio', 'baixo'];
 const BENCHMARKS = ['peso', 'distancia', 'area', 'velocidade', 'energia', 'informacao', 'duracao', 'resistencia', 'outro'];
 const CONFIDENCE = ['alta', 'media', 'baixa'];
@@ -324,7 +327,7 @@ function genSQL(rows) {
 -- Não altera stats, danger, nomes nem textos das tags.
 --
 -- Como rodar: cole o arquivo inteiro no SQL Editor do Supabase e execute. Idempotente:
--- ATENÇÃO: o SQL Editor trunca colagens em ~100k caracteres — lá use 010_npc_tag_graus_partN.sql.
+-- ATENÇÃO: o SQL Editor trunca colagens em ~100k caracteres — lá use supabase/review/npc_graus_parts/010_npc_tag_graus_partN.sql.
 -- rodar de novo produz o mesmo data. O último SELECT lista linhas COM grau da lista que não
 -- casaram com nenhum NPC ou tag (drift do banco de produção) — vazio = tudo aplicado.
 -- (Linhas NULL que não casam não são drift: não havia grau a remover.)
@@ -341,7 +344,7 @@ ${genBody(rows)}`;
 function genPartSQL(rows, n, m) {
   return `-- Migração 010 — grau (APs) nas tags de PODER dos NPCs · gerado por node scripts/gen-npc-graus.js build (NÃO editar)
 -- Parte ${n} de ${m} — rode todas as partes, uma por vez, no SQL Editor (qualquer ordem; idempotente).
--- Detalhes: 010_npc_tag_graus.sql (mesmo SQL, só com os NPCs desta parte). Último SELECT = drift desta parte.
+-- Detalhes: supabase/migrations/010_npc_tag_graus.sql (mesmo SQL, só com os NPCs desta parte). Último SELECT = drift desta parte.
 -- Backup: a 1ª parte executada cria npcs_backup_010 (estado ANTERIOR); as outras não o sobrescrevem. Rollback:
 --   UPDATE npcs n SET data = b.data, updated_at = NOW() FROM npcs_backup_010 b WHERE b.id = n.id;
 -- Depois de validar (ou do rollback):  DROP TABLE npcs_backup_010;
@@ -492,13 +495,13 @@ function build(src, partial) {
   const rows = grades.flatMap(g => g.tags.map(t => ({ name: g.name, is_global: g.is_global, texto: t.texto, grau: t.grau })));
   if (!rows.some(r => r.grau !== null)) { console.error('ERRO: nenhum grau não-null para gravar'); process.exit(1); }
   fs.writeFileSync(OUT_SQL, genSQL(rows));
-  const dir = path.dirname(OUT_SQL);
-  fs.readdirSync(dir).filter(f => /^010_npc_tag_graus_part\d+\.sql$/.test(f)).forEach(f => fs.unlinkSync(path.join(dir, f)));
+  fs.mkdirSync(PARTS_DIR, { recursive: true });
+  fs.readdirSync(PARTS_DIR).filter(f => /^010_npc_tag_graus_part\d+\.sql$/.test(f)).forEach(f => fs.unlinkSync(path.join(PARTS_DIR, f)));
   const parts = splitParts(rows);
   parts.forEach((p, i) => {
     const sql = genPartSQL(p, i + 1, parts.length);
-    fs.writeFileSync(OUT_SQL.replace(/\.sql$/, `_part${i + 1}.sql`), sql);
-    console.log(`  parte ${i + 1}/${parts.length}: ${p.length} linhas, ${chars(sql)} caracteres`);
+    fs.writeFileSync(path.join(PARTS_DIR, `010_npc_tag_graus_part${i + 1}.sql`), sql);
+    console.log(`  parte ${i + 1}/${parts.length} (${path.relative(ROOT, PARTS_DIR)}): ${p.length} linhas, ${chars(sql)} caracteres`);
   });
   const removed = countOldGraus(grades);
   fs.writeFileSync(OUT_MD, genReview(base, grades, removed));
