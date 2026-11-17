@@ -99,8 +99,8 @@ test('grauDesbloqueado - detects [Grau em tags] by marker, not by index', () => 
   if (X.grauDesbloqueado({}, lista)) throw new Error('missing melhorias_checked unlocked grau');
 });
 
-test('custoFator - 6 for specific tags, 7 for generic', () => {
-  if (X.custoFator(false) !== 6 || X.custoFator(true) !== 7) throw new Error('wrong factor cost');
+test('custoFator - 3 for specific tags, 4 for generic', () => {
+  if (X.custoFator(false) !== 3 || X.custoFator(true) !== 4) throw new Error('wrong factor cost');
 });
 
 test('grauDe - clamps to an integer >= 0, missing/garbage -> 0', () => {

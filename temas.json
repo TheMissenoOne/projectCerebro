@@ -31,7 +31,7 @@
         "Especialização Derivada: Responda a uma pergunta de tag de poder de Expressão ou Conjuração. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Exposição Calculada: Ao receber uma condição se expondo deliberadamente a uma ameaça para estudá-la em uma cena de intervalo, crie uma condição temporária de adaptação contra ela com grau igual ao número de tags deste tema. [Condição temporária]",
         "Curva Acelerada: Uma vez por partida, quando atua em desvantagem (AV menor que OV), role os dados duas vezes e use o resultado mais favorável. [Especial]",
-        "Seleção Natural: Seu X-Gene parou de pedir permissão ao corpo — é aqui que o seu potencial ômega deixa de ter teto. As adaptações deste tema não são mais limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags dele. Toda resposta gravada no corpo, como tag, começa em grau 0 e evolui com Factor Cost 6 (tag específica) ou 7 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Seleção Natural: Seu X-Gene parou de pedir permissão ao corpo — é aqui que o seu potencial ômega deixa de ter teto. As adaptações deste tema não são mais limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags dele. Toda resposta gravada no corpo, como tag, começa em grau 0 e evolui com Factor Cost 3 (tag específica) ou 4 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -65,7 +65,7 @@
         "Defesa Composta: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que envolva resistência, campo ou estrutura física. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Posição Fortificada: Ao gastar uma cena de intervalo fortalecendo posição ou ancorando-se no terreno antes do confronto, crie uma condição temporária de proteção com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, muro Inabalável: Enquanto protege ativamente um aliado declarado no início da cena, condições físicas que você recebe têm grau reduzido em 2 (mínimo 1). [Especial]",
-        "Baluarte Absoluto: Sua defesa deixou de ter um ponto de ruptura: o potencial ômega do seu poder desperta como estrutura. A muralha não é mais limitada pelos seus atributos; atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se fortifica com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada: a estrutura segura por você. [Grau em tags]"
+        "Baluarte Absoluto: Sua defesa deixou de ter um ponto de ruptura: o potencial ômega do seu poder desperta como estrutura. A muralha não é mais limitada pelos seus atributos; atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se fortifica com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada: a estrutura segura por você. [Grau em tags]"
       ]
     },
     {
@@ -99,7 +99,7 @@
         "Matéria Aprendida: Responda a uma pergunta de tag de poder de Adaptabilidade ou Familiar para representar um dos usos das suas conjurações. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Superioridade Metafísica: Ao gastar uma cena de intervalo usando suas conjurações para realizar uma tarefa ou alcançar um objetivo que forneça uma vantagem tática crie um efeito temporário referente a esta vantagem com grau igual ao número de tags deste tema. [Condição temporária]",
         "Permanência Declarada: Uma vez por partida, declare que uma conjuração é permanente em vez de temporária ou duradoura, sem custo de modificador adicional. [Especial]",
-        "Obra Viva: O que você cria não depende mais do que você consegue sustentar — seu potencial ômega enfim ganha forma. Suas conjurações já não são limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag nasce em grau 0 e ganha substância com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
+        "Obra Viva: O que você cria não depende mais do que você consegue sustentar — seu potencial ômega enfim ganha forma. Suas conjurações já não são limitadas pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag nasce em grau 0 e ganha substância com Factor Cost 3 (tag específica) ou 4 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
       ]
     },
     {
@@ -133,7 +133,7 @@
         "Fio Convergente: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a percepção, previsão ou tempo. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Presságio Preparado: Ao gastar uma cena de intervalo lendo os fios do destino, declare um presságio reservado; ao invocá-lo depois, crie uma condição temporária com grau igual ao número de tags deste tema. [Condição temporária]",
         "Inevitável: Uma vez por partida, declare que um evento específico está destinado a acontecer. O GM deve integrá-lo à narrativa do arco; pode ajustar o contexto, mas não pode negar o evento. [Especial]",
-        "Corrente Implacável: O fio que puxa você é mais forte que qualquer limite seu — é o seu potencial ômega puxando de volta. A corrente deste tema não é mais limitada pelos seus atributos: você pode atribuir grau (em APs) às tags dele. Todo fio — toda tag — começa em grau 0 e se adensa com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Corrente Implacável: O fio que puxa você é mais forte que qualquer limite seu — é o seu potencial ômega puxando de volta. A corrente deste tema não é mais limitada pelos seus atributos: você pode atribuir grau (em APs) às tags dele. Todo fio — toda tag — começa em grau 0 e se adensa com Factor Cost 3 (tag específica) ou 4 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -167,7 +167,7 @@
         "Visão Cruzada: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a conhecimento, percepção ou rastreamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Leitura Profunda: Ao gastar uma cena de intervalo concentrando o dom para ler a fundo uma pessoa ou cena, crie uma condição temporária de sobrecarga informacional com grau igual ao número de tags deste tema. [Condição temporária]",
         "Varredura Ampla: Uma vez por partida, expanda a percepção para cobrir um raio amplo (instalação, campo de batalha, quarteirão). Faça até 3 perguntas factuais sobre o que acontece nessa área agora. O GM responde todas com honestidade. [Especial]",
-        "Sexto Sentido: Sua percepção ultrapassou os cinco sentidos e o alcance da sua mente; é o potencial ômega do dom enxergando por você. O que você lê não é mais limitado pelos seus atributos: atribua grau (em APs) às tags de percepção deste tema. Cada uma começa em grau 0 e se aguça com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma percepção com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que essa tag poderia ser invocada. [Grau em tags]"
+        "Sexto Sentido: Sua percepção ultrapassou os cinco sentidos e o alcance da sua mente; é o potencial ômega do dom enxergando por você. O que você lê não é mais limitado pelos seus atributos: atribua grau (em APs) às tags de percepção deste tema. Cada uma começa em grau 0 e se aguça com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma percepção com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que essa tag poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -201,7 +201,7 @@
         "Poder Emprestado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente uma habilidade que outro membro do enclave possui. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Sincronia de Rede: Ao gastar uma cena de intervalo sincronizando com os membros do enclave presentes, crie uma condição temporária compartilhada com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, força do Grupo: Quando dois ou mais membros do enclave atuam juntos na mesma ação, cada participante adicional contribui com +1 AP ao total (máximo +3 adicional). [Especial]",
-        "Nexo Vivo: A rede inteira flui por você, sem o gargalo de um único corpo: o potencial ômega coletivo encontra em você o seu canal. O poder da rede não é mais limitado pelos seus atributos; você pode atribuir grau (em APs) às tags deste tema. Cada tag entra na rede em grau 0 e cresce com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Nexo Vivo: A rede inteira flui por você, sem o gargalo de um único corpo: o potencial ômega coletivo encontra em você o seu canal. O poder da rede não é mais limitado pelos seus atributos; você pode atribuir grau (em APs) às tags deste tema. Cada tag entra na rede em grau 0 e cresce com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -235,7 +235,7 @@
         "Forma Aprendida: Responda a uma pergunta de tag de poder de Adaptação ou Relíquia que represente uma forma de ampliar a capacidade da expressão do seu poder. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Carga Canalizada: Ao gastar uma cena de intervalo carregando e canalizando a mutação antes de usá-la, crie uma condição temporária de Carga Máxima com grau igual ao número de tags deste tema. [Condição temporária]",
         "Descarga Total: Uma vez por partida, o personagem pode queimar uma de suas tags sem exauri-la. [Especial]",
-        "Poder Desenfreado: Seu poder não passa mais pelo filtro do corpo: é o potencial ômega vindo à tona, sem pedir licença. O que este tema descarrega não é mais limitado por nenhum dos seus atributos; atribua grau (em APs) às tags dele. Toda tag nasce em grau 0 e se intensifica com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
+        "Poder Desenfreado: Seu poder não passa mais pelo filtro do corpo: é o potencial ômega vindo à tona, sem pedir licença. O que este tema descarrega não é mais limitado por nenhum dos seus atributos; atribua grau (em APs) às tags dele. Toda tag nasce em grau 0 e se intensifica com Factor Cost 3 (tag específica) ou 4 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
       ]
     },
     {
@@ -269,7 +269,7 @@
         "Essência Transferida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente habilidade que o familiar imita, canaliza ou transfere. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Posto Avançado: Ao gastar uma cena de intervalo posicionando o familiar com antecedência, ele pode impor uma condição temporária a um alvo ou área com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, extensão de Poder: O familiar pode usar as tags do personagem em ações próprias, gastando-as normalmente — mas não pode usar a mesma tag no mesmo turno que o personagem já a usou. [Especial]",
-        "Unha e Carne: O vínculo cresceu além do que você ou ele alcançariam sozinhos; seu potencial ômega agora desperta nos dois. As capacidades do familiar e do laço não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e amadurece com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Unha e Carne: O vínculo cresceu além do que você ou ele alcançariam sozinhos; seu potencial ômega agora desperta nos dois. As capacidades do familiar e do laço não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e amadurece com Factor Cost 3 (tag específica) ou 4 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -303,7 +303,7 @@
         "Manobra Aprendida: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a velocidade, evasão ou posicionamento. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Reconhecimento de Terreno: Ao gastar uma cena de intervalo percorrendo e mapeando o espaço antes do confronto, crie uma condição temporária de perturbação no terreno com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, primeiro a Chegar: Em qualquer iniciativa onde deslocamento seja relevante, você age antes de todos os outros sem precisar declarar intenção. [Especial]",
-        "Movimento Perpétuo: Espaço e velocidade deixaram de ser medidos pelo seu corpo — seu potencial ômega já está do outro lado. Seu deslocamento não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag parte do grau 0 e acelera com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau que ainda não foi usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Movimento Perpétuo: Espaço e velocidade deixaram de ser medidos pelo seu corpo — seu potencial ômega já está do outro lado. Seu deslocamento não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag parte do grau 0 e acelera com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau que ainda não foi usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -337,7 +337,7 @@
         "Eco do Legado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação que represente um poder armazenado, despertado ou revelado pela relíquia. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Sintonia Ritual: Ao gastar uma cena de intervalo sintonizando a relíquia antes de usá-la, ela pode impor uma condição temporária a um alvo com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, amplificação: Quando usa a relíquia em conjunto com outra tag deste tema na mesma ação, o grau combinado das duas tags é aumentado em +2 além da soma normal. [Especial]",
-        "Despertar Pleno: O objeto despertou por completo e, com ele, o seu potencial ômega; o limite agora é dele, não seu. O que a relíquia faz não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags dela. Toda tag começa adormecida, em grau 0, e desperta com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Despertar Pleno: O objeto despertou por completo e, com ele, o seu potencial ômega; o limite agora é dele, não seu. O que a relíquia faz não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags dela. Toda tag começa adormecida, em grau 0, e desperta com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -371,7 +371,7 @@
         "Disfarce Aprendido: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação relacionada a furtividade, manipulação ou informação. Anote a resposta como nova tag de poder neste tema. [Tag cruzada]",
         "Armadilha Plantada: Ao gastar uma cena de intervalo plantando uma falsa pista, disfarce ou armadilha de percepção, crie uma condição temporária ilusória em um alvo ou área com grau igual ao número de tags deste tema ao acioná-la. [Condição temporária]",
         "Inversão: Uma vez por partida, converta uma condição negativa que você sofreu em vantagem declarada para uma única ação — o que tentaram usar contra você se torna a ferramenta. [Especial]",
-        "Regras Reescritas: Sua mentira é tão perfeita que nem os seus limites a contradizem — e o seu potencial ômega desperta sem que ninguém perceba. Seus artifícios não são mais limitados pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e evolui com Factor Cost 6 (tag específica) ou 7 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Regras Reescritas: Sua mentira é tão perfeita que nem os seus limites a contradizem — e o seu potencial ômega desperta sem que ninguém perceba. Seus artifícios não são mais limitados pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e evolui com Factor Cost 3 (tag específica) ou 4 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -405,7 +405,7 @@
         "Lição Internalizada: Responda a uma pergunta de tag de poder de Personalidade ou Território que represente habilidade ou conhecimento adquirido especificamente por causa do evento. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Lição Revivida: Ao gastar uma cena de intervalo revivendo conscientemente o evento para extrair sua lição, crie uma condição temporária baseada na emoção central com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, não de Novo: Em circunstância muito similar ao evento, você pode realizar uma ação de dados em reação como se fosse uma ação automática. [Especial]",
-        "Divisor de Águas: Aquele dia reescreveu você: o que ficou gravado opera além de qualquer medida. O que o evento deixou em você não é mais limitado pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se aprofunda com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o antes não volta. [Grau em tags]"
+        "Divisor de Águas: Aquele dia reescreveu você: o que ficou gravado opera além de qualquer medida. O que o evento deixou em você não é mais limitado pelos seus atributos, e você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se aprofunda com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o antes não volta. [Grau em tags]"
       ]
     },
     {
@@ -439,7 +439,7 @@
         "Aprendizado Mútuo: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente algo que você aprendeu especificamente por causa dessa relação. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Vínculo Invocado: Ao gastar uma cena de intervalo contatando ou invocando ativamente a presença dessa pessoa, crie uma condição temporária de confiança ou motivação com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, parceria Profunda: Ao ajudar o personagem ligado a esta relação, as tags usadas não são marcadas como gastas — elas permanecem disponíveis para o turno seguinte. [Especial]",
-        "Laço Inquebrável: Por essa pessoa, você vai além do que deveria ser capaz. Tudo o que o vínculo desperta em você deixa de ser limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Cada tag parte do grau 0 e se fortalece com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. É por ela, ou por ele. [Grau em tags]"
+        "Laço Inquebrável: Por essa pessoa, você vai além do que deveria ser capaz. Tudo o que o vínculo desperta em você deixa de ser limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Cada tag parte do grau 0 e se fortalece com Factor Cost 3 (tag específica) ou 4 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. É por ela, ou por ele. [Grau em tags]"
       ]
     },
     {
@@ -473,7 +473,7 @@
         "Preparação de Campo: Responda a uma pergunta de tag de poder de Relacionamento Principal ou Posses, recurso ou contato adquirido especificamente para cumprir a missão. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Plano de Campo: Ao gastar uma cena de intervalo planejando um passo concreto da sua missão, crie uma condição temporária de foco em si ou em aliado com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
         "Propósito Claro: Uma vez por partida, o personagem pode utilizar cada uma das suas tags de missão duas vezes em uma cena. [Especial]",
-        "Vocação Consumada: Dedicação absoluta transformou propósito em excelência sem teto. Tudo o que serve à missão deixa de ser limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e avança, passo a passo, com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Vocação Consumada: Dedicação absoluta transformou propósito em excelência sem teto. Tudo o que serve à missão deixa de ser limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e avança, passo a passo, com Factor Cost 3 (tag específica) ou 4 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -507,7 +507,7 @@
         "Traço como Poder: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente uma capacidade que nasce diretamente de como você é. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Afirmação de Caráter: Ao gastar uma cena de intervalo afirmando abertamente seu traço dominante diante de um alvo, crie nele uma condição temporária baseada nesse traço com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, impossível de Ler: Ações que tentam prever, manipular ou condicionar seu comportamento têm OV aumentado em +1. [Especial]",
-        "Gênio Próprio: Seu traço é tão puro que funciona como um talento fora da curva. Quem você é não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se afirma com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o caráter entra na sala antes de você. [Grau em tags]"
+        "Gênio Próprio: Seu traço é tão puro que funciona como um talento fora da curva. Quem você é não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se afirma com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o caráter entra na sala antes de você. [Grau em tags]"
       ]
     },
     {
@@ -541,7 +541,7 @@
         "Função Inesperada: Responda a uma pergunta de tag de poder de Missão ou Treinamento que represente a aplicação desta posse ou ferramenta na prática. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Equipamento Pronto: Ao gastar uma cena de intervalo preparando ou ajustando uma posse importante para o que vem, crie uma condição temporária ligada a ela com grau igual ao número de tags deste tema. [Condição temporária]",
         "Ferramenta Certa: Uma vez por partida, o personagem pode anunciar um uso ou funcionalidade novo para seu equipamento permitindo utilizar uma ação sem tags como se tivesse 1 tag. [Especial]",
-        "Pertences Lendários: Você domina suas ferramentas além do que suas mãos sozinhas explicariam. O que seus pertences fazem não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Todo objeto guardado, como tag, começa em grau 0 e se aprimora com Factor Cost 6 (tag específica) ou 7 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Pertences Lendários: Você domina suas ferramentas além do que suas mãos sozinhas explicariam. O que seus pertences fazem não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Todo objeto guardado, como tag, começa em grau 0 e se aprimora com Factor Cost 3 (tag específica) ou 4 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -575,7 +575,7 @@
         "Ossos do ofício: Responda a uma pergunta de tag de poder de Personalidade ou Treinamento que represente truque, atalho ou tendência trazida à tona pela repetição. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Força do Hábito: Ao executar um trecho da sua rotina em cena de intervalo, crie uma condição temporária forjada por esse hábito com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
         "Apenas mais um dia: Uma vez por partida, o personagem pode utilizar uma tag deste card em uma ação de dados e assumir um resultado 11. [Especial]",
-        "Segunda Natureza: Dez mil repetições: o que era esforço virou reflexo. O ofício do dia a dia não é mais limitado pelos seus atributos; atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se refina, repetição após repetição, com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. É só mais um dia. [Grau em tags]"
+        "Segunda Natureza: Dez mil repetições: o que era esforço virou reflexo. O ofício do dia a dia não é mais limitado pelos seus atributos; atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se refina, repetição após repetição, com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. É só mais um dia. [Grau em tags]"
       ]
     },
     {
@@ -609,7 +609,7 @@
         "Forjado pela Dificuldade: Responda a uma pergunta de tag de poder de qualquer tema de Mutação ou Humanidade que represente habilidade ou perspectiva nascida especificamente do conflito. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Conflito Encarado: Ao gastar uma cena de intervalo encarando e nomeando seu conflito antes de agir, crie uma condição temporária de resistência forjada por ele com grau igual ao número de tags deste tema. [Condição temporária]",
         "Uma vez por partida, força de Adversidade: Ao agir sob condição negativa de grau 3 ou mais, some +1 AP ao AV de qualquer ação de oposição. [Especial]",
-        "Diamante sob Pressão: A adversidade lapidou em você algo que nenhum atributo mede. A pressão que você carrega não é mais limitada pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e endurece com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o que deveria quebrar você vira motor. [Grau em tags]"
+        "Diamante sob Pressão: A adversidade lapidou em você algo que nenhum atributo mede. A pressão que você carrega não é mais limitada pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e endurece com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — o que deveria quebrar você vira motor. [Grau em tags]"
       ]
     },
     {
@@ -643,7 +643,7 @@
         "Recursos especializados: Responda a uma pergunta de tag de poder de Rotina ou Posses que represente um recurso, acesso ou ferramenta necessário para o exercício das suas habilidades. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Aquecimento Técnico: Ao gastar uma cena de intervalo executando um drill ou aquecimento do seu treinamento antes do confronto, crie uma condição temporária de prontidão técnica com grau igual ao número de tags deste tema. [Condição temporária]",
         "Memória Muscular: Uma vez por partida, o personagem pode utilizar mais de uma tag deste tema simultaneamente em uma ação automática. [Especial]",
-        "Auge Humano: Você ultrapassou seus instrutores; a técnica vale mais que o corpo que a executa. O que você treinou não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se apura, drill após drill, com Factor Cost 6 (tag específica) ou 7 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
+        "Auge Humano: Você ultrapassou seus instrutores; a técnica vale mais que o corpo que a executa. O que você treinou não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Toda tag começa em grau 0 e se apura, drill após drill, com Factor Cost 3 (tag específica) ou 4 (tag genérica). Em qualquer ação em que poderia ser invocada, uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV. [Grau em tags]"
       ]
     },
     {
@@ -677,7 +677,7 @@
         "Recurso Local: Responda a uma pergunta de tag de poder de qualquer Relacionamento Principal ou Evento Principal que represente aliado, contato ou experiência obtida ao conviver no território. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Jogando em casa: Ao gastar uma cena de intervalo no seu território, crie uma condição temporária Jogando em casa com grau igual ao número de tags deste tema. [Condição temporária]",
         "Habitat Natural: Uma vez por partida quando houver uma semelhança entre o local da cena e o território, o personagem pode queimar uma tag deste tema sem perde-la temporariamente (exauri-la). [Especial]",
-        "Solo Sagrado: Você conhece cada atalho e cada rosto; aqui, o lugar joga por você. O que seu território oferece não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e cria raízes com Factor Cost 6 (tag específica) ou 7 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Solo Sagrado: Você conhece cada atalho e cada rosto; aqui, o lugar joga por você. O que seu território oferece não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag começa em grau 0 e cria raízes com Factor Cost 3 (tag específica) ou 4 (tag genérica). Se ainda não foi usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -706,7 +706,7 @@
         "Aprendizado de Campo: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente algo que você aprendeu diretamente com esse aliado. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Plano Coordenado: Ao gastar uma cena de intervalo coordenando um plano com seu aliado antes da cena, ele pode lhe conceder uma condição temporária de apoio com grau igual ao número de tags deste tema. [Condição temporária]",
         "Presença Garantida: Uma vez por partida, declare que o aliado aparece em uma cena onde há justificativa narrativa mínima para sua presença. Ele chega no início da cena. [Especial]",
-        "Agente de Elite: Seu aliado opera em um patamar próprio. As capacidades dele não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag do aliado começa em grau 0 e evolui com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — nessa hora, quem resolve é ele. [Grau em tags]"
+        "Agente de Elite: Seu aliado opera em um patamar próprio. As capacidades dele não são mais limitadas pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag do aliado começa em grau 0 e evolui com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada — nessa hora, quem resolve é ele. [Grau em tags]"
       ]
     },
     {
@@ -735,7 +735,7 @@
         "Recurso Instalado: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente equipamento, sistema ou defesa presente na base. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Preparo na Base: Ao gastar uma cena de intervalo na base preparando-se com seus recursos para uma situação específica, crie uma condição temporária de vantagem com grau igual ao número de tags deste tema na cena seguinte. [Condição temporária]",
         "Campo de Preparo: Uma vez por partida, declare que passou tempo treinando ou se preparando na base para uma situação específica. A primeira ação relacionada a essa situação na cena seguinte recebe +2 AP. [Especial]",
-        "Fortaleza Autônoma: A instalação chegou ao estado da arte; os sistemas dela superam qualquer operador. O que a base faz não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Todo sistema instalado, como tag, começa em grau 0 e é atualizado com Factor Cost 6 (tag específica) ou 7 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Fortaleza Autônoma: A instalação chegou ao estado da arte; os sistemas dela superam qualquer operador. O que a base faz não é mais limitado pelos seus atributos: atribua grau (em APs) às tags deste tema. Todo sistema instalado, como tag, começa em grau 0 e é atualizado com Factor Cost 3 (tag específica) ou 4 (tag genérica). Ainda não usada no turno, uma tag com grau pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     },
     {
@@ -764,7 +764,7 @@
         "Modificação Estratégica: Responda a uma pergunta de tag de poder de qualquer subcategoria de Mutação ou Humanidade que represente modificação, capacidade ou adaptação que seu transporte adquiriu. Anote como nova tag de poder neste tema. [Tag cruzada]",
         "Posicionamento Tático: Ao gastar uma cena de intervalo posicionando ou preparando o transporte antes do momento crítico, crie uma condição temporária — aceleração, disrupção ou reposicionamento — com grau igual ao número de tags deste tema. [Condição temporária]",
         "Confiável: Uma vez por partida, ao fazer uma ação de deslocamento usando este tema, você pode tratar o resultado como sucesso parcial (7 a 9) mesmo que tenha rolado 6 ou menos. Isso não elimina complicações, mas garante que você chega onde queria. [Especial]",
-        "Fora de Série: O veículo foi levado além das especificações; a máquina faz o que o piloto não faria. O desempenho dele não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag do veículo começa em grau 0 e recebe upgrades com Factor Cost 6 (tag específica) ou 7 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
+        "Fora de Série: O veículo foi levado além das especificações; a máquina faz o que o piloto não faria. O desempenho dele não é mais limitado pelos seus atributos: você pode atribuir grau (em APs) às tags deste tema. Toda tag do veículo começa em grau 0 e recebe upgrades com Factor Cost 3 (tag específica) ou 4 (tag genérica). Uma tag com grau ainda não usada no turno pode substituir AV/EV e/ou OV/RV em qualquer ação em que poderia ser invocada. [Grau em tags]"
       ]
     }
   ]
