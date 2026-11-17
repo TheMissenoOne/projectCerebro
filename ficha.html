@@ -869,8 +869,8 @@ const grauDesbloqueado=(card,lista)=>(lista||getMelhorias(card.tipo)).some((m,i)
 const MAX_GRAU=99;
 const grauDe=(card,i)=>Math.min(MAX_GRAU,Math.max(0,parseInt(card&&card.poder_grau&&card.poder_grau[i],10)||0));
 const ehGenerica=(card,i)=>!!(card&&card.poder_generica&&card.poder_generica[i]===true);
-/* Factor Cost de uma tag com grau: 6 específica, 7 genérica */
-const custoFator=generica=>generica?7:6;
+/* Factor Cost de uma tag com grau: 3 específica, 4 genérica */
+const custoFator=generica=>generica?4:3;
 /* cards salvos antes do grau não têm os arrays; alinha com poder[] (mesmo índice) */
 function normalizarCard(c){
   const n=Math.max(10,(c.poder||[]).length);
