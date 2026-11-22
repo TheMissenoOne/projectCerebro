@@ -136,11 +136,10 @@ test('normalizarDados - normalises temas, extras and temas_emergentes', () => {
   });
 });
 
-test('visibleTagIndices - filled tags (stable original indexes) + first empty slot', () => {
-  const arr = ['', 'B', '', 'D', '', ''];
-  const got = X.visibleTagIndices(arr, 6);
-  if (JSON.stringify(got) !== JSON.stringify([1, 3, 0])) throw new Error(JSON.stringify(got));
-  if (JSON.stringify(X.visibleTagIndices(['a', 'b'], 2)) !== '[0,1]') throw new Error('full list should have no empty slot');
+test('sortedTagIndices - every slot shown in edit mode: filled first, then empty (stable indexes)', () => {
+  const got = X.sortedTagIndices(['', 'B', '', 'D', '', ''], 6);
+  if (JSON.stringify(got) !== JSON.stringify([1, 3, 0, 2, 4, 5])) throw new Error(JSON.stringify(got));
+  if (X.visibleTagIndices !== undefined) throw new Error('visibleTagIndices should be gone (it hid the questions)');
 });
 
 test('cardResumo - counts filled tags and keeps tracker value', () => {

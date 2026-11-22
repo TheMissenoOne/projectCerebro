@@ -1273,13 +1273,6 @@ function sortedTagIndices(arr,count){
     return aF===bF?a-b:aF?-1:1;
   });
 }
-/* linhas desenhadas: tags preenchidas + o primeiro slot vazio (traz a próxima
-   pergunta do tema como placeholder); os outros vazios ficam atrás do "+" */
-function visibleTagIndices(arr,count){
-  const s=sortedTagIndices(arr||[],count);
-  const vazio=s.find(i=>!temTexto((arr||[])[i]));
-  return s.filter(i=>temTexto((arr||[])[i])).concat(vazio===undefined?[]:[vazio]);
-}
 /* linha-resumo do card recolhido */
 function cardResumo(card){
   const n=a=>(a||[]).filter(temTexto).length;
@@ -1373,7 +1366,8 @@ function renderTagList(sec,card,isPower){
   lbl.textContent=t(isPower?'ficha.powerTags':'ficha.weaknessTags');
   if(isPower)lbl.dataset.omega=t('ficha.omegaOn');
   const list=document.createElement('div');list.className='tags-list '+(isPower?'poder-tags':'fraq-tags');
-  const shown=new Set(visibleTagIndices(card[key],count));
+  /* edição: todos os slots, cada vazio com sua pergunta do tema; leitura esconde os vazios via CSS (.tag-row.empty) */
+  const shown=new Set(sortedTagIndices(card[key],count));
   shown.forEach(i=>list.appendChild(makeTagRow(card,isPower,i,getPlaceholder(card.tipo,i,isPower))));
   const add=document.createElement('button');add.type='button';add.className='add-tag-btn';add.textContent='+';
   rotular(add,t(isPower?'ficha.addPowerTag':'ficha.addWeakTag'));
@@ -1776,7 +1770,7 @@ document.addEventListener('click',function(e){
 
 // ponytail: node-requireable export for tests/theme-cards.test.js; no-op in the browser
 if(typeof module!=='undefined'&&module.exports){
-  module.exports={MELHORIAS,deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,visibleTagIndices,cardResumo,pdfCard};
+  module.exports={MELHORIAS,deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,cardResumo,pdfCard};
 }
 </script>
 </body>
