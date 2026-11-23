@@ -312,6 +312,13 @@ body{background:var(--black);color:var(--text);font-family:var(--body);font-size
 .tag-row.empty .tag-gen,.tag-row.empty .tag-ap{visibility:hidden;}
 .tag-burn-btn{width:30px;background:none;border:none;color:var(--b2);cursor:pointer;padding:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .12s;-webkit-tap-highlight-color:transparent;line-height:1;}
 .tag-burn-btn svg{max-width:18px;max-height:18px;}
+/* × de tag extra (além das perguntas): dentro do campo, no fim; empurra o GEN pra esquerda */
+.tag-rm-btn{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:22px;height:22px;padding:0;background:none;border:none;color:var(--b3);cursor:pointer;font-size:1.05rem;line-height:1;-webkit-tap-highlight-color:transparent;}
+.tag-rm-btn::before{content:'';position:absolute;inset:-6px;}
+.tag-row.removable .tag-inp{padding-right:30px;}
+.poder-tags .tag-row.removable .tag-inp{padding-right:68px;}
+.tag-row.removable .tag-gen{right:30px;}
+.tag-rm-btn:hover,.tag-rm-btn:focus-visible{color:var(--danger,#e5484d);}
 .tag-burn-btn:hover{color:#ff8c42;}
 .tag-burn-btn.active{color:#ff5500;box-shadow:inset 0 -2px 0 #ff5500;} /* hard rule, not a glow: state reads without colour */
 .add-tag-btn{background:var(--p2);border:1px dashed var(--b3);color:var(--muted2);font-family:var(--disp);font-size:.95rem;width:100%;min-height:28px;padding:2px 0;cursor:pointer;transition:all .2s;border-radius:0;}
@@ -445,7 +452,7 @@ body{background:var(--black);color:var(--text);font-family:var(--body);font-size
 .ro-bar.is-editing .ro-btn:hover{background:var(--on-accent);color:var(--accent);}
 .ro-bar.is-editing .ro-btn:focus-visible{outline-color:var(--on-accent);}
 /* em leitura somem as affordances de criar/apagar e os slots vazios; o resto fica legível, sem cursor de edição */
-body.is-readonly :is(.add-tag-btn,.add-card-btn,.del-card-btn,#remove-foto-btn,.tipo-caret,.tag-row.empty,[onclick="resetarFicha()"]){display:none!important;}
+body.is-readonly :is(.add-tag-btn,.tag-rm-btn,.add-card-btn,.del-card-btn,#remove-foto-btn,.tipo-caret,.tag-row.empty,[onclick="resetarFicha()"]){display:none!important;}
 body.is-readonly :is(.portrait-zone,.dot,.mel-row,.mel-chk,.evo-check-row,.evo-chk,.tipo-ctl,.tipo-sel,.tag-ap,.q-btn,.tag-gen,.tag-burn-btn){cursor:default;}
 body.is-readonly main :is(input,textarea):read-only:focus{border-color:var(--b2);}
 </style>
@@ -1273,6 +1280,13 @@ function sortedTagIndices(arr,count){
     return aF===bF?a-b:aF?-1:1;
   });
 }
+/* slots fixos: um por pergunta do tema, nunca menos que 10 poder / 4 fraqueza; além disso a tag é removível */
+const tagsBase=(q,isPower)=>Math.max(((isPower?q.p:q.f)||[]).length,isPower?10:4);
+/* remove a tag i e os arrays paralelos pelo índice */
+function removerTag(card,isPower,i){
+  const ks=isPower?['poder','poder_burned','poder_grau','poder_generica']:['fraqueza','fraqueza_burned'];
+  ks.forEach(k=>{if(Array.isArray(card[k]))card[k].splice(i,1);});
+}
 /* linha-resumo do card recolhido */
 function cardResumo(card){
   const n=a=>(a||[]).filter(temTexto).length;
@@ -1316,7 +1330,7 @@ function addPowerControls(row,field,card,i){
   paint();
   field.appendChild(gen);row.appendChild(ap);
 }
-function makeTagRow(card,isPower,i,placeholder){
+function makeTagRow(card,isPower,i,placeholder,onRemove){
   const key=isPower?'poder':'fraqueza';
   const row=document.createElement('div');row.className='tag-row';
   const burned=(card[key+'_burned']?.[i])===true;
@@ -1355,20 +1369,33 @@ function makeTagRow(card,isPower,i,placeholder){
     salvarAuto();
   });
   row.appendChild(btn);
+  if(onRemove){
+    const rm=document.createElement('button');rm.type='button';rm.className='tag-rm-btn';rm.textContent='×';
+    rotular(rm,t('ficha.removeTag'));rm.addEventListener('click',onRemove);
+    field.appendChild(rm);row.classList.add('removable');
+  }
   return row;
 }
 function renderTagList(sec,card,isPower){
   const key=isPower?'poder':'fraqueza';
   if(!Array.isArray(card[key]))card[key]=[];
   const q=PERGUNTAS[normalizeKey(card.tipo)]||{};
-  let count=Math.max(((isPower?q.p:q.f)||[]).length,card[key].length,isPower?10:4);
+  const base=tagsBase(q,isPower);
+  let count=Math.max(base,card[key].length);
   const lbl=document.createElement('div');lbl.className='c-label '+(isPower?'poder poder-lbl':'fraq fraq-lbl');
   lbl.textContent=t(isPower?'ficha.powerTags':'ficha.weaknessTags');
   if(isPower)lbl.dataset.omega=t('ficha.omegaOn');
   const list=document.createElement('div');list.className='tags-list '+(isPower?'poder-tags':'fraq-tags');
   /* edição: todos os slots, cada vazio com sua pergunta do tema; leitura esconde os vazios via CSS (.tag-row.empty) */
-  const shown=new Set(sortedTagIndices(card[key],count));
-  shown.forEach(i=>list.appendChild(makeTagRow(card,isPower,i,getPlaceholder(card.tipo,i,isPower))));
+  const shown=new Set();
+  const row=i=>makeTagRow(card,isPower,i,getPlaceholder(card.tipo,i,isPower),i<base?null:()=>{
+    removerTag(card,isPower,i);count=Math.max(base,card[key].length);salvarAuto();draw();
+  });
+  const draw=()=>{
+    list.replaceChildren();shown.clear();
+    sortedTagIndices(card[key],count).forEach(i=>{shown.add(i);list.appendChild(row(i));});
+  };
+  draw();
   const add=document.createElement('button');add.type='button';add.className='add-tag-btn';add.textContent='+';
   rotular(add,t(isPower?'ficha.addPowerTag':'ficha.addWeakTag'));
   add.addEventListener('click',()=>{
@@ -1387,8 +1414,7 @@ function renderTagList(sec,card,isPower){
       salvarAuto();
     }
     shown.add(i);
-    const row=makeTagRow(card,isPower,i,getPlaceholder(card.tipo,i,isPower));
-    list.appendChild(row);row.querySelector('.tag-inp').focus();
+    const r=row(i);list.appendChild(r);r.querySelector('.tag-inp').focus();
   });
   sec.append(lbl,list,add);
 }
@@ -1770,7 +1796,7 @@ document.addEventListener('click',function(e){
 
 // ponytail: node-requireable export for tests/theme-cards.test.js; no-op in the browser
 if(typeof module!=='undefined'&&module.exports){
-  module.exports={MELHORIAS,deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,cardResumo,pdfCard};
+  module.exports={MELHORIAS,deriveBlurb,parseMelhoria,grauDesbloqueado,grauDe,custoFator,normalizarCard,normalizarDados,novoCard,sortedTagIndices,tagsBase,removerTag,cardResumo,pdfCard};
 }
 </script>
 </body>

@@ -142,6 +142,19 @@ test('sortedTagIndices - every slot shown in edit mode: filled first, then empty
   if (X.visibleTagIndices !== undefined) throw new Error('visibleTagIndices should be gone (it hid the questions)');
 });
 
+test('removerTag - splices the tag and its parallel arrays (burned, grau, generica)', () => {
+  const c = { poder: ['a', 'b', 'c'], poder_burned: [false, true, false], poder_grau: [1, 2, 3], poder_generica: [false, true, false], fraqueza: ['x', 'y'], fraqueza_burned: [true, false] };
+  X.removerTag(c, true, 1);
+  const p = JSON.stringify([c.poder, c.poder_burned, c.poder_grau, c.poder_generica]);
+  if (p !== JSON.stringify([['a', 'c'], [false, false], [1, 3], [false, false]])) throw new Error(p);
+  X.removerTag(c, false, 0);
+  if (JSON.stringify([c.fraqueza, c.fraqueza_burned]) !== JSON.stringify([['y'], [false]])) throw new Error('fraqueza');
+});
+
+test('tagsBase - question slots, never below the 10/4 defaults', () => {
+  if (X.tagsBase({ p: Array(12), f: [] }, true) !== 12 || X.tagsBase({}, true) !== 10 || X.tagsBase({ f: [1] }, false) !== 4) throw new Error('base');
+});
+
 test('cardResumo - counts filled tags and keeps tracker value', () => {
   const r = X.cardResumo({ titulo: ' Pele ', poder: ['a', '', ' ', 'b'], fraqueza: ['x'], valor: -2 });
   if (r.titulo !== 'Pele' || r.poder !== 2 || r.fraqueza !== 1 || r.valor !== -2) throw new Error(JSON.stringify(r));
